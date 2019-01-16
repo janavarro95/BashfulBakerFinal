@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (Assets.Scripts.GameInput.InputControls.RightBumperPressed) Debug.Log("RightBumper Pressed!");
+
         this.gameObject.transform.position += new Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"),0)*MovementSpeed;
 	}
 }

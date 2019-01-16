@@ -13,6 +13,20 @@ namespace Assets.Scripts
             Oven
         }
 
+        public enum OperatingSystem
+        {
+            Windows,
+            Mac,
+            Linux,
+            PS3,
+            PS4,
+            XBoxOne,
+            NintendoSwitch,
+            Android,
+            IPhone,
+            Other
+        }
+
         /// <summary>
         /// Gets all of the values stored in an enum.
         /// </summary>
