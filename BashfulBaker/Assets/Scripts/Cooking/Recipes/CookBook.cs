@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Assets.Scripts.Cooking.Recipes
 {
@@ -20,11 +22,32 @@ namespace Assets.Scripts.Cooking.Recipes
         /// </summary>
         public static void Initialize()
         {
+            if (Recipes != null) return; //Prevent it from being called twice.
+            Recipes = new Dictionary<Enums.CookingStation, Dictionary<string, Recipe>>();
             foreach (Enums.CookingStation station in Enums.GetValues<Enums.CookingStation>())
             {
                 Recipes.Add(station, new Dictionary<string, Recipe>());
             }
             LoadRecipesFromJSONFiles();
+
+            CreateInitialJsonFiles();
+            
+
+            Debug.Log("Create the cookbook!");
+        }
+
+
+        private static void CreateInitialJsonFiles()
+        {
+            if (Recipes[Enums.CookingStation.Oven].ContainsKey("Cookie")) return;
+            Recipes[Enums.CookingStation.Oven].Add("Cookie", new Recipe("Cookie",new List<string>()
+            {
+                "Eggs",
+                "Sugar",
+                "Flour"
+            }));
+            SerializeRecipes();
+
         }
 
         /// <summary>
@@ -32,7 +55,7 @@ namespace Assets.Scripts.Cooking.Recipes
         /// </summary>
         public static void LoadRecipesFromJSONFiles()
         {
-            //Implement this.
+            DeserializeRecipes();
         }
 
         /// <summary>
@@ -71,6 +94,53 @@ namespace Assets.Scripts.Cooking.Recipes
         {
             //Just get a copy of the output for now. We can figure out inventory management later.
             return Recipes[CookingStation][RecipeName].cook();
+        }
+
+        public static void SerializeRecipes()
+        {
+
+            string recipesPath = Path.Combine(Path.Combine(Application.dataPath, "JSON"), "Recipes");
+            foreach(KeyValuePair<Enums.CookingStation,Dictionary<string,Recipe>> pair in Recipes)
+            {
+                string stationPath = Path.Combine(recipesPath, pair.Key.ToString());
+                Directory.CreateDirectory(stationPath);
+                foreach(KeyValuePair<string,Recipe> recipe in Recipes[pair.Key])
+                {
+                    GameInformation.Game.Serializer.Serialize(Path.Combine(stationPath, recipe.Key + ".json"), recipe.Value);
+                }
+            }
+
+        }
+
+        public static void DeserializeRecipes()
+        {
+            string recipesPath = Path.Combine(Path.Combine(Application.dataPath, "JSON"), "Recipes");
+            string[] folders = Directory.GetDirectories(recipesPath);
+            foreach(string cookingStation in folders)
+            {
+                string[] files = Directory.GetFiles(cookingStation,"*.json");
+                foreach(string recipe in files)
+                {
+                    if (recipe.Contains(".meta")) continue;
+                    Recipe deserialized=GameInformation.Game.Serializer.Deserialize<Recipe>(recipe);
+                    DirectoryInfo info = new DirectoryInfo(cookingStation);
+                    Enums.CookingStation station=(Enums.CookingStation)Enum.Parse(typeof(Enums.CookingStation), info.Name, true);
+                    Recipes[station].Add(deserialized.name, deserialized);
+                    //Debug.Log("Found the " + deserialized.name + " recipe!");
+                    
+                    //FIGURE OUT PARSING STRING TO ENUM
+                }
+            }
+
+            foreach (KeyValuePair<Enums.CookingStation, Dictionary<string, Recipe>> pair in Recipes)
+            {
+                string stationPath = Path.Combine(recipesPath, pair.Key.ToString());
+                Directory.CreateDirectory(stationPath);
+                foreach (KeyValuePair<string, Recipe> recipe in Recipes[pair.Key])
+                {
+                    GameInformation.Game.Serializer.Serialize(Path.Combine(stationPath, recipe.Key + ".json"), recipe.Value);
+                }
+            }
         }
 
     }
