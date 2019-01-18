@@ -1,4 +1,7 @@
-﻿using Assets.Scripts.Utilities.Serialization;
+﻿using Assets.Scripts.Cooking.Recipes;
+using Assets.Scripts.Player;
+using Assets.Scripts.QuestSystem;
+using Assets.Scripts.Utilities.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +20,37 @@ namespace Assets.Scripts.GameInformation
     #endif
     public class Game : MonoBehaviour
     {
+        /// <summary>
+        /// Checks to see if the game and it's internal systems have been loaded or not.
+        /// </summary>
+        private static bool gameLoaded;
+        /// <summary>
+        /// The information for the player that doesn't need to be seen on a MonoBehavior script.
+        /// </summary>
+        private static Assets.Scripts.Player.PlayerInfo player;
+
+        /// <summary>
+        /// Holds all of the information we need to keep track of on the player.
+        /// </summary>
+        public static Player.PlayerInfo Player
+        {
+            get
+            {
+                return player;
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if the game and it's internal systems have been loaded or not.
+        /// </summary>
+        public static bool GameLoaded
+        {
+            get
+            {
+                return gameLoaded;
+            }        
+        }
+
         public static Serializer Serializer
         {
             get
@@ -25,8 +59,23 @@ namespace Assets.Scripts.GameInformation
             }
         }
 
-        // Notice that these methods are static! This is key!
+        public static QuestManager QuestManager
+        {
+            get
+            {
+                return Assets.Scripts.QuestSystem.QuestManager.Quests;
+            }
+        }
 
+        public static CookBook CookBook
+        {
+            get
+            {
+                return Cooking.Recipes.CookBook.CookingRecipes;
+            }
+        }
+
+        // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
         static Game()
         {
@@ -43,13 +92,14 @@ namespace Assets.Scripts.GameInformation
         #endif
         static void Initialize()
         {
-            // I do not remember if the pre-processor check is necessary, but I do
-            // know that this code will not get called unless you have the constructor like above.
-
-            // Anyway, put whatever initialization code you want here.
-
-            Assets.Scripts.Utilities.Serialization.Serializer.JSONSerializer = new Utilities.Serialization.Serializer();
-            Cooking.Recipes.CookBook.Initialize();
+            if (GameLoaded == false)
+            {
+                if (Serializer.JSONSerializer == null) Serializer.JSONSerializer = new Utilities.Serialization.Serializer();
+                if (Cooking.Recipes.CookBook.CookingRecipes == null) Cooking.Recipes.CookBook.CookingRecipes = new CookBook();
+                if (QuestSystem.QuestManager.Quests == null) QuestSystem.QuestManager.Quests = new QuestManager();
+                if (player == null) player = new PlayerInfo();
+                gameLoaded = true;
+            }
         }
 
         // Various other things follow...

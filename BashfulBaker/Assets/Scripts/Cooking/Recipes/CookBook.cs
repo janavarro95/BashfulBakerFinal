@@ -12,15 +12,22 @@ namespace Assets.Scripts.Cooking.Recipes
     /// </summary>
     public class CookBook
     {
+        public static CookBook CookingRecipes;
+
         /// <summary>
         /// A list of all of the recipes in the game.
         /// </summary>
-        public static Dictionary<Enums.CookingStation, Dictionary<string, Recipe>> Recipes;
+        public Dictionary<Enums.CookingStation, Dictionary<string, Recipe>> Recipes;
+
+        public CookBook()
+        {
+            Initialize();
+        }
 
         /// <summary>
         /// Initializes all of the dictionaries necessary to hold cooking recipes.
         /// </summary>
-        public static void Initialize()
+        public void Initialize()
         {
             if (Recipes != null) return; //Prevent it from being called twice.
             Recipes = new Dictionary<Enums.CookingStation, Dictionary<string, Recipe>>();
@@ -37,7 +44,7 @@ namespace Assets.Scripts.Cooking.Recipes
         }
 
 
-        private static void CreateInitialJsonFiles()
+        private void CreateInitialJsonFiles()
         {
             if (Recipes[Enums.CookingStation.Oven].ContainsKey("Cookie")) return;
             Recipes[Enums.CookingStation.Oven].Add("Cookie", new Recipe("Cookie",new List<string>()
@@ -53,7 +60,7 @@ namespace Assets.Scripts.Cooking.Recipes
         /// <summary>
         /// Loads all of the recipes from .json files.
         /// </summary>
-        public static void LoadRecipesFromJSONFiles()
+        public void LoadRecipesFromJSONFiles()
         {
             DeserializeRecipes();
         }
@@ -63,7 +70,7 @@ namespace Assets.Scripts.Cooking.Recipes
         /// </summary>
         /// <param name="CookingStation">The enum representing what cooking station the player is interacting with.</param>
         /// <param name="Recipe">The recipe to add into the cook book.</param>
-        private static void AddRecipe(Enums.CookingStation CookingStation, Recipe Recipe)
+        private void AddRecipe(Enums.CookingStation CookingStation, Recipe Recipe)
         {
             if (Recipes.ContainsKey(CookingStation))
             {
@@ -79,7 +86,7 @@ namespace Assets.Scripts.Cooking.Recipes
         /// <param name="RecipeName">The name of the recipe to cook.</param>
         /// <param name="Ingredients">The list of ingredients held by the player.</param>
         /// <returns></returns>
-        public static bool CanCookThis(Enums.CookingStation CookingStation,string RecipeName,List<Item> Ingredients)
+        public bool CanCookThis(Enums.CookingStation CookingStation,string RecipeName,List<Item> Ingredients)
         {
             return Recipes[CookingStation][RecipeName].canCook(Ingredients);
         }
@@ -90,13 +97,13 @@ namespace Assets.Scripts.Cooking.Recipes
         /// <param name="CookingStation">The enum representing what cooking station the player is interacting with.</param>
         /// <param name="RecipeName">The name of the recipe to cook.</param>
         /// <returns></returns>
-        public static Item Cook(Enums.CookingStation CookingStation,string RecipeName)
+        public Item Cook(Enums.CookingStation CookingStation,string RecipeName)
         {
             //Just get a copy of the output for now. We can figure out inventory management later.
             return Recipes[CookingStation][RecipeName].cook();
         }
 
-        public static void SerializeRecipes()
+        public void SerializeRecipes()
         {
 
             string recipesPath = Path.Combine(Path.Combine(Application.dataPath, "JSON"), "Recipes");
@@ -112,7 +119,10 @@ namespace Assets.Scripts.Cooking.Recipes
 
         }
 
-        public static void DeserializeRecipes()
+        /// <summary>
+        /// Loads all JSON files from the asssets/json folder for recipes.
+        /// </summary>
+        public void DeserializeRecipes()
         {
             string recipesPath = Path.Combine(Path.Combine(Application.dataPath, "JSON"), "Recipes");
             string[] folders = Directory.GetDirectories(recipesPath);
@@ -126,9 +136,6 @@ namespace Assets.Scripts.Cooking.Recipes
                     DirectoryInfo info = new DirectoryInfo(cookingStation);
                     Enums.CookingStation station=(Enums.CookingStation)Enum.Parse(typeof(Enums.CookingStation), info.Name, true);
                     Recipes[station].Add(deserialized.name, deserialized);
-                    //Debug.Log("Found the " + deserialized.name + " recipe!");
-                    
-                    //FIGURE OUT PARSING STRING TO ENUM
                 }
             }
 
