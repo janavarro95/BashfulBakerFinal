@@ -25,20 +25,25 @@ namespace Assets.Scripts.QuestSystem.Quests
             
         }
 
+        
+
         /// <summary>
         /// If player is in the drop off zone and they interact with it, try to deliver the dish.
         /// </summary>
         /// <param name="collision"></param>
-        public void OnCollisionStay(Collision collision)
+        public void OnTriggerStay2D(Collider2D collision)
         {
+            //Debug.Log("HELLO!");
             if (GameInput.InputControls.APressed) //If player presses A
             {
+                //Debug.Log("DROP OFF!");
                 bool hasADishBeenDelivered = false;
                 List<Item> removalList = new List<Item>();
                 foreach(Item I in Game.Player.inventory) //Check all items in their inventory for a dish.
                 {
                     if(I is Dish) //Send that dish to the quest manager....
                     {
+                        Debug.Log(I.itemName);
                         bool delivered=Game.QuestManager.checkForDeliveryQuestCompletion((I as Dish), this);
                         if (delivered == true)
                         {

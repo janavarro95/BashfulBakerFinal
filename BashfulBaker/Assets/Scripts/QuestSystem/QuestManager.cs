@@ -5,12 +5,16 @@ using Assets.Scripts.QuestSystem.Quests;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace Assets.Scripts.QuestSystem
 {
     /// <summary>
     /// The quest manager which manages all of the quests.
+    /// 
+    /// TODO:
+    ///     Generate dialogue for the most recently recieved quest?
     /// </summary>
     public class QuestManager
     {
@@ -27,6 +31,14 @@ namespace Assets.Scripts.QuestSystem
         public QuestManager()
         {
             this.quests = new List<Quest>();
+
+            quests.Add(new CookingQuest("Example", "Mr.Example", new List<string>()
+            {
+                "Raspberries"
+            }, null));
+            serializeCookingQuests();
+
+            
         }
 
         /// <summary>
@@ -109,6 +121,43 @@ namespace Assets.Scripts.QuestSystem
             return newQuest;
         }
 
+
+        /// <summary>
+        /// Loads a cooking quest from a .json file and adds it to the quest manager.
+        /// </summary>
+        /// <param name="fileName">The name of the file without the .json extension. I.E Cheescake, or Day1_Quest</param>
+        /// <returns></returns>
+        public CookingQuest loadCookingQuest(string fileName, bool addToQuestManager = true)
+        {
+            string cookingQuests = Path.Combine(Path.Combine(Path.Combine(Application.dataPath, "JSON"), "Quests"),"CookingQuests");
+
+            string[] files = Directory.GetFiles(cookingQuests, "*.json");
+            foreach (string quest in files)
+            {
+                if (quest.Contains(".meta")) continue;
+                if (fileName == Path.GetFileNameWithoutExtension(quest))
+                {
+                    CookingQuest deserialized = GameInformation.Game.Serializer.Deserialize<CookingQuest>(quest);
+                    if (addToQuestManager) quests.Add(deserialized);
+                    return deserialized;
+                }
+            }
+            return null;
+        }
+
+        private void serializeCookingQuests()
+        {
+            string cookingQuests = Path.Combine(Path.Combine(Path.Combine(Application.dataPath, "JSON"), "Quests"), "CookingQuests");
+            Directory.CreateDirectory(cookingQuests);
+
+
+            foreach (Quest q in this.quests)
+            {
+                Game.Serializer.Serialize(Path.Combine(cookingQuests, (q as CookingQuest).RequiredDish + ".json"),q);
+            }
+            return;
+        }
+
         /// <summary>
         /// Checks a cooking quest for completion.
         /// </summary>
@@ -119,26 +168,6 @@ namespace Assets.Scripts.QuestSystem
             if (checkForCookingQuestSpecialCompletion(dish)) return Enums.QuestCompletionStatus.SpecialMissionCompleted;
             else if (checkForCookingQuestCompletion(dish) == true) return Enums.QuestCompletionStatus.Completed;
             else return Enums.QuestCompletionStatus.NotCompleted;
-        }
-
-        /// <summary>
-        /// Checks for the completion of a delivery quest.
-        /// </summary>
-        /// <param name="Dish">The dish to be delivered.</param>
-        /// <param name="Zone">The drop off zone acript which contains all of the npc names.</param>
-        /// <returns>If the dish has been sucessfully delivered or not.</returns>
-        private bool checkForDeliveryQuestCompletion(Dish Dish, DeliveryDropOffZone Zone)
-        {
-            foreach (Quest q in quests)
-            {
-                if (q is DeliveryQuest)
-                {
-                    if (q.IsCompleted) continue; //Don't want to throw away dishes at completed quests.
-                    bool delivered=(q as DeliveryQuest).deliverDish(Dish, Zone);
-                    return delivered; //If the dish was accepted, return true, otherwise return false;
-                }
-            }
-            return false;
         }
 
         /// <summary>
@@ -165,7 +194,7 @@ namespace Assets.Scripts.QuestSystem
         /// </summary>
         /// <param name="dish">The dish to pass in to see if it fufills a quest's special requirement.</param>
         /// <returns></returns>
-        public bool checkForCookingQuestSpecialCompletion(Dish dish)
+        private bool checkForCookingQuestSpecialCompletion(Dish dish)
         {
             foreach (Quest q in quests)
             {
@@ -174,6 +203,31 @@ namespace Assets.Scripts.QuestSystem
                     if (q.IsCompleted) continue; //Don't want to throw away dishes at completed quests.
                     (q as CookingQuest).checkForCompletion(dish);
                     return (q as CookingQuest).specialMissionCompleted();
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Checks for the completion of a delivery quest.
+        /// </summary>
+        /// <param name="Dish">The dish to be delivered.</param>
+        /// <param name="Zone">The drop off zone acript which contains all of the npc names.</param>
+        /// <returns>If the dish has been sucessfully delivered or not.</returns>
+        public bool checkForDeliveryQuestCompletion(Dish Dish, DeliveryDropOffZone Zone)
+        {
+            foreach (Quest q in quests)
+            {
+                if (q is DeliveryQuest)
+                {
+                    //Debug.Log("Found a delivery quest!");
+                    if (q.IsCompleted) continue; //Don't want to throw away dishes at completed quests.
+                    bool delivered = (q as DeliveryQuest).deliverDish(Dish, Zone);
+                    return delivered; //If the dish was accepted, return true, otherwise return false;
+                }
+                else
+                {
+                    //Debug.Log("Found a different quest:" + q.GetType().ToString());
                 }
             }
             return false;

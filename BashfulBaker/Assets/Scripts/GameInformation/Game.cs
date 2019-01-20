@@ -1,11 +1,15 @@
 ﻿using Assets.Scripts.Cooking.Recipes;
+using Assets.Scripts.Items;
 using Assets.Scripts.Player;
 using Assets.Scripts.QuestSystem;
+using Assets.Scripts.QuestSystem.Quests;
 using Assets.Scripts.Utilities.Serialization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.GameInformation
@@ -100,9 +104,13 @@ namespace Assets.Scripts.GameInformation
                 if (player == null) player = new PlayerInfo();
                 gameLoaded = true;
 
+                if (player.inventory == null) Debug.Log("Why inventory null??");
 
-                
+                player.inventory.Add(Dish.LoadDishFromPrefab("Example").GetComponent<Dish>());
 
+                CookingQuest quest=QuestManager.loadCookingQuest("Example");
+                quest.IsCompleted = true;
+                QuestManager.quests.Add(quest.generateDeliveryQuest());
             }
         }
 
