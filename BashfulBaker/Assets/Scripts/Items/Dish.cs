@@ -7,7 +7,7 @@ namespace Assets.Scripts.Items
 {
     public class Dish:Item
     {
-        List<Item> ingredients;
+        public List<Item> ingredients;
 
     }
 }
