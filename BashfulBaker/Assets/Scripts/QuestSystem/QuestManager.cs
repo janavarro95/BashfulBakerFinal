@@ -2,6 +2,7 @@
 using Assets.Scripts.GameInformation;
 using Assets.Scripts.Items;
 using Assets.Scripts.QuestSystem.Quests;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,15 +30,82 @@ namespace Assets.Scripts.QuestSystem
         }
 
         /// <summary>
-        /// TODO: Make this better/find a better way to generate quests.
+        /// Broken:
+        ///     Issue: Needs to find a way to get a list of all npcs in the game.
         /// </summary>
         /// <returns></returns>
         public CookingQuest generateCookingQuest() {
 
+            throw new NotImplementedException("Need to write functionality to get random NPC name. Use other overloads for this function instead!");
+
             List<KeyValuePair<string, Recipe>> recipes = Game.CookBook.getAllRecipes();
-            int index=Random.Range(0, recipes.Count - 1);
+            int index= UnityEngine.Random.Range(0, recipes.Count - 1);
 
             CookingQuest newQuest = new CookingQuest(recipes[index].Key,"",null);
+            return newQuest;
+        }
+
+        /// <summary>
+        /// Generates a random cooking quest.
+        /// </summary>
+        /// <param name="ClientName">The person to deliver the dish to.</param>
+        /// <returns></returns>
+        public CookingQuest generateCookingQuest(string ClientName)
+        {
+            CookingQuest newQuest = generateCookingQuest(ClientName, null, null);
+            return newQuest;
+        }
+
+        /// <summary>
+        /// Generates a random cooking quest.
+        /// </summary>
+        /// <param name="ClientName">The person to deliver the dish to.</param>
+        /// <param name="SpecialIngredientsWanted">A list containing the names of the special ingredients wanted I.E cherries.</param>
+        /// <returns></returns>
+        public CookingQuest generateCookingQuest(string ClientName,List<string> SpecialIngredientsWanted)
+        {
+            CookingQuest newQuest = generateCookingQuest(ClientName, SpecialIngredientsWanted, null);
+            return newQuest;
+        }
+
+        /// <summary>
+        /// Generates a random cooking quest.
+        /// </summary>
+        /// <param name="ClientName">The person to deliver the dish to.</param>
+        /// <param name="SpecialIngredientsWanted">A list containing the names of the special ingredients wanted I.E cherries.</param>
+        /// <param name="UnwantedIngredients">A list containing the list of unwanted ingredients for say maybe preferences or alergies.</param>
+        /// <returns></returns>
+        public CookingQuest generateCookingQuest(string ClientName, List<string> SpecialIngredientsWanted,List<string> UnwantedIngredients)
+        {
+            List<KeyValuePair<string, Recipe>> recipes = Game.CookBook.getAllRecipes();
+            int index = UnityEngine.Random.Range(0, recipes.Count - 1);
+            CookingQuest newQuest = new CookingQuest(recipes[index].Key, ClientName, SpecialIngredientsWanted,UnwantedIngredients);
+            return newQuest;
+        }
+
+        /// <summary>
+        /// Generates a cooking quest for a specific dish.
+        /// </summary>
+        /// <param name="RequestedDish">The name of the dish to make.</param>
+        /// <param name="ClientName">The person to deliver the dish to.</param>
+        /// <param name="SpecialIngredientsWanted">A list containing the names of the special ingredients wanted I.E cherries.</param>
+        /// <param name="UnwantedIngredients">A list containing the list of unwanted ingredients for say maybe preferences or alergies.</param>
+        public CookingQuest generateCookingQuest(string RequestedDish, string ClientName, List<string> SpecialIngredientsWanted=null, List<string> UnwantedIngredients=null)
+        {
+            List<KeyValuePair<string, Recipe>> recipes = Game.CookBook.getAllRecipes();
+
+            //Sanity checking to make sure the recipe is a valid one.
+            string recipeName = "";
+            foreach(KeyValuePair<string,Recipe> value in recipes)
+            {
+                if (value.Key.Equals(RequestedDish))
+                {
+                    recipeName = value.Key;
+                }
+            }
+            if (String.IsNullOrEmpty(recipeName)) throw new Exception("Recipe not found! Not generating cooking quest!");
+
+            CookingQuest newQuest = new CookingQuest(RequestedDish, ClientName, SpecialIngredientsWanted, UnwantedIngredients);
             return newQuest;
         }
 
