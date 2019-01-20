@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Items;
+﻿using Assets.Scripts.Cooking.Recipes;
+using Assets.Scripts.GameInformation;
+using Assets.Scripts.Items;
 using Assets.Scripts.QuestSystem.Quests;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +26,19 @@ namespace Assets.Scripts.QuestSystem
         public QuestManager()
         {
             this.quests = new List<Quest>();
+        }
+
+        /// <summary>
+        /// TODO: Make this better/find a better way to generate quests.
+        /// </summary>
+        /// <returns></returns>
+        public CookingQuest generateCookingQuest() {
+
+            List<KeyValuePair<string, Recipe>> recipes = Game.CookBook.getAllRecipes();
+            int index=Random.Range(0, recipes.Count - 1);
+
+            CookingQuest newQuest = new CookingQuest(recipes[index].Key,"",null);
+            return newQuest;
         }
 
         /// <summary>

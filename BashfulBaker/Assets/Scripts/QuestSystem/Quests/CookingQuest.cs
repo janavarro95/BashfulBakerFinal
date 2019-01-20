@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Items;
+﻿using Assets.Scripts.Cooking.Recipes;
+using Assets.Scripts.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,6 +115,7 @@ namespace Assets.Scripts.QuestSystem.Quests
 
             this.IsCompleted = true;
 
+            if (this.wantedIngredients.Count == 0) return; //There are no special ingredients required.
             //Look through wanted ingredients to make sure they are all there with no extra garbage.
             foreach(Ingredient I in DishToCheck.ingredients)
             {
