@@ -56,5 +56,14 @@ namespace Assets.Scripts.QuestSystem.Quests
             //Implement this in all derived classes.
         }
 
+        /// <summary>
+        /// Checks to see if the special mission for this quest has been completed.
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool specialMissionCompleted()
+        {
+            return IsCompleted;
+        }
+
     }
 }
