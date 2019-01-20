@@ -99,6 +99,10 @@ namespace Assets.Scripts.GameInformation
                 if (QuestSystem.QuestManager.Quests == null) QuestSystem.QuestManager.Quests = new QuestManager();
                 if (player == null) player = new PlayerInfo();
                 gameLoaded = true;
+
+
+                
+
             }
         }
 

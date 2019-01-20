@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Items;
+﻿using Assets.Scripts.Cooking.Recipes;
+using Assets.Scripts.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,12 @@ namespace Assets.Scripts.QuestSystem.Quests
         /// </summary>
         private List<string> unwantedIngredients;
 
+
+        /// <summary>
+        /// Checks to see if the special ingredient has been included in the recipe.
+        /// </summary>
+        private bool specialIngredientsIncluded;
+
         /// <summary>
         /// The name of the required dish to make.
         /// </summary>
@@ -50,6 +57,8 @@ namespace Assets.Scripts.QuestSystem.Quests
                 return personToDeliverTo;
             }
         }
+
+       
 
         /// <summary>
         /// Base constructor.
@@ -91,7 +100,7 @@ namespace Assets.Scripts.QuestSystem.Quests
         /// </summary>
         public override void checkForCompletion()
         {
-            throw new NotImplementedException("NEED TO IMPLEMENT COMPLETION FOR COOKING QUEST!!!");
+            throw new NotImplementedException("Base functionality not supported. Please use the checkForCompletion(Dish dish) overload instead.");
             //get list of all dishes in player's inventory and check if they have a correct dish.
             //If so set the IsComplete variable to true.
         }
@@ -100,11 +109,13 @@ namespace Assets.Scripts.QuestSystem.Quests
         /// Checks to see if the player has the required dish in their inventory by comparing a dish to the required.
         /// </summary>
         /// <param name="DishToCheck"></param>
-        private void checkForCompletion(Dish DishToCheck)
+        public void checkForCompletion(Dish DishToCheck)
         {
             if (DishToCheck.Name != this.RequiredDish) return;
 
-           
+            this.IsCompleted = true;
+
+            if (this.wantedIngredients.Count == 0) return; //There are no special ingredients required.
             //Look through wanted ingredients to make sure they are all there with no extra garbage.
             foreach(Ingredient I in DishToCheck.ingredients)
             {
@@ -118,7 +129,7 @@ namespace Assets.Scripts.QuestSystem.Quests
             }
 
             //If you pass all of this then I guess you win!
-            this.IsCompleted = true;
+            this.specialIngredientsIncluded = true;
         }
 
         /// <summary>
@@ -132,6 +143,15 @@ namespace Assets.Scripts.QuestSystem.Quests
                 return new DeliveryQuest(this.requiredDishName, this.personToDeliverTo);
             }
             else return null;
+        }
+
+        /// <summary>
+        /// Checks to see if the special mission has been completed. I.E if the special ingredients have been included.
+        /// </summary>
+        /// <returns></returns>
+        public override bool specialMissionCompleted()
+        {
+            return this.specialIngredientsIncluded;
         }
 
         /// <summary>

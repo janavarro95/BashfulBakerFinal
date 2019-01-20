@@ -150,5 +150,22 @@ namespace Assets.Scripts.Cooking.Recipes
             }
         }
 
+        /// <summary>
+        /// Gets a list of all of the recipes in the game.
+        /// </summary>
+        /// <returns></returns>
+        public List<KeyValuePair<string, Recipe>> getAllRecipes()
+        {
+            List<KeyValuePair<string, Recipe>> listOfRecipes = new List<KeyValuePair<string, Recipe>>();
+            foreach (KeyValuePair<Enums.CookingStation, Dictionary<string, Recipe>> book in this.Recipes)
+            {
+                foreach(KeyValuePair<string,Recipe> recipe in book.Value)
+                {
+                    listOfRecipes.Add(recipe);
+                }
+            }
+            return listOfRecipes;
+        }
+
     }
 }
