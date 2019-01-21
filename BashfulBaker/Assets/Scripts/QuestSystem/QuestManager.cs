@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Cooking.Recipes;
+﻿using Assets.Scripts.Characters.NPCS;
+using Assets.Scripts.Cooking.Recipes;
 using Assets.Scripts.GameInformation;
 using Assets.Scripts.Items;
 using Assets.Scripts.QuestSystem.Quests;
@@ -46,15 +47,8 @@ namespace Assets.Scripts.QuestSystem
         ///     Issue: Needs to find a way to get a list of all npcs in the game.
         /// </summary>
         /// <returns></returns>
-        public CookingQuest generateCookingQuest() {
-
-            throw new NotImplementedException("Need to write functionality to get random NPC name. Use other overloads for this function instead!");
-
-            List<KeyValuePair<string, Recipe>> recipes = Game.CookBook.getAllRecipes();
-            int index= UnityEngine.Random.Range(0, recipes.Count - 1);
-
-            CookingQuest newQuest = new CookingQuest(recipes[index].Key,"",null);
-            return newQuest;
+        public CookingQuest generateCookingQuest(NPC npc) {
+            return npc.preferences.generateCookingQuest(npc.Name);
         }
 
         /// <summary>

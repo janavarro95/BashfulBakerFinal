@@ -104,6 +104,7 @@ namespace Assets.Scripts.GameInformation
                 if (player == null) player = new PlayerInfo();
                 gameLoaded = true;
 
+                /*
                 if (player.inventory == null) Debug.Log("Why inventory null??");
 
                 player.inventory.Add(Dish.LoadDishFromPrefab("Example").GetComponent<Dish>());
@@ -111,6 +112,7 @@ namespace Assets.Scripts.GameInformation
                 CookingQuest quest=QuestManager.loadCookingQuest("Example");
                 quest.IsCompleted = true;
                 QuestManager.quests.Add(quest.generateDeliveryQuest());
+                */
             }
         }
 
