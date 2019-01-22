@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Cooking.Recipes;
+using Assets.Scripts.GameInput;
 using Assets.Scripts.Items;
 using Assets.Scripts.Menus;
 using Assets.Scripts.Player;
@@ -39,9 +40,9 @@ namespace Assets.Scripts.GameInformation
 
         public static Enums.GameState GameState;
 
-        private static GameObject _MouseCursor;
+        private static GameCursor _MouseCursor;
 
-        public static GameObject MouseCursor
+        public static GameCursor MouseCursor
         {
             get
             {
@@ -53,7 +54,7 @@ namespace Assets.Scripts.GameInformation
         {
             get
             {
-                return _MouseCursor.transform.position;
+                return _MouseCursor.gameObject.transform.position;
             }
         }
 
@@ -172,7 +173,7 @@ namespace Assets.Scripts.GameInformation
                 if (MouseCursor == null)
                 {
                     string path = Path.Combine("Assets", Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor" + ".prefab"));
-                    _MouseCursor = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)));
+                    _MouseCursor = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject))).GetComponent<GameCursor>();
 
                     GameObject.DontDestroyOnLoad(_MouseCursor);
                 }

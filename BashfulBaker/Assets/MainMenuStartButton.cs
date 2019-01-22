@@ -8,21 +8,24 @@ using Assets.Scripts.GameInput;
 
 public class MainMenuStartButton : MonoBehaviour
 {
+    GameObject eventSystem;
+
     // Start is called before the first frame update
     void Start()
     {
-        this.gameObject.GetComponent<Button>().onClick.AddListener(OnClick);
+        //this.gameObject.GetComponent<Button>().onClick.AddListener(OnClick);
+        //eventSystem = GameObject.Find("EventSystem");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameCursor.CursorIntersectsRect(this))
+        if (GameCursor.SimulateMousePress(this))
         {
-            if (Assets.Scripts.GameInput.InputControls.APressed)
-            {
-                OnClick();
-            }
+            //eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(this.gameObject);
+            this.OnClick();
+            //eventSystem.SendMessage("OnClick");
+            //if (eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().currentSelectedGameObject == this.gameObject) eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
         }
     }
 
