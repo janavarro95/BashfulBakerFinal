@@ -74,6 +74,9 @@ namespace Assets.Scripts.GameInput {
             Assets.Scripts.GameInput.MouseInput.MoveCursorRelatively(new Vector2(Input.GetAxis("Horizontal"),-1*Input.GetAxis("Vertical")) * MouseMovementSpeed);
         }
 
+        /// <summary>
+        /// Move the cursor relatively to the input axis for movement * a speed.
+        /// </summary>
         public static void MoveCursorRelatively(float speed)
         {
             Assets.Scripts.GameInput.MouseInput.MoveCursorRelatively(new Vector2(Input.GetAxis("Horizontal"), -1 * Input.GetAxis("Vertical")) * speed);

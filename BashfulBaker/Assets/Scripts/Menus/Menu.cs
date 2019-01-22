@@ -6,13 +6,20 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Menus
 {
     public class Menu:MonoBehaviour
     {
+        [SerializeField]
+        Button StartButton;
 
-
+        public void Start()
+        {
+            StartButton.Select();
+            
+        }
 
         public virtual void exitMenu()
         {

@@ -37,7 +37,25 @@ namespace Assets.Scripts.GameInformation
 
         private static Menu _Menu;
 
-        public Enums.GameState GameState;
+        public static Enums.GameState GameState;
+
+        private static GameObject _MouseCursor;
+
+        public static GameObject MouseCursor
+        {
+            get
+            {
+                return _MouseCursor;
+            }
+        }
+
+        public Vector2 MousePosition
+        {
+            get
+            {
+                return _MouseCursor.transform.position;
+            }
+        }
 
         public static Menu Menu
         {
@@ -141,6 +159,22 @@ namespace Assets.Scripts.GameInformation
                 */
             }
         }
+
+#if UNITY_STANDALONE
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        static void InitializeAfterLoad()
+        {
+            Debug.Log("AFTER");
+
+                if (MouseCursor == null)
+                {
+                    string path = Path.Combine("Assets", Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor" + ".prefab"));
+                    _MouseCursor = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)));
+
+                    GameObject.DontDestroyOnLoad(_MouseCursor);
+                }
+        }
+#endif
 
         // Various other things follow...
 
