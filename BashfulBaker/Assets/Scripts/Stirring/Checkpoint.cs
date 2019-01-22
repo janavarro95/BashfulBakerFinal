@@ -56,7 +56,7 @@ public class Checkpoint : MonoBehaviour {
     private void Update()
     {
         // on pressing the A button we add anew ingredients
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Assets.Scripts.GameInput.InputControls.APressed)
         {
             //sliding scale code for Increment (not needed, works w/ or w.out
             /* Increment = (10 * stirPercentage) / 100;
@@ -78,8 +78,8 @@ public class Checkpoint : MonoBehaviour {
             //Update the Percentage
             //lower to 60% of older value to show a new ingredient has been added      
             stirPercentage = (stirPercentage * 6) / 10;
+            Debug.Log(stirPercentage);
 
- 
         }
     }
 
