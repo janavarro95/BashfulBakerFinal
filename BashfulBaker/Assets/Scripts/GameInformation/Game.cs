@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Cooking.Recipes;
 using Assets.Scripts.Items;
+using Assets.Scripts.Menus;
 using Assets.Scripts.Player;
 using Assets.Scripts.QuestSystem;
 using Assets.Scripts.QuestSystem.Quests;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using Menu = Assets.Scripts.Menus.Menu;
 
 namespace Assets.Scripts.GameInformation
 {
@@ -32,6 +34,30 @@ namespace Assets.Scripts.GameInformation
         /// The information for the player that doesn't need to be seen on a MonoBehavior script.
         /// </summary>
         private static Assets.Scripts.Player.PlayerInfo player;
+
+        private static Menu _Menu;
+
+        public Enums.GameState GameState;
+
+        public static Menu Menu
+        {
+            get
+            {
+                return _Menu;
+            }
+            set
+            {
+                _Menu=value;
+            }
+        }
+
+        public static bool IsMenuUp
+        {
+            get
+            {
+                return Menu != null;
+            }
+        }
 
         /// <summary>
         /// Holds all of the information we need to keep track of on the player.

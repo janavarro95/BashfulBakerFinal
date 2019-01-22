@@ -33,6 +33,16 @@ namespace Assets.Scripts
             Other
         }
 
+        /// <summary>
+        /// The state that says where we are in the game.
+        /// </summary>
+        public enum GameState
+        {
+            MainMenu,
+            GamePlay,
+            Credits
+        }
+
         public enum QuestCompletionStatus
         {
             NotCompleted,
