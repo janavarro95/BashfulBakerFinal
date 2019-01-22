@@ -9,10 +9,13 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.GameInput
 {
+    /// <summary>
+    /// TODO:
+    /// Change this to move cursor on right stick.
+    /// </summary>
     public class GameCursor:MonoBehaviour
     {
         private Vector3 oldMousePos;
-        private Vector3 newMousePos;
 
         public float mouseMovementSpeed = 0.05f;
 
@@ -21,7 +24,6 @@ namespace Assets.Scripts.GameInput
         void Start()
         {
             oldMousePos = Camera.main.ScreenToWorldPoint((Vector2)UnityEngine.Input.mousePosition);
-            newMousePos = oldMousePos;
         }
 
         void Update()
@@ -42,6 +44,32 @@ namespace Assets.Scripts.GameInput
             }
         }
 
+        /// <summary>
+        /// Sets the cursors position.
+        /// </summary>
+        /// <param name="position"></param>
+        public void setCursorPosition(Vector2 position)
+        {
+            this.gameObject.transform.position = position;
+            movedByCursor = false;
+        }
+
+        /// <summary>
+        /// Sets the cursor's position.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public void setCursorPosition(float x, float y)
+        {
+            this.gameObject.transform.position = new Vector3(x,y,0);
+            movedByCursor = false;
+        }
+
+        /// <summary>
+        /// Checks to see if the game's cursor intersects with the ui element.
+        /// </summary>
+        /// <param name="behavior"></param>
+        /// <returns></returns>
         public static bool CursorIntersectsRect(MonoBehaviour behavior)
         {
             if (UnityEngine.RectTransformUtility.RectangleContainsScreenPoint(behavior.GetComponent<RectTransform>(), Camera.main.WorldToScreenPoint(Game.MousePosition)))
@@ -51,6 +79,12 @@ namespace Assets.Scripts.GameInput
             return false;
         }
 
+
+        /// <summary>
+        /// Checks to see if the computers mouse cursor intersects with the ui element.
+        /// </summary>
+        /// <param name="behavior"></param>
+        /// <returns></returns>
         public static bool MouseIntersectsRect(MonoBehaviour behavior)
         {
             if (UnityEngine.RectTransformUtility.RectangleContainsScreenPoint(behavior.GetComponent<RectTransform>(), Input.mousePosition))
@@ -60,6 +94,11 @@ namespace Assets.Scripts.GameInput
             return false;
         }
 
+        /// <summary>
+        /// Checks to see if the game's cursor can interact with the UI Element.
+        /// </summary>
+        /// <param name="behavior"></param>
+        /// <returns></returns>
         public static bool CanCursorInteract(MonoBehaviour behavior)
         {
             if (GameCursor.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false)
@@ -69,15 +108,12 @@ namespace Assets.Scripts.GameInput
             return false;
         }
 
-        public static bool CanMouseInteract(MonoBehaviour behavior)
-        {
-            if (GameCursor.MouseIntersectsRect(behavior))
-            {
-                return true;
-            }
-            return false;
-        }
-
+        /// <summary>
+        /// Simulates a mouse press for the cursor if the A button is pressed and the cursor intersects the mono behavior.
+        /// </summary>
+        /// <param name="behavior"></param>
+        /// <param name="useHardwareMouse"></param>
+        /// <returns></returns>
         public static bool SimulateMousePress(MonoBehaviour behavior,bool useHardwareMouse=false)
         {
 
@@ -94,5 +130,25 @@ namespace Assets.Scripts.GameInput
                 return false;
             }
         }
+
+        /// <summary>
+        /// Sets the game's cursor to a specific position.
+        /// </summary>
+        /// <param name="position"></param>
+        public static void SetCursorPosition(Vector2 position)
+        {
+            Game.MouseCursor.setCursorPosition(position);
+        }
+
+        /// <summary>
+        /// Sets the game's cursor to a specific position.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public static void SetCursorPosition(float x, float y)
+        {
+            Game.MouseCursor.setCursorPosition(x,y);
+        }
+
     }
 }

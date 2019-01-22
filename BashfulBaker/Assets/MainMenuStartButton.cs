@@ -22,11 +22,13 @@ public class MainMenuStartButton : MonoBehaviour
     {
         if (GameCursor.SimulateMousePress(this))
         {
+            //this.GetComponent<Button>().onClick.Invoke();
             //eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(this.gameObject);
             this.OnClick();
             //eventSystem.SendMessage("OnClick");
             //if (eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().currentSelectedGameObject == this.gameObject) eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
         }
+
     }
 
     public void OnClick()
