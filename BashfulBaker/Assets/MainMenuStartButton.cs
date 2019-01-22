@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;// Required when using Event data.
+using Assets.Scripts.GameInformation;
+using Assets.Scripts.GameInput;
 
 public class MainMenuStartButton : MonoBehaviour
 {
@@ -15,9 +17,12 @@ public class MainMenuStartButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(UnityEngine.RectTransformUtility.RectangleContainsScreenPoint(this.GetComponent<RectTransform>(), Input.mousePosition))
+        if(GameCursor.CursorIntersectsRect(this))
         {
-            Debug.Log("WTF???");
+            if (Assets.Scripts.GameInput.InputControls.APressed)
+            {
+                OnClick();
+            }
         }
     }
 

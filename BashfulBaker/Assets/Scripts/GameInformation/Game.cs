@@ -49,7 +49,7 @@ namespace Assets.Scripts.GameInformation
             }
         }
 
-        public Vector2 MousePosition
+        public static Vector2 MousePosition
         {
             get
             {
@@ -161,6 +161,9 @@ namespace Assets.Scripts.GameInformation
         }
 
 #if UNITY_STANDALONE
+        /// <summary>
+        /// Called once the game is loaded into play mode.
+        /// </summary>
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void InitializeAfterLoad()
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.GameInformation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,15 @@ namespace Assets.Scripts.GameInput
                 oldMousePos = vec;
                 this.gameObject.transform.position = vec;
             }
+        }
+
+        public static bool CursorIntersectsRect(MonoBehaviour behavior)
+        {
+            if (UnityEngine.RectTransformUtility.RectangleContainsScreenPoint(behavior.GetComponent<RectTransform>(), Camera.main.WorldToScreenPoint(Game.MousePosition)))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
