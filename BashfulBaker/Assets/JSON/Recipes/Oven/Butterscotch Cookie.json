@@ -1,10 +1,10 @@
 {
-  "name": "Cookie",
+  "name": "Butterscotch Cookie",
   "itemsNeeded": [
     "Flour",
     "Sugar",
 	"Butter",
 	"Eggs"
   ],
-  "output": "Cookie"
+  "output": "Butterscotch Cookie"
 }

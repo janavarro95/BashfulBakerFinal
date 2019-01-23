@@ -1,0 +1,12 @@
+{
+  "name": "Thin Mints",
+  "itemsNeeded": [
+    "Flour",
+    "Sugar",
+	"Butter",
+	"Eggs",
+	"Chocolate Chip",
+	"Mint Chips"
+  ],
+  "output": "Thin Mints"
+}

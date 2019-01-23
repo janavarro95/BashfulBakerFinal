@@ -1,0 +1,15 @@
+{
+  "name": "Carrot Cake",
+  "itemsNeeded": [
+    "Flour",
+    "Sugar",
+	"Milk"
+	"Butter",
+	"Eggs",
+	"Milk",
+	"Baking Powder",
+	"Carrot",
+	"Cinamon"
+  ],
+  "output": "Carrot Cake"
+}

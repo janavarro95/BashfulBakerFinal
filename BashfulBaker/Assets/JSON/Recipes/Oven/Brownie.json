@@ -1,0 +1,15 @@
+{
+  "name": "Brownie",
+  "itemsNeeded": [
+    "Flour",
+    "Sugar",
+	"Milk"
+	"Butter",
+	"Eggs",
+	"Milk",
+	"Baking Powder",
+	"Chocolate Chip",
+	"Chocolate Chip"
+  ],
+  "output": "Brownie"
+}
