@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// TODO:
+/// Do Pysics.RayCast2D from this game object to player collider on the OnTriggerStay/Enter to determine if this entity actually sees the player or not for moving towards it.
+/// </summary>
 public class StealthAwarenessZone : MonoBehaviour
 {
 
