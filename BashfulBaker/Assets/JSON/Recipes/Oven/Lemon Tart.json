@@ -3,12 +3,12 @@
   "itemsNeeded": [
     "Flour",
     "Sugar",
-	"Milk"
-	"Butter",
-	"Eggs",
-	"Milk",
-	"Baking Powder",
-	"Lemon"
+    "Milk",
+    "Butter",
+    "Eggs",
+    "Milk",
+    "Baking Powder",
+    "Lemon"
   ],
   "output": "Lemon Tart"
 }

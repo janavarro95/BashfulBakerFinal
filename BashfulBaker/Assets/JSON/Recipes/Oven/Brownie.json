@@ -3,13 +3,13 @@
   "itemsNeeded": [
     "Flour",
     "Sugar",
-	"Milk"
-	"Butter",
-	"Eggs",
-	"Milk",
-	"Baking Powder",
-	"Chocolate Chip",
-	"Chocolate Chip"
+    "Milk",
+    "Butter",
+    "Eggs",
+    "Milk",
+    "Baking Powder",
+    "Chocolate Chip",
+    "Chocolate Chip"
   ],
   "output": "Brownie"
 }

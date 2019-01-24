@@ -3,14 +3,14 @@
   "itemsNeeded": [
     "Flour",
     "Sugar",
-	"Milk"
-	"Butter",
-	"Eggs",
-	"Milk",
-	"Baking Powder",
-	"Coffee",
-	"White Cholocate",
-	"Chocolate Chip"
+    "Milk",
+    "Butter",
+    "Eggs",
+    "Milk",
+    "Baking Powder",
+    "Coffee",
+    "White Cholocate",
+    "Chocolate Chip"
   ],
   "output": "Marbled Cake"
 }

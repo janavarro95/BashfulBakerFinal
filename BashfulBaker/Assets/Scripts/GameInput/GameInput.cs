@@ -13,6 +13,13 @@ namespace Assets.Scripts.GameInput
     public class InputControls : MonoBehaviour
     {
 
+	    private static bool _DPadReleased;
+
+        private static bool _DLeftPressed;
+        private static bool _DRightPressed;
+        private static bool _DUpPressed;
+        private static bool _DDownPressed;
+	
         /// <summary>
         /// The types of input controllers supported.
         /// </summary>
@@ -222,6 +229,192 @@ namespace Assets.Scripts.GameInput
             {
                 if (OSChecker.OS == Enums.OperatingSystem.Mac) return Input.GetButtonDown("RightBumper_Mac");
                 return Input.GetButtonDown("RightBumper");
+            }
+        }
+		
+		/// <summary>
+        /// Checks to see if the LeftDPad is being held down.
+        /// </summary>
+        public static bool LeftDPadDown
+        {
+            get
+            {
+                return Input.GetAxis("DPad_Horizontal")<0;
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if the Right DPad is being held down.
+        /// </summary>
+        public static bool RightDPadDown
+        {
+            get
+            {
+                return Input.GetAxis("DPad_Horizontal") > 0;
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if the Up DPad is being held down.
+        /// </summary>
+        public static bool UpDPadDown
+        {
+            get
+            {
+                return Input.GetAxis("DPad_Vertical") > 0;
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if the Down DPad is being held down.
+        /// </summary>
+        public static bool DownDPadDown
+        {
+            get
+            {
+                return Input.GetAxis("DPad_Vertical") < 0;
+            }
+        }
+
+
+        /// <summary>
+        /// Checks to see if the LeftDPad was pressed.
+        /// </summary>
+        public static bool LeftDPadPressed
+        {
+            get
+            {
+                float input = Input.GetAxis("DPad_Horizontal");
+                if (_DLeftPressed == false)
+                {
+                    if (input < 0)
+                    {
+                        _DLeftPressed = true;
+                        return true;
+                    }
+                    else
+                    {
+                        _DLeftPressed = false;
+                    }
+                }
+                else
+                {
+                    if (input >= 0)
+                    {
+                        _DLeftPressed = false;
+                        return false;
+                    }
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if the Right DPad is being held down.
+        /// </summary>
+        public static bool RightDPadPressed
+        {
+            get
+            {
+
+                float input = Input.GetAxis("DPad_Horizontal");
+                if (_DRightPressed == false)
+                {
+                    if (input > 0)
+                    {
+                        _DRightPressed = true;
+                        return true;
+                    }
+                    else
+                    {
+                        _DRightPressed = false;
+                    }
+                }
+                else
+                {
+                    if (input <= 0)
+                    {
+                        _DRightPressed = false;
+                        return false;
+                    }
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if the Up DPad is being held down.
+        /// </summary>
+        public static bool UpDPadPressed
+        {
+            get
+            {
+
+                float input = Input.GetAxis("DPad_Vertical");
+                if (_DUpPressed == false)
+                {
+                    if (input > 0)
+                    {
+                        _DUpPressed = true;
+                        return true;
+                    }
+                    else
+                    {
+                        _DUpPressed = false;
+                    }
+                }
+                else
+                {
+                    if (input <= 0)
+                    {
+                        _DUpPressed = false;
+                        return false;
+                    }
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if the Down DPad is being held down.
+        /// </summary>
+        public static bool DownDPadPressed
+        {
+            get
+            {
+                float input = Input.GetAxis("DPad_Vertical");
+                if (_DDownPressed == false)
+                {
+                    if (input < 0)
+                    {
+                        _DDownPressed = true;
+                        return true;
+                    }
+                    else
+                    {
+                        _DDownPressed = false;
+                    }
+                }
+                else
+                {
+                    if (input >= 0)
+                    {
+                        _DDownPressed = false;
+                        return false;
+                    }
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if the dpad has been released.
+        /// </summary>
+        public static bool DPadReleased
+        {
+            get
+            {
+                return Input.GetAxis("DPad_Vertical") == 0 && Input.GetAxis("DPad_Horizontal") == 0;
             }
         }
 

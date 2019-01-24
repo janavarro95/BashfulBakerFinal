@@ -3,15 +3,15 @@
   "itemsNeeded": [
     "Flour",
     "Sugar",
-	"Milk"
-	"Butter",
-	"Eggs",
-	"Milk",
-	"Baking Powder",
-	"Apples",
-	"Raisins",
-	"Blueberry",
-	"Rasberry"
+    "Milk",
+    "Butter",
+    "Eggs",
+    "Milk",
+    "Baking Powder",
+    "Apples",
+    "Raisins",
+    "Blueberry",
+    "Rasberry"
   ],
   "output": "Fruit Cake"
 }

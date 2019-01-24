@@ -3,13 +3,13 @@
   "itemsNeeded": [
     "Flour",
     "Sugar",
-	"Milk"
-	"Butter",
-	"Eggs",
-	"Milk",
-	"Baking Powder",
-	"Carrot",
-	"Cinamon"
+    "Milk",
+    "Butter",
+    "Eggs",
+    "Milk",
+    "Baking Powder",
+    "Carrot",
+    "Cinamon"
   ],
   "output": "Carrot Cake"
 }

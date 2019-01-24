@@ -4,8 +4,8 @@
     "Flour",
     "Water",
     "Yeast",
-	"Oil",
-	"Sugar",
+    "Oil",
+    "Sugar"
   ],
   "output": "Bread"
 }

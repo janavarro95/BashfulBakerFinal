@@ -37,7 +37,7 @@ namespace Assets.Scripts.Cooking.Recipes
             }
             LoadRecipesFromJSONFiles();
 
-            CreateInitialJsonFiles();
+           //CreateInitialJsonFiles();
             
 
             Debug.Log("Create the cookbook!");
@@ -135,6 +135,7 @@ namespace Assets.Scripts.Cooking.Recipes
                     Recipe deserialized=GameInformation.Game.Serializer.Deserialize<Recipe>(recipe);
                     DirectoryInfo info = new DirectoryInfo(cookingStation);
                     Enums.CookingStation station=(Enums.CookingStation)Enum.Parse(typeof(Enums.CookingStation), info.Name, true);
+                    //Debug.Log("Added :" + deserialized.name + " From: " + recipe);
                     Recipes[station].Add(deserialized.name, deserialized);
                 }
             }
