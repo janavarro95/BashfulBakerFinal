@@ -5,84 +5,172 @@ using UnityEngine;
 public class StealthAwarenessZone : MonoBehaviour
 {
 
+    /// <summary>
+    /// Keeps track of all of the moves made so that the guard can hopefully return home.
+    /// </summary>
     private Stack<Vector2> pathBackToStart;
 
+    /// <summary>
+    /// The staring location of the guard.
+    /// </summary>
     private Vector2 startingLocation;
+    /// <summary>
+    /// The next spot to move towards.
+    /// </summary>
     private Vector2 nextTargetSpot;
+    /// <summary>
+    /// The spot we are moving from.
+    /// </summary>
     private Vector2 sequenceStartingSpot;
 
-    private float lerpToNextLocation;
+    /// <summary>
+    /// How fast the guard should move when chasing or returning home.
+    /// </summary>
+    public float movementSpeed = 1f;
 
-    public float chaseSpeed = 0.01f; //Need to figure out npc speed and factor that into the equation somehow.
-    public float returnSpeed = 0.01f;
-
+    /// <summary>
+    /// The lerp to the next target spot.
+    /// </summary>
     [SerializeField]
     private float proximityToTarget;
 
+    /// <summary>
+    /// The minimum amount of distance a player can move inside the awareness zone for their location to be added to the queue of spots to go to.
+    /// Smaller number = more refined/smoother path.
+    /// </summary>
+    public float minAwarenessDistance=1f;
+
+    /// <summary>
+    /// A list of all the spots we should explore.
+    /// </summary>
     private List<Vector2> spotsToGoTo;
 
+    /// <summary>
+    /// If the guard is currently aware of the player.
+    /// </summary>
     private bool awareOfPlayer;
 
+    /// <summary>
+    /// If the guard is finished looking around.
+    /// </summary>
     private bool finishedLookingAround;
 
+    /// <summary>
+    /// Should the guard return home.
+    /// </summary>
     private bool returnHome;
+
+    private List<Vector3> listOfSpotsToLookAt;
+    [SerializeField]
+    private float lookAroundLerp;
+    private Vector3 lookAtStart;
+
+    [SerializeField]
+    private float lookSpeed = 1f;
+
+
+    public enum AIType
+    {
+        None,
+        LookAroundWhileUnAware,
+        LookAroundAfterFollow,
+        LookAroundWhileReturning
+    }
+
+    public AIType aiType;
 
     // Start is called before the first frame update
     void Start()
     {
         spotsToGoTo = new List<Vector2>();
         pathBackToStart = new Stack<Vector2>();
+        listOfSpotsToLookAt = new List<Vector3>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log("Path To:" + spotsToGoTo.Count);
-        Debug.Log("Path back:"+pathBackToStart.Count);
         if (awareOfPlayer)
         {
-            if (returnHome==true)
+            if (returnHome == true)
             {
-                Debug.Log("Returning home");
+                //Debug.Log("GOING HOME!");
+                //randomly look around
+                if (aiType == AIType.LookAroundWhileReturning)
+                {
+                    aiLookLogic();
+                }
+                else if(aiType== AIType.LookAroundAfterFollow && finishedLookingAround==false)
+                {
+                    aiLookLogic();
+                    return;
+                }
+                
                 if (hasReturnedHome())
                 {
                     resetGuardAwareness();
                     return;
                 }
-                proximityToTarget += returnSpeed;
-                this.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+                proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
+                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
                 if (proximityToTarget >= 1.0f)
                 {
                     getNextReturnSpot();
+                }
+                if (aiType != AIType.LookAroundWhileReturning)
+                {
+                    this.gameObject.transform.right = nextTargetSpot - (Vector2)transform.position;
                 }
                 return;
             }
             else if (shouldChasePlayer())
             {
-                proximityToTarget += chaseSpeed;
-                this.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+                proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
+                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
 
                 if (proximityToTarget >= 1.0f)
                 {
                     getNextTargetSpot();
                 }
-                return;
-                //if looking horizontally
-                //if y>old y then rotate awareness zone up
-                //if y<old y then rotate awareness zone down
 
-                //if looking vertically
-                //if x < old x then rotate awareness zone left
-                //if x > old x then rotate awareness zone right
+                //https://answers.unity.com/questions/585035/lookat-2d-equivalent-.html
+                this.gameObject.transform.right = nextTargetSpot - (Vector2)transform.position;
+                return;
             }
-            else if (needsToGoHome())
+            else
             {
-                Debug.Log("I WANA GO HOME!");
-                if (proximityToTarget >= 1.0f || proximityToTarget==0.0f)
+                
+                if (needsToGoHome())
                 {
-                    getNextReturnSpot();
+                    if (proximityToTarget >= 1.0f || proximityToTarget == 0.0f)
+                    {
+                        Debug.Log("Time to go home!");
+                        getNextReturnSpot();
+                    }
                 }
+                
             }
+        }
+        else
+        {
+            //randomly look around
+            if (aiType != AIType.None)
+            {
+                aiLookLogic();
+            }
+        }
+    }
+
+    public void aiLookLogic()
+    {
+        if (listOfSpotsToLookAt.Count == 0)
+        {
+            createLookAroundPoints();
+            finishedLookingAround = true;
+        }
+        else
+        {
+            lookAround();
         }
     }
 
@@ -112,7 +200,7 @@ public class StealthAwarenessZone : MonoBehaviour
                     Debug.Log("Don't add");
                     return;
                 }
-                if (Vector2.Distance(spotsToGoTo[spotsToGoTo.Count - 1], collision.gameObject.transform.position) <= 1f)
+                if (Vector2.Distance(spotsToGoTo[spotsToGoTo.Count - 1], collision.gameObject.transform.position) <= minAwarenessDistance)
                 {
                     Debug.Log("Dont add small");
                     return;
@@ -131,8 +219,10 @@ public class StealthAwarenessZone : MonoBehaviour
         proximityToTarget = 0.0f;
         if (this.spotsToGoTo.Count == 0)
         {
+            Debug.Log("ALL OUT OF SPOTS!");
             getNextReturnSpot();
             returnHome = true;
+            finishedLookingAround = false;
             return;
         }
         this.sequenceStartingSpot = this.gameObject.transform.position;
@@ -170,19 +260,21 @@ public class StealthAwarenessZone : MonoBehaviour
 
     private bool hasReturnedHome()
     {
-        if (spotsToGoTo.Count == 0 && pathBackToStart.Count == 0 && this.proximityToTarget >= 1.0f) return true;
+        if (spotsToGoTo.Count == 0 && pathBackToStart.Count == 0 && (Vector2)this.gameObject.transform.position==this.startingLocation) return true;
         else return false;
     }
 
     private bool shouldChasePlayer()
     {
-        if (this.spotsToGoTo.Count > 0)
+        if (this.spotsToGoTo.Count > 0 ||(this.returnHome==false && this.spotsToGoTo.Count==0))
         {
+            finishedLookingAround = false;
             returnHome = false;
             return true;
         }
         else return false;
     }
+
 
     private void resetGuardAwareness()
     {
@@ -190,4 +282,66 @@ public class StealthAwarenessZone : MonoBehaviour
         this.awareOfPlayer = false;
         return;
     }
+
+    public void lookAround()
+    {
+
+        if (lookAroundLerp ==0.0f) {
+            lookAtStart = this.gameObject.transform.right;
+            Vector2 lookAtSpot = listOfSpotsToLookAt[0];
+            Debug.Log("look at: " + lookAtSpot);
+            this.gameObject.transform.right = Vector2.Lerp(lookAtStart,lookAtSpot - (Vector2)lookAtStart,lookAroundLerp);
+            lookAroundLerp += getProperLookSpeed();
+            //if (this.gameObject.transform.position.z < 0) this.gameObject.transform.position += new Vector3(0, 0, 180);
+            return;
+        }
+        else if(lookAroundLerp>0.0f && lookAroundLerp<1.0f)
+        {
+            Vector2 lookAtSpot = listOfSpotsToLookAt[0];
+            this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - (Vector2)lookAtStart, lookAroundLerp);
+            lookAroundLerp += getProperLookSpeed();
+            //if (this.gameObject.transform.position.z < 0) this.gameObject.transform.position += new Vector3(0, 0, 180);
+            return;
+        }
+        else if (lookAroundLerp >= 1.0f)
+        {
+            listOfSpotsToLookAt.RemoveAt(0);
+            lookAroundLerp = 0.0f;
+            return;
+        }
+    }
+
+    public void createLookAroundPoints()
+    {
+        int amount=Random.Range(1, 5);
+        for(int i = 0; i < amount; i++)
+        {
+            
+            Vector2 lookAtSpot = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+            listOfSpotsToLookAt.Add(lookAtSpot);
+        }
+        
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    private float getProperMovementSpeed()
+    {
+        float dist=Vector2.Distance(this.sequenceStartingSpot, this.nextTargetSpot);
+        return movementSpeed/dist; //If dist is small then guard will move to target seemingly faster. If dist is large, then guard will move to target seemingly slower but all of it is at the same "speed"
+    }
+
+    private float getProperLookSpeed()
+    {
+        //lookAtStart = this.gameObject.transform.right;
+        Vector2 lookAtSpot = listOfSpotsToLookAt[0];
+
+        float dist = Vector2.Distance(lookAtStart, lookAtSpot);
+        float speed = lookSpeed / (dist);
+        //return speed*Time.deltaTime;
+        return lookSpeed*Time.deltaTime;
+    }
+    
 }
