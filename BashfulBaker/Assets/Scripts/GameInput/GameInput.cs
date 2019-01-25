@@ -407,6 +407,31 @@ namespace Assets.Scripts.GameInput
             }
         }
 
+
+        public static float RightJoystickHorizontal
+        {
+            get
+            {
+                if(OSChecker.OS== Enums.OperatingSystem.Mac)
+                {
+                    return Input.GetAxis("RightJoystickHorizontal_Mac");
+                }
+                return Input.GetAxis("RightJoystickHorizontal");
+            }
+        }
+
+        public static float RightJoystickVertical
+        {
+            get
+            {
+                if (OSChecker.OS == Enums.OperatingSystem.Mac)
+                {
+                    return Input.GetAxis("RightJoystickVertical_Mac");
+                }
+                return Input.GetAxis("RightJoystickVertical");
+            }
+        }
+
         /// <summary>
         /// Checks to see if the dpad has been released.
         /// </summary>
