@@ -6,6 +6,7 @@ using UnityEngine;
 /// <summary>
 /// TODO:
 /// Do Pysics.RayCast2D from this game object to player collider on the OnTriggerStay/Enter to determine if this entity actually sees the player or not for moving towards it.
+/// Also add in moving logic.
 /// </summary>
 public class StealthAwarenessZone : MonoBehaviour
 {
@@ -183,6 +184,13 @@ public class StealthAwarenessZone : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+
+            RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, collision.gameObject.transform.position - this.gameObject.transform.position);
+            if (hit.collider.gameObject.tag == "Obstacle")
+            {
+                return;
+            }
+
             if(this.pathBackToStart.Count==0 && this.awareOfPlayer==false)this.startingLocation = this.gameObject.transform.position;
             spotsToGoTo.Add(collision.gameObject.transform.position); //Add the spot where the player was seen onto the queue
             awareOfPlayer = true;
@@ -196,6 +204,13 @@ public class StealthAwarenessZone : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, collision.gameObject.transform.position - this.gameObject.transform.position);
+            if (hit.collider.gameObject.tag == "Obstacle")
+            {
+                return;
+            }
+
+
             returnHome = false;
             awareOfPlayer = true;
             if (spotsToGoTo.Count > 0)
