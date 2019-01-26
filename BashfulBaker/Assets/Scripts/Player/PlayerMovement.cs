@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.Menus;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,8 +41,22 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Assets.Scripts.GameInput.InputControls.RightBumperPressed) Debug.Log("RightBumper Pressed!");
+        
 
-        this.gameObject.transform.position += new Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"),0)*MovementSpeed;
+        if (Game.IsMenuUp == false)
+        {
+            if (Assets.Scripts.GameInput.InputControls.StartPressed)
+            {
+                Menu.Instantiate<Menu>();
+            }
+            this.gameObject.transform.position += new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * MovementSpeed;
+        }
+        else if(Game.IsMenuUp==true)
+        {
+            if (Assets.Scripts.GameInput.InputControls.StartPressed)
+            {
+                Game.Menu.exitMenu();
+            }
+        }
 	}
 }

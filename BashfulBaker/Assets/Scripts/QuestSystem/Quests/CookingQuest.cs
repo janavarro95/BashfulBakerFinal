@@ -1,10 +1,10 @@
 ﻿using Assets.Scripts.Cooking.Recipes;
 using Assets.Scripts.Items;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 namespace Assets.Scripts.QuestSystem.Quests
 {
     /// <summary>
@@ -15,27 +15,28 @@ namespace Assets.Scripts.QuestSystem.Quests
         /// <summary>
         /// The name of the dish that the player is required to make.
         /// </summary>
-        private string requiredDishName;
+        public string requiredDishName;
         /// <summary>
         /// The name of the person the dish should be delivered to.
         /// </summary>
-        private string personToDeliverTo;
+        public string personToDeliverTo;
 
         /// <summary>
         /// A list of all of the wanted ingredients. This is a list of all of the ingredients to make the dish plush any extra goodies such as raspberries.
         /// </summary>
-        private List<string> wantedIngredients;
+        public List<string> wantedIngredients;
         /// <summary>
         /// A list of all of the unwanted ingredients. This is for NPCs that are picky or have alergies.
         /// </summary>
-        private List<string> unwantedIngredients;
+        public List<string> unwantedIngredients;
 
-
+        [JsonIgnore]
         /// <summary>
         /// Checks to see if the special ingredient has been included in the recipe.
         /// </summary>
         private bool specialIngredientsIncluded;
 
+        [JsonIgnore]
         /// <summary>
         /// The name of the required dish to make.
         /// </summary>
@@ -47,6 +48,7 @@ namespace Assets.Scripts.QuestSystem.Quests
             }
         }
 
+        [JsonIgnore]
         /// <summary>
         /// The name of the person to deliver to. This will match up to a delivery zone somewhere in the world.
         /// </summary>

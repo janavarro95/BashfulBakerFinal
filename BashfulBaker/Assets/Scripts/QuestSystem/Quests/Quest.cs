@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace Assets.Scripts.QuestSystem.Quests
         /// </summary>
         protected bool isCompleted;
         
+        [JsonIgnore]
         /// <summary>
         /// Checks if the quest is completed. Also can set the quest to be complete, but not the other way!
         /// </summary>

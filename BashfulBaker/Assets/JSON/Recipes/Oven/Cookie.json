@@ -1,9 +1,10 @@
 {
   "name": "Cookie",
   "itemsNeeded": [
-    "Eggs",
+    "Flour",
     "Sugar",
-    "Flour"
+    "Butter",
+    "Eggs"
   ],
   "output": "Cookie"
 }
