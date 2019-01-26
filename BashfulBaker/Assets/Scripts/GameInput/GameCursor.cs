@@ -150,5 +150,13 @@ namespace Assets.Scripts.GameInput
             Game.MouseCursor.setCursorPosition(x,y);
         }
 
+        /// <summary>
+        /// Sets the visibility of the mouse.
+        /// </summary>
+        /// <param name="visible"></param>
+        public void setVisibility(bool visible)
+        {
+            this.GetComponent<SpriteRenderer>().enabled = visible;
+        }
     }
 }
