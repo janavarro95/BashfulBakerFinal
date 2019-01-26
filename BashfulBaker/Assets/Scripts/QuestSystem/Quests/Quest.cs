@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace Assets.Scripts.QuestSystem.Quests
         /// </summary>
         protected bool isCompleted;
         
+        [JsonIgnore]
         /// <summary>
         /// Checks if the quest is completed. Also can set the quest to be complete, but not the other way!
         /// </summary>
@@ -54,6 +56,15 @@ namespace Assets.Scripts.QuestSystem.Quests
         public virtual void checkForCompletion()
         {
             //Implement this in all derived classes.
+        }
+
+        /// <summary>
+        /// Checks to see if the special mission for this quest has been completed.
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool specialMissionCompleted()
+        {
+            return IsCompleted;
         }
 
     }

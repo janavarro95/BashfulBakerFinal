@@ -1,0 +1,11 @@
+{
+  "name": "Lemon Snap",
+  "itemsNeeded": [
+    "Flour",
+    "Sugar",
+    "Butter",
+    "Eggs",
+    "Lemon"
+  ],
+  "output": "Lemon Snap"
+}

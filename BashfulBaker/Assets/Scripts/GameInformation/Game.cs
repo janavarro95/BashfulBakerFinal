@@ -1,12 +1,19 @@
 ﻿using Assets.Scripts.Cooking.Recipes;
+using Assets.Scripts.GameInput;
+using Assets.Scripts.Items;
+using Assets.Scripts.Menus;
 using Assets.Scripts.Player;
 using Assets.Scripts.QuestSystem;
+using Assets.Scripts.QuestSystem.Quests;
 using Assets.Scripts.Utilities.Serialization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
+using Menu = Assets.Scripts.Menus.Menu;
 
 namespace Assets.Scripts.GameInformation
 {
@@ -28,6 +35,48 @@ namespace Assets.Scripts.GameInformation
         /// The information for the player that doesn't need to be seen on a MonoBehavior script.
         /// </summary>
         private static Assets.Scripts.Player.PlayerInfo player;
+
+        private static Menu _Menu;
+
+        public static Enums.GameState GameState;
+
+        private static GameCursor _MouseCursor;
+
+        public static GameCursor MouseCursor
+        {
+            get
+            {
+                return _MouseCursor;
+            }
+        }
+
+        public static Vector2 MousePosition
+        {
+            get
+            {
+                return _MouseCursor.gameObject.transform.position;
+            }
+        }
+
+        public static Menu Menu
+        {
+            get
+            {
+                return _Menu;
+            }
+            set
+            {
+                _Menu=value;
+            }
+        }
+
+        public static bool IsMenuUp
+        {
+            get
+            {
+                return Menu != null;
+            }
+        }
 
         /// <summary>
         /// Holds all of the information we need to keep track of on the player.
@@ -99,8 +148,37 @@ namespace Assets.Scripts.GameInformation
                 if (QuestSystem.QuestManager.Quests == null) QuestSystem.QuestManager.Quests = new QuestManager();
                 if (player == null) player = new PlayerInfo();
                 gameLoaded = true;
+
+                /*
+                if (player.inventory == null) Debug.Log("Why inventory null??");
+
+                player.inventory.Add(Dish.LoadDishFromPrefab("Example").GetComponent<Dish>());
+
+                CookingQuest quest=QuestManager.loadCookingQuest("Example");
+                quest.IsCompleted = true;
+                QuestManager.quests.Add(quest.generateDeliveryQuest());
+                */
             }
         }
+
+#if UNITY_STANDALONE
+        /// <summary>
+        /// Called once the game is loaded into play mode.
+        /// </summary>
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        static void InitializeAfterLoad()
+        {
+            Debug.Log("AFTER");
+
+                if (MouseCursor == null)
+                {
+                    string path = Path.Combine("Assets", Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor" + ".prefab"));
+                    _MouseCursor = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject))).GetComponent<GameCursor>();
+
+                    GameObject.DontDestroyOnLoad(_MouseCursor);
+                }
+        }
+#endif
 
         // Various other things follow...
 

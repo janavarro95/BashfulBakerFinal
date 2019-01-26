@@ -7,12 +7,18 @@ namespace Assets.Scripts
 {
     public class Enums
     {
+        /// <summary>
+        /// The cooking station the player is interacting with.
+        /// </summary>
         public enum CookingStation
         {
             MixingBowl,
             Oven
         }
 
+        /// <summary>
+        /// The operating system that the game is run on.
+        /// </summary>
         public enum OperatingSystem
         {
             Windows,
@@ -25,6 +31,23 @@ namespace Assets.Scripts
             Android,
             IPhone,
             Other
+        }
+
+        /// <summary>
+        /// The state that says where we are in the game.
+        /// </summary>
+        public enum GameState
+        {
+            MainMenu,
+            GamePlay,
+            Credits
+        }
+
+        public enum QuestCompletionStatus
+        {
+            NotCompleted,
+            Completed,
+            SpecialMissionCompleted
         }
 
         /// <summary>
