@@ -1,0 +1,14 @@
+{
+  "name": "Lemon Tart",
+  "itemsNeeded": [
+    "Flour",
+    "Sugar",
+    "Milk",
+    "Butter",
+    "Eggs",
+    "Milk",
+    "Baking Powder",
+    "Lemon"
+  ],
+  "output": "Lemon Tart"
+}
