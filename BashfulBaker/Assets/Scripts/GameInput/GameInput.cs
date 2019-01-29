@@ -407,7 +407,20 @@ namespace Assets.Scripts.GameInput
             }
         }
 
+        /// <summary>
+        /// Checks to see if the dpad has been released.
+        /// </summary>
+        public static bool DPadReleased
+        {
+            get
+            {
+                return Input.GetAxis("DPad_Vertical") == 0 && Input.GetAxis("DPad_Horizontal") == 0;
+            }
+        }
 
+        /// <summary>
+        /// Get the right horizontal value on the joystick.
+        /// </summary>
         public static float RightJoystickHorizontal
         {
             get
@@ -420,6 +433,9 @@ namespace Assets.Scripts.GameInput
             }
         }
 
+        /// <summary>
+        /// Get the right vertical value on the joystick.
+        /// </summary>
         public static float RightJoystickVertical
         {
             get
@@ -433,15 +449,32 @@ namespace Assets.Scripts.GameInput
         }
 
         /// <summary>
-        /// Checks to see if the dpad has been released.
+        /// Checks if L3 on the joystick has been clicked down.
         /// </summary>
-        public static bool DPadReleased
+        public static bool L3Down
+        {
+            get{
+                if (OSChecker.OS == Enums.OperatingSystem.Windows) return Input.GetButtonDown("L3_Windows");
+                if (OSChecker.OS == Enums.OperatingSystem.Mac) return Input.GetButtonDown("L3_Mac");
+                if (OSChecker.OS == Enums.OperatingSystem.Linux) return Input.GetButtonDown("L3_Linux");
+                return Input.GetButtonDown("L3_Windows");
+            }
+        }
+
+        /// <summary>
+        /// Checks if R3 on the joystick has been clicked down.
+        /// </summary>
+        public static bool R3Down
         {
             get
             {
-                return Input.GetAxis("DPad_Vertical") == 0 && Input.GetAxis("DPad_Horizontal") == 0;
+                if (OSChecker.OS == Enums.OperatingSystem.Windows) return Input.GetButtonDown("R3_Windows");
+                if (OSChecker.OS == Enums.OperatingSystem.Mac) return Input.GetButtonDown("R3_Mac");
+                if (OSChecker.OS == Enums.OperatingSystem.Linux) return Input.GetButtonDown("R3_Linux");
+                return Input.GetButtonDown("R3_Windows");
             }
         }
+
 
         /// <summary>
         /// Used to determine if the user is using a PS3 or XBox controller so that buttons can be mapped properly to inputs.
