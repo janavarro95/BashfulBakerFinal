@@ -18,13 +18,16 @@ namespace Assets.Scripts.Player
         /// The player's inventory.
         /// </summary>
         public Inventory inventory;
-        
+
+        public Enums.FacingDirection facingDirection;
+
         /// <summary>
         /// Constructor.
         /// </summary>
         public PlayerInfo()
         {
             this.inventory = new Inventory();
+            this.facingDirection = Enums.FacingDirection.Down;
         }
     }
 }

@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     public float movementDampening = 20.0f;
 
+
+    private Animator animator;
     /// <summary>
     /// How fast the player should move. This can be modified by anything we want later.
     /// </summary>
@@ -35,14 +37,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        animator = this.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-        if (Assets.Scripts.GameInput.InputControls.L3Down) Debug.Log("L3!");
-        if (Assets.Scripts.GameInput.InputControls.R3Down) Debug.Log("R3!");
 
         if (Game.IsMenuUp == false)
         {
@@ -50,7 +49,12 @@ public class PlayerMovement : MonoBehaviour {
             {
                 Menu.Instantiate<Menu>();
             }
-            this.gameObject.transform.position += new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * MovementSpeed;
+
+            Vector3 offset = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * MovementSpeed;
+
+            this.gameObject.transform.position += offset;
+            playCharacterMovementAnimation(offset);
+
         }
         else if(Game.IsMenuUp==true)
         {
@@ -60,4 +64,44 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
 	}
+
+    private void playCharacterMovementAnimation(Vector3 offset)
+    {
+
+        if (Mathf.Abs(offset.x) > Mathf.Abs(offset.y))
+        {
+            if (offset.x < 0)
+            { //left walking animation
+                animator.Play("LeftWalkAnimation");
+                Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
+            }
+            else
+            {
+                animator.Play("RightWalkAnimation");
+                Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
+            }
+        }
+        else if (Mathf.Abs(offset.x) < Mathf.Abs(offset.y))
+        {
+            if (offset.y > 0)
+            {
+                animator.Play("UpWalkAnimation");
+                Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Up;
+            }
+            else
+            {
+                animator.Play("DownWalkAnimation");
+                Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Down;
+            }
+        }
+
+        else if (offset.x == 0 && offset.y == 0)
+        {
+            if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Down) animator.Play("DownIdle");
+            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Left) animator.Play("LeftIdle");
+            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Right) animator.Play("RightIdle");
+            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Up) animator.Play("UpIdle");
+        }
+    }
+
 }
