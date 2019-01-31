@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /// <summary>
 /// Tracks the stirring progression
 /// </summary>
@@ -73,6 +74,10 @@ public class Checkpoint : MonoBehaviour {
                 ingredients += 1;
                // Debug.Log(ingredients);
                 Debug.Log(stirPercentage);
+            }
+            else if (stirPercentage == 100)
+            {
+                SceneManager.LoadScene("Kitchen");
             }
 
             //Update the Percentage
