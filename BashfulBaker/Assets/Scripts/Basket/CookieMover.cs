@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CookieMover : MonoBehaviour
 {
@@ -21,8 +22,15 @@ public class CookieMover : MonoBehaviour
     {
         if (Input.GetKeyDown((c < 4 ? KeyCode.Space : KeyCode.Tab)))
         {
-            Cookies[c++].SetActive(false);
-            Cookies[c + 7].SetActive(true);
+            if (c < 8)
+            {
+                Cookies[c++].SetActive(false);
+                Cookies[c + 7].SetActive(true);
+            }
+            else
+            {
+                SceneManager.LoadScene("Kitchen");
+            }
         }
     }
 }
