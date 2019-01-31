@@ -41,7 +41,8 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        
+        if (Assets.Scripts.GameInput.InputControls.L3Down) Debug.Log("L3!");
+        if (Assets.Scripts.GameInput.InputControls.R3Down) Debug.Log("R3!");
 
         if (Game.IsMenuUp == false)
         {

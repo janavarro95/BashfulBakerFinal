@@ -15,10 +15,15 @@ namespace Assets.Scripts.Menus
         [SerializeField]
         Button StartButton;
 
-        public void Start()
+        public virtual void Start()
         {
             StartButton.Select();
             
+        }
+
+        public virtual void Update()
+        {
+
         }
 
         public virtual void exitMenu()
