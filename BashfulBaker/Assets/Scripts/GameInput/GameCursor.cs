@@ -21,26 +21,37 @@ namespace Assets.Scripts.GameInput
 
         public bool movedByCursor;
 
+        private Utilities.Timers.CSTimer timer;
+
+        private bool isVisible;
+
         void Start()
         {
             oldMousePos = Camera.main.ScreenToWorldPoint((Vector2)UnityEngine.Input.mousePosition);
+            timer = new Utilities.Timers.CSTimer(5000, false, new System.Timers.ElapsedEventHandler(makeInvisible));
+            timer.start();
         }
 
         void Update()
         {
+            setVisibility();
             Vector2 vec = Camera.main.ScreenToWorldPoint((Vector2)UnityEngine.Input.mousePosition);
             if (vec.Equals(oldMousePos))
             {
                 Vector3 delta= new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * mouseMovementSpeed;
                 this.gameObject.transform.position += delta;
-                if (delta.x == 0 && delta.y == 0) return; 
+                if (delta.x == 0 && delta.y == 0) return;
+                if (Mathf.Abs(delta.x) > 0 || Mathf.Abs(delta.y) > 0) timer.restart();
                 movedByCursor = false;
+                isVisible = true;
             }
             else
             {
                 oldMousePos = vec;
                 this.gameObject.transform.position = vec;
                 movedByCursor = true;
+                timer.restart();
+                isVisible = true;
             }
         }
 
@@ -51,6 +62,7 @@ namespace Assets.Scripts.GameInput
         public void setCursorPosition(Vector2 position)
         {
             this.gameObject.transform.position = position;
+            timer.restart();
             movedByCursor = false;
         }
 
@@ -62,6 +74,7 @@ namespace Assets.Scripts.GameInput
         public void setCursorPosition(float x, float y)
         {
             this.gameObject.transform.position = new Vector3(x,y,0);
+            timer.restart();
             movedByCursor = false;
         }
 
@@ -156,7 +169,23 @@ namespace Assets.Scripts.GameInput
         /// <param name="visible"></param>
         public void setVisibility(bool visible)
         {
-            this.GetComponent<SpriteRenderer>().enabled = visible;
+            timer.stop();
+            isVisible = visible;
+        }
+
+        private void setVisibility()
+        {
+            this.GetComponent<SpriteRenderer>().enabled = isVisible;
+        }
+
+        private void makeInvisible(object e, System.Timers.ElapsedEventArgs args)
+        {
+            isVisible = false;
+        }
+
+        private void OnDestroy()
+        {
+            this.timer.timer.Elapsed -= makeInvisible;
         }
     }
 }

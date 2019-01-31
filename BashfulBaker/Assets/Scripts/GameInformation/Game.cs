@@ -124,6 +124,8 @@ namespace Assets.Scripts.GameInformation
             }
         }
 
+        public static GameSoundManager SoundManager;
+
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
         static Game()

@@ -150,7 +150,6 @@ public class StealthAwarenessZone : MonoBehaviour
                 {
                     if (proximityToTarget >= 1.0f || proximityToTarget == 0.0f)
                     {
-                        Debug.Log("Time to go home!");
                         getNextReturnSpot();
                     }
                 }
@@ -217,12 +216,10 @@ public class StealthAwarenessZone : MonoBehaviour
             {
                 if (spotsToGoTo[spotsToGoTo.Count - 1] == (Vector2)collision.gameObject.transform.position)
                 {
-                    Debug.Log("Don't add");
                     return;
                 }
                 if (Vector2.Distance(spotsToGoTo[spotsToGoTo.Count - 1], collision.gameObject.transform.position) <= minAwarenessDistance)
                 {
-                    Debug.Log("Dont add small");
                     return;
                 }
             }
@@ -239,7 +236,6 @@ public class StealthAwarenessZone : MonoBehaviour
         proximityToTarget = 0.0f;
         if (this.spotsToGoTo.Count == 0)
         {
-            Debug.Log("ALL OUT OF SPOTS!");
             getNextReturnSpot();
             returnHome = true;
             finishedLookingAround = false;
@@ -309,7 +305,6 @@ public class StealthAwarenessZone : MonoBehaviour
         if (lookAroundLerp ==0.0f) {
             lookAtStart = this.gameObject.transform.right;
             Vector2 lookAtSpot = listOfSpotsToLookAt[0];
-            Debug.Log("look at: " + lookAtSpot);
             this.gameObject.transform.right = Vector2.Lerp(lookAtStart,lookAtSpot - (Vector2)lookAtStart,lookAroundLerp);
             lookAroundLerp += getProperLookSpeed();
             //if (this.gameObject.transform.position.z < 0) this.gameObject.transform.position += new Vector3(0, 0, 180);
