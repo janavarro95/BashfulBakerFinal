@@ -39,13 +39,15 @@ namespace Assets.Scripts.Menus
 
         public static void Instantiate<T>()
         {
-            if (!typeof(T).IsAssignableFrom(typeof(Menu)) && typeof(T)!=typeof(Menu)){
-                throw new Exception("Can't instantaite a non-menu type as a menu!");
-            }
             if(typeof(T) == typeof(Menu))
             {
                 Instantiate("Menu");
             }
+            if (typeof(T) == typeof(MainMenu))
+            {
+                Instantiate("MainMenu");
+            }
+
             else
             {
                 Instantiate("Menu");

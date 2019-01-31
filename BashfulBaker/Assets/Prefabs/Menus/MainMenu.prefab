@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Start
 --- !u!1 &5145294867455287804
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +91,6 @@ GameObject:
   - component: {fileID: 2785202541216832541}
   - component: {fileID: 6228618117494186864}
   - component: {fileID: 4630719646306778266}
-  - component: {fileID: 1589156502966791044}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -195,21 +194,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6228618117494186864}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 979948247145733317}
+        m_MethodName: startButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &1589156502966791044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5145294867455287804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ed1453ea7b30f4986e1bc75203a4de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7675837799965404241
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7675837799965404240
 Transform:
   m_ObjectHideFlags: 0
@@ -285,9 +283,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7675837800512982514}
-  - component: {fileID: 8476864273525853177}
+  - component: {fileID: 979948247145733317}
   m_Layer: 0
-  m_Name: Menu
+  m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,7 +307,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8476864273525853177
+--- !u!114 &979948247145733317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,7 +316,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7675837800512982515}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcb9186d7327cbf42a5faf845df8f0c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 87bca61bcedf5b34097d4b8c5011f74c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StartButton: {fileID: 4630719646306778266}

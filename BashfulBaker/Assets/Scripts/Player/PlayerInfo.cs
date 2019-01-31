@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Items;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,6 @@ namespace Assets.Scripts.Player
     /// <summary>
     /// All of the player's info.
     /// </summary>
-    /// 
     [Serializable,SerializeField]
     public class PlayerInfo
     {
@@ -20,6 +20,45 @@ namespace Assets.Scripts.Player
         public Inventory inventory;
 
         public Enums.FacingDirection facingDirection;
+
+        [JsonIgnore]
+        private GameObject _gameObject;
+        [JsonIgnore]
+        public GameObject gameObject
+        {
+            get
+            {
+                if (_gameObject == null)
+                {
+                    _gameObject = GameObject.FindWithTag("Player");
+                    GameObject.DontDestroyOnLoad(_gameObject);
+                    return _gameObject;
+                }
+                else
+                {
+                    return _gameObject;
+                }
+            }
+            set
+            {
+                if (value.tag == "Player")
+                {
+                    _gameObject = value;
+                }
+            }
+        }
+        public Vector3 position
+        {
+            get
+            {
+                return this.gameObject.transform.position;
+            }
+            set
+            {
+                this.gameObject.transform.position = value;
+            }
+        }
+
 
         /// <summary>
         /// Constructor.

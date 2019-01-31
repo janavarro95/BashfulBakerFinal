@@ -38,7 +38,7 @@ namespace Assets.Scripts.GameInput
             Vector2 vec = Camera.main.ScreenToWorldPoint((Vector2)UnityEngine.Input.mousePosition);
             if (vec.Equals(oldMousePos))
             {
-                Vector3 delta= new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * mouseMovementSpeed;
+                Vector3 delta= new Vector3(GameInput.InputControls.RightJoystickHorizontal, GameInput.InputControls.RightJoystickVertical, 0) * mouseMovementSpeed;
                 this.gameObject.transform.position += delta;
                 if (delta.x == 0 && delta.y == 0) return;
                 if (Mathf.Abs(delta.x) > 0 || Mathf.Abs(delta.y) > 0) timer.restart();

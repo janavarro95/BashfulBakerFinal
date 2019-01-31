@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Menu = Assets.Scripts.Menus.Menu;
 
 namespace Assets.Scripts.GameInformation
@@ -35,6 +36,17 @@ namespace Assets.Scripts.GameInformation
         /// The information for the player that doesn't need to be seen on a MonoBehavior script.
         /// </summary>
         private static Assets.Scripts.Player.PlayerInfo player;
+
+        /// <summary>
+        /// Holds all of the information we need to keep track of on the player.
+        /// </summary>
+        public static Player.PlayerInfo Player
+        {
+            get
+            {
+                return player;
+            }
+        }
 
         private static Menu _Menu;
 
@@ -78,16 +90,6 @@ namespace Assets.Scripts.GameInformation
             }
         }
 
-        /// <summary>
-        /// Holds all of the information we need to keep track of on the player.
-        /// </summary>
-        public static Player.PlayerInfo Player
-        {
-            get
-            {
-                return player;
-            }
-        }
 
         /// <summary>
         /// Checks to see if the game and it's internal systems have been loaded or not.
@@ -170,16 +172,48 @@ namespace Assets.Scripts.GameInformation
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void InitializeAfterLoad()
         {
-            Debug.Log("AFTER");
 
-                if (MouseCursor == null)
-                {
-                    string path = Path.Combine("Assets", Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor" + ".prefab"));
-                    _MouseCursor = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject))).GetComponent<GameCursor>();
+            if (MouseCursor == null)
+            {
+                string path = Path.Combine("Assets", Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor" + ".prefab"));
+                _MouseCursor = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject))).GetComponent<GameCursor>();
 
-                    GameObject.DontDestroyOnLoad(_MouseCursor);
-                }
+                GameObject.DontDestroyOnLoad(_MouseCursor);
+            }
+
+            setUpScene();
+
+            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+
         }
+
+        private static void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            setUpScene();
+        }
+
+        static void setUpScene()
+        {
+
+            if (SceneManager.GetActiveScene().name == "MainMenu")
+            {
+                Menus.Menu.Instantiate<MainMenu>();
+            }
+
+            if (SceneManager.GetActiveScene().name == "preloadScene")
+            {
+                string path = Path.Combine("Assets", Path.Combine("Prefabs", "Player" + ".prefab"));
+                Player.gameObject = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)));
+                Player.gameObject.transform.position = new Vector3(1, .5f, 0);
+                DontDestroyOnLoad(Player.gameObject);
+
+                SceneManager.LoadScene("Kitchen");
+                Debug.Log("Loading kitchen scene from the Game.cs script!");
+            }
+
+            Debug.Log(SceneManager.GetActiveScene().name);
+        }
+
 #endif
 
         // Various other things follow...

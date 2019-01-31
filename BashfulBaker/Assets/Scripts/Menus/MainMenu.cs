@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Menus
 {
@@ -50,7 +50,7 @@ namespace Assets.Scripts.Menus
         /// </summary>
         public void startButtonClick()
         {
-            Debug.Log("Start clicked!");
+            SceneManager.LoadScene("preloadScene");
         }
     }
 }
