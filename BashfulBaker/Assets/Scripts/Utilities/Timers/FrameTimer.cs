@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Utilities.Delegates;
+using TimerState = Assets.Scripts.Enums.TimerState; //Alias.
 
 namespace Assets.Scripts.Utilities.Timers
 {
@@ -30,6 +31,68 @@ namespace Assets.Scripts.Utilities.Timers
         /// </summary>
         public VoidDelegate onFinished;
 
+
+        /// <summary>
+        /// The current state of the timer.
+        /// </summary>
+        private TimerState currentState;
+
+
+        /// <summary>
+        /// Checks if the timer has been initialized, but not yet ticking.
+        /// </summary>
+        public bool IsInitialized
+        {
+            get
+            {
+                return this.currentState == TimerState.Initialized;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the timer is currently ticking.
+        /// </summary>
+        public bool IsTicking
+        {
+            get
+            {
+                return this.currentState == TimerState.Ticking;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the timer was paused. This means the timer could be resumed at any moment.
+        /// </summary>
+        public bool IsPaused
+        {
+            get
+            {
+                return this.currentState == TimerState.Paused;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the timer was stopped, aka it no longer needed to run but it's finish state was not invoked.
+        /// </summary>
+        public bool IsStopped
+        {
+            get
+            {
+                return this.currentState == TimerState.Stopped;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the timer has finished running it's course.
+        /// </summary>
+        public bool IsFinished
+        {
+            get
+            {
+                return this.finished();
+            }
+        }
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -40,6 +103,15 @@ namespace Assets.Scripts.Utilities.Timers
             this.lifespanRemaining = this.maxLifespan;
             this.autoRestart = AutoRestart;
             this.onFinished = OnFinished;
+            this.currentState = TimerState.Initialized;
+        }
+
+        /// <summary>
+        /// Starts the timer ticking.
+        /// </summary>
+        public void start()
+        {
+            this.currentState = TimerState.Ticking;
         }
 
         /// <summary>
@@ -47,13 +119,16 @@ namespace Assets.Scripts.Utilities.Timers
         /// </summary>
         public void tick()
         {
+            if (this.currentState != TimerState.Ticking) return; //If the timer isn't supposed to tick do nothing.
+
             if (lifespanRemaining >= 0)
             {
                 lifespanRemaining--;
                 if (finished())
                 {
+                    this.currentState = TimerState.Finished;
                     invoke();
-                    if (autoRestart) lifespanRemaining = maxLifespan;
+                    if (autoRestart) restart();
                 }
             }
             else return;
@@ -65,7 +140,7 @@ namespace Assets.Scripts.Utilities.Timers
         /// <returns></returns>
         public bool finished()
         {
-            return this.lifespanRemaining <= 0;
+            return this.lifespanRemaining == 0;
         }
 
         /// <summary>
@@ -84,6 +159,43 @@ namespace Assets.Scripts.Utilities.Timers
             if (this.onFinished != null)
             {
                 this.onFinished.Invoke();
+            }
+        }
+
+        /// <summary>
+        /// Restarts the frame timer.
+        /// </summary>
+        public void restart()
+        {
+            lifespanRemaining = maxLifespan;
+            this.currentState = TimerState.Ticking;
+        }
+
+        /// <summary>
+        /// Stops the timer from executing it's count down.
+        /// </summary>
+        public void stop()
+        {
+            lifespanRemaining = -1;
+            this.currentState = TimerState.Stopped;
+        }
+
+        /// <summary>
+        /// Pauses the timer.
+        /// </summary>
+        public void pause()
+        {
+            this.currentState = TimerState.Paused;
+        }
+
+        /// <summary>
+        /// Resumes the timer if it has been paused.
+        /// </summary>
+        public void resume()
+        {
+            if (this.currentState == TimerState.Paused)
+            {
+                this.currentState = TimerState.Ticking;
             }
         }
 

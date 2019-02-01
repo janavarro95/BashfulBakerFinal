@@ -59,6 +59,39 @@ namespace Assets.Scripts
         }
 
         /// <summary>
+        /// Deals with all of the states a timer could be in.
+        /// </summary>
+        public enum TimerState
+        {
+            /// <summary>
+            /// The timer has been initialized but is not ticking.
+            /// </summary>
+            Initialized,
+            /// <summary>
+            /// The timer has started ticking.
+            /// </summary>
+            Ticking,
+            /// <summary>
+            /// The timer has finished.
+            /// </summary>
+            Finished,
+            /// <summary>
+            /// The timer has stopped.
+            /// </summary>
+            Stopped,
+            /// <summary>
+            /// The timer has paused.
+            /// </summary>
+            Paused
+        }
+
+        public enum TimerType
+        {
+            CountDown,
+            CountUp
+        }
+
+        /// <summary>
         /// Gets all of the values stored in an enum.
         /// </summary>
         /// <typeparam name="T"></typeparam>

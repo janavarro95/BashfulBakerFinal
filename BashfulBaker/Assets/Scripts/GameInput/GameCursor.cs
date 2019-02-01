@@ -21,19 +21,19 @@ namespace Assets.Scripts.GameInput
 
         public bool movedByCursor;
 
-        private Utilities.Timers.CSTimer timer;
+        private Utilities.Timers.FrameTimer timer;
 
         private bool isVisible;
 
         void Start()
         {
             oldMousePos = Camera.main.ScreenToWorldPoint((Vector2)UnityEngine.Input.mousePosition);
-            timer = new Utilities.Timers.CSTimer(5000, false, new System.Timers.ElapsedEventHandler(makeInvisible));
-            timer.start();
+            timer = new Utilities.Timers.FrameTimer(300, new Utilities.Delegates.VoidDelegate(makeInvisible), false);
         }
 
         void Update()
         {
+            timer.tick();
             setVisibility();
             Vector2 vec = Camera.main.ScreenToWorldPoint((Vector2)UnityEngine.Input.mousePosition);
             if (vec.Equals(oldMousePos))
@@ -178,14 +178,9 @@ namespace Assets.Scripts.GameInput
             this.GetComponent<SpriteRenderer>().enabled = isVisible;
         }
 
-        private void makeInvisible(object e, System.Timers.ElapsedEventArgs args)
+        private void makeInvisible()
         {
             isVisible = false;
-        }
-
-        private void OnDestroy()
-        {
-            this.timer.timer.Elapsed -= makeInvisible;
         }
     }
 }
