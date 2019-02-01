@@ -8,6 +8,7 @@ public class WarpTile : MonoBehaviour
 
     [SerializeField]
     private bool pressAToWarp;
+    [SerializeField]
     private string sceneToWarpTo;
     private Vector2 warpLocation;
 
@@ -25,6 +26,7 @@ public class WarpTile : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("COLLISION");
         if (collision.gameObject.tag == "Player")
         {
             if (pressAToWarp)
@@ -34,6 +36,11 @@ public class WarpTile : MonoBehaviour
                     SceneManager.LoadScene(sceneToWarpTo);
                     collision.gameObject.transform.position = warpLocation;
                 }
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneToWarpTo);
+                collision.gameObject.transform.position = warpLocation;
             }
         }
     }
