@@ -144,6 +144,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpeed: 1
   movementDampening: 20
+  woodStepSound: {fileID: 8300000, guid: 0a32fa66134014740a0fafda0cb9b5c8, type: 3}
+  currentWalkingSound: {fileID: 0}
 --- !u!95 &2918408043727610648
 Animator:
   serializedVersion: 3

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameInformation;
 using Assets.Scripts.Menus;
+using Assets.Scripts.Utilities.Timers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,23 @@ public class PlayerMovement : MonoBehaviour {
 
 
     private Animator animator;
+
+    [SerializeField]
+    private AudioClip woodStepSound;
+    [SerializeField]
+    private AudioClip currentWalkingSound;
+
+    private DeltaTimer walkingSoundTimer;
+
+
+    public AudioClip CurrentWalkingSound
+    {
+        get
+        {
+            return currentWalkingSound;
+        }
+    }
+
     /// <summary>
     /// How fast the player should move. This can be modified by anything we want later.
     /// </summary>
@@ -38,11 +56,15 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animator = this.GetComponent<Animator>();
+        currentWalkingSound = woodStepSound;
+        walkingSoundTimer = new DeltaTimer(0.4f, Assets.Scripts.Enums.TimerType.CountDown, false);
+        walkingSoundTimer.start();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+        walkingSoundTimer.Update();
         if (Game.IsMenuUp == false)
         {
             if (Assets.Scripts.GameInput.InputControls.StartPressed)
@@ -53,6 +75,13 @@ public class PlayerMovement : MonoBehaviour {
             Vector3 offset = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * MovementSpeed;
 
             this.gameObject.transform.position += offset;
+
+            if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0) && walkingSoundTimer.IsFinished)
+            {
+                Game.SoundManager.playSound(CurrentWalkingSound, Random.Range(2f, 3f));
+                this.walkingSoundTimer.restart();
+            }
+
             playCharacterMovementAnimation(offset);
 
         }

@@ -82,12 +82,40 @@ public class GameSoundManager : MonoBehaviour
         source.Play();
     }
 
+    public void playSound(AudioClip clip, float pitch)
+    {
+        AudioSource source = this.gameObject.AddComponent<AudioSource>();
+        source.clip = clip;
+
+        if (audioSources.ContainsKey(clip.name))
+        {
+            audioSources[clip.name].Add(source);
+            source.pitch = pitch;
+            source.Play();
+            return;
+        }
+        else
+        {
+            List<AudioSource> sources = new List<AudioSource>();
+            sources.Add(source);
+            source.pitch = pitch;
+            audioSources.Add(clip.name, sources);
+        }
+        source.Play();
+    }
+
     public void stopSound(AudioClip clip)
     {
         if (audioSources.ContainsKey(clip.name))
         {
             audioSources[clip.name].Find(source => source.clip == clip).Stop();
         }
+    }
+
+    public bool isSoundPlaying(AudioClip clip)
+    {
+        if (!this.audioSources.ContainsKey(clip.name)) return false;
+        return this.audioSources[clip.name].Count > 0;
     }
 
 }

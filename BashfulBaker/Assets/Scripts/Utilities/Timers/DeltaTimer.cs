@@ -50,7 +50,7 @@ namespace Assets.Scripts.Utilities.Timers
         /// <param name="Type">The type of timer this is.</param>
         /// <param name="AutoRestart">If the timer should automatically restart once it finishes.</param>
         /// <param name="OnFinished">What happens when the timer finishes.</param>
-        public DeltaTimer(int TimeToCompletion,TimerType Type,bool AutoRestart, VoidDelegate OnFinished=null)
+        public DeltaTimer(float TimeToCompletion,TimerType Type,bool AutoRestart, VoidDelegate OnFinished=null)
         {
             this.type = Type;
             this.autoRestart = AutoRestart;
