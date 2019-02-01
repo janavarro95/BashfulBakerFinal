@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using Assets.Scripts.GameInformation;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -77,6 +79,7 @@ public class Checkpoint : MonoBehaviour {
             }
             else if (stirPercentage == 100 && ingredients >= 4)
             {
+                Game.Player.setVisibility(Enums.Visibility.Visible);
                 SceneManager.LoadScene("Kitchen");
             }
 
@@ -118,6 +121,7 @@ public class Checkpoint : MonoBehaviour {
             this.transform.position = new Vector3(1, -1, 0);
             state = 0;
 
+            if (ingredients == 0) return; //It doesn't make sense that we can stir something with no ingredients in the bowl so we just return.
 
             if (stirPercentage < 100)
             {

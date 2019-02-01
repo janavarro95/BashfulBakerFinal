@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.GameInput;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,7 +21,8 @@ public class CookieMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown((c < 4 ? KeyCode.Space : KeyCode.Tab)))
+        
+        if (Input.GetKeyDown((c < 4 ? KeyCode.Space : KeyCode.Tab)) || c < 4 ?  InputControls.XPressed : InputControls.YPressed)
         {
             if (c < 8)
             {

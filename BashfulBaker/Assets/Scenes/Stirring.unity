@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 917301957}
   - component: {fileID: 917301960}
   - component: {fileID: 917301961}
+  - component: {fileID: 917301962}
   m_Layer: 0
   m_Name: Ya Boi
   m_TagString: Player
@@ -409,6 +410,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpeed: 8
   movementDampening: 20
+  woodStepSound: {fileID: 0}
+  currentWalkingSound: {fileID: 0}
 --- !u!212 &917301958
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -508,6 +511,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &917301962
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917301956}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8feaabb924a25d94193e838c27743db3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1051593245
 GameObject:
   m_ObjectHideFlags: 0
