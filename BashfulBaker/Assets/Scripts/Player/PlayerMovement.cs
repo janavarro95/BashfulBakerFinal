@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private Animator animator;
 
+    private SpriteRenderer spriteRenderer;
+
     [SerializeField]
     private AudioClip woodStepSound;
     [SerializeField]
@@ -59,6 +61,7 @@ public class PlayerMovement : MonoBehaviour {
         currentWalkingSound = woodStepSound;
         walkingSoundTimer = new DeltaTimer(0.4f, Assets.Scripts.Enums.TimerType.CountDown, false);
         walkingSoundTimer.start();
+        this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -76,7 +79,7 @@ public class PlayerMovement : MonoBehaviour {
 
             this.gameObject.transform.position += offset;
 
-            if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0) && walkingSoundTimer.IsFinished)
+            if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0) && walkingSoundTimer.IsFinished && this.spriteRenderer.enabled)
             {
                 Game.SoundManager.playSound(CurrentWalkingSound, Random.Range(2f, 3f));
                 this.walkingSoundTimer.restart();

@@ -75,7 +75,7 @@ public class Checkpoint : MonoBehaviour {
                // Debug.Log(ingredients);
                 Debug.Log(stirPercentage);
             }
-            else if (stirPercentage == 100)
+            else if (stirPercentage == 100 && ingredients >= 4)
             {
                 SceneManager.LoadScene("Kitchen");
             }
