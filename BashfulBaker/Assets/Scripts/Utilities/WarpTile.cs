@@ -10,6 +10,7 @@ public class WarpTile : MonoBehaviour
     private bool pressAToWarp;
     [SerializeField]
     private string sceneToWarpTo;
+    [SerializeField]
     private Vector2 warpLocation;
 
     // Start is called before the first frame update

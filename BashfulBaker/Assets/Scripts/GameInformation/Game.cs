@@ -210,7 +210,7 @@ namespace Assets.Scripts.GameInformation
             {
                 string path = Path.Combine("Assets", Path.Combine("Prefabs", "Player" + ".prefab"));
                 Player.gameObject = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)));
-                Player.gameObject.transform.position = new Vector3(1, .5f, 0);
+                Player.gameObject.transform.position = new Vector3(-1.3f, .25f, 0);
                 DontDestroyOnLoad(Player.gameObject);
 
                 SceneManager.LoadScene("Kitchen");
