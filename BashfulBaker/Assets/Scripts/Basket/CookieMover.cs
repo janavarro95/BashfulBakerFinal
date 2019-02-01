@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.GameInput;
+﻿using Assets.Scripts;
+using Assets.Scripts.GameInformation;
+using Assets.Scripts.GameInput;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +33,7 @@ public class CookieMover : MonoBehaviour
             }
             else
             {
+                Game.Player.setVisibility(Enums.Visibility.Visible);
                 SceneManager.LoadScene("Kitchen");
             }
         }
