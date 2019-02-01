@@ -273,8 +273,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319584522}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.285, y: 0.773, z: -2}
-  m_LocalScale: {x: 4.6, y: 1.89, z: 1}
+  m_LocalPosition: {x: 4.74, y: 0.969, z: -2}
+  m_LocalScale: {x: 2.5657144, y: 4.3766427, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -5209,7 +5209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035039913}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.68, y: 0.868, z: -2}
+  m_LocalPosition: {x: 4.71, y: 0.33, z: -2}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5228,7 +5228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigame: Stirring
-  makePlayerInvisible: 0
+  makePlayerInvisible: 1
 --- !u!1 &1200142962
 GameObject:
   m_ObjectHideFlags: 0
