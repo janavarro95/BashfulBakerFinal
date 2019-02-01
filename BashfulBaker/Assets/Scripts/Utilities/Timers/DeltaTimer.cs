@@ -12,6 +12,7 @@ namespace Assets.Scripts.Utilities.Timers
     /// <summary>
     /// Experimental timer class which uses Unity's delta time. Make sure to call this timer's update function in an appropriate monobehavior script!
     /// </summary>
+    [SerializeField,Serializable]
     public class DeltaTimer
     {
         public float currentTime;
@@ -78,6 +79,7 @@ namespace Assets.Scripts.Utilities.Timers
             {
                 currentTime = 0;
             }
+            this.state = TimerState.Ticking;
         }
 
 

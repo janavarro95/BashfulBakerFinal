@@ -21,14 +21,16 @@ namespace Assets.Scripts.GameInput
 
         public bool movedByCursor;
 
-        private Utilities.Timers.FrameTimer timer;
+        [SerializeField]
+        private Utilities.Timers.DeltaTimer timer;
 
         private bool isVisible;
 
         void Start()
         {
             oldMousePos = Camera.main.ScreenToWorldPoint((Vector2)UnityEngine.Input.mousePosition);
-            timer = new Utilities.Timers.FrameTimer(300, new Utilities.Delegates.VoidDelegate(makeInvisible), false);
+            timer = new Utilities.Timers.DeltaTimer(5, Enums.TimerType.CountDown, false,new Utilities.Delegates.VoidDelegate(makeInvisible));
+            timer.start();
         }
 
         void Update()
