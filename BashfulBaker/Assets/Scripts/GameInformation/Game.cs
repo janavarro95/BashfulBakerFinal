@@ -151,6 +151,7 @@ namespace Assets.Scripts.GameInformation
                 if (Cooking.Recipes.CookBook.CookingRecipes == null) Cooking.Recipes.CookBook.CookingRecipes = new CookBook();
                 if (QuestSystem.QuestManager.Quests == null) QuestSystem.QuestManager.Quests = new QuestManager();
                 if (player == null) player = new PlayerInfo();
+
                 gameLoaded = true;
 
                 /*
@@ -177,8 +178,13 @@ namespace Assets.Scripts.GameInformation
             {
                 string path = Path.Combine("Assets", Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor" + ".prefab"));
                 _MouseCursor = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject))).GetComponent<GameCursor>();
-
                 GameObject.DontDestroyOnLoad(_MouseCursor);
+            }
+
+            if (SoundManager == null)
+            {
+                string soundManagerPath = Path.Combine("Assets", Path.Combine(Path.Combine("Prefabs", "Misc"), "SoundManager" + ".prefab"));
+                Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(soundManagerPath, typeof(GameObject)));
             }
 
             setUpScene();

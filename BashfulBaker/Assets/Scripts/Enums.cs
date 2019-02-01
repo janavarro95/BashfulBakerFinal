@@ -91,6 +91,12 @@ namespace Assets.Scripts
             CountUp
         }
 
+        public enum Visibility
+        {
+            Visible,
+            Invisible
+        }
+
         /// <summary>
         /// Gets all of the values stored in an enum.
         /// </summary>

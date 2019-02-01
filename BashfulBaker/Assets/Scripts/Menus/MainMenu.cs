@@ -52,5 +52,13 @@ namespace Assets.Scripts.Menus
         {
             SceneManager.LoadScene("preloadScene");
         }
+
+        /// <summary>
+        /// What happens when the quit button is clicked.
+        /// </summary>
+        public void exitButtonClick()
+        {
+            Application.Quit();
+        }
     }
 }

@@ -3,9 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Attach this to where the audio listener is!
-/// </summary>
+
 public class GameSoundManager : MonoBehaviour
 {
 
@@ -15,6 +13,7 @@ public class GameSoundManager : MonoBehaviour
     void Start()
     {
         Game.SoundManager = this;
+        DontDestroyOnLoad(this.gameObject);
 
     }
 
@@ -23,6 +22,7 @@ public class GameSoundManager : MonoBehaviour
     {
         cleanUpAudioSources();
 
+        this.gameObject.transform.position = Camera.main.transform.position;
     }
 
     private void cleanUpAudioSources()

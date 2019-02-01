@@ -15,25 +15,41 @@ namespace Assets.Scripts.Utilities.Timers
     [SerializeField,Serializable]
     public class DeltaTimer
     {
+        /// <summary>
+        /// The current time on the timer.
+        /// </summary>
         public float currentTime;
         /// <summary>
         /// The time (in seconds) it should take this timer to tick to completion. Note it is a float so you can have fractions of a second.
         /// </summary>
         public float maxTime;
 
+        /// <summary>
+        /// The type of timer this is.
+        /// </summary>
         public TimerType type;
+        /// <summary>
+        /// The current state of the timer.
+        /// </summary>
         public TimerState state;
 
+        /// <summary>
+        /// What happens when the timer finishes.
+        /// </summary>
         public Assets.Scripts.Utilities.Delegates.VoidDelegate onFinished;
 
+        /// <summary>
+        /// Does the timer automatically restart?
+        /// </summary>
         public bool autoRestart;
 
-        public DeltaTimer()
-        {
-
-            state = TimerState.Initialized;
-        }
-
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="TimeToCompletion">How long it takes in seconds until the timer finishes.</param>
+        /// <param name="Type">The type of timer this is.</param>
+        /// <param name="AutoRestart">If the timer should automatically restart once it finishes.</param>
+        /// <param name="OnFinished">What happens when the timer finishes.</param>
         public DeltaTimer(int TimeToCompletion,TimerType Type,bool AutoRestart, VoidDelegate OnFinished=null)
         {
             this.type = Type;
@@ -50,25 +66,95 @@ namespace Assets.Scripts.Utilities.Timers
             this.onFinished = OnFinished;
         }
 
+        /// <summary>
+        /// If the timer is initialized;
+        /// </summary>
+        public bool IsInitialized
+        {
+            get
+            {
+                return this.state == TimerState.Initialized;
+            }
+        }
 
+        /// <summary>
+        /// If the timer is ticking.
+        /// </summary>
+        public bool IsTicking
+        {
+            get
+            {
+                return this.state == TimerState.Ticking;
+            }
+        }
+
+        /// <summary>
+        /// If the timer is paused.
+        /// </summary>
+        public bool IsPaused
+        {
+            get
+            {
+                return this.state == TimerState.Paused;
+            }
+        }
+
+        /// <summary>
+        /// If the timer is stopped.
+        /// </summary>
+        public bool IsStopped
+        {
+            get
+            {
+                return this.state == TimerState.Stopped;
+            }
+        }
+
+        /// <summary>
+        /// If the timer is finished.
+        /// </summary>
+        public bool IsFinished
+        {
+            get
+            {
+                return this.state == TimerState.Finished;
+            }
+        }
+
+        /// <summary>
+        /// Start the timer.
+        /// </summary>
         public void start()
         {
             this.state = TimerState.Ticking;
         }
+        /// <summary>
+        /// Stop the timer.
+        /// </summary>
         public void stop()
         {
             this.currentTime = -1;
             this.state = TimerState.Stopped;
         }
+
+        /// <summary>
+        /// Pause the timer.
+        /// </summary>
         public void pause()
         {
             this.state = TimerState.Paused;
         }
+        /// <summary>
+        /// Resume the timer.
+        /// </summary>
         public void resume()
         {
             this.state = TimerState.Ticking;
         }
 
+        /// <summary>
+        /// Restart the timer.
+        /// </summary>
         public void restart()
         {
             if (type == TimerType.CountDown)
@@ -82,52 +168,17 @@ namespace Assets.Scripts.Utilities.Timers
             this.state = TimerState.Ticking;
         }
 
-
-        public bool IsInitialized
-        {
-            get
-            {
-                return this.state == TimerState.Initialized;
-            }
-        }
-
-        public bool IsTicking
-        {
-            get
-            {
-                return this.state == TimerState.Ticking;
-            }
-        }
-
-        public bool IsPaused
-        {
-            get
-            {
-                return this.state == TimerState.Paused;
-            }
-        }
-
-        public bool IsStopped
-        {
-            get
-            {
-                return this.state == TimerState.Stopped;
-            }
-        }
-
-        public bool IsFinished
-        {
-            get
-            {
-                return this.state == TimerState.Finished;
-            }
-        }
-
+        /// <summary>
+        /// Tick aka update the timer.
+        /// </summary>
         public void tick()
         {
             Update();
         }
 
+        /// <summary>
+        /// Update the timer.
+        /// </summary>
         public void Update()
         {
             if (state != TimerState.Ticking) return; //Only update if timer should tick.
@@ -156,6 +207,9 @@ namespace Assets.Scripts.Utilities.Timers
             }
         }
 
+        /// <summary>
+        /// invoke the timer's functionality upon finish.
+        /// </summary>
         private void invoke()
         {
             if (this.onFinished == null) return;

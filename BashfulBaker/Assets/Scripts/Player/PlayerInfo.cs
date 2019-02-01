@@ -68,5 +68,17 @@ namespace Assets.Scripts.Player
             this.inventory = new Inventory();
             this.facingDirection = Enums.FacingDirection.Down;
         }
+
+        public void setVisibility(Enums.Visibility visibility)
+        {
+            if (visibility == Enums.Visibility.Invisible)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+            else
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+        }
     }
 }
