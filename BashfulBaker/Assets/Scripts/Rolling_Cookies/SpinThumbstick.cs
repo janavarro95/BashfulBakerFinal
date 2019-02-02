@@ -7,7 +7,7 @@ namespace Assets.Scripts.GameInput
     {
         private Vector2 startR, endR, startL, endL;
         private float sumR, sumL;
-
+        private int count;
         // Start is called before the first frame update
         void Start()
         {
@@ -17,6 +17,7 @@ namespace Assets.Scripts.GameInput
             endL = new Vector2(0, 0);
             sumR = 0;
             sumL = 0;
+            count = 0;
         }
 
         // Update is called once per frame
@@ -36,9 +37,11 @@ namespace Assets.Scripts.GameInput
             }
             startL = endL;
 
-            if(sumR > 720 && sumL > 720)
+            if(sumR > 720 && sumL > 720 && InputControls.APressed)
             {
-                Debug.Log("yay");
+                Debug.Log(++count);
+                sumR = 0;
+                sumL = 0;
             }
         }
     }
