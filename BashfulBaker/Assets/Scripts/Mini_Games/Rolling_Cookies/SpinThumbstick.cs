@@ -23,7 +23,7 @@ namespace Assets.Scripts.GameInput
         // Update is called once per frame
         void Update()
         {
-            endR = new Vector2(GameInput.InputControls.RightJoystickHorizontal, GameInput.InputControls.RightJoystickVertical);
+            endR = new Vector2(InputControls.RightJoystickHorizontal, InputControls.RightJoystickVertical);
             if (!startR.Equals(new Vector2(0, 0)) && !endR.Equals(new Vector2(0, 0)))
             {
                 sumR += Vector2.Angle(startR, endR) > 45 ? 45 : Vector2.Angle(startR, endR);
