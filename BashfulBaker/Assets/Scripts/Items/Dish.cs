@@ -24,14 +24,14 @@ namespace Assets.Scripts.Items
 
         public override GameObject loadFromPrefab()
         {
-            string path =Path.Combine("Assets",Path.Combine(Path.Combine("Prefabs", "Dishes"), this.Name+".prefab"));
-            return (GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject));
+            string path =Path.Combine(Path.Combine("Prefabs", "Dishes"), this.Name);
+            return (GameObject)Resources.Load(path, typeof(GameObject));
         }
 
         public static GameObject LoadDishFromPrefab(string ItemName)
         {
-            string path = Path.Combine("Assets",Path.Combine(Path.Combine("Prefabs", "Dishes"), ItemName+".prefab"));
-            return (GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject));
+            string path = Path.Combine(Path.Combine("Prefabs", "Dishes"), ItemName);
+            return (GameObject)Resources.Load(path, typeof(GameObject));
         }
     }
 }

@@ -61,8 +61,8 @@ namespace Assets.Scripts.Menus
 
         protected static GameObject LoadMenuFromPrefab(string ItemName)
         {
-            string path = Path.Combine("Assets", Path.Combine(Path.Combine("Prefabs", "Menus"), ItemName + ".prefab"));
-            GameObject menuObj=Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)));
+            string path = Path.Combine(Path.Combine("Prefabs", "Menus"), ItemName);
+            GameObject menuObj=Instantiate((GameObject)Resources.Load(path, typeof(GameObject)));
             return menuObj;
         }
     }

@@ -60,12 +60,12 @@ public class Item : MonoBehaviour {
     public virtual GameObject loadFromPrefab()
     {
         string path = Path.Combine(Path.Combine("Prefabs", "Items"), this.Name);
-        return (GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(Item));
+        return (GameObject)Resources.Load(path, typeof(Item));
     }
 
     public static GameObject LoadItemFromPrefab(string ItemName)
     {
         string path = Path.Combine(Path.Combine( "Prefabs", "Items"), ItemName);
-        return (GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(Item));
+        return (GameObject)Resources.Load(path, typeof(Item));
     }
 }

@@ -153,16 +153,6 @@ namespace Assets.Scripts.GameInformation
                 if (player == null) player = new PlayerInfo();
 
                 gameLoaded = true;
-
-                /*
-                if (player.inventory == null) Debug.Log("Why inventory null??");
-
-                player.inventory.Add(Dish.LoadDishFromPrefab("Example").GetComponent<Dish>());
-
-                CookingQuest quest=QuestManager.loadCookingQuest("Example");
-                quest.IsCompleted = true;
-                QuestManager.quests.Add(quest.generateDeliveryQuest());
-                */
             }
         }
 
@@ -176,15 +166,17 @@ namespace Assets.Scripts.GameInformation
 
             if (MouseCursor == null)
             {
-                string path = Path.Combine("Assets", Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor" + ".prefab"));
-                _MouseCursor = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject))).GetComponent<GameCursor>();
+                string path = Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor");
+                _MouseCursor = Instantiate((GameObject)Resources.Load(path, typeof(GameObject))).GetComponent<GameCursor>();
                 GameObject.DontDestroyOnLoad(_MouseCursor);
             }
 
             if (SoundManager == null)
             {
-                string soundManagerPath = Path.Combine("Assets", Path.Combine(Path.Combine("Prefabs", "Misc"), "SoundManager" + ".prefab"));
-                Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(soundManagerPath, typeof(GameObject)));
+                
+
+                string soundManagerPath = Path.Combine(Path.Combine("Prefabs", "Misc"), "SoundManager");
+                Instantiate((GameObject)Resources.Load(soundManagerPath, typeof(GameObject)));
             }
 
             setUpScene();
@@ -208,8 +200,8 @@ namespace Assets.Scripts.GameInformation
 
             if (SceneManager.GetActiveScene().name == "preloadScene")
             {
-                string path = Path.Combine("Assets", Path.Combine("Prefabs", "Player" + ".prefab"));
-                Player.gameObject = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)));
+                string path = Path.Combine("Prefabs", "Player");
+                Player.gameObject = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)));
                 Player.gameObject.transform.position = new Vector3(-1.3f, .25f, 0);
                 DontDestroyOnLoad(Player.gameObject);
 
