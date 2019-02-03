@@ -124,7 +124,7 @@ namespace Assets.Scripts.Cooking.Recipes
         /// </summary>
         public void DeserializeRecipes()
         {
-            string recipesPath = Path.Combine(Path.Combine(Application.dataPath, "JSON"), "Recipes");
+            string recipesPath = Path.Combine(Path.Combine(Path.Combine(Application.dataPath,"Resources"), "JSON"), "Recipes");
             string[] folders = Directory.GetDirectories(recipesPath);
             foreach(string cookingStation in folders)
             {

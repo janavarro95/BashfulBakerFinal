@@ -145,15 +145,6 @@ namespace Assets.Scripts.GameInformation
         #endif
         static void Initialize()
         {
-            if (GameLoaded == false)
-            {
-                if (Serializer.JSONSerializer == null) Serializer.JSONSerializer = new Utilities.Serialization.Serializer();
-                if (Cooking.Recipes.CookBook.CookingRecipes == null) Cooking.Recipes.CookBook.CookingRecipes = new CookBook();
-                if (QuestSystem.QuestManager.Quests == null) QuestSystem.QuestManager.Quests = new QuestManager();
-                if (player == null) player = new PlayerInfo();
-
-                gameLoaded = true;
-            }
         }
 
 #if UNITY_STANDALONE
@@ -163,6 +154,16 @@ namespace Assets.Scripts.GameInformation
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void InitializeAfterLoad()
         {
+
+            if (GameLoaded == false)
+            {
+                if (Serializer.JSONSerializer == null) Serializer.JSONSerializer = new Utilities.Serialization.Serializer();
+                if (Cooking.Recipes.CookBook.CookingRecipes == null) Cooking.Recipes.CookBook.CookingRecipes = new CookBook();
+                if (QuestSystem.QuestManager.Quests == null) QuestSystem.QuestManager.Quests = new QuestManager();
+                if (player == null) player = new PlayerInfo();
+
+                gameLoaded = true;
+            }
 
             if (MouseCursor == null)
             {
