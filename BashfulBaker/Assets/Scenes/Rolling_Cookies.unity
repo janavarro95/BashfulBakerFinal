@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 1449644832}
   - component: {fileID: 1449644834}
   m_Layer: 0
-  m_Name: Right Thumbstick
+  m_Name: Right Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,7 +268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449644831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4413234, y: 0.293863, z: 0.010578336}
+  m_LocalPosition: {x: -0.06, y: 0.96, z: 0.010578336}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
