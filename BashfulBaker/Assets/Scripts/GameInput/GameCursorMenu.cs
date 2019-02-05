@@ -43,6 +43,7 @@ namespace Assets.Scripts.GameInput
             }
             else
             {
+                if (Mathf.Abs(vec.x - oldMousePos.x) < .001 && Mathf.Abs(vec.y - oldMousePos.y) < .001) return; //stop random mouse sliding.
                 oldMousePos = vec;
                 this.rect.position = vec;
                 movedByCursor = true;

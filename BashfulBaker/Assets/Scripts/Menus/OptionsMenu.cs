@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -50,11 +51,55 @@ namespace Assets.Scripts.Menus
 
         public override void Update()
         {
-            Debug.Log("HELLO WORLD");
             if (GameInput.GameCursorMenu.SimulateMousePress(exitButton))
             {
                 Debug.Log("HELLO");
                 this.exitMenu();
+            }
+
+            if (GameInput.GameCursorMenu.SimulateMousePress(sfxSlider))
+            {
+                sfxSlider.Select();
+            }
+            if (GameInput.GameCursorMenu.SimulateMousePress(musicSlider))
+            {
+                musicSlider.Select();
+            }
+            if (GameInput.GameCursorMenu.SimulateMousePress(muteToggle))
+            {
+                muteToggle.Select();
+            }
+
+
+        }
+
+        /// <summary>
+        /// https://forum.unity.com/threads/gamepad-precision-with-sliders.381802/
+        /// </summary>
+        private void checkForSliderUpdate()
+        {
+            if (musicSlider == EventSystem.current.currentSelectedGameObject)
+            {
+                float sliderChange = Input.GetAxis("Horizontal");
+                float sliderValue = musicSlider.value;
+                float tempValue = sliderValue + sliderChange;
+                if (tempValue <= musicSlider.maxValue && tempValue >= musicSlider.minValue)
+                {
+                    sliderValue = tempValue;
+                }
+                musicSlider.value = sliderValue;
+            }
+
+            if (sfxSlider == EventSystem.current.currentSelectedGameObject)
+            {
+                float sliderChange = Input.GetAxis("Horizontal");
+                float sliderValue = sfxSlider.value;
+                float tempValue = sliderValue + sliderChange;
+                if (tempValue <= sfxSlider.maxValue && tempValue >= sfxSlider.minValue)
+                {
+                    sliderValue = tempValue;
+                }
+                sfxSlider.value = sliderValue;
             }
         }
 
