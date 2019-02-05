@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.GameInput;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,10 @@ namespace Assets.Scripts.Menus
         public override void Start()
         {
             GameObject canvas = this.transform.Find("Canvas").gameObject;
+
+            Canvas actualCanvas = canvas.GetComponent<Canvas>();
+            actualCanvas.worldCamera = Camera.main;
+
             exitButton = canvas.transform.Find("QuitButton").gameObject.GetComponent<Button>();
 
             sfxSlider = canvas.transform.Find("SFXSlider").gameObject.GetComponent<Slider>();
@@ -39,14 +44,18 @@ namespace Assets.Scripts.Menus
             musicSlider.value = Game.Options.musicVolume;
             muteToggle.isOn = Game.Options.muteVolume;
 
+            menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
+            Game.Menu = this;
         }
 
         public override void Update()
         {
-            if (GameInput.GameCursor.SimulateMousePress(exitButton))
+            Debug.Log("HELLO WORLD");
+            if (GameInput.GameCursorMenu.SimulateMousePress(exitButton))
             {
+                Debug.Log("HELLO");
                 this.exitMenu();
-            }   
+            }
         }
 
         /// <summary>

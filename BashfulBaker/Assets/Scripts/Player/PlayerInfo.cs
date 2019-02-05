@@ -18,8 +18,26 @@ namespace Assets.Scripts.Player
         /// The player's inventory.
         /// </summary>
         public Inventory inventory;
-
         public Enums.FacingDirection facingDirection;
+        public bool hidden;
+
+        private SpriteRenderer renderer;
+        public SpriteRenderer Renderer
+        {
+            get
+            {
+                if (renderer == null)
+                {
+                    renderer = this.gameObject.GetComponent<SpriteRenderer>();
+                    return renderer;
+                }
+                else
+                {
+                    return renderer;
+                }
+
+            }
+        }
 
         [JsonIgnore]
         private GameObject _gameObject;
@@ -67,18 +85,46 @@ namespace Assets.Scripts.Player
         {
             this.inventory = new Inventory();
             this.facingDirection = Enums.FacingDirection.Down;
+            hidden = false;
         }
 
-        public void setVisibility(Enums.Visibility visibility)
+
+        /// <summary>
+        /// This makes the player's sprite invisible but DOESN'T make the player "hidden"
+        /// </summary>
+        /// <param name="visibility"></param>
+        public void setSpriteVisibility(Enums.Visibility visibility)
         {
             if (visibility == Enums.Visibility.Invisible)
             {
-                this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                Renderer.enabled = false;
             }
             else
             {
-                this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                Renderer.enabled = true;
             }
         }
+
+        /// <summary>
+        /// Sets if the player is hidden or not.
+        /// </summary>
+        /// <param name="visibility"></param>
+        public void setPlayerHidden(Enums.Visibility visibility)
+        {
+            if(visibility== Enums.Visibility.Invisible)
+            {
+                Color c = Renderer.color;
+                hidden = true;
+                Renderer.color = new Color(c.r, c.g, c.b, 0.5f);
+            }
+            else
+            {
+                Color c = Renderer.color;
+                hidden = false;
+                Renderer.color = new Color(c.r, c.g, c.b, 1.0f);
+            }
+        }
+
+
     }
 }

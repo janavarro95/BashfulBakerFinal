@@ -79,7 +79,7 @@ public class Checkpoint : MonoBehaviour {
             }
             else if (stirPercentage == 100 && ingredients >= 4)
             {
-                Game.Player.setVisibility(Enums.Visibility.Visible);
+                Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
                 SceneManager.LoadScene("Kitchen");
             }
 

@@ -18,7 +18,7 @@ public class StartMinigame : MonoBehaviour
     {
         if (InputControls.APressed)
         {
-            if (makePlayerInvisible) Assets.Scripts.GameInformation.Game.Player.setVisibility(Enums.Visibility.Invisible);
+            if (makePlayerInvisible) Assets.Scripts.GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
             SceneManager.LoadScene(minigame);
         }
     }

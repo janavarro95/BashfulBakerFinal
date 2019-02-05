@@ -60,6 +60,10 @@ namespace Assets.Scripts.GameInformation
             {
                 return _MouseCursor;
             }
+            set
+            {
+                _MouseCursor = value;
+            }
         }
 
         public static Vector2 MousePosition
@@ -170,9 +174,9 @@ namespace Assets.Scripts.GameInformation
 
             if (MouseCursor == null)
             {
-                string path = Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor");
-                _MouseCursor = Instantiate((GameObject)Resources.Load(path, typeof(GameObject))).GetComponent<GameCursor>();
-                GameObject.DontDestroyOnLoad(_MouseCursor);
+               // string path = Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor");
+               // _MouseCursor = Instantiate((GameObject)Resources.Load(path, typeof(GameObject))).GetComponent<GameCursor>();
+               // GameObject.DontDestroyOnLoad(_MouseCursor);
             }
 
             if (SoundManager == null)

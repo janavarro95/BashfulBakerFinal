@@ -68,34 +68,52 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () {
 
         walkingSoundTimer.Update();
-        if (Game.IsMenuUp == false)
-        {
-            if (Assets.Scripts.GameInput.InputControls.StartPressed)
-            {
-                Menu.Instantiate<Menu>();
-            }
+        checkForMenuInteraction();
 
-            Vector3 offset = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * MovementSpeed;
-
-            this.gameObject.transform.position += offset;
-
-            if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0) && walkingSoundTimer.IsFinished && this.spriteRenderer.enabled)
-            {
-                Game.SoundManager.playSound(CurrentWalkingSound, Random.Range(2f, 3f));
-                this.walkingSoundTimer.restart();
-            }
-
-            playCharacterMovementAnimation(offset);
-
-        }
-        else if(Game.IsMenuUp==true)
-        {
-            if (Assets.Scripts.GameInput.InputControls.StartPressed)
-            {
-                Game.Menu.exitMenu();
-            }
-        }
 	}
+
+    /// <summary>
+    /// Checks for the player to open up a menu.
+    /// </summary>
+    private void checkForMenuInteraction()
+    {
+
+        //If the player is visible they probably should be able to open a menu.
+        if (this.spriteRenderer.enabled)
+        {
+            if (Game.IsMenuUp == false)
+            {
+                if (Assets.Scripts.GameInput.InputControls.StartPressed)
+                {
+                    Menu.Instantiate<Menu>();
+                }
+
+                Vector3 offset = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * MovementSpeed;
+
+                this.gameObject.transform.position += offset;
+
+                if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0) && walkingSoundTimer.IsFinished && this.spriteRenderer.enabled)
+                {
+                    Game.SoundManager.playSound(CurrentWalkingSound, Random.Range(2f, 3f));
+                    this.walkingSoundTimer.restart();
+                }
+
+                playCharacterMovementAnimation(offset);
+
+            }
+            else if (Game.IsMenuUp == true)
+            {
+                if (Assets.Scripts.GameInput.InputControls.StartPressed)
+                {
+                    Game.Menu.exitMenu();
+                }
+            }
+        }
+        else
+        {
+            //If a mini game is open maybe open up a different menu? Maybe just have that code inside the minigame.
+        }
+    }
 
     private void playCharacterMovementAnimation(Vector3 offset)
     {

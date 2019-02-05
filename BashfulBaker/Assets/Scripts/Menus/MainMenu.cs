@@ -33,6 +33,9 @@ namespace Assets.Scripts.Menus
             startButton = canvas.transform.Find("StartButton").gameObject.GetComponent<Button>();
             quitButton = canvas.transform.Find("QuitButton").gameObject.GetComponent<Button>();
             optionsButton = canvas.transform.Find("OptionsButton").gameObject.GetComponent<Button>();
+
+            menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
+            Game.Menu = this;
         }
 
 
@@ -41,17 +44,22 @@ namespace Assets.Scripts.Menus
         /// </summary>
         public override void Update()
         {
-            if (GameCursor.SimulateMousePress(startButton))
+            if (menuCursor == null)
+            {
+                Debug.Log("Cursor is null");
+            }
+
+            if (GameCursorMenu.SimulateMousePress(startButton))
             {
                 this.startButtonClick();
             }
 
-            if (GameCursor.SimulateMousePress(quitButton))
+            if (GameCursorMenu.SimulateMousePress(quitButton))
             {
                 this.exitButtonClick();
             }
 
-            if (GameCursor.SimulateMousePress(optionsButton))
+            if (GameCursorMenu.SimulateMousePress(optionsButton))
             {
                 this.optionsButtonClick();
             }

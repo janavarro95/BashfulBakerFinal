@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.GameInput;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,8 @@ namespace Assets.Scripts.Menus
 {
     public class Menu:MonoBehaviour
     {
+        public GameCursorMenu menuCursor;
+
 
         public virtual void Start()
         {

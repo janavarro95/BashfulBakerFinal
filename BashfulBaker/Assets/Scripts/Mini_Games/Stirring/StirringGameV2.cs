@@ -68,7 +68,7 @@ namespace Assets.Scripts.GameInput
                     Checkmark4.layer = 1;
                 } else if(Count == 5)
                 {
-                    Game.Player.setVisibility(Enums.Visibility.Visible);
+                    Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
                     SceneManager.LoadScene("Kitchen");
                 }
 

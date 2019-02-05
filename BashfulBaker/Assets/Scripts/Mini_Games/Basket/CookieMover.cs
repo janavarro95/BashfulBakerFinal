@@ -33,7 +33,7 @@ public class CookieMover : MonoBehaviour
             }
             else
             {
-                Game.Player.setVisibility(Enums.Visibility.Visible);
+                Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
                 SceneManager.LoadScene("Kitchen");
             }
         }

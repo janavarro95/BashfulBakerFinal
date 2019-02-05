@@ -13,35 +13,29 @@ namespace Assets.Scripts.GameInput
     /// TODO:
     /// Change this to move cursor on right stick.
     /// </summary>
-    public class GameCursor:MonoBehaviour
+    public class GameCursorMenu:GameCursor,ICanvasRaycastFilter
     {
-        public Vector3 oldMousePos;
 
-        public float mouseMovementSpeed = 0.05f;
-
-        public bool movedByCursor;
-
-        [SerializeField]
-        public Utilities.Timers.DeltaTimer timer;
-
-        public bool isVisible;
+        private RectTransform rect;
 
         void Start()
         {
             oldMousePos = Camera.main.ScreenToWorldPoint((Vector2)UnityEngine.Input.mousePosition);
             timer = new Utilities.Timers.DeltaTimer(5, Enums.TimerType.CountDown, false,new Utilities.Delegates.VoidDelegate(makeInvisible));
             timer.start();
+            rect = this.gameObject.GetComponent<RectTransform>();
+            Game.MouseCursor = this;
         }
 
         void Update()
         {
             timer.tick();
             setVisibility();
-            Vector2 vec = Camera.main.ScreenToWorldPoint((Vector2)UnityEngine.Input.mousePosition);
+            Vector2 vec = UnityEngine.Input.mousePosition;
             if (vec.Equals(oldMousePos))
             {
                 Vector3 delta= new Vector3(GameInput.InputControls.RightJoystickHorizontal, GameInput.InputControls.RightJoystickVertical, 0) * mouseMovementSpeed;
-                this.gameObject.transform.position += delta;
+                this.rect.position += delta;
                 if (delta.x == 0 && delta.y == 0) return;
                 if (Mathf.Abs(delta.x) > 0 || Mathf.Abs(delta.y) > 0) timer.restart();
                 movedByCursor = false;
@@ -49,13 +43,24 @@ namespace Assets.Scripts.GameInput
             }
             else
             {
-                if (Mathf.Abs(vec.x - oldMousePos.x) < .001 && Mathf.Abs(vec.y - oldMousePos.y) < .001) return; //stop random mouse sliding.
                 oldMousePos = vec;
-                this.gameObject.transform.position = vec;
+                this.rect.position = vec;
                 movedByCursor = true;
                 timer.restart();
                 isVisible = true;
             }
+        }
+
+        /// <summary>
+        /// https://forum.unity.com/threads/ignoring-layers-in-unitygui.272524/
+        /// </summary>
+        /// <param name="screenPoint"></param>
+        /// <param name="eventCamera"></param>
+        /// <returns></returns>
+        public bool IsRaycastLocationValid(Vector2 screenPoint, Camera eventCamera)
+        {
+            //the raycast will continue, if you want to block then set to true
+            return false;
         }
 
         /// <summary>
@@ -64,7 +69,7 @@ namespace Assets.Scripts.GameInput
         /// <param name="position"></param>
         public void setCursorPosition(Vector2 position)
         {
-            this.gameObject.transform.position = position;
+            this.rect.position = position;
             timer.restart();
             movedByCursor = false;
         }
@@ -76,7 +81,7 @@ namespace Assets.Scripts.GameInput
         /// <param name="y"></param>
         public void setCursorPosition(float x, float y)
         {
-            this.gameObject.transform.position = new Vector3(x,y,0);
+            this.rect.position = new Vector3(x,y,0);
             timer.restart();
             movedByCursor = false;
         }
@@ -86,15 +91,22 @@ namespace Assets.Scripts.GameInput
         /// </summary>
         /// <param name="behavior"></param>
         /// <returns></returns>
-        public static bool CursorIntersectsRect(MonoBehaviour behavior)
+        public static new bool CursorIntersectsRect(MonoBehaviour behavior) 
         {
-            if (UnityEngine.RectTransformUtility.RectangleContainsScreenPoint(behavior.GetComponent<RectTransform>(), Camera.main.WorldToScreenPoint(Game.MousePosition)))
+            if (GetWorldSapceRect(behavior.GetComponent<RectTransform>()).Overlaps(GetWorldSapceRect(Game.Menu.menuCursor.rect)))
             {
                 return true;
             }
             return false;
         }
 
+        static Rect GetWorldSapceRect(RectTransform rt)
+        {
+            var r = rt.rect;
+            r.center = rt.TransformPoint(r.center);
+            r.size = rt.TransformVector(r.size);
+            return r;
+        }
 
         /// <summary>
         /// Checks to see if the computers mouse cursor intersects with the ui element.
@@ -103,7 +115,7 @@ namespace Assets.Scripts.GameInput
         /// <returns></returns>
         public static bool MouseIntersectsRect(MonoBehaviour behavior)
         {
-            if (UnityEngine.RectTransformUtility.RectangleContainsScreenPoint(behavior.GetComponent<RectTransform>(), Input.mousePosition))
+            if (UnityEngine.RectTransformUtility.RectangleContainsScreenPoint(behavior.GetComponent<RectTransform>(), Camera.main.ScreenToWorldPoint(Input.mousePosition)))
             {
                 return true;
             }
@@ -117,7 +129,7 @@ namespace Assets.Scripts.GameInput
         /// <returns></returns>
         public static bool CanCursorInteract(MonoBehaviour behavior)
         {
-            if (GameCursor.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false)
+            if (GameCursorMenu.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false)
             {
                 return true;
             }
@@ -130,14 +142,19 @@ namespace Assets.Scripts.GameInput
         /// <param name="behavior"></param>
         /// <param name="useHardwareMouse"></param>
         /// <returns></returns>
-        public static bool SimulateMousePress(MonoBehaviour behavior,bool useHardwareMouse=false)
+        public static new bool SimulateMousePress(MonoBehaviour behavior,bool useHardwareMouse=false)
         {
-
-            if (GameCursor.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false && GameInput.InputControls.APressed)
+            if (behavior == null)
+            {
+                Debug.Log("BEHAVIOR IS NULL");
+            }
+            if (GameCursorMenu.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false && GameInput.InputControls.APressed)
             {
                 return true;
-            }            
-            else if (GameCursor.MouseIntersectsRect(behavior) && Input.GetMouseButtonDown(0))
+            }
+            
+            
+            else if (GameCursorMenu.MouseIntersectsRect(behavior) && Input.GetMouseButtonDown(0))
             {
                 return true;
             }
@@ -145,6 +162,7 @@ namespace Assets.Scripts.GameInput
             {             
                 return false;
             }
+            
         }
 
         /// <summary>
@@ -178,7 +196,7 @@ namespace Assets.Scripts.GameInput
 
         private void setVisibility()
         {
-            this.GetComponent<SpriteRenderer>().enabled = isVisible;
+            this.GetComponent<Image>().enabled = isVisible;
         }
 
         private void makeInvisible()
