@@ -8,6 +8,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Menus
 {
@@ -16,13 +17,22 @@ namespace Assets.Scripts.Menus
     /// </summary>
     public class MainMenu:Menu
     {
+        [SerializeField]
+        Button startButton;
+        [SerializeField]
+        Button quitButton;
+        [SerializeField]
+        Button optionsButton;
 
         /// <summary>
         /// Instantiate all menu logic here.
         /// </summary>
         public override void Start()
         {
-            
+            GameObject canvas=this.transform.Find("Canvas").gameObject;
+            startButton = canvas.transform.Find("StartButton").gameObject.GetComponent<Button>();
+            quitButton = canvas.transform.Find("QuitButton").gameObject.GetComponent<Button>();
+            optionsButton = canvas.transform.Find("OptionsButton").gameObject.GetComponent<Button>();
         }
 
 
@@ -31,9 +41,19 @@ namespace Assets.Scripts.Menus
         /// </summary>
         public override void Update()
         {
-            if (GameCursor.SimulateMousePress(this))
+            if (GameCursor.SimulateMousePress(startButton))
             {
                 this.startButtonClick();
+            }
+
+            if (GameCursor.SimulateMousePress(quitButton))
+            {
+                this.exitButtonClick();
+            }
+
+            if (GameCursor.SimulateMousePress(optionsButton))
+            {
+                this.optionsButtonClick();
             }
         }
         /// <summary>
@@ -59,6 +79,15 @@ namespace Assets.Scripts.Menus
         public void exitButtonClick()
         {
             Application.Quit();
+        }
+
+        /// <summary>
+        /// What happens when the option button is clicked.
+        /// </summary>
+        public void optionsButtonClick()
+        {
+            Menu.Instantiate<OptionsMenu>();
+            Destroy(this.gameObject); //necessary to remove the main menu from the screen.
         }
     }
 }

@@ -128,6 +128,9 @@ namespace Assets.Scripts.GameInformation
 
         public static GameSoundManager SoundManager;
 
+        public static GameOptions Options;
+
+
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
         static Game()
@@ -174,10 +177,13 @@ namespace Assets.Scripts.GameInformation
 
             if (SoundManager == null)
             {
-                
-
                 string soundManagerPath = Path.Combine(Path.Combine("Prefabs", "Misc"), "SoundManager");
                 Instantiate((GameObject)Resources.Load(soundManagerPath, typeof(GameObject)));
+            }
+
+            if (Options == null)
+            {
+                Options = new GameOptions();
             }
 
             setUpScene();

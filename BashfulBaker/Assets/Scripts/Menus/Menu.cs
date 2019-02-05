@@ -12,12 +12,10 @@ namespace Assets.Scripts.Menus
 {
     public class Menu:MonoBehaviour
     {
-        [SerializeField]
-        Button StartButton;
 
         public virtual void Start()
         {
-            StartButton.Select();
+           
             
         }
 
@@ -43,14 +41,17 @@ namespace Assets.Scripts.Menus
             {
                 Instantiate("Menu");
             }
-            if (typeof(T) == typeof(MainMenu))
+            else if (typeof(T) == typeof(MainMenu))
             {
                 Instantiate("MainMenu");
             }
-
+            else if(typeof(T)== typeof(OptionsMenu))
+            {
+                Instantiate("OptionsMenu");
+            }
             else
             {
-                Instantiate("Menu");
+                throw new Exception("Hmm trying to call on a type of menu that doesn't exist.");
             }
         }
 

@@ -275,7 +275,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 979948247145733317}
-        m_MethodName: optionsButtonClick
+        m_MethodName: exitButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -512,7 +512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7675837799965404240
 Transform:
   m_ObjectHideFlags: 0
@@ -606,9 +606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bca61bcedf5b34097d4b8c5011f74c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 0}
-  quitButton: {fileID: 0}
-  optionsButton: {fileID: 0}
+  StartButton: {fileID: 4630719646306778266}
 --- !u!1 &7675837801090209630
 GameObject:
   m_ObjectHideFlags: 0
