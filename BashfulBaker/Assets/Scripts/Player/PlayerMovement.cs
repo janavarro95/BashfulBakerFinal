@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 if (Assets.Scripts.GameInput.InputControls.StartPressed)
                 {
-                    Menu.Instantiate<Menu>();
+                    Menu.Instantiate<InventoryMenu>();
                 }
 
                 Vector3 offset = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * MovementSpeed;

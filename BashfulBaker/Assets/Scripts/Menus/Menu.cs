@@ -52,6 +52,10 @@ namespace Assets.Scripts.Menus
             {
                 Instantiate("OptionsMenu");
             }
+            else if(typeof(T)== typeof(InventoryMenu))
+            {
+                Instantiate("InventoryMenu");
+            }
             else
             {
                 throw new Exception("Hmm trying to call on a type of menu that doesn't exist.");
