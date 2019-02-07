@@ -234,5 +234,17 @@ namespace Assets.Scripts.Utilities
             transition.startNewSceneTransition(Seconds, SceneToLoad, FadeColor, TypeOfTransition,OnTransitionFinish);
         }
 
+        /// <summary>
+        /// Sets up the flags necessary to do a scene transition.
+        /// </summary>
+        /// <param name="TransitionTime"></param>
+        /// <param name="FadeColor"></param>
+        public static void PrepareForSceneFadeIn(float TransitionTime, Color FadeColor)
+        {
+            shouldFadeInAfterWarp = true;
+            lastFadeInColor = FadeColor;
+            targetFadeInTime = TransitionTime;
+        }
+
     }
 }
