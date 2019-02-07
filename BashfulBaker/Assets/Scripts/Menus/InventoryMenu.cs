@@ -45,6 +45,14 @@ namespace Assets.Scripts.Menus
 
         Dish selectedDish;
 
+        GameObject categorySelection;
+        GameObject leftCategory;
+        GameObject rightCategory;
+        GameObject topCategory;
+        GameObject bottomCategory;
+        GameObject dishCategory;
+
+
         private enum InventoryMenuState
         {
             CategoryMenu,
@@ -65,9 +73,91 @@ namespace Assets.Scripts.Menus
 
             menuPage = 0;
 
+            //initial set up
             GameObject canvas = this.transform.Find("Canvas").gameObject;
-            GameObject menuStuff = canvas.gameObject.transform.Find("IngredientCategoryBackground").gameObject; 
+            dishCategory = canvas.gameObject.transform.Find("DishCategory").gameObject;
+            leftCategory = canvas.gameObject.transform.Find("LeftCategory").gameObject;
+            rightCategory = canvas.gameObject.transform.Find("RightCategory").gameObject;
+            topCategory = canvas.gameObject.transform.Find("TopCategory").gameObject;
+            bottomCategory = canvas.gameObject.transform.Find("BottomCategory").gameObject;
+            categorySelection = canvas.gameObject.transform.Find("CategorySelection").gameObject;
 
+
+            currentState = InventoryMenuState.CategoryMenu;
+            setUpMenu();
+
+            //Game.Player.inventory.Add(Ingredient.LoadIngredientFromPrefab("Cherries",1));
+            //menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
+            Game.Menu = this;
+        }
+
+        private void setUpMenu()
+        {
+            GameObject menuStuff = null;
+
+            if (currentState== InventoryMenuState.DishCategory)
+            {
+                menuStuff = dishCategory;
+
+                dishCategory.SetActive(true);
+                leftCategory.SetActive(false);
+                rightCategory.SetActive(false);
+                topCategory.SetActive(false);
+                bottomCategory.SetActive(false);
+                categorySelection.SetActive(false);
+
+            }
+            else if (currentState== InventoryMenuState.LeftCategory)
+            {
+                menuStuff = leftCategory;
+                dishCategory.SetActive(false);
+                leftCategory.SetActive(true);
+                rightCategory.SetActive(false);
+                topCategory.SetActive(false);
+                bottomCategory.SetActive(false);
+                categorySelection.SetActive(false);
+            }
+            else if(currentState == InventoryMenuState.RightCategory)
+            {
+                menuStuff = rightCategory;
+                dishCategory.SetActive(false);
+                leftCategory.SetActive(false);
+                rightCategory.SetActive(true);
+                topCategory.SetActive(false);
+                bottomCategory.SetActive(false);
+                categorySelection.SetActive(false);
+            }
+            else if(currentState == InventoryMenuState.TopCategory)
+            {
+                menuStuff = topCategory;
+                dishCategory.SetActive(false);
+                leftCategory.SetActive(false);
+                rightCategory.SetActive(false);
+                topCategory.SetActive(true);
+                bottomCategory.SetActive(false);
+                categorySelection.SetActive(false);
+            }
+            else if(currentState == InventoryMenuState.BottomCategory)
+            {
+                menuStuff = bottomCategory;
+                dishCategory.SetActive(false);
+                leftCategory.SetActive(false);
+                rightCategory.SetActive(false);
+                topCategory.SetActive(false);
+                bottomCategory.SetActive(true);
+                categorySelection.SetActive(false);
+            }
+            else if(currentState== InventoryMenuState.CategoryMenu)
+            {
+                //do nothing???
+                dishCategory.SetActive(false);
+                leftCategory.SetActive(false);
+                rightCategory.SetActive(false);
+                topCategory.SetActive(false);
+                bottomCategory.SetActive(false);
+                categorySelection.SetActive(true);
+                return;
+            }
             GameObject leftIngredient = menuStuff.gameObject.transform.Find("LeftIngredient").gameObject;
             GameObject rightIngredient = menuStuff.gameObject.transform.Find("RightIngredient").gameObject;
             GameObject topIngredient = menuStuff.gameObject.transform.Find("TopIngredient").gameObject;
@@ -84,12 +174,6 @@ namespace Assets.Scripts.Menus
             rightText = rightIngredient.transform.Find("RightText").GetComponent<Text>();
             topText = topIngredient.transform.Find("TopText").GetComponent<Text>();
             bottomText = bottomIngredient.transform.Find("BottomText").GetComponent<Text>();
-
-            //Game.Player.inventory.Add(Ingredient.LoadIngredientFromPrefab("Cherries",1));
-            //menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
-            Game.Menu = this;
-
-            currentState = InventoryMenuState.CategoryMenu;
         }
 
 
@@ -172,22 +256,33 @@ namespace Assets.Scripts.Menus
                 if (GameInput.InputControls.RightBumperPressed)
                 {
                     //go to dish menu
+                    currentState = InventoryMenuState.DishCategory;
+                    setUpMenu();
+                    setDish();
                 }
                 if (InputControls.APressed)
                 {
                     //bottom state
+                    currentState = InventoryMenuState.BottomCategory;
+                    setUpMenu();
                 }
                 if (InputControls.BPressed)
                 {
                     //right state
+                    currentState = InventoryMenuState.RightCategory;
+                    setUpMenu();
                 }
                 if (InputControls.XPressed)
                 {
                     //left
+                    currentState = InventoryMenuState.LeftCategory;
+                    setUpMenu();
                 }
                 if (InputControls.YPressed)
                 {
-                //top
+                    //top
+                    currentState = InventoryMenuState.TopCategory;
+                    setUpMenu();
                 }
                 if (InputControls.StartPressed)
                 {
@@ -201,6 +296,8 @@ namespace Assets.Scripts.Menus
                 {
                     //if in category go back.
                     //if in category close menu?
+                    currentState = InventoryMenuState.CategoryMenu;
+                    setUpMenu();
                 }
 
                 if (GameInput.InputControls.APressed)
@@ -239,6 +336,8 @@ namespace Assets.Scripts.Menus
                 {
                     //if in category go back.
                     //if in category close menu?
+                    currentState = InventoryMenuState.CategoryMenu;
+                    setUpMenu();
                 }
                 if (InputControls.APressed)
                 {
@@ -263,6 +362,8 @@ namespace Assets.Scripts.Menus
                 {
                     //if in category go back.
                     //if in category close menu?
+                    currentState = InventoryMenuState.CategoryMenu;
+                    setUpMenu();
                 }
                 if (InputControls.APressed)
                 {
@@ -287,6 +388,8 @@ namespace Assets.Scripts.Menus
                 {
                     //if in category go back.
                     //if in category close menu?
+                    currentState = InventoryMenuState.CategoryMenu;
+                    setUpMenu();
                 }
                 if (InputControls.APressed)
                 {
@@ -311,6 +414,8 @@ namespace Assets.Scripts.Menus
                 {
                     //if in category go back.
                     //if in category close menu?
+                    currentState = InventoryMenuState.CategoryMenu;
+                    setUpMenu();
                 }
                 if (InputControls.APressed)
                 {
