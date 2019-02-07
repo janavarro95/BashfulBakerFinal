@@ -21,6 +21,8 @@ public class Item : MonoBehaviour {
         }
     }
 
+    public int stack;
+
     public Sprite sprite;
 
     public Item()
@@ -31,17 +33,36 @@ public class Item : MonoBehaviour {
     public Item(string Name)
     {
         this.itemName = Name;
+        stack = 1;
+    }
+
+    public Item(string Name, int StackSize)
+    {
+        this.itemName = Name;
+        stack = StackSize;
     }
 
 	// Use this for initialization
 	void Start () {
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = this.sprite;
-	}
+        this.sprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+
+    public void addToStack(int amount)
+    {
+        this.stack += amount;
+    }
+
+    public void removeFromStack(int amount)
+    {
+        this.stack -= amount;
+    }
 
     /// <summary>
     /// Gets a clone of the game object. Aka instantiates a new object with the same data as this object it was cloned from.
