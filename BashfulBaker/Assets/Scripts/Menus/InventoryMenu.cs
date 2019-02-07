@@ -14,10 +14,11 @@ using System.Collections;
 namespace Assets.Scripts.Menus
 {
     /// <summary>
-    /// TODO: Add button functionality for selecting ingredients.
+    /// TODO: 
     ///       Add in left bumper button.
     ///       Add in sound for selecting an ingredient.
     ///       Add in sound for menu open/close
+    ///       Add in numbers on ingredients
     /// </summary>
     public class InventoryMenu :Menu
     {
@@ -29,6 +30,11 @@ namespace Assets.Scripts.Menus
         Image topImage;
         Image bottomImage;
         Image centralImage;
+
+        Text leftText;
+        Text rightText;
+        Text topText;
+        Text bottomText;
 
         Ingredient leftIngredient;
         Ingredient rightIngredient;
@@ -59,8 +65,12 @@ namespace Assets.Scripts.Menus
             bottomImage = bottomIngredient.GetComponent<Image>();
             centralImage = centralIngredient.GetComponent<Image>();
 
+            leftText = leftIngredient.transform.Find("LeftText").GetComponent<Text>();
+            rightText = rightIngredient.transform.Find("RightText").GetComponent<Text>();
+            topText = topIngredient.transform.Find("TopText").GetComponent<Text>();
+            bottomText = bottomIngredient.transform.Find("BottomText").GetComponent<Text>();
 
-            Game.Player.inventory.Add(Ingredient.LoadIngredientFromPrefab("Cherries"));
+            //Game.Player.inventory.Add(Ingredient.LoadIngredientFromPrefab("Cherries",1));
             setIngredients();
             //menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
             Game.Menu = this;
@@ -75,7 +85,11 @@ namespace Assets.Scripts.Menus
             bottomIngredient = null;
             leftIngredient = null;
             rightIngredient = null;
-            
+
+            leftText.text = "";
+            rightText.text = "";
+            topText.text = "";
+            bottomText.text = "";
 
             List<Item> items = Game.Player.inventory.items.FindAll(i => i.GetType() == typeof(Assets.Scripts.Items.Ingredient) || i.GetType() == typeof(Assets.Scripts.Items.ComplexIngredient));
 
@@ -93,6 +107,7 @@ namespace Assets.Scripts.Menus
                 leftImage.sprite = items[0 + (menuPage * 4)].sprite;
                 leftImage.color = Color.white;
                 leftIngredient =(Ingredient)items[0 + (menuPage * 4)];
+                leftText.text = leftIngredient.stack.ToString();
             }
 
             //right ingredient sprite
@@ -101,6 +116,7 @@ namespace Assets.Scripts.Menus
                 leftImage.sprite = items[1 + (menuPage * 4)].sprite;
                 leftImage.color = Color.white;
                 rightIngredient = (Ingredient)items[1 + (menuPage * 4)];
+                rightText.text = rightIngredient.stack.ToString();
             }
 
             //Top ingredient sprite
@@ -109,6 +125,7 @@ namespace Assets.Scripts.Menus
                 leftImage.sprite = items[2 + (menuPage * 4)].sprite;
                 leftImage.color = Color.white;
                 topIngredient = (Ingredient)items[2+ (menuPage * 4)];
+                topText.text = topIngredient.stack.ToString();
             }
 
             //Bottom ingredient sprite
@@ -117,6 +134,7 @@ namespace Assets.Scripts.Menus
                 leftImage.sprite = items[3 + (menuPage * 4)].sprite;
                 leftImage.color = Color.white;
                 bottomIngredient = (Ingredient)items[3 + (menuPage * 4)];
+                bottomText.text = bottomIngredient.stack.ToString();
             }
         }
 
