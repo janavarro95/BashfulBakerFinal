@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.GameInformation;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -62,6 +63,11 @@ public class Item : MonoBehaviour {
     public void removeFromStack(int amount)
     {
         this.stack -= amount;
+
+        if (this.stack <= 0)
+        {
+            Game.Player.inventory.Remove(this);
+        }
     }
 
     /// <summary>

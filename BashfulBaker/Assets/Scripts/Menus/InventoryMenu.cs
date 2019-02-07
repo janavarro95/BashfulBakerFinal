@@ -36,12 +36,27 @@ namespace Assets.Scripts.Menus
         Text topText;
         Text bottomText;
 
-        Ingredient leftIngredient;
-        Ingredient rightIngredient;
-        Ingredient topIngredient;
-        Ingredient bottomIngredient;
+        Dish leftDish;
+        Dish rightDish;
+        Dish topDish;
+        Dish bottomDish;
 
         Ingredient selectedIngredient;
+
+        Dish selectedDish;
+
+        private enum InventoryMenuState
+        {
+            CategoryMenu,
+            LeftCategory,
+            TopCategory,
+            RightCategory,
+            BottomCategory,
+            DishCategory
+        }
+
+        private InventoryMenuState currentState;
+
         /// <summary>
         /// Instantiate all menu logic here.
         /// </summary>
@@ -71,27 +86,28 @@ namespace Assets.Scripts.Menus
             bottomText = bottomIngredient.transform.Find("BottomText").GetComponent<Text>();
 
             //Game.Player.inventory.Add(Ingredient.LoadIngredientFromPrefab("Cherries",1));
-            setIngredients();
             //menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
             Game.Menu = this;
+
+            currentState = InventoryMenuState.CategoryMenu;
         }
 
 
-        private void setIngredients()
+        private void setDish()
         {
             centralImage.color = new Color(1, 1, 1, 0);
 
-            topIngredient = null;
-            bottomIngredient = null;
-            leftIngredient = null;
-            rightIngredient = null;
+            topDish = null;
+            bottomDish = null;
+            leftDish = null;
+            rightDish = null;
 
             leftText.text = "";
             rightText.text = "";
             topText.text = "";
             bottomText.text = "";
 
-            List<Item> items = Game.Player.inventory.items.FindAll(i => i.GetType() == typeof(Assets.Scripts.Items.Ingredient) || i.GetType() == typeof(Assets.Scripts.Items.ComplexIngredient));
+            List<Item> items = Game.Player.inventory.items.FindAll(i => i.GetType() == typeof(Assets.Scripts.Items.Dish));
 
             maxPages = (items.Count / 4)+1;
 
@@ -106,8 +122,8 @@ namespace Assets.Scripts.Menus
             {
                 leftImage.sprite = items[0 + (menuPage * 4)].sprite;
                 leftImage.color = Color.white;
-                leftIngredient =(Ingredient)items[0 + (menuPage * 4)];
-                leftText.text = leftIngredient.stack.ToString();
+                leftDish =(Dish)items[0 + (menuPage * 4)];
+                leftText.text = leftDish.stack.ToString();
             }
 
             //right ingredient sprite
@@ -115,8 +131,8 @@ namespace Assets.Scripts.Menus
             {
                 leftImage.sprite = items[1 + (menuPage * 4)].sprite;
                 leftImage.color = Color.white;
-                rightIngredient = (Ingredient)items[1 + (menuPage * 4)];
-                rightText.text = rightIngredient.stack.ToString();
+                rightDish = (Dish)items[1 + (menuPage * 4)];
+                rightText.text = rightDish.stack.ToString();
             }
 
             //Top ingredient sprite
@@ -124,8 +140,8 @@ namespace Assets.Scripts.Menus
             {
                 leftImage.sprite = items[2 + (menuPage * 4)].sprite;
                 leftImage.color = Color.white;
-                topIngredient = (Ingredient)items[2+ (menuPage * 4)];
-                topText.text = topIngredient.stack.ToString();
+                topDish = (Dish)items[2+ (menuPage * 4)];
+                topText.text = topDish.stack.ToString();
             }
 
             //Bottom ingredient sprite
@@ -133,8 +149,8 @@ namespace Assets.Scripts.Menus
             {
                 leftImage.sprite = items[3 + (menuPage * 4)].sprite;
                 leftImage.color = Color.white;
-                bottomIngredient = (Ingredient)items[3 + (menuPage * 4)];
-                bottomText.text = bottomIngredient.stack.ToString();
+                bottomDish = (Dish)items[3 + (menuPage * 4)];
+                bottomText.text = bottomDish.stack.ToString();
             }
         }
 
@@ -151,48 +167,166 @@ namespace Assets.Scripts.Menus
         /// </summary>
         private void checkForInput()
         {
-            if (GameInput.InputControls.RightBumperPressed)
+            if(currentState == InventoryMenuState.CategoryMenu)
             {
-                if (maxPages - menuPage > 1)
+                if (GameInput.InputControls.RightBumperPressed)
                 {
+                    //go to dish menu
+                }
+                if (InputControls.APressed)
+                {
+                    //bottom state
+                }
+                if (InputControls.BPressed)
+                {
+                    //right state
+                }
+                if (InputControls.XPressed)
+                {
+                    //left
+                }
+                if (InputControls.YPressed)
+                {
+                //top
+                }
+                if (InputControls.StartPressed)
+                {
+                    exitMenu();
+                }
+            }
 
-                    menuPage++;
-                    setIngredients();
-                }
-            }
-            if (GameInput.InputControls.LeftBumperPressed)
+            if (currentState == InventoryMenuState.DishCategory)
             {
-                if (menuPage == 0) return;
-                menuPage--;
-                setIngredients();
+                if (GameInput.InputControls.RightBumperPressed)
+                {
+                    //if in category go back.
+                    //if in category close menu?
+                }
+
+                if (GameInput.InputControls.APressed)
+                {
+                    if (bottomDish != null)
+                    {
+                        selectedDish = bottomDish;
+                    }
+                }
+                if (GameInput.InputControls.BPressed)
+                {
+                    if (rightDish != null)
+                    {
+                        selectedDish = rightDish;
+                    }
+                }
+                if (GameInput.InputControls.XPressed)
+                {
+                    if (leftDish != null)
+                    {
+                        selectedDish = leftDish;
+                    }
+                }
+                if (GameInput.InputControls.YPressed)
+                {
+                    if (topDish != null)
+                    {
+                        selectedDish = topDish;
+                    }
+                }
             }
 
-            if (GameInput.InputControls.APressed)
+            if(currentState== InventoryMenuState.TopCategory)
             {
-                if (bottomIngredient != null)
+                if (GameInput.InputControls.RightBumperPressed)
                 {
-                    selectedIngredient = bottomIngredient;
+                    //if in category go back.
+                    //if in category close menu?
+                }
+                if (InputControls.APressed)
+                {
+                    //bottom state
+                }
+                if (InputControls.BPressed)
+                {
+                    //right state
+                }
+                if (InputControls.XPressed)
+                {
+                    //left
+                }
+                if (InputControls.YPressed)
+                {
+                    //top
                 }
             }
-            if (GameInput.InputControls.BPressed)
+            if (currentState == InventoryMenuState.BottomCategory)
             {
-                if (rightIngredient != null)
+                if (GameInput.InputControls.RightBumperPressed)
                 {
-                    selectedIngredient = rightIngredient;
+                    //if in category go back.
+                    //if in category close menu?
+                }
+                if (InputControls.APressed)
+                {
+                    //bottom state
+                }
+                if (InputControls.BPressed)
+                {
+                    //right state
+                }
+                if (InputControls.XPressed)
+                {
+                    //left
+                }
+                if (InputControls.YPressed)
+                {
+                    //top
                 }
             }
-            if (GameInput.InputControls.XPressed)
+            if (currentState == InventoryMenuState.LeftCategory)
             {
-                if (leftIngredient != null)
+                if (GameInput.InputControls.RightBumperPressed)
                 {
-                    selectedIngredient = leftIngredient;
+                    //if in category go back.
+                    //if in category close menu?
+                }
+                if (InputControls.APressed)
+                {
+                    //bottom state
+                }
+                if (InputControls.BPressed)
+                {
+                    //right state
+                }
+                if (InputControls.XPressed)
+                {
+                    //left
+                }
+                if (InputControls.YPressed)
+                {
+                    //top
                 }
             }
-            if (GameInput.InputControls.YPressed)
+            if (currentState == InventoryMenuState.RightCategory)
             {
-                if (topIngredient != null)
+                if (GameInput.InputControls.RightBumperPressed)
                 {
-                    selectedIngredient = topIngredient;
+                    //if in category go back.
+                    //if in category close menu?
+                }
+                if (InputControls.APressed)
+                {
+                    //bottom state
+                }
+                if (InputControls.BPressed)
+                {
+                    //right state
+                }
+                if (InputControls.XPressed)
+                {
+                    //left
+                }
+                if (InputControls.YPressed)
+                {
+                    //top
                 }
             }
         }
@@ -206,6 +340,7 @@ namespace Assets.Scripts.Menus
             if (selectedIngredient != null)
             {
                 yield return selectedIngredient;
+                selectedIngredient.removeFromStack(1);
                 exitMenu();
             }
         }
