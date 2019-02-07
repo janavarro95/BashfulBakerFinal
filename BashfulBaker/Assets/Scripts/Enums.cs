@@ -7,10 +7,94 @@ namespace Assets.Scripts
 {
     public class Enums
     {
+        /// <summary>
+        /// The cooking station the player is interacting with.
+        /// </summary>
         public enum CookingStation
         {
             MixingBowl,
             Oven
+        }
+
+        /// <summary>
+        /// The operating system that the game is run on.
+        /// </summary>
+        public enum OperatingSystem
+        {
+            Windows,
+            Mac,
+            Linux,
+            PS3,
+            PS4,
+            XBoxOne,
+            NintendoSwitch,
+            Android,
+            IPhone,
+            Other
+        }
+
+        /// <summary>
+        /// The state that says where we are in the game.
+        /// </summary>
+        public enum GameState
+        {
+            MainMenu,
+            GamePlay,
+            Credits
+        }
+
+        public enum QuestCompletionStatus
+        {
+            NotCompleted,
+            Completed,
+            SpecialMissionCompleted
+        }
+
+        public enum FacingDirection
+        {
+            Up,
+            Left,
+            Down,
+            Right
+        }
+
+        /// <summary>
+        /// Deals with all of the states a timer could be in.
+        /// </summary>
+        public enum TimerState
+        {
+            /// <summary>
+            /// The timer has been initialized but is not ticking.
+            /// </summary>
+            Initialized,
+            /// <summary>
+            /// The timer has started ticking.
+            /// </summary>
+            Ticking,
+            /// <summary>
+            /// The timer has finished.
+            /// </summary>
+            Finished,
+            /// <summary>
+            /// The timer has stopped.
+            /// </summary>
+            Stopped,
+            /// <summary>
+            /// The timer has paused.
+            /// </summary>
+            Paused
+        }
+
+        public enum TimerType
+        {
+            CountDown,
+            CountUp
+        }
+
+        public enum Visibility
+        {
+            Visible,
+            Invisible
         }
 
         /// <summary>
