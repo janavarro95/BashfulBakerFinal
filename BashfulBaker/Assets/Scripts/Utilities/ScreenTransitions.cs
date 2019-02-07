@@ -40,6 +40,8 @@ namespace Assets.Scripts.Utilities
         /// </summary>
         private Color currentColor;
 
+        public static bool shouldFadeInAfterWarp;
+        public static float targetFadeInTime;
 
         /// <summary>
         /// The last color that was faded out to.
@@ -104,6 +106,7 @@ namespace Assets.Scripts.Utilities
             {
                 this.originalColor = fadeInColor;
                 this.targetColor = new Color(fadeInColor.r, fadeInColor.g, fadeInColor.b, 0);
+                lastFadeInColor = fadeInColor;
             }
 
             setTransitionColor(fadeInColor);
@@ -125,9 +128,11 @@ namespace Assets.Scripts.Utilities
             {
                 this.originalColor = fadeInColor;
                 this.targetColor = new Color(fadeInColor.r, fadeInColor.g, fadeInColor.b, 0);
+                lastFadeInColor = fadeInColor;
             }
 
             setTransitionColor(fadeInColor);
+            
         }
 
         /// <summary>

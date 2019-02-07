@@ -221,7 +221,13 @@ namespace Assets.Scripts.GameInformation
                 Debug.Log("Loading kitchen scene from the Game.cs script!");
             }
 
-            Debug.Log(SceneManager.GetActiveScene().name);
+            if (ScreenTransitions.shouldFadeInAfterWarp)
+            {
+                ScreenTransitions.StartSceneTransition(ScreenTransitions.targetFadeInTime, "", ScreenTransitions.lastFadeInColor, ScreenTransitions.TransitionState.FadeIn);
+                ScreenTransitions.shouldFadeInAfterWarp = false;
+            }
+
+            //Debug.Log(SceneManager.GetActiveScene().name);
         }
 
 #endif

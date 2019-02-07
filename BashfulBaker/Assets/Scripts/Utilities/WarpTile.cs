@@ -55,5 +55,7 @@ public class WarpTile : MonoBehaviour
         SceneManager.LoadScene(sceneToWarpTo);
         Game.Player.gameObject.transform.position = warpLocation;
         //ScreenTransitions.StartSceneTransition(transitionTime, "", Color.black, ScreenTransitions.TransitionState.FadeIn);
+        ScreenTransitions.shouldFadeInAfterWarp = true;
+        ScreenTransitions.targetFadeInTime = .5f;
     }
 }
