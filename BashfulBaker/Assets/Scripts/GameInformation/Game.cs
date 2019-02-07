@@ -5,6 +5,7 @@ using Assets.Scripts.Menus;
 using Assets.Scripts.Player;
 using Assets.Scripts.QuestSystem;
 using Assets.Scripts.QuestSystem.Quests;
+using Assets.Scripts.Utilities;
 using Assets.Scripts.Utilities.Serialization;
 using System;
 using System.Collections.Generic;

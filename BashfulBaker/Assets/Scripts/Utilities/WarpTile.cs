@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.Delegates;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +15,9 @@ public class WarpTile : MonoBehaviour
     private string sceneToWarpTo;
     [SerializeField]
     private Vector2 warpLocation;
+
+    [SerializeField]
+    private float transitionTime = .5f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,15 +40,20 @@ public class WarpTile : MonoBehaviour
             {
                 if (Assets.Scripts.GameInput.InputControls.APressed)
                 {
-                    SceneManager.LoadScene(sceneToWarpTo);
-                    collision.gameObject.transform.position = warpLocation;
+                    ScreenTransitions.StartSceneTransition(transitionTime, sceneToWarpTo, Color.black, ScreenTransitions.TransitionState.FadeOut,new VoidDelegate(finishedTransition));
                 }
             }
             else
             {
-                SceneManager.LoadScene(sceneToWarpTo);
-                collision.gameObject.transform.position = warpLocation;
+                ScreenTransitions.StartSceneTransition(transitionTime, sceneToWarpTo, Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
             }
         }
+    }
+
+    private void finishedTransition()
+    {
+        SceneManager.LoadScene(sceneToWarpTo);
+        Game.Player.gameObject.transform.position = warpLocation;
+        //ScreenTransitions.StartSceneTransition(transitionTime, "", Color.black, ScreenTransitions.TransitionState.FadeIn);
     }
 }
