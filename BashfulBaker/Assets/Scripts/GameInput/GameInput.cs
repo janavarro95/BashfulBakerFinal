@@ -50,6 +50,10 @@ namespace Assets.Scripts.GameInput
                     }
                     return Input.GetButtonDown("Fire1");
                 }
+                else if(controller== ControllerType.Keyboard)
+                {
+                    return Input.GetButtonDown("Fire1");
+                }
                 else
                 {
                     return Input.GetButtonDown("Fire1");
