@@ -140,6 +140,18 @@ namespace Assets.Scripts.GameInformation
 
         public static Utilities.Timers.DeltaTimer PhaseTimer;
 
+        public static ScreenTransitions CurrentTransition;
+        public static bool IsScreenTransitionHappening
+        {
+            get
+            {
+                if (CurrentTransition == null) return false;
+                else
+                {
+                    return CurrentTransition.IsTransitioning;
+                }
+            }
+        }
 
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR

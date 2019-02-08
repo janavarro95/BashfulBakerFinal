@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Utilities.Delegates;
+﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.Utilities.Delegates;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -63,6 +64,15 @@ namespace Assets.Scripts.Utilities
         /// </summary>
         public TransitionState currentState;
 
+        public bool IsTransitioning
+        {
+            get
+            {
+                if (currentState == TransitionState.FadeIn || currentState == TransitionState.FadeOut) return true;
+                else return false;
+            }
+        }
+
         /// <summary>
         /// A fraction of the current time divided by the maximum time.
         /// </summary>
@@ -73,6 +83,12 @@ namespace Assets.Scripts.Utilities
                 return (float)(timer.currentTime / timer.maxTime);
             }
         }
+
+        public void Awake()
+        {
+            currentState = TransitionState.Off;
+        }
+
         public void Start()
         {
             GameObject canvas = this.gameObject.transform.Find("Canvas").gameObject;
@@ -80,7 +96,8 @@ namespace Assets.Scripts.Utilities
             transitionOverlay = imgObj.GetComponent<Image>();
 
             transitionOverlay.rectTransform.localScale = new Vector3(100, 100, 1);
-            currentState = TransitionState.Off;
+            
+            Game.CurrentTransition = this;
         }
 
         /// <summary>
@@ -161,7 +178,11 @@ namespace Assets.Scripts.Utilities
         private void transitionToNextScene()
         {
             lastFadeInColor = targetColor;
-            if (String.IsNullOrEmpty(this.sceneToLoad)) return;
+            if (String.IsNullOrEmpty(this.sceneToLoad))
+            {
+                if (this.currentState == TransitionState.FadeIn) Destroy(this.gameObject);
+                return;
+            }
             else
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(this.sceneToLoad);
@@ -210,6 +231,11 @@ namespace Assets.Scripts.Utilities
             setTransitionColor(Color.white);
         }
 
+        public void OnDestroy()
+        {
+            Game.CurrentTransition = null;
+        }
+
 
         /// <summary>
         /// Starts a screen transition for the scene.
@@ -232,6 +258,7 @@ namespace Assets.Scripts.Utilities
             GameObject obj = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)));
             ScreenTransitions transition = obj.GetComponent<ScreenTransitions>();
             transition.startNewSceneTransition(Seconds, SceneToLoad, FadeColor, TypeOfTransition,OnTransitionFinish);
+            transition.currentState = TypeOfTransition;
         }
 
         /// <summary>

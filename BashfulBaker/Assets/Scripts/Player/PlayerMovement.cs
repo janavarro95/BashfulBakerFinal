@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameInformation;
 using Assets.Scripts.Menus;
+using Assets.Scripts.Utilities;
 using Assets.Scripts.Utilities.Timers;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,6 +36,15 @@ public class PlayerMovement : MonoBehaviour {
 
     private DeltaTimer walkingSoundTimer;
 
+
+    public bool CanPlayerMove
+    {
+        get
+        {
+            if (Game.IsMenuUp == false && Game.IsScreenTransitionHappening == false) return true;
+            else return false;
+        }
+    }
 
     public AudioClip CurrentWalkingSound
     {
@@ -81,12 +91,9 @@ public class PlayerMovement : MonoBehaviour {
         //If the player is visible they probably should be able to open a menu.
         if (this.spriteRenderer.enabled)
         {
-            if (Game.IsMenuUp == false)
+            if (CanPlayerMove)
             {
-                if (Assets.Scripts.GameInput.InputControls.StartPressed)
-                {
-                    Menu.Instantiate<InventoryMenu>();
-                }
+                checkForMenuOpening();
 
                 Vector3 offset = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * MovementSpeed;
 
@@ -112,6 +119,14 @@ public class PlayerMovement : MonoBehaviour {
         else
         {
             //If a mini game is open maybe open up a different menu? Maybe just have that code inside the minigame.
+        }
+    }
+
+    private void checkForMenuOpening()
+    {
+        if (Assets.Scripts.GameInput.InputControls.RightBumperPressed)
+        {
+            Menu.Instantiate<InventoryMenu>();
         }
     }
 
