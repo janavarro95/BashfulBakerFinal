@@ -2,6 +2,7 @@
 using Assets.Scripts.GameInput;
 using Assets.Scripts.Items;
 using Assets.Scripts.Menus;
+using Assets.Scripts.Menus.HUDS;
 using Assets.Scripts.Player;
 using Assets.Scripts.QuestSystem;
 using Assets.Scripts.QuestSystem.Quests;
@@ -135,6 +136,10 @@ namespace Assets.Scripts.GameInformation
 
         public static GameOptions Options;
 
+        public static GameHUD HUD;
+
+        public static Utilities.Timers.DeltaTimer PhaseTimer;
+
 
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
@@ -217,8 +222,15 @@ namespace Assets.Scripts.GameInformation
                 Player.gameObject.transform.position = new Vector3(-1.3f, .25f, 0);
                 DontDestroyOnLoad(Player.gameObject);
 
+                string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
+                Debug.Log(HUDPath);
+                Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
+
+
                 SceneManager.LoadScene("Kitchen");
                 Debug.Log("Loading kitchen scene from the Game.cs script!");
+
+                StartNewTimerPhase(2, 0);
             }
 
             if (ScreenTransitions.shouldFadeInAfterWarp)
@@ -228,6 +240,20 @@ namespace Assets.Scripts.GameInformation
             }
 
             //Debug.Log(SceneManager.GetActiveScene().name);
+        }
+
+
+        public static void StartNewTimerPhase(int Minutes,int Seconds)
+        {
+            int actualTime = (Minutes * 60) + Seconds;
+            PhaseTimer = new Utilities.Timers.DeltaTimer(actualTime, Enums.TimerType.CountDown, false, new Utilities.Delegates.VoidDelegate(phaseTimerRunsOut));
+            PhaseTimer.start();
+        }
+
+
+        private static void phaseTimerRunsOut()
+        {
+            Debug.Log("WOOPS NO MORE TIME LEFT!!!");
         }
 
 #endif
