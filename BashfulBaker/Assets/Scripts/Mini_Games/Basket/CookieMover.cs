@@ -24,7 +24,7 @@ public class CookieMover : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown((c < 4 ? KeyCode.Space : KeyCode.Tab)) || c < 4 ?  InputControls.XPressed : InputControls.YPressed)
+        if (Input.GetKeyDown((c < 4 ? KeyCode.Space : KeyCode.Tab)) || (c < 4 ?  InputControls.XPressed : InputControls.YPressed))
         {
             if (c < 8)
             {

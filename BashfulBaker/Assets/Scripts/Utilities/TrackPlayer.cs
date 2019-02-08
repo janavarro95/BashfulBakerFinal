@@ -12,11 +12,11 @@ public class TrackPlayer : MonoBehaviour
     {
         position1 = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
         position2 = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 2);
+        player = GameObject.Find("Player(Clone)");
     }
 
     private void Update()
     {
-        player = GameObject.Find("Player(Clone)");
         this.transform.position = this.transform.position.y > player.transform.position.y ? position1 : position2;
     }
 }
