@@ -101,6 +101,15 @@ namespace Assets.Scripts.GameInput
             return false;
         }
 
+        public static bool CursorIntersectsRect(GameObject behavior)
+        {
+            if (GetWorldSapceRect(behavior.GetComponent<RectTransform>()).Overlaps(GetWorldSapceRect(Game.Menu.menuCursor.rect)))
+            {
+                return true;
+            }
+            return false;
+        }
+
         static Rect GetWorldSapceRect(RectTransform rt)
         {
             var r = rt.rect;
@@ -115,6 +124,15 @@ namespace Assets.Scripts.GameInput
         /// <param name="behavior"></param>
         /// <returns></returns>
         public static bool MouseIntersectsRect(MonoBehaviour behavior)
+        {
+            if (UnityEngine.RectTransformUtility.RectangleContainsScreenPoint(behavior.GetComponent<RectTransform>(), Camera.main.ScreenToWorldPoint(Input.mousePosition)))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool MouseIntersectsRect(GameObject behavior)
         {
             if (UnityEngine.RectTransformUtility.RectangleContainsScreenPoint(behavior.GetComponent<RectTransform>(), Camera.main.ScreenToWorldPoint(Input.mousePosition)))
             {
@@ -164,6 +182,70 @@ namespace Assets.Scripts.GameInput
                 return false;
             }
             
+        }
+
+        public static bool SimulateMousePress(GameObject behavior, bool useHardwareMouse = false)
+        {
+            if (behavior == null)
+            {
+                Debug.Log("BEHAVIOR IS NULL");
+            }
+            if (GameCursorMenu.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false && GameInput.InputControls.APressed)
+            {
+                return true;
+            }
+
+
+            else if (GameCursorMenu.MouseIntersectsRect(behavior) && Input.GetMouseButtonDown(0))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+
+        public static bool SimulateMouseHover(MonoBehaviour behavior, bool useHardwareMouse = false)
+        {
+            if (behavior == null)
+            {
+                Debug.Log("BEHAVIOR IS NULL");
+            }
+            if (GameCursorMenu.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false)
+            {
+                return true;
+            }
+            else if (GameCursorMenu.MouseIntersectsRect(behavior))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool SimulateMouseHover(GameObject obj, bool useHardwareMouse = false)
+        {
+            if (obj == null)
+            {
+                Debug.Log("BEHAVIOR IS NULL");
+            }
+            if (GameCursorMenu.CursorIntersectsRect(obj) && Game.MouseCursor.movedByCursor == false)
+            {
+                return true;
+            }
+            else if (GameCursorMenu.MouseIntersectsRect(obj))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>

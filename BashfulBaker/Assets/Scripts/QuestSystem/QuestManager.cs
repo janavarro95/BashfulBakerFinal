@@ -32,11 +32,18 @@ namespace Assets.Scripts.QuestSystem
         public QuestManager()
         {
             this.quests = new List<Quest>();
-
+            /*
             quests.Add(new CookingQuest("Example", "Mr.Example", new List<string>()
             {
                 "Raspberries"
             }, null));
+            */
+
+            quests.Add(new CookingQuest("Example2", "Mr.Example2", new List<string>()
+            {
+                "Strawberries"
+            }, null));
+            
             serializeCookingQuests();
 
             
