@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 namespace Assets.Scripts.GameInput
 {
     public class SpinThumbstick : MonoBehaviour
@@ -18,6 +20,7 @@ namespace Assets.Scripts.GameInput
             sumR = 0;
             sumL = 0;
             count = 0;
+            this.GetComponent<SpriteRenderer>().enabled = false;
         }
 
         // Update is called once per frame
@@ -37,11 +40,20 @@ namespace Assets.Scripts.GameInput
             }
             startL = endL;
 
-            if(sumR > 720 && sumL > 720 && InputControls.APressed)
+            if(count >= 8 && InputControls.APressed)
+            {
+                SceneManager.LoadScene("Kitchen");
+            }
+
+            if (sumR > 720 && sumL > 720 && InputControls.APressed)
             {
                 Debug.Log(++count);
                 sumR = 0;
                 sumL = 0;
+                if(count == 8)
+                {
+                    this.GetComponent<SpriteRenderer>().enabled = true;
+                }
             }
         }
     }
