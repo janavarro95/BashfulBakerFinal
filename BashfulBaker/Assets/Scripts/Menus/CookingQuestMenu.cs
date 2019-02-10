@@ -25,6 +25,8 @@ namespace Assets.Scripts.Menus
         Text targetNPC;
         Text listOfIngredients;
 
+        private Button exitButton;
+
         public override void Start()
         {
            
@@ -47,7 +49,7 @@ namespace Assets.Scripts.Menus
             targetNPC = info.transform.Find("TargetNPC").gameObject.GetComponent<Text>();
             listOfIngredients = info.transform.Find("ListOfIngredients").gameObject.GetComponent<Text>();
 
-
+            exitButton = canvas.transform.Find("CloseButton").GetComponent<Button>();
 
         }
 
@@ -76,10 +78,22 @@ namespace Assets.Scripts.Menus
 
         public override void Update()
         {
+            checkForQuestHover();
+
+            if (GameCursorMenu.SimulateMousePress(exitButton))
+            {
+                exitButtonPress();
+            }
+
+            //if hovering over quest sheet display the info on the right.
+        }
+
+        private void checkForQuestHover()
+        {
             bool questHovered = false;
 
 
-            for(int i = 0; i < questObjects.Count; i++)
+            for (int i = 0; i < questObjects.Count; i++)
             {
                 GameObject obj = questObjects[i];
                 if (obj.activeInHierarchy)
@@ -91,21 +105,19 @@ namespace Assets.Scripts.Menus
                         foodName.text = (heldQuests[i] as CookingQuest).RequiredDish;
                         targetNPC.text = (heldQuests[i] as CookingQuest).PersonToDeliverTo;
                         StringBuilder ingredients = new StringBuilder();
-                        foreach(string ingredient in (heldQuests[i] as CookingQuest).wantedIngredients)
+                        foreach (string ingredient in (heldQuests[i] as CookingQuest).wantedIngredients)
                         {
                             ingredients.Append(ingredient);
                             ingredients.Append(Environment.NewLine);
                         }
                         listOfIngredients.text = ingredients.ToString();
-                        
+
                     }
                     else
                     {
                         foodName.text = "";
                         targetNPC.text = "";
                         listOfIngredients.text = "";
-
-                        Debug.Log("WH???");
                         continue;
                     }
                 }
@@ -120,12 +132,13 @@ namespace Assets.Scripts.Menus
                 //targetNPC.text = "";
                 //listOfIngredients.text = "";
             }
-
-            //if hovering over quest sheet display the info on the right.
         }
 
         
-
+        public void exitButtonPress()
+        {
+            this.exitMenu();
+        }
 
     }
 }
