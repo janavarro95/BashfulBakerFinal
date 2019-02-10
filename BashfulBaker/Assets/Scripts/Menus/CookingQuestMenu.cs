@@ -1,18 +1,29 @@
 ﻿using Assets.Scripts.GameInput;
+using Assets.Scripts.QuestSystem.Quests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Menus
 {
+    /// <summary>
+    /// TODO:Disable/show quests on the right info menu when hivering/not hovering.
+    /// </summary>
     public class CookingQuestMenu:Menu
     {
 
         GameObject canvas;
 
         private List<GameObject> questObjects;
+
+        private List<Quest> heldQuests;
+
+        Text foodName;
+        Text targetNPC;
+        Text listOfIngredients;
 
         public override void Start()
         {
@@ -28,6 +39,16 @@ namespace Assets.Scripts.Menus
 
             setUpMenuForDisplay();
             menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
+
+
+            GameObject info = canvas.transform.Find("QuestInfoBackground").gameObject;
+
+            foodName=info.transform.Find("FoodName").gameObject.GetComponent<Text>();
+            targetNPC = info.transform.Find("TargetNPC").gameObject.GetComponent<Text>();
+            listOfIngredients = info.transform.Find("ListOfIngredients").gameObject.GetComponent<Text>();
+
+
+
         }
 
         private void setUpMenuForDisplay()
@@ -41,7 +62,7 @@ namespace Assets.Scripts.Menus
             {
                 questObjects[i].SetActive(true);
             }
-
+            heldQuests = quests;
 
         }
 
@@ -56,20 +77,48 @@ namespace Assets.Scripts.Menus
         public override void Update()
         {
             bool questHovered = false;
-            foreach(GameObject obj in questObjects)
+
+
+            for(int i = 0; i < questObjects.Count; i++)
             {
+                GameObject obj = questObjects[i];
                 if (obj.activeInHierarchy)
                 {
                     if (GameCursorMenu.SimulateMouseHover(obj, false))
                     {
-                        Debug.Log("AHHHHHHHH A QUEST HOVER!");
+                        //Debug.Log("AHHHHHHHH A QUEST HOVER!");
                         questHovered = true;
+                        foodName.text = (heldQuests[i] as CookingQuest).RequiredDish;
+                        targetNPC.text = (heldQuests[i] as CookingQuest).PersonToDeliverTo;
+                        StringBuilder ingredients = new StringBuilder();
+                        foreach(string ingredient in (heldQuests[i] as CookingQuest).wantedIngredients)
+                        {
+                            ingredients.Append(ingredient);
+                            ingredients.Append(Environment.NewLine);
+                        }
+                        listOfIngredients.text = ingredients.ToString();
+                        
+                    }
+                    else
+                    {
+                        foodName.text = "";
+                        targetNPC.text = "";
+                        listOfIngredients.text = "";
+
+                        Debug.Log("WH???");
+                        continue;
                     }
                 }
             }
+
+
             if (questHovered == false)
             {
+                //Debug.Log("WHAAAAAAAA");
                 //Disable/hide the right info menu;
+                //foodName.text = "";
+                //targetNPC.text = "";
+                //listOfIngredients.text = "";
             }
 
             //if hovering over quest sheet display the info on the right.

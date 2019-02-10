@@ -148,7 +148,7 @@ namespace Assets.Scripts.GameInput
         /// <returns></returns>
         public static bool CanCursorInteract(MonoBehaviour behavior)
         {
-            if (GameCursorMenu.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false)
+            if (GameCursorMenu.CursorIntersectsRect(behavior))
             {
                 return true;
             }
@@ -167,7 +167,7 @@ namespace Assets.Scripts.GameInput
             {
                 Debug.Log("BEHAVIOR IS NULL");
             }
-            if (GameCursorMenu.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false && GameInput.InputControls.APressed)
+            if (GameCursorMenu.CursorIntersectsRect(behavior) && GameInput.InputControls.APressed)
             {
                 return true;
             }
@@ -190,7 +190,7 @@ namespace Assets.Scripts.GameInput
             {
                 Debug.Log("BEHAVIOR IS NULL");
             }
-            if (GameCursorMenu.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false && GameInput.InputControls.APressed)
+            if (GameCursorMenu.CursorIntersectsRect(behavior) && GameInput.InputControls.APressed)
             {
                 return true;
             }
@@ -210,11 +210,7 @@ namespace Assets.Scripts.GameInput
 
         public static bool SimulateMouseHover(MonoBehaviour behavior, bool useHardwareMouse = false)
         {
-            if (behavior == null)
-            {
-                Debug.Log("BEHAVIOR IS NULL");
-            }
-            if (GameCursorMenu.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false)
+            if (GameCursorMenu.CursorIntersectsRect(behavior))
             {
                 return true;
             }
@@ -230,11 +226,7 @@ namespace Assets.Scripts.GameInput
 
         public static bool SimulateMouseHover(GameObject obj, bool useHardwareMouse = false)
         {
-            if (obj == null)
-            {
-                Debug.Log("BEHAVIOR IS NULL");
-            }
-            if (GameCursorMenu.CursorIntersectsRect(obj) && Game.MouseCursor.movedByCursor == false)
+            if (GameCursorMenu.CursorIntersectsRect(obj))
             {
                 return true;
             }
