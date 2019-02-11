@@ -4,5 +4,9 @@
   "wantedIngredients": [
     "Strawberries"
   ],
-  "unwantedIngredients": []
+  "unwantedIngredients": [],
+  "deliveryQuestPart": null,
+  "HasBeenCooked": false,
+  "HasBeenDelivered": false,
+  "SpecialMissionCompleted": false
 }

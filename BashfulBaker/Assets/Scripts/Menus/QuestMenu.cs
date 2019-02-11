@@ -9,23 +9,34 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Menus
 {
-    /// <summary>
-    /// TODO:Disable/show quests on the right info menu when hivering/not hovering.
-    /// </summary>
-    public class CookingQuestMenu:Menu
+    public class QuestMenu:Menu
     {
 
         GameObject canvas;
 
         private List<GameObject> questObjects;
 
-        private List<Quest> heldQuests;
+        private List<Quest> heldCookingQuests;
+        private List<Quest> heldDeliveryQuests;
 
         Text foodName;
         Text targetNPC;
         Text listOfIngredients;
 
         private Button exitButton;
+
+        Image cookedImage;
+        Image deliveredImage;
+        Image specialImage;
+
+        [SerializeField]
+        Sprite noSprite;
+        [SerializeField]
+        Sprite yesSprite;
+
+        [SerializeField]
+        Sprite specialSprite;
+
 
         public override void Start()
         {
@@ -39,17 +50,25 @@ namespace Assets.Scripts.Menus
                 questObjects.Add(t.gameObject);
             }
 
-            setUpMenuForDisplay();
+
+
             menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
 
 
             GameObject info = canvas.transform.Find("QuestInfoBackground").gameObject;
 
-            foodName=info.transform.Find("FoodName").gameObject.GetComponent<Text>();
+            foodName = info.transform.Find("FoodName").gameObject.GetComponent<Text>();
             targetNPC = info.transform.Find("TargetNPC").gameObject.GetComponent<Text>();
             listOfIngredients = info.transform.Find("ListOfIngredients").gameObject.GetComponent<Text>();
 
             exitButton = canvas.transform.Find("CloseButton").GetComponent<Button>();
+
+            cookedImage = info.transform.Find("CookedStatus").Find("StatusImage").gameObject.GetComponent<Image>();
+            deliveredImage = info.transform.Find("DeliveredStatus").Find("StatusImage").gameObject.GetComponent<Image>();
+            specialImage = info.transform.Find("SpecialStatus").Find("StatusImage").gameObject.GetComponent<Image>();
+
+            setUpMenuForDisplay();
+
 
         }
 
@@ -64,7 +83,7 @@ namespace Assets.Scripts.Menus
             {
                 questObjects[i].SetActive(true);
             }
-            heldQuests = quests;
+            heldCookingQuests = quests;
 
         }
 
@@ -74,6 +93,9 @@ namespace Assets.Scripts.Menus
             {
                 obj.SetActive(false);
             }
+            deliveredImage.enabled = false;
+            cookedImage.enabled = false;
+            specialImage.enabled = false;
         }
 
         public override void Update()
@@ -102,22 +124,30 @@ namespace Assets.Scripts.Menus
                     {
                         //Debug.Log("AHHHHHHHH A QUEST HOVER!");
                         questHovered = true;
-                        foodName.text = (heldQuests[i] as CookingQuest).RequiredDish;
-                        targetNPC.text = (heldQuests[i] as CookingQuest).PersonToDeliverTo;
+                        foodName.text = (heldCookingQuests[i] as CookingQuest).RequiredDish;
+                        targetNPC.text = (heldCookingQuests[i] as CookingQuest).PersonToDeliverTo;
                         StringBuilder ingredients = new StringBuilder();
-                        foreach (string ingredient in (heldQuests[i] as CookingQuest).wantedIngredients)
+                        foreach (string ingredient in (heldCookingQuests[i] as CookingQuest).wantedIngredients)
                         {
                             ingredients.Append(ingredient);
                             ingredients.Append(Environment.NewLine);
                         }
                         listOfIngredients.text = ingredients.ToString();
-
+                        cookedImage.enabled = true;
+                        deliveredImage.enabled = true;
+                        specialImage.enabled = true;
+                        cookedImage.sprite = (heldCookingQuests[i] as CookingQuest).HasBeenCooked ? yesSprite : noSprite;
+                        deliveredImage.sprite = (heldCookingQuests[i] as CookingQuest).HasBeenDelivered ? yesSprite : noSprite;
+                        specialImage.sprite= (heldCookingQuests[i] as CookingQuest).SpecialMissionCompleted ? specialSprite : noSprite;
                     }
                     else
                     {
                         foodName.text = "";
                         targetNPC.text = "";
                         listOfIngredients.text = "";
+                        cookedImage.enabled = false;
+                        deliveredImage.enabled = false;
+                        specialImage.enabled = false;
                         continue;
                     }
                 }
