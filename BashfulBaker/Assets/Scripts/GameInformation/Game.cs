@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Cooking.Recipes;
 using Assets.Scripts.GameInput;
 using Assets.Scripts.Items;
+using Assets.Scripts.Kitchen;
 using Assets.Scripts.Menus;
 using Assets.Scripts.Menus.HUDS;
 using Assets.Scripts.Player;
@@ -153,6 +154,8 @@ namespace Assets.Scripts.GameInformation
             }
         }
 
+        public static Pantry Pantry;
+
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
         static Game()
@@ -206,6 +209,11 @@ namespace Assets.Scripts.GameInformation
             if (Options == null)
             {
                 Options = new GameOptions();
+            }
+
+            if (Pantry == null)
+            {
+                Pantry = new Pantry();
             }
 
             setUpScene();

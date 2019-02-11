@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4482603346274760949}
   - component: {fileID: 3065048609990281670}
   m_Layer: 0
-  m_Name: White Chocolate
+  m_Name: Milk Chocolate Chip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,5 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df46476e3680bb4fade8fbeabad8bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: White Chocolate
+  itemName: Milk Chocolate Chip
+  stack: 0
   sprite: {fileID: 0}

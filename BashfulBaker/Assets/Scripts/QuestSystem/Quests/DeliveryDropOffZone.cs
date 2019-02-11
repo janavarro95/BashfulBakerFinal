@@ -39,7 +39,7 @@ namespace Assets.Scripts.QuestSystem.Quests
                 //Debug.Log("DROP OFF!");
                 bool hasADishBeenDelivered = false;
                 List<Item> removalList = new List<Item>();
-                foreach(Item I in Game.Player.inventory) //Check all items in their inventory for a dish.
+                foreach(Item I in Game.Player.inventory.actualItems) //Check all items in their inventory for a dish.
                 {
                     if(I is Dish) //Send that dish to the quest manager....
                     {
