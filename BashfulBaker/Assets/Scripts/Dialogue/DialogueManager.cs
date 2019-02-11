@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.GameInput;
+using Assets.Scripts;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Text nameText;
-    public Text dialogueText;
+    public TMPro.TextMeshProUGUI nameText;
+    public TMPro.TextMeshProUGUI dialogueText;
     public Animator animator;
 
 
@@ -15,6 +17,13 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
+    }
+    private void Update()
+    {
+        if (animator.GetBool("isOpen") &&InputControls.APressed)
+        {
+            DisplayNextSentence();
+        }
     }
     public void StartDialogue (Dialogue dialogue)
     {
