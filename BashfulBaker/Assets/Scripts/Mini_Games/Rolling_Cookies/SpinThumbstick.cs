@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Assets.Scripts.GameInformation;
 
 namespace Assets.Scripts.GameInput
 {
@@ -42,6 +43,7 @@ namespace Assets.Scripts.GameInput
 
             if(count >= 8 && InputControls.APressed)
             {
+                Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
                 SceneManager.LoadScene("Kitchen");
             }
 
