@@ -55,6 +55,7 @@ namespace Assets.Scripts.Menus
 
         private enum PantryMenuState
         {
+            Initialized,
             CategoryMenu,
             LeftCategory,
             TopCategory,
@@ -95,7 +96,7 @@ namespace Assets.Scripts.Menus
             categorySelectionPlayer = playerSide.gameObject.transform.Find("CategorySelect").gameObject;
 
 
-            currentState = PantryMenuState.CategoryMenu;
+            currentState = PantryMenuState.Initialized;
             currentMode = PantryItemMode.Take;
             setUpMenu();
 
@@ -388,6 +389,10 @@ namespace Assets.Scripts.Menus
         public override void Update()
         {
             checkForInput();
+            if( currentState== PantryMenuState.Initialized)
+            {
+                currentState = PantryMenuState.CategoryMenu;
+            }
         }
 
         /// <summary>

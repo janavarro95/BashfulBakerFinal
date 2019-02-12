@@ -56,15 +56,29 @@ namespace Assets.Scripts.Menus
             {
                 Instantiate("InventoryMenu");
             }
+            else if(typeof(T)== typeof(PantryMenu))
+            {
+                Instantiate("PantryMenu");
+            }
             else
             {
                 throw new Exception("Hmm trying to call on a type of menu that doesn't exist.");
             }
         }
 
-        public static void Instantiate(string Name)
+        public static void Instantiate(string Name,bool OverrideCurrentMenu=false)
         {
-            Game.Menu=LoadMenuFromPrefab(Name).GetComponent<Menu>();
+            if (OverrideCurrentMenu == false)
+            {
+                if (Game.IsMenuUp) return;
+                Game.Menu = LoadMenuFromPrefab(Name).GetComponent<Menu>();
+            }
+            else
+            {
+                Game.Menu.exitMenu();
+                Game.Menu = LoadMenuFromPrefab(Name).GetComponent<Menu>();
+            }
+            
         }
 
         protected static GameObject LoadMenuFromPrefab(string ItemName)

@@ -7,11 +7,16 @@ using UnityEngine;
 
 namespace Assets.Scripts.Kitchen
 {
+    /// <summary>
+    /// Deals for handling all of the ingredients in the pantry.
+    /// </summary>
     public class Pantry
     {
         public Inventory inventory;
 
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Pantry()
         {
             inventory = new Inventory();
