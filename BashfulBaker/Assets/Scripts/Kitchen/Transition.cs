@@ -21,6 +21,8 @@ public class Transition : MonoBehaviour
 
         top = -1;
         bot = -3;
+
+        sprite.color = player.transform.position.y <= bot ? hard : soft;
     }
 
     void Update()
