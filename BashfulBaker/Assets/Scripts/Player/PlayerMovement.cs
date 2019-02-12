@@ -137,12 +137,12 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (offset.x < 0)
             { //left walking animation
-                animator.Play("LeftWalkAnimation");
+                animator.Play("LWalk");
                 Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
             }
             else
             {
-                animator.Play("RightWalkAnimation");
+                animator.Play("RWalk");
                 Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
             }
         }
@@ -150,22 +150,22 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (offset.y > 0)
             {
-                animator.Play("UpWalkAnimation");
+                animator.Play("BWalk");
                 Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Up;
             }
             else
             {
-                animator.Play("DownWalkAnimation");
+                animator.Play("FWalk");
                 Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Down;
             }
         }
 
         else if (offset.x == 0 && offset.y == 0)
         {
-            if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Down) animator.Play("DownIdle");
-            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Left) animator.Play("LeftIdle");
-            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Right) animator.Play("RightIdle");
-            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Up) animator.Play("UpIdle");
+            if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Down) animator.Play("FIdle");
+            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Left) animator.Play("LIdle");
+            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Right) animator.Play("RIdle");
+            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Up) animator.Play("BIdle");
         }
     }
 
