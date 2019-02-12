@@ -12,35 +12,36 @@ namespace Assets.Scripts.Menus
 {
     public class PantryMenu:Menu
     {
-        public int menuPage;
-        private int maxPages;
 
-        Image leftImage;
-        Image rightImage;
-        Image topImage;
-        Image bottomImage;
-        Image centralImage;
+        Text leftPantryText;
+        Text rightPantryText;
+        Text topPantryText;
+        Text bottomPantryText;
 
-        Text leftText;
-        Text rightText;
-        Text topText;
-        Text bottomText;
+        GameObject categorySelectionPantry;
+        GameObject leftCategoryPantry;
+        GameObject rightCategoryPantry;
+        GameObject topCategoryPantry;
+        GameObject bottomCategoryPantry;
 
-        Dish leftDish;
-        Dish rightDish;
-        Dish topDish;
-        Dish bottomDish;
 
-        Ingredient selectedIngredient;
+        Text leftPlayerText;
+        Text rightPlayerText;
+        Text topPlayerText;
+        Text bottomPlayerText;
 
-        Dish selectedDish;
+        GameObject categorySelectionPlayer;
+        GameObject leftCategoryPlayer;
+        GameObject rightCategoryPlayer;
+        GameObject topCategoryPlayer;
+        GameObject bottomCategoryPlayer;
 
-        GameObject categorySelection;
-        GameObject leftCategory;
-        GameObject rightCategory;
-        GameObject topCategory;
-        GameObject bottomCategory;
-        GameObject dishCategory;
+
+        private enum PantryItemMode
+        {
+            Take,
+            Store
+        }
 
 
         private enum PantryMenuState
@@ -54,6 +55,7 @@ namespace Assets.Scripts.Menus
         }
 
         private PantryMenuState currentState;
+        private PantryItemMode currentMode;
 
         /// <summary>
         /// Instantiate all menu logic here.
@@ -61,19 +63,30 @@ namespace Assets.Scripts.Menus
         public override void Start()
         {
 
-            menuPage = 0;
-
             //initial set up
             GameObject canvas = this.transform.Find("Canvas").gameObject;
-            dishCategory = canvas.gameObject.transform.Find("DishCategory").gameObject;
-            leftCategory = canvas.gameObject.transform.Find("LeftCategory").gameObject;
-            rightCategory = canvas.gameObject.transform.Find("RightCategory").gameObject;
-            topCategory = canvas.gameObject.transform.Find("TopCategory").gameObject;
-            bottomCategory = canvas.gameObject.transform.Find("BottomCategory").gameObject;
-            categorySelection = canvas.gameObject.transform.Find("CategorySelection").gameObject;
+
+            GameObject pantrySide = canvas.transform.Find("PantrySide").gameObject;
+
+            GameObject playerSide = canvas.transform.Find("PlayerSide").gameObject;
+
+            leftCategoryPantry = pantrySide.gameObject.transform.Find("LeftCategory").gameObject;
+            rightCategoryPantry = pantrySide.gameObject.transform.Find("RightCategory").gameObject;
+            topCategoryPantry = pantrySide.gameObject.transform.Find("TopCategory").gameObject;
+            bottomCategoryPantry = pantrySide.gameObject.transform.Find("BottomCategory").gameObject;
+            categorySelectionPantry = pantrySide.gameObject.transform.Find("CategorySelect").gameObject;
+
+
+
+            leftCategoryPlayer = playerSide.gameObject.transform.Find("LeftCategory").gameObject;
+            rightCategoryPlayer = playerSide.gameObject.transform.Find("RightCategory").gameObject;
+            topCategoryPlayer = playerSide.gameObject.transform.Find("TopCategory").gameObject;
+            bottomCategoryPlayer = playerSide.gameObject.transform.Find("BottomCategory").gameObject;
+            categorySelectionPlayer = playerSide.gameObject.transform.Find("CategorySelect").gameObject;
 
 
             currentState = PantryMenuState.CategoryMenu;
+            currentMode = PantryItemMode.Take;
             setUpMenu();
 
             //Game.Player.inventory.Add(Ingredient.LoadIngredientFromPrefab("Cherries",1));
@@ -86,21 +99,31 @@ namespace Assets.Scripts.Menus
 
             if (currentState == PantryMenuState.LeftCategory)
             {
+                leftCategoryPantry.SetActive(true);
+                rightCategoryPantry.SetActive(false);
+                topCategoryPantry.SetActive(false);
+                bottomCategoryPantry.SetActive(false);
+                categorySelectionPantry.SetActive(false);
 
-                dishCategory.SetActive(false);
-                leftCategory.SetActive(true);
-                rightCategory.SetActive(false);
-                topCategory.SetActive(false);
-                bottomCategory.SetActive(false);
-                categorySelection.SetActive(false);
+                leftCategoryPlayer.SetActive(true);
+                rightCategoryPlayer.SetActive(false);
+                topCategoryPlayer.SetActive(false);
+                bottomCategoryPlayer.SetActive(false);
+                categorySelectionPlayer.SetActive(false);
 
 
                 getMenuComponents();
 
-                leftText.text = Game.Pantry.inventory.Contains("Cinnamon") ? Game.Player.inventory.getItem("Cinnamon").stack.ToString() : "0";
-                topText.text = Game.Pantry.inventory.Contains("Cocoa") ? Game.Player.inventory.getItem("Cocoa").stack.ToString() : "0";
-                rightText.text = Game.Pantry.inventory.Contains("Matcha") ? Game.Player.inventory.getItem("Matcha").stack.ToString() : "0";
-                bottomText.text = Game.Pantry.inventory.Contains("Ginger") ? Game.Player.inventory.getItem("Ginger").stack.ToString() : "0";
+                leftPantryText.text = Game.Pantry.inventory.Contains("Dark Chocolate Chip") ? Game.Pantry.inventory.getItem("Dark Chocolate Chip").stack.ToString() : "0";
+                topPantryText.text = Game.Pantry.inventory.Contains("Milk Chocolate Chip") ? Game.Pantry.inventory.getItem("Milk Chocolate Chip").stack.ToString() : "0";
+                rightPantryText.text = Game.Pantry.inventory.Contains("White Chocolate Chip") ? Game.Pantry.inventory.getItem("White Chocolate Chip").stack.ToString() : "0";
+                bottomPantryText.text = Game.Pantry.inventory.Contains("Mint Chocolate Chip") ? Game.Pantry.inventory.getItem("Mint Chocolate Chip").stack.ToString() : "0";
+
+                leftPlayerText.text = Game.Player.inventory.Contains("Dark Chocolate Chip") ? Game.Player.inventory.getItem("Dark Chocolate Chip").stack.ToString() : "0";
+                topPlayerText.text = Game.Player.inventory.Contains("Milk Chocolate Chip") ? Game.Player.inventory.getItem("Milk Chocolate Chip").stack.ToString() : "0";
+                rightPlayerText.text = Game.Player.inventory.Contains("White Chocolate Chip") ? Game.Player.inventory.getItem("White Chocolate Chip").stack.ToString() : "0";
+                bottomPlayerText.text = Game.Player.inventory.Contains("Mint Chocolate Chip") ? Game.Player.inventory.getItem("Mint Chocolate Chip").stack.ToString() : "0";
+
                 //Cocoa
                 //Ginger
                 //Matcha
@@ -108,114 +131,160 @@ namespace Assets.Scripts.Menus
             }
             else if (currentState == PantryMenuState.RightCategory)
             {
+                leftCategoryPantry.SetActive(false);
+                rightCategoryPantry.SetActive(true);
+                topCategoryPantry.SetActive(false);
+                bottomCategoryPantry.SetActive(false);
+                categorySelectionPantry.SetActive(false);
 
 
-                dishCategory.SetActive(false);
-                leftCategory.SetActive(false);
-                rightCategory.SetActive(true);
-                topCategory.SetActive(false);
-                bottomCategory.SetActive(false);
-                categorySelection.SetActive(false);
+                leftCategoryPlayer.SetActive(false);
+                rightCategoryPlayer.SetActive(true);
+                topCategoryPlayer.SetActive(false);
+                bottomCategoryPlayer.SetActive(false);
+                categorySelectionPlayer.SetActive(false);
 
                 getMenuComponents();
             }
             else if (currentState == PantryMenuState.TopCategory)
             {
+                leftCategoryPantry.SetActive(false);
+                rightCategoryPantry.SetActive(false);
+                topCategoryPantry.SetActive(true);
+                bottomCategoryPantry.SetActive(false);
+                categorySelectionPantry.SetActive(false);
 
-                dishCategory.SetActive(false);
-                leftCategory.SetActive(false);
-                rightCategory.SetActive(false);
-                topCategory.SetActive(true);
-                bottomCategory.SetActive(false);
-                categorySelection.SetActive(false);
+                leftCategoryPlayer.SetActive(false);
+                rightCategoryPlayer.SetActive(false);
+                topCategoryPlayer.SetActive(true);
+                bottomCategoryPlayer.SetActive(false);
+                categorySelectionPlayer.SetActive(false);
 
                 getMenuComponents();
 
-                leftText.text = Game.Pantry.inventory.Contains("Dark Chocolate Chip") ? Game.Player.inventory.getItem("Dark Chocolate Chip").stack.ToString() : "0";
-                topText.text = Game.Pantry.inventory.Contains("Milk Chocolate Chip") ? Game.Player.inventory.getItem("Milk Chocolate Chip").stack.ToString() : "0";
-                rightText.text = Game.Pantry.inventory.Contains("White Chocolate Chip") ? Game.Player.inventory.getItem("White Chocolate Chip").stack.ToString() : "0";
-                bottomText.text = Game.Pantry.inventory.Contains("Mint Chocolate Chip") ? Game.Player.inventory.getItem("Mint Chocolate Chip").stack.ToString() : "0";
+                leftPantryText.text = Game.Pantry.inventory.Contains("Cinnamon") ? Game.Pantry.inventory.getItem("Cinnamon").stack.ToString() : "0";
+                topPantryText.text = Game.Pantry.inventory.Contains("Cocoa") ? Game.Pantry.inventory.getItem("Cocoa").stack.ToString() : "0";
+                rightPantryText.text = Game.Pantry.inventory.Contains("Matcha") ? Game.Pantry.inventory.getItem("Matcha").stack.ToString() : "0";
+                bottomPantryText.text = Game.Pantry.inventory.Contains("Ginger") ? Game.Pantry.inventory.getItem("Ginger").stack.ToString() : "0";
+
+                leftPlayerText.text = Game.Player.inventory.Contains("Cinnamon") ? Game.Player.inventory.getItem("Cinnamon").stack.ToString() : "0";
+                topPlayerText.text = Game.Player.inventory.Contains("Cocoa") ? Game.Player.inventory.getItem("Cocoa").stack.ToString() : "0";
+                rightPlayerText.text = Game.Player.inventory.Contains("Matcha") ? Game.Player.inventory.getItem("Matcha").stack.ToString() : "0";
+                bottomPlayerText.text = Game.Player.inventory.Contains("Ginger") ? Game.Player.inventory.getItem("Ginger").stack.ToString() : "0";
+
             }
             else if (currentState == PantryMenuState.BottomCategory)
             {
 
-                dishCategory.SetActive(false);
-                leftCategory.SetActive(false);
-                rightCategory.SetActive(false);
-                topCategory.SetActive(false);
-                bottomCategory.SetActive(true);
-                categorySelection.SetActive(false);
+                leftCategoryPantry.SetActive(false);
+                rightCategoryPantry.SetActive(false);
+                topCategoryPantry.SetActive(false);
+                bottomCategoryPantry.SetActive(true);
+                categorySelectionPantry.SetActive(false);
+
+                leftCategoryPlayer.SetActive(false);
+                rightCategoryPlayer.SetActive(false);
+                topCategoryPlayer.SetActive(false);
+                bottomCategoryPlayer.SetActive(true);
+                categorySelectionPlayer.SetActive(false);
 
                 getMenuComponents();
             }
             else if (currentState == PantryMenuState.CategoryMenu)
             {
-                //do nothing???
-                dishCategory.SetActive(false);
-                leftCategory.SetActive(false);
-                rightCategory.SetActive(false);
-                topCategory.SetActive(false);
-                bottomCategory.SetActive(false);
-                categorySelection.SetActive(true);
+                leftCategoryPantry.SetActive(false);
+                rightCategoryPantry.SetActive(false);
+                topCategoryPantry.SetActive(false);
+                bottomCategoryPantry.SetActive(false);
+                categorySelectionPantry.SetActive(true);
+
+                leftCategoryPlayer.SetActive(false);
+                rightCategoryPlayer.SetActive(false);
+                topCategoryPlayer.SetActive(false);
+                bottomCategoryPlayer.SetActive(false);
+                categorySelectionPlayer.SetActive(true);
                 return;
             }
             else if(currentState == PantryMenuState.DishCategory)
             {
-                dishCategory.SetActive(false);
-                leftCategory.SetActive(false);
-                rightCategory.SetActive(false);
-                topCategory.SetActive(false);
-                bottomCategory.SetActive(false);
-                categorySelection.SetActive(false);
+                leftCategoryPantry.SetActive(false);
+                rightCategoryPantry.SetActive(false);
+                topCategoryPantry.SetActive(false);
+                bottomCategoryPantry.SetActive(false);
+                categorySelectionPantry.SetActive(false);
+
+                leftCategoryPlayer.SetActive(false);
+                rightCategoryPlayer.SetActive(false);
+                topCategoryPlayer.SetActive(false);
+                bottomCategoryPlayer.SetActive(false);
+                categorySelectionPlayer.SetActive(false);
             }
         }
 
         private void getMenuComponents()
         {
-            GameObject menuStuff = null;
 
             if (currentState == PantryMenuState.BottomCategory)
             {
-                menuStuff = bottomCategory;
+                leftPantryText = bottomCategoryPantry.transform.Find("LeftText").GetComponent<Text>();
+                rightPantryText = bottomCategoryPantry.transform.Find("RightText").GetComponent<Text>();
+                topPantryText = bottomCategoryPantry.transform.Find("TopText").GetComponent<Text>();
+                bottomPantryText = bottomCategoryPantry.transform.Find("BottomText").GetComponent<Text>();
+
+                leftPlayerText = bottomCategoryPlayer.transform.Find("LeftText").GetComponent<Text>();
+                rightPlayerText = bottomCategoryPlayer.transform.Find("RightText").GetComponent<Text>();
+                topPlayerText = bottomCategoryPlayer.transform.Find("TopText").GetComponent<Text>();
+                bottomPlayerText = bottomCategoryPlayer.transform.Find("BottomText").GetComponent<Text>();
             }
             else if (currentState == PantryMenuState.CategoryMenu)
             {
                 //menuStuff = categorySelection;
+
             }
             else if (currentState == PantryMenuState.LeftCategory)
             {
-                menuStuff = leftCategory;
+                leftPantryText = leftCategoryPantry.transform.Find("LeftText").GetComponent<Text>();
+                rightPantryText = leftCategoryPantry.transform.Find("RightText").GetComponent<Text>();
+                topPantryText = leftCategoryPantry.transform.Find("TopText").GetComponent<Text>();
+                bottomPantryText = leftCategoryPantry.transform.Find("BottomText").GetComponent<Text>();
+
+                leftPlayerText = leftCategoryPlayer.transform.Find("LeftText").GetComponent<Text>();
+                rightPlayerText = leftCategoryPlayer.transform.Find("RightText").GetComponent<Text>();
+                topPlayerText = leftCategoryPlayer.transform.Find("TopText").GetComponent<Text>();
+                bottomPlayerText = leftCategoryPlayer.transform.Find("BottomText").GetComponent<Text>();
             }
             else if (currentState == PantryMenuState.RightCategory)
             {
-                menuStuff = rightCategory;
+                leftPantryText = rightCategoryPantry.transform.Find("LeftText").GetComponent<Text>();
+                rightPantryText = rightCategoryPantry.transform.Find("RightText").GetComponent<Text>();
+                topPantryText = rightCategoryPantry.transform.Find("TopText").GetComponent<Text>();
+                bottomPantryText = rightCategoryPantry.transform.Find("BottomText").GetComponent<Text>();
+
+                leftPlayerText = rightCategoryPlayer.transform.Find("LeftText").GetComponent<Text>();
+                rightPlayerText = rightCategoryPlayer.transform.Find("RightText").GetComponent<Text>();
+                topPlayerText = rightCategoryPlayer.transform.Find("TopText").GetComponent<Text>();
+                bottomPlayerText = rightCategoryPlayer.transform.Find("BottomText").GetComponent<Text>();
             }
             else if (currentState == PantryMenuState.TopCategory)
             {
-                menuStuff = topCategory;
+                leftPantryText = topCategoryPantry.transform.Find("LeftText").GetComponent<Text>();
+                rightPantryText = topCategoryPantry.transform.Find("RightText").GetComponent<Text>();
+                topPantryText = topCategoryPantry.transform.Find("TopText").GetComponent<Text>();
+                bottomPantryText = topCategoryPantry.transform.Find("BottomText").GetComponent<Text>();
+
+                leftPlayerText = topCategoryPlayer.transform.Find("LeftText").GetComponent<Text>();
+                rightPlayerText = topCategoryPlayer.transform.Find("RightText").GetComponent<Text>();
+                topPlayerText = topCategoryPlayer.transform.Find("TopText").GetComponent<Text>();
+                bottomPlayerText = topCategoryPlayer.transform.Find("BottomText").GetComponent<Text>();
             }
             else
             {
-                menuStuff = dishCategory;
+                return;
             }
 
+            
 
-            GameObject leftIngredient = menuStuff.gameObject.transform.Find("LeftIngredient").gameObject;
-            GameObject rightIngredient = menuStuff.gameObject.transform.Find("RightIngredient").gameObject;
-            GameObject topIngredient = menuStuff.gameObject.transform.Find("TopIngredient").gameObject;
-            GameObject bottomIngredient = menuStuff.gameObject.transform.Find("BottomIngredient").gameObject;
-            GameObject centralIngredient = menuStuff.gameObject.transform.Find("CentralIngredient").gameObject;
-
-            leftImage = leftIngredient.GetComponent<Image>();
-            rightImage = rightIngredient.GetComponent<Image>();
-            topImage = topIngredient.GetComponent<Image>();
-            bottomImage = bottomIngredient.GetComponent<Image>();
-            centralImage = centralIngredient.GetComponent<Image>();
-
-            leftText = leftIngredient.transform.Find("LeftText").GetComponent<Text>();
-            rightText = rightIngredient.transform.Find("RightText").GetComponent<Text>();
-            topText = topIngredient.transform.Find("TopText").GetComponent<Text>();
-            bottomText = bottomIngredient.transform.Find("BottomText").GetComponent<Text>();
+           
         }
 
         /*
@@ -296,6 +365,7 @@ namespace Assets.Scripts.Menus
         {
             if (currentState == PantryMenuState.CategoryMenu)
             {
+                
                 if (InputControls.APressed)
                 {
                     //bottom state
@@ -338,18 +408,52 @@ namespace Assets.Scripts.Menus
                 if (InputControls.APressed)
                 {
                     //bottom state
+
+                    if(currentMode== PantryItemMode.Take)
+                    {
+
+                    }
+                    if(currentMode== PantryItemMode.Store)
+                    {
+
+                    }
+
                 }
                 if (InputControls.BPressed)
                 {
                     //right state
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
                 if (InputControls.XPressed)
                 {
                     //left
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
                 if (InputControls.YPressed)
                 {
                     //top
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
             }
             if (currentState == PantryMenuState.BottomCategory)
@@ -364,18 +468,50 @@ namespace Assets.Scripts.Menus
                 if (InputControls.APressed)
                 {
                     //bottom state
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
                 if (InputControls.BPressed)
                 {
                     //right state
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
                 if (InputControls.XPressed)
                 {
                     //left
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
                 if (InputControls.YPressed)
                 {
                     //top
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
             }
             if (currentState == PantryMenuState.LeftCategory)
@@ -390,18 +526,53 @@ namespace Assets.Scripts.Menus
                 if (InputControls.APressed)
                 {
                     //bottom state
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
+                    //setUpMenu();
                 }
                 if (InputControls.BPressed)
                 {
                     //right state
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
                 if (InputControls.XPressed)
                 {
                     //left
+                    if (currentMode == PantryItemMode.Take)
+                    {
+                        Game.Pantry.takeOne("Dark Chocolate Chip");
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+                        //Game.Pantry.storeOne("Dark Chocolate Chip");
+                    }
+                    Debug.Log("HMMM HUNGRY");
+                    setUpMenu();
                 }
                 if (InputControls.YPressed)
                 {
                     //top
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
             }
             if (currentState == PantryMenuState.RightCategory)
@@ -416,47 +587,56 @@ namespace Assets.Scripts.Menus
                 if (InputControls.APressed)
                 {
                     //bottom state
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
                 if (InputControls.BPressed)
                 {
                     //right state
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
                 if (InputControls.XPressed)
                 {
                     //left
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
                 if (InputControls.YPressed)
                 {
                     //top
+                    if (currentMode == PantryItemMode.Take)
+                    {
+
+                    }
+                    if (currentMode == PantryItemMode.Store)
+                    {
+
+                    }
                 }
             }
             if(currentState == PantryMenuState.DishCategory)
             {
                 return;
             }
-        }
-
-        /// <summary>
-        /// Checks for and returns a selected ingredient and then closes the menu.
-        /// </summary>
-        /// <returns></returns>
-        private System.Collections.IEnumerable selectIngredientCloseMenu()
-        {
-            if (selectedIngredient != null)
-            {
-                yield return selectedIngredient;
-                selectedIngredient.removeFromStack(1);
-                exitMenu();
-            }
-        }
-
-        /// <summary>
-        /// Wrapper to check which ingredient was selected and close the menu at the same time.
-        /// </summary>
-        /// <returns></returns>
-        public Ingredient getSelectedIngredient()
-        {
-            return (Ingredient)selectIngredientCloseMenu();
         }
 
         /// <summary>

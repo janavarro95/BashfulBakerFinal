@@ -129,7 +129,11 @@ namespace Assets.Scripts.Items
             {
                 this.items[ItemName].removeFromStack(amount);
 
-                if (this.items[ItemName].stack <= 0) this.items.Remove(ItemName);
+                if (this.items[ItemName].stack <= 0)
+                {
+                    this.items.Remove(ItemName);
+                    Debug.Log("HMM BEING REMOVED????");
+                }
 
                 return true;
             }
@@ -156,8 +160,9 @@ namespace Assets.Scripts.Items
         {
             if (!this.items.ContainsKey(I.Name))
             {
-                I.stack = amount;
-                this.items.Add(I.Name, I);
+                Item i = (Item)I.clone();
+                i.stack = amount;
+                this.items.Add(i.Name,i);
             }
             else
             {

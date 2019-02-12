@@ -74,10 +74,10 @@ public class Item : MonoBehaviour {
     /// Gets a clone of the game object. Aka instantiates a new object with the same data as this object it was cloned from.
     /// </summary>
     /// <returns></returns>
-    public GameObject clone()
+    public virtual Item clone()
     {
         //Implement this.
-        return loadFromPrefab();
+        return loadFromPrefab().GetComponent<Item>();
     }
 
     /// <summary>

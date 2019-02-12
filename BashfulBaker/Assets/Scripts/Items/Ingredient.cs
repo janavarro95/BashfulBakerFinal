@@ -53,5 +53,11 @@ namespace Assets.Scripts.Items
             i.stack = StackSize;
             return i;
         }
+
+        public override Item clone()
+        {
+            //Implement this.
+            return loadFromPrefab().GetComponent<Ingredient>();
+        }
     }
 }
