@@ -21,8 +21,8 @@ namespace Assets.Scripts.Kitchen
         {
             inventory = new Inventory();
 
-            inventory.Add(new Ingredient("Dark Chocolate Chip"), 10);
-            Debug.Log(inventory.getItem("Dark Chocolate Chip").stack);
+            //inventory.Add(new Ingredient("Dark Chocolate Chip"), 10);
+            //Debug.Log(inventory.getItem("Dark Chocolate Chip").stack);
         }
 
         /// <summary>
