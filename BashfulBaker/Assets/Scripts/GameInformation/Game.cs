@@ -155,6 +155,8 @@ namespace Assets.Scripts.GameInformation
         }
 
         public static Pantry Pantry;
+        public static bool TutorialCompleted;
+
 
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
@@ -214,6 +216,7 @@ namespace Assets.Scripts.GameInformation
             if (Pantry == null)
             {
                 Pantry = new Pantry();
+                TutorialCompleted = false;
             }
 
             setUpScene();

@@ -46,6 +46,14 @@ namespace Assets.Scripts.Menus
 
         Image arrow;
 
+        [SerializeField]
+        Sprite tutorialCategorySprite;
+
+        [SerializeField]
+        Sprite nonTutorialCategorySprite;
+
+        public bool isTutorial;
+
         private enum PantryItemMode
         {
             Take,
@@ -64,7 +72,9 @@ namespace Assets.Scripts.Menus
             DishCategory
         }
 
+        [SerializeField]
         private PantryMenuState currentState;
+        [SerializeField]
         private PantryItemMode currentMode;
 
         /// <summary>
@@ -107,6 +117,81 @@ namespace Assets.Scripts.Menus
 
         private void setUpMenu()
         {
+            if (isTutorial)
+            {
+                if (currentState == PantryMenuState.CategoryMenu)
+                {
+                    leftCategoryPantry.SetActive(false);
+                    rightCategoryPantry.SetActive(false);
+                    topCategoryPantry.SetActive(false);
+                    bottomCategoryPantry.SetActive(false);
+                    categorySelectionPantry.SetActive(true);
+
+                    leftCategoryPlayer.SetActive(false);
+                    rightCategoryPlayer.SetActive(false);
+                    topCategoryPlayer.SetActive(false);
+                    bottomCategoryPlayer.SetActive(false);
+                    categorySelectionPlayer.SetActive(true);
+
+                    arrow.enabled = false;
+
+                    GameObject canvas = this.transform.Find("Canvas").gameObject;
+                    GameObject pantrySide = canvas.transform.Find("PantrySide").gameObject;
+                    GameObject categorySelect = pantrySide.transform.Find("CategorySelect").gameObject;
+                    Image img = categorySelect.transform.Find("PantryBackgroundImage").gameObject.GetComponent<Image>();
+                    img.sprite = tutorialCategorySprite;
+
+
+                    GameObject playerSide = canvas.transform.Find("PlayerSide").gameObject;
+                    categorySelect = playerSide.transform.Find("CategorySelect").gameObject;
+                    img = categorySelect.transform.Find("PantryBackgroundImage").gameObject.GetComponent<Image>();
+                    img.sprite = tutorialCategorySprite;
+
+                    Debug.Log("NANI???");
+
+                    return;
+                }
+                else if (currentState == PantryMenuState.RightCategory)
+                {
+                    leftCategoryPantry.SetActive(false);
+                    rightCategoryPantry.SetActive(true);
+                    topCategoryPantry.SetActive(false);
+                    bottomCategoryPantry.SetActive(false);
+                    categorySelectionPantry.SetActive(false);
+
+
+                    leftCategoryPlayer.SetActive(false);
+                    rightCategoryPlayer.SetActive(true);
+                    topCategoryPlayer.SetActive(false);
+                    bottomCategoryPlayer.SetActive(false);
+                    categorySelectionPlayer.SetActive(false);
+
+                    arrow.enabled = true;
+
+                    getMenuComponents();
+
+                    rightPantryText.text = Game.Pantry.inventory.Contains("Chocolate Chip Cookie Ingredients") ? Game.Pantry.inventory.getItem("Chocolate Chip Cookie Ingredients").stack.ToString() : "0";
+                    rightPlayerText.text = Game.Player.inventory.Contains("Chocolate Chip Cookie Ingredients") ? Game.Player.inventory.getItem("Chocolate Chip Cookie Ingredients").stack.ToString() : "0";
+
+                    bottomPantryText.text = "";
+                    bottomPlayerText.text = "";
+                    topPantryText.text = "";
+                    topPlayerText.text = "";
+                    leftPlayerText.text = "";
+                    leftPantryText.text = "";
+
+                }
+                if (currentMode == PantryItemMode.Store)
+                {
+                    arrow.sprite = leftArrowSprite;
+                }
+                else if (currentMode == PantryItemMode.Take)
+                {
+                    arrow.sprite = rightArrowSprite;
+                }
+
+                return;
+            }
 
             if (currentState == PantryMenuState.LeftCategory)
             {
@@ -159,6 +244,9 @@ namespace Assets.Scripts.Menus
                 arrow.enabled = true;
 
                 getMenuComponents();
+
+                topPantryText.text = Game.Pantry.inventory.Contains("Chocolate Chip Cookie Ingredients") ? Game.Pantry.inventory.getItem("Chocolate Chip Cookie Ingredients").stack.ToString() : "0";
+                topPlayerText.text = Game.Player.inventory.Contains("Chocolate Chip Cookie Ingredients") ? Game.Player.inventory.getItem("Chocolate Chip Cookie Ingredients").stack.ToString() : "0";
             }
             else if (currentState == PantryMenuState.TopCategory)
             {
@@ -320,68 +408,6 @@ namespace Assets.Scripts.Menus
            
         }
 
-        /*
-        private void setDish()
-        {
-            centralImage.color = new Color(1, 1, 1, 0);
-
-            topDish = null;
-            bottomDish = null;
-            leftDish = null;
-            rightDish = null;
-
-            leftText.text = "";
-            rightText.text = "";
-            topText.text = "";
-            bottomText.text = "";
-
-            List<Dish> items = Game.Player.inventory.getAllDishes();
-
-            maxPages = (items.Count / 4) + 1;
-
-            leftImage.color = new Color(1, 1, 1, 0);
-            rightImage.color = new Color(1, 1, 1, 0);
-            topImage.color = new Color(1, 1, 1, 0);
-            bottomImage.color = new Color(1, 1, 1, 0);
-
-
-            //left ingredient sprite
-            if (items.Count > (0 + menuPage * 4))
-            {
-                leftImage.sprite = items[0 + (menuPage * 4)].sprite;
-                leftImage.color = Color.white;
-                leftDish = (Dish)items[0 + (menuPage * 4)];
-                leftText.text = leftDish.stack.ToString();
-            }
-
-            //right ingredient sprite
-            if (items.Count > (1 + menuPage * 4))
-            {
-                leftImage.sprite = items[1 + (menuPage * 4)].sprite;
-                leftImage.color = Color.white;
-                rightDish = (Dish)items[1 + (menuPage * 4)];
-                rightText.text = rightDish.stack.ToString();
-            }
-
-            //Top ingredient sprite
-            if (items.Count > (2 + menuPage * 4))
-            {
-                leftImage.sprite = items[2 + (menuPage * 4)].sprite;
-                leftImage.color = Color.white;
-                topDish = (Dish)items[2 + (menuPage * 4)];
-                topText.text = topDish.stack.ToString();
-            }
-
-            //Bottom ingredient sprite
-            if (items.Count > (3 + menuPage * 4))
-            {
-                leftImage.sprite = items[3 + (menuPage * 4)].sprite;
-                leftImage.color = Color.white;
-                bottomDish = (Dish)items[3 + (menuPage * 4)];
-                bottomText.text = bottomDish.stack.ToString();
-            }
-        }
-        */
 
         /// <summary>
         /// Runs ~60 times a second.
@@ -392,6 +418,7 @@ namespace Assets.Scripts.Menus
             if( currentState== PantryMenuState.Initialized)
             {
                 currentState = PantryMenuState.CategoryMenu;
+                setUpMenu();
             }
         }
 
@@ -400,6 +427,56 @@ namespace Assets.Scripts.Menus
         /// </summary>
         private void checkForInput()
         {
+
+            if (isTutorial)
+            {
+                if(currentState== PantryMenuState.CategoryMenu)
+                {
+
+                    if (InputControls.StartPressed)
+                    {
+                        exitMenu();
+                    }
+                    if (InputControls.BPressed)
+                    {
+                        //right state
+                        currentState = PantryMenuState.RightCategory;
+                        setUpMenu();
+                    }
+                    return;
+                }
+                if(currentState== PantryMenuState.RightCategory)
+                {
+                    if (InputControls.BPressed)
+                    {
+                        //top
+                        if (currentMode == PantryItemMode.Take)
+                        {
+                            Game.Pantry.takeOne("Chocolate Chip Cookie Ingredients");
+                        }
+                        if (currentMode == PantryItemMode.Store)
+                        {
+                            Game.Pantry.storeOne("Chocolate Chip Cookie Ingredients");
+                        }
+                        setUpMenu();
+                    }
+                }
+
+                if (GameInput.InputControls.LeftTrigger > 0)
+                {
+                    currentMode = PantryItemMode.Store;
+                    setUpMenu();
+                }
+                if (GameInput.InputControls.RightTrigger > 0)
+                {
+                    currentMode = PantryItemMode.Take;
+                    setUpMenu();
+                }
+
+                return;
+            }
+
+
             if (currentState == PantryMenuState.CategoryMenu)
             {
                 
@@ -662,12 +739,14 @@ namespace Assets.Scripts.Menus
                     //top
                     if (currentMode == PantryItemMode.Take)
                     {
-
+                        Game.Pantry.takeOne("Chocolate Chip Cookie Ingredients");
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-
+                        Game.Pantry.storeOne("Chocolate Chip Cookie Ingredients");
                     }
+                    setUpMenu();
+
                 }
             }
             if(currentState == PantryMenuState.DishCategory)

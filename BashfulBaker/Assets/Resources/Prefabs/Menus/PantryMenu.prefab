@@ -963,6 +963,11 @@ MonoBehaviour:
   menuCursor: {fileID: 0}
   leftArrowSprite: {fileID: 21300000, guid: 528790cce901346478aa992fb8964e1d, type: 3}
   rightArrowSprite: {fileID: 21300000, guid: 198742ff1d9f722488cac4fcced9431c, type: 3}
+  tutorialCategorySprite: {fileID: 21300000, guid: 203f4ee09e8e69d4684c120e538a7f8d,
+    type: 3}
+  nonTutorialCategorySprite: {fileID: 21300000, guid: cb9120b7f9745f54fab513917b757c37,
+    type: 3}
+  isTutorial: 0
 --- !u!1 &75624925405664269
 GameObject:
   m_ObjectHideFlags: 0
