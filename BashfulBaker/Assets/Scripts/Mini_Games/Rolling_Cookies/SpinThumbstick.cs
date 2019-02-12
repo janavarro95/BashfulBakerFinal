@@ -12,6 +12,7 @@ namespace Assets.Scripts.GameInput
         private float sumR, sumL;
         private int count;
         public GameObject[] cookies;
+        public GameObject[] buttons;
         // Start is called before the first frame update
         void Start()
         {
@@ -29,6 +30,10 @@ namespace Assets.Scripts.GameInput
             }
 
             this.GetComponent<SpriteRenderer>().enabled = true;
+
+            buttons[0].SetActive(true);
+            buttons[1].SetActive(true);
+            buttons[2].SetActive(false);
         }
 
         // Update is called once per frame
@@ -50,30 +55,43 @@ namespace Assets.Scripts.GameInput
                 }
                 startL = endL;
 
-                if (count >= 9 && InputControls.APressed)
-                {
-                    Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
-                    SceneManager.LoadScene("Kitchen");
-                }
 
-                if(sumR < 720 || sumL < 720)
+                if (sumR < 720 || sumL < 720)
                 {
-                    this.transform.rotation = new Quaternion(this.transform.rotation.x, this.transform.rotation.y, Mathf.Lerp(0f, 540, ((sumR < 720 ? sumR : 720) + (sumL < 720 ? sumL : 720))/1440f), this.transform.rotation.w);
+                    this.transform.rotation = new Quaternion(this.transform.rotation.x, this.transform.rotation.y, Mathf.Lerp(0f, 180f, ((sumR < 720f ? sumR : 720f) + (sumL < 720f ? sumL : 720f)) / 1440f), this.transform.rotation.w);
                 }
-                else if (InputControls.APressed)
+                else
                 {
-                    cookies[count++].SetActive(true);
-                    sumR = 0;
-                    sumL = 0;
-                    if (count == 8)
+                    buttons[0].SetActive(false);
+                    buttons[1].SetActive(false);
+                    buttons[2].SetActive(true);
+                    if (InputControls.APressed)
                     {
+                        cookies[count++].SetActive(true);
+                        if (count >= 8)
+                        {
+                            cookies[8].SetActive(true);
+                        }
+                        sumR = 0;
+                        sumL = 0;
                         this.GetComponent<SpriteRenderer>().enabled = false;
                     }
                 }
             }
             else if (InputControls.APressed)
             {
-                this.GetComponent<SpriteRenderer>().enabled = true;
+                if (count >= 8 && InputControls.APressed)
+                {
+                    Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+                    SceneManager.LoadScene("Kitchen");
+                }
+                else
+                {
+                    buttons[0].SetActive(true);
+                    buttons[1].SetActive(true);
+                    buttons[2].SetActive(false);
+                    this.GetComponent<SpriteRenderer>().enabled = true;
+                }
             }
         }
     }

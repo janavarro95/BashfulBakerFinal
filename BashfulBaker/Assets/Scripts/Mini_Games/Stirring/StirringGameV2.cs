@@ -12,6 +12,7 @@ namespace Assets.Scripts.GameInput
         private float Percent_Stirred;
         public int Count; 
         public Sprite completeIcon;
+        public GameObject[] buttons;
 
         // Start is called before the first frame update
         void Start()
@@ -21,7 +22,8 @@ namespace Assets.Scripts.GameInput
             Percent_Stirred = 0;
             Count = 0;
 
-
+            buttons[0].SetActive(true);
+            buttons[1].SetActive(false);
         }
 
         // Update is called once per frame
@@ -35,43 +37,56 @@ namespace Assets.Scripts.GameInput
             }
             Prev = Next;
 
-            if (Percent_Stirred >= 720 && InputControls.APressed)
+            if (Percent_Stirred >= 720 || Count >= 4)
             {
-                Count++;
-                Debug.Log(Count);
-                 if (Count == 1){
-                    GameObject Checkmark1 = new GameObject();
-                    Checkmark1.AddComponent<SpriteRenderer>();
-                    Checkmark1.GetComponent<SpriteRenderer>().sprite = completeIcon;
-                    Checkmark1.transform.position = new Vector3(-4.45f, 1.2f, 0);
-                    Checkmark1.layer = 1;
-                }
-                else if(Count ==2){
-                    GameObject Checkmark2 = new GameObject();
-                    Checkmark2.AddComponent<SpriteRenderer>();
-                    Checkmark2.GetComponent<SpriteRenderer>().sprite = completeIcon;
-                    Checkmark2.transform.position = new Vector3(-4.45f, .25f, 0);
-                    Checkmark2.layer = 1;
-                }
-                else if( Count == 3){
-                    GameObject Checkmark3 = new GameObject();
-                    Checkmark3.AddComponent<SpriteRenderer>();
-                    Checkmark3.GetComponent<SpriteRenderer>().sprite = completeIcon;
-                    Checkmark3.transform.position = new Vector3(-4.45f, -.85f, 0);
-                    Checkmark3.layer = 1;
-                }
-                else if (Count == 4){
-                    GameObject Checkmark4 = new GameObject();
-                    Checkmark4.AddComponent<SpriteRenderer>();
-                    Checkmark4.GetComponent<SpriteRenderer>().sprite = completeIcon;
-                    Checkmark4.transform.position = new Vector3(-4.45f, -1.9f, 0);
-                    Checkmark4.layer = 1;
-                } else if(Count == 5)
+                buttons[0].SetActive(false);
+                buttons[1].SetActive(true);
+                if (InputControls.APressed)
                 {
-                    Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
-                    SceneManager.LoadScene("Kitchen");
-                }
+                    buttons[0].SetActive(true);
+                    buttons[1].SetActive(false);
+                    Count++;
+                    Percent_Stirred = 0;
+                    Debug.Log(Count);
+                    if (Count == 1)
+                    {
+                        GameObject Checkmark1 = new GameObject();
+                        Checkmark1.AddComponent<SpriteRenderer>();
+                        Checkmark1.GetComponent<SpriteRenderer>().sprite = completeIcon;
+                        Checkmark1.transform.position = new Vector3(-4.45f, 1.2f, 0);
+                        Checkmark1.layer = 1;
+                    }
+                    else if (Count == 2)
+                    {
+                        GameObject Checkmark2 = new GameObject();
+                        Checkmark2.AddComponent<SpriteRenderer>();
+                        Checkmark2.GetComponent<SpriteRenderer>().sprite = completeIcon;
+                        Checkmark2.transform.position = new Vector3(-4.45f, .25f, 0);
+                        Checkmark2.layer = 1;
+                    }
+                    else if (Count == 3)
+                    {
+                        GameObject Checkmark3 = new GameObject();
+                        Checkmark3.AddComponent<SpriteRenderer>();
+                        Checkmark3.GetComponent<SpriteRenderer>().sprite = completeIcon;
+                        Checkmark3.transform.position = new Vector3(-4.45f, -.85f, 0);
+                        Checkmark3.layer = 1;
+                    }
+                    else if (Count == 4)
+                    {
+                        GameObject Checkmark4 = new GameObject();
+                        Checkmark4.AddComponent<SpriteRenderer>();
+                        Checkmark4.GetComponent<SpriteRenderer>().sprite = completeIcon;
+                        Checkmark4.transform.position = new Vector3(-4.45f, -1.9f, 0);
+                        Checkmark4.layer = 1;
+                    }
+                    else if (Count == 5)
+                    {
+                        Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+                        SceneManager.LoadScene("Kitchen");
+                    }
 
+                }
             }
         }
 

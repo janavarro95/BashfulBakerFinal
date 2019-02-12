@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class CookieMover : MonoBehaviour
 {
     public GameObject[] Cookies;
+    public GameObject[] buttons;
     private int c;
     // Start is called before the first frame update
     void Start()
@@ -18,14 +19,21 @@ public class CookieMover : MonoBehaviour
         {
             Cookies[x].SetActive(x < 8 ? true : false);
         }
+
+        buttons[0].SetActive(true);
+        buttons[1].SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if (Input.GetKeyDown((c < 4 ? KeyCode.Space : KeyCode.Tab)) || (c < 4 ?  InputControls.XPressed : InputControls.YPressed))
         {
+            if (c == 3)
+            {
+                buttons[0].SetActive(false);
+                buttons[1].SetActive(true);
+            }
             if (c < 8)
             {
                 Cookies[c++].SetActive(false);
