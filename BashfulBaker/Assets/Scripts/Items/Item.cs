@@ -24,7 +24,7 @@ public class Item {
 
     public int stack;
 
-    public Sprite sprite;
+    public Texture2D sprite;
 
     public Item()
     {
@@ -69,5 +69,11 @@ public class Item {
     public virtual Item clone()
     {
         return new Item(this.Name);
+    }
+
+
+    protected virtual void loadSpriteFromDisk()
+    {
+       
     }
 }

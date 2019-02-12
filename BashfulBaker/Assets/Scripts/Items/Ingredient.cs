@@ -24,5 +24,12 @@ namespace Assets.Scripts.Items
             return base.clone();
         }
 
+        protected override void loadSpriteFromDisk()
+        {
+            if (this.Name == "Dark Chocolate Chip")
+            {
+                //this.sprite= unity resources load
+            }
+        }
     }
 }
