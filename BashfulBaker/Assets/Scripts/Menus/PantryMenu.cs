@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.GameInformation;
+﻿using Assets.Scripts.Cooking.Recipes;
+using Assets.Scripts.GameInformation;
 using Assets.Scripts.GameInput;
 using Assets.Scripts.Items;
 using System;
@@ -170,8 +171,8 @@ namespace Assets.Scripts.Menus
 
                     getMenuComponents();
 
-                    rightPantryText.text = Game.Pantry.inventory.Contains("Chocolate Chip Cookie Ingredients") ? Game.Pantry.inventory.getItem("Chocolate Chip Cookie Ingredients").stack.ToString() : "0";
-                    rightPlayerText.text = Game.Player.inventory.Contains("Chocolate Chip Cookie Ingredients") ? Game.Player.inventory.getItem("Chocolate Chip Cookie Ingredients").stack.ToString() : "0";
+                    rightPantryText.text = Game.Pantry.getIngredientsCountForRecipes("Chocolate Chip Cookie").ToString();
+                    rightPlayerText.text = Game.Player.getIngredientsCountForRecipes("Chocolate Chip Cookie").ToString();
 
                     bottomPantryText.text = "";
                     bottomPlayerText.text = "";
@@ -452,11 +453,11 @@ namespace Assets.Scripts.Menus
                         //top
                         if (currentMode == PantryItemMode.Take)
                         {
-                            Game.Pantry.takeOne("Chocolate Chip Cookie Ingredients");
+                            Game.Pantry.takeOneRecipeSet("Chocolate Chip Cookie");
                         }
                         if (currentMode == PantryItemMode.Store)
                         {
-                            Game.Pantry.storeOne("Chocolate Chip Cookie Ingredients");
+                            Game.Pantry.storeOneRecipeSet("Chocolate Chip Cookie");
                         }
                         setUpMenu();
                     }
@@ -774,8 +775,6 @@ namespace Assets.Scripts.Menus
             Destroy(this.gameObject);
             Game.Menu = null;
         }
-
-
 
     }
 }

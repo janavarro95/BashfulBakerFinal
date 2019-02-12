@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Items;
+﻿using Assets.Scripts.Cooking.Recipes;
+using Assets.Scripts.GameInformation;
+using Assets.Scripts.Items;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -125,6 +127,22 @@ namespace Assets.Scripts.Player
             }
         }
 
+
+        public int getIngredientsCountForRecipes(string recipeName)
+        {
+            Dictionary<string, Recipe> recipes = Game.CookBook.getAllRecipes();
+
+            List<string> items = recipes[recipeName].itemsNeeded;
+            List<int> ingredientsNumberList = new List<int>();
+
+            foreach (string item in items)
+            {
+                int value = this.inventory.Contains(item) ? this.inventory.getItem(item).stack : 0;
+                ingredientsNumberList.Add(value);
+            }
+            int min = Convert.ToInt32(ingredientsNumberList.Min());
+            return min;
+        }
 
     }
 }

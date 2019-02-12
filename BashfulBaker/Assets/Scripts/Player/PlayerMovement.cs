@@ -108,13 +108,6 @@ public class PlayerMovement : MonoBehaviour {
                 playCharacterMovementAnimation(offset);
 
             }
-            else if (Game.IsMenuUp == true)
-            {
-                if (Assets.Scripts.GameInput.InputControls.StartPressed)
-                {
-                    Game.Menu.exitMenu();
-                }
-            }
         }
         else
         {
@@ -124,10 +117,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void checkForMenuOpening()
     {
-        if (Assets.Scripts.GameInput.InputControls.RightBumperPressed)
-        {
-            Menu.Instantiate<InventoryMenu>();
-        }
+       
     }
 
     private void playCharacterMovementAnimation(Vector3 offset)
