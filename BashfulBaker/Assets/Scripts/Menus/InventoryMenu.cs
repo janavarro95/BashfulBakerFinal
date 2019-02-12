@@ -267,7 +267,7 @@ namespace Assets.Scripts.Menus
             //left ingredient sprite
             if (items.Count > (0 + menuPage * 4))
             {
-                leftImage.sprite = items[0 + (menuPage * 4)].sprite;
+                leftImage.sprite = Sprite.Create(items[0 + (menuPage * 4)].sprite,leftImage.rectTransform.rect,leftImage.sprite.pivot);
                 leftImage.color = Color.white;
                 leftDish =(Dish)items[0 + (menuPage * 4)];
                 leftText.text = leftDish.stack.ToString();
@@ -276,8 +276,8 @@ namespace Assets.Scripts.Menus
             //right ingredient sprite
             if (items.Count > (1 + menuPage * 4))
             {
-                leftImage.sprite = items[1 + (menuPage * 4)].sprite;
-                leftImage.color = Color.white;
+                rightImage.sprite = Sprite.Create(items[1 + (menuPage * 4)].sprite, rightImage.rectTransform.rect, rightImage.sprite.pivot);
+                rightImage.color = Color.white;
                 rightDish = (Dish)items[1 + (menuPage * 4)];
                 rightText.text = rightDish.stack.ToString();
             }
@@ -285,8 +285,8 @@ namespace Assets.Scripts.Menus
             //Top ingredient sprite
             if (items.Count > (2 + menuPage * 4))
             {
-                leftImage.sprite = items[2 + (menuPage * 4)].sprite;
-                leftImage.color = Color.white;
+                topImage.sprite = Sprite.Create(items[2 + (menuPage * 4)].sprite, topImage.rectTransform.rect, topImage.sprite.pivot);
+                topImage.color = Color.white;
                 topDish = (Dish)items[2+ (menuPage * 4)];
                 topText.text = topDish.stack.ToString();
             }
@@ -294,8 +294,8 @@ namespace Assets.Scripts.Menus
             //Bottom ingredient sprite
             if (items.Count > (3 + menuPage * 4))
             {
-                leftImage.sprite = items[3 + (menuPage * 4)].sprite;
-                leftImage.color = Color.white;
+                bottomImage.sprite = Sprite.Create(items[3 + (menuPage * 4)].sprite, bottomImage.rectTransform.rect, bottomImage.sprite.pivot);
+                bottomImage.color = Color.white;
                 bottomDish = (Dish)items[3 + (menuPage * 4)];
                 bottomText.text = bottomDish.stack.ToString();
             }

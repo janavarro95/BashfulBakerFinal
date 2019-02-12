@@ -45,16 +45,10 @@ namespace Assets.Scripts.Kitchen
                 if (inventory.containsEnoughOf(I, amount))
                 {
 
-                    Debug.Log("BEFORE:" + this.inventory.getItem(I).stack);
-
-                    Debug.Log("CULPRATE HERE");
-
                     Item clone = this.inventory.getItem(I).clone();
                     clone.stack = amount;
 
                     GameInformation.Game.Player.inventory.Add(clone, amount);
-
-                    Debug.Log("After:" + this.inventory.getItem(I).stack);
                     this.inventory.removeAmount(I, amount);
                     return true;
                 }
@@ -92,8 +86,11 @@ namespace Assets.Scripts.Kitchen
             {
                 if (GameInformation.Game.Player.inventory.containsEnoughOf(ItemName, Amount))
                 {
+                    Item clone = GameInformation.Game.Player.inventory.getItem(ItemName).clone();
+                    clone.stack = Amount;
+                    
+                    inventory.Add(clone, Amount);
                     GameInformation.Game.Player.inventory.removeAmount(ItemName, Amount);
-                    inventory.Add(GameInformation.Game.Player.inventory.getItem(ItemName), Amount);
                     return true;
                 }
             }

@@ -37,6 +37,15 @@ namespace Assets.Scripts.Menus
         GameObject bottomCategoryPlayer;
 
 
+        [SerializeField]
+        Sprite leftArrowSprite;
+
+        [SerializeField]
+        Sprite rightArrowSprite;
+
+
+        Image arrow;
+
         private enum PantryItemMode
         {
             Take,
@@ -67,8 +76,9 @@ namespace Assets.Scripts.Menus
             GameObject canvas = this.transform.Find("Canvas").gameObject;
 
             GameObject pantrySide = canvas.transform.Find("PantrySide").gameObject;
-
             GameObject playerSide = canvas.transform.Find("PlayerSide").gameObject;
+            arrow = canvas.transform.Find("ArrowMode").gameObject.GetComponent<Image>();
+
 
             leftCategoryPantry = pantrySide.gameObject.transform.Find("LeftCategory").gameObject;
             rightCategoryPantry = pantrySide.gameObject.transform.Find("RightCategory").gameObject;
@@ -111,6 +121,7 @@ namespace Assets.Scripts.Menus
                 bottomCategoryPlayer.SetActive(false);
                 categorySelectionPlayer.SetActive(false);
 
+                arrow.enabled = true;
 
                 getMenuComponents();
 
@@ -144,6 +155,8 @@ namespace Assets.Scripts.Menus
                 bottomCategoryPlayer.SetActive(false);
                 categorySelectionPlayer.SetActive(false);
 
+                arrow.enabled = true;
+
                 getMenuComponents();
             }
             else if (currentState == PantryMenuState.TopCategory)
@@ -159,6 +172,8 @@ namespace Assets.Scripts.Menus
                 topCategoryPlayer.SetActive(true);
                 bottomCategoryPlayer.SetActive(false);
                 categorySelectionPlayer.SetActive(false);
+
+                arrow.enabled = true;
 
                 getMenuComponents();
 
@@ -188,6 +203,8 @@ namespace Assets.Scripts.Menus
                 bottomCategoryPlayer.SetActive(true);
                 categorySelectionPlayer.SetActive(false);
 
+                arrow.enabled = true;
+
                 getMenuComponents();
             }
             else if (currentState == PantryMenuState.CategoryMenu)
@@ -203,6 +220,9 @@ namespace Assets.Scripts.Menus
                 topCategoryPlayer.SetActive(false);
                 bottomCategoryPlayer.SetActive(false);
                 categorySelectionPlayer.SetActive(true);
+
+                arrow.enabled = false;
+
                 return;
             }
             else if(currentState == PantryMenuState.DishCategory)
@@ -218,7 +238,19 @@ namespace Assets.Scripts.Menus
                 topCategoryPlayer.SetActive(false);
                 bottomCategoryPlayer.SetActive(false);
                 categorySelectionPlayer.SetActive(false);
+
+                arrow.enabled = false;
             }
+
+            if(currentMode== PantryItemMode.Store)
+            {
+                arrow.sprite = leftArrowSprite;
+            }
+            else if(currentMode == PantryItemMode.Take)
+            {
+                arrow.sprite = rightArrowSprite;
+            }
+
         }
 
         private void getMenuComponents()
@@ -394,6 +426,7 @@ namespace Assets.Scripts.Menus
                 {
                     exitMenu();
                 }
+                return;
             }
 
             if (currentState == PantryMenuState.TopCategory)
@@ -554,19 +587,11 @@ namespace Assets.Scripts.Menus
                     if (currentMode == PantryItemMode.Take)
                     {
                         Game.Pantry.takeOne("Dark Chocolate Chip");
-
-                        if(Game.Player.inventory.getItem("Dark Chocolate Chip") == null)
-                        {
-                            Debug.Log("NULLLLLLLL");
-                        }
-
-                        Debug.Log("OK THIS IS IS"+Game.Player.inventory.getItem("Dark Chocolate Chip").stack);
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-                        //Game.Pantry.storeOne("Dark Chocolate Chip");
+                        Game.Pantry.storeOne("Dark Chocolate Chip");
                     }
-                    Debug.Log("HMMM HUNGRY");
                     setUpMenu();
                 }
                 if (InputControls.YPressed)
@@ -643,6 +668,17 @@ namespace Assets.Scripts.Menus
             if(currentState == PantryMenuState.DishCategory)
             {
                 return;
+            }
+
+            if (GameInput.InputControls.LeftTrigger>0)
+            {
+                currentMode = PantryItemMode.Store;
+                setUpMenu();
+            }
+            if (GameInput.InputControls.RightTrigger>0)
+            {
+                currentMode = PantryItemMode.Take;
+                setUpMenu();
             }
         }
 
