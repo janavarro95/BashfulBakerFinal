@@ -554,6 +554,13 @@ namespace Assets.Scripts.Menus
                     if (currentMode == PantryItemMode.Take)
                     {
                         Game.Pantry.takeOne("Dark Chocolate Chip");
+
+                        if(Game.Player.inventory.getItem("Dark Chocolate Chip") == null)
+                        {
+                            Debug.Log("NULLLLLLLL");
+                        }
+
+                        Debug.Log("OK THIS IS IS"+Game.Player.inventory.getItem("Dark Chocolate Chip").stack);
                     }
                     if (currentMode == PantryItemMode.Store)
                     {

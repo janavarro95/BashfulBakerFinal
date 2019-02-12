@@ -132,7 +132,6 @@ namespace Assets.Scripts.Items
                 if (this.items[ItemName].stack <= 0)
                 {
                     this.items.Remove(ItemName);
-                    Debug.Log("HMM BEING REMOVED????");
                 }
 
                 return true;
@@ -167,6 +166,7 @@ namespace Assets.Scripts.Items
             else
             {
                 this.items[I.Name].addToStack(amount);
+                Debug.Log("STACKY SIZE:"+this.items[I.Name].stack);
             }
         }
 

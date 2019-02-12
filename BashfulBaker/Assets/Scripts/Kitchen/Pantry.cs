@@ -16,7 +16,7 @@ namespace Assets.Scripts.Kitchen
         {
             inventory = new Inventory();
 
-            inventory.Add(Ingredient.LoadIngredientFromPrefab("Dark Chocolate Chip"), 10);
+            inventory.Add(new Ingredient("Dark Chocolate Chip"), 10);
             Debug.Log(inventory.getItem("Dark Chocolate Chip").stack);
         }
 
@@ -55,7 +55,7 @@ namespace Assets.Scripts.Kitchen
                     GameInformation.Game.Player.inventory.Add(clone, amount);
 
                     Debug.Log("After:" + this.inventory.getItem(I).stack);
-                    inventory.removeAmount(I, amount);
+                    this.inventory.removeAmount(I, amount);
                     return true;
                 }
             }

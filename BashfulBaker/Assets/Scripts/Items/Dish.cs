@@ -14,24 +14,22 @@ namespace Assets.Scripts.Items
 
         public Dish() : base()
         {
-
+            ingredients = new List<Item>();
         }
 
         public Dish(string DishName): base(DishName)
         {
-
+            ingredients = new List<Item>();
         }
 
-        public override GameObject loadFromPrefab()
+        public Dish(string DishName, List<Item> Ingredients):base(DishName)
         {
-            string path =Path.Combine(Path.Combine("Prefabs", "Dishes"), this.Name);
-            return (GameObject)Resources.Load(path, typeof(GameObject));
+            this.ingredients = Ingredients;
         }
 
-        public static GameObject LoadDishFromPrefab(string ItemName)
+        public override Item clone()
         {
-            string path = Path.Combine(Path.Combine("Prefabs", "Dishes"), ItemName);
-            return (GameObject)Resources.Load(path, typeof(GameObject));
+            return new Dish(this.Name, this.ingredients);
         }
     }
 }
