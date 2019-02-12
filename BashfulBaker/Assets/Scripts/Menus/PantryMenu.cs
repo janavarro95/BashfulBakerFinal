@@ -447,38 +447,38 @@ namespace Assets.Scripts.Menus
                 {
                     //bottom state
 
-                    if(currentMode== PantryItemMode.Take)
+                    if (currentMode == PantryItemMode.Take)
                     {
-
+                        Game.Pantry.takeOne("Ginger");
                     }
-                    if(currentMode== PantryItemMode.Store)
+                    if (currentMode == PantryItemMode.Store)
                     {
-
+                        Game.Pantry.storeOne("Ginger");
                     }
 
                 }
                 if (InputControls.BPressed)
                 {
-                    //right state
                     if (currentMode == PantryItemMode.Take)
                     {
-
+                        Game.Pantry.takeOne("Matcha");
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-
+                        Game.Pantry.storeOne("Matcha");
                     }
                 }
                 if (InputControls.XPressed)
                 {
                     //left
+                    //left
                     if (currentMode == PantryItemMode.Take)
                     {
-
+                        Game.Pantry.takeOne("Cinnamon");
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-
+                        Game.Pantry.storeOne("Cinnamon");
                     }
                 }
                 if (InputControls.YPressed)
@@ -486,11 +486,11 @@ namespace Assets.Scripts.Menus
                     //top
                     if (currentMode == PantryItemMode.Take)
                     {
-
+                        Game.Pantry.takeOne("Cocoa");
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-
+                        Game.Pantry.storeOne("Cocoa");
                     }
                 }
             }
@@ -563,27 +563,27 @@ namespace Assets.Scripts.Menus
                 }
                 if (InputControls.APressed)
                 {
-                    //bottom state
+                    //left
                     if (currentMode == PantryItemMode.Take)
                     {
-
+                        Game.Pantry.takeOne("Mint Chocolate Chip");
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-
+                        Game.Pantry.storeOne("Mint Chocolate Chip");
                     }
                     //setUpMenu();
                 }
                 if (InputControls.BPressed)
                 {
-                    //right state
+                    //left
                     if (currentMode == PantryItemMode.Take)
                     {
-
+                        Game.Pantry.takeOne("White Chocolate Chip");
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-
+                        Game.Pantry.storeOne("Whitex Chocolate Chip");
                     }
                 }
                 if (InputControls.XPressed)
@@ -601,14 +601,14 @@ namespace Assets.Scripts.Menus
                 }
                 if (InputControls.YPressed)
                 {
-                    //top
+                    //left
                     if (currentMode == PantryItemMode.Take)
                     {
-
+                        Game.Pantry.takeOne("Milk Chocolate Chip");
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-
+                        Game.Pantry.storeOne("Milk Chocolate Chip");
                     }
                 }
             }

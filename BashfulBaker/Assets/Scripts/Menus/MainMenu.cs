@@ -97,5 +97,10 @@ namespace Assets.Scripts.Menus
             Menu.Instantiate<OptionsMenu>();
             Destroy(this.gameObject); //necessary to remove the main menu from the screen.
         }
+
+        public void creditsButtonClick()
+        {
+            Debug.Log("ADD IN CREDITS!");
+        }
     }
 }
