@@ -740,11 +740,11 @@ namespace Assets.Scripts.Menus
                     //top
                     if (currentMode == PantryItemMode.Take)
                     {
-                        Game.Pantry.takeOne("Chocolate Chip Cookie Ingredients");
+                        Game.Pantry.takeOneRecipeSet("Chocolate Chip Cookie");
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-                        Game.Pantry.storeOne("Chocolate Chip Cookie Ingredients");
+                        Game.Pantry.storeOneRecipeSet("Chocolate Chip Cookie");
                     }
                     setUpMenu();
 
