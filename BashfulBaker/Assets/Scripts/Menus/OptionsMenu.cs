@@ -48,6 +48,23 @@ namespace Assets.Scripts.Menus
 
             menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
             Game.Menu = this;
+
+            setUpForSnapping();
+        }
+
+        public override void setUpForSnapping()
+        {
+            musicSlider.setNeighbors(null, null, null, sfxSlider);
+            sfxSlider.setNeighbors(null, null, musicSlider, muteToggle);
+            muteToggle.setNeighbors(null, null, sfxSlider, exitButton);
+            exitButton.setNeighbors(null, null, muteToggle, null);
+            this.selectedComponent = musicSlider;
+            menuCursor.snapToCurrentComponent();
+        }
+
+        public override bool snapCompatible()
+        {
+            return true;
         }
 
         public override void Update()

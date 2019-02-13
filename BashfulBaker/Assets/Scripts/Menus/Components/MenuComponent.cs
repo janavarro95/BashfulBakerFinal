@@ -30,6 +30,17 @@ namespace Assets.Scripts.Menus.Components
             bottomNeighbor = Bottom;
         }
 
+        public void snapToCurrentComponent()
+        {
+            if (Game.Menu.menuCursor != null)
+            {
+                if (Game.Menu.selectedComponent != null)
+                {
+                    Game.Menu.menuCursor.gameObject.GetComponent<RectTransform>().position = Game.Menu.selectedComponent.unityObject.transform.position;
+                }
+            }
+        }
+
         public MenuComponent snapToNextComponent(Enums.FacingDirection NextDirection)
         {
             if (Game.Menu.menuCursor != null)

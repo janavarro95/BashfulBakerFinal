@@ -45,9 +45,9 @@ namespace Assets.Scripts.Menus
 
             menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
             Game.Menu = this;
-            this.selectedComponent = startButton;
 
             setUpForSnapping();
+
         }
 
         public override void setUpForSnapping()
@@ -57,6 +57,9 @@ namespace Assets.Scripts.Menus
             optionsButton.setNeighbors(startButton, saveLoadButton, null, null);
             saveLoadButton.setNeighbors(optionsButton, quitButton, null, null);
             creditsButton.setNeighbors(quitButton, null, null, null);
+            this.selectedComponent = startButton;
+            menuCursor.snapToCurrentComponent();
+
         }
 
         public override bool snapCompatible()

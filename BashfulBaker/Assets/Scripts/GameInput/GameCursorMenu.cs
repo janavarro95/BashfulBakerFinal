@@ -61,10 +61,9 @@ namespace Assets.Scripts.GameInput
             if (Game.Menu.snapCompatible() == true)
             {
 
-                Vector3 delta = new Vector3(GameInput.InputControls.RightJoystickHorizontal, GameInput.InputControls.RightJoystickVertical, 0) * mouseMovementSpeed;
+                Vector3 delta = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * mouseMovementSpeed;
                 if (canSnapToNextSpot)
                 {
-                    Debug.Log("SNAPPY!");
                     if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
                     {
                         if (delta.x < -snapSensitivity)
@@ -125,6 +124,18 @@ namespace Assets.Scripts.GameInput
                     movedByCursor = true;
                     timer.restart();
                     isVisible = true;
+                }
+            }
+        }
+
+
+        public void snapToCurrentComponent()
+        {
+            if (Game.Menu.menuCursor != null)
+            {
+                if (Game.Menu.selectedComponent != null)
+                {
+                    this.gameObject.GetComponent<RectTransform>().position = Game.Menu.selectedComponent.unityObject.transform.position;
                 }
             }
         }
