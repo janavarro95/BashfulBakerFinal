@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameInformation;
 using Assets.Scripts.GameInput;
+using Assets.Scripts.Menus.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,15 @@ namespace Assets.Scripts.Menus
     public class OptionsMenu:Menu
     {
         [SerializeField]
-        Button exitButton;
+        MenuComponent exitButton;
 
         [SerializeField]
-        Slider sfxSlider;
+        SliderComponent sfxSlider;
         [SerializeField]
-        Slider musicSlider;
+        SliderComponent musicSlider;
 
         [SerializeField]
-        Toggle muteToggle;
+        ToggleComponent muteToggle;
 
         public override void Start()
         {
@@ -34,12 +35,12 @@ namespace Assets.Scripts.Menus
             Canvas actualCanvas = canvas.GetComponent<Canvas>();
             actualCanvas.worldCamera = Camera.main;
 
-            exitButton = canvas.transform.Find("QuitButton").gameObject.GetComponent<Button>();
+            exitButton =new MenuComponent(canvas.transform.Find("QuitButton").gameObject.GetComponent<Button>());
 
-            sfxSlider = canvas.transform.Find("SFXSlider").gameObject.GetComponent<Slider>();
-            musicSlider = canvas.transform.Find("MusicSlider").gameObject.GetComponent<Slider>();
+            sfxSlider = new SliderComponent(canvas.transform.Find("SFXSlider").gameObject.GetComponent<Slider>());
+            musicSlider = new SliderComponent(canvas.transform.Find("MusicSlider").gameObject.GetComponent<Slider>());
 
-            muteToggle = canvas.transform.Find("MuteToggle").gameObject.GetComponent<Toggle>();
+            muteToggle =new ToggleComponent(canvas.transform.Find("MuteToggle").gameObject.GetComponent<Toggle>());
 
             sfxSlider.value = Game.Options.sfxVolume;
             musicSlider.value = Game.Options.musicVolume;
@@ -78,7 +79,7 @@ namespace Assets.Scripts.Menus
         /// </summary>
         private void checkForSliderUpdate()
         {
-            if (musicSlider == EventSystem.current.currentSelectedGameObject)
+            if (musicSlider.gameObject == EventSystem.current.currentSelectedGameObject)
             {
                 float sliderChange = Input.GetAxis("Horizontal");
                 float sliderValue = musicSlider.value;
@@ -90,7 +91,7 @@ namespace Assets.Scripts.Menus
                 musicSlider.value = sliderValue;
             }
 
-            if (sfxSlider == EventSystem.current.currentSelectedGameObject)
+            if (sfxSlider.gameObject == EventSystem.current.currentSelectedGameObject)
             {
                 float sliderChange = Input.GetAxis("Horizontal");
                 float sliderValue = sfxSlider.value;
