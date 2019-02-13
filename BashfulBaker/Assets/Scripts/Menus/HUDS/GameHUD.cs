@@ -24,18 +24,15 @@ namespace Assets.Scripts.Menus.HUDS
         {
             Game.HUD = this;
             DontDestroyOnLoad(this.gameObject);
+            Game.HUD.showHUD = true;
+            Game.HUD.showInventory = true;
+            Game.HUD.showTimer = true;
         }
 
         public override void Start()
         {
-
-            Game.HUD.showHUD = true;
-            Game.HUD.showInventory = true;
-            Game.HUD.showTimer = true;
             InventoryHUD = this.gameObject.transform.Find("InventoryHUD").gameObject.GetComponent<HUD>();
             TimerHUD = this.gameObject.transform.Find("TimerHUD").gameObject.GetComponent<TimerHUD>();
-
-            
         }
 
         public override void Update()

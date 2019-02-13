@@ -301,7 +301,13 @@ namespace Assets.Scripts.GameInformation
                 SceneManager.LoadScene("Kitchen");
                 Debug.Log("Loading kitchen scene from the Game.cs script!");
 
-                StartNewTimerPhase(2, 0);
+                //StartNewTimerPhase(2, 0);
+
+                if (Game.TutorialCompleted == false)
+                {
+                    (HUD as GameHUD).showInventory = false;
+                }
+
             }
 
             if (ScreenTransitions.shouldFadeInAfterWarp)

@@ -121,6 +121,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             Menu.Instantiate<GameMenu>();
         }
+        if (Assets.Scripts.GameInput.InputControls.RightBumperPressed)
+        {
+            //Menu.Instantiate<InventoryMenu>();
+        }
     }
 
     private void playCharacterMovementAnimation(Vector3 offset)
