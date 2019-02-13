@@ -274,8 +274,6 @@ namespace Assets.Scripts.GameInformation
             //Game.Menu.exitMenu();
 
             Destroy(HUD.gameObject);
-
-            PhaseTimer.stop();
         }
 
         static void setUpScene()

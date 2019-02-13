@@ -30,13 +30,13 @@ namespace Assets.Scripts.Menus.Components
             bottomNeighbor = Bottom;
         }
 
-        public void snapToCurrentComponent()
+        public void snapToThisComponent()
         {
             if (Game.Menu.menuCursor != null)
             {
                 if (Game.Menu.selectedComponent != null)
                 {
-                    Game.Menu.menuCursor.gameObject.GetComponent<RectTransform>().position = Game.Menu.selectedComponent.unityObject.transform.position;
+                    Game.Menu.menuCursor.gameObject.GetComponent<RectTransform>().position = this.unityObject.transform.position;
                 }
             }
         }
