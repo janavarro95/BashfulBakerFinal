@@ -94,8 +94,8 @@ namespace Assets.Scripts.Menus
         /// </summary>
         public void optionsButtonClick()
         {
-            Menu.Instantiate<OptionsMenu>();
-            Destroy(this.gameObject); //necessary to remove the main menu from the screen.
+            Menu.Instantiate<OptionsMenu>(true);
+            //Destroy(this.gameObject); //necessary to remove the main menu from the screen.
         }
 
         public void creditsButtonClick()

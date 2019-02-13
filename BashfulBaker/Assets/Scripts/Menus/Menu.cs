@@ -38,27 +38,35 @@ namespace Assets.Scripts.Menus
             Instantiate<Menu>();
         }
 
-        public static void Instantiate<T>()
+        public static void Instantiate<T>(bool OverrideMenu=false)
         {
             if(typeof(T) == typeof(Menu))
             {
-                Instantiate("Menu");
+                Instantiate("Menu",OverrideMenu);
             }
             else if (typeof(T) == typeof(MainMenu))
             {
-                Instantiate("MainMenu");
+                Instantiate("MainMenu",OverrideMenu);
             }
             else if(typeof(T)== typeof(OptionsMenu))
             {
-                Instantiate("OptionsMenu");
+                Instantiate("OptionsMenu",OverrideMenu);
             }
             else if(typeof(T)== typeof(InventoryMenu))
             {
-                Instantiate("InventoryMenu");
+                Instantiate("InventoryMenu",OverrideMenu);
             }
             else if(typeof(T)== typeof(PantryMenu))
             {
-                Instantiate("PantryMenu");
+                Instantiate("PantryMenu",OverrideMenu);
+            }
+            else if (typeof(T) == typeof(GameMenu))
+            {
+                Instantiate("GameMenu", OverrideMenu);
+            }
+            else if (typeof(T) == typeof(ReturnToTitleConfirmationMenu))
+            {
+                Instantiate("ReturnToTitleConfirmationMenu", OverrideMenu);
             }
             else
             {

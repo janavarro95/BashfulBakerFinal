@@ -53,8 +53,8 @@ namespace Assets.Scripts.Menus
         {
             if (GameInput.GameCursorMenu.SimulateMousePress(exitButton))
             {
-                Debug.Log("HELLO");
-                this.exitMenu();
+                this.exitButtonClick();
+                return;
             }
 
             if (GameInput.GameCursorMenu.SimulateMousePress(sfxSlider))
@@ -103,22 +103,27 @@ namespace Assets.Scripts.Menus
             }
         }
 
+        public void exitButtonClick()
+        {
+            if (SceneManager.GetActiveScene().name == "MainMenu")
+            {
+                Debug.Log("HELLO?");
+                Menu.Instantiate<MainMenu>(true);
+            }
+            else
+            {
+                Debug.Log("NANI???");
+                Game.Menu = null;
+                base.exitMenu();
+            }
+        }
+
         /// <summary>
         /// What happens when the exit button is clicked.
         /// </summary>
         public override void exitMenu()
         {
-            if (SceneManager.GetActiveScene().name == "MainMenu")
-            {
-                Menu.Instantiate<MainMenu>();
-                base.exitMenu();
-                GameInformation.Game.Menu = null;
-            }
-            else
-            {
-                base.exitMenu();
-                GameInformation.Game.Menu = null;
-            }
+            base.exitMenu();
         }
 
         public void onSFXVolumeChanged()

@@ -117,7 +117,10 @@ public class PlayerMovement : MonoBehaviour {
 
     private void checkForMenuOpening()
     {
-       
+        if (Assets.Scripts.GameInput.InputControls.StartPressed)
+        {
+            Menu.Instantiate<GameMenu>();
+        }
     }
 
     private void playCharacterMovementAnimation(Vector3 offset)

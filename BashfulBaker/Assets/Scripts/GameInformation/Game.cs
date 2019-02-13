@@ -187,47 +187,95 @@ namespace Assets.Scripts.GameInformation
 
             if (GameLoaded == false)
             {
+
+
+                Debug.Log("SET UP GAME!");
+
                 if (Serializer.JSONSerializer == null) Serializer.JSONSerializer = new Utilities.Serialization.Serializer();
                 if (Cooking.Recipes.CookBook.CookingRecipes == null) Cooking.Recipes.CookBook.CookingRecipes = new CookBook();
                 if (QuestSystem.QuestManager.Quests == null) QuestSystem.QuestManager.Quests = new QuestManager();
                 if (player == null) player = new PlayerInfo();
 
                 gameLoaded = true;
+
+                if (SoundManager == null)
+                {
+                    string soundManagerPath = Path.Combine(Path.Combine("Prefabs", "Misc"), "SoundManager");
+                    GameObject obj=Instantiate((GameObject)Resources.Load(soundManagerPath, typeof(GameObject)));
+                    SoundManager = obj.GetComponent<GameSoundManager>();
+                }
+
+                if (Options == null)
+                {
+                    Options = new GameOptions();
+                }
+
+                if (Pantry == null)
+                {
+                    Pantry = new Pantry();
+                    TutorialCompleted = false;
+                }
+
+                setUpScene();
+
+                SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+
             }
 
+            /*
             if (MouseCursor == null)
             {
                // string path = Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor");
                // _MouseCursor = Instantiate((GameObject)Resources.Load(path, typeof(GameObject))).GetComponent<GameCursor>();
                // GameObject.DontDestroyOnLoad(_MouseCursor);
             }
+            */
 
-            if (SoundManager == null)
-            {
-                string soundManagerPath = Path.Combine(Path.Combine("Prefabs", "Misc"), "SoundManager");
-                Instantiate((GameObject)Resources.Load(soundManagerPath, typeof(GameObject)));
-            }
+            
 
-            if (Options == null)
-            {
-                Options = new GameOptions();
-            }
 
-            if (Pantry == null)
-            {
-                Pantry = new Pantry();
-                TutorialCompleted = false;
-            }
-
-            setUpScene();
-
-            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
 
         }
 
         private static void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
             setUpScene();
+        }
+
+        public static void returnToMainMenu()
+        {
+
+            DestroyAllForGameCleanUp();
+
+            SceneManager.LoadScene("MainMenu");
+            InitializeAfterLoad();
+            setUpScene();
+            
+
+        }
+
+        private static void DestroyAllForGameCleanUp()
+        {
+            SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+
+            //Unload all info here.
+            gameLoaded = false;
+            Serializer.JSONSerializer = null;
+            QuestManager.Quests = null;
+
+            Destroy(Player.gameObject);
+            player = null;
+
+            Destroy(SoundManager.gameObject);
+            SoundManager = null;
+            Options = null;
+            Pantry = null;
+
+            //Game.Menu.exitMenu();
+
+            Destroy(HUD.gameObject);
+
+            PhaseTimer.stop();
         }
 
         static void setUpScene()
@@ -278,6 +326,14 @@ namespace Assets.Scripts.GameInformation
         {
             Debug.Log("WOOPS NO MORE TIME LEFT!!!");
         }
+
+        public static void QuitGame()
+        {
+            SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+            Application.Quit();
+        }
+
+
 
 #endif
 
