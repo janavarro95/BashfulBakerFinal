@@ -80,26 +80,31 @@ namespace Assets.Scripts.Menus
             if (GameCursorMenu.SimulateMousePress(startButton))
             {
                 this.startButtonClick();
+                return;
             }
 
             if (GameCursorMenu.SimulateMousePress(quitButton))
             {
                 this.exitButtonClick();
+                return;
             }
 
             if (GameCursorMenu.SimulateMousePress(optionsButton))
             {
                 this.optionsButtonClick();
+                return;
             }
 
             if (GameCursorMenu.SimulateMousePress(saveLoadButton))
             {
                 this.openSaveLoadSelectMenu();
+                return;
             }
 
             if (GameCursorMenu.SimulateMousePress(creditsButton))
             {
                 this.creditsButtonClick();
+                return;
             }
         }
         /// <summary>

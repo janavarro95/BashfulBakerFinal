@@ -61,7 +61,7 @@ namespace Assets.Scripts.GameInput
             if (Game.Menu.snapCompatible() == true)
             {
 
-                Vector3 delta = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * mouseMovementSpeed;
+                Vector3 delta = new Vector3(InputControls.LeftJoystickHorizontal, InputControls.LeftJoystickVertical, 0) * mouseMovementSpeed;
                 if (canSnapToNextSpot)
                 {
                     if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))

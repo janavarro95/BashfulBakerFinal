@@ -452,6 +452,21 @@ namespace Assets.Scripts.GameInput
             }
         }
 
+        public static float LeftJoystickHorizontal
+        {
+            get
+            {
+                return Input.GetAxis("Horizontal");
+            }
+        }
+
+        public static float LeftJoystickVertical
+        {
+            get
+            {
+                return Input.GetAxis("Vertical");
+            }
+        }
         /// <summary>
         /// Checks if L3 on the joystick has been clicked down.
         /// </summary>
