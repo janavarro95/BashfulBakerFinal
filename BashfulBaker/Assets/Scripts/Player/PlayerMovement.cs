@@ -123,7 +123,10 @@ public class PlayerMovement : MonoBehaviour {
         }
         if (Assets.Scripts.GameInput.InputControls.RightBumperPressed)
         {
-            //Menu.Instantiate<InventoryMenu>();
+            if (Game.HUD.showInventory == true)
+            {
+                Menu.Instantiate<InventoryMenu>();
+            }
         }
     }
 

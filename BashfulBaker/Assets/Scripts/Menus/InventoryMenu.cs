@@ -89,6 +89,8 @@ namespace Assets.Scripts.Menus
             //Game.Player.inventory.Add(Ingredient.LoadIngredientFromPrefab("Cherries",1));
             //menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
             Game.Menu = this;
+
+            Game.HUD.showInventory = false;
         }
 
         private void setUpMenu()
@@ -350,6 +352,7 @@ namespace Assets.Scripts.Menus
                 if (InputControls.StartPressed)
                 {
                     exitMenu();
+                    Game.HUD.showInventory = true;
                 }
             }
 
