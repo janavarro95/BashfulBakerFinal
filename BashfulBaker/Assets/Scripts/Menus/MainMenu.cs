@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameInformation;
 using Assets.Scripts.GameInput;
+using Assets.Scripts.Menus.Components;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,11 +19,16 @@ namespace Assets.Scripts.Menus
     public class MainMenu:Menu
     {
         [SerializeField]
-        Button startButton;
+        MenuComponent startButton;
         [SerializeField]
-        Button quitButton;
+        MenuComponent quitButton;
         [SerializeField]
-        Button optionsButton;
+        MenuComponent optionsButton;
+
+        [SerializeField]
+        MenuComponent creditsButton;
+        [SerializeField]
+        MenuComponent saveLoadButton;
 
         /// <summary>
         /// Instantiate all menu logic here.
@@ -30,14 +36,33 @@ namespace Assets.Scripts.Menus
         public override void Start()
         {
             GameObject canvas=this.transform.Find("Canvas").gameObject;
-            startButton = canvas.transform.Find("StartButton").gameObject.GetComponent<Button>();
-            quitButton = canvas.transform.Find("QuitButton").gameObject.GetComponent<Button>();
-            optionsButton = canvas.transform.Find("OptionsButton").gameObject.GetComponent<Button>();
+            startButton = new MenuComponent(canvas.transform.Find("StartButton").gameObject.GetComponent<Button>());
+            quitButton = new MenuComponent(canvas.transform.Find("QuitButton").gameObject.GetComponent<Button>());
+            optionsButton =new MenuComponent(canvas.transform.Find("OptionsButton").gameObject.GetComponent<Button>());
+
+            creditsButton = new MenuComponent(canvas.transform.Find("CreditsButton").gameObject.GetComponent<Button>());
+            saveLoadButton =new MenuComponent(canvas.transform.Find("SaveLoadButton").gameObject.GetComponent<Button>());
 
             menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
             Game.Menu = this;
+            this.selectedComponent = startButton;
+
+            setUpForSnapping();
         }
 
+        public override void setUpForSnapping()
+        {
+            startButton.setNeighbors(null, optionsButton, null, null);
+            quitButton.setNeighbors(saveLoadButton, creditsButton, null, null);
+            optionsButton.setNeighbors(startButton, saveLoadButton, null, null);
+            saveLoadButton.setNeighbors(optionsButton, quitButton, null, null);
+            creditsButton.setNeighbors(quitButton, null, null, null);
+        }
+
+        public override bool snapCompatible()
+        {
+            return true;
+        }
 
         /// <summary>
         /// Runs ~60 times a second.
@@ -62,6 +87,16 @@ namespace Assets.Scripts.Menus
             if (GameCursorMenu.SimulateMousePress(optionsButton))
             {
                 this.optionsButtonClick();
+            }
+
+            if (GameCursorMenu.SimulateMousePress(saveLoadButton))
+            {
+                this.openSaveLoadSelectMenu();
+            }
+
+            if (GameCursorMenu.SimulateMousePress(creditsButton))
+            {
+                this.creditsButtonClick();
             }
         }
         /// <summary>
@@ -101,6 +136,11 @@ namespace Assets.Scripts.Menus
         public void creditsButtonClick()
         {
             Debug.Log("ADD IN CREDITS!");
+        }
+
+        public void openSaveLoadSelectMenu()
+        {
+            Debug.Log("ADD IN Save/Load system!");
         }
     }
 }

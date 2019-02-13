@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameInformation;
 using Assets.Scripts.GameInput;
+using Assets.Scripts.Menus.Components;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +15,7 @@ namespace Assets.Scripts.Menus
     public class Menu:MonoBehaviour
     {
         public GameCursorMenu menuCursor;
-
+        public MenuComponent selectedComponent;
 
         public virtual void Start()
         {
@@ -32,6 +33,15 @@ namespace Assets.Scripts.Menus
             Destroy(this.gameObject);
         }
 
+        public virtual bool snapCompatible()
+        {
+            return false;
+        }
+
+        public virtual void setUpForSnapping()
+        {
+
+        }
 
         public static void Instantiate()
         {
