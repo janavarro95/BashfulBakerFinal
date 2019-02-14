@@ -3,18 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /// <summary>
-/// Attach this to where the audio listener is!
+/// The game's sound manager.
 /// </summary>
 public class GameSoundManager : MonoBehaviour
 {
 
+    /// <summary>
+    /// A dictionary to keep track of all of the currently playing audio sources.
+    /// </summary>
     public Dictionary<string, List<AudioSource>> audioSources = new Dictionary<string, List<AudioSource>>();
 
     // Start is called before the first frame update
     void Start()
     {
         Game.SoundManager = this;
+        DontDestroyOnLoad(this.gameObject);
 
     }
 
@@ -23,8 +28,12 @@ public class GameSoundManager : MonoBehaviour
     {
         cleanUpAudioSources();
 
+        this.gameObject.transform.position = Camera.main.transform.position;
     }
 
+    /// <summary>
+    /// Cleans up all of the unplaying audio sources from memory.
+    /// </summary>
     private void cleanUpAudioSources()
     {
 
@@ -61,7 +70,10 @@ public class GameSoundManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Plays an audio clip.
+    /// </summary>
+    /// <param name="clip"></param>
     public void playSound(AudioClip clip)
     {
         AudioSource source=this.gameObject.AddComponent<AudioSource>();
@@ -71,6 +83,7 @@ public class GameSoundManager : MonoBehaviour
         {
             audioSources[clip.name].Add(source);
             source.Play();
+            source.volume = Game.Options.muteVolume ? 0f : Game.Options.sfxVolume;
             return;
         }
         else
@@ -80,14 +93,59 @@ public class GameSoundManager : MonoBehaviour
             audioSources.Add(clip.name, sources);
         }
         source.Play();
+        source.volume = Game.Options.muteVolume ? 0f : Game.Options.sfxVolume;
     }
 
+    /// <summary>
+    /// Play a sound with a specific pitch.
+    /// </summary>
+    /// <param name="clip">The clip to play.</param>
+    /// <param name="pitch">The pitch for the clip.</param>
+    public void playSound(AudioClip clip, float pitch)
+    {
+        AudioSource source = this.gameObject.AddComponent<AudioSource>();
+        source.clip = clip;
+
+        if (audioSources.ContainsKey(clip.name))
+        {
+            audioSources[clip.name].Add(source);
+            source.pitch = pitch;
+            source.Play();
+            source.volume = Game.Options.muteVolume ? 0f : Game.Options.sfxVolume;
+            return;
+        }
+        else
+        {
+            List<AudioSource> sources = new List<AudioSource>();
+            sources.Add(source);
+            source.pitch = pitch;
+            audioSources.Add(clip.name, sources);
+        }
+        source.Play();
+        source.volume = Game.Options.muteVolume ? 0f : Game.Options.sfxVolume;
+    }
+
+    /// <summary>
+    /// Stops the currently playing sound.
+    /// </summary>
+    /// <param name="clip">The audio clip to stop playing.</param>
     public void stopSound(AudioClip clip)
     {
         if (audioSources.ContainsKey(clip.name))
         {
             audioSources[clip.name].Find(source => source.clip == clip).Stop();
         }
+    }
+
+    /// <summary>
+    /// Checks if a sound is playing.
+    /// </summary>
+    /// <param name="clip"></param>
+    /// <returns></returns>
+    public bool isSoundPlaying(AudioClip clip)
+    {
+        if (!this.audioSources.ContainsKey(clip.name)) return false;
+        return this.audioSources[clip.name].Count > 0;
     }
 
 }

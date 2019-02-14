@@ -1,10 +1,13 @@
 ﻿using Assets.Scripts.Cooking.Recipes;
 using Assets.Scripts.GameInput;
 using Assets.Scripts.Items;
+using Assets.Scripts.Kitchen;
 using Assets.Scripts.Menus;
+using Assets.Scripts.Menus.HUDS;
 using Assets.Scripts.Player;
 using Assets.Scripts.QuestSystem;
 using Assets.Scripts.QuestSystem.Quests;
+using Assets.Scripts.Utilities;
 using Assets.Scripts.Utilities.Serialization;
 using System;
 using System.Collections.Generic;
@@ -13,6 +16,7 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Menu = Assets.Scripts.Menus.Menu;
 
 namespace Assets.Scripts.GameInformation
@@ -36,6 +40,17 @@ namespace Assets.Scripts.GameInformation
         /// </summary>
         private static Assets.Scripts.Player.PlayerInfo player;
 
+        /// <summary>
+        /// Holds all of the information we need to keep track of on the player.
+        /// </summary>
+        public static Player.PlayerInfo Player
+        {
+            get
+            {
+                return player;
+            }
+        }
+
         private static Menu _Menu;
 
         public static Enums.GameState GameState;
@@ -47,6 +62,10 @@ namespace Assets.Scripts.GameInformation
             get
             {
                 return _MouseCursor;
+            }
+            set
+            {
+                _MouseCursor = value;
             }
         }
 
@@ -78,16 +97,6 @@ namespace Assets.Scripts.GameInformation
             }
         }
 
-        /// <summary>
-        /// Holds all of the information we need to keep track of on the player.
-        /// </summary>
-        public static Player.PlayerInfo Player
-        {
-            get
-            {
-                return player;
-            }
-        }
 
         /// <summary>
         /// Checks to see if the game and it's internal systems have been loaded or not.
@@ -126,6 +135,29 @@ namespace Assets.Scripts.GameInformation
 
         public static GameSoundManager SoundManager;
 
+        public static GameOptions Options;
+
+        public static GameHUD HUD;
+
+        public static Utilities.Timers.DeltaTimer PhaseTimer;
+
+        public static ScreenTransitions CurrentTransition;
+        public static bool IsScreenTransitionHappening
+        {
+            get
+            {
+                if (CurrentTransition == null) return false;
+                else
+                {
+                    return CurrentTransition.IsTransitioning;
+                }
+            }
+        }
+
+        public static Pantry Pantry;
+        public static bool TutorialCompleted;
+
+
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
         static Game()
@@ -143,24 +175,6 @@ namespace Assets.Scripts.GameInformation
         #endif
         static void Initialize()
         {
-            if (GameLoaded == false)
-            {
-                if (Serializer.JSONSerializer == null) Serializer.JSONSerializer = new Utilities.Serialization.Serializer();
-                if (Cooking.Recipes.CookBook.CookingRecipes == null) Cooking.Recipes.CookBook.CookingRecipes = new CookBook();
-                if (QuestSystem.QuestManager.Quests == null) QuestSystem.QuestManager.Quests = new QuestManager();
-                if (player == null) player = new PlayerInfo();
-                gameLoaded = true;
-
-                /*
-                if (player.inventory == null) Debug.Log("Why inventory null??");
-
-                player.inventory.Add(Dish.LoadDishFromPrefab("Example").GetComponent<Dish>());
-
-                CookingQuest quest=QuestManager.loadCookingQuest("Example");
-                quest.IsCompleted = true;
-                QuestManager.quests.Add(quest.generateDeliveryQuest());
-                */
-            }
         }
 
 #if UNITY_STANDALONE
@@ -170,16 +184,161 @@ namespace Assets.Scripts.GameInformation
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void InitializeAfterLoad()
         {
-            Debug.Log("AFTER");
 
-                if (MouseCursor == null)
+            if (GameLoaded == false)
+            {
+
+
+                Debug.Log("SET UP GAME!");
+
+                if (Serializer.JSONSerializer == null) Serializer.JSONSerializer = new Utilities.Serialization.Serializer();
+                if (Cooking.Recipes.CookBook.CookingRecipes == null) Cooking.Recipes.CookBook.CookingRecipes = new CookBook();
+                if (QuestSystem.QuestManager.Quests == null) QuestSystem.QuestManager.Quests = new QuestManager();
+                if (player == null) player = new PlayerInfo();
+
+                gameLoaded = true;
+
+                if (SoundManager == null)
                 {
-                    string path = Path.Combine("Assets", Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor" + ".prefab"));
-                    _MouseCursor = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject))).GetComponent<GameCursor>();
-
-                    GameObject.DontDestroyOnLoad(_MouseCursor);
+                    string soundManagerPath = Path.Combine(Path.Combine("Prefabs", "Misc"), "SoundManager");
+                    GameObject obj=Instantiate((GameObject)Resources.Load(soundManagerPath, typeof(GameObject)));
+                    SoundManager = obj.GetComponent<GameSoundManager>();
                 }
+
+                if (Options == null)
+                {
+                    Options = new GameOptions();
+                }
+
+                if (Pantry == null)
+                {
+                    Pantry = new Pantry();
+                    TutorialCompleted = false;
+                }
+
+                setUpScene();
+
+                SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+
+            }
+
+            /*
+            if (MouseCursor == null)
+            {
+               // string path = Path.Combine(Path.Combine("Prefabs", "Misc"), "GameCursor");
+               // _MouseCursor = Instantiate((GameObject)Resources.Load(path, typeof(GameObject))).GetComponent<GameCursor>();
+               // GameObject.DontDestroyOnLoad(_MouseCursor);
+            }
+            */
+
+            
+
+
+
         }
+
+        private static void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            setUpScene();
+        }
+
+        public static void returnToMainMenu()
+        {
+
+            DestroyAllForGameCleanUp();
+
+            SceneManager.LoadScene("MainMenu");
+            InitializeAfterLoad();
+            setUpScene();
+            
+
+        }
+
+        private static void DestroyAllForGameCleanUp()
+        {
+            SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+
+            //Unload all info here.
+            gameLoaded = false;
+            Serializer.JSONSerializer = null;
+            QuestManager.Quests = null;
+
+            Destroy(Player.gameObject);
+            player = null;
+
+            Destroy(SoundManager.gameObject);
+            SoundManager = null;
+            Options = null;
+            Pantry = null;
+
+            //Game.Menu.exitMenu();
+
+            Destroy(HUD.gameObject);
+        }
+
+        static void setUpScene()
+        {
+
+            if (SceneManager.GetActiveScene().name == "MainMenu")
+            {
+                Menus.Menu.Instantiate<MainMenu>();
+            }
+
+            if (SceneManager.GetActiveScene().name == "preloadScene")
+            {
+                string path = Path.Combine("Prefabs", "Player");
+                Player.gameObject = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)));
+                Player.gameObject.transform.position = new Vector3(-1.3f, .25f, 0);
+                DontDestroyOnLoad(Player.gameObject);
+
+                string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
+                Debug.Log(HUDPath);
+                Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
+
+
+                SceneManager.LoadScene("Kitchen");
+                Debug.Log("Loading kitchen scene from the Game.cs script!");
+
+                //StartNewTimerPhase(2, 0);
+
+                if (Game.TutorialCompleted == false)
+                {
+                    (HUD as GameHUD).showInventory = false;
+                }
+
+            }
+
+            if (ScreenTransitions.shouldFadeInAfterWarp)
+            {
+                ScreenTransitions.StartSceneTransition(ScreenTransitions.targetFadeInTime, "", ScreenTransitions.lastFadeInColor, ScreenTransitions.TransitionState.FadeIn);
+                ScreenTransitions.shouldFadeInAfterWarp = false;
+            }
+
+            //Debug.Log(SceneManager.GetActiveScene().name);
+        }
+
+
+        public static void StartNewTimerPhase(int Minutes,int Seconds)
+        {
+            int actualTime = (Minutes * 60) + Seconds;
+            PhaseTimer = new Utilities.Timers.DeltaTimer(actualTime, Enums.TimerType.CountDown, false, new Utilities.Delegates.VoidDelegate(phaseTimerRunsOut));
+            PhaseTimer.start();
+        }
+
+
+        private static void phaseTimerRunsOut()
+        {
+            Debug.Log("WOOPS NO MORE TIME LEFT!!!");
+        }
+
+        public static void QuitGame()
+        {
+            SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+            Application.Quit();
+        }
+
+
+
 #endif
 
         // Various other things follow...

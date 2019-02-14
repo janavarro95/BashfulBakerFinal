@@ -15,30 +15,32 @@ namespace Assets.Scripts.GameInput
     /// </summary>
     public class GameCursor:MonoBehaviour
     {
-        private Vector3 oldMousePos;
+        public Vector3 oldMousePos;
 
         public float mouseMovementSpeed = 0.05f;
 
         public bool movedByCursor;
 
-        private Utilities.Timers.CSTimer timer;
+        [SerializeField]
+        public Utilities.Timers.DeltaTimer timer;
 
-        private bool isVisible;
+        public bool isVisible;
 
         void Start()
         {
             oldMousePos = Camera.main.ScreenToWorldPoint((Vector2)UnityEngine.Input.mousePosition);
-            timer = new Utilities.Timers.CSTimer(5000, false, new System.Timers.ElapsedEventHandler(makeInvisible));
+            timer = new Utilities.Timers.DeltaTimer(5, Enums.TimerType.CountDown, false,new Utilities.Delegates.VoidDelegate(makeInvisible));
             timer.start();
         }
 
         void Update()
         {
+            timer.tick();
             setVisibility();
             Vector2 vec = Camera.main.ScreenToWorldPoint((Vector2)UnityEngine.Input.mousePosition);
             if (vec.Equals(oldMousePos))
             {
-                Vector3 delta= new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * mouseMovementSpeed;
+                Vector3 delta= new Vector3(GameInput.InputControls.RightJoystickHorizontal, GameInput.InputControls.RightJoystickVertical, 0) * mouseMovementSpeed;
                 this.gameObject.transform.position += delta;
                 if (delta.x == 0 && delta.y == 0) return;
                 if (Mathf.Abs(delta.x) > 0 || Mathf.Abs(delta.y) > 0) timer.restart();
@@ -47,6 +49,7 @@ namespace Assets.Scripts.GameInput
             }
             else
             {
+                if (Mathf.Abs(vec.x - oldMousePos.x) < .001 && Mathf.Abs(vec.y - oldMousePos.y) < .001) return; //stop random mouse sliding.
                 oldMousePos = vec;
                 this.gameObject.transform.position = vec;
                 movedByCursor = true;
@@ -178,14 +181,9 @@ namespace Assets.Scripts.GameInput
             this.GetComponent<SpriteRenderer>().enabled = isVisible;
         }
 
-        private void makeInvisible(object e, System.Timers.ElapsedEventArgs args)
+        private void makeInvisible()
         {
             isVisible = false;
-        }
-
-        private void OnDestroy()
-        {
-            this.timer.timer.Elapsed -= makeInvisible;
         }
     }
 }

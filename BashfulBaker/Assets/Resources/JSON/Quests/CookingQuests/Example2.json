@@ -1,0 +1,12 @@
+{
+  "requiredDishName": "Example2",
+  "personToDeliverTo": "Mr.Example2",
+  "wantedIngredients": [
+    "Strawberries"
+  ],
+  "unwantedIngredients": [],
+  "deliveryQuestPart": null,
+  "HasBeenCooked": false,
+  "HasBeenDelivered": false,
+  "SpecialMissionCompleted": false
+}

@@ -32,11 +32,18 @@ namespace Assets.Scripts.QuestSystem
         public QuestManager()
         {
             this.quests = new List<Quest>();
-
+            /*
             quests.Add(new CookingQuest("Example", "Mr.Example", new List<string>()
             {
                 "Raspberries"
             }, null));
+            */
+
+            quests.Add(new CookingQuest("Example2", "Mr.Example2", new List<string>()
+            {
+                "Strawberries"
+            }, null));
+            
             serializeCookingQuests();
 
             
@@ -83,9 +90,15 @@ namespace Assets.Scripts.QuestSystem
         /// <returns></returns>
         public CookingQuest generateCookingQuest(string ClientName, List<string> SpecialIngredientsWanted,List<string> UnwantedIngredients)
         {
-            List<KeyValuePair<string, Recipe>> recipes = Game.CookBook.getAllRecipes();
+            var recipes= Game.CookBook.getAllRecipes();
+            List<string> keys=new List<string>();
+            foreach(var recipe in recipes)
+            {
+                keys.Add(recipe.Key);
+            }
+
             int index = UnityEngine.Random.Range(0, recipes.Count - 1);
-            CookingQuest newQuest = new CookingQuest(recipes[index].Key, ClientName, SpecialIngredientsWanted,UnwantedIngredients);
+            CookingQuest newQuest = new CookingQuest(keys[index], ClientName, SpecialIngredientsWanted,UnwantedIngredients);
             return newQuest;
         }
 
@@ -98,7 +111,7 @@ namespace Assets.Scripts.QuestSystem
         /// <param name="UnwantedIngredients">A list containing the list of unwanted ingredients for say maybe preferences or alergies.</param>
         public CookingQuest generateCookingQuest(string RequestedDish, string ClientName, List<string> SpecialIngredientsWanted=null, List<string> UnwantedIngredients=null)
         {
-            List<KeyValuePair<string, Recipe>> recipes = Game.CookBook.getAllRecipes();
+            Dictionary<string,Recipe> recipes = Game.CookBook.getAllRecipes();
 
             //Sanity checking to make sure the recipe is a valid one.
             string recipeName = "";
@@ -123,7 +136,7 @@ namespace Assets.Scripts.QuestSystem
         /// <returns></returns>
         public CookingQuest loadCookingQuest(string fileName, bool addToQuestManager = true)
         {
-            string cookingQuests = Path.Combine(Path.Combine(Path.Combine(Application.dataPath, "JSON"), "Quests"),"CookingQuests");
+            string cookingQuests = Path.Combine(Path.Combine(Path.Combine(Path.Combine(Application.dataPath, "Resources"),"JSON"),"Quests"),"CookingQuests");
 
             string[] files = Directory.GetFiles(cookingQuests, "*.json");
             foreach (string quest in files)
@@ -141,7 +154,7 @@ namespace Assets.Scripts.QuestSystem
 
         private void serializeCookingQuests()
         {
-            string cookingQuests = Path.Combine(Path.Combine(Path.Combine(Application.dataPath, "JSON"), "Quests"), "CookingQuests");
+            string cookingQuests = Path.Combine(Path.Combine(Path.Combine(Path.Combine(Application.dataPath, "Resources"), "JSON"), "Quests"), "CookingQuests");
             Directory.CreateDirectory(cookingQuests);
 
 

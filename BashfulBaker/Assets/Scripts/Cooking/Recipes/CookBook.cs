@@ -124,7 +124,7 @@ namespace Assets.Scripts.Cooking.Recipes
         /// </summary>
         public void DeserializeRecipes()
         {
-            string recipesPath = Path.Combine(Path.Combine(Application.dataPath, "JSON"), "Recipes");
+            string recipesPath = Path.Combine(Path.Combine(Path.Combine(Application.dataPath,"Resources"), "JSON"), "Recipes");
             string[] folders = Directory.GetDirectories(recipesPath);
             foreach(string cookingStation in folders)
             {
@@ -155,14 +155,14 @@ namespace Assets.Scripts.Cooking.Recipes
         /// Gets a list of all of the recipes in the game.
         /// </summary>
         /// <returns></returns>
-        public List<KeyValuePair<string, Recipe>> getAllRecipes()
-        {
-            List<KeyValuePair<string, Recipe>> listOfRecipes = new List<KeyValuePair<string, Recipe>>();
+        public Dictionary<string, Recipe> getAllRecipes() { 
+        
+            Dictionary<string, Recipe> listOfRecipes = new Dictionary<string, Recipe>();
             foreach (KeyValuePair<Enums.CookingStation, Dictionary<string, Recipe>> book in this.Recipes)
             {
                 foreach(KeyValuePair<string,Recipe> recipe in book.Value)
                 {
-                    listOfRecipes.Add(recipe);
+                    listOfRecipes.Add(recipe.Key,recipe.Value);
                 }
             }
             return listOfRecipes;
