@@ -18,11 +18,11 @@ namespace Assets.Scripts.Utilities.Timers
         /// <summary>
         /// The current time on the timer.
         /// </summary>
-        public float currentTime;
+        public decimal currentTime;
         /// <summary>
         /// The time (in seconds) it should take this timer to tick to completion. Note it is a float so you can have fractions of a second.
         /// </summary>
-        public float maxTime;
+        public decimal maxTime;
 
         /// <summary>
         /// The type of timer this is.
@@ -44,13 +44,40 @@ namespace Assets.Scripts.Utilities.Timers
         public bool autoRestart;
 
         /// <summary>
+        /// Gets hours 
+        /// </summary>
+        public int hours
+        {
+            get
+            {
+                return (int)(currentTime / 3600);
+            }
+        }
+
+        public int minutes
+        {
+            get
+            {
+                return (int)(currentTime / 60);
+            }
+        }
+
+        public int seconds
+        {
+            get
+            {
+                return (int)(currentTime % 60);
+            }
+        }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="TimeToCompletion">How long it takes in seconds until the timer finishes.</param>
         /// <param name="Type">The type of timer this is.</param>
         /// <param name="AutoRestart">If the timer should automatically restart once it finishes.</param>
         /// <param name="OnFinished">What happens when the timer finishes.</param>
-        public DeltaTimer(float TimeToCompletion,TimerType Type,bool AutoRestart, VoidDelegate OnFinished=null)
+        public DeltaTimer(decimal TimeToCompletion,TimerType Type,bool AutoRestart, VoidDelegate OnFinished=null)
         {
             this.type = Type;
             this.autoRestart = AutoRestart;
@@ -185,7 +212,7 @@ namespace Assets.Scripts.Utilities.Timers
 
             if (type == TimerType.CountUp)
             {
-                currentTime += Time.deltaTime;
+                currentTime +=(decimal)Time.deltaTime;
                 if (currentTime >= maxTime)
                 {
                     //do something
@@ -196,7 +223,7 @@ namespace Assets.Scripts.Utilities.Timers
             }
             else if(type== TimerType.CountDown)
             {
-                currentTime -= Time.deltaTime;
+                currentTime -= (decimal)Time.deltaTime;
                 if (currentTime <= 0)
                 {
                     //do something.

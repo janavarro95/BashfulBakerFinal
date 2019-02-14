@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameInformation;
 using Assets.Scripts.GameInput;
+using Assets.Scripts.Menus.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,15 @@ namespace Assets.Scripts.Menus
     public class OptionsMenu:Menu
     {
         [SerializeField]
-        Button exitButton;
+        MenuComponent exitButton;
 
         [SerializeField]
-        Slider sfxSlider;
+        SliderComponent sfxSlider;
         [SerializeField]
-        Slider musicSlider;
+        SliderComponent musicSlider;
 
         [SerializeField]
-        Toggle muteToggle;
+        ToggleComponent muteToggle;
 
         public override void Start()
         {
@@ -34,12 +35,12 @@ namespace Assets.Scripts.Menus
             Canvas actualCanvas = canvas.GetComponent<Canvas>();
             actualCanvas.worldCamera = Camera.main;
 
-            exitButton = canvas.transform.Find("QuitButton").gameObject.GetComponent<Button>();
+            exitButton =new MenuComponent(canvas.transform.Find("QuitButton").gameObject.GetComponent<Button>());
 
-            sfxSlider = canvas.transform.Find("SFXSlider").gameObject.GetComponent<Slider>();
-            musicSlider = canvas.transform.Find("MusicSlider").gameObject.GetComponent<Slider>();
+            sfxSlider = new SliderComponent(canvas.transform.Find("SFXSlider").gameObject.GetComponent<Slider>());
+            musicSlider = new SliderComponent(canvas.transform.Find("MusicSlider").gameObject.GetComponent<Slider>());
 
-            muteToggle = canvas.transform.Find("MuteToggle").gameObject.GetComponent<Toggle>();
+            muteToggle =new ToggleComponent(canvas.transform.Find("MuteToggle").gameObject.GetComponent<Toggle>());
 
             sfxSlider.value = Game.Options.sfxVolume;
             musicSlider.value = Game.Options.musicVolume;
@@ -47,14 +48,31 @@ namespace Assets.Scripts.Menus
 
             menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
             Game.Menu = this;
+
+            setUpForSnapping();
+        }
+
+        public override void setUpForSnapping()
+        {
+            musicSlider.setNeighbors(null, null, null, sfxSlider);
+            sfxSlider.setNeighbors(null, null, musicSlider, muteToggle);
+            muteToggle.setNeighbors(null, null, sfxSlider, exitButton);
+            exitButton.setNeighbors(null, null, muteToggle, null);
+            this.selectedComponent = musicSlider;
+            menuCursor.snapToCurrentComponent();
+        }
+
+        public override bool snapCompatible()
+        {
+            return true;
         }
 
         public override void Update()
         {
             if (GameInput.GameCursorMenu.SimulateMousePress(exitButton))
             {
-                Debug.Log("HELLO");
-                this.exitMenu();
+                this.exitButtonClick();
+                return;
             }
 
             if (GameInput.GameCursorMenu.SimulateMousePress(sfxSlider))
@@ -78,7 +96,7 @@ namespace Assets.Scripts.Menus
         /// </summary>
         private void checkForSliderUpdate()
         {
-            if (musicSlider == EventSystem.current.currentSelectedGameObject)
+            if (musicSlider.gameObject == EventSystem.current.currentSelectedGameObject)
             {
                 float sliderChange = Input.GetAxis("Horizontal");
                 float sliderValue = musicSlider.value;
@@ -90,7 +108,7 @@ namespace Assets.Scripts.Menus
                 musicSlider.value = sliderValue;
             }
 
-            if (sfxSlider == EventSystem.current.currentSelectedGameObject)
+            if (sfxSlider.gameObject == EventSystem.current.currentSelectedGameObject)
             {
                 float sliderChange = Input.GetAxis("Horizontal");
                 float sliderValue = sfxSlider.value;
@@ -103,22 +121,27 @@ namespace Assets.Scripts.Menus
             }
         }
 
+        public void exitButtonClick()
+        {
+            if (SceneManager.GetActiveScene().name == "MainMenu")
+            {
+                Debug.Log("HELLO?");
+                Menu.Instantiate<MainMenu>(true);
+            }
+            else
+            {
+                Debug.Log("NANI???");
+                Game.Menu = null;
+                base.exitMenu();
+            }
+        }
+
         /// <summary>
         /// What happens when the exit button is clicked.
         /// </summary>
         public override void exitMenu()
         {
-            if (SceneManager.GetActiveScene().name == "MainMenu")
-            {
-                Menu.Instantiate<MainMenu>();
-                base.exitMenu();
-                GameInformation.Game.Menu = null;
-            }
-            else
-            {
-                base.exitMenu();
-                GameInformation.Game.Menu = null;
-            }
+            base.exitMenu();
         }
 
         public void onSFXVolumeChanged()

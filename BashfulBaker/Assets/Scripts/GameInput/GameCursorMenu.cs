@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.Menus.Components;
+using Assets.Scripts.Utilities.Timers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,24 @@ namespace Assets.Scripts.GameInput
 
         private RectTransform rect;
 
+        DeltaTimer snapTimer;
+        public float snapDelay = .2f;
+        public float snapSensitivity = .5f;
+
+        bool canSnapToNextSpot
+        {
+            get
+            {
+                if (snapTimer == null) return false;
+                else
+                {
+                    if (snapTimer.IsFinished) return true;
+                    else return false;
+                }
+            }
+        }
+
+
         void Start()
         {
             oldMousePos = Camera.main.ScreenToWorldPoint((Vector2)UnityEngine.Input.mousePosition);
@@ -25,30 +45,98 @@ namespace Assets.Scripts.GameInput
             timer.start();
             rect = this.gameObject.GetComponent<RectTransform>();
             Game.MouseCursor = this;
+            snapTimer = new DeltaTimer((decimal)snapDelay, Enums.TimerType.CountDown, false, null);
+            snapTimer.start();
+
         }
 
         void Update()
         {
-            timer.tick();
-            setVisibility();
+            //timer.tick();
+            snapTimer.tick();
+            //setVisibility();
             Vector2 vec = UnityEngine.Input.mousePosition;
-            if (vec.Equals(oldMousePos))
+
+
+            if (Game.Menu.snapCompatible() == true)
             {
-                Vector3 delta= new Vector3(GameInput.InputControls.RightJoystickHorizontal, GameInput.InputControls.RightJoystickVertical, 0) * mouseMovementSpeed;
-                this.rect.position += delta;
-                if (delta.x == 0 && delta.y == 0) return;
-                if (Mathf.Abs(delta.x) > 0 || Mathf.Abs(delta.y) > 0) timer.restart();
-                movedByCursor = false;
-                isVisible = true;
+
+                Vector3 delta = new Vector3(InputControls.LeftJoystickHorizontal, InputControls.LeftJoystickVertical, 0) * mouseMovementSpeed;
+                if (canSnapToNextSpot)
+                {
+                    if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+                    {
+                        if (delta.x < -snapSensitivity)
+                        {
+                            Game.Menu.selectedComponent.snapToNextComponent(Enums.FacingDirection.Left);
+                            movedByCursor = false;
+                            timer.restart();
+                            isVisible = true;
+                            snapTimer.restart();
+                        }
+                        else if(delta.x>snapSensitivity)
+                        {
+                            Game.Menu.selectedComponent.snapToNextComponent(Enums.FacingDirection.Right);
+                            movedByCursor = false;
+                            timer.restart();
+                            isVisible = true;
+                            snapTimer.restart();
+                        }
+                    }
+                    else
+                    {
+                        if (delta.y < -snapSensitivity)
+                        {
+                            Game.Menu.selectedComponent.snapToNextComponent(Enums.FacingDirection.Down);
+                            movedByCursor = false;
+                            timer.restart();
+                            isVisible = true;
+                            snapTimer.restart();
+                        }
+                        else if (delta.y > snapSensitivity)
+                        {
+                            Game.Menu.selectedComponent.snapToNextComponent(Enums.FacingDirection.Up);
+                            movedByCursor = false;
+                            timer.restart();
+                            isVisible = true;
+                            snapTimer.restart();
+                        }
+                    }
+                }
+
             }
             else
             {
-                if (Mathf.Abs(vec.x - oldMousePos.x) < .001 && Mathf.Abs(vec.y - oldMousePos.y) < .001) return; //stop random mouse sliding.
-                oldMousePos = vec;
-                this.rect.position = vec;
-                movedByCursor = true;
-                timer.restart();
-                isVisible = true;
+                if (vec.Equals(oldMousePos))
+                {
+                    Vector3 delta = new Vector3(GameInput.InputControls.RightJoystickHorizontal, GameInput.InputControls.RightJoystickVertical, 0) * mouseMovementSpeed;
+                    this.rect.position += delta;
+                    if (delta.x == 0 && delta.y == 0) return;
+                    if (Mathf.Abs(delta.x) > 0 || Mathf.Abs(delta.y) > 0) timer.restart();
+                    movedByCursor = false;
+                    isVisible = true;
+                }
+                else
+                {
+                    if (Mathf.Abs(vec.x - oldMousePos.x) < .001 && Mathf.Abs(vec.y - oldMousePos.y) < .001) return; //stop random mouse sliding.
+                    oldMousePos = vec;
+                    this.rect.position = vec;
+                    movedByCursor = true;
+                    timer.restart();
+                    isVisible = true;
+                }
+            }
+        }
+
+
+        public void snapToCurrentComponent()
+        {
+            if (Game.Menu.menuCursor != null)
+            {
+                if (Game.Menu.selectedComponent != null)
+                {
+                    this.gameObject.GetComponent<RectTransform>().position = Game.Menu.selectedComponent.unityObject.transform.position;
+                }
             }
         }
 
@@ -101,6 +189,15 @@ namespace Assets.Scripts.GameInput
             return false;
         }
 
+        public static bool CursorIntersectsRect(GameObject behavior)
+        {
+            if (GetWorldSapceRect(behavior.GetComponent<RectTransform>()).Overlaps(GetWorldSapceRect(Game.Menu.menuCursor.rect)))
+            {
+                return true;
+            }
+            return false;
+        }
+
         static Rect GetWorldSapceRect(RectTransform rt)
         {
             var r = rt.rect;
@@ -123,6 +220,15 @@ namespace Assets.Scripts.GameInput
             return false;
         }
 
+        public static bool MouseIntersectsRect(GameObject behavior)
+        {
+            if (UnityEngine.RectTransformUtility.RectangleContainsScreenPoint(behavior.GetComponent<RectTransform>(), Camera.main.ScreenToWorldPoint(Input.mousePosition)))
+            {
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Checks to see if the game's cursor can interact with the UI Element.
         /// </summary>
@@ -130,7 +236,7 @@ namespace Assets.Scripts.GameInput
         /// <returns></returns>
         public static bool CanCursorInteract(MonoBehaviour behavior)
         {
-            if (GameCursorMenu.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false)
+            if (GameCursorMenu.CursorIntersectsRect(behavior))
             {
                 return true;
             }
@@ -149,7 +255,7 @@ namespace Assets.Scripts.GameInput
             {
                 Debug.Log("BEHAVIOR IS NULL");
             }
-            if (GameCursorMenu.CursorIntersectsRect(behavior) && Game.MouseCursor.movedByCursor == false && GameInput.InputControls.APressed)
+            if (GameCursorMenu.CursorIntersectsRect(behavior) && GameInput.InputControls.APressed)
             {
                 return true;
             }
@@ -164,6 +270,74 @@ namespace Assets.Scripts.GameInput
                 return false;
             }
             
+        }
+
+        public static bool SimulateMousePress(MenuComponent behavior, bool useHardwareMouse = false)
+        {
+
+            return SimulateMousePress(behavior.unityObject);
+        }
+
+        public static bool SimulateMousePress(GameObject behavior, bool useHardwareMouse = false)
+        {
+            if (behavior == null)
+            {
+                Debug.Log("BEHAVIOR IS NULL");
+            }
+            if (GameCursorMenu.CursorIntersectsRect(behavior) && GameInput.InputControls.APressed)
+            {
+                return true;
+            }
+
+
+            else if (GameCursorMenu.MouseIntersectsRect(behavior) && Input.GetMouseButtonDown(0))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+
+        public static bool SimulateMouseHover(MonoBehaviour behavior, bool useHardwareMouse = false)
+        {
+            if (GameCursorMenu.CursorIntersectsRect(behavior))
+            {
+                return true;
+            }
+            else if (GameCursorMenu.MouseIntersectsRect(behavior))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        public static bool SimulateMouseHover(MenuComponent behavior, bool useHardwareMouse = false)
+        {
+            return SimulateMouseHover(behavior.unityObject);
+        }
+
+        public static bool SimulateMouseHover(GameObject obj, bool useHardwareMouse = false)
+        {
+            if (GameCursorMenu.CursorIntersectsRect(obj))
+            {
+                return true;
+            }
+            else if (GameCursorMenu.MouseIntersectsRect(obj))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>

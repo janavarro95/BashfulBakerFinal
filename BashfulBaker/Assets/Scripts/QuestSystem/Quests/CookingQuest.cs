@@ -60,7 +60,47 @@ namespace Assets.Scripts.QuestSystem.Quests
             }
         }
 
-       
+        public DeliveryQuest deliveryQuestPart;
+
+        /// <summary>
+        /// Checks if the dish associated with the quest has been completed.
+        /// </summary>
+        public bool HasBeenCooked {
+            get
+            {
+                return IsCompleted;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the dish associated with the quest has been delivered.
+        /// </summary>
+        public bool HasBeenDelivered
+        {
+            get
+            {
+                if (deliveryQuestPart == null) return false;
+                else
+                {
+                    return deliveryQuestPart.IsCompleted;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks if the special mission has been completed.
+        /// </summary>
+        public bool SpecialMissionCompleted
+        {
+            get
+            {
+                if (deliveryQuestPart == null) return false;
+                else
+                {
+                    return this.specialMissionCompleted();
+                }
+            }
+        }
 
         /// <summary>
         /// Base constructor.
@@ -142,7 +182,8 @@ namespace Assets.Scripts.QuestSystem.Quests
         {
             if (this.IsCompleted)
             {
-                return new DeliveryQuest(this.requiredDishName, this.personToDeliverTo);
+                this.deliveryQuestPart=new DeliveryQuest(this.requiredDishName, this.personToDeliverTo);
+                return this.deliveryQuestPart;
             }
             else return null;
         }
