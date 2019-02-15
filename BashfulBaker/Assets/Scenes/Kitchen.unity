@@ -462,7 +462,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 265374695}
-  - {fileID: 1083138369}
   - {fileID: 1816206804}
   - {fileID: 889083553}
   - {fileID: 750998072}
@@ -471,7 +470,7 @@ Transform:
   - {fileID: 2116706319}
   - {fileID: 1359320522}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &465704706
 GameObject:
@@ -1019,6 +1018,7 @@ MonoBehaviour:
   pressAToWarp: 0
   sceneToWarpTo: Bakery
   warpLocation: {x: -0.6, y: 1.5}
+  transitionTime: 0.5
 --- !u!1 &750998068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,7 +1141,7 @@ Transform:
   - {fileID: 2096039259}
   - {fileID: 547354526}
   m_Father: {fileID: 328492310}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &750998073
 MonoBehaviour:
@@ -1306,6 +1306,7 @@ MonoBehaviour:
   pressAToWarp: 0
   sceneToWarpTo: Outside
   warpLocation: {x: -5.65, y: -0.5}
+  transitionTime: 0.5
 --- !u!1 &775808433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,7 +1450,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 328492310}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &909521797
 GameObject:
@@ -6374,8 +6375,9 @@ GameObject:
   - component: {fileID: 1083138368}
   - component: {fileID: 1083138367}
   - component: {fileID: 1083138366}
-  - component: {fileID: 1083138365}
   - component: {fileID: 1083138364}
+  - component: {fileID: 1083138370}
+  - component: {fileID: 1083138365}
   m_Layer: 0
   m_Name: Jeb
   m_TagString: Untagged
@@ -6404,20 +6406,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 1083138363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 055a94ff4056b254eb71c043b9c654d7, type: 3}
+  m_Script: {fileID: 11500000, guid: cf624b53dbf04254abd732771df7f9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
+  jeb_animator: {fileID: 1083138370}
+  tutorial_lines_pt1:
     name: Jeb
     sentences:
-    - U CANT SEE ME
-    - Oi hello there Dave!
-    - I mean Dane....How are you?!
-    - I cant wait to see your skills as a delivery boy, but first I must ask you......
-    - 'Could you make me a cookie? Its been a while since someone did something nice
-      that like that for me.
+    - 'U CANT SEE ME
 
 '
+    - Hello there Dave!
+    - 'Oh my... DANE! Not Dave! How silly of me! '
+    - How are you my boy?
+    - I hope you are settling in nicely.
+    - I was just closing up for the night, but I do have a quick job for you.
+  tutorial_lines_pt2:
+    name: Jeb
+    sentences:
+    - Today was a pretty quiet day for the Bakery.
+    - ' But we got one last delivery to do!'
+    - A regular of ours, Silvia, ordered a basket of Chocolate Chip Cookies..
+    - She heard I hired a new delivery boy, and was so jazzed to meet you!
+    - The cookies are in the back ready to go!
+    - Take them to the house with the BLUE ROOF at the end of the road!
+  tutorial_lines_pt3:
+    name: Jeb
+    sentences:
+    - 'Oh yes one last reminder! '
+    - 'Be careful of the Town Watch! '
+    - They are an outstanding group, but they work up a mighty appetite!
+    - Good night Dane!
+  canCount: 0
 --- !u!50 &1083138366
 Rigidbody2D:
   serializedVersion: 4
@@ -6452,7 +6472,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.12926894}
+  m_Offset: {x: 0.0026195943, y: -0.31779712}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6463,7 +6483,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.3814621}
+  m_Size: {x: 0.3566751, y: 0.75851846}
   m_EdgeRadius: 0
 --- !u!212 &1083138368
 SpriteRenderer:
@@ -6502,7 +6522,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d5f7ce01064b8e648b72f1a6d462ab0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: db9575b13dbb15f4da1b2f32bf172b08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6521,12 +6541,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083138363}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.68, y: -1.9239998, z: -1.5}
+  m_LocalPosition: {x: -3.57, y: -4, z: 1}
   m_LocalScale: {x: 2.9650965, y: 2.9650965, z: 2.9650965}
   m_Children: []
-  m_Father: {fileID: 328492310}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1083138370
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083138363}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13a02d137ff06ac4fa64058d1ccb9170, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1113120436
 GameObject:
   m_ObjectHideFlags: 0
@@ -6741,7 +6780,7 @@ Transform:
   - {fileID: 1895394945}
   - {fileID: 1580836513}
   m_Father: {fileID: 328492310}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1258681881
 MonoBehaviour:
@@ -7147,7 +7186,7 @@ Transform:
   m_LocalScale: {x: 2.0058918, y: 1.9971575, z: 1}
   m_Children: []
   m_Father: {fileID: 328492310}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1355736409
 BoxCollider2D:
@@ -7245,7 +7284,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 328492310}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1359320523
 MonoBehaviour:
@@ -8275,7 +8314,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 328492310}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1894876671
 GameObject:
@@ -8772,7 +8811,7 @@ Transform:
   m_Children:
   - {fileID: 1392454401}
   m_Father: {fileID: 328492310}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2116706320
 SpriteRenderer:
