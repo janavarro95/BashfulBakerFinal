@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameInformation;
 using Assets.Scripts.GameInput;
+using Assets.Scripts.Menus.Components;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +15,7 @@ namespace Assets.Scripts.Menus
     public class Menu:MonoBehaviour
     {
         public GameCursorMenu menuCursor;
-
+        public MenuComponent selectedComponent;
 
         public virtual void Start()
         {
@@ -32,29 +33,50 @@ namespace Assets.Scripts.Menus
             Destroy(this.gameObject);
         }
 
+        public virtual bool snapCompatible()
+        {
+            return false;
+        }
+
+        public virtual void setUpForSnapping()
+        {
+
+        }
 
         public static void Instantiate()
         {
             Instantiate<Menu>();
         }
 
-        public static void Instantiate<T>()
+        public static void Instantiate<T>(bool OverrideMenu=false)
         {
             if(typeof(T) == typeof(Menu))
             {
-                Instantiate("Menu");
+                Instantiate("Menu",OverrideMenu);
             }
             else if (typeof(T) == typeof(MainMenu))
             {
-                Instantiate("MainMenu");
+                Instantiate("MainMenu",OverrideMenu);
             }
             else if(typeof(T)== typeof(OptionsMenu))
             {
-                Instantiate("OptionsMenu");
+                Instantiate("OptionsMenu",OverrideMenu);
             }
             else if(typeof(T)== typeof(InventoryMenu))
             {
-                Instantiate("InventoryMenu");
+                Instantiate("InventoryMenu",OverrideMenu);
+            }
+            else if(typeof(T)== typeof(PantryMenu))
+            {
+                Instantiate("PantryMenu",OverrideMenu);
+            }
+            else if (typeof(T) == typeof(GameMenu))
+            {
+                Instantiate("GameMenu", OverrideMenu);
+            }
+            else if (typeof(T) == typeof(ReturnToTitleConfirmationMenu))
+            {
+                Instantiate("ReturnToTitleConfirmationMenu", OverrideMenu);
             }
             else
             {
@@ -62,9 +84,19 @@ namespace Assets.Scripts.Menus
             }
         }
 
-        public static void Instantiate(string Name)
+        public static void Instantiate(string Name,bool OverrideCurrentMenu=false)
         {
-            Game.Menu=LoadMenuFromPrefab(Name).GetComponent<Menu>();
+            if (OverrideCurrentMenu == false)
+            {
+                if (Game.IsMenuUp) return;
+                Game.Menu = LoadMenuFromPrefab(Name).GetComponent<Menu>();
+            }
+            else
+            {
+                Game.Menu.exitMenu();
+                Game.Menu = LoadMenuFromPrefab(Name).GetComponent<Menu>();
+            }
+            
         }
 
         protected static GameObject LoadMenuFromPrefab(string ItemName)

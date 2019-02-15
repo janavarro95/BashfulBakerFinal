@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameInformation;
 using Assets.Scripts.Menus;
+using Assets.Scripts.Utilities;
 using Assets.Scripts.Utilities.Timers;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,6 +37,15 @@ public class PlayerMovement : MonoBehaviour {
     private DeltaTimer walkingSoundTimer;
 
 
+    public bool CanPlayerMove
+    {
+        get
+        {
+            if (Game.IsMenuUp == false && Game.IsScreenTransitionHappening == false) return true;
+            else return false;
+        }
+    }
+
     public AudioClip CurrentWalkingSound
     {
         get
@@ -62,7 +72,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
         animator = this.GetComponent<Animator>();
         currentWalkingSound = woodStepSound;
-        walkingSoundTimer = new DeltaTimer(0.4f, Assets.Scripts.Enums.TimerType.CountDown, false);
+        walkingSoundTimer = new DeltaTimer(0.4m, Assets.Scripts.Enums.TimerType.CountDown, false);
         walkingSoundTimer.start();
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         currentStep = 0;
@@ -86,12 +96,9 @@ public class PlayerMovement : MonoBehaviour {
         //If the player is visible they probably should be able to open a menu.
         if (this.spriteRenderer.enabled)
         {
-            if (Game.IsMenuUp == false)
+            if (CanPlayerMove)
             {
-                if (Assets.Scripts.GameInput.InputControls.StartPressed)
-                {
-                    Menu.Instantiate<InventoryMenu>();
-                }
+                checkForMenuOpening();
 
                 Vector3 offset = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * MovementSpeed;
 
@@ -106,9 +113,9 @@ public class PlayerMovement : MonoBehaviour {
                 playCharacterMovementAnimation(offset);
 
             }
-            else if (Game.IsMenuUp == true)
+            else
             {
-                if (Assets.Scripts.GameInput.InputControls.StartPressed)
+                if (Assets.Scripts.GameInput.InputControls.StartPressed && Game.IsMenuUp)
                 {
                     Game.Menu.exitMenu();
                 }
@@ -120,6 +127,21 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    private void checkForMenuOpening()
+    {
+        if (Assets.Scripts.GameInput.InputControls.StartPressed)
+        {
+            Menu.Instantiate<GameMenu>();
+        }
+        if (Assets.Scripts.GameInput.InputControls.RightBumperPressed)
+        {
+            if (Game.HUD.showInventory == true)
+            {
+                Menu.Instantiate<InventoryMenu>();
+            }
+        }
+    }
+
     private void playCharacterMovementAnimation(Vector3 offset)
     {
 
@@ -127,12 +149,12 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (offset.x < 0)
             { //left walking animation
-                animator.Play("LeftWalkAnimation");
+                animator.Play("LWalk");
                 Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
             }
             else
             {
-                animator.Play("RightWalkAnimation");
+                animator.Play("RWalk");
                 Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
             }
         }
@@ -140,22 +162,22 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (offset.y > 0)
             {
-                animator.Play("UpWalkAnimation");
+                animator.Play("BWalk");
                 Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Up;
             }
             else
             {
-                animator.Play("DownWalkAnimation");
+                animator.Play("FWalk");
                 Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Down;
             }
         }
 
         else if (offset.x == 0 && offset.y == 0)
         {
-            if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Down) animator.Play("DownIdle");
-            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Left) animator.Play("LeftIdle");
-            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Right) animator.Play("RightIdle");
-            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Up) animator.Play("UpIdle");
+            if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Down) animator.Play("FIdle");
+            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Left) animator.Play("LIdle");
+            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Right) animator.Play("RIdle");
+            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Up) animator.Play("BIdle");
         }
     }
 
