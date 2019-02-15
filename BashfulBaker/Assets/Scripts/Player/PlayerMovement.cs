@@ -108,6 +108,13 @@ public class PlayerMovement : MonoBehaviour {
                 playCharacterMovementAnimation(offset);
 
             }
+            else
+            {
+                if (Assets.Scripts.GameInput.InputControls.StartPressed && Game.IsMenuUp)
+                {
+                    Game.Menu.exitMenu();
+                }
+            }
         }
         else
         {
