@@ -5,12 +5,14 @@ using UnityEngine;
 public class progress : MonoBehaviour
 {
     public int step;
+    public GameObject A;
     public Vector3 pos0, pos1, pos2, pos3, pos4;
     public GameObject Gandalf, BlackKnight,Player;
 
     // Start is called before the first frame update
     void Start()
     {
+        A.SetActive(false);
         step = 0;
         this.transform.position = pos0;
         Gandalf.SetActive(false);

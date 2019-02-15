@@ -27,13 +27,18 @@ public class CookieMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (c <= 3)
+        {
+            buttons[0].SetActive(true);
+        }
+        else 
+        { 
+            buttons[1].SetActive(true);
+        }
         if (Input.GetKeyDown((c < 4 ? KeyCode.Space : KeyCode.Tab)) || (c < 4 ?  InputControls.XPressed : InputControls.YPressed))
         {
-            if (c == 3)
-            {
-                buttons[0].SetActive(false);
-                buttons[1].SetActive(true);
-            }
+            buttons[0].SetActive(false);
+            buttons[1].SetActive(false);
             if (c < 8)
             {
                 Cookies[c++].SetActive(false);

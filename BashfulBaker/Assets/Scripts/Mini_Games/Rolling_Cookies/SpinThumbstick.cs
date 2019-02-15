@@ -67,6 +67,7 @@ namespace Assets.Scripts.GameInput
                     buttons[2].SetActive(true);
                     if (InputControls.APressed)
                     {
+                        buttons[2].SetActive(false);
                         cookies[count++].SetActive(true);
                         if (count >= 8)
                         {
@@ -92,6 +93,10 @@ namespace Assets.Scripts.GameInput
                     buttons[2].SetActive(false);
                     this.GetComponent<SpriteRenderer>().enabled = true;
                 }
+            }
+            else
+            {
+                buttons[2].SetActive(true);
             }
         }
     }
