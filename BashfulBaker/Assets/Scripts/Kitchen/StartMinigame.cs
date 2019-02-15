@@ -8,7 +8,7 @@ using Assets.Scripts;
 public class StartMinigame : MonoBehaviour
 {
     public string minigame;
-
+    public int thisStep;
     /// <summary>
     /// Used to determine if the player should be invisible in the minigame.
     /// </summary>
@@ -16,8 +16,9 @@ public class StartMinigame : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (InputControls.APressed)
+        if (InputControls.APressed && collision.GetComponent<PlayerMovement>().currentStep == thisStep)
         {
+            collision.GetComponent<PlayerMovement>().NextStep();
             if (makePlayerInvisible) Assets.Scripts.GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
             SceneManager.LoadScene(minigame);
         }

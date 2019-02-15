@@ -1826,7 +1826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1062353117
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1867,7 +1867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pressAToWarp: 0
   sceneToWarpTo: Kitchen
-  warpLocation: {x: -3.25, y: -8}
+  warpLocation: {x: -3.25, y: -10}
 --- !u!4 &1062353119
 Transform:
   m_ObjectHideFlags: 0

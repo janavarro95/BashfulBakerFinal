@@ -55,6 +55,9 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    public int currentStep;
+    public GameObject arrow;
+
 	// Use this for initialization
 	void Start () {
         animator = this.GetComponent<Animator>();
@@ -62,6 +65,8 @@ public class PlayerMovement : MonoBehaviour {
         walkingSoundTimer = new DeltaTimer(0.4f, Assets.Scripts.Enums.TimerType.CountDown, false);
         walkingSoundTimer.start();
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        currentStep = 0;
+        arrow = GameObject.FindWithTag("Arrow");
 	}
 	
 	// Update is called once per frame
@@ -154,4 +159,10 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    public void NextStep()
+    {
+        currentStep++;
+        Debug.Log("Next step: " + currentStep);
+        arrow.GetComponent<progress>().SetStep(currentStep);
+    }
 }
