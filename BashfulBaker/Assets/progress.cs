@@ -9,6 +9,12 @@ public class progress : MonoBehaviour
     public Vector3 pos0, pos1, pos2, pos3, pos4;
     public GameObject Gandalf, BlackKnight,Player;
 
+    private void Awake()
+    {
+        Player = GameObject.Find("Player(Clone)");
+        Player.GetComponent<Transform>().position = new Vector3(-3.15f, -9.7f, 0);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +22,6 @@ public class progress : MonoBehaviour
         step = 0;
         this.transform.position = pos0;
         Gandalf.SetActive(false);
-        Player = GameObject.Find("Player(Clone)");
     }
 
     // Update is called once per frame
