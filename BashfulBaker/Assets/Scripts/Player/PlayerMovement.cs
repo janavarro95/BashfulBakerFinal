@@ -185,6 +185,6 @@ public class PlayerMovement : MonoBehaviour {
     {
         currentStep++;
         Debug.Log("Next step: " + currentStep);
-        arrow.GetComponent<progress>().SetStep(currentStep);
+        //arrow.GetComponent<progress>().SetStep(currentStep);
     }
 }

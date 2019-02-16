@@ -46,7 +46,7 @@ namespace Assets.Scripts.GameInput
                 endR = new Vector2(InputControls.RightJoystickHorizontal, InputControls.RightJoystickVertical);
                 if (!startR.Equals(new Vector2(0, 0)) && !endR.Equals(new Vector2(0, 0)))
                 {
-                    sumR += Vector2.Angle(startR, endR) > 45 ? 45 : Vector2.Angle(startR, endR);
+                    sumR += Vector2.Angle(startR, endR) > 45f ? 45f : Vector2.Angle(startR, endR);
                     spinning++;
                 }
                 startR = endR;
@@ -54,15 +54,15 @@ namespace Assets.Scripts.GameInput
                 endL = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
                 if (!startL.Equals(new Vector2(0, 0)) && !endL.Equals(new Vector2(0, 0)))
                 {
-                    sumL += Vector2.Angle(startL, endL) > 45 ? 45 : Vector2.Angle(startL, endL);
+                    sumL += Vector2.Angle(startL, endL) > 45f ? 45f : Vector2.Angle(startL, endL);
                     spinning++;
                 }
                 startL = endL;
 
 
-                if (sumR < 720 || sumL < 720)
+                if (sumR < 720f || sumL < 720f)
                 {
-                    this.transform.Rotate(Vector3.left * Time.deltaTime * spinning);
+                    this.transform.Rotate(0f, 0f, 90f * Time.deltaTime * spinning);
                     //this.transform.rotation = new Quaternion(this.transform.rotation.x, this.transform.rotation.y, Mathf.Lerp(0f, 720f, ((sumR < 720f ? sumR : 720f) + (sumL < 720f ? sumL : 720f)) / 1440f), this.transform.rotation.w);
                 }
                 else

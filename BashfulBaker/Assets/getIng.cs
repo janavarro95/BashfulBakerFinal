@@ -16,6 +16,7 @@ namespace Assets.Scripts.GameInput {
             {
                 Debug.Log("Picked up ingredients");
                 collision.GetComponent<PlayerMovement>().NextStep();
+                arrow.GetComponent<progress>().SetStep(1);
                 arrow.GetComponent<SpriteRenderer>().enabled = true;
                 arrow.GetComponent<progress>().A.SetActive(false);
             }
