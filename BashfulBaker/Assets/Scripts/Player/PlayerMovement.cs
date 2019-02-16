@@ -44,6 +44,10 @@ public class PlayerMovement : MonoBehaviour {
             if (Game.IsMenuUp == false && Game.IsScreenTransitionHappening == false) return true;
             else return false;
         }
+        set
+        {
+            CanPlayerMove = value;
+        }
     }
 
     public AudioClip CurrentWalkingSound

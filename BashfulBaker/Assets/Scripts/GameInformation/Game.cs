@@ -288,7 +288,7 @@ namespace Assets.Scripts.GameInformation
             {
                 string path = Path.Combine("Prefabs", "Player");
                 Player.gameObject = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)));
-                Player.gameObject.transform.position = new Vector3(-1.3f, .25f, 0);
+                Player.gameObject.transform.position = new Vector3(-3.06971f, -9.5f, 0);
                 DontDestroyOnLoad(Player.gameObject);
 
                 string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
