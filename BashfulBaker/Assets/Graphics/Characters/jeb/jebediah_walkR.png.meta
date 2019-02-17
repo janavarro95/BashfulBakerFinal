@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 0a3ee8a1a53795444a072becb9d93e73
+guid: 0dde69a10ad70f04f84a7fc81c9e45cf
 TextureImporter:
   fileIDToRecycleName:
-    21300000: dialogue_bubble_anim_0
-    21300002: dialogue_bubble_anim_1
-    21300004: dialogue_bubble_anim_2
-    21300006: dialogue_bubble_anim_3
-    21300008: dialogue_bubble_anim_4
-    21300010: dialogue_bubble_anim_5
+    21300000: jebediah_walkR_0
+    21300002: jebediah_walkR_1
+    21300004: jebediah_walkR_2
+    21300006: jebediah_walkR_3
+    21300008: jebediah_walkR_4
+    21300010: jebediah_walkR_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -90,13 +90,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dialogue_bubble_anim_0
+      name: jebediah_walkR_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 100
-        width: 76
-        height: 50
+        y: 64
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,19 +104,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 909611e104c61284c903ce39414f9b86
+      spriteID: 71ee3584483e9354d89304e782f812c7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dialogue_bubble_anim_1
+      name: jebediah_walkR_1
       rect:
         serializedVersion: 2
-        x: 76
-        y: 100
-        width: 76
-        height: 50
+        x: 32
+        y: 64
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,19 +124,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2642b1404ea4d9849b901cd3b1e811ad
+      spriteID: 0a644f9143074554cb41598377474019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dialogue_bubble_anim_2
+      name: jebediah_walkR_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 50
-        width: 76
-        height: 50
+        x: 64
+        y: 64
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,39 +144,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 346cde56dd531b9458023b9d329c1145
+      spriteID: 6a4430c84ed55804397c3ff3af9a3ef3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dialogue_bubble_anim_3
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 50
-        width: 76
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 274656f337d62ef4da51d523e8a69131
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dialogue_bubble_anim_4
+      name: jebediah_walkR_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 76
-        height: 50
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,19 +164,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 976d3c68d6510a749bd8479ade0ab426
+      spriteID: d5f3d2a39812316429e64c4dc30fbefa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dialogue_bubble_anim_5
+      name: jebediah_walkR_4
       rect:
         serializedVersion: 2
-        x: 76
+        x: 32
         y: 0
-        width: 76
-        height: 50
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,7 +184,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aca94b6a35a887942a5d38ba36bb16c4
+      spriteID: e6addcfff275fbe43a6f683b92626f44
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jebediah_walkR_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 991b1d88fdcdfc94e806f36d0de37bd9
       vertices: []
       indices: 
       edges: []
@@ -212,7 +212,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: af3b769cad250eb448c16682ffac6bb6
+    spriteID: bd49149deeae5e8469509d5511b861b9
     vertices: []
     indices: 
     edges: []

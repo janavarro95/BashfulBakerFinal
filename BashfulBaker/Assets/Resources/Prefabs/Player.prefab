@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: eb739b58fc65b434ca59ed7563f41f6e, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 0f5193880d4217c4da49280e72d3b2dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -147,6 +147,8 @@ MonoBehaviour:
   movementDampening: 20
   woodStepSound: {fileID: 8300000, guid: 0a32fa66134014740a0fafda0cb9b5c8, type: 3}
   currentWalkingSound: {fileID: 0}
+  currentStep: 0
+  arrow: {fileID: 0}
 --- !u!95 &2918408043727610648
 Animator:
   serializedVersion: 3
