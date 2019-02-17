@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour {
         walkingSoundTimer = new DeltaTimer(0.4m, Assets.Scripts.Enums.TimerType.CountDown, false);
         walkingSoundTimer.start();
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        currentStep = 0;
+        currentStep = -1;
         arrow = GameObject.FindWithTag("Arrow");
 	}
 	
@@ -189,6 +189,6 @@ public class PlayerMovement : MonoBehaviour {
     {
         currentStep++;
         Debug.Log("Next step: " + currentStep);
-        //arrow.GetComponent<progress>().SetStep(currentStep);
+        arrow.GetComponent<progress>().SetStep(currentStep);
     }
 }

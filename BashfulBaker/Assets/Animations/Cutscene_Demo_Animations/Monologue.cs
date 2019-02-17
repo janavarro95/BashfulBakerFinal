@@ -19,7 +19,7 @@ public class Monologue : MonoBehaviour
 
     void Start()
     {
-        if (GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep != 0)
+        if (GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep != -1)
         {
             this.gameObject.SetActive(false);
         }
@@ -54,6 +54,7 @@ public class Monologue : MonoBehaviour
             ApressCount = 0;
             check_two = true;
             StartCoroutine(WaitforTime(3, Third));
+            GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().NextStep();
         }
       /*  if (check_one == true && check_two == true && ApressCount >= 2)
         {

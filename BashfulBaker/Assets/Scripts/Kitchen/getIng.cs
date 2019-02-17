@@ -12,7 +12,7 @@ namespace Assets.Scripts.GameInput {
                 arrow.GetComponent<SpriteRenderer>().enabled = false;
                 arrow.GetComponent<progress>().A.SetActive(true);
             }
-            if (InputControls.APressed && collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerMovement>().currentStep == 0)
+            if (InputControls.APressed && collision.gameObject.tag == "Player" && arrow.GetComponent<progress>().step == 0)
             {
                 Debug.Log("Picked up ingredients");
                 collision.GetComponent<PlayerMovement>().NextStep();

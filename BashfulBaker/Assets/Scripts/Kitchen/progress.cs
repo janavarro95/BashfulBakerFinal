@@ -13,9 +13,10 @@ public class progress : MonoBehaviour
     void Start()
     {
         A.SetActive(false);
-        this.transform.position = pos0;
+        //this.transform.position = pos0;
         Gandalf.SetActive(false);
         Player = GameObject.Find("Player(Clone)");
+        Player.GetComponent<PlayerMovement>().arrow = this.gameObject;
         step = Player.GetComponent<PlayerMovement>().currentStep;
         SetStep(step);
     }
@@ -37,6 +38,7 @@ public class progress : MonoBehaviour
         {
             case 0:
                 {
+                    this.transform.position = pos0;
                     break;
                 }
             case 1:
