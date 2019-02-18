@@ -1,0 +1,10 @@
+{
+  "name": "Pumpkin Pie",
+  "itemsNeeded": [
+    "Flour",
+    "Butter",
+    "Egg",
+    "Pumpkin"
+  ],
+  "output": "Pumpkin Pie"
+}
