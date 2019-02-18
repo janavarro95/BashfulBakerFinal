@@ -109,4 +109,8 @@ public class Tutorial_Jeb : MonoBehaviour
         Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
         //GameObject.Find("Player(Clone)").GetComponent<SpriteRenderer>().sprite = ;
     }
+    void turn_Dane_Down()
+    {
+        Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Down;
+    }
 }

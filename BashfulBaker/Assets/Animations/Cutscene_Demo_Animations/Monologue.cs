@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.GameInput;
 using Assets.Scripts.GameInformation;
+using UnityEngine.UI;
 
 public class Monologue : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Image Dane_Face;
     public Dialogue First;
     public Dialogue Second;
     public Dialogue Third;
@@ -45,7 +47,7 @@ public class Monologue : MonoBehaviour
             canCount = false;
             ApressCount = 0;
             check_one = true;
-            StartCoroutine(WaitforTime(3, Second));
+            StartCoroutine(WaitforTime(2, Second));
 
         }
         if (check_one == true && check_two == false && ApressCount >= 2)
@@ -53,7 +55,7 @@ public class Monologue : MonoBehaviour
             canCount = false;
             ApressCount = 0;
             check_two = true;
-            StartCoroutine(WaitforTime(3, Third));
+            StartCoroutine(WaitforTime(2, Third));
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().NextStep();
         }
       /*  if (check_one == true && check_two == true && ApressCount >= 2)
