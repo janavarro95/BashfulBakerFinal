@@ -6,7 +6,7 @@
 		[PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
 		[PerRendererData]_CenterX("CenterX",int)= 8
 		[PerRendererData]_CenterY("CenterY",int)= 8
-		[PerRendererData]_Radius("Radius",float)= 3
+		[PerRendererData]_Radius("Radius",float)= .2
 		[PerRendererData]_Color ("Color", Color) = (1,1,1,1)
 		[PerRendererData]_FadePerDistance ("FadePerDistance", float) = 0.1
 		[PerRendererData]_TextureWidth ("TextureWidth", int) = 16
@@ -15,6 +15,7 @@
 		[PerRendererData]_SquareSize ("SquareSize", float) = .04
 
 		_AlphaCutoff ("AlphaCutoff", float) = .25
+		_AlphaMultiplier("AlphaMultiplier",float)=1.0
 
 		//_Color ("Tint", Color) = (1,1,1,1)
 		//[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
@@ -80,6 +81,7 @@
 			float _Radius;
 			float _SquareSize;
 			float _AlphaCutoff;
+			float _AlphaMultiplier;
 
 			fixed4 calculateDiamondDistance(v2f IN){
 
@@ -160,8 +162,8 @@
 				// a. The DISTANCE from the pixel to the center
 				pct = distance(IN.texcoord.xy,relativeCenter);
 				float color=1.0;
-				if(pct<.5){
-					float4 finalCol= squareShader(IN);
+				if(pct<_Radius){
+					float4 finalCol= squareShader(IN)*_AlphaMultiplier;
 					if(finalCol.r<_AlphaCutoff) return float4(color,color,color,0);
 					else{
 						return finalCol;
