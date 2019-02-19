@@ -37,7 +37,7 @@ Shader "Custom/PixelLightEmission"
 		Pass
 		{
 		CGPROGRAM
-			#pragma vertex SpriteVert
+			#pragma vertex vert
 			#pragma fragment frag
 			#pragma target 2.0
 			#pragma multi_compile_instancing
@@ -51,6 +51,23 @@ Shader "Custom/PixelLightEmission"
 			float4 _MainTex_TexelSize;
 
 			float _OutlineMultiplier;
+
+
+			
+			
+
+			v2f vert(appdata_t IN)
+			{
+				v2f OUT;
+				OUT.vertex = UnityObjectToClipPos(IN.vertex);
+				OUT.texcoord = IN.texcoord;
+				OUT.color = IN.color * _Color;
+				#ifdef PIXELSNAP_ON
+				OUT.vertex = UnityPixelSnap (OUT.vertex);
+				#endif
+
+				return OUT;
+			}
 
 			//The original work in which the emission effect was based off of taken from the above tutorial.
 			fixed4 outline(v2f IN){
