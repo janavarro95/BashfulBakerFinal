@@ -14,6 +14,8 @@
 
 		[PerRendererData]_SquareSize ("SquareSize", float) = .04
 
+		_AlphaCutoff ("AlphaCutoff", float) = .25
+
 		//_Color ("Tint", Color) = (1,1,1,1)
 		//[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
 
@@ -77,6 +79,7 @@
 			float _FadePerDistance;
 			float _Radius;
 			float _SquareSize;
+			float _AlphaCutoff;
 
 			fixed4 calculateDiamondDistance(v2f IN){
 
@@ -158,7 +161,11 @@
 				pct = distance(IN.texcoord.xy,relativeCenter);
 				float color=1.0;
 				if(pct<.5){
-					return squareShader(IN);
+					float4 finalCol= squareShader(IN);
+					if(finalCol.r<_AlphaCutoff) return float4(color,color,color,0);
+					else{
+						return finalCol;
+					}
 				}
 				else{
 					color=0;
@@ -191,6 +198,35 @@
 				return color;
 			}
 
+
+			float4 ok(v2f IN){
+
+
+				float radius=.00; //raidus cut off.
+
+				float2 relativeCenter=float2( (_CenterX/_TextureWidth) ,(_CenterY/_TextureHeight));
+				float2 unit=float2(1.0/_TextureWidth,1.0/_TextureHeight);
+				if(IN.texcoord.x> relativeCenter.x-.1 && IN.texcoord.x< relativeCenter.x+.1){
+					if(IN.texcoord.y> relativeCenter.y-.1 && IN.texcoord.y< relativeCenter.y+.1){
+
+						float cutOffPercent=2; //Cuts off a percent of the corner
+						//bottom left corner
+						if( IN.texcoord.x<=.5-(radius/10) && IN.texcoord.y<=.5-radius/10) { //if( leftt than .49 and below .49 then make yellow...)
+
+						return float4(1,0,0,1);
+						}
+						else{
+						float cutOffPercent=2; //Cuts off a percent of the corner
+							return float4(1,1, 1,1);
+						}
+					}
+					else{
+						return float4(1,1,1,0);
+					}
+				}
+
+				return float4(1,0,0,0);
+			}
 
 
             fixed4 frag (v2f i) : SV_Target
