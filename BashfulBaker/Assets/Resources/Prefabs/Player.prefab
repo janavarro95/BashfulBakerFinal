@@ -149,6 +149,7 @@ MonoBehaviour:
   currentWalkingSound: {fileID: 0}
   currentStep: 0
   arrow: {fileID: 0}
+  hidden: 0
 --- !u!95 &2918408043727610648
 Animator:
   serializedVersion: 3

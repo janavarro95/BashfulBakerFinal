@@ -87,7 +87,7 @@ namespace Assets.Scripts.Player
         {
             this.inventory = new Inventory();
             this.facingDirection = Enums.FacingDirection.Down;
-            hidden = false;
+            this.hidden = false;
         }
 
 

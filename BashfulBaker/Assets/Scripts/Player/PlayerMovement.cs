@@ -72,6 +72,8 @@ public class PlayerMovement : MonoBehaviour {
     public int currentStep;
     public GameObject arrow;
 
+    public bool hidden;
+
 	// Use this for initialization
 	void Start () {
         animator = this.GetComponent<Animator>();
@@ -81,6 +83,8 @@ public class PlayerMovement : MonoBehaviour {
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         currentStep = -1;
         arrow = GameObject.FindWithTag("Arrow");
+
+        hidden = false;
 	}
 	
 	// Update is called once per frame
@@ -88,8 +92,25 @@ public class PlayerMovement : MonoBehaviour {
 
         walkingSoundTimer.Update();
         checkForMenuInteraction();
+        checkForPlayerVisibility();
 
 	}
+
+    private void checkForPlayerVisibility()
+    {
+        if (hidden == true && Game.Player.hidden == false)
+        {
+            Debug.Log("HIDE");
+            Game.Player.hidden = true;
+            Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Invisible);
+        }
+        else if (hidden == false && Game.Player.hidden == true)
+        {
+            Debug.Log("UNHIDE");
+            Game.Player.hidden = false;
+            Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Visible);
+        }
+    }
 
     /// <summary>
     /// Checks for the player to open up a menu.
@@ -112,6 +133,11 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     Game.SoundManager.playSound(CurrentWalkingSound, Random.Range(2f, 3f));
                     this.walkingSoundTimer.restart();
+                }
+
+                if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0 && Game.Player.hidden)){
+                    Debug.Log("Unhide while moving!");
+                    this.hidden = false;
                 }
 
                 playCharacterMovementAnimation(offset);
