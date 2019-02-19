@@ -12,7 +12,7 @@
 		[PerRendererData]_TextureWidth ("TextureWidth", int) = 16
 		[PerRendererData]_TextureHeight ("TextureHeight", float) = 16
 
-		[PerRendererData]_SquareSize ("SquareSize", float) = .05
+		[PerRendererData]_SquareSize ("SquareSize", float) = .04
 
 		//_Color ("Tint", Color) = (1,1,1,1)
 		//[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
@@ -101,37 +101,8 @@
 				return _Color * (1.0-(actualDistance));
 			}
 
-			//
-			//Reference from: https://stackoverflow.com/questions/14470235/rendering-a-circle-with-a-pixel-shader-in-directx
-			fixed4 circleShader(v2f IN){
-				float2 relativeCenter=float2( (_CenterX/_TextureWidth) ,(_CenterY/_TextureHeight));
-				
-				float pct = 0.0;
 
-				// a. The DISTANCE from the pixel to the center
-				pct = distance(IN.texcoord.xy,relativeCenter);
-				float color=1.0;
-				if(pct<.5){
-					color=pct-(pct%.1);
-					return float4(color,color,color,1);
-				}
-				else{
-					color=0;
-					return float4(color,color,color,0);
-				}
-
-				
-
-				//return float4(pct,pct,pct,1);
-				/*
-				if(okDist < .1)
-				return float4(0, 0, 0, 1);
-				else
-				return float4(1, 1, 1, 1);
-				*/
-			}
-
-			float4 squareShader(v2f IN){
+						float4 squareShader(v2f IN){
 			
 				float idk= (IN.texcoord.x);
 				idk=idk-(idk%_SquareSize);
@@ -164,6 +135,8 @@
 				}
 				float val=(idy+idk)/2;
 				float4 color=float4(val,val,val,.5);
+
+
 				return color;
 
 				/*
@@ -173,6 +146,36 @@
 				*/
 			
 			}
+
+			//
+			//Reference from: https://stackoverflow.com/questions/14470235/rendering-a-circle-with-a-pixel-shader-in-directx
+			fixed4 circleShader(v2f IN){
+				float2 relativeCenter=float2( (_CenterX/_TextureWidth) ,(_CenterY/_TextureHeight));
+				
+				float pct = 0.0;
+
+				// a. The DISTANCE from the pixel to the center
+				pct = distance(IN.texcoord.xy,relativeCenter);
+				float color=1.0;
+				if(pct<.5){
+					return squareShader(IN);
+				}
+				else{
+					color=0;
+					return float4(color,color,color,0);
+				}
+
+				
+
+				//return float4(pct,pct,pct,1);
+				/*
+				if(okDist < .1)
+				return float4(0, 0, 0, 1);
+				else
+				return float4(1, 1, 1, 1);
+				*/
+			}
+
 
 			float4 gradientShader(v2f IN){
 			
@@ -196,7 +199,7 @@
                 // just invert the colors
                 //col.rgb = 1 - col.rgb;
                 
-				fixed4 col=squareShader(i);
+				fixed4 col=circleShader(i);
 				
 				return col;
             }
