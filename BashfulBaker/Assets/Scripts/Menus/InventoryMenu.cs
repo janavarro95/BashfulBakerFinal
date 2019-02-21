@@ -156,6 +156,13 @@ namespace Assets.Scripts.Menus
                 bottomItem = items[3 + (menuPage * 4)];
                 bottomText.text = bottomItem.stack.ToString();
             }
+
+            if (Game.Player.activeItem != null)
+            {
+                this.selectedItem = Game.Player.activeItem;
+                centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                centralImage.color = new Color(1, 1, 1, 1);
+            }
         }
 
         /// <summary>
@@ -174,34 +181,54 @@ namespace Assets.Scripts.Menus
 
             if (InputControls.APressed)
             {
-                if (bottomItem == null) return;
+                if (bottomItem == null)
+                {
+                    centralImage.color = new Color(1, 1, 1, 0);
+                    selectedItem = null;
+                    return;
+                }
                 //bottom state
                 selectedItem = bottomItem;
-                centralImage.sprite = Sprite.Create(selectedItem.Sprite, centralImage.rectTransform.rect, centralImage.sprite.pivot);
+                centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                 centralImage.color = new Color(1, 1, 1, 1);
             }
             if (InputControls.BPressed)
             {
-                if (rightItem == null) return;
+                if (rightItem == null)
+                {
+                    centralImage.color = new Color(1, 1, 1, 0);
+                    selectedItem = null;
+                    return;
+                }
                 //right state
                 selectedItem = rightItem;
-                centralImage.sprite = Sprite.Create(selectedItem.Sprite, centralImage.rectTransform.rect, centralImage.sprite.pivot);
+                centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                 centralImage.color = new Color(1, 1, 1, 1);
             }
             if (InputControls.XPressed)
             {
-                if (leftItem == null) return;
+                if (leftItem == null)
+                {
+                    centralImage.color = new Color(1, 1, 1, 0);
+                    selectedItem = null;
+                    return;
+                }
                 //left
                 selectedItem = leftItem;
-                centralImage.sprite = Sprite.Create(selectedItem.Sprite, centralImage.rectTransform.rect, centralImage.sprite.pivot);
+                centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                 centralImage.color = new Color(1, 1, 1, 1);
             }
             if (InputControls.YPressed)
             {
-                if (topItem == null) return;
+                if (topItem == null)
+                {
+                    centralImage.color = new Color(1, 1, 1, 0);
+                    selectedItem = null;
+                    return;
+                }
                 //top
                 selectedItem = topItem;
-                centralImage.sprite = Sprite.Create(selectedItem.Sprite, centralImage.rectTransform.rect, centralImage.sprite.pivot);
+                centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                 centralImage.color = new Color(1, 1, 1, 1);
             }
 
@@ -240,6 +267,7 @@ namespace Assets.Scripts.Menus
         /// </summary>
         public override void exitMenu()
         {
+            Game.Player.activeItem = this.selectedItem;
             Game.HUD.showInventory = true;
             Destroy(this.gameObject);
             Game.Menu = null;

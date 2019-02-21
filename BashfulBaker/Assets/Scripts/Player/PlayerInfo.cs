@@ -20,6 +20,8 @@ namespace Assets.Scripts.Player
         /// The player's inventory.
         /// </summary>
         public Inventory inventory;
+        public Item activeItem;
+
         public Enums.FacingDirection facingDirection;
         public bool hidden;
 
