@@ -141,6 +141,14 @@ namespace Assets.Scripts.GameInformation
 
         public static Utilities.Timers.DeltaTimer PhaseTimer;
 
+        public static Content.ContentManager ContentManager
+        {
+            get
+            {
+                return Content.ContentManager.Instance;
+            }
+        }
+
         public static ScreenTransitions CurrentTransition;
         public static bool IsScreenTransitionHappening
         {
@@ -191,6 +199,12 @@ namespace Assets.Scripts.GameInformation
 
                 Debug.Log("SET UP GAME!");
 
+
+                if (ContentManager == null)
+                {
+                    Content.ContentManager.Instance = new Content.ContentManager();
+                }
+
                 if (Serializer.JSONSerializer == null) Serializer.JSONSerializer = new Utilities.Serialization.Serializer();
                 if (Cooking.Recipes.CookBook.CookingRecipes == null) Cooking.Recipes.CookBook.CookingRecipes = new CookBook();
                 if (QuestSystem.QuestManager.Quests == null) QuestSystem.QuestManager.Quests = new QuestManager();
@@ -215,6 +229,7 @@ namespace Assets.Scripts.GameInformation
                     Pantry = new Pantry();
                     TutorialCompleted = false;
                 }
+
 
                 setUpScene();
 
@@ -307,6 +322,21 @@ namespace Assets.Scripts.GameInformation
                 }
 
             }
+
+            if (SceneManager.GetActiveScene().name == "SampleScene")
+            {
+                
+                //Josh's testing playground.
+                string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
+                
+                Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
+
+                Game.Player.inventory.Add(new Ingredient("Chocolate Chip"));
+                Debug.Log("ADD CHOCO CHIP!");
+
+            }
+
+
 
             if (ScreenTransitions.shouldFadeInAfterWarp)
             {
