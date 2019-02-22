@@ -73,8 +73,6 @@ public class PlayerMovement : MonoBehaviour {
     public int currentStep;
     public GameObject arrow;
 
-    public bool hidden;
-
 	// Use this for initialization
 	void Start () {
         animator = this.GetComponent<Animator>();
@@ -110,13 +108,13 @@ public class PlayerMovement : MonoBehaviour {
         {
             Debug.Log("HIDE");
             Game.Player.hidden = true;
-            Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Invisible);
+            //Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Invisible);
         }
         else if (hidden == false && Game.Player.hidden == true)
         {
             Debug.Log("UNHIDE");
             Game.Player.hidden = false;
-            Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Visible);
+            //Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Visible);
         }
     }
 
