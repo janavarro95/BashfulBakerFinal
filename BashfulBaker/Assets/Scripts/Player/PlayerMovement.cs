@@ -73,6 +73,8 @@ public class PlayerMovement : MonoBehaviour {
     public int currentStep;
     public GameObject arrow;
 
+    public bool hidden;
+
 	// Use this for initialization
 	void Start () {
         animator = this.GetComponent<Animator>();
@@ -90,6 +92,7 @@ public class PlayerMovement : MonoBehaviour {
 
         walkingSoundTimer.Update();
         checkForMenuInteraction();
+        checkForPlayerVisibility();
 
         if (hidden && spriteRenderer.color.a > 0.2f)
         {
@@ -98,6 +101,22 @@ public class PlayerMovement : MonoBehaviour {
         else if (!hidden && spriteRenderer.color.a < 1)
         {
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a + .02f);
+        }
+    }
+
+    private void checkForPlayerVisibility()
+    {
+        if (hidden == true && Game.Player.hidden == false)
+        {
+            Debug.Log("HIDE");
+            Game.Player.hidden = true;
+            Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Invisible);
+        }
+        else if (hidden == false && Game.Player.hidden == true)
+        {
+            Debug.Log("UNHIDE");
+            Game.Player.hidden = false;
+            Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Visible);
         }
     }
 
@@ -122,6 +141,11 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     Game.SoundManager.playSound(CurrentWalkingSound, Random.Range(2f, 3f));
                     this.walkingSoundTimer.restart();
+                }
+
+                if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0 && Game.Player.hidden)){
+                    Debug.Log("Unhide while moving!");
+                    this.hidden = false;
                 }
 
                 playCharacterMovementAnimation(offset);

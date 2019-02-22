@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.GameInformation;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,10 +27,13 @@ namespace Assets.Scripts.Items
 
         protected override void loadSpriteFromDisk()
         {
-            if (this.Name == "Dark Chocolate Chip")
-            {
-                //this.sprite= unity resources load
-            }
+            string combinedFolders = Path.Combine("Graphics", "Items");
+            combinedFolders = Path.Combine(combinedFolders, "Ingredients");
+
+            Debug.Log(Path.Combine(combinedFolders, this.itemName + ".png"));
+
+            this._sprite = Game.ContentManager.loadTexture2D(Path.Combine(combinedFolders, this.itemName+".png"));
+            
         }
     }
 }

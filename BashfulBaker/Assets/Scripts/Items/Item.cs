@@ -24,7 +24,17 @@ public class Item {
 
     public int stack;
 
-    public Texture2D sprite;
+    protected Texture2D _sprite;
+
+    public Texture2D Sprite
+    {
+        get
+        {
+            if (this._sprite == null) loadSpriteFromDisk();
+            return _sprite;
+        }
+
+    }
 
     public Item()
     {
@@ -43,16 +53,10 @@ public class Item {
         stack = StackSize;
     }
 
-	// Use this for initialization
-	void Start () {
-        //this.sprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
-
+    public void initializeSprite()
+    {
+        loadSpriteFromDisk();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 
     public void addToStack(int amount)
@@ -74,6 +78,8 @@ public class Item {
 
     protected virtual void loadSpriteFromDisk()
     {
-       
+        string combinedFolders = Path.Combine("Graphics", "Items");
+
+        this._sprite=Game.ContentManager.loadTexture2D(Path.Combine(combinedFolders, this.itemName));
     }
 }

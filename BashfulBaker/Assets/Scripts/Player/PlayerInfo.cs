@@ -20,8 +20,13 @@ namespace Assets.Scripts.Player
         /// The player's inventory.
         /// </summary>
         public Inventory inventory;
+        public Item activeItem;
+        private GameObject _heldItemGameObject;
+
         public Enums.FacingDirection facingDirection;
         public bool hidden;
+
+
 
         private SpriteRenderer renderer;
         public SpriteRenderer Renderer
@@ -51,6 +56,7 @@ namespace Assets.Scripts.Player
                 if (_gameObject == null)
                 {
                     _gameObject = GameObject.FindWithTag("Player");
+                    _heldItemGameObject = _gameObject.transform.Find("HeldItem").gameObject;
                     GameObject.DontDestroyOnLoad(_gameObject);
                     return _gameObject;
                 }
@@ -64,6 +70,7 @@ namespace Assets.Scripts.Player
                 if (value.tag == "Player")
                 {
                     _gameObject = value;
+                    _heldItemGameObject = _gameObject.transform.Find("HeldItem").gameObject;
                 }
             }
         }
@@ -85,9 +92,9 @@ namespace Assets.Scripts.Player
         /// </summary>
         public PlayerInfo()
         {
-            this.inventory = new Inventory();
+            this.inventory = new Inventory(4);
             this.facingDirection = Enums.FacingDirection.Down;
-            hidden = false;
+            this.hidden = false;
         }
 
 
@@ -143,6 +150,24 @@ namespace Assets.Scripts.Player
             int min = Convert.ToInt32(ingredientsNumberList.Min());
             return min;
         }
+
+        public void updateHeldItemSprite()
+        {
+            if (activeItem != null)
+            {
+                Debug.Log("NEW SPRITE");
+                GameObject obj = this.gameObject;
+                if (this._heldItemGameObject == null) Debug.Log("NANI???");
+                this._heldItemGameObject.GetComponent<SpriteRenderer>().sprite = Content.ContentManager.Instance.loadSprite(activeItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                Debug.Log("NO SPRITE");
+                this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+            }
+        }
+
 
     }
 }

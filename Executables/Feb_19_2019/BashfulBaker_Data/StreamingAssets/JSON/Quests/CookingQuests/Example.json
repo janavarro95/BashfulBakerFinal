@@ -1,0 +1,8 @@
+{
+  "requiredDishName": "Example",
+  "personToDeliverTo": "Mr.Example",
+  "wantedIngredients": [
+    "Raspberries"
+  ],
+  "unwantedIngredients": []
+}

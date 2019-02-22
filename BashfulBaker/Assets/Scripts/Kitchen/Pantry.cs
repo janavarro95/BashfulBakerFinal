@@ -21,7 +21,7 @@ namespace Assets.Scripts.Kitchen
         /// </summary>
         public Pantry()
         {
-            inventory = new Inventory();
+            inventory = new Inventory(999);
 
             getSetOfIngredientsForRecipe("Chocolate Chip Cookie");
             //inventory.Add(new Ingredient("Chocolate Chip Cookie Ingredients"), 10);
