@@ -268,6 +268,7 @@ namespace Assets.Scripts.Menus
         public override void exitMenu()
         {
             Game.Player.activeItem = this.selectedItem;
+            Game.Player.updateHeldItemSprite();
             Game.HUD.showInventory = true;
             Destroy(this.gameObject);
             Game.Menu = null;
