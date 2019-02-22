@@ -32,6 +32,14 @@ namespace Assets.Scripts.Items
             }
         }
 
+        public int Count
+        {
+            get
+            {
+                return this.items.Count;
+            }
+        }
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -226,6 +234,18 @@ namespace Assets.Scripts.Items
             int rando = UnityEngine.Random.Range(0, items.Count);
 
             return items[rando];
+            //this.Remove(items[rando]);
+        }
+
+        public Dish getRandomDish()
+        {
+            if (this.items.Keys.Count == 0) return null;
+
+            List<Dish> dishes = getAllDishes();
+            if (dishes.Count == 0) return null;
+            int rando = UnityEngine.Random.Range(0, items.Count);
+
+            return dishes[rando];
             //this.Remove(items[rando]);
         }
 

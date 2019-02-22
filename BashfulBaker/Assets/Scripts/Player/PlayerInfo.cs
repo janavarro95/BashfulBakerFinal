@@ -26,6 +26,8 @@ namespace Assets.Scripts.Player
         public Enums.FacingDirection facingDirection;
         public bool hidden;
 
+
+
         private SpriteRenderer renderer;
         public SpriteRenderer Renderer
         {

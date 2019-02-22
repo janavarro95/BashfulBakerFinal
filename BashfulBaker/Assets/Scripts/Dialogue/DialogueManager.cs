@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.GameInput;
 using Assets.Scripts;
+using Assets.Scripts.GameInformation;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,10 +14,12 @@ public class DialogueManager : MonoBehaviour
 
 
     private Queue<string> sentences;
+
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
+        Game.DialogueManager = this;
     }
     private void Update()
     {

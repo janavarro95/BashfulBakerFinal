@@ -107,6 +107,9 @@ public class StealthAwarenessZone : MonoBehaviour
 
     public LookingType aiType;
 
+    public bool chasesPlayer;
+    public bool shouldMove;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -155,6 +158,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// </summary>
     private void patrol()
     {
+        
         if(this.movementLogic== MovementType.PatrollAndPause)
         {
             this.patrolPauseTimer.tick();
@@ -176,7 +180,7 @@ public class StealthAwarenessZone : MonoBehaviour
         }
         this.gameObject.transform.parent.transform.position=Vector3.Lerp(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1],movementLerp);
 
-        this.movementLerp += getProperMovementSpeed(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
+        if(shouldMove==true)this.movementLerp += getProperMovementSpeed(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
 
         if (aiType != LookingType.LookAroundWhileReturning)
         {
@@ -219,7 +223,7 @@ public class StealthAwarenessZone : MonoBehaviour
                     resetGuardAwareness();
                     return;
                 }
-                proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
+                if(shouldMove==true) proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
                 this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
                 if (proximityToTarget >= 1.0f)
                 {
@@ -233,7 +237,7 @@ public class StealthAwarenessZone : MonoBehaviour
             }
             else if (shouldChasePlayer())
             {
-                proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
+                if(shouldMove==true)proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
                 this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
 
                 if (proximityToTarget >= 1.0f)
@@ -296,6 +300,7 @@ public class StealthAwarenessZone : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            if (shouldMove == false) return;
 
             RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, collision.gameObject.transform.position - this.gameObject.transform.position);
             if (hit.collider.gameObject.tag == "Obstacle")
@@ -398,6 +403,7 @@ public class StealthAwarenessZone : MonoBehaviour
 
     private bool shouldChasePlayer()
     {
+        if (chasesPlayer == false) return false;
         if (this.spotsToGoTo.Count > 0 ||(this.returnHome==false && this.spotsToGoTo.Count==0))
         {
             finishedLookingAround = false;

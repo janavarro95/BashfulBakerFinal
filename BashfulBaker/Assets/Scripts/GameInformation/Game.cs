@@ -165,6 +165,8 @@ namespace Assets.Scripts.GameInformation
         public static Pantry Pantry;
         public static bool TutorialCompleted;
 
+        public static DialogueManager DialogueManager;
+
 
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
