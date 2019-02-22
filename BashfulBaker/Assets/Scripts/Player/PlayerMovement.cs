@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private DeltaTimer walkingSoundTimer;
 
+    public bool hidden;
 
     public bool CanPlayerMove
     {
@@ -81,6 +82,7 @@ public class PlayerMovement : MonoBehaviour {
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         currentStep = -1;
         arrow = GameObject.FindWithTag("Arrow");
+        hidden = false;
 	}
 	
 	// Update is called once per frame
@@ -89,7 +91,15 @@ public class PlayerMovement : MonoBehaviour {
         walkingSoundTimer.Update();
         checkForMenuInteraction();
 
-	}
+        if (hidden && spriteRenderer.color.a > 0.2f)
+        {
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a - .02f);
+        }
+        else if (!hidden && spriteRenderer.color.a < 1)
+        {
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a + .02f);
+        }
+    }
 
     /// <summary>
     /// Checks for the player to open up a menu.
@@ -190,5 +200,19 @@ public class PlayerMovement : MonoBehaviour {
         currentStep++;
         Debug.Log("Next step: " + currentStep);
         arrow.GetComponent<progress>().SetStep(currentStep);
+    }
+    
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Obstacle" && !hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+        {
+            hidden = true;
+            defaultSpeed = 0;
+        }
+        else if (other.gameObject.tag == "Obstacle" && hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+        {
+            hidden = false;
+            defaultSpeed = 1f;
+        }
     }
 }
