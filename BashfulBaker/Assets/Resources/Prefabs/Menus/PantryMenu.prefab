@@ -968,6 +968,8 @@ MonoBehaviour:
   nonTutorialCategorySprite: {fileID: 21300000, guid: cb9120b7f9745f54fab513917b757c37,
     type: 3}
   isTutorial: 0
+  currentState: 0
+  currentMode: 0
 --- !u!1 &75624925405664269
 GameObject:
   m_ObjectHideFlags: 0
@@ -2772,8 +2774,8 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0

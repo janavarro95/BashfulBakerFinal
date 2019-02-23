@@ -39,6 +39,7 @@ namespace Assets.Scripts.QuestSystem.Quests
                 //Debug.Log("DROP OFF!");
                 bool hasADishBeenDelivered = false;
                 List<Item> removalList = new List<Item>();
+                /*
                 foreach(Item I in Game.Player.inventory.actualItems) //Check all items in their inventory for a dish.
                 {
                     if(I is Dish) //Send that dish to the quest manager....
@@ -52,7 +53,24 @@ namespace Assets.Scripts.QuestSystem.Quests
                         }
                     }
                 }
-                foreach(Item I in removalList)
+                */
+
+
+                if (Game.Player.activeItem is Dish) //Send that dish to the quest manager....
+                {
+                    bool delivered = Game.QuestManager.checkForDeliveryQuestCompletion((Game.Player.activeItem as Dish), this);
+                    if (delivered == true)
+                    {
+                        removalList.Add(Game.Player.activeItem);
+                        hasADishBeenDelivered = true;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Held item is not a dish!!");
+                }
+
+                foreach (Item I in removalList)
                 {
                     Game.Player.inventory.Remove(I);
                 }

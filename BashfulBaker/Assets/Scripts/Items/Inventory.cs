@@ -17,25 +17,36 @@ namespace Assets.Scripts.Items
         /// </summary>
         public Dictionary<string, Item> items;
 
+        public int maxCapaxity;
+
         public List<Item> actualItems
         {
             get
             {
                 List<Item> localItems = new List<Item>();
-                foreach(Item I in items.Values)
+                foreach (Item I in items.Values)
                 {
                     localItems.Add(I);
                 }
-                return actualItems;
+                return localItems;
+            }
+        }
+
+        public int Count
+        {
+            get
+            {
+                return this.items.Count;
             }
         }
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public Inventory()
+        public Inventory(int Capacity)
         {
             this.items = new Dictionary<string, Item>();
+            maxCapaxity = Capacity;
         }
 
         /// <summary>
@@ -69,7 +80,7 @@ namespace Assets.Scripts.Items
         /// Alows us to use foreach loops on the items in the inventory.
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string,Item>.Enumerator GetEnumerator()
+        public Dictionary<string, Item>.Enumerator GetEnumerator()
         {
             return items.GetEnumerator();
         }
@@ -81,16 +92,18 @@ namespace Assets.Scripts.Items
         /// <returns></returns>
         public bool Remove(Item I)
         {
-            return this.items.Remove(I.Name);
+            bool removed = this.items.Remove(I.Name);
+
+            return removed;
         }
 
 
-        public bool containsEnoughOf(Item I,int Amount)
+        public bool containsEnoughOf(Item I, int Amount)
         {
             return containsEnoughOf(I.Name, Amount);
         }
 
-        public bool containsEnoughOf(string ItemName,int Amount)
+        public bool containsEnoughOf(string ItemName, int Amount)
         {
             if (this.items.ContainsKey(ItemName))
             {
@@ -112,7 +125,7 @@ namespace Assets.Scripts.Items
         /// <param name="I"></param>
         /// <param name="Amount"></param>
         /// <returns></returns>
-        public bool removeAmount(Item I,int Amount)
+        public bool removeAmount(Item I, int Amount)
         {
             return removeAmount(I.Name, Amount);
         }
@@ -123,7 +136,7 @@ namespace Assets.Scripts.Items
         /// <param name="ItemName"></param>
         /// <param name="Amount"></param>
         /// <returns></returns>
-        public bool removeAmount(string ItemName,int amount)
+        public bool removeAmount(string ItemName, int amount)
         {
             if (containsEnoughOf(ItemName, amount))
             {
@@ -143,37 +156,54 @@ namespace Assets.Scripts.Items
         /// Add an item to the player's inventory.
         /// </summary>
         /// <param name="I"></param>
-        public void Add(Item I)
+        public bool Add(Item I)
         {
+            I.initializeSprite();
+            if (this.items.Keys.Count == maxCapaxity)
+            {
+                Debug.Log("Inventory is full!");
+                return false;
+            }
+
             if (!this.items.ContainsKey(I.Name))
             {
                 this.items.Add(I.Name, I);
+                return true;
             }
             else
             {
                 this.items[I.Name].addToStack(I.stack);
+                return true;
             }
         }
 
-        public void Add(Item I,int amount)
+        public bool Add(Item I, int amount)
         {
+            I.initializeSprite();
+            if (this.items.Keys.Count == maxCapaxity)
+            {
+                Debug.Log("Inventory is full!");
+                return false;
+            }
+
             if (!this.items.ContainsKey(I.Name))
             {
                 Item i = (Item)I.clone();
                 i.stack = amount;
-                this.items.Add(i.Name,i);
+                this.items.Add(i.Name, i);
+                return true;
             }
             else
             {
                 this.items[I.Name].addToStack(amount);
-                Debug.Log("STACKY SIZE:"+this.items[I.Name].stack);
+                return true;
             }
         }
 
         public List<Dish> getAllDishes()
         {
             List<Dish> dishList = new List<Dish>();
-            foreach(KeyValuePair<string,Item> pair in this.items)
+            foreach (KeyValuePair<string, Item> pair in this.items)
             {
                 if (pair.Value.GetType() == typeof(Dish))
                 {
@@ -181,6 +211,52 @@ namespace Assets.Scripts.Items
                 }
             }
             return dishList;
+        }
+
+        public List<Item> getAllItems()
+        {
+            return actualItems;
+        }
+
+        /// <summary>
+        /// Gets a random item from the inventory.
+        /// </summary>
+        /// <returns></returns>
+        public Item getRandomItem()
+        {
+            if (this.items.Keys.Count == 0) return null;
+
+            List<Item> items = new List<Item>();
+            foreach (Item item in this.items.Values)
+            {
+                items.Add(item);
+            }
+            int rando = UnityEngine.Random.Range(0, items.Count);
+
+            return items[rando];
+            //this.Remove(items[rando]);
+        }
+
+        public Dish getRandomDish()
+        {
+            if (this.items.Keys.Count == 0) return null;
+
+            List<Dish> dishes = getAllDishes();
+            if (dishes.Count == 0) return null;
+            int rando = UnityEngine.Random.Range(0, items.Count);
+
+            return dishes[rando];
+            //this.Remove(items[rando]);
+        }
+
+        /// <summary>
+        /// Removes a random item from the inventory.
+        /// </summary>
+        /// <returns></returns>
+        public bool removeRandomItem()
+        {
+            if (this.items.Keys.Count == 0) return false;
+            return this.Remove(getRandomItem());
         }
     }
 }

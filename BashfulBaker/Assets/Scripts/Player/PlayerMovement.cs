@@ -44,6 +44,10 @@ public class PlayerMovement : MonoBehaviour {
             if (Game.IsMenuUp == false && Game.IsScreenTransitionHappening == false) return true;
             else return false;
         }
+        set
+        {
+            CanPlayerMove = value;
+        }
     }
 
     public AudioClip CurrentWalkingSound
@@ -65,6 +69,11 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    public int currentStep;
+    public GameObject arrow;
+
+    public bool hidden;
+
 	// Use this for initialization
 	void Start () {
         animator = this.GetComponent<Animator>();
@@ -72,6 +81,10 @@ public class PlayerMovement : MonoBehaviour {
         walkingSoundTimer = new DeltaTimer(0.4m, Assets.Scripts.Enums.TimerType.CountDown, false);
         walkingSoundTimer.start();
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        currentStep = -1;
+        arrow = GameObject.FindWithTag("Arrow");
+
+        hidden = false;
 	}
 	
 	// Update is called once per frame
@@ -79,8 +92,25 @@ public class PlayerMovement : MonoBehaviour {
 
         walkingSoundTimer.Update();
         checkForMenuInteraction();
+        checkForPlayerVisibility();
 
 	}
+
+    private void checkForPlayerVisibility()
+    {
+        if (hidden == true && Game.Player.hidden == false)
+        {
+            Debug.Log("HIDE");
+            Game.Player.hidden = true;
+            Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Invisible);
+        }
+        else if (hidden == false && Game.Player.hidden == true)
+        {
+            Debug.Log("UNHIDE");
+            Game.Player.hidden = false;
+            Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Visible);
+        }
+    }
 
     /// <summary>
     /// Checks for the player to open up a menu.
@@ -105,8 +135,20 @@ public class PlayerMovement : MonoBehaviour {
                     this.walkingSoundTimer.restart();
                 }
 
+                if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0 && Game.Player.hidden)){
+                    Debug.Log("Unhide while moving!");
+                    this.hidden = false;
+                }
+
                 playCharacterMovementAnimation(offset);
 
+            }
+            else
+            {
+                if (Assets.Scripts.GameInput.InputControls.StartPressed && Game.IsMenuUp)
+                {
+                    Game.Menu.exitMenu();
+                }
             }
         }
         else
@@ -169,4 +211,10 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    public void NextStep()
+    {
+        currentStep++;
+        Debug.Log("Next step: " + currentStep);
+        arrow.GetComponent<progress>().SetStep(currentStep);
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.GameInformation;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,5 +32,14 @@ namespace Assets.Scripts.Items
         {
             return new Dish(this.Name, this.ingredients);
         }
+
+        protected override void loadSpriteFromDisk()
+        {
+            string combinedFolders = Path.Combine("Graphics", "Items");
+            combinedFolders = Path.Combine(combinedFolders, "Dishes");
+            this._sprite = Game.ContentManager.loadTexture2D(Path.Combine(combinedFolders, this.itemName+ ".png"));
+        }
+
+
     }
 }
