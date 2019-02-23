@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Monologue : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Image Dane_Face;
+    public Sprite Dane_Face;
     public Dialogue First;
     public Dialogue Second;
     public Dialogue Third;
@@ -71,6 +71,7 @@ public class Monologue : MonoBehaviour
     {
         if (beginable == true)
         {
+            GameObject.Find("Headshot").GetComponent<Image>().sprite = Dane_Face;
             FindObjectOfType<DialogueManager>().StartDialogue(First);
             canCount = true;
             beginable = false;

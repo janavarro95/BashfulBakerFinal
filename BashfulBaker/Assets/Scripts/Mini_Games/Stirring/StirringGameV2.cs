@@ -13,6 +13,8 @@ namespace Assets.Scripts.GameInput
         public int Count; 
         public Sprite completeIcon;
         public GameObject[] buttons;
+        public SpriteRenderer bowl;
+        public Sprite[] sprites;
 
         // Start is called before the first frame update
         void Start()
@@ -88,6 +90,24 @@ namespace Assets.Scripts.GameInput
 
                 }
             }
+
+            int angle = (int)Vector2.SignedAngle(new Vector2(0, 0), Next);
+
+            if (Mathf.Abs(angle) > 144)
+            {
+                angle = 2;
+            }
+            else if (Mathf.Abs(angle) > 72)
+            {
+                angle = angle > 0 ? 3 : 1;
+            }
+            else
+            {
+                angle = angle > 0 ? 4 : 0;
+            }
+
+            bowl.sprite = sprites[angle];
+
         }
 
 
