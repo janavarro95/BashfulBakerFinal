@@ -14,6 +14,9 @@ namespace Assets.Scripts.GameInput
         private int spinning;
         public GameObject[] cookies;
         public GameObject[] buttons;
+        private SpriteRenderer sprite;
+        public Sprite[] sprites;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -30,7 +33,9 @@ namespace Assets.Scripts.GameInput
                 cookies[x].SetActive(false);
             }
 
-            this.GetComponent<SpriteRenderer>().enabled = true;
+            sprite = this.GetComponent<SpriteRenderer>();
+            sprite.enabled = true;
+            sprite.sprite = sprites[0];
 
             buttons[0].SetActive(true);
             buttons[1].SetActive(true);
@@ -59,6 +64,7 @@ namespace Assets.Scripts.GameInput
                 }
                 startL = endL;
 
+                sprite.sprite = sumR + sumL < 720 ? sumR + sumL > 360 ? sprites[1] : sprites[0] : sumR + sumL > 1080 ? sprites[3] : sprites[2];
 
                 if (sumR < 720f || sumL < 720f)
                 {
@@ -97,6 +103,7 @@ namespace Assets.Scripts.GameInput
                     buttons[1].SetActive(true);
                     buttons[2].SetActive(false);
                     this.GetComponent<SpriteRenderer>().enabled = true;
+                    sprite.sprite = sprites[0];
                 }
             }
             else
