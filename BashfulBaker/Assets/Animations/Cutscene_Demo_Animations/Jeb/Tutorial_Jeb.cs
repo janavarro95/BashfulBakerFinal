@@ -9,6 +9,7 @@ using Assets.Scripts.GameInformation;
 
 public class Tutorial_Jeb : MonoBehaviour
 {
+    public Sprite Jeb_Face;
     public Animator jeb_animator;
     private int ApressCount;
     public Dialogue tutorial_lines_pt1;
@@ -83,6 +84,7 @@ public class Tutorial_Jeb : MonoBehaviour
     }
     void Introduction()
     {
+        GameObject.Find("Headshot").GetComponent<Image>().sprite = Jeb_Face;
         FindObjectOfType<DialogueManager>().StartDialogue(tutorial_lines_pt1);
     }
     void Mission()
