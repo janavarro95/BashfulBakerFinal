@@ -49,7 +49,7 @@ namespace Assets.Scripts.GameInput
                     buttons[1].SetActive(false);
                     Count++;
                     Percent_Stirred = 0;
-                    Debug.Log(Count);
+                    //Debug.Log(Count);
                     if (Count == 1)
                     {
                         GameObject Checkmark1 = new GameObject();
@@ -91,8 +91,8 @@ namespace Assets.Scripts.GameInput
                 }
             }
 
-            int angle = (int)Vector2.SignedAngle(new Vector2(0, 0), Next);
-
+            int angle = (int)Vector2.SignedAngle(new Vector2(1, 0), Next);
+            Debug.Log(angle);
             if (Mathf.Abs(angle) > 144)
             {
                 angle = 2;
