@@ -19,6 +19,7 @@ public class Tutorial_Jeb : MonoBehaviour
     private bool check_two;
     private bool check_three;
     public bool canCount;
+    public GameObject Bubble;
 
 
 
@@ -85,6 +86,8 @@ public class Tutorial_Jeb : MonoBehaviour
     void Introduction()
     {
         GameObject.Find("Headshot").GetComponent<Image>().sprite = Jeb_Face;
+        //GameObject.Find("speechBubble")
+            Bubble.SetActive(false);
         FindObjectOfType<DialogueManager>().StartDialogue(tutorial_lines_pt1);
     }
     void Mission()

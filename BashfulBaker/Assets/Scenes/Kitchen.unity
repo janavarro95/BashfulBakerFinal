@@ -6855,7 +6855,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.7, y: 3.31}
+    oldSize: {x: 3.97, y: 3.94}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6901,7 +6901,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d92865fb3f3213f4e9480bcb5ee06147, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c3fbee4e52cde4280bd4358f18b66cce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6920,7 +6920,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035039913}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.718, y: 0.29333335, z: -0.100000024}
+  m_LocalPosition: {x: -0.682, y: 0.289, z: -0.100000024}
   m_LocalScale: {x: 0.11111112, y: 0.13333334, z: 1}
   m_Children: []
   m_Father: {fileID: 1449866184}
@@ -6989,6 +6989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf624b53dbf04254abd732771df7f9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Jeb_Face: {fileID: 21300000, guid: 1730613e0c87c0a4b9c473f8376bd30c, type: 3}
   jeb_animator: {fileID: 1083138370}
   tutorial_lines_pt1:
     name: Jeb
@@ -7018,6 +7019,7 @@ MonoBehaviour:
     - They are an outstanding group, but they work up a mighty appetite!
     - Good night Dane!
   canCount: 0
+  Bubble: {fileID: 2075414951}
 --- !u!50 &1083138366
 Rigidbody2D:
   serializedVersion: 4
@@ -7638,7 +7640,6 @@ MonoBehaviour:
     - An old portrait of Jeb, it's hard to tell how much he has aged with that big
       beard!
   Dane_Face: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
-  Jeb_Face: {fileID: 21300000, guid: 1730613e0c87c0a4b9c473f8376bd30c, type: 3}
 --- !u!61 &1355736413
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7678,6 +7679,8 @@ GameObject:
   - component: {fileID: 1359320524}
   - component: {fileID: 1359320523}
   - component: {fileID: 1359320526}
+  - component: {fileID: 1359320528}
+  - component: {fileID: 1359320527}
   m_Layer: 0
   m_Name: counter
   m_TagString: Untagged
@@ -7797,6 +7800,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1381fc5e9d5e41628b88436f63ddc44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1359320527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359320521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d8515501446c54cbb8aa5cb894ab59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flavor:
+    name: Dane
+    sentences:
+    - Oh look at this!
+    - "\"Cookies, cake, bread and pies. At your door tomorrow morning, still piping
+      hot.\" \nMakes sense why he needs a delivery boy with service like that."
+  Dane_Face: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
+--- !u!61 &1359320528
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359320521}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.97790056, y: -0.25172758}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.68, y: 0.62}
+    newSize: {x: 2.68, y: 1.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7241992, y: 0.20994616}
+  m_EdgeRadius: 0
 --- !u!1 &1404956602
 GameObject:
   m_ObjectHideFlags: 0
@@ -8239,7 +8287,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020967126, y: 0.410205}
+  m_Offset: {x: 0.020967126, y: 0.56675714}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8250,7 +8298,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.93709886, y: 1.3680449}
+  m_Size: {x: 0.93709886, y: 1.6811491}
   m_EdgeRadius: 0
 --- !u!61 &1420705437
 BoxCollider2D:
@@ -8265,7 +8313,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.11756796}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8276,7 +8324,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5725157, y: 0.5476344}
+  m_Size: {x: 2.5725157, y: 0.7827703}
   m_EdgeRadius: 0
 --- !u!4 &1420705438
 Transform:
@@ -8616,6 +8664,82 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1618950247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1618950250}
+  - component: {fileID: 1618950249}
+  - component: {fileID: 1618950248}
+  m_Layer: 0
+  m_Name: displayFood
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1618950248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618950247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d8515501446c54cbb8aa5cb894ab59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flavor:
+    name: Dane
+    sentences:
+    - Oh whats this?!
+    - 'These look delicious! '
+  Dane_Face: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
+--- !u!61 &1618950249
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618950247}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.8543829, y: 0.086272955}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6957514, y: 0.79405737}
+  m_EdgeRadius: 0
+--- !u!4 &1618950250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618950247}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.1978955, y: -3.803587, z: -2.3319604}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 29
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1666228779
 GameObject:
   m_ObjectHideFlags: 0
@@ -8628,6 +8752,8 @@ GameObject:
   - component: {fileID: 1666228781}
   - component: {fileID: 1666228780}
   - component: {fileID: 1666228783}
+  - component: {fileID: 1666228785}
+  - component: {fileID: 1666228784}
   m_Layer: 0
   m_Name: barrel
   m_TagString: Untagged
@@ -8736,6 +8862,50 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.69289064}
+  m_EdgeRadius: 0
+--- !u!114 &1666228784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666228779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d8515501446c54cbb8aa5cb894ab59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flavor:
+    name: Dane
+    sentences:
+    - Oh whats this?!
+    - Pretty sure these barrels are older than me......
+  Dane_Face: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
+--- !u!61 &1666228785
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666228779}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.018617079, y: -0.31881714}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.3, y: 0.45}
+    newSize: {x: 0.3, y: 0.45}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.33723417, y: 1.0876343}
   m_EdgeRadius: 0
 --- !u!1 &1894876671
 GameObject:
@@ -9214,7 +9384,7 @@ GameObject:
   - component: {fileID: 2075414954}
   - component: {fileID: 2075414953}
   m_Layer: 0
-  m_Name: dialogue_bubble_anim_0
+  m_Name: speechBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
