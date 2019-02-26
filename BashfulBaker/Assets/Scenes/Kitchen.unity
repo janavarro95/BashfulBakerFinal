@@ -344,7 +344,6 @@ MonoBehaviour:
   pickUpText:
     name: Dane
     sentences:
-    - Oh what do we have here?
     - There's even chocolate chips! Looks like I have everything I need to make Silvia's
       cookies.
 --- !u!61 &134771503
@@ -6994,10 +6993,9 @@ MonoBehaviour:
   tutorial_lines_pt1:
     name: Jeb
     sentences:
-    - 'U CANT SEE ME
+    - 'Hello there Dave!
 
 '
-    - Hello there Dave!
     - 'Oh my... DANE! Not Dave! How silly of me! '
     - How are you my boy?
     - I hope you are settling in nicely.
@@ -7636,7 +7634,6 @@ MonoBehaviour:
   flavor:
     name: Dane
     sentences:
-    - Oh whats this!?
     - An old portrait of Jeb, it's hard to tell how much he has aged with that big
       beard!
   Dane_Face: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
@@ -7815,7 +7812,6 @@ MonoBehaviour:
   flavor:
     name: Dane
     sentences:
-    - Oh look at this!
     - "\"Cookies, cake, bread and pies. At your door tomorrow morning, still piping
       hot.\" \nMakes sense why he needs a delivery boy with service like that."
   Dane_Face: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
@@ -8697,7 +8693,6 @@ MonoBehaviour:
   flavor:
     name: Dane
     sentences:
-    - Oh whats this?!
     - 'These look delicious! '
   Dane_Face: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
 --- !u!61 &1618950249
@@ -8878,8 +8873,7 @@ MonoBehaviour:
   flavor:
     name: Dane
     sentences:
-    - Oh whats this?!
-    - Pretty sure these barrels are older than me......
+    - I tihnk this barrel is older than me.....
   Dane_Face: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
 --- !u!61 &1666228785
 BoxCollider2D:
