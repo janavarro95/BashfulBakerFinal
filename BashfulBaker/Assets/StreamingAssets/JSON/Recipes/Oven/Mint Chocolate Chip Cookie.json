@@ -1,10 +1,7 @@
 {
   "name": "Mint Chocolate Chip Cookie",
   "itemsNeeded": [
-    "Flour",
-    "Sugar",
-    "Butter",
-    "Eggs",
+    "Cake Ingredients",
     "Mint Chips"
   ],
   "output": "Mint Chocolate Chip Cookie"

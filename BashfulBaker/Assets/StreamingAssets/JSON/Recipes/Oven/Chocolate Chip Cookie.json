@@ -1,10 +1,7 @@
 {
   "name": "Chocolate Chip Cookie",
   "itemsNeeded": [
-    "Flour",
-    "Sugar",
-    "Butter",
-    "Eggs",
+    "Cookie Ingredients",
     "Chocolate Chip"
   ],
   "output": "Chocolate Chip Cookie"

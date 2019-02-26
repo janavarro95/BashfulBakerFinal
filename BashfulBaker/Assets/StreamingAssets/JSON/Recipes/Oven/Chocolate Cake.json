@@ -1,13 +1,7 @@
 {
   "name": "Chocolate Cake",
   "itemsNeeded": [
-    "Flour",
-    "Sugar",
-    "Milk",
-    "Butter",
-    "Eggs",
-    "Milk",
-    "Baking Powder",
+    "Cake Ingredients",
     "Chocolate Chip"
   ],
   "output": "Chocolate Cake"

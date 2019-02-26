@@ -1,10 +1,7 @@
 {
   "name": "Snickerdoodle",
   "itemsNeeded": [
-    "Flour",
-    "Sugar",
-    "Butter",
-    "Eggs",
+    "Cookie Ingredients",
     "Cinnamon"
   ],
   "output": "Snickerdoodle"

@@ -1,13 +1,7 @@
 {
   "name": "Orange Cake",
   "itemsNeeded": [
-    "Flour",
-    "Sugar",
-    "Milk",
-    "Butter",
-    "Eggs",
-    "Milk",
-    "Baking Powder",
+    "Cake Ingredients",
     "Orange"
   ],
   "output": "Orange Cake"

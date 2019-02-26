@@ -1,9 +1,7 @@
 {
   "name": "Pizza Pie",
   "itemsNeeded": [
-    "Flour",
-    "Butter",
-    "Egg",
+    "Pie Ingredients",
     "Tomato",
     "Cheese"
   ],
