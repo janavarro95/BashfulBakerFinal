@@ -106,7 +106,7 @@ namespace Assets.Scripts.Cooking.Recipes
         public void SerializeRecipes()
         {
 
-            string recipesPath = Path.Combine(Path.Combine(Application.dataPath, "JSON"), "Recipes");
+            string recipesPath = Path.Combine(Path.Combine(Application.streamingAssetsPath, "JSON"), "Recipes");
             foreach(KeyValuePair<Enums.CookingStation,Dictionary<string,Recipe>> pair in Recipes)
             {
                 string stationPath = Path.Combine(recipesPath, pair.Key.ToString());
@@ -124,7 +124,7 @@ namespace Assets.Scripts.Cooking.Recipes
         /// </summary>
         public void DeserializeRecipes()
         {
-            string recipesPath = Path.Combine(Path.Combine(Path.Combine(Application.dataPath,"Resources"), "JSON"), "Recipes");
+            string recipesPath = Path.Combine(Path.Combine(Application.streamingAssetsPath, "JSON"), "Recipes");
             string[] folders = Directory.GetDirectories(recipesPath);
             foreach(string cookingStation in folders)
             {

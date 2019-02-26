@@ -136,7 +136,7 @@ namespace Assets.Scripts.QuestSystem
         /// <returns></returns>
         public CookingQuest loadCookingQuest(string fileName, bool addToQuestManager = true)
         {
-            string cookingQuests = Path.Combine(Path.Combine(Path.Combine(Path.Combine(Application.dataPath, "Resources"),"JSON"),"Quests"),"CookingQuests");
+            string cookingQuests = Path.Combine(Path.Combine(Path.Combine(Application.streamingAssetsPath,"JSON"),"Quests"),"CookingQuests");
 
             string[] files = Directory.GetFiles(cookingQuests, "*.json");
             foreach (string quest in files)
@@ -154,7 +154,7 @@ namespace Assets.Scripts.QuestSystem
 
         private void serializeCookingQuests()
         {
-            string cookingQuests = Path.Combine(Path.Combine(Path.Combine(Path.Combine(Application.dataPath, "Resources"), "JSON"), "Quests"), "CookingQuests");
+            string cookingQuests = Path.Combine(Path.Combine(Path.Combine(Application.streamingAssetsPath, "JSON"), "Quests"), "CookingQuests");
             Directory.CreateDirectory(cookingQuests);
 
 

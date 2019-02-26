@@ -9,24 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 073670a4f49222540af6bf8bc81e526b
   - enabled: 1
+    path: Assets/Scenes/Kitchen.unity
+    guid: 28257caef4de5a046a264d68a1123288
+  - enabled: 1
     path: Assets/Scenes/preloadScene.unity
     guid: 11a125d82d37e7b40bab9c940e377495
-  - enabled: 1
-    path: Assets/Scenes/Kitchen.unity
-    guid: e64e8722bb6a99c4882f9c6a38de6e6b
   - enabled: 1
     path: Assets/Scenes/Rolling_Cookies.unity
     guid: a2066f03b5935024a878f1034b08e511
   - enabled: 1
     path: Assets/Scenes/Stirring.unity
     guid: 4533d1831ed9ba341a156e27d7852dd6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Cutscene_Demo.unity
     guid: baf45203eed7fed47ab78bebd7b47f1d
   - enabled: 1
     path: Assets/Scenes/Basket.unity
     guid: 943abfbb08239ef4eb1e82488d9921f7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1

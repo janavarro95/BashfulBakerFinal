@@ -1,0 +1,13 @@
+{
+  "name": "Cake",
+  "itemsNeeded": [
+    "Flour",
+    "Sugar",
+    "Milk",
+    "Butter",
+    "Eggs",
+    "Milk",
+    "Baking Powder"
+  ],
+  "output": "Cake"
+}

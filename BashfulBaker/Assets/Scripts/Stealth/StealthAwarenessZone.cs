@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Utilities.Timers;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 /// <summary>
 /// TODO:
-/// Do Pysics.RayCast2D from this game object to player collider on the OnTriggerStay/Enter to determine if this entity actually sees the player or not for moving towards it.
 /// Also add in moving logic.
 /// </summary>
 public class StealthAwarenessZone : MonoBehaviour
@@ -75,7 +75,20 @@ public class StealthAwarenessZone : MonoBehaviour
     private float lookSpeed = 1f;
 
 
-    public enum AIType
+    GameObject patrollInformation;
+    private List<Vector3> patrollPoints;
+    private int currentPatrolPoint;
+    private float movementLerp;
+
+    [SerializeField]
+    private DeltaTimer patrolPauseTimer;
+    [SerializeField]
+    private float minPauseTime=1f;
+    [SerializeField]
+    private float maxPauseTime = 5f;
+
+
+    public enum LookingType
     {
         None,
         LookAroundWhileUnAware,
@@ -83,7 +96,19 @@ public class StealthAwarenessZone : MonoBehaviour
         LookAroundWhileReturning
     }
 
-    public AIType aiType;
+    public enum MovementType
+    {
+        None,
+        ContinuousPatrolling,
+        PatrollAndPause
+    }
+
+    public MovementType movementLogic;
+
+    public LookingType aiType;
+
+    public bool chasesPlayer;
+    public bool shouldMove;
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +116,87 @@ public class StealthAwarenessZone : MonoBehaviour
         spotsToGoTo = new List<Vector2>();
         pathBackToStart = new Stack<Vector2>();
         listOfSpotsToLookAt = new List<Vector3>();
+
+        if (movementLogic == MovementType.ContinuousPatrolling ||this.movementLogic== MovementType.PatrollAndPause)
+        {
+            setUpPatrolPoint();
+        }
+        if(movementLogic == MovementType.PatrollAndPause)
+        {
+            float pauseTime = Random.Range(minPauseTime, maxPauseTime);
+            this.patrolPauseTimer = new DeltaTimer((decimal)pauseTime, Assets.Scripts.Enums.TimerType.CountDown, false, null);
+        }
+    }
+
+    /// <summary>
+    /// Gets all of the patrol points for the guard.
+    /// </summary>
+    private void setUpPatrolPoint()
+    {
+        patrollPoints = new List<Vector3>();
+        patrollInformation = this.gameObject.transform.parent.transform.Find("PatrolInformation").gameObject;
+
+        if (patrollInformation.transform.childCount == 0) return;
+
+        foreach (Transform point in patrollInformation.transform)
+        {
+            patrollPoints.Add(point.gameObject.transform.position);
+        }
+        patrollPoints.Add(patrollPoints[0]);
+        currentPatrolPoint = 0;
+
+        if(this.patrollPoints.Count==0 && (this.movementLogic== MovementType.ContinuousPatrolling || this.movementLogic== MovementType.PatrollAndPause))
+        {
+            Debug.Log("WARNING! GUARD AI HAS NO MOVEMENT POINTS! SETTING TO NON-PATROLLING AI!");
+            this.movementLogic = MovementType.None;
+        }
+        movementLerp = 0f;
+    }
+
+    /// <summary>
+    /// Patrols around different points looking for the player.
+    /// </summary>
+    private void patrol()
+    {
+        
+        if(this.movementLogic== MovementType.PatrollAndPause)
+        {
+            this.patrolPauseTimer.tick();
+            if (this.patrolPauseTimer.IsFinished)
+            {
+                this.patrolPauseTimer.maxTime =(decimal)Random.Range(minPauseTime, maxPauseTime);
+                this.patrolPauseTimer.restart();
+                this.patrolPauseTimer.pause();
+            }
+            else if (this.patrolPauseTimer.IsTicking)
+            {
+                return;
+            }
+        }
+
+        if (currentPatrolPoint + 1 >= patrollPoints.Count)
+        {
+            currentPatrolPoint = 0;
+        }
+        this.gameObject.transform.parent.transform.position=Vector3.Lerp(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1],movementLerp);
+
+        if(shouldMove==true)this.movementLerp += getProperMovementSpeed(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
+
+        if (aiType != LookingType.LookAroundWhileReturning)
+        {
+            this.gameObject.transform.right = (Vector2)patrollPoints[currentPatrolPoint + 1] - (Vector2)transform.position;
+        }
+
+        if (this.movementLerp>=1.00f)
+        {
+            currentPatrolPoint++;
+            this.movementLerp = 0f;
+
+            if (this.movementLogic == MovementType.PatrollAndPause)
+            {
+                this.patrolPauseTimer.start();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -102,11 +208,11 @@ public class StealthAwarenessZone : MonoBehaviour
             {
                 //Debug.Log("GOING HOME!");
                 //randomly look around
-                if (aiType == AIType.LookAroundWhileReturning)
+                if (aiType == LookingType.LookAroundWhileReturning)
                 {
                     aiLookLogic();
                 }
-                else if(aiType== AIType.LookAroundAfterFollow && finishedLookingAround==false)
+                else if(aiType== LookingType.LookAroundAfterFollow && finishedLookingAround==false)
                 {
                     aiLookLogic();
                     return;
@@ -117,13 +223,13 @@ public class StealthAwarenessZone : MonoBehaviour
                     resetGuardAwareness();
                     return;
                 }
-                proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
+                if(shouldMove==true) proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
                 this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
                 if (proximityToTarget >= 1.0f)
                 {
                     getNextReturnSpot();
                 }
-                if (aiType != AIType.LookAroundWhileReturning)
+                if (aiType != LookingType.LookAroundWhileReturning)
                 {
                     this.gameObject.transform.right = nextTargetSpot - (Vector2)transform.position;
                 }
@@ -131,7 +237,7 @@ public class StealthAwarenessZone : MonoBehaviour
             }
             else if (shouldChasePlayer())
             {
-                proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
+                if(shouldMove==true)proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
                 this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
 
                 if (proximityToTarget >= 1.0f)
@@ -159,14 +265,25 @@ public class StealthAwarenessZone : MonoBehaviour
         else
         {
             //randomly look around
-            if (aiType != AIType.None)
+            if (aiType != LookingType.None)
             {
                 aiLookLogic();
+            }
+            if(movementLogic == MovementType.None)
+            {
+                //Do nothing.
+            }
+            if(movementLogic == MovementType.ContinuousPatrolling || movementLogic== MovementType.PatrollAndPause)
+            {
+                patrol();
             }
         }
     }
 
-    public void aiLookLogic()
+    /// <summary>
+    /// Randomly look around in a circle in an attempt to find the player.
+    /// </summary>
+    private void aiLookLogic()
     {
         if (listOfSpotsToLookAt.Count == 0)
         {
@@ -181,8 +298,9 @@ public class StealthAwarenessZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !collision.gameObject.GetComponent<PlayerMovement>().hidden)
         {
+            if (shouldMove == false) return;
 
             RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, collision.gameObject.transform.position - this.gameObject.transform.position);
             if (hit.collider.gameObject.tag == "Obstacle")
@@ -201,7 +319,7 @@ public class StealthAwarenessZone : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !collision.gameObject.GetComponent<PlayerMovement>().hidden)
         {
             RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, collision.gameObject.transform.position - this.gameObject.transform.position);
             if (hit.collider.gameObject.tag == "Obstacle")
@@ -247,6 +365,9 @@ public class StealthAwarenessZone : MonoBehaviour
         spotsToGoTo.RemoveAt(0);
     }
 
+    /// <summary>
+    /// Gets the next spot in the path of places to return to to find the guard's way back to their original
+    /// </summary>
     private void getNextReturnSpot()
     {
         //if (this.pathBackToStart.Count == 0) return;
@@ -282,6 +403,7 @@ public class StealthAwarenessZone : MonoBehaviour
 
     private bool shouldChasePlayer()
     {
+        if (chasesPlayer == false) return false;
         if (this.spotsToGoTo.Count > 0 ||(this.returnHome==false && this.spotsToGoTo.Count==0))
         {
             finishedLookingAround = false;
@@ -299,7 +421,10 @@ public class StealthAwarenessZone : MonoBehaviour
         return;
     }
 
-    public void lookAround()
+    /// <summary>
+    /// Actually look around in a circle.
+    /// </summary>
+    private void lookAround()
     {
 
         if (lookAroundLerp ==0.0f) {
@@ -326,7 +451,7 @@ public class StealthAwarenessZone : MonoBehaviour
         }
     }
 
-    public void createLookAroundPoints()
+    private void createLookAroundPoints()
     {
         int amount=Random.Range(1, 5);
         for(int i = 0; i < amount; i++)
@@ -339,13 +464,19 @@ public class StealthAwarenessZone : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Get the movement speed of the guard.
     /// </summary>
     /// <returns></returns>
     private float getProperMovementSpeed()
     {
         float dist=Vector2.Distance(this.sequenceStartingSpot, this.nextTargetSpot);
         return movementSpeed/dist; //If dist is small then guard will move to target seemingly faster. If dist is large, then guard will move to target seemingly slower but all of it is at the same "speed"
+    }
+
+    private float getProperMovementSpeed(Vector2 startSpot, Vector2 endSpot)
+    {
+        float dist = Vector2.Distance(startSpot, endSpot);
+        return (movementSpeed / dist)*Time.deltaTime; //If dist is small then guard will move to target seemingly faster. If dist is large, then guard will move to target seemingly slower but all of it is at the same "speed"
     }
 
     private float getProperLookSpeed()

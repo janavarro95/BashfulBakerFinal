@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.GameInput;
 using Assets.Scripts;
+using Assets.Scripts.GameInformation;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,16 +15,32 @@ public class DialogueManager : MonoBehaviour
 
 
     private Queue<string> sentences;
+    private string currentSentence;
+
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
+        Game.DialogueManager = this;
     }
     private void Update()
     {
         if (animator.GetBool("isOpen") &&InputControls.APressed)
         {
-            DisplayNextSentence();
+            if (String.IsNullOrEmpty(this.currentSentence))
+            {
+                DisplayNextSentence();
+            }
+            else if(this.dialogueText.text!=this.currentSentence)
+            {
+                this.dialogueText.text = this.currentSentence;
+                StopAllCoroutines();
+            }
+            else if (this.dialogueText.text == this.currentSentence)
+            {
+                this.currentSentence = "";
+                DisplayNextSentence();
+            }
         }
     }
     public void StartDialogue (Dialogue dialogue)
@@ -46,6 +64,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         string sentence = sentences.Dequeue();
+        this.currentSentence = sentence;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }

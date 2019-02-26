@@ -57,6 +57,7 @@ namespace Assets.Scripts.GameInput
             //setVisibility();
             Vector2 vec = UnityEngine.Input.mousePosition;
 
+            if (Game.Menu == null) return;
 
             if (Game.Menu.snapCompatible() == true)
             {

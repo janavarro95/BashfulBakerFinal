@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Assets.Scripts.GameInformation;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -28,6 +30,16 @@ namespace Assets.Scripts.Items
         public override Item clone()
         {
             return new ComplexIngredient(this.Name, this.ingredients);
+        }
+
+        protected override void loadSpriteFromDisk()
+        {
+            string combinedFolders = Path.Combine("Graphics", "Items");
+            combinedFolders = Path.Combine(combinedFolders, "ComplexIngredients");
+
+            
+
+            this._sprite = Game.ContentManager.loadTexture2D(Path.Combine(combinedFolders, this.itemName+".png"));
         }
     }
 }
