@@ -8,7 +8,6 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections.Generic;
 using System.Collections;
 
 namespace Assets.Scripts.Menus
@@ -20,8 +19,6 @@ namespace Assets.Scripts.Menus
     /// </summary>
     public class InventoryMenu :Menu
     {
-        public int menuPage;
-        private int maxPages;
 
         Image leftImage;
         Image rightImage;
@@ -29,19 +26,21 @@ namespace Assets.Scripts.Menus
         Image bottomImage;
         Image centralImage;
 
-        Text leftText;
-        Text rightText;
-        Text topText;
-        Text bottomText;
-
         GameObject inventory;
 
         Item leftItem;
         Item rightItem;
         Item topItem;
         Item bottomItem;
+        Item selectedDish;
 
-        Item selectedItem;
+        Item leftIngredient;
+        Item rightIngredient;
+        Item topIngredient;
+        Item bottomIngredient;
+        Item selectedIngredient;
+
+        public Enums.InventoryViewMode currentViewMode;
 
         /// <summary>
         /// Instantiate all menu logic here.
@@ -49,13 +48,11 @@ namespace Assets.Scripts.Menus
         public override void Start()
         {
 
-            menuPage = 0;
-
             //initial set up
             GameObject canvas = this.transform.Find("Canvas").gameObject;
 
             inventory = canvas.gameObject.transform.Find("Inventory").gameObject;
-            setUpMenu();
+            
 
             //Game.Player.inventory.Add(Ingredient.LoadIngredientFromPrefab("Cherries",1));
             //menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
@@ -63,12 +60,39 @@ namespace Assets.Scripts.Menus
 
             Game.HUD.showInventory = false;
 
+            this.currentViewMode = Enums.InventoryViewMode.DishView;
+
+            setUpMenu();
+
+        }
+
+        public void swapMode()
+        {
+            if (this.currentViewMode == Enums.InventoryViewMode.DishView)
+            {
+                this.currentViewMode = Enums.InventoryViewMode.SpecialIngredientView;
+                setUpMenu();
+                return;
+            }
+            else if (this.currentViewMode == Enums.InventoryViewMode.SpecialIngredientView)
+            {
+                this.currentViewMode = Enums.InventoryViewMode.DishView;
+                setUpMenu();
+                return;
+            }
         }
 
         private void setUpMenu()
         {
             getMenuComponents();
-            setDish();
+            if (currentViewMode == Enums.InventoryViewMode.DishView)
+            {
+                setDish();
+            }
+            else
+            {
+                setSpecialIngredients();
+            }
         }
 
         private void getMenuComponents()
@@ -86,10 +110,6 @@ namespace Assets.Scripts.Menus
             bottomImage = bottomIngredient.GetComponent<Image>();
             centralImage = centralIngredient.GetComponent<Image>();
 
-            leftText = leftIngredient.transform.Find("LeftText").GetComponent<Text>();
-            rightText = rightIngredient.transform.Find("RightText").GetComponent<Text>();
-            topText = topIngredient.transform.Find("TopText").GetComponent<Text>();
-            bottomText = bottomIngredient.transform.Find("BottomText").GetComponent<Text>();
         }
 
 
@@ -102,14 +122,11 @@ namespace Assets.Scripts.Menus
             leftItem = null;
             rightItem = null;
 
-            leftText.text = "";
-            rightText.text = "";
-            topText.text = "";
-            bottomText.text = "";
 
-            List<Item> items = Game.Player.dishesInventory.getAllItems();
 
-            maxPages = (items.Count / 4)+1;
+            List<Dish> items = Game.Player.dishesInventory.getAllDishes();
+
+          
 
             
             leftImage.color = new Color(1, 1, 1, 0);
@@ -120,47 +137,101 @@ namespace Assets.Scripts.Menus
             
 
             //left ingredient sprite
-            if (items.Count > (0 + menuPage * 4))
+            if (items.Count > 0)
             {
-                leftImage.sprite = Content.ContentManager.Instance.loadSprite(items[0 + (menuPage * 4)].Sprite,new Rect(0,0,32,32),new Vector2(0.5f,0.5f),16);
-                Debug.Log("AHHH");
+                leftImage.sprite = Content.ContentManager.Instance.loadSprite(items[0].Sprite,new Rect(0,0,32,32),new Vector2(0.5f,0.5f),16);
                 leftImage.color = Color.white;
-                leftItem =items[0 + (menuPage * 4)];
-                leftText.text = leftItem.stack.ToString();
+                leftItem =items[0];
             }
 
             //right ingredient sprite
-            if (items.Count > (1 + menuPage * 4))
+            if (items.Count > 1)
             {
-                rightImage.sprite = Sprite.Create(items[1 + (menuPage * 4)].Sprite, rightImage.rectTransform.rect, rightImage.sprite.pivot);
+                rightImage.sprite = Sprite.Create(items[1].Sprite, new Rect(0, 0, 32, 32), rightImage.sprite.pivot);
                 rightImage.color = Color.white;
-                rightItem = items[1 + (menuPage * 4)];
-                rightText.text = rightItem.stack.ToString();
+                rightItem = items[1];
             }
 
             //Top ingredient sprite
-            if (items.Count > (2 + menuPage * 4))
+            if (items.Count > 2)
             {
-                topImage.sprite = Sprite.Create(items[2 + (menuPage * 4)].Sprite, topImage.rectTransform.rect, topImage.sprite.pivot);
+                topImage.sprite = Sprite.Create(items[2].Sprite, new Rect(0, 0, 32, 32), topImage.sprite.pivot);
                 topImage.color = Color.white;
-                topItem = items[2+ (menuPage * 4)];
-                topText.text = topItem.stack.ToString();
+                topItem = items[2];
             }
 
             //Bottom ingredient sprite
-            if (items.Count > (3 + menuPage * 4))
+            if (items.Count > 3)
             {
                 
-                bottomImage.sprite = Sprite.Create(items[3 + (menuPage * 4)].Sprite, bottomImage.rectTransform.rect, bottomImage.sprite.pivot);
+                bottomImage.sprite = Sprite.Create(items[3].Sprite, new Rect(0, 0, 32, 32), bottomImage.sprite.pivot);
                 bottomImage.color = Color.white;
-                bottomItem = items[3 + (menuPage * 4)];
-                bottomText.text = bottomItem.stack.ToString();
+                bottomItem = items[3];
             }
 
             if (Game.Player.activeItem != null)
             {
-                this.selectedItem = Game.Player.activeItem;
-                centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                this.selectedDish =(Dish) Game.Player.activeItem;
+                centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedDish.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                centralImage.color = new Color(1, 1, 1, 1);
+            }
+        }
+
+        private void setSpecialIngredients()
+        {
+            topIngredient = null;
+            bottomIngredient = null;
+            leftIngredient = null;
+            rightIngredient = null;
+
+
+            List<SpecialIngredient> items = Game.Player.specialIngredientsInventory.getAllSpecialIngredients();
+
+            leftImage.color = new Color(1, 1, 1, 0);
+            rightImage.color = new Color(1, 1, 1, 0);
+            topImage.color = new Color(1, 1, 1, 0);
+            bottomImage.color = new Color(1, 1, 1, 0);
+            centralImage.color = new Color(1, 1, 1, 0);
+
+
+            //left ingredient sprite
+            if (items.Count > 0)
+            {
+                leftImage.sprite = Content.ContentManager.Instance.loadSprite(items[0].Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                leftImage.color = Color.white;
+                leftItem = items[0];
+            }
+
+            //right ingredient sprite
+            if (items.Count > 1)
+            {
+                rightImage.sprite = Sprite.Create(items[1].Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                rightImage.color = Color.white;
+                rightItem = items[1];
+            }
+
+            //Top ingredient sprite
+            if (items.Count > 2)
+            {
+                topImage.sprite = Sprite.Create(items[2].Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                topImage.color = Color.white;
+                topItem = items[2];
+            }
+
+            //Bottom ingredient sprite
+            if (items.Count > 3)
+            {
+
+                bottomImage.sprite = Sprite.Create(items[3].Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                bottomImage.color = Color.white;
+                bottomItem = items[3];
+            }
+
+            if (Game.Player.activeItem != null&&Game.Player.activeItem.GetType()==typeof(SpecialIngredient))
+            {
+                Debug.Log("Reset active ingredient");
+                this.selectedIngredient = (SpecialIngredient)Game.Player.activeItem;
+                centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedIngredient.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                 centralImage.color = new Color(1, 1, 1, 1);
             }
         }
@@ -178,64 +249,125 @@ namespace Assets.Scripts.Menus
         /// </summary>
         private void checkForInput()
         {
-
-            if (InputControls.APressed)
+            if (this.currentViewMode == Enums.InventoryViewMode.DishView)
             {
-                if (bottomItem == null)
+                if (InputControls.APressed)
                 {
-                    centralImage.color = new Color(1, 1, 1, 0);
-                    selectedItem = null;
-                    return;
+                    if (bottomItem == null)
+                    {
+                        centralImage.color = new Color(1, 1, 1, 0);
+                        selectedDish = null;
+                        return;
+                    }
+                    //bottom state
+                    selectedDish = bottomItem;
+                    centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedDish.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                    centralImage.color = new Color(1, 1, 1, 1);
                 }
-                //bottom state
-                selectedItem = bottomItem;
-                centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
-                centralImage.color = new Color(1, 1, 1, 1);
+                if (InputControls.BPressed)
+                {
+                    if (rightItem == null)
+                    {
+                        centralImage.color = new Color(1, 1, 1, 0);
+                        selectedDish = null;
+                        return;
+                    }
+                    //right state
+                    selectedDish = rightItem;
+                    centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedDish.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                    centralImage.color = new Color(1, 1, 1, 1);
+                }
+                if (InputControls.XPressed)
+                {
+                    if (leftItem == null)
+                    {
+                        centralImage.color = new Color(1, 1, 1, 0);
+                        selectedDish = null;
+                        return;
+                    }
+                    //left
+                    selectedDish = leftItem;
+                    centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedDish.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                    centralImage.color = new Color(1, 1, 1, 1);
+                }
+                if (InputControls.YPressed)
+                {
+                    if (topItem == null)
+                    {
+                        centralImage.color = new Color(1, 1, 1, 0);
+                        selectedDish = null;
+                        return;
+                    }
+                    //top
+                    selectedDish = topItem;
+                    centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedDish.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                    centralImage.color = new Color(1, 1, 1, 1);
+                }
             }
-            if (InputControls.BPressed)
+            else if(this.currentViewMode== Enums.InventoryViewMode.SpecialIngredientView)
             {
-                if (rightItem == null)
+                if (InputControls.APressed)
                 {
-                    centralImage.color = new Color(1, 1, 1, 0);
-                    selectedItem = null;
-                    return;
+                    if (bottomItem == null)
+                    {
+                        centralImage.color = new Color(1, 1, 1, 0);
+                        selectedIngredient = null;
+                        return;
+                    }
+                    //bottom state
+                    selectedIngredient = bottomItem;
+                    centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedIngredient.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                    centralImage.color = new Color(1, 1, 1, 1);
                 }
-                //right state
-                selectedItem = rightItem;
-                centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
-                centralImage.color = new Color(1, 1, 1, 1);
-            }
-            if (InputControls.XPressed)
-            {
-                if (leftItem == null)
+                if (InputControls.BPressed)
                 {
-                    centralImage.color = new Color(1, 1, 1, 0);
-                    selectedItem = null;
-                    return;
+                    if (rightItem == null)
+                    {
+                        centralImage.color = new Color(1, 1, 1, 0);
+                        selectedIngredient = null;
+                        return;
+                    }
+                    //right state
+                    selectedIngredient = rightItem;
+                    centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedIngredient.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                    centralImage.color = new Color(1, 1, 1, 1);
                 }
-                //left
-                selectedItem = leftItem;
-                centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
-                centralImage.color = new Color(1, 1, 1, 1);
-            }
-            if (InputControls.YPressed)
-            {
-                if (topItem == null)
+                if (InputControls.XPressed)
                 {
-                    centralImage.color = new Color(1, 1, 1, 0);
-                    selectedItem = null;
-                    return;
+                    if (leftItem == null)
+                    {
+                        centralImage.color = new Color(1, 1, 1, 0);
+                        selectedIngredient = null;
+                        return;
+                    }
+                    //left
+                    selectedIngredient = leftItem;
+                    centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedIngredient.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                    centralImage.color = new Color(1, 1, 1, 1);
                 }
-                //top
-                selectedItem = topItem;
-                centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
-                centralImage.color = new Color(1, 1, 1, 1);
+                if (InputControls.YPressed)
+                {
+                    if (topItem == null)
+                    {
+                        centralImage.color = new Color(1, 1, 1, 0);
+                        selectedIngredient = null;
+                        return;
+                    }
+                    //top
+                    selectedIngredient = topItem;
+                    centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedIngredient.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                    centralImage.color = new Color(1, 1, 1, 1);
+                }
             }
 
             if (InputControls.StartPressed)
             {
                 exitMenu();
                 Game.HUD.showInventory = true;
+            }
+            if (InputControls.RightBumperPressed)
+            {
+                swapMode();
             }
         }
 
@@ -245,10 +377,10 @@ namespace Assets.Scripts.Menus
         /// <returns></returns>
         private System.Collections.IEnumerable selectIngredientCloseMenu()
         {
-            if (selectedItem != null)
+            if (selectedIngredient != null)
             {
-                yield return selectedItem;
-                Game.Player.specialIngredientsInventory.Remove(selectedItem);
+                yield return selectedIngredient;
+                Game.Player.specialIngredientsInventory.Remove(selectedIngredient);
                 exitMenu();
             }
         }
@@ -267,11 +399,22 @@ namespace Assets.Scripts.Menus
         /// </summary>
         public override void exitMenu()
         {
-            Game.Player.activeItem = this.selectedItem;
-            Game.Player.updateHeldItemSprite();
-            Game.HUD.showInventory = true;
-            Destroy(this.gameObject);
-            Game.Menu = null;
+            if (currentViewMode == Enums.InventoryViewMode.DishView)
+            {
+                Game.Player.activeItem = this.selectedDish;
+                Game.Player.updateHeldItemSprite();
+                Game.HUD.showInventory = true;
+                Destroy(this.gameObject);
+                Game.Menu = null;
+            }
+            else
+            {
+                Game.Player.activeItem = this.selectedIngredient;
+                Game.Player.updateHeldItemSprite();
+                Game.HUD.showInventory = true;
+                Destroy(this.gameObject);
+                Game.Menu = null;
+            }
         }
 
     }

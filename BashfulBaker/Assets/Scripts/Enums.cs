@@ -112,6 +112,12 @@ namespace Assets.Scripts
             Packaged
         }
 
+        public enum InventoryViewMode
+        {
+            DishView,
+            SpecialIngredientView
+        }
+
         /// <summary>
         /// Gets all of the values stored in an enum.
         /// </summary>

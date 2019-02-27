@@ -12,15 +12,9 @@ namespace Assets.Scripts.Menus.HUDS
     public class InventoryHUD:HUD
     {
 
-        public enum ViewMode
-        {
-            DishView,
-            SpecialIngredientView
-        }
-
         GameObject canvas;
 
-        public ViewMode currentMode;
+        public Enums.InventoryViewMode currentMode;
         public GameObject dishes;
         public GameObject specialIngredients;
 
@@ -43,7 +37,7 @@ namespace Assets.Scripts.Menus.HUDS
         public override void Start()
         {
             canvas = this.gameObject.transform.Find("Canvas").gameObject;
-            this.currentMode = ViewMode.DishView;
+            this.currentMode = Enums.InventoryViewMode.DishView;
             GameObject inventoryBackground = canvas.transform.Find("Inventory Background").gameObject;
 
             dishes = inventoryBackground.transform.Find("DishesView").gameObject;
@@ -56,7 +50,7 @@ namespace Assets.Scripts.Menus.HUDS
         {
             Debug.Log("Hello");
             GameObject selectedView = null;
-            if(this.currentMode== ViewMode.DishView)
+            if(this.currentMode== Enums.InventoryViewMode.DishView)
             {
                 selectedView = this.dishes;
             }
@@ -81,7 +75,7 @@ namespace Assets.Scripts.Menus.HUDS
             bottomImage.color = new Color(1, 1, 1, 0);
             centralImage.color = new Color(1, 1, 1, 0);
 
-            if (currentMode == ViewMode.DishView)
+            if (currentMode == Enums.InventoryViewMode.DishView)
             {
                 this.dishes.SetActive(true);
                 this.specialIngredients.SetActive(false);
@@ -160,15 +154,15 @@ namespace Assets.Scripts.Menus.HUDS
 
         public void swapMode()
         {
-            if(this.currentMode== ViewMode.DishView)
+            if(this.currentMode== Enums.InventoryViewMode.DishView)
             {
-                this.currentMode = ViewMode.SpecialIngredientView;
+                this.currentMode = Enums.InventoryViewMode.SpecialIngredientView;
                 setUpComponents();
                 return;
             }
-            else if(this.currentMode== ViewMode.SpecialIngredientView)
+            else if(this.currentMode== Enums.InventoryViewMode.SpecialIngredientView)
             {
-                this.currentMode = ViewMode.DishView;
+                this.currentMode = Enums.InventoryViewMode.DishView;
                 setUpComponents();
                 return;
             }
