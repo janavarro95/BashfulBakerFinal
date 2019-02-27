@@ -66,7 +66,7 @@ namespace Assets.Scripts.Menus
             {
                 Instantiate("InventoryMenu",OverrideMenu);
             }
-            else if(typeof(T)== typeof(PantryMenuV2))
+            else if(typeof(T)== typeof(PantryMenuV2) || typeof(T)==typeof(PantryMenu))
             {
                 Instantiate("PantryMenuV2",OverrideMenu);
             }
