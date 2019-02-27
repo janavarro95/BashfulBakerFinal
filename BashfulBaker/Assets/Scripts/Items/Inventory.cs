@@ -101,15 +101,13 @@ namespace Assets.Scripts.Items
         public bool Add(Item I)
         {
             I.initializeSprite();
-
-            Game.HUD.updateInventoryHUD();
-
             if (this.items.Count == maxCapaxity)
             {
                 Debug.Log("Inventory is full!");
                 return false;
             }
             this.items.Add(I);
+            Game.HUD.updateInventoryHUD();
             return true;
         }
 

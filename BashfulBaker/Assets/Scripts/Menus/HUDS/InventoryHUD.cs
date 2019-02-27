@@ -81,7 +81,8 @@ namespace Assets.Scripts.Menus.HUDS
                 //left ingredient sprite
                 if (dishes.Count > 0)
                 {
-                    leftImage.sprite = Content.ContentManager.Instance.loadSprite(dishes[0].Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                    Texture2D texture = dishes[0].Sprite;
+                    leftImage.sprite = Content.ContentManager.Instance.loadSprite(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                     leftImage.color = Color.white;
                     leftDish = dishes[0];
                 }
@@ -89,7 +90,8 @@ namespace Assets.Scripts.Menus.HUDS
                 //right ingredient sprite
                 if (dishes.Count > 1)
                 {
-                    rightImage.sprite = Sprite.Create(dishes[1].Sprite, rightImage.rectTransform.rect, new Vector2(0.5f, 0.5f), 16);
+                    Texture2D texture = dishes[1].Sprite;
+                    rightImage.sprite = Content.ContentManager.Instance.loadSprite(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                     rightImage.color = Color.white;
                     rightDish = dishes[1];
                 }
@@ -97,7 +99,8 @@ namespace Assets.Scripts.Menus.HUDS
                 //Top ingredient sprite
                 if (dishes.Count > 2)
                 {
-                    topImage.sprite = Sprite.Create(dishes[2].Sprite, topImage.rectTransform.rect, new Vector2(0.5f, 0.5f), 16);
+                    Texture2D texture = dishes[2].Sprite;
+                    topImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                     topImage.color = Color.white;
                     topDish = dishes[2];
                 }
@@ -105,8 +108,8 @@ namespace Assets.Scripts.Menus.HUDS
                 //Bottom ingredient sprite
                 if (dishes.Count > (3))
                 {
-
-                    bottomImage.sprite = Sprite.Create(dishes[3].Sprite, bottomImage.rectTransform.rect, new Vector2(0.5f, 0.5f), 16);
+                    Texture2D texture = dishes[3].Sprite;
+                    bottomImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                     bottomImage.color = Color.white;
                     bottomDish = dishes[3];
                 }
@@ -118,7 +121,8 @@ namespace Assets.Scripts.Menus.HUDS
                 //left ingredient sprite
                 if (specialIngredients.Count > 0)
                 {
-                    leftImage.sprite = Content.ContentManager.Instance.loadSprite(specialIngredients[0].Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                    Texture2D texture = specialIngredients[0].Sprite;
+                    leftImage.sprite = Content.ContentManager.Instance.loadSprite(specialIngredients[0].Sprite, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                     leftImage.color = Color.white;
                     leftSpecialIngredient = specialIngredients[0];
                 }
@@ -126,7 +130,8 @@ namespace Assets.Scripts.Menus.HUDS
                 //right ingredient sprite
                 if (specialIngredients.Count > 1)
                 {
-                    rightImage.sprite = Sprite.Create(specialIngredients[1].Sprite, rightImage.rectTransform.rect, new Vector2(0.5f, 0.5f), 16);
+                    Texture2D texture = specialIngredients[1].Sprite;
+                    rightImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                     rightImage.color = Color.white;
                     rightSpecialIngredient = specialIngredients[1];
                 }
@@ -134,7 +139,8 @@ namespace Assets.Scripts.Menus.HUDS
                 //Top ingredient sprite
                 if (specialIngredients.Count > 2)
                 {
-                    topImage.sprite = Sprite.Create(specialIngredients[2].Sprite, topImage.rectTransform.rect, new Vector2(0.5f, 0.5f), 16);
+                    Texture2D texture = specialIngredients[2].Sprite;
+                    topImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                     topImage.color = Color.white;
                     topSpecialIngredient = specialIngredients[2];
                 }
@@ -142,8 +148,8 @@ namespace Assets.Scripts.Menus.HUDS
                 //Bottom ingredient sprite
                 if (specialIngredients.Count > (3))
                 {
-
-                    bottomImage.sprite = Sprite.Create(specialIngredients[3].Sprite, bottomImage.rectTransform.rect, new Vector2(0.5f, 0.5f), 16);
+                    Texture2D texture = specialIngredients[3].Sprite;
+                    bottomImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                     bottomImage.color = Color.white;
                     bottomSpecialIngredient = specialIngredients[3];
                 }

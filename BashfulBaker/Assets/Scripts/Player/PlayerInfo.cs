@@ -22,7 +22,22 @@ namespace Assets.Scripts.Player
         public Inventory dishesInventory;
         public Inventory specialIngredientsInventory;
 
-        public Item activeItem;
+
+        private Item _activeItem;
+
+        public Item activeItem
+        {
+            get
+            {
+                return _activeItem;
+            }
+            set
+            {
+                _activeItem = value;
+                updateHeldItemSprite();
+            }
+        }
+
         private GameObject _heldItemGameObject;
 
         public Enums.FacingDirection facingDirection;

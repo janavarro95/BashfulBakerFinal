@@ -86,16 +86,16 @@ namespace Assets.Scripts.Items
             this.currentDishState = Enums.DishState.Ingredients;
         }
 
-        public Dish(string DishName): base(DishName)
+        public Dish(string DishName,Enums.DishState State= Enums.DishState.Ingredients): base(DishName)
         {
             ingredients = new List<Item>();
-            this.currentDishState = Enums.DishState.Ingredients;
+            this.currentDishState = State;
         }
 
-        public Dish(string DishName, List<Item> Ingredients):base(DishName)
+        public Dish(string DishName, List<Item> Ingredients, Enums.DishState State = Enums.DishState.Ingredients) :base(DishName)
         {
-            this.ingredients = Ingredients;
-            this.currentDishState = Enums.DishState.Ingredients;
+            this.ingredients = Ingredients; 
+            this.currentDishState = State;
         }
 
         public void Update()
