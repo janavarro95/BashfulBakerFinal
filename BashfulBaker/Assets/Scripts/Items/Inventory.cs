@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.GameInformation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -88,7 +89,7 @@ namespace Assets.Scripts.Items
         public bool Remove(Item I)
         {
             bool removed = this.items.Remove(I);
-
+            Game.HUD.updateInventoryHUD();
             return removed;
         }
 
@@ -100,6 +101,9 @@ namespace Assets.Scripts.Items
         public bool Add(Item I)
         {
             I.initializeSprite();
+
+            Game.HUD.updateInventoryHUD();
+
             if (this.items.Count == maxCapaxity)
             {
                 Debug.Log("Inventory is full!");
@@ -178,7 +182,9 @@ namespace Assets.Scripts.Items
         public bool removeRandomItem()
         {
             if (this.items.Count == 0) return false;
-            return this.Remove(getRandomItem());
+            bool f= this.Remove(getRandomItem());
+            Game.HUD.updateInventoryHUD();
+            return f;
         }
     }
 }

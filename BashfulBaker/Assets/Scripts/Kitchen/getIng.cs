@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.Items;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 namespace Assets.Scripts.GameInput {
@@ -16,6 +18,11 @@ namespace Assets.Scripts.GameInput {
             if (InputControls.APressed && collision.gameObject.tag == "Player" && arrow.GetComponent<progress>().step == 0)
             {
                 Debug.Log("Picked up ingredients");
+
+                Game.HUD.showInventory = true;
+                Game.Player.dishesInventory.Add(new Dish("Chocolate Chip Cookie"));
+                Game.HUD.updateInventoryHUD();
+
                 FindObjectOfType<DialogueManager>().StartDialogue(pickUpText);
                 collision.GetComponent<PlayerMovement>().NextStep();
                 arrow.GetComponent<progress>().SetStep(1);

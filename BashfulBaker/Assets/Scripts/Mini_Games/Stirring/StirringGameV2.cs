@@ -26,6 +26,8 @@ namespace Assets.Scripts.GameInput
 
             buttons[0].SetActive(true);
             buttons[1].SetActive(false);
+
+            Game.HUD.showHUD = false;
         }
 
         // Update is called once per frame
@@ -85,6 +87,7 @@ namespace Assets.Scripts.GameInput
                     else if (Count == 5)
                     {
                         Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+                        Game.HUD.showHUD = true;
                         SceneManager.LoadScene("Kitchen");
                     }
 

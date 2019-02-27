@@ -42,36 +42,44 @@ namespace Assets.Scripts.Menus.HUDS
             if (showHUD)
             {
                 setVisibility(Enums.Visibility.Visible);
+
+                if (showInventory)
+                {
+                    toggleInventoryVisibility(Enums.Visibility.Visible);
+                }
+                else
+                {
+                    toggleInventoryVisibility(Enums.Visibility.Invisible);
+                }
+                if (showTimer)
+                {
+                    toggleTimerVisibility(Enums.Visibility.Visible);
+                }
+                else
+                {
+                    toggleTimerVisibility(Enums.Visibility.Invisible);
+                }
+                if (showQuests)
+                {
+                    toggleQuestVisibility(Enums.Visibility.Visible);
+                }
+                else
+                {
+                    toggleQuestVisibility(Enums.Visibility.Invisible);
+                }
+
             }
             else
             {
                 setVisibility(Enums.Visibility.Invisible);
             }
 
-            if (showInventory)
-            {
-                toggleInventoryVisibility(Enums.Visibility.Visible);
-            }
-            else
-            {
-                toggleInventoryVisibility(Enums.Visibility.Invisible);
-            }
-            if (showTimer)
-            {
-                toggleTimerVisibility(Enums.Visibility.Visible);
-            }
-            else
-            {
-                toggleTimerVisibility(Enums.Visibility.Invisible);
-            }
-            if (showQuests)
-            {
-                toggleQuestVisibility(Enums.Visibility.Visible);
-            }
-            else
-            {
-                toggleQuestVisibility(Enums.Visibility.Invisible);
-            }
+         
+        }
+
+        public virtual void updateInventoryHUD()
+        {
+            this.InventoryHUD.setUpComponents();
         }
 
         public override void setVisibility(Enums.Visibility visibility)

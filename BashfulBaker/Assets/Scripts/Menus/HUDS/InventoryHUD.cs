@@ -46,9 +46,8 @@ namespace Assets.Scripts.Menus.HUDS
 
         }
 
-        private void setUpComponents()
+        public void setUpComponents()
         {
-            Debug.Log("Hello");
             GameObject selectedView = null;
             if(this.currentMode== Enums.InventoryViewMode.DishView)
             {
