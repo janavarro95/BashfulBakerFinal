@@ -333,7 +333,7 @@ namespace Assets.Scripts.GameInformation
                 
                 Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
 
-                Game.Player.inventory.Add(new Ingredient("Chocolate Chip"));
+                Game.Player.dishesInventory.Add(new Dish("Chocolate Chip Cookie"));
                 Debug.Log("ADD CHOCO CHIP!");
 
             }

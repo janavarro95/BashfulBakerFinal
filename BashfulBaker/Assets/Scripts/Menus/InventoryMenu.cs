@@ -107,7 +107,7 @@ namespace Assets.Scripts.Menus
             topText.text = "";
             bottomText.text = "";
 
-            List<Item> items = Game.Player.inventory.getAllItems();
+            List<Item> items = Game.Player.dishesInventory.getAllItems();
 
             maxPages = (items.Count / 4)+1;
 
@@ -248,7 +248,7 @@ namespace Assets.Scripts.Menus
             if (selectedItem != null)
             {
                 yield return selectedItem;
-                selectedItem.removeFromStack(1);
+                Game.Player.specialIngredientsInventory.Remove(selectedItem);
                 exitMenu();
             }
         }

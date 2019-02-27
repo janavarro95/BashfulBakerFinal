@@ -19,7 +19,9 @@ namespace Assets.Scripts.Player
         /// <summary>
         /// The player's inventory.
         /// </summary>
-        public Inventory inventory;
+        public Inventory dishesInventory;
+        public Inventory specialIngredientsInventory;
+
         public Item activeItem;
         private GameObject _heldItemGameObject;
 
@@ -92,7 +94,8 @@ namespace Assets.Scripts.Player
         /// </summary>
         public PlayerInfo()
         {
-            this.inventory = new Inventory(4);
+            this.dishesInventory = new Inventory(4);
+            this.specialIngredientsInventory = new Inventory(4);
             this.facingDirection = Enums.FacingDirection.Down;
             this.hidden = false;
         }
@@ -144,7 +147,7 @@ namespace Assets.Scripts.Player
 
             foreach (string item in items)
             {
-                int value = this.inventory.Contains(item) ? this.inventory.getItem(item).stack : 0;
+                int value = this.dishesInventory.Contains(item) ? this.dishesInventory.getItem(item).stack : 0;
                 ingredientsNumberList.Add(value);
             }
             int min = Convert.ToInt32(ingredientsNumberList.Min());

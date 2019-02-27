@@ -10,7 +10,7 @@ namespace Assets.Scripts.Menus.HUDS
     public class GameHUD:HUD
     {
         [SerializeField]
-        HUD InventoryHUD;
+        InventoryHUD InventoryHUD;
         TimerHUD TimerHUD;
 
 
@@ -19,6 +19,8 @@ namespace Assets.Scripts.Menus.HUDS
         public bool showInventory=true;
         public bool showTimer=true;
         public bool showQuests=true;
+
+
 
         public void Awake()
         {
@@ -31,7 +33,7 @@ namespace Assets.Scripts.Menus.HUDS
 
         public override void Start()
         {
-            InventoryHUD = this.gameObject.transform.Find("InventoryHUD").gameObject.GetComponent<HUD>();
+            InventoryHUD = this.gameObject.transform.Find("InventoryHUD").gameObject.GetComponent<InventoryHUD>();
             TimerHUD = this.gameObject.transform.Find("TimerHUD").gameObject.GetComponent<TimerHUD>();
         }
 

@@ -33,6 +33,10 @@ public class Item {
             if (this._sprite == null) loadSpriteFromDisk();
             return _sprite;
         }
+        set
+        {
+            _sprite = value;
+        }
 
     }
 
@@ -56,17 +60,6 @@ public class Item {
     public void initializeSprite()
     {
         loadSpriteFromDisk();
-    }
-
-
-    public void addToStack(int amount)
-    {
-        this.stack += amount;
-    }
-
-    public void removeFromStack(int amount)
-    {
-        this.stack -= amount;
     }
 
 
