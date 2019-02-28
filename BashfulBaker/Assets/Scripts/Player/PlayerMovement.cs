@@ -176,7 +176,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             Menu.Instantiate<GameMenu>();
         }
-        /*
+        
         if (Assets.Scripts.GameInput.InputControls.RightBumperPressed)
         {
             if (Game.HUD.showInventory == true)
@@ -184,7 +184,7 @@ public class PlayerMovement : MonoBehaviour {
                 Menu.Instantiate<InventoryMenu>();
             }
         }
-        */
+        
     }
 
     private void playCharacterMovementAnimation(Vector3 offset)

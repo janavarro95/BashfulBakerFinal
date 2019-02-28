@@ -17,6 +17,8 @@ public class StartMinigame : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (Assets.Scripts.GameInformation.Game.IsMenuUp) return;
+
         if (collision.GetComponent<PlayerMovement>().currentStep == thisStep)
         {
             arrow.GetComponent<SpriteRenderer>().enabled = false;
