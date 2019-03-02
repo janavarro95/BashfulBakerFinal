@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () {
 
         walkingSoundTimer.Update();
-        checkForMenuInteraction();
+        checkForMovement();
         checkForPlayerVisibility();
 
         if (hidden && spriteRenderer.color.a > 0.2f)
@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour {
     /// <summary>
     /// Checks for the player to open up a menu.
     /// </summary>
-    private void checkForMenuInteraction()
+    private void checkForMovement()
     {
 
         //If the player is visible they probably should be able to open a menu.
@@ -140,11 +140,20 @@ public class PlayerMovement : MonoBehaviour {
 
                 Vector3 offset = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * MovementSpeed;
 
-                this.gameObject.transform.position += offset;
+                //Non-diagonal movement.
+                if ((Mathf.Abs(offset.x) > Mathf.Abs(offset.y)))
+                {
+
+                    this.gameObject.transform.position += new Vector3(offset.x, 0, 0);
+                }
+                else
+                {
+                    this.gameObject.transform.position += new Vector3(0, offset.y, 0);
+                }
 
                 if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0) && walkingSoundTimer.IsFinished && this.spriteRenderer.enabled)
                 {
-                    Game.SoundManager.playSound(CurrentWalkingSound, Random.Range(2f, 3f));
+                    //Game.SoundManager.playSound(CurrentWalkingSound, Random.Range(2f, 3f));
                     this.walkingSoundTimer.restart();
                 }
 

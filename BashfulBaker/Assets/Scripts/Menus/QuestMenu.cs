@@ -37,18 +37,29 @@ namespace Assets.Scripts.Menus
         [SerializeField]
         Sprite specialSprite;
 
-
+        Image quest1;
         public override void Start()
         {
-           
+
+            GameInformation.Game.QuestManager.addQuest(new CookingQuest("Nuggies", "Ronald Mc.Donald", new List<string>() { "Fries" }));
+
+            GameInformation.Game.Menu = this;
 
             questObjects = new List<GameObject>();
             GameObject canvas = this.transform.Find("Canvas").gameObject;
-            GameObject icons=canvas.transform.Find("QuestIcons").gameObject;
-            foreach(Transform t in icons.transform)
-            {
-                questObjects.Add(t.gameObject);
-            }
+            quest1 = canvas.transform.Find("CookingQuest1").gameObject.GetComponent<Image>();
+            questObjects.Add(canvas.transform.Find("CookingQuest1").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest2").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest3").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest4").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest5").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest6").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest7").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest8").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest9").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest10").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest11").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest12").gameObject);
 
 
 
@@ -153,6 +164,15 @@ namespace Assets.Scripts.Menus
                 }
             }
 
+
+            if (GameCursorMenu.SimulateMouseHover(quest1))
+            {
+                Debug.Log("HELLO");
+            }
+            else
+            {
+                Debug.Log("BYE");
+            }
 
             if (questHovered == false)
             {
