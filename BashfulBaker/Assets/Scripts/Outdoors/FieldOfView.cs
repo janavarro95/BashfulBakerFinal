@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Utilities.Timers;
 
 public class FieldOfView : MonoBehaviour {
     public float viewRadius;
@@ -21,17 +22,32 @@ public class FieldOfView : MonoBehaviour {
     public int edgeResolveIterations;
     public float edgeDistThreshold;
 
+    public bool Static;
+
+    private DeltaTimer meshTimer;
+
+    GameObject cam;
+
     private void Start()
     {
+        cam = GameObject.Find("Main Camera");
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
+        DrawFieldOfView();
+        meshTimer = new DeltaTimer(0.1m, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
+        meshTimer.start();
     }
 
     private void LateUpdate()
     {
+        if (Static) return;
+
         FindVisibleTargets();
-        DrawFieldOfView();
+        if (Vector3.Distance(transform.position, cam.transform.position) < (Camera.main.orthographicSize * Screen.width / Screen.height) + viewRadius) {
+            //DrawFieldOfView();
+            meshTimer.Update();
+        }
     }
 
     void FindVisibleTargets()
@@ -122,7 +138,7 @@ public class FieldOfView : MonoBehaviour {
         viewMesh.Clear();
         viewMesh.vertices = vertices;
         viewMesh.triangles = triangles;
-        viewMesh.RecalculateNormals();
+     //   viewMesh.RecalculateNormals();
     }
 
     ViewCastInfo ViewCast(float globalAngle)
