@@ -923,6 +923,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  guard: {fileID: 0}
 --- !u!1 &259797150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,6 +1028,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  guard: {fileID: 0}
 --- !u!1 &315992854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,6 +1522,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  guard: {fileID: 0}
 --- !u!1 &478627391
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,38 +1600,6 @@ Transform:
   m_Father: {fileID: 1777357910}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &494466679 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 304184723, guid: c15e94c9fb59dc14b91607d97d2997de,
-    type: 3}
-  m_PrefabInstance: {fileID: 5816696797388644981}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &494466680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 494466679}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06e86afcafd9c8b42aa25543945dcd31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 10
-  viewAngle: 24
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 512
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
-  visibleTargets: []
-  meshResolution: 1
-  viewMeshFilter: {fileID: 398630486}
-  edgeResolveIterations: 4
-  edgeDistThreshold: 0.5
-  Static: 0
 --- !u!1 &506202290
 GameObject:
   m_ObjectHideFlags: 0
@@ -2239,6 +2210,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  guard: {fileID: 0}
 --- !u!1 &632111734
 GameObject:
   m_ObjectHideFlags: 0
@@ -2641,6 +2613,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  guard: {fileID: 0}
 --- !u!1 &932274868
 GameObject:
   m_ObjectHideFlags: 0
@@ -3016,6 +2989,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1017403589 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 304184723, guid: c15e94c9fb59dc14b91607d97d2997de,
+    type: 3}
+  m_PrefabInstance: {fileID: 5816696797388644981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1062353116
 GameObject:
   m_ObjectHideFlags: 0
@@ -3340,6 +3319,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  guard: {fileID: 0}
 --- !u!1 &1120728787
 GameObject:
   m_ObjectHideFlags: 0
@@ -3710,7 +3690,7 @@ GameObject:
   - component: {fileID: 1148294937}
   - component: {fileID: 1148294938}
   m_Layer: 10
-  m_Name: Throwin Shade
+  m_Name: Lalatina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3897,6 +3877,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  guard: {fileID: 0}
 --- !u!1 &1161700185
 GameObject:
   m_ObjectHideFlags: 0
@@ -4546,6 +4527,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  guard: {fileID: 0}
 --- !u!1 &1223849563
 GameObject:
   m_ObjectHideFlags: 0
@@ -4994,6 +4976,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  guard: {fileID: 0}
 --- !u!1 &1313848747
 GameObject:
   m_ObjectHideFlags: 0
@@ -6421,6 +6404,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 0
+  guard: {fileID: 0}
 --- !u!1 &1508432426
 GameObject:
   m_ObjectHideFlags: 0
@@ -6763,6 +6747,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  guard: {fileID: 0}
 --- !u!1 &1531791831 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7261913888270027834, guid: c15e94c9fb59dc14b91607d97d2997de,
@@ -6795,6 +6780,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 0
+  guard: {fileID: 1017403589}
 --- !u!1001 &1536919455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6809,12 +6795,12 @@ PrefabInstance:
     - target: {fileID: 7261913887413368647, guid: c15e94c9fb59dc14b91607d97d2997de,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.8
+      value: 22.14
       objectReference: {fileID: 0}
     - target: {fileID: 7261913887413368647, guid: c15e94c9fb59dc14b91607d97d2997de,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.62
+      value: -10.26
       objectReference: {fileID: 0}
     - target: {fileID: 7261913887413368647, guid: c15e94c9fb59dc14b91607d97d2997de,
         type: 3}
@@ -6901,6 +6887,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 0
+  guard: {fileID: 0}
 --- !u!1 &1551797798
 GameObject:
   m_ObjectHideFlags: 0
@@ -7023,6 +7010,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  guard: {fileID: 0}
 --- !u!4 &1563056058
 Transform:
   m_ObjectHideFlags: 0
@@ -7260,6 +7248,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  guard: {fileID: 0}
 --- !u!1 &1628408794
 GameObject:
   m_ObjectHideFlags: 0
@@ -8161,6 +8150,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 0
+  guard: {fileID: 0}
 --- !u!4 &1777357910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7261913887413368647, guid: c15e94c9fb59dc14b91607d97d2997de,
@@ -9650,6 +9640,10 @@ PrefabInstance:
     - target: {fileID: 7261913887413368647, guid: c15e94c9fb59dc14b91607d97d2997de,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 353794872, guid: c15e94c9fb59dc14b91607d97d2997de, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

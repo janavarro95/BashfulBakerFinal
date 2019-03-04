@@ -27,6 +27,8 @@ public class FieldOfView : MonoBehaviour {
     private DeltaTimer meshTimer;
 
     GameObject cam;
+    public GameObject guard;
+    Vector3 startPoint;
 
     private void Start()
     {
@@ -35,8 +37,10 @@ public class FieldOfView : MonoBehaviour {
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
         DrawFieldOfView();
-        meshTimer = new DeltaTimer(0.1m, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
+        meshTimer = new DeltaTimer(0.01m, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
         meshTimer.start();
+
+        startPoint = guard.transform.position;
     }
 
     private void LateUpdate()
@@ -44,9 +48,14 @@ public class FieldOfView : MonoBehaviour {
         if (Static) return;
 
         FindVisibleTargets();
+        if(visibleTargets.Count < 1)
+        {
+            guard.transform.position = Vector3.MoveTowards(guard.transform.position, startPoint, 0.02f);
+        }
         if (Vector3.Distance(transform.position, cam.transform.position) < (Camera.main.orthographicSize * Screen.width / Screen.height) + viewRadius) {
             //DrawFieldOfView();
             meshTimer.Update();
+
         }
     }
 
@@ -71,6 +80,7 @@ public class FieldOfView : MonoBehaviour {
                 if(!Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, distToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
+                    guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
                 }
             }
         }
