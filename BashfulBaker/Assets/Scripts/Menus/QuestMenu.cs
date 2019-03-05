@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Menus
 {
-    public class QuestMenu:Menu
+    public class QuestMenu : Menu
     {
 
         GameObject canvas;
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Menus
         public override void Start()
         {
 
-            GameInformation.Game.QuestManager.addQuest(new CookingQuest("Nuggies", "Ronald Mc.Donald", new List<string>() { "Fries" }));
+            //GameInformation.Game.QuestManager.addQuest(new CookingQuest("Nuggies", "Ronald Mc.Donald", new List<string>() { "Fries" }));
 
             GameInformation.Game.Menu = this;
 
@@ -87,10 +87,10 @@ namespace Assets.Scripts.Menus
         {
             disableAllQuests();
 
-            List<QuestSystem.Quests.Quest> quests= GameInformation.Game.QuestManager.quests.FindAll(q => q.GetType() == typeof(QuestSystem.Quests.CookingQuest));
+            List<QuestSystem.Quests.Quest> quests = GameInformation.Game.QuestManager.quests.FindAll(q => q.GetType() == typeof(QuestSystem.Quests.CookingQuest));
             int count = quests.Count;
 
-            for(int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 questObjects[i].SetActive(true);
             }
@@ -100,7 +100,7 @@ namespace Assets.Scripts.Menus
 
         private void disableAllQuests()
         {
-            foreach(GameObject obj in questObjects)
+            foreach (GameObject obj in questObjects)
             {
                 obj.SetActive(false);
             }
@@ -131,6 +131,7 @@ namespace Assets.Scripts.Menus
                 GameObject obj = questObjects[i];
                 if (obj.activeInHierarchy)
                 {
+
                     if (GameCursorMenu.SimulateMouseHover(obj, false))
                     {
                         //Debug.Log("AHHHHHHHH A QUEST HOVER!");
@@ -149,19 +150,20 @@ namespace Assets.Scripts.Menus
                         specialImage.enabled = true;
                         cookedImage.sprite = (heldCookingQuests[i] as CookingQuest).HasBeenCooked ? yesSprite : noSprite;
                         deliveredImage.sprite = (heldCookingQuests[i] as CookingQuest).HasBeenDelivered ? yesSprite : noSprite;
-                        specialImage.sprite= (heldCookingQuests[i] as CookingQuest).SpecialMissionCompleted ? specialSprite : noSprite;
-                    }
-                    else
-                    {
-                        foodName.text = "";
-                        targetNPC.text = "";
-                        listOfIngredients.text = "";
-                        cookedImage.enabled = false;
-                        deliveredImage.enabled = false;
-                        specialImage.enabled = false;
-                        continue;
+                        specialImage.sprite = (heldCookingQuests[i] as CookingQuest).SpecialMissionCompleted ? specialSprite : noSprite;
                     }
                 }
+            }
+
+            if (questHovered == false)
+            {
+                foodName.text = "";
+                targetNPC.text = "";
+                listOfIngredients.text = "";
+                cookedImage.enabled = false;
+                deliveredImage.enabled = false;
+                specialImage.enabled = false;
+
             }
 
 
@@ -184,7 +186,7 @@ namespace Assets.Scripts.Menus
             }
         }
 
-        
+
         public void exitButtonPress()
         {
             this.exitMenu();
