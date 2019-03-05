@@ -1,0 +1,8 @@
+{
+  "name": "Peach Cobbler",
+  "itemsNeeded": [
+    "Pie Ingredients",
+    "Peach"
+  ],
+  "output": "Peach Cobbler"
+}

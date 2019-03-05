@@ -1,0 +1,8 @@
+{
+  "name": "Cheese Cake",
+  "itemsNeeded": [
+    "Cake Ingredients",
+    "Cream Cheese"
+  ],
+  "output": "Cheese Cake"
+}

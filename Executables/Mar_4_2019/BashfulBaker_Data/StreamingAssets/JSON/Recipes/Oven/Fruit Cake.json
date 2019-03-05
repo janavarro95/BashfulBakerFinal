@@ -1,0 +1,11 @@
+{
+  "name": "Fruit Cake",
+  "itemsNeeded": [
+    "Cake Ingredients",
+    "Apples",
+    "Raisins",
+    "Blueberry",
+    "Rasberry"
+  ],
+  "output": "Fruit Cake"
+}
