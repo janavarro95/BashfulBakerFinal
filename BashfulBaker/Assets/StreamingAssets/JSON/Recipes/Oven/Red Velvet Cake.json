@@ -1,13 +1,7 @@
 {
   "name": "Red Velvet Cake",
   "itemsNeeded": [
-    "Flour",
-    "Sugar",
-    "Milk",
-    "Butter",
-    "Eggs",
-    "Milk",
-    "Baking Powder"
+    "Cake Ingredients"
   ],
   "output": "Red Velvet Cake"
 }

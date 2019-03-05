@@ -1,13 +1,7 @@
 {
   "name": "Coffee Cake",
   "itemsNeeded": [
-    "Flour",
-    "Sugar",
-    "Milk",
-    "Butter",
-    "Eggs",
-    "Milk",
-    "Baking Powder",
+    "Cake Ingredients",
     "Coffee"
   ],
   "output": "Coffee Cake"

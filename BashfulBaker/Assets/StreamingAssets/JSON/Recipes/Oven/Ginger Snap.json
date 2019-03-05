@@ -1,10 +1,7 @@
 {
   "name": "Ginger Snap",
   "itemsNeeded": [
-    "Flour",
-    "Sugar",
-    "Butter",
-    "Eggs",
+    "Cookie Ingredients",
     "Ginger"
   ],
   "output": "Ginger Snap"

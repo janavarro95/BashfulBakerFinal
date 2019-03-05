@@ -54,15 +54,15 @@ public class StealthCaughtZone : MonoBehaviour
                     "Is that for me? Thanks! Now be carefull this late at night!"
                 }, Game.Player.activeItem.Name).ToArray()));
 
-                    Game.Player.inventory.Remove(Game.Player.activeItem);
+                    Game.Player.dishesInventory.Remove(Game.Player.activeItem);
                     Game.Player.activeItem = null;
                     awareness.shouldMove = true;
                     return;
                 }
-                else if (Game.Player.inventory.getAllDishes().Count > 0)
+                else if (Game.Player.dishesInventory.getAllDishes().Count > 0)
                 {
                     awareness.shouldMove = false;
-                    Item I = Game.Player.inventory.getRandomDish();
+                    Item I = Game.Player.dishesInventory.getRandomDish();
                     Game.DialogueManager.StartDialogue(new Dialogue("Guard", Assets.Scripts.Utilities.StringUtilities.FormatStringList(new List<string>()
                 {
                     "Hey, what are you doing out here late at night???",
@@ -71,7 +71,7 @@ public class StealthCaughtZone : MonoBehaviour
                 }, I.Name).ToArray()));
 
                     awareness.shouldMove = true;
-                    Game.Player.inventory.Remove(I);
+                    Game.Player.dishesInventory.Remove(I);
                 }
                 else
                 {

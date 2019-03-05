@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.Items;
+using Assets.Scripts.QuestSystem.Quests;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 namespace Assets.Scripts.GameInput {
@@ -16,6 +19,13 @@ namespace Assets.Scripts.GameInput {
             if (InputControls.APressed && collision.gameObject.tag == "Player" && arrow.GetComponent<progress>().step == 0)
             {
                 Debug.Log("Picked up ingredients");
+
+                Game.HUD.showInventory = true;
+                Game.Player.dishesInventory.Add(new Dish("Chocolate Chip Cookie"));
+                Game.HUD.updateInventoryHUD();
+                Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookie", "Sylvia", new List<string>()));
+                Game.HUD.showQuests = true;
+
                 FindObjectOfType<DialogueManager>().StartDialogue(pickUpText);
                 collision.GetComponent<PlayerMovement>().NextStep();
                 arrow.GetComponent<progress>().SetStep(1);

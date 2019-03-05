@@ -1,13 +1,7 @@
 {
   "name": "Ice Cream Cake",
   "itemsNeeded": [
-    "Flour",
-    "Sugar",
-    "Milk",
-    "Butter",
-    "Eggs",
-    "Milk",
-    "Baking Powder"
+    "Cake Ingredients"
   ],
   "output": "Ice Cream Cake"
 }

@@ -1,11 +1,7 @@
 {
   "name": "Bread",
   "itemsNeeded": [
-    "Flour",
-    "Water",
-    "Yeast",
-    "Oil",
-    "Sugar"
+    "Bread Ingredients"
   ],
   "output": "Bread"
 }

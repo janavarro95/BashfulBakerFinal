@@ -1,9 +1,7 @@
 {
   "name": "Cherry Pie",
   "itemsNeeded": [
-    "Flour",
-    "Butter",
-    "Egg",
+    "Pie Ingredients",
     "Cherries"
   ],
   "output": "Cherry Pie"

@@ -1,13 +1,7 @@
 {
   "name": "Cheese Cake",
   "itemsNeeded": [
-    "Flour",
-    "Sugar",
-    "Milk",
-    "Butter",
-    "Eggs",
-    "Milk",
-    "Baking Powder",
+    "Cake Ingredients",
     "Cream Cheese"
   ],
   "output": "Cheese Cake"

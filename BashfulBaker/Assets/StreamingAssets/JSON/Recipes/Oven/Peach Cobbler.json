@@ -1,9 +1,7 @@
 {
   "name": "Peach Cobbler",
   "itemsNeeded": [
-    "Flour",
-    "Butter",
-    "Egg",
+    "Pie Ingredients",
     "Peach"
   ],
   "output": "Peach Cobbler"
