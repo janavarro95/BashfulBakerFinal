@@ -10,9 +10,9 @@ namespace Assets.Scripts.Menus.HUDS
     public class GameHUD:HUD
     {
         [SerializeField]
-        InventoryHUD InventoryHUD;
-        TimerHUD TimerHUD;
-        HUD QuestHUD;
+        public InventoryHUD InventoryHUD;
+        public TimerHUD TimerHUD;
+        public HUD QuestHUD;
 
         public bool showHUD=true;
         public bool showInventory=true;

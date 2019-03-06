@@ -182,6 +182,7 @@ namespace Assets.Scripts.Player
             else
             {
                 Debug.Log("NO SPRITE");
+                if (this._heldItemGameObject == null) return;
                 this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
             }
         }

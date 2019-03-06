@@ -31,6 +31,15 @@ namespace Assets.Scripts.Menus
         public virtual void exitMenu()
         {
             Destroy(this.gameObject);
+            Game.SoundEffects.playMenuCloseSound();
+        }
+        public virtual void exitMenu(bool playCloseSound = true)
+        {
+            Destroy(this.gameObject);
+            if (playCloseSound)
+            {
+                Game.SoundEffects.playMenuCloseSound();
+            }
         }
 
         public virtual bool snapCompatible()

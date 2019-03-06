@@ -157,31 +157,14 @@ namespace Assets.Scripts.Menus.HUDS
 
         }
 
-        public void swapMode()
+        public void swapMode(Enums.InventoryViewMode mode)
         {
-            if(this.currentMode== Enums.InventoryViewMode.DishView)
-            {
-                this.currentMode = Enums.InventoryViewMode.SpecialIngredientView;
-                setUpComponents();
-                return;
-            }
-            else if(this.currentMode== Enums.InventoryViewMode.SpecialIngredientView)
-            {
-                this.currentMode = Enums.InventoryViewMode.DishView;
-                setUpComponents();
-                return;
-            }
+            this.currentMode = mode;
+            setUpComponents();
         }
 
         public override void Update()
         {
-            if (Game.HUD.showInventory == true)
-            {
-                if (GameInput.InputControls.RightBumperPressed)
-                {
-                    swapMode();
-                }
-            }
         }
 
         public override void setVisibility(Enums.Visibility visibility)

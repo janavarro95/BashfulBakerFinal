@@ -60,7 +60,7 @@ namespace Assets.Scripts.Menus
 
             Game.HUD.showInventory = false;
 
-            this.currentViewMode = Enums.InventoryViewMode.DishView;
+            this.currentViewMode = Game.HUD.InventoryHUD.currentMode;
 
             setUpMenu();
 
@@ -263,6 +263,7 @@ namespace Assets.Scripts.Menus
                     selectedDish = bottomItem;
                     centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedDish.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                     centralImage.color = new Color(1, 1, 1, 1);
+                    Game.SoundEffects.playItemSelectSound();
                 }
                 if (InputControls.BPressed)
                 {
@@ -276,6 +277,7 @@ namespace Assets.Scripts.Menus
                     selectedDish = rightItem;
                     centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedDish.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                     centralImage.color = new Color(1, 1, 1, 1);
+                    Game.SoundEffects.playItemSelectSound();
                 }
                 if (InputControls.XPressed)
                 {
@@ -289,6 +291,7 @@ namespace Assets.Scripts.Menus
                     selectedDish = leftItem;
                     centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedDish.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                     centralImage.color = new Color(1, 1, 1, 1);
+                    Game.SoundEffects.playItemSelectSound();
                 }
                 if (InputControls.YPressed)
                 {
@@ -302,61 +305,66 @@ namespace Assets.Scripts.Menus
                     selectedDish = topItem;
                     centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedDish.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                     centralImage.color = new Color(1, 1, 1, 1);
+                    Game.SoundEffects.playItemSelectSound();
                 }
             }
             else if(this.currentViewMode== Enums.InventoryViewMode.SpecialIngredientView)
             {
                 if (InputControls.APressed)
                 {
-                    if (bottomItem == null)
+                    if (bottomIngredient == null)
                     {
                         centralImage.color = new Color(1, 1, 1, 0);
                         selectedIngredient = null;
                         return;
                     }
                     //bottom state
-                    selectedIngredient = bottomItem;
+                    selectedIngredient = bottomIngredient;
                     centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedIngredient.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                     centralImage.color = new Color(1, 1, 1, 1);
+                    Game.SoundEffects.playItemSelectSound();
                 }
                 if (InputControls.BPressed)
                 {
-                    if (rightItem == null)
+                    if (rightIngredient == null)
                     {
                         centralImage.color = new Color(1, 1, 1, 0);
                         selectedIngredient = null;
                         return;
                     }
                     //right state
-                    selectedIngredient = rightItem;
+                    selectedIngredient = rightIngredient;
                     centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedIngredient.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                     centralImage.color = new Color(1, 1, 1, 1);
+                    Game.SoundEffects.playItemSelectSound();
                 }
                 if (InputControls.XPressed)
                 {
-                    if (leftItem == null)
+                    if (leftIngredient == null)
                     {
                         centralImage.color = new Color(1, 1, 1, 0);
                         selectedIngredient = null;
                         return;
                     }
                     //left
-                    selectedIngredient = leftItem;
+                    selectedIngredient = leftIngredient;
                     centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedIngredient.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                     centralImage.color = new Color(1, 1, 1, 1);
+                    Game.SoundEffects.playItemSelectSound();
                 }
                 if (InputControls.YPressed)
                 {
-                    if (topItem == null)
+                    if (topIngredient == null)
                     {
                         centralImage.color = new Color(1, 1, 1, 0);
                         selectedIngredient = null;
                         return;
                     }
                     //top
-                    selectedIngredient = topItem;
+                    selectedIngredient = topIngredient;
                     centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedIngredient.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                     centralImage.color = new Color(1, 1, 1, 1);
+                    Game.SoundEffects.playItemSelectSound();
                 }
             }
 
@@ -368,9 +376,11 @@ namespace Assets.Scripts.Menus
             if (InputControls.RightBumperPressed)
             {
                 swapMode();
+                Game.SoundEffects.playMenuButtonMovementSnap();
             }
         }
 
+        /*
         /// <summary>
         /// Checks for and returns a selected ingredient and then closes the menu.
         /// </summary>
@@ -384,7 +394,7 @@ namespace Assets.Scripts.Menus
                 exitMenu();
             }
         }
-
+        
         /// <summary>
         /// Wrapper to check which ingredient was selected and close the menu at the same time.
         /// </summary>
@@ -393,7 +403,7 @@ namespace Assets.Scripts.Menus
         {
            return (Ingredient)selectIngredientCloseMenu();
         }
-
+        */
         /// <summary>
         /// Close the active menu.
         /// </summary>
@@ -401,20 +411,25 @@ namespace Assets.Scripts.Menus
         {
             if (currentViewMode == Enums.InventoryViewMode.DishView)
             {
+                Debug.Log("Close?");
                 Game.Player.activeItem = this.selectedDish;
                 Game.Player.updateHeldItemSprite();
                 Game.HUD.showInventory = true;
-                Destroy(this.gameObject);
+                Game.HUD.InventoryHUD.swapMode(currentViewMode);
+                base.exitMenu();
                 Game.Menu = null;
             }
             else
             {
+                Debug.Log("Close2?");
                 Game.Player.activeItem = this.selectedIngredient;
                 Game.Player.updateHeldItemSprite();
                 Game.HUD.showInventory = true;
-                Destroy(this.gameObject);
+                Game.HUD.InventoryHUD.swapMode(currentViewMode);
+                base.exitMenu();
                 Game.Menu = null;
             }
+            
         }
 
     }

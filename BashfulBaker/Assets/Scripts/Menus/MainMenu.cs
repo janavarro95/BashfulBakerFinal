@@ -80,6 +80,7 @@ namespace Assets.Scripts.Menus
             if (GameCursorMenu.SimulateMousePress(startButton))
             {
                 this.startButtonClick();
+                Game.SoundEffects.playMainMenuStartButton();
                 return;
             }
 
@@ -112,7 +113,7 @@ namespace Assets.Scripts.Menus
         /// </summary>
         public override void exitMenu()
         {
-            Destroy(this.gameObject);
+            base.exitMenu();
             Game.Menu = null;
         }   
 

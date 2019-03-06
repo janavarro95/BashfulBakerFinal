@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.GameInput;
+﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.GameInput;
 using Assets.Scripts.QuestSystem.Quests;
 using System;
 using System.Collections.Generic;
@@ -190,6 +191,7 @@ namespace Assets.Scripts.Menus
         public void exitButtonPress()
         {
             this.exitMenu();
+            Game.Menu = null;
         }
 
     }
