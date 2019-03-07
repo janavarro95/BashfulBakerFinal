@@ -72,7 +72,7 @@ namespace Assets.Scripts.QuestSystem.Quests
 
                 foreach (Item I in removalList)
                 {
-                    Game.Player.inventory.Remove(I);
+                    Game.Player.dishesInventory.Remove(I);
                 }
                 if (hasADishBeenDelivered == false) Debug.Log("No dishes to deliver here!");
             }

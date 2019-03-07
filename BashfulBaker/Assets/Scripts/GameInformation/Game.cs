@@ -167,6 +167,8 @@ namespace Assets.Scripts.GameInformation
 
         public static DialogueManager DialogueManager;
 
+        public static SoundEffects SoundEffects;
+
 
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
@@ -219,6 +221,14 @@ namespace Assets.Scripts.GameInformation
                     string soundManagerPath = Path.Combine(Path.Combine("Prefabs", "Misc"), "SoundManager");
                     GameObject obj=Instantiate((GameObject)Resources.Load(soundManagerPath, typeof(GameObject)));
                     SoundManager = obj.GetComponent<GameSoundManager>();
+                }
+
+                if (SoundEffects == null)
+                {
+                    string soundManagerPath = Path.Combine(Path.Combine("Prefabs", "Misc"), "SoundEffects");
+                    GameObject obj = Instantiate((GameObject)Resources.Load(soundManagerPath, typeof(GameObject)));
+                    SoundEffects = obj.GetComponent<SoundEffects>();
+                    SoundEffects.gameObject.transform.parent = SoundManager.gameObject.transform;
                 }
 
                 if (Options == null)
@@ -333,7 +343,11 @@ namespace Assets.Scripts.GameInformation
                 
                 Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
 
-                Game.Player.inventory.Add(new Ingredient("Chocolate Chip"));
+                //Game.Player.specialIngredientsInventory.Add(new SpecialIngredient("Chocolate Chip"));
+                //
+                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
+                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
+                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
                 Debug.Log("ADD CHOCO CHIP!");
 
             }

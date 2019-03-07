@@ -38,15 +38,15 @@ namespace Assets.Scripts.QuestSystem
                 "Raspberries"
             }, null));
             */
-
-            quests.Add(new CookingQuest("Example2", "Mr.Example2", new List<string>()
-            {
-                "Strawberries"
-            }, null));
             
             serializeCookingQuests();
 
             
+        }
+
+        public void addQuest(Quest q)
+        {
+            this.quests.Add(q);
         }
 
         /// <summary>

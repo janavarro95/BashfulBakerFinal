@@ -13,12 +13,18 @@ namespace Assets.Scripts.Menus.HUDS
         private GameObject timerCanvas;
         private Text timeRemaining;
 
+        /// <summary>
+        /// Start the monobehaviour for the timer hud.
+        /// </summary>
         public override void Start()
         {
             timerCanvas = this.gameObject.transform.Find("Canvas").gameObject;
             timeRemaining = timerCanvas.transform.Find("TimeText").GetComponent<Text>();
         }
 
+        /// <summary>
+        /// Update the timer HUD.
+        /// </summary>
         public override void Update()
         {
             if (Game.PhaseTimer != null)

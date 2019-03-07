@@ -31,6 +31,15 @@ namespace Assets.Scripts.Menus
         public virtual void exitMenu()
         {
             Destroy(this.gameObject);
+            Game.SoundEffects.playMenuCloseSound();
+        }
+        public virtual void exitMenu(bool playCloseSound = true)
+        {
+            Destroy(this.gameObject);
+            if (playCloseSound)
+            {
+                Game.SoundEffects.playMenuCloseSound();
+            }
         }
 
         public virtual bool snapCompatible()
@@ -50,25 +59,29 @@ namespace Assets.Scripts.Menus
 
         public static void Instantiate<T>(bool OverrideMenu=false)
         {
-            if(typeof(T) == typeof(Menu))
+            if (typeof(T) == typeof(Menu))
             {
-                Instantiate("Menu",OverrideMenu);
+                Instantiate("Menu", OverrideMenu);
             }
             else if (typeof(T) == typeof(MainMenu))
             {
-                Instantiate("MainMenu",OverrideMenu);
+                Instantiate("MainMenu", OverrideMenu);
             }
-            else if(typeof(T)== typeof(OptionsMenu))
+            else if (typeof(T) == typeof(OptionsMenu))
             {
-                Instantiate("OptionsMenu",OverrideMenu);
+                Instantiate("OptionsMenu", OverrideMenu);
             }
-            else if(typeof(T)== typeof(InventoryMenu))
+            else if (typeof(T) == typeof(InventoryMenu))
             {
-                Instantiate("InventoryMenu",OverrideMenu);
+                Instantiate("InventoryMenu", OverrideMenu);
             }
-            else if(typeof(T)== typeof(PantryMenu))
+            else if (typeof(T) == typeof(PantryMenuV2) || typeof(T) == typeof(PantryMenu))
             {
-                Instantiate("PantryMenu",OverrideMenu);
+                Instantiate("PantryMenuV2", OverrideMenu);
+            }
+            else if (typeof(T) == typeof(QuestMenu))
+            {
+                Instantiate("CookingQuestMenu", OverrideMenu);
             }
             else if (typeof(T) == typeof(GameMenu))
             {
