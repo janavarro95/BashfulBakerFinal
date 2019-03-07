@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.GameInput;
+﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.GameInput;
 using Assets.Scripts.QuestSystem.Quests;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Menus
 {
-    public class QuestMenu:Menu
+    public class QuestMenu : Menu
     {
 
         GameObject canvas;
@@ -37,18 +38,29 @@ namespace Assets.Scripts.Menus
         [SerializeField]
         Sprite specialSprite;
 
-
+        Image quest1;
         public override void Start()
         {
-           
+
+            //GameInformation.Game.QuestManager.addQuest(new CookingQuest("Nuggies", "Ronald Mc.Donald", new List<string>() { "Fries" }));
+
+            GameInformation.Game.Menu = this;
 
             questObjects = new List<GameObject>();
             GameObject canvas = this.transform.Find("Canvas").gameObject;
-            GameObject icons=canvas.transform.Find("QuestIcons").gameObject;
-            foreach(Transform t in icons.transform)
-            {
-                questObjects.Add(t.gameObject);
-            }
+            quest1 = canvas.transform.Find("CookingQuest1").gameObject.GetComponent<Image>();
+            questObjects.Add(canvas.transform.Find("CookingQuest1").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest2").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest3").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest4").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest5").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest6").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest7").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest8").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest9").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest10").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest11").gameObject);
+            questObjects.Add(canvas.transform.Find("CookingQuest12").gameObject);
 
 
 
@@ -76,10 +88,10 @@ namespace Assets.Scripts.Menus
         {
             disableAllQuests();
 
-            List<QuestSystem.Quests.Quest> quests= GameInformation.Game.QuestManager.quests.FindAll(q => q.GetType() == typeof(QuestSystem.Quests.CookingQuest));
+            List<QuestSystem.Quests.Quest> quests = GameInformation.Game.QuestManager.quests.FindAll(q => q.GetType() == typeof(QuestSystem.Quests.CookingQuest));
             int count = quests.Count;
 
-            for(int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 questObjects[i].SetActive(true);
             }
@@ -89,7 +101,7 @@ namespace Assets.Scripts.Menus
 
         private void disableAllQuests()
         {
-            foreach(GameObject obj in questObjects)
+            foreach (GameObject obj in questObjects)
             {
                 obj.SetActive(false);
             }
@@ -120,6 +132,7 @@ namespace Assets.Scripts.Menus
                 GameObject obj = questObjects[i];
                 if (obj.activeInHierarchy)
                 {
+
                     if (GameCursorMenu.SimulateMouseHover(obj, false))
                     {
                         //Debug.Log("AHHHHHHHH A QUEST HOVER!");
@@ -138,21 +151,31 @@ namespace Assets.Scripts.Menus
                         specialImage.enabled = true;
                         cookedImage.sprite = (heldCookingQuests[i] as CookingQuest).HasBeenCooked ? yesSprite : noSprite;
                         deliveredImage.sprite = (heldCookingQuests[i] as CookingQuest).HasBeenDelivered ? yesSprite : noSprite;
-                        specialImage.sprite= (heldCookingQuests[i] as CookingQuest).SpecialMissionCompleted ? specialSprite : noSprite;
-                    }
-                    else
-                    {
-                        foodName.text = "";
-                        targetNPC.text = "";
-                        listOfIngredients.text = "";
-                        cookedImage.enabled = false;
-                        deliveredImage.enabled = false;
-                        specialImage.enabled = false;
-                        continue;
+                        specialImage.sprite = (heldCookingQuests[i] as CookingQuest).SpecialMissionCompleted ? specialSprite : noSprite;
                     }
                 }
             }
 
+            if (questHovered == false)
+            {
+                foodName.text = "";
+                targetNPC.text = "";
+                listOfIngredients.text = "";
+                cookedImage.enabled = false;
+                deliveredImage.enabled = false;
+                specialImage.enabled = false;
+
+            }
+
+
+            if (GameCursorMenu.SimulateMouseHover(quest1))
+            {
+                Debug.Log("HELLO");
+            }
+            else
+            {
+                Debug.Log("BYE");
+            }
 
             if (questHovered == false)
             {
@@ -164,10 +187,11 @@ namespace Assets.Scripts.Menus
             }
         }
 
-        
+
         public void exitButtonPress()
         {
             this.exitMenu();
+            Game.Menu = null;
         }
 
     }

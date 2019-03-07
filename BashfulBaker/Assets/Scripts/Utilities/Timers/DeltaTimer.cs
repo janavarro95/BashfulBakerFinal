@@ -87,7 +87,7 @@ namespace Assets.Scripts.Utilities.Timers
             }
             else if( Type== TimerType.CountUp)
             {
-                this.currentTime = TimeToCompletion;
+                this.currentTime = 0;
             }
             this.maxTime = TimeToCompletion;
             this.onFinished = OnFinished;

@@ -26,6 +26,8 @@ namespace Assets.Scripts.GameInput
 
             buttons[0].SetActive(true);
             buttons[1].SetActive(false);
+
+            Game.HUD.showHUD = false;
         }
 
         // Update is called once per frame
@@ -49,7 +51,7 @@ namespace Assets.Scripts.GameInput
                     buttons[1].SetActive(false);
                     Count++;
                     Percent_Stirred = 0;
-                    Debug.Log(Count);
+                    //Debug.Log(Count);
                     if (Count == 1)
                     {
                         GameObject Checkmark1 = new GameObject();
@@ -85,14 +87,15 @@ namespace Assets.Scripts.GameInput
                     else if (Count == 5)
                     {
                         Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+                        Game.HUD.showHUD = true;
                         SceneManager.LoadScene("Kitchen");
                     }
 
                 }
             }
 
-            int angle = (int)Vector2.SignedAngle(new Vector2(0, 0), Next);
-
+            int angle = (int)Vector2.SignedAngle(new Vector2(1, 0), Next);
+            Debug.Log(angle);
             if (Mathf.Abs(angle) > 144)
             {
                 angle = 2;
