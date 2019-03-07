@@ -170,6 +170,8 @@ namespace Assets.Scripts.GameInformation
         public static SoundEffects SoundEffects;
 
 
+        public static int CurrentDayNumber;
+
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
         static Game()
@@ -369,12 +371,18 @@ namespace Assets.Scripts.GameInformation
             int actualTime = (Minutes * 60) + Seconds;
             PhaseTimer = new Utilities.Timers.DeltaTimer(actualTime, Enums.TimerType.CountDown, false, new Utilities.Delegates.VoidDelegate(phaseTimerRunsOut));
             PhaseTimer.start();
+            Game.HUD.showTimer = true;
         }
 
 
         private static void phaseTimerRunsOut()
         {
-            Debug.Log("WOOPS NO MORE TIME LEFT!!!");
+            Game.DialogueManager.StartDialogue(new Dialogue("Guard",new List<string>()
+                {
+                    "Oh man it's getting pretty dark.",
+                    "I guess I won't have any more time to do my deliveries..."
+                }.ToArray()));
+            SceneManager.LoadScene("EndofDay");
         }
 
         public static void QuitGame()

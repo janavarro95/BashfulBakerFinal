@@ -25,6 +25,7 @@ namespace Assets.Scripts.GameInput {
                 Game.HUD.updateInventoryHUD();
                 Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookie", "Sylvia", new List<string>()));
                 Game.HUD.showQuests = true;
+                Game.StartNewTimerPhase(5, 0);
 
                 FindObjectOfType<DialogueManager>().StartDialogue(pickUpText);
                 collision.GetComponent<PlayerMovement>().NextStep();
