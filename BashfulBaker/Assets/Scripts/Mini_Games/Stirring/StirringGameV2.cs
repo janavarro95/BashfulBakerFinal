@@ -12,9 +12,11 @@ namespace Assets.Scripts.GameInput
         private float Percent_Stirred;
         public int Count; 
         public Sprite completeIcon;
+        public Animator flyingFood;
         public GameObject[] buttons;
         public SpriteRenderer bowl;
         public Sprite[] sprites;
+
         public GameObject progressBar;
 
         // Start is called before the first frame update
@@ -35,7 +37,7 @@ namespace Assets.Scripts.GameInput
         void Update()
         {
             Next = new Vector2(InputControls.RightJoystickHorizontal, InputControls.RightJoystickVertical);
-
+            
             if (!Prev.Equals(new Vector2(0, 0)) && !Next.Equals(new Vector2(0, 0)))
             {
                 Percent_Stirred += Vector2.Angle(Prev, Next) > 45 ? 45 : Vector2.Angle(Prev, Next);
@@ -55,35 +57,43 @@ namespace Assets.Scripts.GameInput
                     //Debug.Log(Count);
                     if (Count == 1)
                     {
+                        flyingFood.SetInteger("addAnimation", 1);
                         GameObject Checkmark1 = new GameObject();
                         Checkmark1.AddComponent<SpriteRenderer>();
                         Checkmark1.GetComponent<SpriteRenderer>().sprite = completeIcon;
                         Checkmark1.transform.position = new Vector3(-4.45f, 1.2f, 0);
                         Checkmark1.layer = 1;
+                        
                     }
                     else if (Count == 2)
                     {
+                        flyingFood.SetInteger("addAnimation", 1);
                         GameObject Checkmark2 = new GameObject();
                         Checkmark2.AddComponent<SpriteRenderer>();
                         Checkmark2.GetComponent<SpriteRenderer>().sprite = completeIcon;
                         Checkmark2.transform.position = new Vector3(-4.45f, .25f, 0);
                         Checkmark2.layer = 1;
+                        
                     }
                     else if (Count == 3)
                     {
+                        flyingFood.SetInteger("addAnimation", 2);
                         GameObject Checkmark3 = new GameObject();
                         Checkmark3.AddComponent<SpriteRenderer>();
                         Checkmark3.GetComponent<SpriteRenderer>().sprite = completeIcon;
                         Checkmark3.transform.position = new Vector3(-4.45f, -.85f, 0);
                         Checkmark3.layer = 1;
+                        
                     }
                     else if (Count == 4)
                     {
+                        flyingFood.SetInteger("addAnimation", 2);
                         GameObject Checkmark4 = new GameObject();
                         Checkmark4.AddComponent<SpriteRenderer>();
                         Checkmark4.GetComponent<SpriteRenderer>().sprite = completeIcon;
                         Checkmark4.transform.position = new Vector3(-4.45f, -1.9f, 0);
                         Checkmark4.layer = 1;
+                        
                     }
                     else if (Count == 5)
                     {
