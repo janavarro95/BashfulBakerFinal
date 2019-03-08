@@ -16,6 +16,7 @@ namespace Assets.Scripts.GameInput
         public GameObject[] buttons;
         private SpriteRenderer sprite;
         public Sprite[] sprites;
+        public GameObject progressBar;
 
         // Start is called before the first frame update
         void Start()
@@ -40,6 +41,8 @@ namespace Assets.Scripts.GameInput
             buttons[0].SetActive(true);
             buttons[1].SetActive(true);
             buttons[2].SetActive(false);
+
+            progressBar.transform.localScale = new Vector3(.1f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
         }
 
         // Update is called once per frame
@@ -64,10 +67,14 @@ namespace Assets.Scripts.GameInput
                 }
                 startL = endL;
 
+                sumR = sumR > 720 ? 720 : sumR;
+                sumL = sumL > 720 ? 720 : sumL;
+
                 sprite.sprite = sumR + sumL < 720 ? sumR + sumL > 360 ? sprites[1] : sprites[0] : sumR + sumL > 1080 ? sprites[3] : sprites[2];
 
                 if (sumR < 720f || sumL < 720f)
                 {
+                    progressBar.transform.localScale = new Vector3(((sumR + sumL) * 30) / 1440f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
                     this.transform.Rotate(0f, 0f, 90f * Time.deltaTime * spinning);
                     //this.transform.rotation = new Quaternion(this.transform.rotation.x, this.transform.rotation.y, Mathf.Lerp(0f, 720f, ((sumR < 720f ? sumR : 720f) + (sumL < 720f ? sumL : 720f)) / 1440f), this.transform.rotation.w);
                 }

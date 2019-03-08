@@ -15,6 +15,7 @@ namespace Assets.Scripts.GameInput
         public GameObject[] buttons;
         public SpriteRenderer bowl;
         public Sprite[] sprites;
+        public GameObject progressBar;
 
         // Start is called before the first frame update
         void Start()
@@ -26,6 +27,8 @@ namespace Assets.Scripts.GameInput
 
             buttons[0].SetActive(true);
             buttons[1].SetActive(false);
+
+            progressBar.transform.localScale = new Vector3(.1f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
         }
 
         // Update is called once per frame
@@ -108,6 +111,7 @@ namespace Assets.Scripts.GameInput
 
             bowl.sprite = sprites[angle];
 
+            progressBar.transform.localScale = new Vector3((Percent_Stirred * 30)/720f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
         }
 
 
