@@ -79,6 +79,15 @@ public class Tutorial_Jeb : MonoBehaviour
 
 
     }
+
+
+    public void helloWorld()
+    {
+
+    }
+
+
+
     void Bye()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(tutorial_lines_pt3);

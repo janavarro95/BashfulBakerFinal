@@ -31,6 +31,8 @@ namespace Assets.Scripts.GameInput
             buttons[1].SetActive(false);
 
             progressBar.transform.localScale = new Vector3(.1f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
+
+            Game.HUD.showHUD = false;
         }
 
         // Update is called once per frame
@@ -98,6 +100,7 @@ namespace Assets.Scripts.GameInput
                     else if (Count == 5)
                     {
                         Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+                        Game.HUD.showHUD = true;
                         SceneManager.LoadScene("Kitchen");
                     }
 

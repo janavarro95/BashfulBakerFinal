@@ -17,7 +17,7 @@ public class Beacon : MonoBehaviour
         Lifetime -= Time.deltaTime;
         if (Lifetime < 0)
         {
-            Debug.Log(this.transform.position.x);
+           // Debug.Log(this.transform.position.x);
             Destroy(gameObject);
         }
     }

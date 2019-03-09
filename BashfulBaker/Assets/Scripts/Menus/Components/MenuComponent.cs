@@ -17,6 +17,14 @@ namespace Assets.Scripts.Menus.Components
 
         public MonoBehaviour unityObject;
 
+        public bool active
+        {
+            get
+            {
+                return unityObject.gameObject.activeInHierarchy;
+            }
+        }
+
         public MenuComponent(MonoBehaviour UnityObject)
         {
             this.unityObject = UnityObject;
@@ -75,5 +83,9 @@ namespace Assets.Scripts.Menus.Components
             return null; //No snapping here!
         }
 
+        public void setActive(bool active)
+        {
+            this.unityObject.gameObject.SetActive(active);
+        }
     }
 }

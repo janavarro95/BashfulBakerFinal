@@ -171,8 +171,8 @@ namespace Assets.Scripts.Menus
 
                     getMenuComponents();
 
-                    rightPantryText.text = Game.Pantry.getIngredientsCountForRecipes("Chocolate Chip Cookie").ToString();
-                    rightPlayerText.text = Game.Player.getIngredientsCountForRecipes("Chocolate Chip Cookie").ToString();
+                    rightPantryText.text = "";//Game.Pantry.getIngredientsCountForRecipes("Chocolate Chip Cookie").ToString();
+                    rightPlayerText.text = "";//Game.Player.getIngredientsCountForRecipes("Chocolate Chip Cookie").ToString();
 
                     bottomPantryText.text = "";
                     bottomPlayerText.text = "";
@@ -212,15 +212,15 @@ namespace Assets.Scripts.Menus
 
                 getMenuComponents();
 
-                leftPantryText.text = Game.Pantry.inventory.Contains("Dark Chocolate Chip") ? Game.Pantry.inventory.getItem("Dark Chocolate Chip").stack.ToString() : "0";
-                topPantryText.text = Game.Pantry.inventory.Contains("Milk Chocolate Chip") ? Game.Pantry.inventory.getItem("Milk Chocolate Chip").stack.ToString() : "0";
-                rightPantryText.text = Game.Pantry.inventory.Contains("White Chocolate Chip") ? Game.Pantry.inventory.getItem("White Chocolate Chip").stack.ToString() : "0";
-                bottomPantryText.text = Game.Pantry.inventory.Contains("Mint Chocolate Chip") ? Game.Pantry.inventory.getItem("Mint Chocolate Chip").stack.ToString() : "0";
+                leftPantryText.text = "";// Game.Pantry.inventory.Contains("Dark Chocolate Chip") ? Game.Pantry.inventory.getItem("Dark Chocolate Chip").stack.ToString() : "0";
+                topPantryText.text = "";// Game.Pantry.inventory.Contains("Milk Chocolate Chip") ? Game.Pantry.inventory.getItem("Milk Chocolate Chip").stack.ToString() : "0";
+                rightPantryText.text = "";// Game.Pantry.inventory.Contains("White Chocolate Chip") ? Game.Pantry.inventory.getItem("White Chocolate Chip").stack.ToString() : "0";
+                bottomPantryText.text = "";// Game.Pantry.inventory.Contains("Mint Chocolate Chip") ? Game.Pantry.inventory.getItem("Mint Chocolate Chip").stack.ToString() : "0";
 
-                leftPlayerText.text = Game.Player.inventory.Contains("Dark Chocolate Chip") ? Game.Player.inventory.getItem("Dark Chocolate Chip").stack.ToString() : "0";
-                topPlayerText.text = Game.Player.inventory.Contains("Milk Chocolate Chip") ? Game.Player.inventory.getItem("Milk Chocolate Chip").stack.ToString() : "0";
-                rightPlayerText.text = Game.Player.inventory.Contains("White Chocolate Chip") ? Game.Player.inventory.getItem("White Chocolate Chip").stack.ToString() : "0";
-                bottomPlayerText.text = Game.Player.inventory.Contains("Mint Chocolate Chip") ? Game.Player.inventory.getItem("Mint Chocolate Chip").stack.ToString() : "0";
+                leftPlayerText.text = "";// Game.Player.dishesInventory.Contains("Dark Chocolate Chip") ? Game.Player.dishesInventory.getItem("Dark Chocolate Chip").stack.ToString() : "0";
+                topPlayerText.text = "";// Game.Player.dishesInventory.Contains("Milk Chocolate Chip") ? Game.Player.dishesInventory.getItem("Milk Chocolate Chip").stack.ToString() : "0";
+                rightPlayerText.text = "";//Game.Player.dishesInventory.Contains("White Chocolate Chip") ? Game.Player.dishesInventory.getItem("White Chocolate Chip").stack.ToString() : "0";
+                bottomPlayerText.text = "";//Game.Player.dishesInventory.Contains("Mint Chocolate Chip") ? Game.Player.dishesInventory.getItem("Mint Chocolate Chip").stack.ToString() : "0";
 
                 //Cocoa
                 //Ginger
@@ -246,8 +246,8 @@ namespace Assets.Scripts.Menus
 
                 getMenuComponents();
 
-                topPantryText.text = Game.Pantry.inventory.Contains("Chocolate Chip Cookie Ingredients") ? Game.Pantry.inventory.getItem("Chocolate Chip Cookie Ingredients").stack.ToString() : "0";
-                topPlayerText.text = Game.Player.inventory.Contains("Chocolate Chip Cookie Ingredients") ? Game.Player.inventory.getItem("Chocolate Chip Cookie Ingredients").stack.ToString() : "0";
+                topPantryText.text = "";//Game.Pantry.inventory.Contains("Chocolate Chip Cookie Ingredients") ? Game.Pantry.inventory.getItem("Chocolate Chip Cookie Ingredients").stack.ToString() : "0";
+                topPlayerText.text = "";//Game.Player.dishesInventory.Contains("Chocolate Chip Cookie Ingredients") ? Game.Player.dishesInventory.getItem("Chocolate Chip Cookie Ingredients").stack.ToString() : "0";
             }
             else if (currentState == PantryMenuState.TopCategory)
             {
@@ -267,15 +267,15 @@ namespace Assets.Scripts.Menus
 
                 getMenuComponents();
 
-                leftPantryText.text = Game.Pantry.inventory.Contains("Cinnamon") ? Game.Pantry.inventory.getItem("Cinnamon").stack.ToString() : "0";
-                topPantryText.text = Game.Pantry.inventory.Contains("Cocoa") ? Game.Pantry.inventory.getItem("Cocoa").stack.ToString() : "0";
-                rightPantryText.text = Game.Pantry.inventory.Contains("Matcha") ? Game.Pantry.inventory.getItem("Matcha").stack.ToString() : "0";
-                bottomPantryText.text = Game.Pantry.inventory.Contains("Ginger") ? Game.Pantry.inventory.getItem("Ginger").stack.ToString() : "0";
+                leftPantryText.text = "";// Game.Pantry.inventory.Contains("Cinnamon") ? Game.Pantry.inventory.getItem("Cinnamon").stack.ToString() : "0";
+                topPantryText.text = "";// Game.Pantry.inventory.Contains("Cocoa") ? Game.Pantry.inventory.getItem("Cocoa").stack.ToString() : "0";
+                rightPantryText.text = "";//Game.Pantry.inventory.Contains("Matcha") ? Game.Pantry.inventory.getItem("Matcha").stack.ToString() : "0";
+                bottomPantryText.text = "";// Game.Pantry.inventory.Contains("Ginger") ? Game.Pantry.inventory.getItem("Ginger").stack.ToString() : "0";
 
-                leftPlayerText.text = Game.Player.inventory.Contains("Cinnamon") ? Game.Player.inventory.getItem("Cinnamon").stack.ToString() : "0";
-                topPlayerText.text = Game.Player.inventory.Contains("Cocoa") ? Game.Player.inventory.getItem("Cocoa").stack.ToString() : "0";
-                rightPlayerText.text = Game.Player.inventory.Contains("Matcha") ? Game.Player.inventory.getItem("Matcha").stack.ToString() : "0";
-                bottomPlayerText.text = Game.Player.inventory.Contains("Ginger") ? Game.Player.inventory.getItem("Ginger").stack.ToString() : "0";
+                leftPlayerText.text = "";//Game.Player.dishesInventory.Contains("Cinnamon") ? Game.Player.dishesInventory.getItem("Cinnamon").stack.ToString() : "0";
+                topPlayerText.text = "";//Game.Player.dishesInventory.Contains("Cocoa") ? Game.Player.dishesInventory.getItem("Cocoa").stack.ToString() : "0";
+                rightPlayerText.text = "";// Game.Player.dishesInventory.Contains("Matcha") ? Game.Player.dishesInventory.getItem("Matcha").stack.ToString() : "0";
+                bottomPlayerText.text = "";// Game.Player.dishesInventory.Contains("Ginger") ? Game.Player.dishesInventory.getItem("Ginger").stack.ToString() : "0";
 
             }
             else if (currentState == PantryMenuState.BottomCategory)
@@ -453,11 +453,11 @@ namespace Assets.Scripts.Menus
                         //top
                         if (currentMode == PantryItemMode.Take)
                         {
-                            Game.Pantry.takeOneRecipeSet("Chocolate Chip Cookie");
+                            
                         }
                         if (currentMode == PantryItemMode.Store)
                         {
-                            Game.Pantry.storeOneRecipeSet("Chocolate Chip Cookie");
+                            
                         }
                         setUpMenu();
                     }
@@ -527,11 +527,11 @@ namespace Assets.Scripts.Menus
 
                     if (currentMode == PantryItemMode.Take)
                     {
-                        Game.Pantry.takeOne("Ginger");
+                        
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-                        Game.Pantry.storeOne("Ginger");
+                        
                     }
 
                 }
@@ -539,11 +539,11 @@ namespace Assets.Scripts.Menus
                 {
                     if (currentMode == PantryItemMode.Take)
                     {
-                        Game.Pantry.takeOne("Matcha");
+                        
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-                        Game.Pantry.storeOne("Matcha");
+                        
                     }
                 }
                 if (InputControls.XPressed)
@@ -552,11 +552,11 @@ namespace Assets.Scripts.Menus
                     //left
                     if (currentMode == PantryItemMode.Take)
                     {
-                        Game.Pantry.takeOne("Cinnamon");
+                        
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-                        Game.Pantry.storeOne("Cinnamon");
+                        
                     }
                 }
                 if (InputControls.YPressed)
@@ -564,11 +564,11 @@ namespace Assets.Scripts.Menus
                     //top
                     if (currentMode == PantryItemMode.Take)
                     {
-                        Game.Pantry.takeOne("Cocoa");
+                       
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-                        Game.Pantry.storeOne("Cocoa");
+                        
                     }
                 }
             }
@@ -644,11 +644,11 @@ namespace Assets.Scripts.Menus
                     //left
                     if (currentMode == PantryItemMode.Take)
                     {
-                        Game.Pantry.takeOne("Mint Chocolate Chip");
+                        
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-                        Game.Pantry.storeOne("Mint Chocolate Chip");
+                        
                     }
                     //setUpMenu();
                 }
@@ -657,11 +657,11 @@ namespace Assets.Scripts.Menus
                     //left
                     if (currentMode == PantryItemMode.Take)
                     {
-                        Game.Pantry.takeOne("White Chocolate Chip");
+                        
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-                        Game.Pantry.storeOne("Whitex Chocolate Chip");
+                        
                     }
                 }
                 if (InputControls.XPressed)
@@ -669,11 +669,11 @@ namespace Assets.Scripts.Menus
                     //left
                     if (currentMode == PantryItemMode.Take)
                     {
-                        Game.Pantry.takeOne("Dark Chocolate Chip");
+                        
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-                        Game.Pantry.storeOne("Dark Chocolate Chip");
+                        
                     }
                     setUpMenu();
                 }
@@ -682,11 +682,11 @@ namespace Assets.Scripts.Menus
                     //left
                     if (currentMode == PantryItemMode.Take)
                     {
-                        Game.Pantry.takeOne("Milk Chocolate Chip");
+                        
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-                        Game.Pantry.storeOne("Milk Chocolate Chip");
+                        
                     }
                 }
             }
@@ -740,11 +740,11 @@ namespace Assets.Scripts.Menus
                     //top
                     if (currentMode == PantryItemMode.Take)
                     {
-                        Game.Pantry.takeOneRecipeSet("Chocolate Chip Cookie");
+                       
                     }
                     if (currentMode == PantryItemMode.Store)
                     {
-                        Game.Pantry.storeOneRecipeSet("Chocolate Chip Cookie");
+                        
                     }
                     setUpMenu();
 
