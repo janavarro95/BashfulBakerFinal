@@ -48,6 +48,7 @@ namespace Assets.Scripts.GameInput
 
             if (Percent_Stirred >= 720 || Count >= 4)
             {
+                Percent_Stirred = 720;
                 buttons[0].SetActive(false);
                 buttons[1].SetActive(true);
                 if (InputControls.APressed)
@@ -108,7 +109,7 @@ namespace Assets.Scripts.GameInput
             }
 
             int angle = (int)Vector2.SignedAngle(new Vector2(1, 0), Next);
-            Debug.Log(angle);
+
             if (Mathf.Abs(angle) > 144)
             {
                 angle = 2;
