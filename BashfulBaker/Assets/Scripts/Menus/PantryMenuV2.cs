@@ -15,11 +15,51 @@ namespace Assets.Scripts.Menus
 
         public bool setForTutorial = false;
         private getIng tutorialProgress;
+        [SerializeField]
         private bool eatFirstInput;
+
+
+        GameObject categorySelect;
+        GameObject cookieSelect;
+        GameObject cakeSelect;
+        GameObject pieSelect;
+        GameObject breadSelect;
+
+        [SerializeField]
+        private enum PantryMode
+        {
+            Select,
+            Cookies,
+            Cakes,
+            Pies,
+            Breads
+        }
+
+        [SerializeField]
+        private PantryMode currentMode;
+
+        public void Awake()
+        {
+            this.menuCursor = this.gameObject.transform.Find("Canvas").Find("MenuMouseCursor").gameObject.GetComponent<GameInput.GameCursorMenu>();
+
+
+            this.categorySelect = this.gameObject.transform.Find("Canvas").Find("CategorySelect").gameObject;
+            this.cookieSelect = this.gameObject.transform.Find("Canvas").Find("CookieSelect").gameObject;
+            this.cakeSelect = this.gameObject.transform.Find("Canvas").Find("CakeSelect").gameObject;
+            this.pieSelect = this.gameObject.transform.Find("Canvas").Find("PieSelect").gameObject;
+            this.breadSelect = this.gameObject.transform.Find("Canvas").Find("BreadSelect").gameObject;
+
+            this.cookieSelect.SetActive(false);
+            this.cakeSelect.SetActive(false);
+            this.pieSelect.SetActive(false);
+            this.breadSelect.SetActive(false);
+
+            currentMode = PantryMode.Select;
+        }
 
         public override void Start()
         {
-            this.menuCursor = this.gameObject.transform.Find("Canvas").Find("MenuMouseCursor").gameObject.GetComponent<GameInput.GameCursorMenu>();
+           
         }
 
         public override bool snapCompatible()
@@ -55,48 +95,317 @@ namespace Assets.Scripts.Menus
 
         private void checkForInput()
         {
+            if (currentMode == PantryMode.Select)
+            {
+                bool input = checkForInput_Select();
+                if (input == true) return;
+            }
+
+            if (currentMode == PantryMode.Cookies) checkForInput_Cookies();
+            if (currentMode == PantryMode.Cakes) checkForInput_Cakes();
+            if (currentMode == PantryMode.Pies) checkForInput_Pies();
+            if (currentMode == PantryMode.Breads) checkForInput_Breads();
+        }
+
+        private bool checkForInput_Select()
+        {
+            if (Game.DialogueManager.IsDialogueUp)
+            {
+                return true;
+            }
+
+            if (setForTutorial && InputControls.APressed)
+            {
+                /*
+                Dish d = new Dish("Cookie Ingredients");
+                Game.Player.dishesInventory.Add(d);
+                Game.Player.activeItem = d;
+
+                updateTutorial();
+                exitMenu();
+                */
+                cookieSelect.SetActive(true);
+                this.currentMode = PantryMode.Cookies;
+                return true;
+            }
+
+            if (setForTutorial == false)
+            {
+
+                if (GameInput.InputControls.APressed)
+                {
+                    cookieSelect.SetActive(true);
+                    this.currentMode = PantryMode.Cookies;
+                    return true;
+                }
+                else if (GameInput.InputControls.BPressed)
+                {
+                    cakeSelect.SetActive(true);
+                    this.currentMode = PantryMode.Cakes;
+                    return true;
+                }
+                else if (GameInput.InputControls.XPressed)
+                {
+                    pieSelect.SetActive(true);
+                    this.currentMode = PantryMode.Pies;
+                    return true;
+                }
+                else if (GameInput.InputControls.YPressed)
+                {
+                    breadSelect.SetActive(true);
+                    this.currentMode = PantryMode.Breads;
+                    return true;
+                }
+            }
+            else if ( GameInput.InputControls.StartPressed)
+            {
+                exitMenu();
+                return true;
+            }
+            return false;
+        }
+
+        private void checkForInput_Cookies()
+        {
             if (Game.DialogueManager.IsDialogueUp)
             {
                 return;
             }
 
-            if (GameInput.InputControls.APressed)
+            if (setForTutorial && InputControls.APressed)
             {
-                Dish d = new Dish("Cookie Ingredients");
+                
+                Dish d = new Dish("Chocolate Chip Cookie");
                 Game.Player.dishesInventory.Add(d);
                 Game.Player.activeItem = d;
 
-                if (setForTutorial)
+                updateTutorial();
+                exitMenu();
+                
+            }
+
+            if (setForTutorial == false)
+            {
+
+                if (GameInput.InputControls.APressed)
                 {
-                    updateTutorial();
-                }
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
 
-                exitMenu();
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.BPressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.XPressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.YPressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
             }
-            else if (GameInput.InputControls.BPressed)
+            else if (GameInput.InputControls.StartPressed)
             {
-                Dish d = new Dish("Cake Ingredients");
-                Game.Player.dishesInventory.Add(d);
-                Game.Player.activeItem = d;
-                exitMenu();
+                this.currentMode = PantryMode.Select;
+                cookieSelect.SetActive(false);
+                return;
             }
-            else if (GameInput.InputControls.XPressed)
+            return;
+        }
+
+        private void checkForInput_Cakes()
+        {
+            if (setForTutorial == true) return;
+
+
+            if (Game.DialogueManager.IsDialogueUp)
             {
-                Dish d = new Dish("Pie Ingredients");
-                Game.Player.dishesInventory.Add(d);
-                Game.Player.activeItem = d;
-                exitMenu();
+                return;
             }
-            else if (GameInput.InputControls.YPressed)
+
+            if (setForTutorial == false)
             {
-                Dish d = new Dish("Bread Ingredients");
-                Game.Player.dishesInventory.Add(d);
-                Game.Player.activeItem = d;
-                exitMenu();
+
+                if (GameInput.InputControls.APressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.BPressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.XPressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.YPressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.StartPressed)
+                {
+                    this.currentMode = PantryMode.Select;
+                    cookieSelect.SetActive(false);
+                    return;
+                }
             }
-            else if(GameInput.InputControls.LeftBumperPressed || GameInput.InputControls.StartPressed)
+
+            return;
+        }
+
+        private void checkForInput_Pies()
+        {
+            if (setForTutorial == true) return;
+
+
+            if (Game.DialogueManager.IsDialogueUp)
             {
-                exitMenu();
+                return;
+            }
+
+            if (setForTutorial == false)
+            {
+
+                if (GameInput.InputControls.APressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.BPressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.XPressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.YPressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.StartPressed)
+                {
+                    this.currentMode = PantryMode.Select;
+                    cookieSelect.SetActive(false);
+                    return;
+                }
+            }
+        }
+
+        private void checkForInput_Breads()
+        {
+            if (setForTutorial == true) return;
+
+
+            if (Game.DialogueManager.IsDialogueUp)
+            {
+                return;
+            }
+
+            if (setForTutorial == false)
+            {
+
+                if (GameInput.InputControls.APressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.BPressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.XPressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.YPressed)
+                {
+                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    updateTutorial();
+                    exitMenu();
+                }
+                else if (GameInput.InputControls.StartPressed)
+                {
+                    this.currentMode = PantryMode.Select;
+                    cookieSelect.SetActive(false);
+                    return;
+                }
             }
         }
 
@@ -106,7 +415,7 @@ namespace Assets.Scripts.Menus
             Debug.Log("Picked up ingredients");
 
             Game.HUD.showInventory = true;
-            Game.Player.dishesInventory.Add(new Dish("Chocolate Chip Cookie"));
+            //Game.Player.dishesInventory.Add(new Dish("Chocolate Chip Cookie"));
             Game.HUD.updateInventoryHUD();
             Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookie", "Sylvia", new List<string>()));
             Game.HUD.showQuests = true;

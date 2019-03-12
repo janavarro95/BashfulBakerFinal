@@ -262,6 +262,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PantryMenuV2
       objectReference: {fileID: 0}
+    - target: {fileID: 1324096799967432090, guid: a084f942d5fdaa040aab6c1e7f9e7142,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2301817650645018956, guid: a084f942d5fdaa040aab6c1e7f9e7142,
         type: 3}
       propertyPath: m_LocalPosition.x
