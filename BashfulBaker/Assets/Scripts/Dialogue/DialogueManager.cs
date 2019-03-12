@@ -17,6 +17,14 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     private string currentSentence;
 
+    public bool IsDialogueUp
+    {
+        get
+        {
+            return animator.GetBool("isOpen");
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

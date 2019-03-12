@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuCursor: {fileID: 0}
+  setForTutorial: 0
 --- !u!1 &1624832182340136264
 GameObject:
   m_ObjectHideFlags: 0
