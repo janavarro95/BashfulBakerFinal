@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Utilities.Timers;
+﻿using Assets.Scripts.Stealth;
+using Assets.Scripts.Utilities.Timers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -110,6 +111,8 @@ public class StealthAwarenessZone : MonoBehaviour
     public bool chasesPlayer;
     public bool shouldMove;
 
+    public GuardAnimationScript animationScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -126,6 +129,8 @@ public class StealthAwarenessZone : MonoBehaviour
             float pauseTime = Random.Range(minPauseTime, maxPauseTime);
             this.patrolPauseTimer = new DeltaTimer((decimal)pauseTime, Assets.Scripts.Enums.TimerType.CountDown, false, null);
         }
+
+        
     }
 
     /// <summary>
@@ -182,6 +187,8 @@ public class StealthAwarenessZone : MonoBehaviour
 
         if(shouldMove==true)this.movementLerp += getProperMovementSpeed(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
 
+        animateGuard(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
+
         if (aiType != LookingType.LookAroundWhileReturning)
         {
             this.gameObject.transform.right = (Vector2)patrollPoints[currentPatrolPoint + 1] - (Vector2)transform.position;
@@ -198,6 +205,8 @@ public class StealthAwarenessZone : MonoBehaviour
             }
         }
     }
+
+    
 
     // Update is called once per frame
     void FixedUpdate()
@@ -225,6 +234,10 @@ public class StealthAwarenessZone : MonoBehaviour
                 }
                 if(shouldMove==true) proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
                 this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+
+                //Animate here
+                animateGuard(sequenceStartingSpot,nextTargetSpot);
+
                 if (proximityToTarget >= 1.0f)
                 {
                     getNextReturnSpot();
@@ -239,6 +252,9 @@ public class StealthAwarenessZone : MonoBehaviour
             {
                 if(shouldMove==true)proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
                 this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+
+                //Animate here
+                animateGuard(sequenceStartingSpot,nextTargetSpot);
 
                 if (proximityToTarget >= 1.0f)
                 {
@@ -277,7 +293,13 @@ public class StealthAwarenessZone : MonoBehaviour
             {
                 patrol();
             }
+            //animator.Play("GuardIdleAnimation");
         }
+    }
+
+    public void animateGuard(Vector3 currentPos,Vector3 nextPos)
+    {
+        animationScript.animateGuard(currentPos,nextPos);
     }
 
     /// <summary>

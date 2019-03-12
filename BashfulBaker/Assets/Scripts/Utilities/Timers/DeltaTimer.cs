@@ -243,5 +243,17 @@ namespace Assets.Scripts.Utilities.Timers
             else onFinished.Invoke();
         }
 
+        public void subtractTime(int seconds)
+        {
+            this.currentTime -= seconds;
+            if (this.currentTime < 0) this.currentTime = 0;
+        }
+
+        public void addTime(int seconds)
+        {
+            this.currentTime += seconds;
+            if (this.currentTime > maxTime) this.currentTime = maxTime;
+        }
+
     }
 }

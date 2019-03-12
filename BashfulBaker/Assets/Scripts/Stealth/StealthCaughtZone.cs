@@ -88,7 +88,8 @@ public class StealthCaughtZone : MonoBehaviour
                     "Hey there, your {0} you gave me was delicious! When can you make me some more!?",
                     "(You ended up getting caught up in converstation for quite some time.)"
                 },dishConsumedName).ToArray()));
-                    Debug.Log("DO the timer penalty here!");
+                    
+                    Game.PhaseTimer.subtractTime(15);
                     //Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
                     awareness.shouldMove = true;
                 }
@@ -114,6 +115,7 @@ public class StealthCaughtZone : MonoBehaviour
                     "Well I suppose you are fine. Mind if we chat for a bit?",
                     "(The villager talks your ear off for quite some time causing you to loose a bit of time.)"
             }.ToArray()));
+                Game.PhaseTimer.subtractTime(15);
                 awareness.shouldMove = true;
             }
             else

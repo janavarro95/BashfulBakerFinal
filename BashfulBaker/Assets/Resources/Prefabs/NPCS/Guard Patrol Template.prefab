@@ -71,6 +71,8 @@ GameObject:
   - component: {fileID: 1508527222}
   - component: {fileID: 1508527221}
   - component: {fileID: 1508527220}
+  - component: {fileID: 951740052203431542}
+  - component: {fileID: 3171799664969601791}
   m_Layer: 0
   m_Name: Guard Patrol Template
   m_TagString: Untagged
@@ -168,6 +170,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &951740052203431542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508527219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87bc25f42332af1408c80414aedc81d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+--- !u!95 &3171799664969601791
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508527219}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b32c9e0c74362742b9bcfe9b3a58aa7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1539632178
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +289,7 @@ MonoBehaviour:
   aiType: 1
   chasesPlayer: 0
   shouldMove: 1
+  animationScript: {fileID: 951740052203431542}
 --- !u!114 &1539632180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,6 +307,8 @@ MonoBehaviour:
     name: 
     sentences: []
   guardType: 0
+  hasEaten: 0
+  dishConsumedName: 
 --- !u!1 &1763186879
 GameObject:
   m_ObjectHideFlags: 0
