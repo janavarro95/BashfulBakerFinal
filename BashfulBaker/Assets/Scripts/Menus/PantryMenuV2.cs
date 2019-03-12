@@ -24,6 +24,7 @@ namespace Assets.Scripts.Menus
         GameObject cakeSelect;
         GameObject pieSelect;
         GameObject breadSelect;
+        GameObject cookieSelectTutorial;
 
         [SerializeField]
         private enum PantryMode
@@ -48,11 +49,13 @@ namespace Assets.Scripts.Menus
             this.cakeSelect = this.gameObject.transform.Find("Canvas").Find("CakeSelect").gameObject;
             this.pieSelect = this.gameObject.transform.Find("Canvas").Find("PieSelect").gameObject;
             this.breadSelect = this.gameObject.transform.Find("Canvas").Find("BreadSelect").gameObject;
+            this.cookieSelectTutorial = this.gameObject.transform.Find("Canvas").Find("CookieSelectTutorial").gameObject;
 
             this.cookieSelect.SetActive(false);
             this.cakeSelect.SetActive(false);
             this.pieSelect.SetActive(false);
             this.breadSelect.SetActive(false);
+            this.cookieSelectTutorial.SetActive(false);
 
             currentMode = PantryMode.Select;
         }
@@ -91,6 +94,10 @@ namespace Assets.Scripts.Menus
         {
             this.tutorialProgress = Progress;
             this.setForTutorial = true;
+
+            categorySelect.transform.Find("BButton").gameObject.SetActive(false);
+            categorySelect.transform.Find("XButton").gameObject.SetActive(false);
+            categorySelect.transform.Find("YButton").gameObject.SetActive(false);
         }
 
         private void checkForInput()
@@ -124,7 +131,7 @@ namespace Assets.Scripts.Menus
                 updateTutorial();
                 exitMenu();
                 */
-                cookieSelect.SetActive(true);
+                cookieSelectTutorial.SetActive(true);
                 this.currentMode = PantryMode.Cookies;
                 return true;
             }
@@ -421,13 +428,20 @@ namespace Assets.Scripts.Menus
             Game.HUD.showQuests = true;
             Game.StartNewTimerPhase(5, 0);
 
-            ///Get code from getting script
-            FindObjectOfType<DialogueManager>().StartDialogue(tutorialProgress.pickUpText);
+            try
+            {
+                ///Get code from getting script
+                FindObjectOfType<DialogueManager>().StartDialogue(tutorialProgress.pickUpText);
 
-            Game.Player.gameObject.GetComponent<PlayerMovement>().NextStep();
-            tutorialProgress.arrow.GetComponent<progress>().SetStep(1);
-            tutorialProgress.arrow.GetComponent<UnityEngine.SpriteRenderer>().enabled = true;
-            tutorialProgress.arrow.GetComponent<progress>().A.SetActive(false);
+                Game.Player.gameObject.GetComponent<PlayerMovement>().NextStep();
+                tutorialProgress.arrow.GetComponent<progress>().SetStep(1);
+                tutorialProgress.arrow.GetComponent<UnityEngine.SpriteRenderer>().enabled = true;
+                tutorialProgress.arrow.GetComponent<progress>().A.SetActive(false);
+            }
+            catch(Exception err)
+            {
+
+            }
         }
     }
 }
