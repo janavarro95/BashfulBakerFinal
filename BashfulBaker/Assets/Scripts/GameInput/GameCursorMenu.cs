@@ -45,7 +45,7 @@ namespace Assets.Scripts.GameInput
             timer.start();
             rect = this.gameObject.GetComponent<RectTransform>();
             Game.MouseCursor = this;
-            snapTimer = new DeltaTimer((decimal)snapDelay, Enums.TimerType.CountDown, false, null);
+            snapTimer = new DeltaTimer((double)snapDelay, Enums.TimerType.CountDown, false, null);
             snapTimer.start();
 
         }

@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
         animator = this.GetComponent<Animator>();
         currentWalkingSound = woodStepSound;
-        walkingSoundTimer = new DeltaTimer(0.4m, Assets.Scripts.Enums.TimerType.CountDown, false);
+        walkingSoundTimer = new DeltaTimer(0.4d, Assets.Scripts.Enums.TimerType.CountDown, false);
         walkingSoundTimer.start();
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         currentStep = -1;

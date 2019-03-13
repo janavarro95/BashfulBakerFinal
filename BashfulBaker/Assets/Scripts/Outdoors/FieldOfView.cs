@@ -37,7 +37,7 @@ public class FieldOfView : MonoBehaviour {
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
         DrawFieldOfView();
-        meshTimer = new DeltaTimer(0.01m, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
+        meshTimer = new DeltaTimer(0.01d, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
         meshTimer.start();
 
         guard = this.gameObject;

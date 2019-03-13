@@ -127,7 +127,7 @@ public class StealthAwarenessZone : MonoBehaviour
         if(movementLogic == MovementType.PatrollAndPause)
         {
             float pauseTime = Random.Range(minPauseTime, maxPauseTime);
-            this.patrolPauseTimer = new DeltaTimer((decimal)pauseTime, Assets.Scripts.Enums.TimerType.CountDown, false, null);
+            this.patrolPauseTimer = new DeltaTimer((double)pauseTime, Assets.Scripts.Enums.TimerType.CountDown, false, null);
         }
 
         
@@ -169,7 +169,7 @@ public class StealthAwarenessZone : MonoBehaviour
             this.patrolPauseTimer.tick();
             if (this.patrolPauseTimer.IsFinished)
             {
-                this.patrolPauseTimer.maxTime =(decimal)Random.Range(minPauseTime, maxPauseTime);
+                this.patrolPauseTimer.maxTime =(double)Random.Range(minPauseTime, maxPauseTime);
                 this.patrolPauseTimer.restart();
                 this.patrolPauseTimer.pause();
             }
