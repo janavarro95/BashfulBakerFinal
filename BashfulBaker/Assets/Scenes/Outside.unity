@@ -1740,6 +1740,7 @@ GameObject:
   - component: {fileID: 522061456}
   - component: {fileID: 522061458}
   - component: {fileID: 522061457}
+  - component: {fileID: 522061459}
   m_Layer: 8
   m_Name: crate
   m_TagString: Obstacle
@@ -1873,6 +1874,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.39322597, y: 0.257327}
   m_EdgeRadius: 0
+--- !u!114 &522061459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522061453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840a12cb8b3e5e242a7159b66d5d15ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: Chocolate Chip
 --- !u!1 &592004040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2459,6 +2473,7 @@ GameObject:
   - component: {fileID: 826600148}
   - component: {fileID: 826600150}
   - component: {fileID: 826600149}
+  - component: {fileID: 826600151}
   m_Layer: 8
   m_Name: crate (1)
   m_TagString: Obstacle
@@ -2592,6 +2607,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.46106002, y: 0.34211996}
   m_EdgeRadius: 0
+--- !u!114 &826600151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826600145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840a12cb8b3e5e242a7159b66d5d15ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: Chocolate Chip
 --- !u!1 &913465339
 GameObject:
   m_ObjectHideFlags: 0
@@ -5104,12 +5132,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313848747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c4be4042973140109cb8091f54bb9f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 3cf43b0fab1546c4bbc14e44e38452ca, type: 2}
+  mat: {fileID: 2100000, guid: e834e938315177343b2aa117b2fc4a65, type: 2}
   transparency: 0
   darkenSpeed: 0.0005
 --- !u!212 &1313848750
@@ -6253,6 +6281,7 @@ GameObject:
   - component: {fileID: 1488478276}
   - component: {fileID: 1488478278}
   - component: {fileID: 1488478277}
+  - component: {fileID: 1488478279}
   m_Layer: 8
   m_Name: crate (2)
   m_TagString: Obstacle
@@ -6386,6 +6415,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.42714298, y: 0.2573269}
   m_EdgeRadius: 0
+--- !u!114 &1488478279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488478273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840a12cb8b3e5e242a7159b66d5d15ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: Chocolate Chip
 --- !u!1001 &1492661313
 PrefabInstance:
   m_ObjectHideFlags: 0

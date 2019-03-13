@@ -37,8 +37,8 @@ public class FieldOfView : MonoBehaviour {
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
         DrawFieldOfView();
-        meshTimer = new DeltaTimer(0.01m, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
-        meshTimer.start();
+        //meshTimer = new DeltaTimer(0.01m, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
+        //meshTimer.start();
 
         startPoint = guard.transform.position;
     }
@@ -54,8 +54,8 @@ public class FieldOfView : MonoBehaviour {
             alert.SetActive(false);
         }
         if (Vector3.Distance(transform.position, cam.transform.position) < (Camera.main.orthographicSize * Screen.width / Screen.height) + viewRadius) {
-            //DrawFieldOfView();
-            meshTimer.Update();
+            DrawFieldOfView();
+            //meshTimer.Update();
 
         }
     }
