@@ -19,15 +19,12 @@ public class PickUp : MonoBehaviour
         item_ = new SpecialIngredient(item);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("hit a box");
-        if ((InputControls.APressed || Input.GetKeyDown(KeyCode.E)))
+        if (other.gameObject.tag == "Player" && (InputControls.APressed || Input.GetKeyDown(KeyCode.E)))
         {
-            Debug.Log("Pressed E");
             if (specItemInv.Count < specItemInv.maxCapaxity)
             {
-                Debug.Log("adding item");
                 specItemInv.Add(item_);
                 Debug.Log("items: " + specItemInv.Count);
             }
