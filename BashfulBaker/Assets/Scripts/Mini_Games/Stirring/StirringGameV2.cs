@@ -12,10 +12,15 @@ namespace Assets.Scripts.GameInput
         private float Percent_Stirred;
         public int Count; 
         public Sprite completeIcon;
-        public Animator flyingFood;
+        //public Animator flyingFood;
         public GameObject[] buttons;
         public SpriteRenderer bowl;
-        public Sprite[] sprites;
+        public Sprite[] bowlsprites;
+        public Animator[]foodAnimation;
+       // public SpriteRenderer butterSource;
+       // public SpriteRenderer eggSource;
+       // public Sprite removedEgg;
+
 
         public GameObject progressBar;
 
@@ -32,7 +37,7 @@ namespace Assets.Scripts.GameInput
 
             progressBar.transform.localScale = new Vector3(.1f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
 
-            Game.HUD.showHUD = false;
+           // Game.HUD.showHUD = false;
         }
 
         // Update is called once per frame
@@ -46,7 +51,7 @@ namespace Assets.Scripts.GameInput
             }
             Prev = Next;
 
-            if (Percent_Stirred >= 720 || Count >= 4)
+            if (Percent_Stirred >= 720 || Count >= foodAnimation.Length)
             {
                 Percent_Stirred = 720;
                 buttons[0].SetActive(false);
@@ -58,47 +63,11 @@ namespace Assets.Scripts.GameInput
                     Count++;
                     Percent_Stirred = 0;
                     //Debug.Log(Count);
-                    if (Count == 1)
+                    if (Count < foodAnimation.Length)
                     {
-                        flyingFood.SetInteger("addAnimation", 1);
-                        /*GameObject Checkmark1 = new GameObject();
-                        Checkmark1.AddComponent<SpriteRenderer>();
-                        Checkmark1.GetComponent<SpriteRenderer>().sprite = completeIcon;
-                        Checkmark1.transform.position = new Vector3(-4.45f, 1.2f, 0);
-                        Checkmark1.layer = 1;*/
-                        
+                        foodAnimation[Count - 1].SetBool("enterBowl",true);
                     }
-                    else if (Count == 2)
-                    {
-                        flyingFood.SetInteger("addAnimation", 2);
-                       /* GameObject Checkmark2 = new GameObject();
-                        Checkmark2.AddComponent<SpriteRenderer>();
-                        Checkmark2.GetComponent<SpriteRenderer>().sprite = completeIcon;
-                        Checkmark2.transform.position = new Vector3(-4.45f, .25f, 0);
-                        Checkmark2.layer = 1;*/
-                        
-                    }
-                    else if (Count == 3)
-                    {
-                        flyingFood.SetInteger("addAnimation", 1);
-                       /* GameObject Checkmark3 = new GameObject();
-                        Checkmark3.AddComponent<SpriteRenderer>();
-                        Checkmark3.GetComponent<SpriteRenderer>().sprite = completeIcon;
-                        Checkmark3.transform.position = new Vector3(-4.45f, -.85f, 0);
-                        Checkmark3.layer = 1;*/
-                        
-                    }
-                    else if (Count == 4)
-                    {
-                        flyingFood.SetInteger("addAnimation", 1);
-                        /*GameObject Checkmark4 = new GameObject();
-                        Checkmark4.AddComponent<SpriteRenderer>();
-                        Checkmark4.GetComponent<SpriteRenderer>().sprite = completeIcon;
-                        Checkmark4.transform.position = new Vector3(-4.45f, -1.9f, 0);
-                        Checkmark4.layer = 1;*/
-                        
-                    }
-                    else if (Count == 5)
+                    else if (Count <= foodAnimation.Length)
                     {
                         Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
                         Game.HUD.showHUD = true;
@@ -123,11 +92,9 @@ namespace Assets.Scripts.GameInput
                 angle = angle > 0 ? 4 : 0;
             }
 
-            bowl.sprite = sprites[angle];
+            bowl.sprite = bowlsprites[angle];
 
             progressBar.transform.localScale = new Vector3((Percent_Stirred * 30)/720f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
         }
-
-
     }
 }
