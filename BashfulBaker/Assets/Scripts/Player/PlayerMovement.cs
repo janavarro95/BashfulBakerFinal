@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.Items;
 using Assets.Scripts.Menus;
 using Assets.Scripts.Utilities;
 using Assets.Scripts.Utilities.Timers;
@@ -107,6 +108,14 @@ public class PlayerMovement : MonoBehaviour {
         {
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a + .02f);
         }
+
+        if (Game.Player.activeItem != null)
+        {
+            if(Game.Player.activeItem is Dish)
+            {
+                (Game.Player.activeItem as Dish).Update();
+            }
+        }
     }
 
     private void checkForPlayerVisibility()
@@ -208,6 +217,7 @@ public class PlayerMovement : MonoBehaviour {
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
 
 
+
                     heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
 
@@ -291,9 +301,8 @@ public class PlayerMovement : MonoBehaviour {
                 { //left walking animation
                     animator.Play("CarryingLWalk");
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
-
-
-                    heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
+                    Game.Player.playHeldObjectAnimation(true);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
 
                 }
@@ -301,7 +310,9 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     animator.Play("CarryingRWalk");
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
-                    heldObject.transform.localPosition = new Vector3(1f, 0, heldObject.transform.localPosition.z);
+                    Game.Player.playHeldObjectAnimation(true);
+
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
                 }
             }
@@ -311,6 +322,7 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     animator.Play("CarryingBWalk");
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Up;
+                    Game.Player.playHeldObjectAnimation(true);
                     heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = false;
                 }
@@ -318,6 +330,7 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     animator.Play("CarryingFWalk");
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Down;
+                    Game.Player.playHeldObjectAnimation(true);
                     heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
                 }
@@ -328,14 +341,16 @@ public class PlayerMovement : MonoBehaviour {
                 { //left walking animation
                     animator.Play("CarryingLWalk");
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
-                    heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
+                    Game.Player.playHeldObjectAnimation(true);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
                 }
                 else
                 {
                     animator.Play("CarryingRWalk");
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
-                    heldObject.transform.localPosition = new Vector3(1f, 0, heldObject.transform.localPosition.z);
+                    Game.Player.playHeldObjectAnimation(true);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
                 }
             }
@@ -345,24 +360,28 @@ public class PlayerMovement : MonoBehaviour {
                 if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Down)
                 {
                     animator.Play("CarryingFIdle");
+                    Game.Player.playHeldObjectAnimation(false);
                     heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
                 }
                 else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Left)
                 {
                     animator.Play("CarryingLIdle");
-                    heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
+                    Game.Player.playHeldObjectAnimation(false);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
                 }
                 else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Right)
                 {
                     animator.Play("CarryingRIdle");
-                    heldObject.transform.localPosition = new Vector3(1f, 0, heldObject.transform.localPosition.z);
+                    Game.Player.playHeldObjectAnimation(false);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
                 }
                 else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Up)
                 {
                     animator.Play("CarryingBIdle");
+                    Game.Player.playHeldObjectAnimation(false);
                     heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = false;
                 }

@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Items
 {
+    [Serializable]
     public class Dish:Item
     {
         public List<Item> ingredients;
@@ -21,6 +22,7 @@ namespace Assets.Scripts.Items
         public Texture2D preppedSprite;
         public Texture2D bakedSprite;
         public Texture2D packagedSprite;
+        public Texture2D burntSprite;
 
         public Texture2D currentSprite
         {
@@ -71,6 +73,14 @@ namespace Assets.Scripts.Items
             }
         }
 
+        public bool HasBeenBurned
+        {
+            get
+            {
+                return currentDishState == Enums.DishState.Burnt;
+            }
+        }
+
         public bool IsDishComplete
         {
             get
@@ -90,6 +100,15 @@ namespace Assets.Scripts.Items
         {
             ingredients = new List<Item>();
             this.currentDishState = State;
+        }
+
+        public Dish(Enums.Dishes Dishes)
+        {
+            if(Dishes== Enums.Dishes.ChocolateChipCookies)
+            {
+                this.Name = "Chocolate Chip Cookies";
+            }
+            this.currentDishState = Enums.DishState.Ingredients;
         }
 
         public Dish(string DishName, List<Item> Ingredients, Enums.DishState State = Enums.DishState.Ingredients) :base(DishName)

@@ -182,9 +182,10 @@ namespace Assets.Scripts.Menus
             if (setForTutorial && InputControls.APressed)
             {
                 
-                Dish d = new Dish("Chocolate Chip Cookie");
+                Dish d = new Dish(Enums.Dishes.ChocolateChipCookies);
                 Game.Player.dishesInventory.Add(d);
                 Game.Player.activeItem = d;
+                Game.Player.updateHeldItemSprite();
 
                 updateTutorial();
                 exitMenu();
