@@ -8070,6 +8070,7 @@ GameObject:
   - component: {fileID: 1784503668}
   - component: {fileID: 1784503667}
   - component: {fileID: 1784503666}
+  - component: {fileID: 1784503669}
   m_Layer: 0
   m_Name: Victory
   m_TagString: Untagged
@@ -8124,6 +8125,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1784503669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784503665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daaa5f81cc0247c48ab57da52b27fbc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcNamesWhoLiveHere:
+  - Sylvia
 --- !u!1 &1798663600
 GameObject:
   m_ObjectHideFlags: 0

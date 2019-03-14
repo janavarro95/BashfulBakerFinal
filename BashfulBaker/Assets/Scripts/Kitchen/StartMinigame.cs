@@ -30,7 +30,7 @@ public class StartMinigame : MonoBehaviour
 
             if (InputControls.APressed && collision.GetComponent<PlayerMovement>().currentStep == thisStep)
             {
-
+                /*
                 if (Game.Player.activeItem == null || (Game.Player.activeItem is SpecialIngredient))
                 {
                     Game.DialogueManager.StartDialogue(new Dialogue("Dane", new List<string>()
@@ -39,10 +39,13 @@ public class StartMinigame : MonoBehaviour
             }.ToArray()));
                     return;
                 }
+                */
 
                 if (Game.Player.activeItem is Dish)
                 {
+                    
                     Dish d = (Game.Player.activeItem as Dish);
+                    /*
                     if (d.currentDishState == Enums.DishState.Ingredients && station != Enums.CookingStationMinigame.MixingBowl)
                     {
                         Game.DialogueManager.StartDialogue(new Dialogue("Dane", new List<string>()
@@ -75,7 +78,7 @@ public class StartMinigame : MonoBehaviour
                 }.ToArray()));
                         return;
                     }
-
+                    */
 
                     arrow.GetComponent<SpriteRenderer>().enabled = true;
                     arrow.GetComponent<progress>().A.SetActive(false);
@@ -110,6 +113,11 @@ public class StartMinigame : MonoBehaviour
         if (d.currentDishState == Enums.DishState.Prepped && station == Enums.CookingStationMinigame.Oven)
         {
             d.currentDishState = Enums.DishState.Baked;
+            return;
+        }
+        if (d.currentDishState == Enums.DishState.Prepped && station == Enums.CookingStationMinigame.PackingStation)
+        {
+            d.currentDishState = Enums.DishState.Packaged;
             return;
         }
         if (d.currentDishState == Enums.DishState.Baked && station == Enums.CookingStationMinigame.PackingStation)

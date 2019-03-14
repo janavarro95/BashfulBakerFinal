@@ -425,7 +425,7 @@ namespace Assets.Scripts.Menus
             Game.HUD.showInventory = true;
             //Game.Player.dishesInventory.Add(new Dish("Chocolate Chip Cookie"));
             Game.HUD.updateInventoryHUD();
-            Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookie", "Sylvia", new List<string>()));
+            Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
             Game.HUD.showQuests = true;
             Game.StartNewTimerPhase(5, 0);
 

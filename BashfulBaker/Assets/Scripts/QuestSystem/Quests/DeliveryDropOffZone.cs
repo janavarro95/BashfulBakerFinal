@@ -62,6 +62,7 @@ namespace Assets.Scripts.QuestSystem.Quests
                     if (delivered == true)
                     {
                         removalList.Add(Game.Player.activeItem);
+                        Game.Player.activeItem = null;
                         hasADishBeenDelivered = true;
                     }
                 }
