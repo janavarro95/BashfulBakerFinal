@@ -12,14 +12,10 @@ namespace Assets.Scripts.GameInput
         private float Percent_Stirred;
         public int Count; 
         public Sprite completeIcon;
-        //public Animator flyingFood;
         public GameObject[] buttons;
         public SpriteRenderer bowl;
         public Sprite[] bowlsprites;
         public Animator[]foodAnimation;
-       // public SpriteRenderer butterSource;
-       // public SpriteRenderer eggSource;
-       // public Sprite removedEgg;
 
 
         public GameObject progressBar;
@@ -37,7 +33,7 @@ namespace Assets.Scripts.GameInput
 
             progressBar.transform.localScale = new Vector3(.1f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
 
-           // Game.HUD.showHUD = false;
+            Game.HUD.showHUD = false;
         }
 
         // Update is called once per frame
