@@ -125,10 +125,18 @@ namespace Assets.Scripts.Player
             if (visibility == Enums.Visibility.Invisible)
             {
                 Renderer.enabled = false;
+                if (_heldItemGameObject != null)
+                {
+                    _heldItemGameObject.GetComponent<SpriteRenderer>().enabled = false;
+                }
             }
             else
             {
                 Renderer.enabled = true;
+                if (_heldItemGameObject != null)
+                {
+                    _heldItemGameObject.GetComponent<SpriteRenderer>().enabled = true;
+                }
             }
         }
 

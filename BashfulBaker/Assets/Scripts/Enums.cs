@@ -124,6 +124,15 @@ namespace Assets.Scripts
             ChocolateChipCookies
         }
 
+        public enum CookingStationMinigame
+        {
+            MixingBowl,
+            RollingStation,
+            Oven,
+            PackingStation,
+            TrashCan
+        }
+
         /// <summary>
         /// Gets all of the values stored in an enum.
         /// </summary>

@@ -452,6 +452,7 @@ MonoBehaviour:
   arrow: {fileID: 1514242380}
   thisStep: 3
   makePlayerInvisible: 1
+  station: 3
 --- !u!212 &319584524
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -907,6 +908,7 @@ MonoBehaviour:
   arrow: {fileID: 1514242380}
   thisStep: 2
   makePlayerInvisible: 1
+  station: 1
 --- !u!212 &479467072
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6941,6 +6943,7 @@ MonoBehaviour:
   arrow: {fileID: 1514242380}
   thisStep: 1
   makePlayerInvisible: 1
+  station: 0
 --- !u!1 &1083138363
 GameObject:
   m_ObjectHideFlags: 0
@@ -9765,5 +9768,37 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 465704707, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
+      propertyPath: m_IgnoreReversedGraphics
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
+--- !u!1 &8603696837113512536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 465704706, guid: e4d8ad7ef50d21948b3cbdb627a6b69f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8603696837113512535}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8603696837113512537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8603696837113512536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 16
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
