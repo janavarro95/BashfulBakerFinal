@@ -75,8 +75,6 @@ public class CookieMover : MonoBehaviour
 
         if (Count >= cookies.Length)
         {
-            moverSource.Play();
-
             Invoke("exitcookieMover", 1.5f);
         }
     }

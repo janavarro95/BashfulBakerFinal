@@ -162,12 +162,15 @@ namespace Assets.Scripts.Items
             string doughBowls = Path.Combine(combinedFolders, "Dough Bowls");
             string pastryBox = Path.Combine(combinedFolders, "Pastry Box");
 
-            this.ingredientsSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "BaseTrayF.png"));
-            this.mixedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(doughBowls, "CCDoughBowl.png"));
+            this.ingredientsSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "BaseTrayF"));
+
+            Debug.Log(this.ingredientsSprite != null ? "yay ingredients" : "boo nothing");
+
+            this.mixedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(doughBowls, "CCDoughBowl"));
 
             this.preppedSprite = getAppropriatePreppedSprite();
             this.bakedSprite = getAppropriateBakedSprite();
-            this.packagedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(pastryBox, "PastryBox.png"));
+            this.packagedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(pastryBox, "PastryBox"));
 
             this._sprite = this.ingredientsSprite;
         }
@@ -183,7 +186,7 @@ namespace Assets.Scripts.Items
             if (this.itemName == "Chocolate Chip Cookies" || this.itemName== "Chocolate Chip Cookie")
             {
                 sheetTrays = Path.Combine(sheetTrays, "Choc Chip");
-                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "carry_CCTray_raw.png"));
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "carry_CCTray_raw"));
             }
             return null;
         }
@@ -199,7 +202,7 @@ namespace Assets.Scripts.Items
             if (this.itemName == "Chocolate Chip Cookies" || this.itemName == "Chocolate Chip Cookie")
             {
                 sheetTrays = Path.Combine(sheetTrays, "Choc Chip");
-                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "carry_CCTray_cook.png"));
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "carry_CCTray_cook"));
             }
             return null;
         }
