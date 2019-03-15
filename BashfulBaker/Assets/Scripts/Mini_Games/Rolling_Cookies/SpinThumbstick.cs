@@ -18,9 +18,13 @@ namespace Assets.Scripts.GameInput
         public Sprite[] sprites;
         public GameObject progressBar;
 
+        public AudioClip chime;
+        public AudioSource spinningSource;
+
         // Start is called before the first frame update
         void Start()
         {
+            spinningSource.clip = chime;
             startR = new Vector2(0, 0);
             startL = new Vector2(0, 0);
             endR = new Vector2(0, 0);
@@ -87,6 +91,7 @@ namespace Assets.Scripts.GameInput
                     buttons[2].SetActive(true);
                     if (InputControls.APressed)
                     {
+                        spinningSource.Play();
                         buttons[2].SetActive(false);
                         cookies[count++].SetActive(true);
                         if (count >= 6)

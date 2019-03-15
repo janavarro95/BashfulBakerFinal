@@ -8,6 +8,8 @@ namespace Assets.Scripts.GameInput
 {
     public class StirringGameV2 : MonoBehaviour
     {
+        public AudioClip chime;
+        public AudioSource stirringSource;
         private Vector2 Prev, Next;
         private float Percent_Stirred;
         public int Count; 
@@ -23,6 +25,7 @@ namespace Assets.Scripts.GameInput
         // Start is called before the first frame update
         void Start()
         {
+            stirringSource.clip = chime;
             Prev = new Vector2(0, 0);
             Next = new Vector2(0, 0);
             Percent_Stirred = 0;
@@ -58,6 +61,7 @@ namespace Assets.Scripts.GameInput
                     buttons[1].SetActive(false);
                     Count++;
                     Percent_Stirred = 0;
+                    stirringSource.Play();
                     //Debug.Log(Count);
                     if (Count < foodAnimation.Length)
                     {

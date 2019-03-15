@@ -13,11 +13,14 @@ public class CookieMover : MonoBehaviour
         public Animator[] cookies;
         private int Count;
         private int[] whichButton;
-        
-        
+    public AudioClip chime;
+    public AudioSource moverSource;
+
+
 
     private void Start()
     {
+        moverSource.clip = chime;
         Count = 0;
         whichButton = new int[cookies.Length];
         for(int x = 0; x < cookies.Length; x++)
@@ -34,24 +37,28 @@ public class CookieMover : MonoBehaviour
 
         if (InputControls.XPressed && whichButton[Count] == 0)
         {
+            moverSource.Play();
             cookies[Count].SetBool("moveToBasket", true);
             Count++;
         }
 
         if (InputControls.YPressed && whichButton[Count] == 1)
         {
+            moverSource.Play();
             cookies[Count].SetBool("moveToBasket", true);
             Count++;
         }
 
         if (InputControls.BPressed && whichButton[Count] == 2)
         {
+            moverSource.Play();
             cookies[Count].SetBool("moveToBasket", true);
             Count++;
         }
 
         if (InputControls.APressed && whichButton[Count] == 3)
         {
+            moverSource.Play();
             cookies[Count].SetBool("moveToBasket", true);
             Count++;
         }
@@ -59,6 +66,7 @@ public class CookieMover : MonoBehaviour
 
         if (Count >= cookies.Length)
         {
+            moverSource.Play();
             Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
             Game.HUD.showHUD = true;
             SceneManager.LoadScene("Kitchen");

@@ -4,11 +4,13 @@ using Assets.Scripts.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StealthCaughtZone : MonoBehaviour
 {
     public StealthAwarenessZone awareness;
     public Dialogue dialogue;
+    public Sprite guardFace;
 
 
     public enum GuardType
@@ -39,6 +41,8 @@ public class StealthCaughtZone : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        GameObject.Find("Headshot").GetComponent<Image>().sprite = guardFace;
+
         if (!collision.gameObject.GetComponent<PlayerMovement>().hidden)
         {
             Debug.Log("YOU GOT CAUGHT!");
