@@ -40,7 +40,7 @@ public class FieldOfView : MonoBehaviour {
         meshTimer = new DeltaTimer(0.01d, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
         meshTimer.start();
 
-        guard = this.gameObject;
+        guard = this.gameObject.transform.parent.gameObject;
 
         startPoint = guard.transform.position;
     }
