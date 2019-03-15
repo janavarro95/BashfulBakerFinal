@@ -5,14 +5,15 @@ using UnityEngine;
 public class progress : MonoBehaviour
 {
     public int step;
-    public GameObject A;
-    public Vector3 pos0, pos1, pos2, pos3, pos4;
+    public GameObject A, clock;
+    public Vector3 pos0, pos1, pos2, pos3, pos4, pos5;
     public GameObject Gandalf, BlackKnight,Player;
 
     // Start is called before the first frame update
     void Start()
     {
         A.SetActive(false);
+        clock.SetActive(false);
         //this.transform.position = pos0;
         Gandalf.SetActive(false);
         Player = GameObject.Find("Player(Clone)");
@@ -24,7 +25,7 @@ public class progress : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (step < 4 && Player.transform.position.y > -2.5)
+        if (step < 0 && Player.transform.position.y > -2.5)
         {
             Gandalf.SetActive(true);
         }
@@ -58,9 +59,14 @@ public class progress : MonoBehaviour
                 }
             case 4:
                 {
+                    this.transform.position = pos4;
+                    break;
+                }
+            case 5:
+                {
                     Gandalf.SetActive(false);
                     BlackKnight.SetActive(false);
-                    this.transform.position = pos4;
+                    this.transform.position = pos5;
                     break;
                 }
             default:

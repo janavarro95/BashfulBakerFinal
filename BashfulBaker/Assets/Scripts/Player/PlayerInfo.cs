@@ -184,7 +184,14 @@ namespace Assets.Scripts.Player
                 Debug.Log("NEW SPRITE");
                 GameObject obj = this.gameObject;
                 if (this._heldItemGameObject == null) Debug.Log("NANI???");
-                this._heldItemGameObject.GetComponent<SpriteRenderer>().sprite = Content.ContentManager.Instance.loadSprite(activeItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                if (activeItem.Sprite == null)
+                {
+                    Debug.Log("Active item has no sprite");
+                    Debug.Log("Get the active item sprite");
+                    activeItem.loadSprite();
+                }
+
+                this._heldItemGameObject.GetComponent<SpriteRenderer>().sprite = Content.ContentManager.Instance.loadSprite(activeItem.Sprite);
                 this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                 this._heldItemGameObject.SetActive(true);
             }
