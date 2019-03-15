@@ -307,7 +307,18 @@ public class StealthAwarenessZone : MonoBehaviour
     /// </summary>
     private void aiLookLogic()
     {
-        if (listOfSpotsToLookAt.Count == 0)
+        if(gameObject.GetComponent<FieldOfView>().visibleTargets.Count > 0)
+        {
+            Transform target = gameObject.GetComponent<FieldOfView>().visibleTargets[0].transform;
+            Quaternion dirToTarget;
+            // Get Angle in Radians
+            float AngleRad = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x);
+            // Get Angle in Degrees
+            float AngleDeg = (180 / Mathf.PI) * AngleRad;
+            dirToTarget = Quaternion.Euler(0, 0, AngleDeg);
+            this.transform.rotation = dirToTarget;
+        }
+        else if (listOfSpotsToLookAt.Count == 0)
         {
             createLookAroundPoints();
             finishedLookingAround = true;

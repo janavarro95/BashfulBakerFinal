@@ -27,7 +27,7 @@ public class FieldOfView : MonoBehaviour {
     private DeltaTimer meshTimer;
 
     GameObject cam;
-    public GameObject guard;
+    public GameObject guard, alert;
     Vector3 startPoint;
 
     private void Start()
@@ -37,8 +37,10 @@ public class FieldOfView : MonoBehaviour {
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
         DrawFieldOfView();
-        meshTimer = new DeltaTimer(0.01d, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
-        meshTimer.start();
+
+        //meshTimer = new DeltaTimer(0.01m, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
+        //meshTimer.start();
+
 
         guard = this.gameObject;
 
@@ -53,10 +55,11 @@ public class FieldOfView : MonoBehaviour {
         if(visibleTargets.Count < 1)
         {
             guard.transform.position = Vector3.MoveTowards(guard.transform.position, startPoint, 0.02f);
+            alert.SetActive(false);
         }
         if (Vector3.Distance(transform.position, cam.transform.position) < (Camera.main.orthographicSize * Screen.width / Screen.height) + viewRadius) {
-            //DrawFieldOfView();
-            meshTimer.Update();
+            DrawFieldOfView();
+            //meshTimer.Update();
 
         }
     }
@@ -83,6 +86,7 @@ public class FieldOfView : MonoBehaviour {
                 {
                     visibleTargets.Add(target);
                     guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
+                    alert.SetActive(true);
                 }
             }
         }
@@ -150,7 +154,7 @@ public class FieldOfView : MonoBehaviour {
         viewMesh.Clear();
         viewMesh.vertices = vertices;
         viewMesh.triangles = triangles;
-     //   viewMesh.RecalculateNormals();
+        viewMesh.RecalculateNormals();
     }
 
     ViewCastInfo ViewCast(float globalAngle)
