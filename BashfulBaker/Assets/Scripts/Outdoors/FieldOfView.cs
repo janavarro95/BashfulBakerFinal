@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Utilities.Timers;
+using Assets.Scripts.Stealth;
 
 public class FieldOfView : MonoBehaviour {
     public float viewRadius;
@@ -30,6 +31,8 @@ public class FieldOfView : MonoBehaviour {
     public GameObject guard, alert;
     Vector3 startPoint;
 
+    GuardAnimationScript guardAnimator;
+
     private void Start()
     {
         cam = GameObject.Find("Main Camera");
@@ -37,13 +40,19 @@ public class FieldOfView : MonoBehaviour {
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
         DrawFieldOfView();
-        
+
         //meshTimer = new DeltaTimer(0.1d, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
         //meshTimer.start();
 
-
-        guard = gameObject.transform.parent.gameObject;
-
+        try
+        {
+            guard = gameObject.transform.parent.gameObject;
+            guardAnimator = guard.GetComponent<GuardAnimationScript>();
+        }
+        catch(System.Exception err)
+        {
+            guard = this.gameObject;
+        }
         startPoint = guard.transform.position;
     }
 
@@ -55,6 +64,7 @@ public class FieldOfView : MonoBehaviour {
         if(visibleTargets.Count < 1)
         {
             guard.transform.position = Vector3.MoveTowards(guard.transform.position, startPoint, 0.02f);
+            if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint);
             alert.SetActive(false);
         }
         if (Vector3.Distance(transform.position, cam.transform.position) < (Camera.main.orthographicSize * Screen.width / Screen.height) + viewRadius) {
@@ -86,6 +96,7 @@ public class FieldOfView : MonoBehaviour {
                 {
                     visibleTargets.Add(target);
                     guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
+                    if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint,true);
                     alert.SetActive(true);
                 }
             }

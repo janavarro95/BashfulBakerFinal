@@ -15,7 +15,7 @@ namespace Assets.Scripts.Stealth
             animator = this.gameObject.GetComponent<Animator>();
         }
 
-        public void animateGuard(Vector3 currentPos,Vector3 nextPos)
+        public void animateGuard(Vector3 currentPos,Vector3 nextPos,bool flip=false)
         {
             Vector3 nextTargetSpot = nextPos - currentPos;
 
@@ -23,33 +23,69 @@ namespace Assets.Scripts.Stealth
             {
                 if (nextTargetSpot.x < 0)
                 {
-                    animator.Play("GuardLeftWalkAnimation");
+                    if (flip == false)
+                    {
+                        animator.Play("GuardLeftWalkAnimation");
+                    }
+                    else
+                    {
+                        animator.Play("GuardRightWalkAnimation");
+                    }
                 }
                 else if (nextTargetSpot.x > 0)
                 {
-                    animator.Play("GuardRightWalkAnimation");
+                    if(flip==false)animator.Play("GuardRightWalkAnimation");
+                    else
+                    {
+                        animator.Play("GuardLeftWalkAnimation");
+                    }
                 }
             }
             else if (Mathf.Abs(nextTargetSpot.x) < Mathf.Abs(nextTargetSpot.y))
             {
                 if (nextTargetSpot.y < 0)
                 {
-                    animator.Play("GuardDownWalkAnimation");
+                    if (flip == false)
+                    {
+                        animator.Play("GuardDownWalkAnimation");
+                    }
+                    else
+                    {
+                        animator.Play("GuardUpWalkAnimation");
+                    }
                 }
                 else if (nextTargetSpot.y > 0)
                 {
-                    animator.Play("GuardUpWalkAnimation");
+                    if (flip == false)
+                    {
+                        animator.Play("GuardUpWalkAnimation");
+                    }
+                    else
+                    {
+                        animator.Play("GuardDownWalkAnimation");
+                    }
                 }
             }
             else if (Mathf.Abs(nextTargetSpot.x) == Mathf.Abs(nextTargetSpot.y) && (nextTargetSpot.x != 0 && nextTargetSpot.y != 0))
             {
                 if (nextTargetSpot.x < 0)
                 {
-                    animator.Play("GuardLeftWalkAnimation");
+                    if (flip == false)
+                    {
+                        animator.Play("GuardLeftWalkAnimation");
+                    }
+                    else
+                    {
+                        animator.Play("GuardRightWalkAnimation");
+                    }
                 }
                 else if (nextTargetSpot.x > 0)
                 {
-                    animator.Play("GuardRightWalkAnimation");
+                    if (flip == false) animator.Play("GuardRightWalkAnimation");
+                    else
+                    {
+                        animator.Play("GuardLeftWalkAnimation");
+                    }
                 }
             }
             else if (nextTargetSpot.x == 0 && nextTargetSpot.y == 0)

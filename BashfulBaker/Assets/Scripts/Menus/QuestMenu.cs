@@ -79,7 +79,9 @@ namespace Assets.Scripts.Menus
             deliveredImage = info.transform.Find("DeliveredStatus").Find("StatusImage").gameObject.GetComponent<Image>();
             specialImage = info.transform.Find("SpecialStatus").Find("StatusImage").gameObject.GetComponent<Image>();
 
-            setUpMenuForDisplay();
+
+            disableAllQuests();
+            //setUpMenuForDisplay();
 
 
         }
@@ -112,13 +114,14 @@ namespace Assets.Scripts.Menus
 
         public override void Update()
         {
-            checkForQuestHover();
+            //checkForQuestHover();
 
+            /*
             if (GameCursorMenu.SimulateMousePress(exitButton))
             {
                 exitButtonPress();
             }
-
+            */
             //if hovering over quest sheet display the info on the right.
         }
 
