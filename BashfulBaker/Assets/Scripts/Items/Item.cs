@@ -74,6 +74,6 @@ public class Item {
     {
         string combinedFolders = Path.Combine("Graphics", "Items");
 
-        this._sprite=Game.ContentManager.loadTexture2D(Path.Combine(combinedFolders, this.itemName));
+        this._sprite=Game.ContentManager.loadTexture2DFromStreamingAssets(Path.Combine(combinedFolders, this.itemName));
     }
 }

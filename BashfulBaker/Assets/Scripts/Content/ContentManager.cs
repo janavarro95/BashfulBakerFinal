@@ -30,7 +30,7 @@ namespace Assets.Scripts.Content
 
         public Sprite loadSprite(string RelativePath, Rect RectInfo, Vector2 Pivots, float PixelsPerUnit)
         {
-            Sprite s = Sprite.Create(loadTexture2D(RelativePath), RectInfo, Pivots, PixelsPerUnit);
+            Sprite s = Sprite.Create(loadTexture2DFromStreamingAssets(RelativePath), RectInfo, Pivots, PixelsPerUnit);
             if (s == null) throw new Exception("WTF???");
             s.texture.filterMode = FilterMode.Point; https://docs.unity3d.com/ScriptReference/FilterMode.html
             return s;
@@ -50,7 +50,7 @@ namespace Assets.Scripts.Content
         /// </summary>
         /// <param name="AbsolutePath"></param>
         /// <returns></returns>
-        public Texture2D loadTexture2D(string RelativePath)
+        public Texture2D loadTexture2DFromStreamingAssets(string RelativePath)
         {
             string finalPath;
             WWW localFile;
@@ -67,9 +67,35 @@ namespace Assets.Scripts.Content
 
             if (localFile == null) throw new Exception("LOCAL FILE IS NULL!!!!");
 
+
             localFile.texture.filterMode = FilterMode.Point;
 
             return localFile.texture;
         }
+
+        public Texture2D loadTexture2DFromResources(string RelativePath)
+        {
+            string finalPath;
+            WWW localFile;
+
+            finalPath = Path.Combine(Application.streamingAssetsPath, RelativePath);
+
+            if (!File.Exists(finalPath))
+            {
+                Debug.Log("File: " + Path.GetFileName(finalPath) + " does not exist at the given path! " + finalPath);
+                //throw new Exception("File: " + Path.GetFileName(finalPath) + " does not exist at the given path! " + finalPath);
+            }
+
+            localFile = new WWW(finalPath);
+
+            if (localFile == null) throw new Exception("LOCAL FILE IS NULL!!!!");
+
+
+            localFile.texture.filterMode = FilterMode.Point;
+
+            return localFile.texture;
+        }
+
+
     }
 }

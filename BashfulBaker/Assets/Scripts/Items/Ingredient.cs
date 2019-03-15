@@ -32,7 +32,7 @@ namespace Assets.Scripts.Items
 
             Debug.Log(Path.Combine(combinedFolders, this.itemName + ".png"));
 
-            this._sprite = Game.ContentManager.loadTexture2D(Path.Combine(combinedFolders, this.itemName+".png"));
+            this._sprite = Game.ContentManager.loadTexture2DFromStreamingAssets(Path.Combine(combinedFolders, this.itemName+".png"));
             
         }
     }

@@ -1,0 +1,9 @@
+{
+  "name": "Fudge Cookie",
+  "itemsNeeded": [
+    "Cookie Ingredients",
+    "Chocolate Chip",
+    "Chocolate Chip"
+  ],
+  "output": "Fudge Cookie"
+}
