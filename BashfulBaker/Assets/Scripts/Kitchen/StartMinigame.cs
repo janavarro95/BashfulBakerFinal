@@ -6,12 +6,15 @@ using Assets.Scripts.GameInput;
 using Assets.Scripts;
 using Assets.Scripts.GameInformation;
 using Assets.Scripts.Items;
+using Assets.Scripts.Utilities.Timers;
 
 public class StartMinigame : MonoBehaviour
 {
     public string minigame;
     public GameObject arrow;
     public int thisStep;
+    public DeltaTimer timer;
+    private int baked;
     /// <summary>
     /// Used to determine if the player should be invisible in the minigame.
     /// </summary>
@@ -25,8 +28,12 @@ public class StartMinigame : MonoBehaviour
 
         if (collision.GetComponent<PlayerMovement>().currentStep == thisStep)
         {
-            arrow.GetComponent<SpriteRenderer>().enabled = false;
-            arrow.GetComponent<progress>().A.SetActive(true);
+            if (baked != 1)
+            {
+                //arrow.GetComponent<SpriteRenderer>().enabled = false;
+                //arrow.GetComponent<progress>().A.SetActive(true);
+                SetSprite(1);
+            }
 
             if (InputControls.APressed && collision.GetComponent<PlayerMovement>().currentStep == thisStep)
             {
@@ -40,8 +47,23 @@ public class StartMinigame : MonoBehaviour
                     return;
                 }
                 */
+                if(minigame == "Oven")
+                {
+                    if (baked == 0)
+                    {
+                        baked = 1;
+                        SetSprite(2);
+                        Invoke("Bake", 5);
+                    }
+                    else if (baked == 2)
+                    {
+                        SetSprite(0);
+                        collision.GetComponent<PlayerMovement>().NextStep();
 
-                if (Game.Player.activeItem is Dish)
+                    }
+                }
+
+                else if (Game.Player.activeItem is Dish)
                 {
                     
                     Dish d = (Game.Player.activeItem as Dish);
@@ -80,8 +102,9 @@ public class StartMinigame : MonoBehaviour
                     }
                     */
 
-                    arrow.GetComponent<SpriteRenderer>().enabled = true;
-                    arrow.GetComponent<progress>().A.SetActive(false);
+                    //arrow.GetComponent<SpriteRenderer>().enabled = true;
+                    //arrow.GetComponent<progress>().A.SetActive(false);
+                    SetSprite(0);
                     collision.GetComponent<PlayerMovement>().NextStep();
                     if (makePlayerInvisible) Assets.Scripts.GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
                     SceneManager.LoadScene(minigame);
@@ -94,8 +117,10 @@ public class StartMinigame : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        arrow.GetComponent<SpriteRenderer>().enabled = true;
-        arrow.GetComponent<progress>().A.SetActive(false);
+        //arrow.GetComponent<SpriteRenderer>().enabled = true;
+        //arrow.GetComponent<progress>().A.SetActive(false);
+
+        if(minigame != "Oven" || baked != 1) SetSprite(0);
     }
 
     private void updateDishState(Dish d)
@@ -150,5 +175,44 @@ public class StartMinigame : MonoBehaviour
             return "bake";
         }
         return "";
+    }
+
+    private void Bake()
+    {
+        Debug.Log("Ding");
+        baked = 2;
+        SetSprite(0);
+        //arrow.GetComponent<SpriteRenderer>().enabled = true;
+        //arrow.GetComponent<progress>().A.SetActive(false);
+    }
+
+    private void SetSprite(int state)
+    {
+        switch (state)
+        {
+            case 0:
+                {
+                    arrow.GetComponent<SpriteRenderer>().enabled = true;
+                    arrow.GetComponent<progress>().A.SetActive(false);
+                    arrow.GetComponent<progress>().clock.SetActive(false);
+                    break;
+                }
+            case 1:
+                {
+                    arrow.GetComponent<SpriteRenderer>().enabled = false;
+                    arrow.GetComponent<progress>().A.SetActive(true);
+                    arrow.GetComponent<progress>().clock.SetActive(false);
+                    break;
+                }
+            case 2:
+                {
+                    arrow.GetComponent<SpriteRenderer>().enabled = false;
+                    arrow.GetComponent<progress>().A.SetActive(false);
+                    arrow.GetComponent<progress>().clock.SetActive(true);
+                    break;
+                }
+            default:
+                break;
+        }
     }
 }

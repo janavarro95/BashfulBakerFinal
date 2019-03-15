@@ -7,7 +7,8 @@ using UnityEditor;
 using UnityEngine;
 
 [Serializable]
-public class Item {
+public class Item
+{
 
     public string itemName;
 
@@ -74,6 +75,12 @@ public class Item {
     {
         string combinedFolders = Path.Combine("Graphics", "Items");
 
-        this._sprite=Game.ContentManager.loadTexture2DFromStreamingAssets(Path.Combine(combinedFolders, this.itemName));
+        this._sprite = Game.ContentManager.loadTexture2DFromStreamingAssets(Path.Combine(combinedFolders, this.itemName));
+    }
+
+
+    public void loadSprite()
+    {
+        loadSpriteFromDisk();
     }
 }
