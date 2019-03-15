@@ -38,11 +38,11 @@ public class FieldOfView : MonoBehaviour {
         viewMeshFilter.mesh = viewMesh;
         DrawFieldOfView();
 
-        //meshTimer = new DeltaTimer(0.01m, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
+        //meshTimer = new DeltaTimer(0.1d, Assets.Scripts.Enums.TimerType.CountDown, true, new Assets.Scripts.Utilities.Delegates.VoidDelegate(DrawFieldOfView));
         //meshTimer.start();
 
 
-        guard = this.gameObject;
+        guard = gameObject.transform.parent.gameObject;
 
         startPoint = guard.transform.position;
     }

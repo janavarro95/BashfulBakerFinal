@@ -35,7 +35,7 @@ namespace Assets.Scripts.Menus
             Game.Menu = this;
             Game.HUD.showHUD = false;
 
-            GameInformation.Game.QuestManager.addQuest(new CookingQuest("Nuggies", "Ronald Mc.Donald", new List<string>() { "Fries" }));
+            //GameInformation.Game.QuestManager.addQuest(new CookingQuest("Nuggies", "Ronald Mc.Donald", new List<string>() { "Fries" }));
 
             GameObject canvas = this.gameObject.transform.Find("Canvas").gameObject;
             this.menuCursor = canvas.transform.Find("MenuMouseCursor").gameObject.GetComponent<GameInput.GameCursorMenu>();

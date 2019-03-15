@@ -33,7 +33,7 @@ public class progress : MonoBehaviour
     public void SetStep(int next)
     {
         step = next;
-        Debug.Log("moving to step " + step);
+        //Debug.Log("moving to step " + step);
         switch (step)
         {
             case 0:

@@ -432,7 +432,10 @@ namespace Assets.Scripts.Menus
             try
             {
                 ///Get code from getting script
-                FindObjectOfType<DialogueManager>().StartDialogue(tutorialProgress.pickUpText);
+                if (GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep == -1)
+                {
+                    FindObjectOfType<DialogueManager>().StartDialogue(tutorialProgress.pickUpText);
+                }
 
                 Game.Player.gameObject.GetComponent<PlayerMovement>().NextStep();
                 tutorialProgress.arrow.GetComponent<progress>().SetStep(1);
