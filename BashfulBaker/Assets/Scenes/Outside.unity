@@ -13008,6 +13008,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: bcaecea08e8b67b45b38c6e2210ba709,
         type: 3}
+    - target: {fileID: 6955445565035913787, guid: c15e94c9fb59dc14b91607d97d2997de,
+        type: 3}
+      propertyPath: guardFace
+      value: 
+      objectReference: {fileID: 21300000, guid: bcaecea08e8b67b45b38c6e2210ba709,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 1777357908, guid: c15e94c9fb59dc14b91607d97d2997de, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c15e94c9fb59dc14b91607d97d2997de, type: 3}

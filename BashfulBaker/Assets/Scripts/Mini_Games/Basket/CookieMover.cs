@@ -33,13 +33,19 @@ public class CookieMover : MonoBehaviour
 
     private void Update()
     {
-        buttonPrompt.sprite = XYBA[whichButton[Count]];
+
+        if (Count < cookies.Length)
+        {
+            buttonPrompt.sprite = XYBA[whichButton[Count]];
+        }
+        
 
         if (InputControls.XPressed && whichButton[Count] == 0)
         {
             moverSource.Play();
             cookies[Count].SetBool("moveToBasket", true);
             Count++;
+            buttonPrompt.sprite = XYBA[whichButton[Count]];
         }
 
         if (InputControls.YPressed && whichButton[Count] == 1)
@@ -47,6 +53,7 @@ public class CookieMover : MonoBehaviour
             moverSource.Play();
             cookies[Count].SetBool("moveToBasket", true);
             Count++;
+            buttonPrompt.sprite = XYBA[whichButton[Count]];
         }
 
         if (InputControls.BPressed && whichButton[Count] == 2)
@@ -54,6 +61,7 @@ public class CookieMover : MonoBehaviour
             moverSource.Play();
             cookies[Count].SetBool("moveToBasket", true);
             Count++;
+            buttonPrompt.sprite = XYBA[whichButton[Count]];
         }
 
         if (InputControls.APressed && whichButton[Count] == 3)
@@ -61,19 +69,25 @@ public class CookieMover : MonoBehaviour
             moverSource.Play();
             cookies[Count].SetBool("moveToBasket", true);
             Count++;
+            buttonPrompt.sprite = XYBA[whichButton[Count]];
         }
 
 
         if (Count >= cookies.Length)
         {
             moverSource.Play();
-            Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
-            Game.HUD.showHUD = true;
-            SceneManager.LoadScene("Kitchen");
+
+            Invoke("exitcookieMover", 1.5f);
         }
     }
-
+    private void exitcookieMover()
+    {
+        Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+        Game.HUD.showHUD = true;
+        SceneManager.LoadScene("Kitchen");
     }
+
+}
 
 
 
