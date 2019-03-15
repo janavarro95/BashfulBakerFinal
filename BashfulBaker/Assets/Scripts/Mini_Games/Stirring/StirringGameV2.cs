@@ -90,7 +90,7 @@ namespace Assets.Scripts.GameInput
 
             bowl.sprite = bowlsprites[angle];
 
-            progressBar.transform.localScale = new Vector3((Percent_Stirred * 30)/720f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
+            progressBar.transform.localScale = new Vector3((Percent_Stirred * 20)/720f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
         }
     }
 }

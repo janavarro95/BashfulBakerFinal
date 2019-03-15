@@ -24,7 +24,7 @@ public class progress : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (step < 4 && Player.transform.position.y > -3)
+        if (step < 4 && Player.transform.position.y > -2.5)
         {
             Gandalf.SetActive(true);
         }
