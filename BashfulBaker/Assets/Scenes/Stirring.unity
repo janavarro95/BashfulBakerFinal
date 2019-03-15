@@ -257,7 +257,7 @@ MonoBehaviour:
   Count: 0
   completeIcon: {fileID: 21300000, guid: 0d441ba15b0cbab4d9e13b198526f869, type: 3}
   buttons:
-  - {fileID: 0}
+  - {fileID: 36375641}
   - {fileID: 1020222666}
   bowl: {fileID: 1764727200}
   bowlsprites:

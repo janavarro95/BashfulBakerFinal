@@ -29,12 +29,12 @@ namespace Assets.Scripts.GameInput
             sumL = 0;
             count = 0;
            
-            for (int x = 0; x < 9; x++)
+            for (int x = 0; x < 7; x++)
             {
                 cookies[x].SetActive(false);
             }
 
-            sprite = this.GetComponent<SpriteRenderer>();
+            sprite = GetComponent<SpriteRenderer>();
             sprite.enabled = true;
             sprite.sprite = sprites[0];
 
@@ -50,7 +50,7 @@ namespace Assets.Scripts.GameInput
         // Update is called once per frame
         void Update()
         {
-            if (this.GetComponent<SpriteRenderer>().enabled)
+            if (GetComponent<SpriteRenderer>().enabled)
             {
                 spinning = 0;
                 endR = new Vector2(InputControls.RightJoystickHorizontal, InputControls.RightJoystickVertical);
@@ -77,7 +77,7 @@ namespace Assets.Scripts.GameInput
                 if (sumR < 720f || sumL < 720f)
                 {
                     progressBar.transform.localScale = new Vector3(((sumR + sumL) * 30) / 1440f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
-                    this.transform.Rotate(0f, 0f, 90f * Time.deltaTime * spinning);
+                    transform.Rotate(0f, 0f, 90f * Time.deltaTime * spinning);
                     //this.transform.rotation = new Quaternion(this.transform.rotation.x, this.transform.rotation.y, Mathf.Lerp(0f, 720f, ((sumR < 720f ? sumR : 720f) + (sumL < 720f ? sumL : 720f)) / 1440f), this.transform.rotation.w);
                 }
                 else
@@ -89,19 +89,19 @@ namespace Assets.Scripts.GameInput
                     {
                         buttons[2].SetActive(false);
                         cookies[count++].SetActive(true);
-                        if (count >= 8)
+                        if (count >= 6)
                         {
-                            cookies[8].SetActive(true);
+                            cookies[6].SetActive(true);
                         }
                         sumR = 0;
                         sumL = 0;
-                        this.GetComponent<SpriteRenderer>().enabled = false;
+                        GetComponent<SpriteRenderer>().enabled = false;
                     }
                 }
             }
             else if (InputControls.APressed)
             {
-                if (count >= 8 && InputControls.APressed)
+                if (count >= 6 && InputControls.APressed)
                 {
                     Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
                     Game.HUD.showHUD = true;
@@ -112,7 +112,7 @@ namespace Assets.Scripts.GameInput
                     buttons[0].SetActive(true);
                     buttons[1].SetActive(true);
                     buttons[2].SetActive(false);
-                    this.GetComponent<SpriteRenderer>().enabled = true;
+                    GetComponent<SpriteRenderer>().enabled = true;
                     sprite.sprite = sprites[0];
                 }
             }
