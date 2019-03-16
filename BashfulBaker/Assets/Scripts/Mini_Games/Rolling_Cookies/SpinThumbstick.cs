@@ -108,9 +108,7 @@ namespace Assets.Scripts.GameInput
             {
                 if (count >= 6 && InputControls.APressed)
                 {
-                    Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
-                    Game.HUD.showHUD = true;
-                    SceneManager.LoadScene("Kitchen");
+                    Invoke("exitspinnning", 1.5f);
                 }
                 else
                 {
@@ -126,5 +124,12 @@ namespace Assets.Scripts.GameInput
                 buttons[2].SetActive(true);
             }
         }
+        void exitspinnning()
+        {
+            Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+            Game.HUD.showHUD = true;
+            SceneManager.LoadScene("Kitchen");
+        }
     }
+
 }

@@ -69,9 +69,7 @@ namespace Assets.Scripts.GameInput
                     }
                     else if (Count <= foodAnimation.Length)
                     {
-                        Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
-                        Game.HUD.showHUD = true;
-                        SceneManager.LoadScene("Kitchen");
+                        Invoke("getOutOfStirring", 1.5f);
                     }
 
                 }
@@ -95,6 +93,12 @@ namespace Assets.Scripts.GameInput
             bowl.sprite = bowlsprites[angle];
 
             progressBar.transform.localScale = new Vector3((Percent_Stirred * 20)/720f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
+        }
+        void getOutOfStirring()
+        {
+            Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+            Game.HUD.showHUD = true;
+            SceneManager.LoadScene("Kitchen");
         }
     }
 }
