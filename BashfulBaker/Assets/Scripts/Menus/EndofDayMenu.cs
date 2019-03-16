@@ -104,9 +104,9 @@ namespace Assets.Scripts.Menus
             thirdFailed.setNeighbors(secondFailed, fourthFailed, thirdDelivered, finishedButton);
             fourthFailed.setNeighbors(thirdFailed, null, fourthDelivered, finishedButton);
 
-            finishedButton.setNeighbors(fourthFailed, null, fourthFailed, null);
+            finishedButton.setNeighbors(null, null, null, null);
 
-            this.selectedComponent = firstDelivered;
+            this.selectedComponent = finishedButton;
             this.selectedComponent.snapToThisComponent();
 
         }
