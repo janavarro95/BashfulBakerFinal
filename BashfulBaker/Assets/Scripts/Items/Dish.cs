@@ -96,12 +96,21 @@ namespace Assets.Scripts.Items
             this.currentDishState = Enums.DishState.Ingredients;
         }
 
+        /// <summary>
+        /// Creates a new dish.
+        /// </summary>
+        /// <param name="DishName"></param>
+        /// <param name="State"></param>
         public Dish(string DishName,Enums.DishState State= Enums.DishState.Ingredients): base(DishName)
         {
             ingredients = new List<Item>();
             this.currentDishState = State;
         }
 
+        /// <summary>
+        /// Constructor that refers to a list of enums of the different kinds of dishes we can make.
+        /// </summary>
+        /// <param name="Dishes"></param>
         public Dish(Enums.Dishes Dishes)
         {
             if(Dishes== Enums.Dishes.ChocolateChipCookies)
@@ -175,6 +184,10 @@ namespace Assets.Scripts.Items
             this._sprite = this.ingredientsSprite;
         }
 
+        /// <summary>
+        /// Used to get the appropriate prepped sprites for the dish.
+        /// </summary>
+        /// <returns></returns>
         private Texture2D getAppropriatePreppedSprite()
         {
             string combinedFolders = Path.Combine("Graphics", "Objects");
@@ -191,6 +204,10 @@ namespace Assets.Scripts.Items
             return null;
         }
 
+        /// <summary>
+        /// Used to get the appropriate baked sprite for the dish
+        /// </summary>
+        /// <returns></returns>
         private Texture2D getAppropriateBakedSprite()
         {
             string combinedFolders = Path.Combine("Graphics", "Objects");

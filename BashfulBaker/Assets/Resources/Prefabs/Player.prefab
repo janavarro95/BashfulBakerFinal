@@ -124,6 +124,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  displayedDish:
+    itemName: 
+    stack: 0
+    ingredients: []
+    currentDishState: 0
+    ingredientsSprite: {fileID: 0}
+    mixedSprite: {fileID: 0}
+    preppedSprite: {fileID: 0}
+    bakedSprite: {fileID: 0}
+    packagedSprite: {fileID: 0}
+    burntSprite: {fileID: 0}
 --- !u!95 &3847433428208444257
 Animator:
   serializedVersion: 3
@@ -292,7 +303,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpeed: 1
   movementDampening: 20
-  woodStepSound: {fileID: 8300000, guid: 0a32fa66134014740a0fafda0cb9b5c8, type: 3}
+  woodStepSounds:
+  - {fileID: 8300000, guid: 2447ece8f659d1b47bf1458a87b9159a, type: 3}
+  - {fileID: 8300000, guid: 0f6cbbe2563611b4586e4b42f4d3617e, type: 3}
+  - {fileID: 8300000, guid: c2de6900f93e39845bad26a5937503d0, type: 3}
+  - {fileID: 8300000, guid: 55e8e36f5cad5cc46807d86a75d713da, type: 3}
   currentWalkingSound: {fileID: 0}
   hidden: 0
   heldObject: {fileID: 0}
@@ -5057,7 +5072,7 @@ ParticleSystem:
 --- !u!199 &4918382076304924411
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

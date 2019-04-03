@@ -6,6 +6,7 @@ using Assets.Scripts.Utilities.Timers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// A script which controls moving the player about the environment.
@@ -31,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
-    private AudioClip woodStepSound;
+    private List<AudioClip> woodStepSounds;
     [SerializeField]
     private AudioClip currentWalkingSound;
 
@@ -81,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animator = this.GetComponent<Animator>();
-        currentWalkingSound = woodStepSound;
+        getRandomFootstepSound();
         walkingSoundTimer = new DeltaTimer(0.4d, Assets.Scripts.Enums.TimerType.CountDown, false);
         walkingSoundTimer.start();
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
@@ -118,6 +119,9 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Checks if the player is hidden or not.
+    /// </summary>
     private void checkForPlayerVisibility()
     {
         if (hidden == true && Game.Player.hidden == false)
@@ -131,6 +135,41 @@ public class PlayerMovement : MonoBehaviour {
             Debug.Log("UNHIDE");
             Game.Player.hidden = false;
             //Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Visible);
+        }
+    }
+
+    /// <summary>
+    /// Gets a random walking sound depending on the location that the player is at.
+    /// </summary>
+    private void getRandomFootstepSound()
+    {
+        if (SceneManager.GetActiveScene().name.Contains("Kitchen"))
+        {
+            int rand = Random.Range(0, woodStepSounds.Count);
+            this.currentWalkingSound = woodStepSounds[rand];
+            return;
+        }
+        else
+        {
+            this.currentWalkingSound = null;
+            return;
+        }
+        
+    }
+
+    /// <summary>
+    /// Plays the footstep walking sound for the player.
+    /// </summary>
+    private void playFootstepSound()
+    {
+        if (this.currentWalkingSound != null)
+        {
+            Game.SoundManager.playSound(CurrentWalkingSound);
+            return;
+        }
+        else
+        {
+            return;
         }
     }
 
@@ -162,7 +201,8 @@ public class PlayerMovement : MonoBehaviour {
 
                 if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0) && walkingSoundTimer.IsFinished && this.spriteRenderer.enabled)
                 {
-                    //Game.SoundManager.playSound(CurrentWalkingSound, Random.Range(2f, 3f));
+                    getRandomFootstepSound();
+                    playFootstepSound();
                     this.walkingSoundTimer.restart();
                 }
 
@@ -188,6 +228,9 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Checks if the player presses start to open up the game menu.
+    /// </summary>
     private void checkForMenuOpening()
     {
         if (Assets.Scripts.GameInput.InputControls.StartPressed)
@@ -197,6 +240,10 @@ public class PlayerMovement : MonoBehaviour {
         
     }
 
+    /// <summary>
+    /// Plays the animation for the player's movement.
+    /// </summary>
+    /// <param name="offset"></param>
     private void playCharacterMovementAnimation(Vector3 offset)
     {
         if (Game.Player.activeItem == null)
@@ -207,9 +254,6 @@ public class PlayerMovement : MonoBehaviour {
                 { //left walking animation
                     animator.Play("LWalk");
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
-
-
-
                     heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
 
@@ -381,6 +425,9 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// ???
+    /// </summary>
     public void NextStep()
     {
         currentStep++;
