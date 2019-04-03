@@ -16,10 +16,15 @@ namespace Assets.Scripts.GameInput
         public GameObject[] buttons;
         private SpriteRenderer sprite;
         public Sprite[] sprites;
+        public GameObject progressBar;
+
+        public AudioClip chime;
+        public AudioSource spinningSource;
 
         // Start is called before the first frame update
         void Start()
         {
+            spinningSource.clip = chime;
             startR = new Vector2(0, 0);
             startL = new Vector2(0, 0);
             endR = new Vector2(0, 0);
@@ -28,24 +33,28 @@ namespace Assets.Scripts.GameInput
             sumL = 0;
             count = 0;
            
-            for (int x = 0; x < 9; x++)
+            for (int x = 0; x < 7; x++)
             {
                 cookies[x].SetActive(false);
             }
 
-            sprite = this.GetComponent<SpriteRenderer>();
+            sprite = GetComponent<SpriteRenderer>();
             sprite.enabled = true;
             sprite.sprite = sprites[0];
 
             buttons[0].SetActive(true);
             buttons[1].SetActive(true);
             buttons[2].SetActive(false);
+
+            progressBar.transform.localScale = new Vector3(.1f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
+
+            Game.HUD.showHUD = false;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (this.GetComponent<SpriteRenderer>().enabled)
+            if (GetComponent<SpriteRenderer>().enabled)
             {
                 spinning = 0;
                 endR = new Vector2(InputControls.RightJoystickHorizontal, InputControls.RightJoystickVertical);
@@ -64,11 +73,15 @@ namespace Assets.Scripts.GameInput
                 }
                 startL = endL;
 
+                sumR = sumR > 720 ? 720 : sumR;
+                sumL = sumL > 720 ? 720 : sumL;
+
                 sprite.sprite = sumR + sumL < 720 ? sumR + sumL > 360 ? sprites[1] : sprites[0] : sumR + sumL > 1080 ? sprites[3] : sprites[2];
 
                 if (sumR < 720f || sumL < 720f)
                 {
-                    this.transform.Rotate(0f, 0f, 90f * Time.deltaTime * spinning);
+                    progressBar.transform.localScale = new Vector3(((sumR + sumL) * 30) / 1440f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
+                    transform.Rotate(0f, 0f, 90f * Time.deltaTime * spinning);
                     //this.transform.rotation = new Quaternion(this.transform.rotation.x, this.transform.rotation.y, Mathf.Lerp(0f, 720f, ((sumR < 720f ? sumR : 720f) + (sumL < 720f ? sumL : 720f)) / 1440f), this.transform.rotation.w);
                 }
                 else
@@ -78,31 +91,31 @@ namespace Assets.Scripts.GameInput
                     buttons[2].SetActive(true);
                     if (InputControls.APressed)
                     {
+                        spinningSource.Play();
                         buttons[2].SetActive(false);
                         cookies[count++].SetActive(true);
-                        if (count >= 8)
+                        if (count >= 6)
                         {
-                            cookies[8].SetActive(true);
+                            cookies[6].SetActive(true);
                         }
                         sumR = 0;
                         sumL = 0;
-                        this.GetComponent<SpriteRenderer>().enabled = false;
+                        GetComponent<SpriteRenderer>().enabled = false;
                     }
                 }
             }
             else if (InputControls.APressed)
             {
-                if (count >= 8 && InputControls.APressed)
+                if (count >= 6 && InputControls.APressed)
                 {
-                    Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
-                    SceneManager.LoadScene("Kitchen");
+                    Invoke("exitspinnning", 1.5f);
                 }
                 else
                 {
                     buttons[0].SetActive(true);
                     buttons[1].SetActive(true);
                     buttons[2].SetActive(false);
-                    this.GetComponent<SpriteRenderer>().enabled = true;
+                    GetComponent<SpriteRenderer>().enabled = true;
                     sprite.sprite = sprites[0];
                 }
             }
@@ -111,5 +124,12 @@ namespace Assets.Scripts.GameInput
                 buttons[2].SetActive(true);
             }
         }
+        void exitspinnning()
+        {
+            Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+            Game.HUD.showHUD = true;
+            SceneManager.LoadScene("Kitchen");
+        }
     }
+
 }

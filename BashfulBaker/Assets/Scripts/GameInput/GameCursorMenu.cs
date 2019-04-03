@@ -45,7 +45,7 @@ namespace Assets.Scripts.GameInput
             timer.start();
             rect = this.gameObject.GetComponent<RectTransform>();
             Game.MouseCursor = this;
-            snapTimer = new DeltaTimer((decimal)snapDelay, Enums.TimerType.CountDown, false, null);
+            snapTimer = new DeltaTimer((double)snapDelay, Enums.TimerType.CountDown, false, null);
             snapTimer.start();
 
         }
@@ -70,6 +70,7 @@ namespace Assets.Scripts.GameInput
                         if (delta.x < -snapSensitivity)
                         {
                             Game.Menu.selectedComponent.snapToNextComponent(Enums.FacingDirection.Left);
+                            Game.SoundEffects.playMenuButtonMovementSnap();
                             movedByCursor = false;
                             timer.restart();
                             isVisible = true;
@@ -78,6 +79,7 @@ namespace Assets.Scripts.GameInput
                         else if(delta.x>snapSensitivity)
                         {
                             Game.Menu.selectedComponent.snapToNextComponent(Enums.FacingDirection.Right);
+                            Game.SoundEffects.playMenuButtonMovementSnap();
                             movedByCursor = false;
                             timer.restart();
                             isVisible = true;
@@ -89,6 +91,7 @@ namespace Assets.Scripts.GameInput
                         if (delta.y < -snapSensitivity)
                         {
                             Game.Menu.selectedComponent.snapToNextComponent(Enums.FacingDirection.Down);
+                            Game.SoundEffects.playMenuButtonMovementSnap();
                             movedByCursor = false;
                             timer.restart();
                             isVisible = true;
@@ -97,6 +100,7 @@ namespace Assets.Scripts.GameInput
                         else if (delta.y > snapSensitivity)
                         {
                             Game.Menu.selectedComponent.snapToNextComponent(Enums.FacingDirection.Up);
+                            Game.SoundEffects.playMenuButtonMovementSnap();
                             movedByCursor = false;
                             timer.restart();
                             isVisible = true;

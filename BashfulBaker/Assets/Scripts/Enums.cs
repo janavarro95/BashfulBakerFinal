@@ -91,10 +91,46 @@ namespace Assets.Scripts
             CountUp
         }
 
+        /// <summary>
+        /// Deals with visibility on certain objects.
+        /// </summary>
         public enum Visibility
         {
             Visible,
             Invisible
+        }
+
+        /// <summary>
+        /// Deals with tracking the state of any given dish.
+        /// </summary>
+        public enum DishState
+        {
+            Ingredients,
+            Mixed,
+            Prepped,
+            Baked,
+            Packaged,
+            Burnt
+        }
+
+        public enum InventoryViewMode
+        {
+            DishView,
+            SpecialIngredientView
+        }
+
+        public enum Dishes
+        {
+            ChocolateChipCookies
+        }
+
+        public enum CookingStationMinigame
+        {
+            MixingBowl,
+            RollingStation,
+            Oven,
+            PackingStation,
+            TrashCan
         }
 
         /// <summary>

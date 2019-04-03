@@ -9,6 +9,7 @@ using Assets.Scripts.GameInformation;
 
 public class Tutorial_Jeb : MonoBehaviour
 {
+    public Sprite Jeb_Face;
     public Animator jeb_animator;
     private int ApressCount;
     public Dialogue tutorial_lines_pt1;
@@ -18,6 +19,7 @@ public class Tutorial_Jeb : MonoBehaviour
     private bool check_two;
     private bool check_three;
     public bool canCount;
+    public GameObject Bubble;
 
 
 
@@ -25,7 +27,7 @@ public class Tutorial_Jeb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep > 0)
+        if(GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep >= 0)
         {
             this.gameObject.SetActive(false);
         }
@@ -77,12 +79,24 @@ public class Tutorial_Jeb : MonoBehaviour
 
 
     }
+
+
+    public void helloWorld()
+    {
+
+    }
+
+
+
     void Bye()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(tutorial_lines_pt3);
     }
     void Introduction()
     {
+        GameObject.Find("Headshot").GetComponent<Image>().sprite = Jeb_Face;
+        //GameObject.Find("speechBubble")
+            Bubble.SetActive(false);
         FindObjectOfType<DialogueManager>().StartDialogue(tutorial_lines_pt1);
     }
     void Mission()

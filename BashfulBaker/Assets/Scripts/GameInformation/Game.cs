@@ -167,6 +167,10 @@ namespace Assets.Scripts.GameInformation
 
         public static DialogueManager DialogueManager;
 
+        public static SoundEffects SoundEffects;
+
+
+        public static int CurrentDayNumber;
 
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
@@ -219,6 +223,14 @@ namespace Assets.Scripts.GameInformation
                     string soundManagerPath = Path.Combine(Path.Combine("Prefabs", "Misc"), "SoundManager");
                     GameObject obj=Instantiate((GameObject)Resources.Load(soundManagerPath, typeof(GameObject)));
                     SoundManager = obj.GetComponent<GameSoundManager>();
+                }
+
+                if (SoundEffects == null)
+                {
+                    string soundManagerPath = Path.Combine(Path.Combine("Prefabs", "Misc"), "SoundEffects");
+                    GameObject obj = Instantiate((GameObject)Resources.Load(soundManagerPath, typeof(GameObject)));
+                    SoundEffects = obj.GetComponent<SoundEffects>();
+                    SoundEffects.gameObject.transform.parent = SoundManager.gameObject.transform;
                 }
 
                 if (Options == null)
@@ -333,7 +345,11 @@ namespace Assets.Scripts.GameInformation
                 
                 Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
 
-                Game.Player.inventory.Add(new Ingredient("Chocolate Chip"));
+                //Game.Player.specialIngredientsInventory.Add(new SpecialIngredient("Chocolate Chip"));
+                //
+                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
+                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
+                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
                 Debug.Log("ADD CHOCO CHIP!");
 
             }
@@ -355,12 +371,18 @@ namespace Assets.Scripts.GameInformation
             int actualTime = (Minutes * 60) + Seconds;
             PhaseTimer = new Utilities.Timers.DeltaTimer(actualTime, Enums.TimerType.CountDown, false, new Utilities.Delegates.VoidDelegate(phaseTimerRunsOut));
             PhaseTimer.start();
+            Game.HUD.showTimer = true;
         }
 
 
         private static void phaseTimerRunsOut()
         {
-            Debug.Log("WOOPS NO MORE TIME LEFT!!!");
+            Game.DialogueManager.StartDialogue(new Dialogue("Guard",new List<string>()
+                {
+                    "Oh man it's getting pretty dark.",
+                    "I guess I won't have any more time to do my deliveries..."
+                }.ToArray()));
+            SceneManager.LoadScene("EndofDay");
         }
 
         public static void QuitGame()

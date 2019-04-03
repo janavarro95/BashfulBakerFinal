@@ -11,7 +11,7 @@ public class Particle_manager_outside : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.Find("Player(Clone)").GetComponent<ParticleSystem>().enableEmission = true;
+        GameObject.Find("Player(Clone)").GetComponent<ParticleSystem>().enableEmission = false;
         
     }
 

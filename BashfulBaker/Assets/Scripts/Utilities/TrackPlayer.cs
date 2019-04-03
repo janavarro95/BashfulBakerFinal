@@ -17,6 +17,6 @@ public class TrackPlayer : MonoBehaviour
 
     private void Update()
     {
-        this.transform.position = this.transform.position.y > player.transform.position.y ? position1 : position2;
+        this.transform.position = this.transform.position.y > player.transform.position.y -.1f ? position1 : position2;
     }
 }

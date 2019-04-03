@@ -6,7 +6,9 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-public class Item {
+[Serializable]
+public class Item
+{
 
     public string itemName;
 
@@ -32,6 +34,10 @@ public class Item {
         {
             if (this._sprite == null) loadSpriteFromDisk();
             return _sprite;
+        }
+        set
+        {
+            _sprite = value;
         }
 
     }
@@ -59,17 +65,6 @@ public class Item {
     }
 
 
-    public void addToStack(int amount)
-    {
-        this.stack += amount;
-    }
-
-    public void removeFromStack(int amount)
-    {
-        this.stack -= amount;
-    }
-
-
     public virtual Item clone()
     {
         return new Item(this.Name);
@@ -80,6 +75,12 @@ public class Item {
     {
         string combinedFolders = Path.Combine("Graphics", "Items");
 
-        this._sprite=Game.ContentManager.loadTexture2D(Path.Combine(combinedFolders, this.itemName));
+        this._sprite = Game.ContentManager.loadTexture2DFromStreamingAssets(Path.Combine(combinedFolders, this.itemName));
+    }
+
+
+    public void loadSprite()
+    {
+        loadSpriteFromDisk();
     }
 }

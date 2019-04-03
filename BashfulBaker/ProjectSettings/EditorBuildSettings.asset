@@ -30,9 +30,15 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/outsideCutscene.unity
+    guid: 731d63f1725c03c4c871c1fb1f8e564a
+  - enabled: 1
     path: Assets/Scenes/Bakery.unity
     guid: 7fe5e3a88d56be64882d2a4a476d30b8
   - enabled: 1
     path: Assets/Scenes/Outside.unity
     guid: de20ef4bae3ef3f46b1f6dfebded9544
+  - enabled: 1
+    path: Assets/Scenes/EndOfDay.unity
+    guid: 8ae0db1a56bf597428ac7b7d3633ebe0
   m_configObjects: {}

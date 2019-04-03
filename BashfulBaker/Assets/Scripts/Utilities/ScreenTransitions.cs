@@ -109,7 +109,7 @@ namespace Assets.Scripts.Utilities
         /// <param name="State"></param>
         public void startNewSceneTransition(float seconds,string sceneToLoad,Color fadeInColor, TransitionState State)
         {
-            timer = new Timers.DeltaTimer((decimal)seconds, Enums.TimerType.CountDown,false,new Delegates.VoidDelegate(transitionToNextScene));
+            timer = new Timers.DeltaTimer((double)seconds, Enums.TimerType.CountDown,false,new Delegates.VoidDelegate(transitionToNextScene));
             timer.start();
             this.sceneToLoad = sceneToLoad;
             currentState = State;
@@ -131,7 +131,7 @@ namespace Assets.Scripts.Utilities
 
         public void startNewSceneTransition(float seconds, string sceneToLoad, Color fadeInColor, TransitionState State, VoidDelegate OnTransitionFinish)
         {
-            timer = new Timers.DeltaTimer((decimal)seconds, Enums.TimerType.CountDown, false, OnTransitionFinish);
+            timer = new Timers.DeltaTimer((double)seconds, Enums.TimerType.CountDown, false, OnTransitionFinish);
             timer.start();
             this.sceneToLoad = sceneToLoad;
             currentState = State;
