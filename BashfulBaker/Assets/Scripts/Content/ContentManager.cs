@@ -30,18 +30,26 @@ namespace Assets.Scripts.Content
 
         public Sprite loadSprite(string RelativePath, Rect RectInfo, Vector2 Pivots, float PixelsPerUnit)
         {
-            Sprite s = Sprite.Create(loadTexture2D(RelativePath), RectInfo, Pivots, PixelsPerUnit);
-            if (s == null) throw new Exception("WTF???");
+            Sprite s = Sprite.Create(loadTexture2DFromStreamingAssets(RelativePath), RectInfo, Pivots, PixelsPerUnit);
             s.texture.filterMode = FilterMode.Point; https://docs.unity3d.com/ScriptReference/FilterMode.html
             return s;
         }
 
         public Sprite loadSprite(Texture2D texture, Rect RectInfo, Vector2 Pivots, float PixelsPerUnit)
         {
+            if (texture == null) return null;
             Sprite s = Sprite.Create(texture, RectInfo, Pivots, PixelsPerUnit);
-            if (s == null) throw new Exception("WTF???");
-            s.texture.filterMode = FilterMode.Point; https://docs.unity3d.com/ScriptReference/FilterMode.html
-            return s;
+            try
+            {
+                s.texture.filterMode = FilterMode.Point; https://docs.unity3d.com/ScriptReference/FilterMode.html
+                return s;
+            }
+            catch(Exception err) {
+                Debug.Log(err.ToString());
+                Debug.Log("Texture name:" + texture.name);
+                return null;
+            }
+
         }
 
 
@@ -50,7 +58,7 @@ namespace Assets.Scripts.Content
         /// </summary>
         /// <param name="AbsolutePath"></param>
         /// <returns></returns>
-        public Texture2D loadTexture2D(string RelativePath)
+        public Texture2D loadTexture2DFromStreamingAssets(string RelativePath)
         {
             string finalPath;
             WWW localFile;
@@ -67,9 +75,16 @@ namespace Assets.Scripts.Content
 
             if (localFile == null) throw new Exception("LOCAL FILE IS NULL!!!!");
 
+
             localFile.texture.filterMode = FilterMode.Point;
 
             return localFile.texture;
+        }
+
+        public Texture2D loadTexture2DFromResources(string RelativePath)
+        {
+            Texture2D text = Resources.Load<Texture2D>(RelativePath);
+            return text;
         }
     }
 }

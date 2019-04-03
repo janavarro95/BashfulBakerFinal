@@ -125,10 +125,18 @@ namespace Assets.Scripts.Player
             if (visibility == Enums.Visibility.Invisible)
             {
                 Renderer.enabled = false;
+                if (_heldItemGameObject != null)
+                {
+                    _heldItemGameObject.GetComponent<SpriteRenderer>().enabled = false;
+                }
             }
             else
             {
                 Renderer.enabled = true;
+                if (_heldItemGameObject != null)
+                {
+                    _heldItemGameObject.GetComponent<SpriteRenderer>().enabled = true;
+                }
             }
         }
 
@@ -176,17 +184,34 @@ namespace Assets.Scripts.Player
                 Debug.Log("NEW SPRITE");
                 GameObject obj = this.gameObject;
                 if (this._heldItemGameObject == null) Debug.Log("NANI???");
-                this._heldItemGameObject.GetComponent<SpriteRenderer>().sprite = Content.ContentManager.Instance.loadSprite(activeItem.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
+                if (activeItem.Sprite == null)
+                {
+                    Debug.Log("Active item has no sprite");
+                    Debug.Log("Get the active item sprite");
+                    activeItem.loadSprite();
+                }
+
+                this._heldItemGameObject.GetComponent<SpriteRenderer>().sprite = Content.ContentManager.Instance.loadSprite(activeItem.Sprite);
                 this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                this._heldItemGameObject.SetActive(true);
             }
             else
             {
                 Debug.Log("NO SPRITE");
                 if (this._heldItemGameObject == null) return;
                 this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+                this._heldItemGameObject.SetActive(true);
             }
         }
 
+        public void playHeldObjectAnimation(bool moving)
+        {
+            if (Game.Player.activeItem == null) return;
+            if (Game.Player.activeItem is Dish)
+            {
+                this._heldItemGameObject.GetComponent<HeldObjectAnimator>().playAnimation(this.facingDirection, moving, (Dish)Game.Player.activeItem);
+            }
+        }
 
     }
 }

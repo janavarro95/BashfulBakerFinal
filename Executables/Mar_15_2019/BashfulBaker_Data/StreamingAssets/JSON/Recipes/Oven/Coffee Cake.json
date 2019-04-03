@@ -1,0 +1,8 @@
+{
+  "name": "Coffee Cake",
+  "itemsNeeded": [
+    "Cake Ingredients",
+    "Coffee"
+  ],
+  "output": "Coffee Cake"
+}

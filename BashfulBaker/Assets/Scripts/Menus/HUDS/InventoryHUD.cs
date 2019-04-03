@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameInformation;
 using Assets.Scripts.Items;
+using Assets.Scripts.Utilities.Timers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,8 @@ namespace Assets.Scripts.Menus.HUDS
         public Image rightImage;
         public Image bottomImage;
         public Image centralImage;
+
+        public DeltaTimer updateTimer;
 
         public override void Start()
         {
@@ -165,6 +168,25 @@ namespace Assets.Scripts.Menus.HUDS
 
         public override void Update()
         {
+            if (updateTimer == null || updateTimer.state== Enums.TimerState.Initialized)
+            {
+                updateTimer = new DeltaTimer(1, Enums.TimerType.CountDown, true, updateDishes);
+                updateTimer.start();
+            }
+            else
+            {
+                if(Game.HUD.showHUD && Game.HUD.showInventory)
+                {
+                    updateTimer.Update();
+                }
+            }
+        }
+
+
+        public void updateDishes()
+        {
+            Debug.Log("Update dishes!");
+            setUpComponents();
         }
 
         public override void setVisibility(Enums.Visibility visibility)

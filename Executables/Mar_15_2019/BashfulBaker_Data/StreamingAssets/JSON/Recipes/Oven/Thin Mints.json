@@ -1,0 +1,9 @@
+{
+  "name": "Thin Mints",
+  "itemsNeeded": [
+    "Cookie Ingredients",
+    "Chocolate Chip",
+    "Mint Chips"
+  ],
+  "output": "Thin Mints"
+}

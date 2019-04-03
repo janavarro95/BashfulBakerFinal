@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.Items;
 using Assets.Scripts.Menus;
 using Assets.Scripts.Utilities;
 using Assets.Scripts.Utilities.Timers;
@@ -81,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
         animator = this.GetComponent<Animator>();
         currentWalkingSound = woodStepSound;
-        walkingSoundTimer = new DeltaTimer(0.4m, Assets.Scripts.Enums.TimerType.CountDown, false);
+        walkingSoundTimer = new DeltaTimer(0.4d, Assets.Scripts.Enums.TimerType.CountDown, false);
         walkingSoundTimer.start();
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         currentStep = -1;
@@ -106,6 +107,14 @@ public class PlayerMovement : MonoBehaviour {
         else if (!hidden && spriteRenderer.color.a < 1)
         {
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a + .02f);
+        }
+
+        if (Game.Player.activeItem != null)
+        {
+            if(Game.Player.activeItem is Dish)
+            {
+                (Game.Player.activeItem as Dish).Update();
+            }
         }
     }
 
@@ -186,99 +195,188 @@ public class PlayerMovement : MonoBehaviour {
             Menu.Instantiate<GameMenu>();
         }
         
-        if (Assets.Scripts.GameInput.InputControls.RightBumperPressed)
-        {
-            if (Game.HUD.showInventory == true)
-            {
-                Menu.Instantiate<InventoryMenu>();
-            }
-        }
-        
     }
 
     private void playCharacterMovementAnimation(Vector3 offset)
     {
-
-        if (Mathf.Abs(offset.x) > Mathf.Abs(offset.y))
+        if (Game.Player.activeItem == null)
         {
-            if (offset.x < 0)
-            { //left walking animation
-                animator.Play("LWalk");
-                Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
-
-                
-                heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
-                heldObjectRenderer.enabled = true;
-
-            }
-            else
+            if (Mathf.Abs(offset.x) > Mathf.Abs(offset.y))
             {
-                animator.Play("RWalk");
-                Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
-                heldObject.transform.localPosition = new Vector3(1f, 0, heldObject.transform.localPosition.z);
-                heldObjectRenderer.enabled = true;
+                if (offset.x < 0)
+                { //left walking animation
+                    animator.Play("LWalk");
+                    Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
+
+
+
+                    heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+
+                }
+                else
+                {
+                    animator.Play("RWalk");
+                    Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
+                    heldObject.transform.localPosition = new Vector3(1f, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
+            }
+            else if (Mathf.Abs(offset.x) < Mathf.Abs(offset.y))
+            {
+                if (offset.y > 0)
+                {
+                    animator.Play("BWalk");
+                    Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Up;
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = false;
+                }
+                else
+                {
+                    animator.Play("FWalk");
+                    Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Down;
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
+            }
+            else if (Mathf.Abs(offset.x) == Mathf.Abs(offset.y) && (offset.x != 0 && offset.y != 0))
+            {
+                if (offset.x < 0)
+                { //left walking animation
+                    animator.Play("LWalk");
+                    Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
+                    heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
+                else
+                {
+                    animator.Play("RWalk");
+                    Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
+                    heldObject.transform.localPosition = new Vector3(1f, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
+            }
+
+            else if (offset.x == 0 && offset.y == 0)
+            {
+                if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Down)
+                {
+                    animator.Play("FIdle");
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
+                else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Left)
+                {
+                    animator.Play("LIdle");
+                    heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
+                else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Right)
+                {
+                    animator.Play("RIdle");
+                    heldObject.transform.localPosition = new Vector3(1f, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
+                else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Up)
+                {
+                    animator.Play("BIdle");
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = false;
+                }
             }
         }
-        else if (Mathf.Abs(offset.x) < Mathf.Abs(offset.y))
+        else if(Game.Player.activeItem!=null)
         {
-            if (offset.y > 0)
+            if (Mathf.Abs(offset.x) > Mathf.Abs(offset.y))
             {
-                animator.Play("BWalk");
-                Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Up;
-                heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
-                heldObjectRenderer.enabled = false;
-            }
-            else
-            {
-                animator.Play("FWalk");
-                Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Down;
-                heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
-                heldObjectRenderer.enabled = true;
-            }
-        }
-        else if(Mathf.Abs(offset.x) == Mathf.Abs(offset.y) && (offset.x!=0 && offset.y!=0))
-        {
-            if (offset.x < 0)
-            { //left walking animation
-                animator.Play("LWalk");
-                Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
-                heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
-                heldObjectRenderer.enabled = true;
-            }
-            else
-            {
-                animator.Play("RWalk");
-                Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
-                heldObject.transform.localPosition = new Vector3(1f, 0, heldObject.transform.localPosition.z);
-                heldObjectRenderer.enabled = true;
-            }
-        }
+                if (offset.x < 0)
+                { //left walking animation
+                    animator.Play("CarryingLWalk");
+                    Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
+                    Game.Player.playHeldObjectAnimation(true);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
 
-        else if (offset.x == 0 && offset.y == 0)
-        {
-            if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Down)
-            {
-                animator.Play("FIdle");
-                heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
-                heldObjectRenderer.enabled = true;
+                }
+                else
+                {
+                    animator.Play("CarryingRWalk");
+                    Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
+                    Game.Player.playHeldObjectAnimation(true);
+
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
             }
-            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Left)
+            else if (Mathf.Abs(offset.x) < Mathf.Abs(offset.y))
             {
-                animator.Play("LIdle");
-                heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
-                heldObjectRenderer.enabled = true;
+                if (offset.y > 0)
+                {
+                    animator.Play("CarryingBWalk");
+                    Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Up;
+                    Game.Player.playHeldObjectAnimation(true);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = false;
+                }
+                else
+                {
+                    animator.Play("CarryingFWalk");
+                    Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Down;
+                    Game.Player.playHeldObjectAnimation(true);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
             }
-            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Right)
+            else if (Mathf.Abs(offset.x) == Mathf.Abs(offset.y) && (offset.x != 0 && offset.y != 0))
             {
-                animator.Play("RIdle");
-                heldObject.transform.localPosition = new Vector3(1f, 0, heldObject.transform.localPosition.z);
-                heldObjectRenderer.enabled = true;
+                if (offset.x < 0)
+                { //left walking animation
+                    animator.Play("CarryingLWalk");
+                    Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
+                    Game.Player.playHeldObjectAnimation(true);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
+                else
+                {
+                    animator.Play("CarryingRWalk");
+                    Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
+                    Game.Player.playHeldObjectAnimation(true);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
             }
-            else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Up)
+
+            else if (offset.x == 0 && offset.y == 0)
             {
-                animator.Play("BIdle");
-                heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
-                heldObjectRenderer.enabled = false;
+                if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Down)
+                {
+                    animator.Play("CarryingFIdle");
+                    Game.Player.playHeldObjectAnimation(false);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
+                else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Left)
+                {
+                    animator.Play("CarryingLIdle");
+                    Game.Player.playHeldObjectAnimation(false);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
+                else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Right)
+                {
+                    animator.Play("CarryingRIdle");
+                    Game.Player.playHeldObjectAnimation(false);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = true;
+                }
+                else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Up)
+                {
+                    animator.Play("CarryingBIdle");
+                    Game.Player.playHeldObjectAnimation(false);
+                    heldObject.transform.localPosition = new Vector3(0, 0, heldObject.transform.localPosition.z);
+                    heldObjectRenderer.enabled = false;
+                }
             }
         }
     }

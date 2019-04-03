@@ -56,7 +56,7 @@ public class Monologue : MonoBehaviour
             ApressCount = 0;
             check_two = true;
             StartCoroutine(WaitforTime(2, Third));
-            GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().NextStep();
+
         }
       /*  if (check_one == true && check_two == true && ApressCount >= 2)
         {
@@ -82,5 +82,9 @@ public class Monologue : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
         canCount = true;
+        if(dialogue == Third)
+        {
+            GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().NextStep();
+        }
     }
 }

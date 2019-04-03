@@ -225,11 +225,13 @@ namespace Assets.Scripts.QuestSystem
         {
             foreach (Quest q in quests)
             {
-                if (q is DeliveryQuest)
+                if (q is CookingQuest)
                 {
                     //Debug.Log("Found a delivery quest!");
                     if (q.IsCompleted) continue; //Don't want to throw away dishes at completed quests.
-                    bool delivered = (q as DeliveryQuest).deliverDish(Dish, Zone);
+                    bool delivered = (q as CookingQuest).deliveryQuestPart.deliverDish(Dish, Zone);
+                    q.IsCompleted = true;
+                    (q as CookingQuest).deliveryQuestPart.IsCompleted = true;
                     return delivered; //If the dish was accepted, return true, otherwise return false;
                 }
                 else

@@ -1,0 +1,8 @@
+{
+  "name": "Chocolate Chip Cookie",
+  "itemsNeeded": [
+    "Cookie Ingredients",
+    "Chocolate Chip"
+  ],
+  "output": "Chocolate Chip Cookie"
+}

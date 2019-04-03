@@ -62,6 +62,7 @@ namespace Assets.Scripts.QuestSystem.Quests
                     if (delivered == true)
                     {
                         removalList.Add(Game.Player.activeItem);
+                        Game.Player.activeItem = null;
                         hasADishBeenDelivered = true;
                     }
                 }
@@ -75,6 +76,18 @@ namespace Assets.Scripts.QuestSystem.Quests
                     Game.Player.dishesInventory.Remove(I);
                 }
                 if (hasADishBeenDelivered == false) Debug.Log("No dishes to deliver here!");
+
+
+                bool completed = true;
+                foreach(CookingQuest q in Game.QuestManager.quests)
+                {
+                    if (q.deliveryQuestPart.IsCompleted == false) completed = false;
+                    break;
+                }
+                if (completed == true)
+                {
+                    Game.PhaseTimer.currentTime = 1;
+                }
             }
         }
 

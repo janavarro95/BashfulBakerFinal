@@ -18,11 +18,11 @@ namespace Assets.Scripts.Utilities.Timers
         /// <summary>
         /// The current time on the timer.
         /// </summary>
-        public decimal currentTime;
+        public double currentTime;
         /// <summary>
         /// The time (in seconds) it should take this timer to tick to completion. Note it is a float so you can have fractions of a second.
         /// </summary>
-        public decimal maxTime;
+        public double maxTime;
 
         /// <summary>
         /// The type of timer this is.
@@ -77,7 +77,7 @@ namespace Assets.Scripts.Utilities.Timers
         /// <param name="Type">The type of timer this is.</param>
         /// <param name="AutoRestart">If the timer should automatically restart once it finishes.</param>
         /// <param name="OnFinished">What happens when the timer finishes.</param>
-        public DeltaTimer(decimal TimeToCompletion,TimerType Type,bool AutoRestart, VoidDelegate OnFinished=null)
+        public DeltaTimer(double TimeToCompletion,TimerType Type,bool AutoRestart, VoidDelegate OnFinished=null)
         {
             this.type = Type;
             this.autoRestart = AutoRestart;
@@ -212,7 +212,7 @@ namespace Assets.Scripts.Utilities.Timers
 
             if (type == TimerType.CountUp)
             {
-                currentTime +=(decimal)Time.deltaTime;
+                currentTime +=(double)Time.deltaTime;
                 if (currentTime >= maxTime)
                 {
                     //do something
@@ -223,7 +223,7 @@ namespace Assets.Scripts.Utilities.Timers
             }
             else if(type== TimerType.CountDown)
             {
-                currentTime -= (decimal)Time.deltaTime;
+                currentTime -= (double)Time.deltaTime;
                 if (currentTime <= 0)
                 {
                     //do something.
@@ -241,6 +241,18 @@ namespace Assets.Scripts.Utilities.Timers
         {
             if (this.onFinished == null) return;
             else onFinished.Invoke();
+        }
+
+        public void subtractTime(int seconds)
+        {
+            this.currentTime -= seconds;
+            if (this.currentTime < 0) this.currentTime = 0;
+        }
+
+        public void addTime(int seconds)
+        {
+            this.currentTime += seconds;
+            if (this.currentTime > maxTime) this.currentTime = maxTime;
         }
 
     }

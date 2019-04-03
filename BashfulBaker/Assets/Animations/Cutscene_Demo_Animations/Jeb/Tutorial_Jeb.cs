@@ -27,7 +27,7 @@ public class Tutorial_Jeb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep > 0)
+        if(GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep >= 0)
         {
             this.gameObject.SetActive(false);
         }

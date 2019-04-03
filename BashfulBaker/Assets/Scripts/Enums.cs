@@ -109,13 +109,28 @@ namespace Assets.Scripts
             Mixed,
             Prepped,
             Baked,
-            Packaged
+            Packaged,
+            Burnt
         }
 
         public enum InventoryViewMode
         {
             DishView,
             SpecialIngredientView
+        }
+
+        public enum Dishes
+        {
+            ChocolateChipCookies
+        }
+
+        public enum CookingStationMinigame
+        {
+            MixingBowl,
+            RollingStation,
+            Oven,
+            PackingStation,
+            TrashCan
         }
 
         /// <summary>

@@ -119,7 +119,8 @@ namespace Assets.Scripts.QuestSystem.Quests
         /// <param name="UnWantedIngredients">All of the wanted ingredients in the list.</param>
         public CookingQuest(string RequiredDishName, string PersonToDeliverTo, List<string> WantedIngredients):this(RequiredDishName,PersonToDeliverTo,WantedIngredients,null)
         {
-            
+
+            generateDeliveryQuest();
         }
 
         /// <summary>
@@ -135,6 +136,7 @@ namespace Assets.Scripts.QuestSystem.Quests
             this.personToDeliverTo = PersonToDeliverTo ?? "";
             this.wantedIngredients = WantedIngredients ?? new List<string>();
             this.unwantedIngredients = UnWantedIngredients ?? new List<string>();
+            generateDeliveryQuest();
         }
 
         /// <summary>
@@ -180,12 +182,8 @@ namespace Assets.Scripts.QuestSystem.Quests
         /// <returns></returns>
         public DeliveryQuest generateDeliveryQuest()
         {
-            if (this.IsCompleted)
-            {
                 this.deliveryQuestPart=new DeliveryQuest(this.requiredDishName, this.personToDeliverTo);
                 return this.deliveryQuestPart;
-            }
-            else return null;
         }
 
         /// <summary>

@@ -8,7 +8,7 @@ public class open_sesame : MonoBehaviour
     private void Start()
     {
         Jeb = GameObject.Find("Jeb");
-        if (GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep > 0)
+        if (GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep >= 0)
         {
             this.gameObject.SetActive(false);
         }

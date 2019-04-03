@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Items
 {
+    [Serializable]
     public class Dish:Item
     {
         public List<Item> ingredients;
@@ -21,6 +22,7 @@ namespace Assets.Scripts.Items
         public Texture2D preppedSprite;
         public Texture2D bakedSprite;
         public Texture2D packagedSprite;
+        public Texture2D burntSprite;
 
         public Texture2D currentSprite
         {
@@ -71,6 +73,14 @@ namespace Assets.Scripts.Items
             }
         }
 
+        public bool HasBeenBurned
+        {
+            get
+            {
+                return currentDishState == Enums.DishState.Burnt;
+            }
+        }
+
         public bool IsDishComplete
         {
             get
@@ -90,6 +100,15 @@ namespace Assets.Scripts.Items
         {
             ingredients = new List<Item>();
             this.currentDishState = State;
+        }
+
+        public Dish(Enums.Dishes Dishes)
+        {
+            if(Dishes== Enums.Dishes.ChocolateChipCookies)
+            {
+                this.Name = "Chocolate Chip Cookies";
+            }
+            this.currentDishState = Enums.DishState.Ingredients;
         }
 
         public Dish(string DishName, List<Item> Ingredients, Enums.DishState State = Enums.DishState.Ingredients) :base(DishName)
@@ -137,17 +156,55 @@ namespace Assets.Scripts.Items
         /// </summary>
         protected override void loadSpriteFromDisk()
         {
-            string combinedFolders = Path.Combine("Graphics", "Items");
-            combinedFolders = Path.Combine(combinedFolders, "Dishes");
+            string combinedFolders = Path.Combine("Graphics", "Objects");
 
+            string sheetTrays = Path.Combine(combinedFolders, "Sheet Trays");
+            string doughBowls = Path.Combine(combinedFolders, "Dough Bowls");
+            string pastryBox = Path.Combine(combinedFolders, "Pastry Box");
 
-            this.ingredientsSprite = Game.ContentManager.loadTexture2D(Path.Combine(combinedFolders, this.itemName + "_ingredients.png"));
-            this.mixedSprite = Game.ContentManager.loadTexture2D(Path.Combine(combinedFolders, this.itemName + "_mixed.png"));
-            this.preppedSprite = Game.ContentManager.loadTexture2D(Path.Combine(combinedFolders, this.itemName + "_prepped.png"));
-            this.bakedSprite = Game.ContentManager.loadTexture2D(Path.Combine(combinedFolders, this.itemName + "_baked.png"));
-            this.packagedSprite = Game.ContentManager.loadTexture2D(Path.Combine(combinedFolders, this.itemName + "_packaged.png"));
+            this.ingredientsSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "BaseTrayF"));
+
+            Debug.Log(this.ingredientsSprite != null ? "yay ingredients" : "boo nothing");
+
+            this.mixedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(doughBowls, "CCDoughBowl"));
+
+            this.preppedSprite = getAppropriatePreppedSprite();
+            this.bakedSprite = getAppropriateBakedSprite();
+            this.packagedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(pastryBox, "PastryBox"));
 
             this._sprite = this.ingredientsSprite;
+        }
+
+        private Texture2D getAppropriatePreppedSprite()
+        {
+            string combinedFolders = Path.Combine("Graphics", "Objects");
+
+            string sheetTrays = Path.Combine(combinedFolders, "Sheet Trays");
+            string doughBowls = Path.Combine(combinedFolders, "Dough Bowls");
+
+
+            if (this.itemName == "Chocolate Chip Cookies" || this.itemName== "Chocolate Chip Cookie")
+            {
+                sheetTrays = Path.Combine(sheetTrays, "Choc Chip");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "carry_CCTray_raw"));
+            }
+            return null;
+        }
+
+        private Texture2D getAppropriateBakedSprite()
+        {
+            string combinedFolders = Path.Combine("Graphics", "Objects");
+
+            string sheetTrays = Path.Combine(combinedFolders, "Sheet Trays");
+            string doughBowls = Path.Combine(combinedFolders, "Dough Bowls");
+
+
+            if (this.itemName == "Chocolate Chip Cookies" || this.itemName == "Chocolate Chip Cookie")
+            {
+                sheetTrays = Path.Combine(sheetTrays, "Choc Chip");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "carry_CCTray_cook"));
+            }
+            return null;
         }
 
 

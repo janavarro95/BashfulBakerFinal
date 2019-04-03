@@ -4,11 +4,13 @@ using Assets.Scripts.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StealthCaughtZone : MonoBehaviour
 {
     public StealthAwarenessZone awareness;
     public Dialogue dialogue;
+    public Sprite guardFace;
 
 
     public enum GuardType
@@ -39,9 +41,13 @@ public class StealthCaughtZone : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        GameObject.Find("Headshot").GetComponent<Image>().sprite = guardFace;
+
         if (!collision.gameObject.GetComponent<PlayerMovement>().hidden)
         {
             Debug.Log("YOU GOT CAUGHT!");
+
+            collision.gameObject.GetComponent<PlayerMovement>().currentStep = 0;
 
             if (this.guardType == GuardType.Guard)
             {
@@ -88,7 +94,8 @@ public class StealthCaughtZone : MonoBehaviour
                     "Hey there, your {0} you gave me was delicious! When can you make me some more!?",
                     "(You ended up getting caught up in converstation for quite some time.)"
                 },dishConsumedName).ToArray()));
-                    Debug.Log("DO the timer penalty here!");
+                    
+                    Game.PhaseTimer.subtractTime(15);
                     //Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
                     awareness.shouldMove = true;
                 }
@@ -114,6 +121,7 @@ public class StealthCaughtZone : MonoBehaviour
                     "Well I suppose you are fine. Mind if we chat for a bit?",
                     "(The villager talks your ear off for quite some time causing you to loose a bit of time.)"
             }.ToArray()));
+                Game.PhaseTimer.subtractTime(15);
                 awareness.shouldMove = true;
             }
             else

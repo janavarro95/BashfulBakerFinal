@@ -1,0 +1,9 @@
+{
+  "name": "Oatmeal Raisin Cookie",
+  "itemsNeeded": [
+    "Cake Ingredients",
+    "Oats",
+    "Raisins"
+  ],
+  "output": "Oatmeal Raisin Cookie"
+}
