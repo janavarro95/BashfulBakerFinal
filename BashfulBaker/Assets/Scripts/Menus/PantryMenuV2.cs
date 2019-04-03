@@ -427,7 +427,7 @@ namespace Assets.Scripts.Menus
             Game.HUD.updateInventoryHUD();
             Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
             Game.HUD.showQuests = true;
-            Game.StartNewTimerPhase(5, 0);
+            Game.StartNewTimerPhase(5, 0,true);
 
             try
             {

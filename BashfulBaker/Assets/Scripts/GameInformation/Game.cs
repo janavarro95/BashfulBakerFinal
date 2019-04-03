@@ -366,8 +366,25 @@ namespace Assets.Scripts.GameInformation
         }
 
 
-        public static void StartNewTimerPhase(int Minutes,int Seconds)
+        /// <summary>
+        /// Starts a new timer phase if there is currently not an active timer.
+        /// </summary>
+        /// <param name="Minutes"></param>
+        /// <param name="Seconds"></param>
+        /// <param name="checkForValidity"></param>
+        public static void StartNewTimerPhase(int Minutes, int Seconds, bool checkForValidity=false)
         {
+            if (checkForValidity == true)
+            {
+                if (PhaseTimer != null)
+                {
+                    if (PhaseTimer.state == Enums.TimerState.Ticking)
+                    {
+                        return;
+                    }
+                }
+            }
+
             int actualTime = (Minutes * 60) + Seconds;
             PhaseTimer = new Utilities.Timers.DeltaTimer(actualTime, Enums.TimerType.CountDown, false, new Utilities.Delegates.VoidDelegate(phaseTimerRunsOut));
             PhaseTimer.start();
