@@ -43,8 +43,6 @@ namespace Assets.Scripts.Player
         public Enums.FacingDirection facingDirection;
         public bool hidden;
 
-
-
         private SpriteRenderer renderer;
         public SpriteRenderer Renderer
         {
@@ -75,6 +73,7 @@ namespace Assets.Scripts.Player
                     _gameObject = GameObject.FindWithTag("Player");
                     _heldItemGameObject = _gameObject.transform.Find("HeldItem").gameObject;
                     GameObject.DontDestroyOnLoad(_gameObject);
+                    arrowDirection = _gameObject.transform.Find("Arrow").gameObject.GetComponent<PlayerArrowDirection>();
                     return _gameObject;
                 }
                 else
@@ -88,6 +87,7 @@ namespace Assets.Scripts.Player
                 {
                     _gameObject = value;
                     _heldItemGameObject = _gameObject.transform.Find("HeldItem").gameObject;
+                    arrowDirection = _gameObject.transform.Find("Arrow").gameObject.GetComponent<PlayerArrowDirection>();
                 }
             }
         }
@@ -103,6 +103,8 @@ namespace Assets.Scripts.Player
             }
         }
 
+
+        public PlayerArrowDirection arrowDirection;
 
         /// <summary>
         /// Constructor.
