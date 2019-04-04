@@ -259,11 +259,6 @@ namespace Assets.Scripts.GameInformation
                // GameObject.DontDestroyOnLoad(_MouseCursor);
             }
             */
-
-            
-
-
-
         }
 
         private static void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -352,6 +347,40 @@ namespace Assets.Scripts.GameInformation
                 Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
                 Debug.Log("ADD CHOCO CHIP!");
 
+            }
+
+            if (SceneManager.GetActiveScene().name == "Kitchen")
+            {
+                Player.arrowDirection.setTargetObject(GameObject.Find("Warps (1)").transform.Find("ToOutside").gameObject);
+
+                if (Game.Player.dishesInventory.Contains("Chocolate Chip Cookies"))
+                {
+                    if ((Game.player.dishesInventory.getItem("Chocolate Chip Cookies") as Dish).currentDishState == Enums.DishState.Packaged)
+                    {
+                        Player.arrowDirection.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        Player.arrowDirection.gameObject.SetActive(false);
+                    }
+                }
+                else
+                {
+                    Player.arrowDirection.gameObject.SetActive(false);
+                }
+
+                //
+            }
+            else
+            {
+                try
+                {
+                    Player.arrowDirection.gameObject.SetActive(false);
+                }
+                catch(Exception err)
+                {
+
+                }
             }
 
 

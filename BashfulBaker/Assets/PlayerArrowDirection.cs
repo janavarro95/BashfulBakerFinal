@@ -35,6 +35,8 @@ public class PlayerArrowDirection : MonoBehaviour
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg; //Get the angle in degrees. Convert from radians to degrees
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90); //Create a new quaterion and make that the rotation.
 
+        this.gameObject.transform.parent.rotation= Quaternion.Euler(0f, 0f, rot_z - 270);
+
     }
 
     public void setTargetObject(GameObject target)

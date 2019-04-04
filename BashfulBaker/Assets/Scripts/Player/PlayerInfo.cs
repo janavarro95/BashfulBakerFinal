@@ -87,7 +87,7 @@ namespace Assets.Scripts.Player
                 {
                     _gameObject = value;
                     _heldItemGameObject = _gameObject.transform.Find("HeldItem").gameObject;
-                    arrowDirection = _gameObject.transform.Find("Arrow").gameObject.GetComponent<PlayerArrowDirection>();
+                    arrowDirection = _gameObject.transform.Find("Rotational").Find("Arrow").gameObject.GetComponent<PlayerArrowDirection>();
                 }
             }
         }
