@@ -55,7 +55,7 @@ namespace Assets.Scripts.GameInput
                 Percent_Stirred = 720;
                 buttons[0].SetActive(false);
                 buttons[1].SetActive(true);
-                if (InputControls.APressed)
+                if (InputControls.RightBumperPressed)
                 {
                     buttons[0].SetActive(true);
                     buttons[1].SetActive(false);
