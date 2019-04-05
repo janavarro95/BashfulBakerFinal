@@ -88,7 +88,7 @@ public class CookieMover : MonoBehaviour
 
     private void actuallyTransition()
     {
-        ScreenTransitions.StartSceneTransition(1.5f, "Kitchen", Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
+        ScreenTransitions.StartSceneTransition(.5f, "Kitchen", Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
     }
     private void finishedTransition()
     {
