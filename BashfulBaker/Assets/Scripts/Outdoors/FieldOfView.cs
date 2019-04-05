@@ -76,6 +76,8 @@ public class FieldOfView : MonoBehaviour {
 
     void FindVisibleTargets()
     {
+        bool sawPlayer = visibleTargets.Contains(GameObject.FindGameObjectWithTag("Player").transform);
+        bool seesPlayer = false;
         visibleTargets.Clear();
         Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
 
@@ -95,11 +97,24 @@ public class FieldOfView : MonoBehaviour {
                 if(!Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, distToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
+                    if (target == GameObject.FindGameObjectWithTag("Player").transform)
+                    {
+                        if (!sawPlayer && target)
+                        {
+                            target.GetComponent<PlayerMovement>().Spotted();
+                        }
+                        seesPlayer = true;
+                    }
                     guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
                     if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint,true);
                     alert.SetActive(true);
                 }
             }
+        }
+
+        if (sawPlayer && !seesPlayer)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().Escaped();
         }
     }
 

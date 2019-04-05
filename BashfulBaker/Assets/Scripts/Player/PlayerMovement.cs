@@ -44,6 +44,10 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject heldObject;
     public SpriteRenderer heldObjectRenderer;
 
+    private int guardsSeeingMe;
+    public SpriteRenderer alert;
+    private float t;
+
     public bool CanPlayerMove
     {
         get
@@ -92,7 +96,10 @@ public class PlayerMovement : MonoBehaviour {
 
         heldObject = this.gameObject.transform.Find("HeldItem").gameObject;
         heldObjectRenderer = heldObject.GetComponent<SpriteRenderer>();
-	}
+
+        guardsSeeingMe = 0;
+        t = 0;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -115,6 +122,17 @@ public class PlayerMovement : MonoBehaviour {
             if(Game.Player.activeItem is Dish)
             {
                 (Game.Player.activeItem as Dish).Update();
+            }
+        }
+
+        if (alert.enabled && guardsSeeingMe <= 0)
+        {
+            alert.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0), t);
+            t += .05f;
+            if (t >= 1)
+            {
+                alert.enabled = false;
+                t = 0;
             }
         }
     }
@@ -423,6 +441,22 @@ public class PlayerMovement : MonoBehaviour {
                 }
             }
         }
+    }
+
+    //Called when spotted by a guard
+    public void Spotted()
+    {
+        guardsSeeingMe++;
+        alert.enabled = true;
+        alert.color = new Color(1, 1, 1, 1);
+
+        //play alert sound
+    }
+    //Called when leaving a guard's vision
+    public void Escaped()
+    {
+        guardsSeeingMe--;
+        //alert.enabled = false;
     }
 
     /// <summary>
