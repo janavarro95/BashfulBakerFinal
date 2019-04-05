@@ -351,7 +351,7 @@ namespace Assets.Scripts.GameInformation
 
             if (SceneManager.GetActiveScene().name == "Kitchen")
             {
-                Player.arrowDirection.setTargetObject(GameObject.Find("Warps (1)").transform.Find("ToOutside").gameObject);
+                Player.arrowDirection.setTargetObject(GameObject.Find("Warps (2)").transform.Find("ToOutside").gameObject);
 
                 if (Game.Player.dishesInventory.Contains("Chocolate Chip Cookies"))
                 {
