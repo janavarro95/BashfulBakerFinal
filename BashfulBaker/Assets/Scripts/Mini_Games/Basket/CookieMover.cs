@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.GameInformation;
 using Assets.Scripts.GameInput;
+using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.Delegates;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -80,13 +82,21 @@ public class CookieMover : MonoBehaviour
     }
     private void exitcookieMover()
     {
+        actuallyTransition();
+        Game.Player.arrowDirection.gameObject.SetActive(true);
+    }
+
+    private void actuallyTransition()
+    {
+        ScreenTransitions.StartSceneTransition(1.5f, "Kitchen", Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
+    }
+    private void finishedTransition()
+    {
         Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
         Game.HUD.showHUD = true;
+        Game.HUD.showAll();
         SceneManager.LoadScene("Kitchen");
-
-
-        Debug.Log("Arrow shows the way!");
-        Game.Player.arrowDirection.gameObject.SetActive(true);
+        ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
     }
 
 }

@@ -107,6 +107,7 @@ public class StartMinigame : MonoBehaviour
                     SetSprite(0);
                     collision.GetComponent<PlayerMovement>().NextStep();
                     if (makePlayerInvisible) Assets.Scripts.GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
+                    Game.HUD.showOnlyTimer();
                     SceneManager.LoadScene(minigame);
                     updateDishState(d);
                 }
