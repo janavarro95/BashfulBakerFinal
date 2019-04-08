@@ -1,5 +1,7 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.GameInformation;
+using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.Delegates;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -79,8 +81,8 @@ public class Checkpoint : MonoBehaviour {
             }
             else if (stirPercentage == 100 && ingredients >= 4)
             {
-                Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
-                SceneManager.LoadScene("Kitchen");
+                //SceneManager.LoadScene("Kitchen");
+                actuallyTransition();
             }
 
             //Update the Percentage
@@ -184,6 +186,18 @@ public class Checkpoint : MonoBehaviour {
 
         Debug.Log(stirPercentage);
 
+    }
+    private void actuallyTransition()
+    {
+        ScreenTransitions.StartSceneTransition(.5f, "Kitchen", Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
+    }
+    private void finishedTransition()
+    {
+        Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+        Game.HUD.showHUD = true;
+        Game.HUD.showAll();
+        SceneManager.LoadScene("Kitchen");
+        ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
     }
     /*
               for (int x = 0; x < totalIngredients; x++)

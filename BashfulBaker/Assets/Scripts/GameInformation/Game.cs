@@ -259,11 +259,6 @@ namespace Assets.Scripts.GameInformation
                // GameObject.DontDestroyOnLoad(_MouseCursor);
             }
             */
-
-            
-
-
-
         }
 
         private static void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -347,11 +342,47 @@ namespace Assets.Scripts.GameInformation
 
                 //Game.Player.specialIngredientsInventory.Add(new SpecialIngredient("Chocolate Chip"));
                 //
-                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
-                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
-                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.ChocolateChipCookies));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.ChocolateChipCookies));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.ChocolateChipCookies));
+
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient("Chocolate Chip"));
                 Debug.Log("ADD CHOCO CHIP!");
 
+            }
+
+            if (SceneManager.GetActiveScene().name == "Kitchen")
+            {
+                Player.arrowDirection.setTargetObject(GameObject.Find("Warps (2)").transform.Find("ToOutside").gameObject);
+
+                if (Game.Player.dishesInventory.Contains("Chocolate Chip Cookies"))
+                {
+                    if ((Game.player.dishesInventory.getItem("Chocolate Chip Cookies") as Dish).currentDishState == Enums.DishState.Packaged)
+                    {
+                        Player.arrowDirection.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        Player.arrowDirection.gameObject.SetActive(false);
+                    }
+                }
+                else
+                {
+                    Player.arrowDirection.gameObject.SetActive(false);
+                }
+
+                //
+            }
+            else
+            {
+                try
+                {
+                    Player.arrowDirection.gameObject.SetActive(false);
+                }
+                catch(Exception err)
+                {
+
+                }
             }
 
 
@@ -366,8 +397,25 @@ namespace Assets.Scripts.GameInformation
         }
 
 
-        public static void StartNewTimerPhase(int Minutes,int Seconds)
+        /// <summary>
+        /// Starts a new timer phase if there is currently not an active timer.
+        /// </summary>
+        /// <param name="Minutes"></param>
+        /// <param name="Seconds"></param>
+        /// <param name="checkForValidity"></param>
+        public static void StartNewTimerPhase(int Minutes, int Seconds, bool checkForValidity=false)
         {
+            if (checkForValidity == true)
+            {
+                if (PhaseTimer != null)
+                {
+                    if (PhaseTimer.state == Enums.TimerState.Ticking)
+                    {
+                        return;
+                    }
+                }
+            }
+
             int actualTime = (Minutes * 60) + Seconds;
             PhaseTimer = new Utilities.Timers.DeltaTimer(actualTime, Enums.TimerType.CountDown, false, new Utilities.Delegates.VoidDelegate(phaseTimerRunsOut));
             PhaseTimer.start();

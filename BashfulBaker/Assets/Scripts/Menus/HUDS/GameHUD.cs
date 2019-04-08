@@ -10,7 +10,7 @@ namespace Assets.Scripts.Menus.HUDS
     public class GameHUD:HUD
     {
         [SerializeField]
-        public InventoryHUD InventoryHUD;
+        public InventoryHUDV2 InventoryHUD;
         public TimerHUD TimerHUD;
         public HUD QuestHUD;
 
@@ -39,7 +39,7 @@ namespace Assets.Scripts.Menus.HUDS
         /// </summary>
         public override void Start()
         {
-            InventoryHUD = this.gameObject.transform.Find("InventoryHUD").gameObject.GetComponent<InventoryHUD>();
+            InventoryHUD = this.gameObject.transform.Find("InventoryHUDV2").gameObject.GetComponent<InventoryHUDV2>();
             TimerHUD = this.gameObject.transform.Find("TimerHUD").gameObject.GetComponent<TimerHUD>();
             QuestHUD = this.gameObject.transform.Find("QuestHUD").gameObject.GetComponent<HUD>();
         }
@@ -63,13 +63,6 @@ namespace Assets.Scripts.Menus.HUDS
                 if (showQuests)
                 {
                     Menu.Instantiate<Menus.QuestMenu>();
-                }
-            }
-            if (GameInput.InputControls.LeftBumperPressed)
-            {
-                if (showInventory)
-                {
-                    Menu.Instantiate<InventoryMenu>();
                 }
             }
         }
@@ -169,6 +162,21 @@ namespace Assets.Scripts.Menus.HUDS
         {
             QuestHUD.setVisibility(Visibility);
         }
+        
+        public void showAll()
+        {
+            this.showHUD = true;
+            this.showInventory = true;
+            this.showQuests = true;
+            this.showTimer = true;
+        }
 
+        public void showOnlyTimer()
+        {
+            this.showHUD = true;
+            this.showInventory = false;
+            this.showQuests = false;
+            this.showTimer = true;
+        }
     }
 }

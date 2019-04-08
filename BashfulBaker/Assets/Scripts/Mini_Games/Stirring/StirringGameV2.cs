@@ -1,5 +1,7 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.GameInformation;
+using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.Delegates;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +39,7 @@ namespace Assets.Scripts.GameInput
             progressBar.transform.localScale = new Vector3(.1f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
 
             Game.HUD.showHUD = false;
+            Game.HUD.showOnlyTimer();
         }
 
         // Update is called once per frame
@@ -96,9 +99,20 @@ namespace Assets.Scripts.GameInput
         }
         void getOutOfStirring()
         {
+            actuallyTransition();
+            //SceneManager.LoadScene("Kitchen");
+        }
+        private void actuallyTransition()
+        {
+            ScreenTransitions.StartSceneTransition(.5f, "Kitchen", Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
+        }
+        private void finishedTransition()
+        {
             Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
             Game.HUD.showHUD = true;
+            Game.HUD.showAll();
             SceneManager.LoadScene("Kitchen");
+            ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
         }
     }
 }

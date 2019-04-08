@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.GameInformation;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,8 +16,11 @@ public class Darken : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if(transparency < .9)
             transparency += darkenSpeed;
+        */
+        transparency =1-(float)(Game.PhaseTimer.currentTime / Game.PhaseTimer.maxTime);
         mat.SetFloat("_Transparency", transparency);
     }
 }

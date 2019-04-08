@@ -7,6 +7,8 @@ using Assets.Scripts;
 using Assets.Scripts.GameInformation;
 using Assets.Scripts.Items;
 using Assets.Scripts.Utilities.Timers;
+using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.Delegates;
 
 public class StartMinigame : MonoBehaviour
 {
@@ -107,12 +109,28 @@ public class StartMinigame : MonoBehaviour
                     SetSprite(0);
                     collision.GetComponent<PlayerMovement>().NextStep();
                     if (makePlayerInvisible) Assets.Scripts.GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
-                    SceneManager.LoadScene(minigame);
+                    Game.HUD.showOnlyTimer();
+                    actuallyTransition();
+                    //SceneManager.LoadScene(minigame);
                     updateDishState(d);
                 }
             }
 
         }
+
+
+    }
+
+    private void actuallyTransition()
+    {
+        ScreenTransitions.StartSceneTransition(.5f, minigame, Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
+    }
+    private void finishedTransition()
+    {
+        Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
+        Game.HUD.showHUD = false;
+        SceneManager.LoadScene(minigame);
+        ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
