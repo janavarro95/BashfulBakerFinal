@@ -73,7 +73,7 @@ namespace Assets.Scripts.Player
                     _gameObject = GameObject.FindWithTag("Player");
                     _heldItemGameObject = _gameObject.transform.Find("HeldItem").gameObject;
                     GameObject.DontDestroyOnLoad(_gameObject);
-                    arrowDirection = _gameObject.transform.Find("Arrow").gameObject.GetComponent<PlayerArrowDirection>();
+                    arrowDirection = _gameObject.transform.Find("Rotational").Find("Arrow").gameObject.GetComponent<PlayerArrowDirection>();
                     return _gameObject;
                 }
                 else

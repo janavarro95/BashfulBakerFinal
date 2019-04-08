@@ -60,7 +60,7 @@ namespace Assets.Scripts.Menus
 
             Game.HUD.showInventory = false;
 
-            this.currentViewMode = Game.HUD.InventoryHUD.currentMode;
+            //this.currentViewMode = Game.HUD.InventoryHUD.currentMode;
 
             setUpMenu();
 
@@ -415,7 +415,7 @@ namespace Assets.Scripts.Menus
                 Game.Player.activeItem = this.selectedDish;
                 Game.Player.updateHeldItemSprite();
                 Game.HUD.showInventory = true;
-                Game.HUD.InventoryHUD.swapMode(currentViewMode);
+                //Game.HUD.InventoryHUD.swapMode(currentViewMode);
                 base.exitMenu();
                 Game.Menu = null;
             }
@@ -425,7 +425,7 @@ namespace Assets.Scripts.Menus
                 Game.Player.activeItem = this.selectedIngredient;
                 Game.Player.updateHeldItemSprite();
                 Game.HUD.showInventory = true;
-                Game.HUD.InventoryHUD.swapMode(currentViewMode);
+                //Game.HUD.InventoryHUD.swapMode(currentViewMode);
                 base.exitMenu();
                 Game.Menu = null;
             }

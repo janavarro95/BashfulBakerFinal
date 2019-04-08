@@ -2283,7 +2283,8 @@ PrefabInstance:
       propertyPath: viewRadius
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1055663168258379168, guid: 58f9bb7e81a644e4d99b9f09c36d9835, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 58f9bb7e81a644e4d99b9f09c36d9835, type: 3}
 --- !u!1 &238928184
 GameObject:
@@ -4578,7 +4579,8 @@ PrefabInstance:
       propertyPath: viewRadius
       value: 5.83
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1055663168258379168, guid: 58f9bb7e81a644e4d99b9f09c36d9835, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 58f9bb7e81a644e4d99b9f09c36d9835, type: 3}
 --- !u!1 &614011879
 GameObject:
@@ -5709,7 +5711,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1055663168258379168, guid: 58f9bb7e81a644e4d99b9f09c36d9835, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 58f9bb7e81a644e4d99b9f09c36d9835, type: 3}
 --- !u!1 &768907207
 GameObject:
@@ -20484,7 +20487,13 @@ PrefabInstance:
       propertyPath: viewRadius
       value: 4.71
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6281793609884408402, guid: 58f9bb7e81a644e4d99b9f09c36d9835,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1055663168258379168, guid: 58f9bb7e81a644e4d99b9f09c36d9835, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 58f9bb7e81a644e4d99b9f09c36d9835, type: 3}
 --- !u!1001 &6395000208820488089
 PrefabInstance:

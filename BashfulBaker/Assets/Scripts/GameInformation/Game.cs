@@ -342,9 +342,11 @@ namespace Assets.Scripts.GameInformation
 
                 //Game.Player.specialIngredientsInventory.Add(new SpecialIngredient("Chocolate Chip"));
                 //
-                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
-                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
-                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.ChocolateChipCookies));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.ChocolateChipCookies));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.ChocolateChipCookies));
+
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient("Chocolate Chip"));
                 Debug.Log("ADD CHOCO CHIP!");
 
             }
