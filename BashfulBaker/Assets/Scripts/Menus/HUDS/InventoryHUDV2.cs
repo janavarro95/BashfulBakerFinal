@@ -116,6 +116,15 @@ namespace Assets.Scripts.Menus.HUDS
         /// </summary>
         public Image sixthSpecialIngredientImage;
 
+
+        public Text firstSpecialIngredientText;
+        public Text secondSpecialIngredientText;
+        public Text thirdSpecialIngredientText;
+        public Text fourthSpecialIngredientText;
+        public Text fifthSpecialIngredientText;
+        public Text sixthSpecialIngredientText;
+
+
         /// <summary>
         /// Used to delay visual updates for the inventory.
         /// </summary>
@@ -148,7 +157,15 @@ namespace Assets.Scripts.Menus.HUDS
             fifthSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage5").gameObject.GetComponent<Image>();
             sixthSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage6").gameObject.GetComponent<Image>();
 
-            firstDishImage=dishes.transform.Find("DishImage1").gameObject.GetComponent<Image>();
+
+            firstSpecialIngredientText = firstSpecialIngredientImage.gameObject.transform.Find("Amount").GetComponent<Text>();
+            secondSpecialIngredientText = secondSpecialIngredientImage.gameObject.transform.Find("Amount").GetComponent<Text>();
+            thirdSpecialIngredientText = thirdSpecialIngredientImage.gameObject.transform.Find("Amount").GetComponent<Text>();
+            fourthSpecialIngredientText = fourthSpecialIngredientImage.gameObject.transform.Find("Amount").GetComponent<Text>();
+            fifthSpecialIngredientText = fifthSpecialIngredientImage.gameObject.transform.Find("Amount").GetComponent<Text>();
+            sixthSpecialIngredientText = sixthSpecialIngredientImage.gameObject.transform.Find("Amount").GetComponent<Text>();
+
+            firstDishImage =dishes.transform.Find("DishImage1").gameObject.GetComponent<Image>();
             secondDishImage = dishes.transform.Find("DishImage2").gameObject.GetComponent<Image>();
             thirdDishImage = dishes.transform.Find("DishImage3").gameObject.GetComponent<Image>();
             fourthDishImage = dishes.transform.Find("DishImage4").gameObject.GetComponent<Image>();
@@ -156,6 +173,14 @@ namespace Assets.Scripts.Menus.HUDS
 
             List<Dish> dishesList = Game.Player.dishesInventory.getAllDishes();
             List<SpecialIngredient> specialIngredientsList = Game.Player.specialIngredientsInventory.getAllSpecialIngredients();
+
+            //Chocolate Chips
+            //Mint Chips
+            //Rasins
+            //Pecans
+            //Carrots
+            //Strawberries
+
 
             Debug.Log("Special count: " + Game.Player.specialIngredientsInventory.Count);
 
@@ -214,53 +239,63 @@ namespace Assets.Scripts.Menus.HUDS
             //left ingredient sprite
             if (specialIngredientsList.Count > 0)
             {
-                Texture2D texture = specialIngredientsList[0].Sprite;
+                firstSpecialIngredient = specialIngredientsList.Find(ing => ing.ingredientType == Enums.SpecialIngredients.ChocolateChips);
+                firstSpecialIngredientText.text = "x" + firstSpecialIngredient.stack.ToString();
+                Texture2D texture = firstSpecialIngredient.Sprite;
                 firstSpecialIngredientImage.sprite= Content.ContentManager.Instance.loadSprite(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 firstSpecialIngredientImage.color = Color.white;
-                firstSpecialIngredient = specialIngredientsList[0];
+                
             }
 
             //right ingredient sprite
             if (specialIngredientsList.Count > 1)
             {
-                Texture2D texture = specialIngredientsList[1].Sprite;
+                secondSpecialIngredient = specialIngredientsList.Find(ing => ing.ingredientType == Enums.SpecialIngredients.MintChips);
+                secondSpecialIngredientText.text = "x" + secondSpecialIngredient.stack.ToString();
+                Texture2D texture = secondSpecialIngredient.Sprite;
                 secondSpecialIngredientImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
-                secondSpecialIngredientImage.color = Color.white;
-                secondSpecialIngredient = specialIngredientsList[1];
+                secondSpecialIngredientImage.color = Color.white;             
             }
 
             //Top ingredient sprite
             if (specialIngredientsList.Count > 2)
             {
-                Texture2D texture = specialIngredientsList[2].Sprite;
+                thirdSpecialIngredient = specialIngredientsList.Find(ing => ing.ingredientType == Enums.SpecialIngredients.Pecans);
+                thirdSpecialIngredientText.text = "x" + thirdSpecialIngredient.stack.ToString();
+                Texture2D texture = thirdSpecialIngredient.Sprite;
                 thirdSpecialIngredientImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 thirdSpecialIngredientImage.color = Color.white;
-                thirdSpecialIngredient = specialIngredientsList[2];
+                
             }
 
             //Bottom ingredient sprite
             if (specialIngredientsList.Count > 3)
             {
-                Texture2D texture = specialIngredientsList[3].Sprite;
+                fourthSpecialIngredient = specialIngredientsList.Find(ing => ing.ingredientType == Enums.SpecialIngredients.Rasins);
+                fourthSpecialIngredientText.text = "x" + fourthSpecialIngredient.stack.ToString();
+                Texture2D texture = fourthSpecialIngredient.Sprite;
                 fourthSpecialIngredientImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 fourthSpecialIngredientImage.color = Color.white;
-                fourthSpecialIngredient = specialIngredientsList[3];
+                
             }
 
             if (specialIngredientsList.Count > 4)
             {
-                Texture2D texture = specialIngredientsList[4].Sprite;
+                fifthSpecialIngredient = specialIngredientsList.Find(ing => ing.ingredientType == Enums.SpecialIngredients.Carrots);
+                fifthSpecialIngredientText.text = "x" + fifthSpecialIngredient.stack.ToString();
+                Texture2D texture = fifthSpecialIngredient.Sprite;
                 fifthSpecialIngredientImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 fifthSpecialIngredientImage.color = Color.white;
-                fifthSpecialIngredient = specialIngredientsList[4];
+               
             }
 
             if (specialIngredientsList.Count > 5)
             {
-                Texture2D texture = specialIngredientsList[5].Sprite;
+                sixthSpecialIngredient = specialIngredientsList.Find(ing => ing.ingredientType == Enums.SpecialIngredients.Strawberries);
+                sixthSpecialIngredientText.text = "x" + sixthSpecialIngredient.stack.ToString();
+                Texture2D texture = sixthSpecialIngredient.Sprite;
                 sixthSpecialIngredientImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
-                sixthSpecialIngredientImage.color = Color.white;
-                sixthSpecialIngredient = specialIngredientsList[5];
+                sixthSpecialIngredientImage.color = Color.white;             
             }
         }
 

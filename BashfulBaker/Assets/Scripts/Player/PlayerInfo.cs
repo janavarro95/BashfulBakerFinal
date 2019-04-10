@@ -112,7 +112,7 @@ namespace Assets.Scripts.Player
         public PlayerInfo()
         {
             this.dishesInventory = new Inventory(4);
-            this.specialIngredientsInventory = new Inventory(4);
+            this.specialIngredientsInventory = new Inventory(6);
             this.facingDirection = Enums.FacingDirection.Down;
             this.hidden = false;
         }

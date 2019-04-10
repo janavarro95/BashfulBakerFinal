@@ -128,6 +128,19 @@ namespace Assets.Scripts
         }
 
         /// <summary>
+        /// A list of all of the special ingredients in the game.
+        /// </summary>
+        public enum SpecialIngredients
+        {
+            ChocolateChips,
+            MintChips,
+            Pecans,
+            Rasins,
+            Carrots,
+            Strawberries
+        }
+
+        /// <summary>
         /// The different minigame sessions that exist.
         /// </summary>
         public enum CookingStationMinigame
