@@ -125,6 +125,9 @@ namespace Assets.Scripts
         public enum Dishes
         {
             ChocolateChipCookies,
+            MintChipCookies,
+            PecanCookies,
+            OatmealRasinCookies
         }
 
         /// <summary>

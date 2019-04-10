@@ -174,16 +174,6 @@ namespace Assets.Scripts.Menus.HUDS
             List<Dish> dishesList = Game.Player.dishesInventory.getAllDishes();
             List<SpecialIngredient> specialIngredientsList = Game.Player.specialIngredientsInventory.getAllSpecialIngredients();
 
-            //Chocolate Chips
-            //Mint Chips
-            //Rasins
-            //Pecans
-            //Carrots
-            //Strawberries
-
-
-            Debug.Log("Special count: " + Game.Player.specialIngredientsInventory.Count);
-
             firstSpecialIngredientImage.color = new Color(1, 1, 1, 0);
             secondSpecialIngredientImage.color = new Color(1, 1, 1, 0);
             thirdSpecialIngredientImage.color = new Color(1, 1, 1, 0);
@@ -325,14 +315,16 @@ namespace Assets.Scripts.Menus.HUDS
                     updateCurrentDishIndex(1);
                 }
 
-            }
-            if (GameInput.InputControls.LeftTriggerPressed)
-            {
-                Debug.Log("Left trigger pressed!");
-            }
-            else if (GameInput.InputControls.RightTriggerPressed)
-            {
-                Debug.Log("Right trigger pressed!");
+                if (GameInput.InputControls.LeftBumperPressed && this.specialIngredients.activeInHierarchy==false)
+                {
+                    this.specialIngredients.SetActive(true);
+                    return;
+                }
+                else if(GameInput.InputControls.LeftBumperPressed && this.specialIngredients.activeInHierarchy == true)
+                {
+                    this.specialIngredients.SetActive(false);
+                    return;
+                }
             }
 
         }

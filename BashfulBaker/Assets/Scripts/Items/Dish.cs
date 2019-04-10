@@ -175,13 +175,34 @@ namespace Assets.Scripts.Items
 
             Debug.Log(this.ingredientsSprite != null ? "yay ingredients" : "boo nothing");
 
-            this.mixedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(doughBowls, "CCDoughBowl"));
+            //this.mixedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(doughBowls, "CCDoughBowl"));
+            this.mixedSprite = getAppopriateMixedSprite();
+
 
             this.preppedSprite = getAppropriatePreppedSprite();
             this.bakedSprite = getAppropriateBakedSprite();
             this.packagedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(pastryBox, "PastryBox"));
 
             this._sprite = this.ingredientsSprite;
+        }
+
+        private Texture2D getAppopriateMixedSprite()
+        {
+            string combinedFolders = Path.Combine("Graphics", "Objects");
+
+            string sheetTrays = Path.Combine(combinedFolders, "Sheet Trays");
+            string doughBowls = Path.Combine(combinedFolders, "Dough Bowls");
+
+
+            if (this.itemName == "Chocolate Chip Cookies" || this.itemName == "Chocolate Chip Cookie")
+            {
+                this.mixedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(Path.Combine(doughBowls,"Choc Chip"), "CCDoughBowl"));
+            }
+            else if(this.itemName=="Mint Chip Cookies" || this.itemName=="Mint Chip Cookie")
+            {
+                this.mixedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(Path.Combine(doughBowls,"Mint Chip"), "Bowl_MC"));
+            }
+            return null;
         }
 
         /// <summary>
@@ -200,6 +221,12 @@ namespace Assets.Scripts.Items
             {
                 sheetTrays = Path.Combine(sheetTrays, "Choc Chip");
                 return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "carry_CCTray_raw"));
+            }
+
+            else if (this.itemName == "Mint Chip Cookies" || this.itemName == "Mint Chip Cookie")
+            {
+                sheetTrays = Path.Combine(sheetTrays, "Mint Chip");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "Carry_Tray_RawMC"));
             }
             return null;
         }
@@ -221,6 +248,13 @@ namespace Assets.Scripts.Items
                 sheetTrays = Path.Combine(sheetTrays, "Choc Chip");
                 return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "carry_CCTray_cook"));
             }
+
+            else if (this.itemName == "Mint Chip Cookies" || this.itemName == "Mint Chip Cookie")
+            {
+                sheetTrays = Path.Combine(sheetTrays, "Mint Chip");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "Carry_Tray_BakedMC"));
+            }
+
             return null;
         }
 
