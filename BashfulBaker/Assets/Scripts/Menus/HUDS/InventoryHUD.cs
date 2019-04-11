@@ -185,7 +185,7 @@ namespace Assets.Scripts.Menus.HUDS
 
         public void updateDishes()
         {
-            Debug.Log("Update dishes!");
+            //Debug.Log("Update dishes!");
             setUpComponents();
         }
 

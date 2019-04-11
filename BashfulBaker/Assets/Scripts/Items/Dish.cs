@@ -173,7 +173,7 @@ namespace Assets.Scripts.Items
 
             this.ingredientsSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "BaseTrayF"));
 
-            Debug.Log(this.ingredientsSprite != null ? "yay ingredients" : "boo nothing");
+            //Debug.Log(this.ingredientsSprite != null ? "yay ingredients" : "boo nothing");
 
             this.mixedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(doughBowls, "CCDoughBowl"));
 

@@ -420,7 +420,7 @@ namespace Assets.Scripts.Menus
         private void updateTutorial()
         {
 
-            Debug.Log("Picked up ingredients");
+            //Debug.Log("Picked up ingredients");
 
             Game.HUD.showInventory = true;
             //Game.Player.dishesInventory.Add(new Dish("Chocolate Chip Cookie"));

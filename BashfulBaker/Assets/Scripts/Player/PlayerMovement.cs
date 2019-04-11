@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour {
     public SpriteRenderer alert;
     private float t;
 
+    public SpriteRenderer buttonB;
+
     public bool CanPlayerMove
     {
         get
@@ -144,13 +146,13 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (hidden == true && Game.Player.hidden == false)
         {
-            Debug.Log("HIDE");
+            //Debug.Log("HIDE");
             Game.Player.hidden = true;
             //Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Invisible);
         }
         else if (hidden == false && Game.Player.hidden == true)
         {
-            Debug.Log("UNHIDE");
+            //Debug.Log("UNHIDE");
             Game.Player.hidden = false;
             //Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Visible);
         }
@@ -225,7 +227,7 @@ public class PlayerMovement : MonoBehaviour {
                 }
 
                 if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0 && Game.Player.hidden)){
-                    Debug.Log("Unhide while moving!");
+                    //Debug.Log("Unhide while moving!");
                     this.hidden = false;
                 }
 
@@ -465,21 +467,29 @@ public class PlayerMovement : MonoBehaviour {
     public void NextStep()
     {
         currentStep++;
-        Debug.Log("Next step: " + currentStep);
+        //Debug.Log("Next step: " + currentStep);
         arrow.GetComponent<progress>().SetStep(currentStep);
     }
     
     public void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Obstacle" && !hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+        if (other.gameObject.tag == "Obstacle")
         {
-            hidden = true;
-            defaultSpeed = 0;
+            buttonB.enabled = true;
+            if (!hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+            {
+                hidden = true;
+                defaultSpeed = 0;
+            }
+            else if (hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+            {
+                hidden = false;
+                defaultSpeed = 1f;
+            }
         }
-        else if (other.gameObject.tag == "Obstacle" && hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
-        {
-            hidden = false;
-            defaultSpeed = 1f;
-        }
+    }
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        buttonB.enabled = false;
     }
 }

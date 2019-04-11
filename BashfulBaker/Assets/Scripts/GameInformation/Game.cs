@@ -203,7 +203,7 @@ namespace Assets.Scripts.GameInformation
             {
 
 
-                Debug.Log("SET UP GAME!");
+                //Debug.Log("SET UP GAME!");
 
 
                 if (ContentManager == null)
@@ -316,12 +316,12 @@ namespace Assets.Scripts.GameInformation
                 DontDestroyOnLoad(Player.gameObject);
 
                 string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
-                Debug.Log(HUDPath);
+                //Debug.Log(HUDPath);
                 Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
 
 
                 SceneManager.LoadScene("Kitchen");
-                Debug.Log("Loading kitchen scene from the Game.cs script!");
+                //Debug.Log("Loading kitchen scene from the Game.cs script!");
 
                 //StartNewTimerPhase(2, 0);
 
@@ -345,7 +345,7 @@ namespace Assets.Scripts.GameInformation
                 Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
                 Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
                 Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
-                Debug.Log("ADD CHOCO CHIP!");
+                //Debug.Log("ADD CHOCO CHIP!");
 
             }
 

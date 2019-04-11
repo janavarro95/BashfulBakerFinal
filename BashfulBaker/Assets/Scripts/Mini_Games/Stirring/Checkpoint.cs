@@ -74,8 +74,8 @@ public class Checkpoint : MonoBehaviour {
             if (ingredients < 4)
              {
                 ingredients += 1;
-               // Debug.Log(ingredients);
-                Debug.Log(stirPercentage);
+               // //Debug.Log(ingredients);
+                //Debug.Log(stirPercentage);
             }
             else if (stirPercentage == 100 && ingredients >= 4)
             {
@@ -86,7 +86,7 @@ public class Checkpoint : MonoBehaviour {
             //Update the Percentage
             //lower to 60% of older value to show a new ingredient has been added      
             stirPercentage = (stirPercentage * 6) / 10;
-            Debug.Log(stirPercentage);
+            //Debug.Log(stirPercentage);
 
         }
     }
@@ -103,7 +103,7 @@ public class Checkpoint : MonoBehaviour {
 
         if (coll.gameObject.tag == "Player" && state == 1)
         {
-           // Debug.Log("1st square");
+           // //Debug.Log("1st square");
             this.transform.position = new Vector3(1, -1, 0);
             state = 2;
         }else
@@ -182,7 +182,7 @@ public class Checkpoint : MonoBehaviour {
             }
         }
 
-        Debug.Log(stirPercentage);
+        //Debug.Log(stirPercentage);
 
     }
     /*

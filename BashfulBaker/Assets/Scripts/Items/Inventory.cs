@@ -103,7 +103,7 @@ namespace Assets.Scripts.Items
             I.initializeSprite();
             if (this.items.Count == maxCapaxity)
             {
-                Debug.Log("Inventory is full!");
+                //Debug.Log("Inventory is full!");
                 return false;
             }
             this.items.Add(I);

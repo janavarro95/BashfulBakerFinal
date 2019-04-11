@@ -46,7 +46,7 @@ public class DaySelectMenu : Menu
                 }
                 catch(Exception err)
                 {
-                    Debug.Log("Said scene doesn't exist yet!");
+                    //Debug.Log("Said scene doesn't exist yet!");
                 }
             }
         }

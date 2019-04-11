@@ -287,7 +287,7 @@ namespace Assets.Scripts.Player
 
         public void loadAnimatorFromPrefab(string heldObjectName)
         {
-            Debug.Log("Load animation for: " + heldObjectName);
+            //Debug.Log("Load animation for: " + heldObjectName);
             if(heldObjectName=="Chocolate Chip Cookies")
             {
                 

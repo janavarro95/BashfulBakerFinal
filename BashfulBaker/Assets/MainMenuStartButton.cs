@@ -33,6 +33,6 @@ public class MainMenuStartButton : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log("CLICK");
+        //Debug.Log("CLICK");
     }
 }

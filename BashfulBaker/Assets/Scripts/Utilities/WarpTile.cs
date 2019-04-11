@@ -33,7 +33,7 @@ public class WarpTile : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("COLLISION");
+        //Debug.Log("COLLISION");
         if (collision.gameObject.tag == "Player")
         {
             if (pressAToWarp)

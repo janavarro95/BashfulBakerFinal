@@ -258,7 +258,7 @@ namespace Assets.Scripts.GameInput
         {
             if (behavior == null)
             {
-                Debug.Log("BEHAVIOR IS NULL");
+                //Debug.Log("BEHAVIOR IS NULL");
             }
             if (GameCursorMenu.CursorIntersectsRect(behavior) && GameInput.InputControls.APressed)
             {
@@ -287,7 +287,7 @@ namespace Assets.Scripts.GameInput
         {
             if (behavior == null)
             {
-                Debug.Log("BEHAVIOR IS NULL");
+                //Debug.Log("BEHAVIOR IS NULL");
             }
             if (GameCursorMenu.CursorIntersectsRect(behavior) && GameInput.InputControls.APressed)
             {

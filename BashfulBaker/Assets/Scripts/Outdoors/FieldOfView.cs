@@ -91,7 +91,7 @@ public class FieldOfView : MonoBehaviour {
             float AngleDeg = (180 / Mathf.PI) * AngleRad;
             dirToTarget = Quaternion.Euler(0, 0, AngleDeg);
 
-            if (Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
+            if (!(target == GameObject.FindGameObjectWithTag("Player").transform && target.GetComponent<PlayerMovement>().hidden) && Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
             {
                 float distToTarget = Vector3.Distance(transform.position, target.position);
                 if(!Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, distToTarget, obstacleMask))

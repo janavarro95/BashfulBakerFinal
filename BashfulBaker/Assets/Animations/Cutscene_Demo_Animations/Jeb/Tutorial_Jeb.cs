@@ -42,7 +42,7 @@ public class Tutorial_Jeb : MonoBehaviour
         if (InputControls.APressed && canCount == true)
         {
             ApressCount++;
-            Debug.Log(ApressCount);
+            //Debug.Log(ApressCount);
         }
         if (ApressCount >= 3 && check_three == true && jeb_animator.GetInteger("Movement_Phase") == 2)
         {

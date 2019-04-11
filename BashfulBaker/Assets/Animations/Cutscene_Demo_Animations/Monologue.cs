@@ -40,7 +40,7 @@ public class Monologue : MonoBehaviour
         if (InputControls.APressed && canCount == true)
         {
             ApressCount++;
-            Debug.Log(ApressCount);
+            //Debug.Log(ApressCount);
         }
         if(ApressCount >= 1 & check_one == false && beginable == false)
         {

@@ -74,7 +74,7 @@ namespace Assets.Scripts.Menus
         {
             if (menuCursor == null)
             {
-                Debug.Log("Cursor is null");
+                //Debug.Log("Cursor is null");
             }
 
             if (GameCursorMenu.SimulateMousePress(startButton))
@@ -144,12 +144,12 @@ namespace Assets.Scripts.Menus
 
         public void creditsButtonClick()
         {
-            Debug.Log("ADD IN CREDITS!");
+            //Debug.Log("ADD IN CREDITS!");
         }
 
         public void openSaveLoadSelectMenu()
         {
-            Debug.Log("ADD IN Save/Load system!");
+            //Debug.Log("ADD IN Save/Load system!");
         }
     }
 }

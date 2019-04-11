@@ -40,7 +40,7 @@ namespace Assets.Scripts.Cooking.Recipes
            //CreateInitialJsonFiles();
             
 
-            Debug.Log("Create the cookbook!");
+            //Debug.Log("Create the cookbook!");
         }
 
 

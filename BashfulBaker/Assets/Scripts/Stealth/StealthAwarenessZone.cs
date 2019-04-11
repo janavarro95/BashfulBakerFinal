@@ -152,7 +152,7 @@ public class StealthAwarenessZone : MonoBehaviour
 
         if(this.patrollPoints.Count==0 && (this.movementLogic== MovementType.ContinuousPatrolling || this.movementLogic== MovementType.PatrollAndPause))
         {
-            Debug.Log("WARNING! GUARD AI HAS NO MOVEMENT POINTS! SETTING TO NON-PATROLLING AI!");
+            //Debug.Log("WARNING! GUARD AI HAS NO MOVEMENT POINTS! SETTING TO NON-PATROLLING AI!");
             this.movementLogic = MovementType.None;
         }
         movementLerp = 0f;

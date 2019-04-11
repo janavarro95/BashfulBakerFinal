@@ -229,7 +229,7 @@ namespace Assets.Scripts.Menus
 
             if (Game.Player.activeItem != null&&Game.Player.activeItem.GetType()==typeof(SpecialIngredient))
             {
-                Debug.Log("Reset active ingredient");
+                //Debug.Log("Reset active ingredient");
                 this.selectedIngredient = (SpecialIngredient)Game.Player.activeItem;
                 centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedIngredient.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                 centralImage.color = new Color(1, 1, 1, 1);
@@ -411,7 +411,7 @@ namespace Assets.Scripts.Menus
         {
             if (currentViewMode == Enums.InventoryViewMode.DishView)
             {
-                Debug.Log("Close?");
+                //Debug.Log("Close?");
                 Game.Player.activeItem = this.selectedDish;
                 Game.Player.updateHeldItemSprite();
                 Game.HUD.showInventory = true;
@@ -421,7 +421,7 @@ namespace Assets.Scripts.Menus
             }
             else
             {
-                Debug.Log("Close2?");
+                //Debug.Log("Close2?");
                 Game.Player.activeItem = this.selectedIngredient;
                 Game.Player.updateHeldItemSprite();
                 Game.HUD.showInventory = true;

@@ -15,6 +15,8 @@ public class StartMinigame : MonoBehaviour
     public int thisStep;
     public DeltaTimer timer;
     private int baked;
+
+    public AudioSource timerSFX, chimeSFX;
     /// <summary>
     /// Used to determine if the player should be invisible in the minigame.
     /// </summary>
@@ -53,6 +55,7 @@ public class StartMinigame : MonoBehaviour
                     {
                         baked = 1;
                         SetSprite(2);
+                        timerSFX.Play();
                         Invoke("Bake", 5);
                     }
                     else if (baked == 2)
@@ -179,7 +182,8 @@ public class StartMinigame : MonoBehaviour
 
     private void Bake()
     {
-        Debug.Log("Ding");
+        timerSFX.Stop();
+        chimeSFX.Play();
         baked = 2;
         SetSprite(0);
         //arrow.GetComponent<SpriteRenderer>().enabled = true;

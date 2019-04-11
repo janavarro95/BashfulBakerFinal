@@ -87,12 +87,12 @@ namespace Assets.Scripts.Menus {
 
         public void openSaveMenu()
         {
-            Debug.Log("Saving not implemented...yet");
+            //Debug.Log("Saving not implemented...yet");
         }
 
         public void openLoadMenu()
         {
-            Debug.Log("Loading not implemented...yet");
+            //Debug.Log("Loading not implemented...yet");
         }
 
         public override void exitMenu()
