@@ -138,7 +138,7 @@ namespace Assets.Scripts
             ChocolateChips,
             MintChips,
             Pecans,
-            Rasins,
+            Raisins,
             Carrots,
             Strawberries
         }

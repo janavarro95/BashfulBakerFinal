@@ -42,7 +42,7 @@ namespace Assets.Scripts.Items
             {
                 this.Name = "Pecans";
             }
-            else if(ingredient== Enums.SpecialIngredients.Rasins)
+            else if(ingredient== Enums.SpecialIngredients.Raisins)
             {
                 this.Name = "Rasins";
             }

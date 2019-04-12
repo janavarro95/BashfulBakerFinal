@@ -117,6 +117,11 @@ namespace Assets.Scripts.Items
             {
                 this.Name = "Chocolate Chip Cookies";
             }
+            if(Dishes== Enums.Dishes.MintChipCookies)
+            {
+                this.Name = "Mint Chip Cookies";
+            }
+
             this.currentDishState = Enums.DishState.Ingredients;
         }
 

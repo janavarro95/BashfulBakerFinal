@@ -261,7 +261,7 @@ namespace Assets.Scripts.Menus.HUDS
             //Bottom ingredient sprite
             if (specialIngredientsList.Count > 3)
             {
-                fourthSpecialIngredient = specialIngredientsList.Find(ing => ing.ingredientType == Enums.SpecialIngredients.Rasins);
+                fourthSpecialIngredient = specialIngredientsList.Find(ing => ing.ingredientType == Enums.SpecialIngredients.Raisins);
                 fourthSpecialIngredientText.text = "x" + fourthSpecialIngredient.stack.ToString();
                 Texture2D texture = fourthSpecialIngredient.Sprite;
                 fourthSpecialIngredientImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);

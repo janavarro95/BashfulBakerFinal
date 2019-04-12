@@ -233,13 +233,13 @@ namespace Assets.Scripts.Menus
                     updateTutorial();
                     exitMenu();
                 }
-                else if (GameInput.InputControls.YPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Rasins).stack > 0)
+                else if (GameInput.InputControls.YPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Raisins).stack > 0)
                 {
                     Dish d = new Dish("Chocolate Chip Cookie");
                     Game.Player.dishesInventory.Add(d);
                     Game.Player.activeItem = d;
 
-                    Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Rasins).stack -= 1;
+                    Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Raisins).stack -= 1;
                     updateTutorial();
                     exitMenu();
                 }
