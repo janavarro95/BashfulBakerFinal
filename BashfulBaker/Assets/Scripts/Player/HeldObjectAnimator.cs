@@ -288,7 +288,7 @@ namespace Assets.Scripts.Player
         public void loadAnimatorFromPrefab(string heldObjectName)
         {
             Debug.Log("Load animation for: " + heldObjectName);
-            if(heldObjectName=="Chocolate Chip Cookies" || heldObjectName=="Mint Chip Cookies")
+            if(heldObjectName=="Chocolate Chip Cookies" || heldObjectName=="Mint Chip Cookies" || heldObjectName=="Oatmeal Raisin Cookies" || heldObjectName=="Pecan Crescent Cookies")
             {
                 
                 this.animator = this.gameObject.GetComponent<Animator>();

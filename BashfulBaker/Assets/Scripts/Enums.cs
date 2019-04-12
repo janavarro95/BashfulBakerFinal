@@ -127,7 +127,7 @@ namespace Assets.Scripts
             ChocolateChipCookies,
             MintChipCookies,
             PecanCookies,
-            OatmealRasinCookies
+            OatmealRaisinCookies
         }
 
         /// <summary>

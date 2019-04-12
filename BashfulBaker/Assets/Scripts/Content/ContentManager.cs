@@ -83,6 +83,7 @@ namespace Assets.Scripts.Content
 
         public Texture2D loadTexture2DFromResources(string RelativePath)
         {
+            Debug.Log(RelativePath);
             Texture2D text = Resources.Load<Texture2D>(RelativePath);
             return text;
         }

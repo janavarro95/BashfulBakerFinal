@@ -121,6 +121,14 @@ namespace Assets.Scripts.Items
             {
                 this.Name = "Mint Chip Cookies";
             }
+            if(Dishes== Enums.Dishes.OatmealRaisinCookies)
+            {
+                this.Name = "Oatmeal Raisin Cookies";
+            }
+            if (Dishes == Enums.Dishes.PecanCookies)
+            {
+                this.Name = "Pecan Crescent Cookies";
+            }
 
             this.currentDishState = Enums.DishState.Ingredients;
         }
@@ -181,7 +189,7 @@ namespace Assets.Scripts.Items
             Debug.Log(this.ingredientsSprite != null ? "yay ingredients" : "boo nothing");
 
             //this.mixedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(doughBowls, "CCDoughBowl"));
-            this.mixedSprite = getAppopriateMixedSprite();
+            this.mixedSprite = getAppropriateMixedSprite();
 
 
             this.preppedSprite = getAppropriatePreppedSprite();
@@ -191,7 +199,7 @@ namespace Assets.Scripts.Items
             this._sprite = this.ingredientsSprite;
         }
 
-        private Texture2D getAppopriateMixedSprite()
+        private Texture2D getAppropriateMixedSprite()
         {
             string combinedFolders = Path.Combine("Graphics", "Objects");
 
@@ -201,11 +209,21 @@ namespace Assets.Scripts.Items
 
             if (this.itemName == "Chocolate Chip Cookies" || this.itemName == "Chocolate Chip Cookie")
             {
-                this.mixedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(Path.Combine(doughBowls,"Choc Chip"), "CCDoughBowl"));
+                Debug.Log("GET THAT CHOCOLATE CHIP BOWL!");
+                doughBowls = Path.Combine(doughBowls, "Choc Chip");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(doughBowls, "CCDoughBowl"));
             }
             else if(this.itemName=="Mint Chip Cookies" || this.itemName=="Mint Chip Cookie")
             {
-                this.mixedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(Path.Combine(doughBowls,"Mint Chip"), "Bowl_MC"));
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(Path.Combine(doughBowls,"Mint Chip"), "Bowl_MC"));
+            }
+            else if(this.itemName=="Oatmeal Raisin Cookies" || this.itemName=="Oatmeal Raisin Cookie")
+            {
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(Path.Combine(doughBowls, "Oatmeal Raisin"), "Bowl_OR"));
+            }
+            else if (this.itemName == "Pecan Crescent Cookies")
+            {
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(Path.Combine(doughBowls, "Pecan Crescent"), "Bowl_PC"));
             }
             return null;
         }
@@ -233,6 +251,17 @@ namespace Assets.Scripts.Items
                 sheetTrays = Path.Combine(sheetTrays, "Mint Chip");
                 return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "Carry_Tray_RawMC"));
             }
+            else if (this.itemName == "Oatmeal Raisin Cookies" || this.itemName=="Oatmeal Raisin Cookie")
+            {
+                sheetTrays = Path.Combine(sheetTrays, "Oatmeal Raisin");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "Carry_Tray_RawOR"));
+            }
+
+            else if (this.itemName == "Pecan Crescent Cookies")
+            {
+                sheetTrays = Path.Combine(sheetTrays, "Pecan Crescent");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "Carry_Tray_RawPC"));
+            }
             return null;
         }
 
@@ -258,6 +287,18 @@ namespace Assets.Scripts.Items
             {
                 sheetTrays = Path.Combine(sheetTrays, "Mint Chip");
                 return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "Carry_Tray_BakedMC"));
+            }
+
+            else if (this.itemName == "Oatmeal Raisin Cookies" || this.itemName=="Oatmeal Raisin Cookie")
+            {
+                sheetTrays = Path.Combine(sheetTrays, "Oatmeal Raisin");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "Carry_Tray_BakedOR"));
+            }
+
+            else if (this.itemName == "Pecan Crescent Cookies")
+            {
+                sheetTrays = Path.Combine(sheetTrays, "Pecan Crescent");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "Carry_Tray_BakedPC"));
             }
 
             return null;

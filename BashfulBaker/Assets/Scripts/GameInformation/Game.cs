@@ -344,6 +344,8 @@ namespace Assets.Scripts.GameInformation
                 //
                 Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.ChocolateChipCookies));
                 Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.MintChipCookies));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.OatmealRaisinCookies));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.PecanCookies));
 
                 Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.ChocolateChips,1));
                 Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.MintChips));
