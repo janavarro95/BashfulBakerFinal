@@ -924,8 +924,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressAToWarp: 0
-  sceneToWarpTo: Outside
-  warpLocation: {x: -5.65, y: 0}
+  sceneToWarpTo: Neighborhood
+  warpLocation: {x: -7, y: 1}
   transitionTime: 0.5
 --- !u!1 &387900850
 GameObject:
@@ -2392,7 +2392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967929723}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.17, y: -13, z: -10.1}
+  m_LocalPosition: {x: -3.2, y: -11.22, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 347192421}
