@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DepthSetter : MonoBehaviour
 {
-    public bool update = false;
-    public bool other = true;
-    public bool self = false;
+    public bool update;
+    public bool other;
+    public bool self;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +33,8 @@ public class DepthSetter : MonoBehaviour
     }
     private void UpdateSelfDepth(Transform mine)
     {
-        float depth = mine.position.y;
+        float height = mine.gameObject.GetComponent<SpriteRenderer>().sprite.texture.height / 2;
+        float depth = (mine.position.y) * .01f;
         Vector3 newSet = new Vector3(mine.position.x, mine.position.y, depth);
         mine.position = newSet;
     }

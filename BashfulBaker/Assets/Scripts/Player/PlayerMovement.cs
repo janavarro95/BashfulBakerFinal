@@ -44,6 +44,8 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject heldObject;
     public SpriteRenderer heldObjectRenderer;
 
+    private float height;
+
     public bool CanPlayerMove
     {
         get
@@ -92,7 +94,9 @@ public class PlayerMovement : MonoBehaviour {
 
         heldObject = this.gameObject.transform.Find("HeldItem").gameObject;
         heldObjectRenderer = heldObject.GetComponent<SpriteRenderer>();
-	}
+
+        height = GetComponent<SpriteRenderer>().sprite.texture.height / 2;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -213,6 +217,10 @@ public class PlayerMovement : MonoBehaviour {
 
                 playCharacterMovementAnimation(offset);
 
+                if (!SceneManager.GetActiveScene().name.Contains("Kitchen"))
+                {
+                    transform.position = new Vector3 (transform.position.x, transform.position.y, (transform.position.y) * .01f);
+                }
             }
             else
             {
