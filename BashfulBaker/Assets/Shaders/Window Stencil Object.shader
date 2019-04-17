@@ -1,12 +1,12 @@
-﻿Shader "Custom/Stencil Object2" {
+﻿Shader "Custom/Window Stencil Object" {
 	Properties{
 		_Color("Color", Color) = (0,0,0,1)
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
 		_Glossiness("Smoothness", Range(0,1)) = 0.5
 		_Metallic("Metallic", Range(0,1)) = 0.0
 		_Transparency("Transparency", Range(0.0,0.9)) = 0.25
-		//_PixelDensity("Pixel Density", Range(1, 100)) = 1
-		//_AspectRatioMultiplier("Aspect Ratio", float2(Range(.01, 1), Range(.01, 1))) = float2(1, 1.5)
+			//_PixelDensity("Pixel Density", Range(1, 100)) = 1
+			//_AspectRatioMultiplier("Aspect Ratio", float2(Range(.01, 1), Range(.01, 1))) = float2(1, 1.5)
 	}
 		SubShader{
 			Tags {"Queue" = "Transparent" "RenderType" = "Transparent" }
@@ -16,7 +16,7 @@
 			Blend SrcAlpha OneMinusSrcAlpha
 
 			Stencil {
-				Ref 1
+				Ref 2
 				Comp Equal
 			}
 

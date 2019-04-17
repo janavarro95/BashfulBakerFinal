@@ -45,6 +45,7 @@ namespace Assets.Scripts.GameInput
             buttons[0].SetActive(true);
             buttons[1].SetActive(true);
             buttons[2].SetActive(false);
+            buttons[3].SetActive(false);
 
             progressBar.transform.localScale = new Vector3(.1f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
 
@@ -88,11 +89,11 @@ namespace Assets.Scripts.GameInput
                 {
                     buttons[0].SetActive(false);
                     buttons[1].SetActive(false);
-                    buttons[2].SetActive(true);
-                    if (InputControls.APressed)
+                    buttons[3].SetActive(true);
+                    if (InputControls.RightTrigger > .99)
                     {
                         spinningSource.Play();
-                        buttons[2].SetActive(false);
+                        buttons[3].SetActive(false);
                         cookies[count++].SetActive(true);
                         if (count >= 6)
                         {
@@ -104,7 +105,7 @@ namespace Assets.Scripts.GameInput
                     }
                 }
             }
-            else if (InputControls.APressed)
+            else if (InputControls.LeftTrigger >.99)
             {
                 if (count >= 6 && InputControls.APressed)
                 {
@@ -117,6 +118,7 @@ namespace Assets.Scripts.GameInput
                     buttons[2].SetActive(false);
                     GetComponent<SpriteRenderer>().enabled = true;
                     sprite.sprite = sprites[0];
+                    spinningSource.Play();
                 }
             }
             else
