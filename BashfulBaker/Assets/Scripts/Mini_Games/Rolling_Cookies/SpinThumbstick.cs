@@ -97,6 +97,7 @@ namespace Assets.Scripts.GameInput
                         spinningSource.Play();
                         buttons[3].SetActive(false);
                         cookies[count++].SetActive(true);
+                        Debug.Log(count);
                         if (count >= 6)
                         {
                             cookies[6].SetActive(true);
@@ -109,7 +110,7 @@ namespace Assets.Scripts.GameInput
             }
             else if (InputControls.LeftTrigger >.99)
             {
-                if (count >= 6 && InputControls.APressed)
+                if (count >= 6 )
                 {
                     Invoke("exitspinnning", 1.5f);
                 }
