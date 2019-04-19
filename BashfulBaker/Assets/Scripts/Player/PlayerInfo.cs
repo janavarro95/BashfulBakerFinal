@@ -179,6 +179,19 @@ namespace Assets.Scripts.Player
             return min;
         }
 
+        public Item removeActiveItem()
+        {
+            Item I = this.activeItem;
+            this.activeItem = null;
+            updateHeldItemSprite();
+            return I;
+        }
+
+        public void getActiveDishFromMenu()
+        {
+            Game.HUD.InventoryHUD.resetActiveDish();
+        }
+
         public void updateHeldItemSprite()
         {
             if (activeItem != null)
@@ -202,7 +215,12 @@ namespace Assets.Scripts.Player
             else
             {
                 Debug.Log("NO SPRITE");
-                if (this._heldItemGameObject == null) return;
+                if (this._heldItemGameObject == null)
+                {
+                    this._heldItemGameObject.GetComponent<HeldObjectAnimator>().clearAnimationController();
+                    return;
+
+                }
                 this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
                 this._heldItemGameObject.SetActive(true);
             }

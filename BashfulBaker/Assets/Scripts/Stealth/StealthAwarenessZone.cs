@@ -307,6 +307,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// </summary>
     private void aiLookLogic()
     {
+        if (gameObject.GetComponent<FieldOfView>() == null) return;
         if(gameObject.GetComponent<FieldOfView>().visibleTargets.Count > 0)
         {
             Transform target = gameObject.GetComponent<FieldOfView>().visibleTargets[0].transform;

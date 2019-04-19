@@ -368,6 +368,11 @@ namespace Assets.Scripts.Menus.HUDS
             updateDishes();
         }
 
+        public void resetActiveDish()
+        {
+            updateCurrentDishIndex(0);
+        }
+
         /// <summary>
         /// Update the visual components for dishes.
         /// </summary>

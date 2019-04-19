@@ -294,7 +294,18 @@ namespace Assets.Scripts.Player
                 this.animator = this.gameObject.GetComponent<Animator>();
                 this.animator.runtimeAnimatorController= Resources.Load<RuntimeAnimatorController>("CarryingAnimations/"+heldObjectName);
             }
-            
+        }
+
+        public void clearAnimationController()
+        {
+            if (this.animator == null)
+            {
+                return;
+            }
+            else
+            {
+                this.animator.runtimeAnimatorController = null;
+            }
         }
     }
 }

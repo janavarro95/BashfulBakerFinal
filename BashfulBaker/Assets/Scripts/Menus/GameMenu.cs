@@ -13,11 +13,17 @@ namespace Assets.Scripts.Menus {
         MenuComponent toTitle;
         MenuComponent closeGame;
         MenuComponent closeMenu;
+        MenuComponent resume;
 
         // Start is called before the first frame update
         public override void Start()
         {
+            GameInformation.Game.Menu = this;
+
             GameObject canvas = this.gameObject.transform.Find("Canvas").gameObject;
+
+            resume = new MenuComponent(canvas.transform.Find("Resume").GetComponent<Button>());
+
             save =new MenuComponent(canvas.transform.Find("Save").GetComponent<Button>());
             load =new MenuComponent(canvas.transform.Find("Load").GetComponent<Button>());
             toTitle =new MenuComponent(canvas.transform.Find("ExitToTitle").GetComponent<Button>());
@@ -28,15 +34,19 @@ namespace Assets.Scripts.Menus {
             setUpForSnapping();
         }
 
+        /// <summary>
+        /// Sets up all of the snapping for the menus.
+        /// </summary>
         public override void setUpForSnapping()
         {
-            closeMenu.setNeighbors(null, null, null, save);
-            save.setNeighbors(null, null, closeMenu, load);
+            resume.setNeighbors(null, null, closeMenu, save);
+            closeMenu.setNeighbors(null, null, null, resume);
+            save.setNeighbors(null, null, resume, load);
             load.setNeighbors(null, null, save, toTitle);
             toTitle.setNeighbors(null, null, load, closeGame);
             closeGame.setNeighbors(null, null, toTitle, null);
 
-            selectedComponent = closeMenu;
+            selectedComponent = resume;
             this.menuCursor.snapToCurrentComponent();
         }
 
@@ -69,6 +79,17 @@ namespace Assets.Scripts.Menus {
                 return;
             }
             else if (GameInput.GameCursorMenu.SimulateMousePress(closeMenu))
+            {
+                exitMenu();
+                return;
+            }
+            else if (GameInput.GameCursorMenu.SimulateMousePress(resume))
+            {
+                exitMenu();
+                return;
+            }
+
+            if (GameInput.InputControls.BPressed)
             {
                 exitMenu();
                 return;
