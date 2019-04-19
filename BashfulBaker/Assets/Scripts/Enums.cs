@@ -125,6 +125,22 @@ namespace Assets.Scripts
         public enum Dishes
         {
             ChocolateChipCookies,
+            MintChipCookies,
+            PecanCookies,
+            OatmealRaisinCookies
+        }
+
+        /// <summary>
+        /// A list of all of the special ingredients in the game.
+        /// </summary>
+        public enum SpecialIngredients
+        {
+            ChocolateChips,
+            MintChips,
+            Pecans,
+            Raisins,
+            Carrots,
+            Strawberries
         }
 
         /// <summary>

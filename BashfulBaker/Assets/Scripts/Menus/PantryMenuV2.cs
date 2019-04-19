@@ -58,6 +58,8 @@ namespace Assets.Scripts.Menus
             this.cookieSelectTutorial.SetActive(false);
 
             currentMode = PantryMode.Select;
+
+            Game.Menu = this;
         }
 
         public override void Start()
@@ -176,6 +178,7 @@ namespace Assets.Scripts.Menus
         {
             if (Game.DialogueManager.IsDialogueUp)
             {
+                Debug.Log("Is Dialogue up?");
                 return;
             }
 
@@ -195,39 +198,48 @@ namespace Assets.Scripts.Menus
             if (setForTutorial == false)
             {
 
-                if (GameInput.InputControls.APressed)
+                if (GameInput.InputControls.APressed && Game.Player.specialIngredientsInventory.items.Find(ing=>(ing as SpecialIngredient).ingredientType== Enums.SpecialIngredients.ChocolateChips).stack>0)
+                {
+                    Dish d = new Dish(Enums.Dishes.ChocolateChipCookies);
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+
+                    Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.ChocolateChips).stack -= 1;
+
+                    //updateTutorial();
+                    exitMenu();
+
+                    Debug.Log("Testing more a presses!");
+                }
+                else if (GameInput.InputControls.BPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.MintChips).stack > 0)
                 {
                     Dish d = new Dish("Chocolate Chip Cookie");
                     Game.Player.dishesInventory.Add(d);
                     Game.Player.activeItem = d;
+
+                    Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.MintChips).stack -= 1;
 
                     updateTutorial();
                     exitMenu();
                 }
-                else if (GameInput.InputControls.BPressed)
+                else if (GameInput.InputControls.XPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Pecans).stack > 0)
                 {
                     Dish d = new Dish("Chocolate Chip Cookie");
                     Game.Player.dishesInventory.Add(d);
                     Game.Player.activeItem = d;
+
+                    Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Pecans).stack -= 1;
 
                     updateTutorial();
                     exitMenu();
                 }
-                else if (GameInput.InputControls.XPressed)
+                else if (GameInput.InputControls.YPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Raisins).stack > 0)
                 {
                     Dish d = new Dish("Chocolate Chip Cookie");
                     Game.Player.dishesInventory.Add(d);
                     Game.Player.activeItem = d;
 
-                    updateTutorial();
-                    exitMenu();
-                }
-                else if (GameInput.InputControls.YPressed)
-                {
-                    Dish d = new Dish("Chocolate Chip Cookie");
-                    Game.Player.dishesInventory.Add(d);
-                    Game.Player.activeItem = d;
-
+                    Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Raisins).stack -= 1;
                     updateTutorial();
                     exitMenu();
                 }
@@ -254,38 +266,46 @@ namespace Assets.Scripts.Menus
             if (setForTutorial == false)
             {
 
-                if (GameInput.InputControls.APressed)
+                if (GameInput.InputControls.APressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.ChocolateChips).stack > 0)
                 {
                     Dish d = new Dish("Chocolate Chip Cookie");
                     Game.Player.dishesInventory.Add(d);
                     Game.Player.activeItem = d;
 
+                    Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.ChocolateChips).stack -= 1;
+
                     updateTutorial();
                     exitMenu();
                 }
-                else if (GameInput.InputControls.BPressed)
+                else if (GameInput.InputControls.BPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Pecans).stack > 0)
                 {
                     Dish d = new Dish("Chocolate Chip Cookie");
                     Game.Player.dishesInventory.Add(d);
                     Game.Player.activeItem = d;
 
+                    Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Pecans).stack -= 1;
+
                     updateTutorial();
                     exitMenu();
                 }
-                else if (GameInput.InputControls.XPressed)
+                else if (GameInput.InputControls.XPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Carrots).stack > 0)
                 {
                     Dish d = new Dish("Chocolate Chip Cookie");
                     Game.Player.dishesInventory.Add(d);
                     Game.Player.activeItem = d;
 
+                    Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Carrots).stack -= 1;
+
                     updateTutorial();
                     exitMenu();
                 }
-                else if (GameInput.InputControls.YPressed)
+                else if (GameInput.InputControls.YPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Strawberries).stack > 0)
                 {
                     Dish d = new Dish("Chocolate Chip Cookie");
                     Game.Player.dishesInventory.Add(d);
                     Game.Player.activeItem = d;
+
+                    Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Strawberries).stack -= 1;
 
                     updateTutorial();
                     exitMenu();

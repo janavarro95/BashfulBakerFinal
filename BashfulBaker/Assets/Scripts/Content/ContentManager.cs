@@ -81,8 +81,7 @@ namespace Assets.Scripts.Content
             return localFile.texture;
         }
 
-        public Texture2D loadTexture2DFromResources(string RelativePath)
-        {
+        public Texture2D loadTexture2DFromResources(string RelativePath) {
             Texture2D text = Resources.Load<Texture2D>(RelativePath);
             return text;
         }

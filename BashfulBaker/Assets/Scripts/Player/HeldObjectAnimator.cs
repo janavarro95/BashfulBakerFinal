@@ -287,14 +287,24 @@ namespace Assets.Scripts.Player
 
         public void loadAnimatorFromPrefab(string heldObjectName)
         {
-            //Debug.Log("Load animation for: " + heldObjectName);
-            if(heldObjectName=="Chocolate Chip Cookies")
+            if(heldObjectName=="Chocolate Chip Cookies" || heldObjectName=="Mint Chip Cookies" || heldObjectName=="Oatmeal Raisin Cookies" || heldObjectName=="Pecan Crescent Cookies")
             {
                 
                 this.animator = this.gameObject.GetComponent<Animator>();
                 this.animator.runtimeAnimatorController= Resources.Load<RuntimeAnimatorController>("CarryingAnimations/"+heldObjectName);
             }
-            
+        }
+
+        public void clearAnimationController()
+        {
+            if (this.animator == null)
+            {
+                return;
+            }
+            else
+            {
+                this.animator.runtimeAnimatorController = null;
+            }
         }
     }
 }

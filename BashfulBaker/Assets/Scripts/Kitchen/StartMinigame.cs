@@ -26,6 +26,18 @@ public class StartMinigame : MonoBehaviour
 
     public Enums.CookingStationMinigame station;
 
+
+    private Dish ovenDish;
+
+
+    private void Awake()
+    {
+        if (minigame == "Oven")
+        {
+            this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Stop();
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (Assets.Scripts.GameInformation.Game.IsMenuUp) return;
@@ -58,13 +70,25 @@ public class StartMinigame : MonoBehaviour
                         baked = 1;
                         SetSprite(2);
                         timerSFX.Play();
+
+                        ovenDish =(Dish)Game.Player.activeItem;
+                        Game.Player.dishesInventory.Remove(Game.Player.activeItem);
+                        Game.Player.removeActiveItem();
+                        Game.Player.updateHeldItemSprite();
                         Invoke("Bake", 5);
+
+                        this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Play();
+
                     }
-                    else if (baked == 2)
+                    else if (baked == 2) //The dish has been baked
                     {
                         SetSprite(0);
                         collision.GetComponent<PlayerMovement>().NextStep();
+                        this.ovenDish.currentDishState = Enums.DishState.Baked;
+                        Game.Player.dishesInventory.Add(this.ovenDish);
+                        Game.Player.getActiveDishFromMenu();
 
+                        this.ovenDish = null;
                     }
                 }
 
@@ -161,7 +185,7 @@ public class StartMinigame : MonoBehaviour
             d.currentDishState = Enums.DishState.Baked;
             return;
         }
-        if (d.currentDishState == Enums.DishState.Prepped && station == Enums.CookingStationMinigame.PackingStation)
+        if (d.currentDishState == Enums.DishState.Baked && station == Enums.CookingStationMinigame.PackingStation)
         {
             d.currentDishState = Enums.DishState.Packaged;
             return;
@@ -204,6 +228,7 @@ public class StartMinigame : MonoBehaviour
         chimeSFX.Play();
         baked = 2;
         SetSprite(0);
+        this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Stop();
         //arrow.GetComponent<SpriteRenderer>().enabled = true;
         //arrow.GetComponent<progress>().A.SetActive(false);
     }
