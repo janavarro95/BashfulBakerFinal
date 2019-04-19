@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour {
         heldObject = this.gameObject.transform.Find("HeldItem").gameObject;
         heldObjectRenderer = heldObject.GetComponent<SpriteRenderer>();
 
-        height = GetComponent<SpriteRenderer>().sprite.texture.height / 2;
+        height = (GetComponent<SpriteRenderer>().sprite.texture.height / 2) * transform.localScale.y;
     }
 	
 	// Update is called once per frame

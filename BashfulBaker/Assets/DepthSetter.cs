@@ -33,7 +33,7 @@ public class DepthSetter : MonoBehaviour
     }
     private void UpdateSelfDepth(Transform mine)
     {
-        float height = mine.gameObject.GetComponent<SpriteRenderer>().sprite.texture.height / 2;
+        float height = (mine.gameObject.GetComponent<SpriteRenderer>().sprite.texture.height / 2) * mine.localScale.y; //distance from center to feet
         float depth = (mine.position.y) * .01f;
         Vector3 newSet = new Vector3(mine.position.x, mine.position.y, depth);
         mine.position = newSet;
