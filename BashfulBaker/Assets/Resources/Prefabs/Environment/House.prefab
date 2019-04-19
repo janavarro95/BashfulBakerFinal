@@ -161,7 +161,7 @@ MonoBehaviour:
     m_Bits: 0
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   visibleTargets: []
   meshResolution: 1
   viewMeshFilter: {fileID: 4689565675866051975}
@@ -187,7 +187,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bac4bedec1df4bd42877e8006341b821, type: 2}
+  - {fileID: 2100000, guid: d738c1efa66c4be49b371d0b027545a5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
     m_Bits: 0
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   visibleTargets: []
   meshResolution: 1
   viewMeshFilter: {fileID: 4689565676030009208}
@@ -301,7 +301,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bac4bedec1df4bd42877e8006341b821, type: 2}
+  - {fileID: 2100000, guid: d738c1efa66c4be49b371d0b027545a5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
