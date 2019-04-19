@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour {
     private float t;
 
     public SpriteRenderer buttonB;
+    private float height;
 
     public bool CanPlayerMove
     {
@@ -101,6 +102,8 @@ public class PlayerMovement : MonoBehaviour {
 
         guardsSeeingMe = 0;
         t = 0;
+
+        height = (GetComponent<SpriteRenderer>().sprite.texture.height / 2) * transform.localScale.y;
     }
 	
 	// Update is called once per frame
@@ -233,6 +236,10 @@ public class PlayerMovement : MonoBehaviour {
 
                 playCharacterMovementAnimation(offset);
 
+                if (!SceneManager.GetActiveScene().name.Contains("Kitchen"))
+                {
+                    transform.position = new Vector3 (transform.position.x, transform.position.y, (transform.position.y) * .01f);
+                }
             }
             else
             {
@@ -462,7 +469,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     /// <summary>
-    /// ???
+    /// move the arrow to the next spot
     /// </summary>
     public void NextStep()
     {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Assets.Scripts.GameInformation;
+using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.Delegates;
 
 namespace Assets.Scripts.GameInput
 {
@@ -128,9 +130,21 @@ namespace Assets.Scripts.GameInput
         }
         void exitspinnning()
         {
+            actuallyTransition();
+            //SceneManager.LoadScene("Kitchen");
+        }
+
+        private void actuallyTransition()
+        {
+            ScreenTransitions.StartSceneTransition(.5f, "Kitchen", Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
+        }
+        private void finishedTransition()
+        {
             Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
             Game.HUD.showHUD = true;
+            Game.HUD.showAll();
             SceneManager.LoadScene("Kitchen");
+            ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
         }
     }
 

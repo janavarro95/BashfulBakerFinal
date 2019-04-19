@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class Monologue : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Sprite Dane_Face;
+    public Sprite Dane_Face_relief;
+    public Sprite Dane_Face_smile;
+    public Sprite Dane_Face_Pout;
     public Dialogue First;
     public Dialogue Second;
     public Dialogue Third;
@@ -47,7 +49,7 @@ public class Monologue : MonoBehaviour
             canCount = false;
             ApressCount = 0;
             check_one = true;
-            StartCoroutine(WaitforTime(2, Second));
+            StartCoroutine(WaitforTime(2, Second, Dane_Face_Pout));
 
         }
         if (check_one == true && check_two == false && ApressCount >= 2)
@@ -55,7 +57,7 @@ public class Monologue : MonoBehaviour
             canCount = false;
             ApressCount = 0;
             check_two = true;
-            StartCoroutine(WaitforTime(2, Third));
+            StartCoroutine(WaitforTime(2, Third, Dane_Face_relief));
 
         }
       /*  if (check_one == true && check_two == true && ApressCount >= 2)
@@ -71,15 +73,16 @@ public class Monologue : MonoBehaviour
     {
         if (beginable == true)
         {
-            GameObject.Find("Headshot").GetComponent<Image>().sprite = Dane_Face;
+            GameObject.Find("Headshot").GetComponent<Image>().sprite = Dane_Face_smile;
             FindObjectOfType<DialogueManager>().StartDialogue(First);
             canCount = true;
             beginable = false;
         }
     }
-    IEnumerator WaitforTime(int seconds, Dialogue dialogue)
+    IEnumerator WaitforTime(int seconds, Dialogue dialogue, Sprite face)
     {
         yield return new WaitForSeconds(seconds);
+        GameObject.Find("Headshot").GetComponent<Image>().sprite = face;
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
         canCount = true;
         if(dialogue == Third)

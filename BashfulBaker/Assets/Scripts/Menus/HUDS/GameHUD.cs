@@ -169,6 +169,21 @@ namespace Assets.Scripts.Menus.HUDS
         {
             QuestHUD.setVisibility(Visibility);
         }
+        
+        public void showAll()
+        {
+            this.showHUD = true;
+            this.showInventory = true;
+            this.showQuests = true;
+            this.showTimer = true;
+        }
 
+        public void showOnlyTimer()
+        {
+            this.showHUD = true;
+            this.showInventory = false;
+            this.showQuests = false;
+            this.showTimer = true;
+        }
     }
 }

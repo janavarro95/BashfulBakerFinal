@@ -855,6 +855,80 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6579094, y: 0.6237557}
   m_EdgeRadius: 0
+--- !u!1 &347192420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 347192421}
+  - component: {fileID: 347192423}
+  - component: {fileID: 347192422}
+  m_Layer: 0
+  m_Name: ToOutside
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &347192421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347192420}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 967929724}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &347192422
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347192420}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &347192423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347192420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed63159f4008ee64191d8fd4a67c0a39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressAToWarp: 0
+  sceneToWarpTo: Neighborhood
+  warpLocation: {x: -7, y: 1}
+  transitionTime: 0.5
 --- !u!1 &387900850
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,11 +1376,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da3031ab95e6304aa8fb1469e238c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dane_Face: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
+  Dane_Face_relief: {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  Dane_Face_smile: {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  Dane_Face_Pout: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
   First:
     name: Dane
     sentences:
-    - Alright, let's get these cookies!
+    - Alright, let's get these cookies.
   Second:
     name: Dane
     sentences:
@@ -1333,7 +1409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.09, y: -0.89}
+  m_AnchoredPosition: {x: -1.08, y: -0.89}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &621611132
@@ -2494,6 +2570,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1381fc5e9d5e41628b88436f63ddc44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &967929723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 967929724}
+  m_Layer: 0
+  m_Name: Warps (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &967929724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967929723}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.2, y: -11.22, z: -10.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 347192421}
+  m_Father: {fileID: 0}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1020060929
 GameObject:
   m_ObjectHideFlags: 0
@@ -2515,7 +2622,7 @@ GameObject:
 --- !u!199 &1020060930
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -7371,7 +7478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf624b53dbf04254abd732771df7f9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jeb_Face: {fileID: 21300000, guid: 1730613e0c87c0a4b9c473f8376bd30c, type: 3}
+  Jeb_Face: {fileID: 21300000, guid: 08a7140c07584024eb818184352e90c3, type: 3}
+  Jeb_Face_surprised: {fileID: 21300000, guid: d696c85c1088f05488079837786b3c76, type: 3}
   jeb_animator: {fileID: 1083138370}
   tutorial_lines_pt1:
     name: Jeb
@@ -7543,7 +7651,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.038175296, y: -0.36622816}
+  m_Offset: {x: -0.023533653, y: -0.36622816}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7554,7 +7662,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.062759854, y: 0.5734755}
+  m_Size: {x: 0.09204314, y: 0.5734755}
   m_EdgeRadius: 0
 --- !u!1 &1283105987
 GameObject:
@@ -8019,7 +8127,7 @@ MonoBehaviour:
     sentences:
     - An old portrait of Jeb, it's hard to tell how much he has aged with that big
       beard!
-  Dane_Face: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
+  Dane_Face: {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
 --- !u!61 &1355736413
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8197,7 +8305,7 @@ MonoBehaviour:
     sentences:
     - "\"Cookies, cake, bread and pies. At your door tomorrow morning, still piping
       hot.\" \nMakes sense why he needs a delivery boy with service like that."
-  Dane_Face: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
+  Dane_Face: {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
 --- !u!61 &1359320528
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9302,7 +9410,7 @@ MonoBehaviour:
     name: Dane
     sentences:
     - I think this barrel is older than me.....
-  Dane_Face: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
+  Dane_Face: {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
 --- !u!61 &1666228785
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10066,6 +10174,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d537620c63c65b45acf66b81975a0e8, type: 3}
 --- !u!1001 &8603696837113512535
@@ -10141,7 +10254,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1995814765, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995814765, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
+      propertyPath: m_margin.x
+      value: -98.12692
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995814765, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
+      propertyPath: m_margin.z
+      value: 129.47885
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995814765, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
+      propertyPath: m_margin.w
+      value: 9.172211
       objectReference: {fileID: 0}
     - target: {fileID: 1344829596, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
       propertyPath: m_havePropertiesChanged
@@ -10151,5 +10276,26 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1344829595, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -14.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344829595, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 71
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995814764, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 183.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995814764, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791384621, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 08a7140c07584024eb818184352e90c3,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
