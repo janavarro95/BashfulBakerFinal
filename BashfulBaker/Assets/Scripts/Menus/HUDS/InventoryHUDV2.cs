@@ -196,6 +196,7 @@ namespace Assets.Scripts.Menus.HUDS
                 firstDishImage.sprite = Content.ContentManager.Instance.loadSprite(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 firstDishImage.color = Color.white;
                 firstDish = dishesList[0];
+                firstDishImage.gameObject.SetActive(true);
             }
 
             //right ingredient sprite
@@ -205,6 +206,7 @@ namespace Assets.Scripts.Menus.HUDS
                 secondDishImage.sprite = Content.ContentManager.Instance.loadSprite(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 secondDishImage.color = Color.white;
                 secondDish = dishesList[1];
+                secondDishImage.gameObject.SetActive(true);
             }
 
             //Top ingredient sprite
@@ -214,6 +216,7 @@ namespace Assets.Scripts.Menus.HUDS
                 thirdDishImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 thirdDishImage.color = Color.white;
                 thirdDish = dishesList[2];
+                thirdDishImage.gameObject.SetActive(true);
             }
 
             //Bottom ingredient sprite
@@ -223,6 +226,7 @@ namespace Assets.Scripts.Menus.HUDS
                 fourthDishImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 fourthDishImage.color = Color.white;
                 fourthDish = dishesList[3];
+                fourthDishImage.gameObject.SetActive(true);
             }
 
 

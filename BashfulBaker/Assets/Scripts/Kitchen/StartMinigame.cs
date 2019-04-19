@@ -51,7 +51,7 @@ public class StartMinigame : MonoBehaviour
                 SetSprite(1);
             }
 
-            if (InputControls.APressed && collision.GetComponent<PlayerMovement>().currentStep == thisStep)
+            if (InputControls.APressed)
             {
                 /*
                 if (Game.Player.activeItem == null || (Game.Player.activeItem is SpecialIngredient))
@@ -90,9 +90,10 @@ public class StartMinigame : MonoBehaviour
 
                         this.ovenDish = null;
                     }
+                    return;
                 }
 
-                else if (Game.Player.activeItem is Dish)
+                if (Game.Player.activeItem is Dish)
                 {
                     
                     Dish d = (Game.Player.activeItem as Dish);
