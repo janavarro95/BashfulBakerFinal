@@ -17,12 +17,26 @@ public class StartMinigame : MonoBehaviour
     public int thisStep;
     public DeltaTimer timer;
     private int baked;
+
+    public AudioSource timerSFX, chimeSFX;
     /// <summary>
     /// Used to determine if the player should be invisible in the minigame.
     /// </summary>
     public bool makePlayerInvisible;
 
     public Enums.CookingStationMinigame station;
+
+
+    private Dish ovenDish;
+
+
+    private void Awake()
+    {
+        if (minigame == "Oven")
+        {
+            this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Stop();
+        }
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -37,7 +51,7 @@ public class StartMinigame : MonoBehaviour
                 SetSprite(1);
             }
 
-            if (InputControls.APressed && collision.GetComponent<PlayerMovement>().currentStep == thisStep)
+            if (InputControls.APressed)
             {
                 /*
                 if (Game.Player.activeItem == null || (Game.Player.activeItem is SpecialIngredient))
@@ -55,17 +69,31 @@ public class StartMinigame : MonoBehaviour
                     {
                         baked = 1;
                         SetSprite(2);
+                        timerSFX.Play();
+
+                        ovenDish =(Dish)Game.Player.activeItem;
+                        Game.Player.dishesInventory.Remove(Game.Player.activeItem);
+                        Game.Player.removeActiveItem();
+                        Game.Player.updateHeldItemSprite();
                         Invoke("Bake", 5);
+
+                        this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Play();
+
                     }
-                    else if (baked == 2)
+                    else if (baked == 2) //The dish has been baked
                     {
                         SetSprite(0);
                         collision.GetComponent<PlayerMovement>().NextStep();
+                        this.ovenDish.currentDishState = Enums.DishState.Baked;
+                        Game.Player.dishesInventory.Add(this.ovenDish);
+                        Game.Player.getActiveDishFromMenu();
 
+                        this.ovenDish = null;
                     }
+                    return;
                 }
 
-                else if (Game.Player.activeItem is Dish)
+                if (Game.Player.activeItem is Dish)
                 {
                     
                     Dish d = (Game.Player.activeItem as Dish);
@@ -158,7 +186,7 @@ public class StartMinigame : MonoBehaviour
             d.currentDishState = Enums.DishState.Baked;
             return;
         }
-        if (d.currentDishState == Enums.DishState.Prepped && station == Enums.CookingStationMinigame.PackingStation)
+        if (d.currentDishState == Enums.DishState.Baked && station == Enums.CookingStationMinigame.PackingStation)
         {
             d.currentDishState = Enums.DishState.Packaged;
             return;
@@ -197,9 +225,11 @@ public class StartMinigame : MonoBehaviour
 
     private void Bake()
     {
-        Debug.Log("Ding");
+        timerSFX.Stop();
+        chimeSFX.Play();
         baked = 2;
         SetSprite(0);
+        this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Stop();
         //arrow.GetComponent<SpriteRenderer>().enabled = true;
         //arrow.GetComponent<progress>().A.SetActive(false);
     }

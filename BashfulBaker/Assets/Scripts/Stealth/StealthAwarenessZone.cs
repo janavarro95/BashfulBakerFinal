@@ -152,7 +152,7 @@ public class StealthAwarenessZone : MonoBehaviour
 
         if(this.patrollPoints.Count==0 && (this.movementLogic== MovementType.ContinuousPatrolling || this.movementLogic== MovementType.PatrollAndPause))
         {
-            Debug.Log("WARNING! GUARD AI HAS NO MOVEMENT POINTS! SETTING TO NON-PATROLLING AI!");
+            //Debug.Log("WARNING! GUARD AI HAS NO MOVEMENT POINTS! SETTING TO NON-PATROLLING AI!");
             this.movementLogic = MovementType.None;
         }
         movementLerp = 0f;
@@ -307,6 +307,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// </summary>
     private void aiLookLogic()
     {
+        if (gameObject.GetComponent<FieldOfView>() == null) return;
         if(gameObject.GetComponent<FieldOfView>().visibleTargets.Count > 0)
         {
             Transform target = gameObject.GetComponent<FieldOfView>().visibleTargets[0].transform;

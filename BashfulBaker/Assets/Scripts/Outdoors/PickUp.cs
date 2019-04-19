@@ -26,11 +26,11 @@ public class PickUp : MonoBehaviour
             if (specItemInv.Count < specItemInv.maxCapaxity)
             {
                 specItemInv.Add(item_);
-                Debug.Log("items: " + specItemInv.Count);
+                //Debug.Log("items: " + specItemInv.Count);
             }
             else
             {
-                Debug.Log("full");
+                //Debug.Log("full");
             }
         }
     }

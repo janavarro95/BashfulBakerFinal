@@ -28,7 +28,7 @@ public class CookieMover : MonoBehaviour
         for (int x = 0; x < cookies.Length; x++)
         {
             whichButton[x] = (int)Mathf.Floor(Random.Range(0, 4));
-            Debug.Log(whichButton[x]);
+            //Debug.Log(whichButton[x]);
         }
 
     }
@@ -96,6 +96,9 @@ public class CookieMover : MonoBehaviour
         Game.HUD.showHUD = true;
         Game.HUD.showAll();
         SceneManager.LoadScene("Kitchen");
+
+        //Debug.Log("Arrow shows the way!");
+        Game.Player.arrowDirection.gameObject.SetActive(true);
         ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
     }
 

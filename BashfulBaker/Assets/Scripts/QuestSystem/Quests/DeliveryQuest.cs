@@ -87,7 +87,7 @@ namespace Assets.Scripts.QuestSystem.Quests
         {
             if (Dish.Name == this.dishToDeliver && DropOffZone.npcNamesWhoLiveHere.Contains(this.personToDeliverTo))
             {
-                Debug.Log("Dish: " + Dish.Name + " has been delivered to: " + this.personToDeliverTo);
+                //Debug.Log("Dish: " + Dish.Name + " has been delivered to: " + this.personToDeliverTo);
                 this.IsCompleted = true;
                 return true; 
             }

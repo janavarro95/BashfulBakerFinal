@@ -10,7 +10,7 @@ namespace Assets.Scripts.Items
     /// <summary>
     /// Manages a given inventory.
     /// </summary>
-    [Serializable,SerializeField]
+    [Serializable, SerializeField]
     public class Inventory
     {
         /// <summary>
@@ -103,11 +103,14 @@ namespace Assets.Scripts.Items
             I.initializeSprite();
             if (this.items.Count == maxCapaxity)
             {
-                Debug.Log("Inventory is full!");
+                //Debug.Log("Inventory is full!");
                 return false;
             }
             this.items.Add(I);
-            Game.HUD.updateInventoryHUD();
+            if (Game.HUD != null)
+            {
+                Game.HUD.updateInventoryHUD();
+            }
             return true;
         }
 
@@ -180,7 +183,7 @@ namespace Assets.Scripts.Items
         public bool removeRandomItem()
         {
             if (this.items.Count == 0) return false;
-            bool f= this.Remove(getRandomItem());
+            bool f = this.Remove(getRandomItem());
             Game.HUD.updateInventoryHUD();
             return f;
         }
