@@ -10,6 +10,7 @@ using Assets.Scripts.GameInformation;
 public class Tutorial_Jeb : MonoBehaviour
 {
     public Sprite Jeb_Face;
+    public Sprite Jeb_Face_surprised;
     public Animator jeb_animator;
     private int ApressCount;
     public Dialogue tutorial_lines_pt1;
@@ -42,7 +43,7 @@ public class Tutorial_Jeb : MonoBehaviour
         if (InputControls.APressed && canCount == true)
         {
             ApressCount++;
-            Debug.Log(ApressCount);
+            //Debug.Log(ApressCount);
         }
         if (ApressCount >= 3 && check_three == true && jeb_animator.GetInteger("Movement_Phase") == 2)
         {
@@ -81,26 +82,20 @@ public class Tutorial_Jeb : MonoBehaviour
     }
 
 
-    public void helloWorld()
-    {
-
-    }
-
-
-
     void Bye()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(tutorial_lines_pt3);
     }
     void Introduction()
     {
-        GameObject.Find("Headshot").GetComponent<Image>().sprite = Jeb_Face;
+        GameObject.Find("Headshot").GetComponent<Image>().sprite = Jeb_Face_surprised;
         //GameObject.Find("speechBubble")
             Bubble.SetActive(false);
         FindObjectOfType<DialogueManager>().StartDialogue(tutorial_lines_pt1);
     }
     void Mission()
     {
+        GameObject.Find("Headshot").GetComponent<Image>().sprite = Jeb_Face;
         FindObjectOfType<DialogueManager>().StartDialogue(tutorial_lines_pt2);
     }
     void Jeb_disappear()

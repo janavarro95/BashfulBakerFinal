@@ -204,7 +204,7 @@ namespace Assets.Scripts.GameInformation
             {
 
 
-                Debug.Log("SET UP GAME!");
+                //Debug.Log("SET UP GAME!");
 
 
                 if (ContentManager == null)
@@ -334,12 +334,12 @@ namespace Assets.Scripts.GameInformation
                 DontDestroyOnLoad(Player.gameObject);
 
                 string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
-                Debug.Log(HUDPath);
+                //Debug.Log(HUDPath);
                 Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
 
 
                 SceneManager.LoadScene("Kitchen");
-                Debug.Log("Loading kitchen scene from the Game.cs script!");
+                //Debug.Log("Loading kitchen scene from the Game.cs script!");
 
                 //StartNewTimerPhase(2, 0);
 
@@ -359,7 +359,6 @@ namespace Assets.Scripts.GameInformation
                 Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
 
                 //Game.Player.specialIngredientsInventory.Add(new SpecialIngredient("Chocolate Chip"));
-                //
                 Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.ChocolateChipCookies));
                 Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.MintChipCookies));
                 Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.OatmealRaisinCookies));
@@ -371,7 +370,6 @@ namespace Assets.Scripts.GameInformation
                 Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Raisins));
                 Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Carrots));
                 Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Strawberries));
-                Debug.Log("ADD CHOCO CHIP!");
 
             }
 

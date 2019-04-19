@@ -45,7 +45,7 @@ public class StealthCaughtZone : MonoBehaviour
 
         if (!collision.gameObject.GetComponent<PlayerMovement>().hidden)
         {
-            Debug.Log("YOU GOT CAUGHT!");
+            //Debug.Log("YOU GOT CAUGHT!");
 
             collision.gameObject.GetComponent<PlayerMovement>().currentStep = 0;
 

@@ -44,6 +44,13 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject heldObject;
     public SpriteRenderer heldObjectRenderer;
 
+    private int guardsSeeingMe;
+    public SpriteRenderer alert;
+    private float t;
+
+    public SpriteRenderer buttonB;
+    private float height;
+
     public bool CanPlayerMove
     {
         get
@@ -92,7 +99,12 @@ public class PlayerMovement : MonoBehaviour {
 
         heldObject = this.gameObject.transform.Find("HeldItem").gameObject;
         heldObjectRenderer = heldObject.GetComponent<SpriteRenderer>();
-	}
+
+        guardsSeeingMe = 0;
+        t = 0;
+
+        height = (GetComponent<SpriteRenderer>().sprite.texture.height / 2) * transform.localScale.y;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -117,6 +129,17 @@ public class PlayerMovement : MonoBehaviour {
                 (Game.Player.activeItem as Dish).Update();
             }
         }
+
+        if (alert.enabled && guardsSeeingMe <= 0)
+        {
+            alert.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0), t);
+            t += .05f;
+            if (t >= 1)
+            {
+                alert.enabled = false;
+                t = 0;
+            }
+        }
     }
 
     /// <summary>
@@ -126,13 +149,13 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (hidden == true && Game.Player.hidden == false)
         {
-            Debug.Log("HIDE");
+            //Debug.Log("HIDE");
             Game.Player.hidden = true;
             //Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Invisible);
         }
         else if (hidden == false && Game.Player.hidden == true)
         {
-            Debug.Log("UNHIDE");
+            //Debug.Log("UNHIDE");
             Game.Player.hidden = false;
             //Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Visible);
         }
@@ -207,12 +230,16 @@ public class PlayerMovement : MonoBehaviour {
                 }
 
                 if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0 && Game.Player.hidden)){
-                    Debug.Log("Unhide while moving!");
+                    //Debug.Log("Unhide while moving!");
                     this.hidden = false;
                 }
 
                 playCharacterMovementAnimation(offset);
 
+                if (!SceneManager.GetActiveScene().name.Contains("Kitchen"))
+                {
+                    transform.position = new Vector3 (transform.position.x, transform.position.y, (transform.position.y) * .01f);
+                }
             }
             else
             {
@@ -425,27 +452,51 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    //Called when spotted by a guard
+    public void Spotted()
+    {
+        guardsSeeingMe++;
+        alert.enabled = true;
+        alert.color = new Color(1, 1, 1, 1);
+
+        //play alert sound
+    }
+    //Called when leaving a guard's vision
+    public void Escaped()
+    {
+        guardsSeeingMe--;
+        //alert.enabled = false;
+    }
+
     /// <summary>
-    /// ???
+    /// move the arrow to the next spot
     /// </summary>
     public void NextStep()
     {
         currentStep++;
-        Debug.Log("Next step: " + currentStep);
+        //Debug.Log("Next step: " + currentStep);
         arrow.GetComponent<progress>().SetStep(currentStep);
     }
     
     public void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Obstacle" && !hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+        if (other.gameObject.tag == "Obstacle")
         {
-            hidden = true;
-            defaultSpeed = 0;
+            buttonB.enabled = true;
+            if (!hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+            {
+                hidden = true;
+                defaultSpeed = 0;
+            }
+            else if (hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+            {
+                hidden = false;
+                defaultSpeed = 1f;
+            }
         }
-        else if (other.gameObject.tag == "Obstacle" && hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
-        {
-            hidden = false;
-            defaultSpeed = 1f;
-        }
+    }
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        buttonB.enabled = false;
     }
 }

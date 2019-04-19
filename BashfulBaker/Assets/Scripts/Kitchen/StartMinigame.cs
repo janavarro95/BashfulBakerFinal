@@ -17,6 +17,8 @@ public class StartMinigame : MonoBehaviour
     public int thisStep;
     public DeltaTimer timer;
     private int baked;
+
+    public AudioSource timerSFX, chimeSFX;
     /// <summary>
     /// Used to determine if the player should be invisible in the minigame.
     /// </summary>
@@ -67,14 +69,12 @@ public class StartMinigame : MonoBehaviour
                     {
                         baked = 1;
                         SetSprite(2);
+                        timerSFX.Play();
 
                         ovenDish =(Dish)Game.Player.activeItem;
                         Game.Player.dishesInventory.Remove(Game.Player.activeItem);
-
                         Game.Player.removeActiveItem();
-
                         Game.Player.updateHeldItemSprite();
-
                         Invoke("Bake", 5);
 
                         this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Play();
@@ -224,7 +224,8 @@ public class StartMinigame : MonoBehaviour
 
     private void Bake()
     {
-        Debug.Log("Ding");
+        timerSFX.Stop();
+        chimeSFX.Play();
         baked = 2;
         SetSprite(0);
         this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Stop();

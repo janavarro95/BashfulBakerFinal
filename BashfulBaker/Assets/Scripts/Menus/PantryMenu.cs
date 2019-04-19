@@ -148,7 +148,7 @@ namespace Assets.Scripts.Menus
                     img = categorySelect.transform.Find("PantryBackgroundImage").gameObject.GetComponent<Image>();
                     img.sprite = tutorialCategorySprite;
 
-                    Debug.Log("NANI???");
+                    //Debug.Log("NANI???");
 
                     return;
                 }

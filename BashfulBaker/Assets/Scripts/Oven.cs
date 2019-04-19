@@ -27,8 +27,7 @@ public class Oven : MonoBehaviour
     {
         if (InputControls.APressed && Game.Player.dishesInventory.Contains("Chocolate Chip Cookie") && Arrow.GetComponent<progress>().step == 3)
         {
-            Smoke.enableEmission = false; 
-            Debug.Log("Good to go");
+            Smoke.enableEmission = false;
         }
     }
     //Game.Player.specialIngredientsInventory.Add(new SpecialIngredient("Chocolate Chip"));

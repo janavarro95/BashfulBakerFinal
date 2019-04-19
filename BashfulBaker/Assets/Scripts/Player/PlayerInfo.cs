@@ -196,13 +196,13 @@ namespace Assets.Scripts.Player
         {
             if (activeItem != null)
             {
-                Debug.Log("NEW SPRITE");
+                //Debug.Log("NEW SPRITE");
                 GameObject obj = this.gameObject;
-                if (this._heldItemGameObject == null) Debug.Log("NANI???");
+                if (this._heldItemGameObject == null) //Debug.Log("NANI???");
                 if (activeItem.Sprite == null)
                 {
-                    Debug.Log("Active item has no sprite");
-                    Debug.Log("Get the active item sprite");
+                    //Debug.Log("Active item has no sprite");
+                    //Debug.Log("Get the active item sprite");
                     activeItem.loadSprite();
                 }
 
@@ -214,7 +214,6 @@ namespace Assets.Scripts.Player
             }
             else
             {
-                Debug.Log("NO SPRITE");
                 if (this._heldItemGameObject == null)
                 {
                     this._heldItemGameObject.GetComponent<HeldObjectAnimator>().clearAnimationController();

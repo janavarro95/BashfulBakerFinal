@@ -45,8 +45,8 @@ namespace Assets.Scripts.Content
                 return s;
             }
             catch(Exception err) {
-                Debug.Log(err.ToString());
-                Debug.Log("Texture name:" + texture.name);
+                //Debug.Log(err.ToString());
+                //Debug.Log("Texture name:" + texture.name);
                 return null;
             }
 
@@ -67,7 +67,7 @@ namespace Assets.Scripts.Content
 
             if (!File.Exists(finalPath))
             {
-                Debug.Log("File: " + Path.GetFileName(finalPath) + " does not exist at the given path! " + finalPath);
+                //Debug.Log("File: " + Path.GetFileName(finalPath) + " does not exist at the given path! " + finalPath);
                 //throw new Exception("File: " + Path.GetFileName(finalPath) + " does not exist at the given path! " + finalPath);
             }
 
@@ -81,9 +81,7 @@ namespace Assets.Scripts.Content
             return localFile.texture;
         }
 
-        public Texture2D loadTexture2DFromResources(string RelativePath)
-        {
-            Debug.Log(RelativePath);
+        public Texture2D loadTexture2DFromResources(string RelativePath) {
             Texture2D text = Resources.Load<Texture2D>(RelativePath);
             return text;
         }
