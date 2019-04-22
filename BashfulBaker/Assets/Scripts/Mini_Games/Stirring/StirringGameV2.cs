@@ -21,7 +21,6 @@ namespace Assets.Scripts.GameInput
         public Sprite[] bowlsprites;
         public Animator[]foodAnimation;
 
-
         public GameObject progressBar;
 
         // Start is called before the first frame update
@@ -80,6 +79,9 @@ namespace Assets.Scripts.GameInput
 
             int angle = (int)Vector2.SignedAngle(new Vector2(1, 0), Next);
 
+            angle = ((angle / 25) + 7) % 14;
+
+            /*
             if (Mathf.Abs(angle) > 144)
             {
                 angle = 2;
@@ -92,6 +94,7 @@ namespace Assets.Scripts.GameInput
             {
                 angle = angle > 0 ? 4 : 0;
             }
+            */
 
             bowl.sprite = bowlsprites[angle];
 
