@@ -113,9 +113,15 @@ namespace Assets.Scripts.Menus
         {
             if(quest.personToDeliverTo=="Sylvia" && quest.RequiredDish=="Chocolate Chip Cookies")
             {
-                Texture2D texture=Game.ContentManager.loadTexture2DFromResources("Graphics//UI//Menus//DailyRecap//Quest_SylviaCookies");
+                Debug.Log("Quest is for Sylvia and her Choco Cookies!");
+                Texture2D texture=Game.ContentManager.loadTexture2DFromResources("Graphics/UI/Menus/DailyRecap/Quest_SylviaCookies");
                 Sprite sprite=Game.ContentManager.loadSprite(texture, new Rect(0, 0, 244, 104), new Vector2(0, 0), 16);
                 return sprite;
+            }
+            else
+            {
+                Debug.Log("Quest if for: " + quest.personToDeliverTo);
+                Debug.Log("The dish to deliver is: " + quest.RequiredDish);
             }
 
             return null;
