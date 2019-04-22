@@ -2,8 +2,10 @@
 using Assets.Scripts.GameInput;
 using Assets.Scripts.Menus.Components;
 using Assets.Scripts.QuestSystem.Quests;
+using Assets.Scripts.Utilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -32,6 +34,12 @@ namespace Assets.Scripts.Menus
 
         public override void Start()
         {
+
+            string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
+            //Debug.Log(HUDPath);
+            Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
+
+
             Game.Menu = this;
             Game.HUD.showHUD = false;
 
@@ -58,23 +66,24 @@ namespace Assets.Scripts.Menus
             getQuestImages();
         }
 
+        /// <summary>
+        /// Sets the actual quest images based off of positions and data.
+        /// </summary>
         private void getQuestImages()
         {
             List<CookingQuest> cookingQuests = Game.QuestManager.getCookingQuests();
-
-            Debug.Log("Cooking quest count: " + cookingQuests.Count);
-
             if (cookingQuests.Count >= 1)
             {
                 CookingQuest quest = cookingQuests[0];
                 quest1Image.sprite = loadQuestImage(quest);
                 if (quest.IsCompleted == false)
                 {
-                    quest1Image.rectTransform.sizeDelta = new Vector2(-140, quest1Image.rectTransform.sizeDelta.y);
+                    //quest1Image.rectTransform.sizeDelta = new Vector2(-140, quest1Image.rectTransform.sizeDelta.y);
+                    quest1Image.rectTransform.localPosition = new Vector3(-140, quest1Image.rectTransform.localPosition.y);
                 }
                 else
                 {
-                    quest1Image.rectTransform.sizeDelta = new Vector2(140, quest1Image.rectTransform.sizeDelta.y);
+                    quest1Image.rectTransform.localPosition = new Vector2(140, quest1Image.rectTransform.localPosition.y);
                 }
                 quest1Image.gameObject.SetActive(true);
 
@@ -85,11 +94,11 @@ namespace Assets.Scripts.Menus
                 quest2Image.sprite = loadQuestImage(quest);
                 if (quest.IsCompleted == false)
                 {
-                    quest2Image.rectTransform.sizeDelta = new Vector2(-140, quest2Image.rectTransform.sizeDelta.y);
+                    quest2Image.rectTransform.localPosition = new Vector2(-140, quest2Image.rectTransform.localPosition.y);
                 }
                 else
                 {
-                    quest2Image.rectTransform.sizeDelta = new Vector2(140, quest2Image.rectTransform.sizeDelta.y);
+                    quest2Image.rectTransform.localPosition = new Vector2(140, quest2Image.rectTransform.localPosition.y);
                 }
                 quest2Image.gameObject.SetActive(true);
             }
@@ -99,29 +108,36 @@ namespace Assets.Scripts.Menus
                 quest3Image.sprite = loadQuestImage(quest);
                 if (quest.IsCompleted == false)
                 {
-                    quest3Image.rectTransform.sizeDelta = new Vector2(-140, quest3Image.rectTransform.sizeDelta.y);
+                    quest3Image.rectTransform.localPosition = new Vector2(-140, quest3Image.rectTransform.localPosition.y);
                 }
                 else
                 {
-                    quest3Image.rectTransform.sizeDelta = new Vector2(140, quest3Image.rectTransform.sizeDelta.y);
+                    quest3Image.rectTransform.localPosition = new Vector2(140, quest3Image.rectTransform.localPosition.y);
                 }
                 quest3Image.gameObject.SetActive(true);
             }
         }
 
+        /// <summary>
+        /// Loads the appropriate image for what quest we have recieved.
+        /// </summary>
+        /// <param name="quest"></param>
+        /// <returns></returns>
         private Sprite loadQuestImage(CookingQuest quest)
         {
-            if(quest.personToDeliverTo=="Sylvia" && quest.RequiredDish=="Chocolate Chip Cookies")
+            if (quest.personToDeliverTo == "Sylvia" && quest.RequiredDish == "Chocolate Chip Cookies")
             {
                 Debug.Log("Quest is for Sylvia and her Choco Cookies!");
-                Texture2D texture=Game.ContentManager.loadTexture2DFromResources("Graphics/UI/Menus/DailyRecap/Quest_SylviaCookies");
-                Sprite sprite=Game.ContentManager.loadSprite(texture, new Rect(0, 0, 244, 104), new Vector2(0, 0), 16);
+                Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
+                    "Graphics",
+                    "UI",
+                    "Menus",
+                    "DailyRecap",
+                    "Quest_SylviaCookies"
+                }));
+            
+                Sprite sprite=Game.ContentManager.loadSprite(texture, new Rect(new Rect(0,0,122,52)), new Vector2(0.5f, 0.5f), 16);
                 return sprite;
-            }
-            else
-            {
-                Debug.Log("Quest if for: " + quest.personToDeliverTo);
-                Debug.Log("The dish to deliver is: " + quest.RequiredDish);
             }
 
             return null;

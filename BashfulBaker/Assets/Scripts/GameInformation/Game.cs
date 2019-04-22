@@ -318,7 +318,7 @@ namespace Assets.Scripts.GameInformation
             Destroy(HUD.gameObject);
         }
 
-        static void setUpScene()
+        public static void setUpScene()
         {
 
             if (SceneManager.GetActiveScene().name == "MainMenu")
