@@ -310,11 +310,11 @@ namespace Assets.Scripts.Menus.HUDS
                     updateTimer.Update();
                 }
 
-                if (GameInput.InputControls.LeftTriggerPressed)
+                if (GameInput.InputControls.LeftTriggerPressed && Game.HUD.showInventory)
                 {
                     updateCurrentDishIndex(-1);
                 }
-                else if (GameInput.InputControls.RightTriggerPressed)
+                else if (GameInput.InputControls.RightTriggerPressed && Game.HUD.showInventory)
                 {
                     updateCurrentDishIndex(1);
                 }

@@ -338,7 +338,7 @@ namespace Assets.Scripts.GameInformation
                 Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
 
 
-                SceneManager.LoadScene("Kitchen");
+                SceneManager.LoadScene("DaySelectMenu");
                 //Debug.Log("Loading kitchen scene from the Game.cs script!");
 
                 //StartNewTimerPhase(2, 0);

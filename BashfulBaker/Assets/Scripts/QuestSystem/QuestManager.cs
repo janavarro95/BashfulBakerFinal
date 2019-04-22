@@ -196,6 +196,19 @@ namespace Assets.Scripts.QuestSystem
             return false;
         }
 
+        public List<CookingQuest> getCookingQuests()
+        {
+            List<CookingQuest> cookingQuests = new List<CookingQuest>();
+            foreach (Quest q in quests)
+            {
+                if (q is CookingQuest)
+                {
+                    cookingQuests.Add((CookingQuest)q);
+                }
+            }
+            return cookingQuests;
+        }
+
         /// <summary>
         /// Checks to see if a cooking quest's special mission has been completed.
         /// </summary>

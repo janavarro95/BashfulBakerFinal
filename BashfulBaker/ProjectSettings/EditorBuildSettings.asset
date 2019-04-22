@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 073670a4f49222540af6bf8bc81e526b
   - enabled: 1
+    path: Assets/Scenes/DaySelectMenu.unity
+    guid: 6cdcd10932b5cff428816eed49524a37
+  - enabled: 1
     path: Assets/Scenes/Kitchen.unity
     guid: 28257caef4de5a046a264d68a1123288
   - enabled: 1
