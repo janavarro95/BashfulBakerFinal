@@ -15,6 +15,7 @@ namespace Assets.Scripts.GameInput
         private Vector2 Prev, Next;
         private float Percent_Stirred;
         public int Count;
+        public GameObject HeldObject;
         public Sprite Choc;
         public Sprite Mint;
         public Sprite Raisin;
@@ -45,23 +46,25 @@ namespace Assets.Scripts.GameInput
             Game.HUD.showHUD = false;
             Game.HUD.showOnlyTimer();
 
-            if (GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().heldObject.name == "Chocolate Chip Cookies")
+            Debug.Log(Game.Player.activeItem.Name);
+            if (Game.Player.activeItem.Name == "Chocolate Chip Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Choc;
-            } else if (GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().heldObject.name == "Mint Chip Cookies")
+            } else if (Game.Player.activeItem.Name == "Mint Chip Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Mint;
             }
-            else if (GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().heldObject.name == "Oatmeal Raisin Cookies")
+            else if (Game.Player.activeItem.Name == "Oatmeal Raisin Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Raisin;
             }
-            else if (GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().heldObject.name == "Pecan Crescent Cookies")
+            else if (Game.Player.activeItem.Name == "Pecan Crescent Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Pecan;
             }
             else
             {
+                Debug.Log("default");
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Choc;
             }
 
