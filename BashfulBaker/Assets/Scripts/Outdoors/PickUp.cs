@@ -10,7 +10,15 @@ public class PickUp : MonoBehaviour
     public string item;
     private SpecialIngredient item_;
     Inventory specItemInv;
-    
+
+    /* Valid Inputs:
+        * ChocolateChips
+        * MintChips
+        * Pecans
+        * Raisins
+        * Carrots
+        * Strawberries
+     */
 
     // Start is called before the first frame update
     void Start()
