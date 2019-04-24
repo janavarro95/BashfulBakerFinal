@@ -171,6 +171,7 @@ namespace Assets.Scripts.GameInformation
 
 
         public static int CurrentDayNumber;
+        public static bool IngredientsAddedForPlayer;
 
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
@@ -244,6 +245,16 @@ namespace Assets.Scripts.GameInformation
                     TutorialCompleted = false;
                 }
 
+                if (IngredientsAddedForPlayer == false)
+                {
+                    Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.ChocolateChips));
+                    Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.MintChips));
+                    Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Pecans));
+                    Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Raisins));
+                    Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Carrots));
+                    Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Strawberries));
+                    IngredientsAddedForPlayer = true;
+                }
 
                 setUpScene();
 
@@ -297,6 +308,13 @@ namespace Assets.Scripts.GameInformation
 
             //Game.Menu.exitMenu();
 
+            Game.HUD.showHUD = false;
+            Game.HUD.showInventory = false;
+            Game.HUD.showTimer = false;
+            Game.HUD.showQuests = false;
+
+            IngredientsAddedForPlayer = false;
+
             Destroy(HUD.gameObject);
         }
 
@@ -341,18 +359,31 @@ namespace Assets.Scripts.GameInformation
                 Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
 
                 //Game.Player.specialIngredientsInventory.Add(new SpecialIngredient("Chocolate Chip"));
-                //
-                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
-                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
-                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
-                //Debug.Log("ADD CHOCO CHIP!");
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.ChocolateChipCookies));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.MintChipCookies));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.OatmealRaisinCookies));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.PecanCookies));
+
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.ChocolateChips));
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.MintChips));
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Pecans));
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Raisins));
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Carrots));
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Strawberries));
 
             }
 
             if (SceneManager.GetActiveScene().name == "Kitchen")
             {
-                Player.arrowDirection.setTargetObject(GameObject.Find("Warps (2)").transform.Find("ToOutside").gameObject);
+                try
+                {
+                    Player.arrowDirection.setTargetObject(GameObject.Find("Warps (2)").transform.Find("ToOutside").gameObject);
 
+                }
+                catch(Exception err)
+                {
+                    return;
+                }
                 if (Game.Player.dishesInventory.Contains("Chocolate Chip Cookies"))
                 {
                     if ((Game.player.dishesInventory.getItem("Chocolate Chip Cookies") as Dish).currentDishState == Enums.DishState.Packaged)
