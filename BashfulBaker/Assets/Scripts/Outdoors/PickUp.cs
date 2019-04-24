@@ -31,14 +31,15 @@ public class PickUp : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && (InputControls.APressed || Input.GetKeyDown(KeyCode.E)))
         {
+            Debug.Log("items: " + specItemInv.Count);
+            Debug.Log("cap: " + specItemInv.maxCapaxity);
             if (specItemInv.Count < specItemInv.maxCapaxity)
             {
                 specItemInv.Add(item_);
-                //Debug.Log("items: " + specItemInv.Count);
             }
             else
             {
-                //Debug.Log("full");
+                Debug.Log("full");
             }
         }
     }
