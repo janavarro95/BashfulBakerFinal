@@ -460,7 +460,7 @@ Transform:
   m_GameObject: {fileID: 251145132}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1514242383}
   m_RootOrder: 1
@@ -7479,8 +7479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf624b53dbf04254abd732771df7f9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jeb_Face: {fileID: 21300000, guid: 08a7140c07584024eb818184352e90c3, type: 3}
-  Jeb_Face_surprised: {fileID: 21300000, guid: d696c85c1088f05488079837786b3c76, type: 3}
+  Jeb_Face: {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  Jeb_Face_surprised: {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
   jeb_animator: {fileID: 1083138370}
   tutorial_lines_pt1:
     name: Jeb
