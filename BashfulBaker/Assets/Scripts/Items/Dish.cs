@@ -209,7 +209,6 @@ namespace Assets.Scripts.Items
 
             if (this.itemName == "Chocolate Chip Cookies" || this.itemName == "Chocolate Chip Cookie")
             {
-                Debug.Log("GET THAT CHOCOLATE CHIP BOWL!");
                 doughBowls = Path.Combine(doughBowls, "Choc Chip");
                 return Game.ContentManager.loadTexture2DFromResources(Path.Combine(doughBowls, "CCDoughBowl"));
             }

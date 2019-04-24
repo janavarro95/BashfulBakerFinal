@@ -95,7 +95,7 @@ public class CookieMover : MonoBehaviour
         Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
         Game.HUD.showHUD = true;
         Game.HUD.showAll();
-        SceneManager.LoadScene("Kitchen");
+        Game.LoadCorrectKitchenScene();
 
         //Debug.Log("Arrow shows the way!");
         Game.Player.arrowDirection.gameObject.SetActive(true);

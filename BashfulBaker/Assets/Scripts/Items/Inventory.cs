@@ -55,11 +55,21 @@ namespace Assets.Scripts.Items
             return items.FindAll(i => i.Name == I.Name).Count > 0;
         }
 
+        /// <summary>
+        /// Checks if the inventory contains this item.
+        /// </summary>
+        /// <param name="ItemName"></param>
+        /// <returns></returns>
         public bool Contains(string ItemName)
         {
             return items.FindAll(i => i.Name == ItemName).Count > 0;
         }
 
+        /// <summary>
+        /// Gets the item from the inventory with thisname.
+        /// </summary>
+        /// <param name="ItemName"></param>
+        /// <returns></returns>
         public Item getItem(string ItemName)
         {
             if (Contains(ItemName))
@@ -114,6 +124,10 @@ namespace Assets.Scripts.Items
             return true;
         }
 
+        /// <summary>
+        /// Get all the dishes from the player's dish inventory.
+        /// </summary>
+        /// <returns></returns>
         public List<Dish> getAllDishes()
         {
             List<Dish> dishList = new List<Dish>();
@@ -127,6 +141,10 @@ namespace Assets.Scripts.Items
             return dishList;
         }
 
+        /// <summary>
+        /// Gets all of the special ingredients fom the player's special ingredients inventory.
+        /// </summary>
+        /// <returns></returns>
         public List<SpecialIngredient> getAllSpecialIngredients()
         {
             List<SpecialIngredient> list = new List<SpecialIngredient>();
@@ -140,6 +158,10 @@ namespace Assets.Scripts.Items
             return list;
         }
 
+        /// <summary>
+        /// Gets all the items from a specific inventory.
+        /// </summary>
+        /// <returns></returns>
         public List<Item> getAllItems()
         {
             return actualItems;
@@ -164,6 +186,10 @@ namespace Assets.Scripts.Items
             //this.Remove(items[rando]);
         }
 
+        /// <summary>
+        /// Gets a random dish.
+        /// </summary>
+        /// <returns></returns>
         public Dish getRandomDish()
         {
             if (this.items.Count == 0) return null;

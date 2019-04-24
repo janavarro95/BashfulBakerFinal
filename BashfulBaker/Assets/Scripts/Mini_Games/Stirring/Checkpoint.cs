@@ -196,7 +196,7 @@ public class Checkpoint : MonoBehaviour {
         Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
         Game.HUD.showHUD = true;
         Game.HUD.showAll();
-        SceneManager.LoadScene("Kitchen");
+        Game.LoadCorrectKitchenScene();
         ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
     }
     /*
