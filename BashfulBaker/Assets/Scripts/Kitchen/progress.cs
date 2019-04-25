@@ -6,7 +6,7 @@ public class progress : MonoBehaviour
 {
     public int step;
     public GameObject A, clock;
-    public Vector3 pos0, pos1, pos2, pos3, pos4, pos5;
+    public Vector3 pos0, pos1, pos2, pos3, pos4, pos5, pos6;
     public GameObject Gandalf, BlackKnight,Player;
 
     // Start is called before the first frame update

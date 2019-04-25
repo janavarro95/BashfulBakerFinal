@@ -6695,7 +6695,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cebef15a68a1e534c9bcde8ad788c9b3, type: 2}
+  - {fileID: 2100000, guid: ec967f87508ad34478a0adcdde909157, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9970,12 +9970,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740547248}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 840a12cb8b3e5e242a7159b66d5d15ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: Chocolate Chip
+  item: 0
 --- !u!61 &740547251
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19685,6 +19685,7 @@ GameObject:
   - component: {fileID: 1514446548}
   - component: {fileID: 1514446547}
   - component: {fileID: 1514446551}
+  - component: {fileID: 1514446552}
   m_Layer: 0
   m_Name: Mint
   m_TagString: Untagged
@@ -19705,7 +19706,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.14755659, y: 0.018444493}
+  m_Offset: {x: 10.65363, y: -14.572268}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -19716,7 +19717,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.46343043, y: 0.62775433}
+  m_Size: {x: 0.72942924, y: 0.3997383}
   m_EdgeRadius: 0
 --- !u!114 &1514446548
 MonoBehaviour:
@@ -19725,7 +19726,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514446546}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60d8515501446c54cbb8aa5cb894ab59, type: 3}
   m_Name: 
@@ -19755,7 +19756,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514446546}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.0300026, y: 10.390001, z: -2.0171173}
+  m_LocalPosition: {x: -4.058, y: 10.432, z: -2.0171173}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 1861662210}
@@ -19777,8 +19778,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   update: 0
-  other: 1
-  self: 0
+  other: 0
+  self: 1
+--- !u!114 &1514446552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514446546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840a12cb8b3e5e242a7159b66d5d15ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: 1
 --- !u!1001 &1520196706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22318,12 +22332,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775118157}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 840a12cb8b3e5e242a7159b66d5d15ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: Chocolate Chip
+  item: 0
 --- !u!61 &1775118160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23199,12 +23213,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832361479}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 840a12cb8b3e5e242a7159b66d5d15ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: Chocolate Chip
+  item: 0
 --- !u!61 &1832361482
 BoxCollider2D:
   m_ObjectHideFlags: 0

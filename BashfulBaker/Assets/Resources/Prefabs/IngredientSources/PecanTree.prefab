@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 840a12cb8b3e5e242a7159b66d5d15ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: Pecan
+  item: 2
 --- !u!61 &5653575242541305569
 BoxCollider2D:
   m_ObjectHideFlags: 0
