@@ -13828,7 +13828,7 @@ MonoBehaviour:
     sentences:
     - Phew, I'm glad that's done.
     - 'Hopefully Silvia likes her cookies! '
-  daneFace: {fileID: 21300000, guid: be286ca7256c9f84fb97b754e7bcdd5f, type: 3}
+  daneFace: {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
 --- !u!4 &999737536
 Transform:
   m_ObjectHideFlags: 0

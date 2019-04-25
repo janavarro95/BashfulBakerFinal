@@ -108,8 +108,15 @@ namespace Assets.Scripts.GameInput
             }
 
             int angle = (int)Vector2.SignedAngle(new Vector2(1, 0), Next);
-            angle = ((angle / 25) + 7) % 14;
-            
+            if (Next.magnitude < (new Vector2(.1f, .1f)).magnitude)
+            {
+                angle = 7;
+            }
+            else
+            {
+                angle = ((angle / 25) + 7) % 14;
+            }
+
             /*
             if (Mathf.Abs(angle) > 144)
             {
