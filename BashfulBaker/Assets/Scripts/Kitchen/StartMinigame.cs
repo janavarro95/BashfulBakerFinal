@@ -138,7 +138,6 @@ public class StartMinigame : MonoBehaviour
                         //arrow.GetComponent<progress>().A.SetActive(false);
                         SetSprite(0);
                         collision.GetComponent<PlayerMovement>().NextStep();
-                        if (makePlayerInvisible) Assets.Scripts.GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
                         Game.HUD.showOnlyTimer();
                         startTransition();
                         //SceneManager.LoadScene(minigame);
@@ -261,7 +260,6 @@ public class StartMinigame : MonoBehaviour
                     if(playMinigame(d)==false) return;
                     SetSprite(0);
                     //collision.GetComponent<PlayerMovement>().NextStep();
-                    if (makePlayerInvisible) Assets.Scripts.GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
                     Game.HUD.showOnlyTimer();
                     //SceneManager.LoadScene(minigame);
                 }
@@ -282,8 +280,8 @@ public class StartMinigame : MonoBehaviour
     /// </summary>
     private void finishedTransition()
     {
-        Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
         Game.HUD.showHUD = false;
+        Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
         SceneManager.LoadScene(minigame);
         ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
     }
