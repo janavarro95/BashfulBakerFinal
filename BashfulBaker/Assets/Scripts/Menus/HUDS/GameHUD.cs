@@ -58,13 +58,6 @@ namespace Assets.Scripts.Menus.HUDS
         /// </summary>
         protected void checkForInput()
         {
-            if (GameInput.InputControls.RightBumperPressed)
-            {
-                if (showQuests)
-                {
-                    Menu.Instantiate<Menus.QuestMenu>();
-                }
-            }
         }
 
         /// <summary>

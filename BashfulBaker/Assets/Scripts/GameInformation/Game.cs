@@ -173,6 +173,8 @@ namespace Assets.Scripts.GameInformation
         public static int CurrentDayNumber;
         public static bool IngredientsAddedForPlayer;
 
+        public static Dictionary<int, int> NumberOfTimesCaught;
+
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
         static Game()
@@ -307,6 +309,11 @@ namespace Assets.Scripts.GameInformation
             Pantry = null;
 
             //Game.Menu.exitMenu();
+
+            Game.PhaseTimer = null;
+
+            Game.Player.dishesInventory.actualItems.Clear();
+            Game.player.removeActiveItem();
 
             Game.HUD.showHUD = false;
             Game.HUD.showInventory = false;
@@ -517,6 +524,14 @@ namespace Assets.Scripts.GameInformation
         }
 
 
+        /// <summary>
+        /// Updates the index for how many times the player was caught by the guard today.
+        /// </summary>
+        public static void CaughtByGuard()
+        {
+            if (NumberOfTimesCaught == null) NumberOfTimesCaught = new Dictionary<int, int>();
+            NumberOfTimesCaught[CurrentDayNumber]++;
+        }
 
 #endif
 

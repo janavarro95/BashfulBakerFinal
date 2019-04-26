@@ -67,6 +67,12 @@ namespace Assets.Scripts.Menus
 
         private void specialPreDaySetUp(string componentName)
         {
+
+            if (componentName == "Kitchen")
+            {
+                GameInformation.Game.CurrentDayNumber = 1;
+            }
+
             if (componentName == "KitchenDay2")
             {
                 GameInformation.Game.TutorialCompleted = true;
@@ -74,11 +80,12 @@ namespace Assets.Scripts.Menus
 
 
                 Debug.Log("REMOVE THIS LATER!!!!!!!");
+                GameInformation.Game.Player.addSpecialIngredientForPlayer(Enums.SpecialIngredients.ChocolateChips);
                 GameInformation.Game.Player.addSpecialIngredientForPlayer(Enums.SpecialIngredients.MintChips);
                 GameInformation.Game.Player.addSpecialIngredientForPlayer(Enums.SpecialIngredients.Pecans);
                 GameInformation.Game.Player.addSpecialIngredientForPlayer(Enums.SpecialIngredients.Raisins);
 
-                GameInformation.Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Sylvia", new List<string>()));
+                GameInformation.Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.GameInformation;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,14 @@ public class Darken : MonoBehaviour
         if(transparency < .9)
             transparency += darkenSpeed;
         */
-        transparency =1-(float)(Game.PhaseTimer.currentTime / Game.PhaseTimer.maxTime);
-        mat.SetFloat("_Transparency", transparency);
+        try
+        {
+            transparency = 1 - (float)(Game.PhaseTimer.currentTime / Game.PhaseTimer.maxTime);
+            mat.SetFloat("_Transparency", transparency);
+        }
+        catch(Exception err)
+        {
+
+        }
     }
 }
