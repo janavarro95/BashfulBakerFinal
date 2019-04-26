@@ -51,7 +51,7 @@ namespace Assets.Scripts.GameInput
 
             progressBar.transform.localScale = new Vector3(.1f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
 
-            Game.HUD.showHUD = false;
+            
         }
 
         // Update is called once per frame

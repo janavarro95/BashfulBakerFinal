@@ -206,10 +206,8 @@ namespace Assets.Scripts.Menus
 
                     Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.ChocolateChips).stack -= 1;
 
-                    //updateTutorial();
+                    updateTutorial();
                     exitMenu();
-
-                    Debug.Log("Testing more a presses!");
                 }
                 else if (GameInput.InputControls.BPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.MintChips).stack > 0)
                 {

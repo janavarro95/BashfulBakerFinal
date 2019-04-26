@@ -27,7 +27,7 @@ public class StartMinigame : MonoBehaviour
     public Enums.CookingStationMinigame station;
 
 
-    private Dish ovenDish;
+    private static Dish ovenDish;
 
 
     private void Awake()
@@ -86,11 +86,11 @@ public class StartMinigame : MonoBehaviour
                         {
                             SetSprite(0);
                             collision.GetComponent<PlayerMovement>().NextStep();
-                            this.ovenDish.currentDishState = Enums.DishState.Baked;
-                            Game.Player.dishesInventory.Add(this.ovenDish);
+                            ovenDish.currentDishState = Enums.DishState.Baked;
+                            Game.Player.dishesInventory.Add(ovenDish);
                             Game.Player.resetActiveDishFromMenu();
 
-                            this.ovenDish = null;
+                            ovenDish = null;
                         }
                         return;
                     }
@@ -171,7 +171,7 @@ public class StartMinigame : MonoBehaviour
                 */
                 if (minigame == "Oven")
                 {
-                    if (baked == 0 && Game.Player.activeItem!=null)
+                    if (baked == 0 && Game.Player.activeItem!=null&& ovenDish==null)
                     {
                         if ((Game.Player.activeItem as Dish).currentDishState != Enums.DishState.Prepped) return;
                         baked = 1;
@@ -182,22 +182,37 @@ public class StartMinigame : MonoBehaviour
                         Game.Player.dishesInventory.Remove(Game.Player.activeItem);
                         Game.Player.removeActiveItem();
                         Game.Player.updateHeldItemSprite();
+                        Game.HUD.InventoryHUD.updateDishes();
                         Invoke("Bake", 5);
 
                         this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Play();
 
                     }
+                    else if(baked==0 && ovenDish != null)
+                    {
+                        //collision.GetComponent<PlayerMovement>().NextStep();
+                        ovenDish.currentDishState = Enums.DishState.Baked;
+                        ovenDish.Update();
+                        Game.Player.dishesInventory.Add(ovenDish);
+                        Game.HUD.InventoryHUD.updateDishes();
+                        Game.Player.resetActiveDishFromMenu();
+                        Game.HUD.InventoryHUD.updateDishes();
+                        ovenDish.loadSprite();
+
+                        ovenDish = null;
+                    }
                     else if (baked == 2) //The dish has been baked
                     {
                         SetSprite(0);
                         //collision.GetComponent<PlayerMovement>().NextStep();
-                        this.ovenDish.currentDishState = Enums.DishState.Baked;
-                        this.ovenDish.Update();
-                        Game.Player.dishesInventory.Add(this.ovenDish);
+                        ovenDish.currentDishState = Enums.DishState.Baked;
+                        ovenDish.Update();
+                        Game.Player.dishesInventory.Add(ovenDish);
                         Game.HUD.InventoryHUD.updateDishes();
                         Game.Player.resetActiveDishFromMenu();
+                        ovenDish.loadSprite();
 
-                        this.ovenDish = null;
+                        ovenDish = null;
                     }
                     return;
                 }
