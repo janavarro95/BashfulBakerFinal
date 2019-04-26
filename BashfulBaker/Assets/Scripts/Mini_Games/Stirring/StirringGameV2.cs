@@ -31,7 +31,7 @@ namespace Assets.Scripts.GameInput
 
         // Start is called before the first frame update
         void Start()
-        {         
+        {
             stirringSource.clip = chime;
             Prev = new Vector2(0, 0);
             Next = new Vector2(0, 0);
@@ -67,7 +67,6 @@ namespace Assets.Scripts.GameInput
                 Debug.Log("default");
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Choc;
             }
-
         }
 
         // Update is called once per frame
@@ -93,6 +92,7 @@ namespace Assets.Scripts.GameInput
                     Count++;
                     Percent_Stirred = 0;
                     stirringSource.Play();
+
                     if (Count <= foodAnimation.Length)
                     {
                         foodAnimation[Count - 1].SetBool("enterBowl",true);
@@ -101,7 +101,6 @@ namespace Assets.Scripts.GameInput
                     else if (Count > foodAnimation.Length)
                     {
                         Invoke("getOutOfStirring", 1.5f);
-                       
                     }
 
                 }
@@ -116,21 +115,6 @@ namespace Assets.Scripts.GameInput
             {
                 angle = ((angle / 25) + 7) % 14;
             }
-
-            /*
-            if (Mathf.Abs(angle) > 144)
-            {
-                angle = 2;
-            }
-            else if (Mathf.Abs(angle) > 72)
-            {
-                angle = angle > 0 ? 3 : 1;
-            }
-            else
-            {
-                angle = angle > 0 ? 4 : 0;
-            }
-            */
 
             bowl.sprite = bowlsprites[angle];
 
@@ -149,7 +133,7 @@ namespace Assets.Scripts.GameInput
             Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
             Game.HUD.showHUD = true;
             Game.HUD.showAll();
-            SceneManager.LoadScene("Kitchen");
+            Game.LoadCorrectKitchenScene();
             ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
         }
     }

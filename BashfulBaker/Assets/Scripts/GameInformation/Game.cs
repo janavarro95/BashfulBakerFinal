@@ -318,7 +318,7 @@ namespace Assets.Scripts.GameInformation
             Destroy(HUD.gameObject);
         }
 
-        static void setUpScene()
+        public static void setUpScene()
         {
 
             if (SceneManager.GetActiveScene().name == "MainMenu")
@@ -338,7 +338,7 @@ namespace Assets.Scripts.GameInformation
                 Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
 
 
-                SceneManager.LoadScene("Kitchen");
+                SceneManager.LoadScene("DaySelectMenu");
                 //Debug.Log("Loading kitchen scene from the Game.cs script!");
 
                 //StartNewTimerPhase(2, 0);
@@ -415,6 +415,35 @@ namespace Assets.Scripts.GameInformation
             }
 
 
+            if (SceneManager.GetActiveScene().name == "KitchenDay2")
+            {
+                //Debug.Log("REMOVE THE COUNTERS!");
+                //GameObject.Find("backCounter 1").SetActive(false);
+                GameObject.Find("backCounter 1 (1)").SetActive(false);
+            }
+
+            if (SceneManager.GetActiveScene().name == "Neighborhood")
+            {
+                GameObject obj=GameObject.Find("DeliveryZones");
+                if(CurrentDayNumber==0 || CurrentDayNumber == 1)
+                {
+                    obj.transform.Find("Day_1").gameObject.SetActive(true);
+                    obj.transform.Find("Day_2").gameObject.SetActive(false);
+                    obj.transform.Find("Day_3").gameObject.SetActive(false);
+                }
+                if (CurrentDayNumber == 2)
+                {
+                    obj.transform.Find("Day_1").gameObject.SetActive(false);
+                    obj.transform.Find("Day_2").gameObject.SetActive(true);
+                    obj.transform.Find("Day_3").gameObject.SetActive(false);
+                }
+                if (CurrentDayNumber == 3)
+                {
+                    obj.transform.Find("Day_1").gameObject.SetActive(false);
+                    obj.transform.Find("Day_2").gameObject.SetActive(false);
+                    obj.transform.Find("Day_3").gameObject.SetActive(true);
+                }
+            }
 
             if (ScreenTransitions.shouldFadeInAfterWarp)
             {
@@ -466,6 +495,25 @@ namespace Assets.Scripts.GameInformation
         {
             SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
             Application.Quit();
+        }
+
+        /// <summary>
+        /// Loads the correct kitchen scene when the minigame finishes.
+        /// </summary>
+        public static void LoadCorrectKitchenScene()
+        {
+            if(CurrentDayNumber==0 || CurrentDayNumber == 1)
+            {
+                SceneManager.LoadScene("Kitchen");
+            }
+            else if (CurrentDayNumber == 2)
+            {
+                SceneManager.LoadScene("KitchenDay2");
+            }
+            else if (CurrentDayNumber == 3)
+            {
+                SceneManager.LoadScene("KitchenDay3");
+            }
         }
 
 

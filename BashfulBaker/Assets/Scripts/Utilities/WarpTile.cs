@@ -19,6 +19,9 @@ public class WarpTile : MonoBehaviour
     [SerializeField]
     private float transitionTime = .5f;
 
+    [SerializeField]
+    bool warpsToKitchen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +55,8 @@ public class WarpTile : MonoBehaviour
 
     private void finishedTransition()
     {
-        SceneManager.LoadScene(sceneToWarpTo);
+        if (warpsToKitchen == false) SceneManager.LoadScene(sceneToWarpTo);
+        else Game.LoadCorrectKitchenScene();
         Game.Player.gameObject.transform.position = warpLocation;
         //ScreenTransitions.StartSceneTransition(transitionTime, "", Color.black, ScreenTransitions.TransitionState.FadeIn);
         ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);

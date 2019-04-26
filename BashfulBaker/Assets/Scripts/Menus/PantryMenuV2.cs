@@ -213,7 +213,7 @@ namespace Assets.Scripts.Menus
                 }
                 else if (GameInput.InputControls.BPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.MintChips).stack > 0)
                 {
-                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Dish d = new Dish(Enums.Dishes.MintChipCookies);
                     Game.Player.dishesInventory.Add(d);
                     Game.Player.activeItem = d;
 
@@ -224,7 +224,7 @@ namespace Assets.Scripts.Menus
                 }
                 else if (GameInput.InputControls.XPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Pecans).stack > 0)
                 {
-                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Dish d = new Dish(Enums.Dishes.PecanCookies);
                     Game.Player.dishesInventory.Add(d);
                     Game.Player.activeItem = d;
 
@@ -235,7 +235,7 @@ namespace Assets.Scripts.Menus
                 }
                 else if (GameInput.InputControls.YPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Raisins).stack > 0)
                 {
-                    Dish d = new Dish("Chocolate Chip Cookie");
+                    Dish d = new Dish(Enums.Dishes.OatmealRaisinCookies);
                     Game.Player.dishesInventory.Add(d);
                     Game.Player.activeItem = d;
 
@@ -445,7 +445,8 @@ namespace Assets.Scripts.Menus
             Game.HUD.showInventory = true;
             //Game.Player.dishesInventory.Add(new Dish("Chocolate Chip Cookie"));
             Game.HUD.updateInventoryHUD();
-            Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
+
+            
             Game.HUD.showQuests = true;
             Game.StartNewTimerPhase(5, 0,true);
 
@@ -457,6 +458,8 @@ namespace Assets.Scripts.Menus
                     FindObjectOfType<DialogueManager>().StartDialogue(tutorialProgress.pickUpText);
                 }
 
+                getDailyQuests();
+
                 Game.Player.gameObject.GetComponent<PlayerMovement>().NextStep();
                 tutorialProgress.arrow.GetComponent<progress>().SetStep(1);
                 tutorialProgress.arrow.GetComponent<UnityEngine.SpriteRenderer>().enabled = true;
@@ -466,6 +469,11 @@ namespace Assets.Scripts.Menus
             {
 
             }
+        }
+
+        private void getDailyQuests()
+        {
+            if (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0) Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
         }
     }
 }

@@ -192,37 +192,41 @@ namespace Assets.Scripts.Menus.HUDS
             //left ingredient sprite
             if (dishesList.Count > 0)
             {
-                Texture2D texture = dishesList[0].Sprite;
+                Texture2D texture = dishesList[0].currentSprite;
                 firstDishImage.sprite = Content.ContentManager.Instance.loadSprite(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 firstDishImage.color = Color.white;
                 firstDish = dishesList[0];
+                firstDishImage.gameObject.SetActive(true);
             }
 
             //right ingredient sprite
             if (dishesList.Count > 1)
             {
-                Texture2D texture = dishesList[1].Sprite;
+                Texture2D texture = dishesList[1].currentSprite;
                 secondDishImage.sprite = Content.ContentManager.Instance.loadSprite(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 secondDishImage.color = Color.white;
                 secondDish = dishesList[1];
+                secondDishImage.gameObject.SetActive(true);
             }
 
             //Top ingredient sprite
             if (dishesList.Count > 2)
             {
-                Texture2D texture = dishesList[2].Sprite;
+                Texture2D texture = dishesList[2].currentSprite;
                 thirdDishImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 thirdDishImage.color = Color.white;
                 thirdDish = dishesList[2];
+                thirdDishImage.gameObject.SetActive(true);
             }
 
             //Bottom ingredient sprite
             if (dishesList.Count > (3))
             {
-                Texture2D texture = dishesList[3].Sprite;
+                Texture2D texture = dishesList[3].currentSprite;
                 fourthDishImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 fourthDishImage.color = Color.white;
                 fourthDish = dishesList[3];
+                fourthDishImage.gameObject.SetActive(true);
             }
 
 
@@ -306,11 +310,11 @@ namespace Assets.Scripts.Menus.HUDS
                     updateTimer.Update();
                 }
 
-                if (GameInput.InputControls.LeftTriggerPressed)
+                if (GameInput.InputControls.LeftTriggerPressed && Game.HUD.showInventory)
                 {
                     updateCurrentDishIndex(-1);
                 }
-                else if (GameInput.InputControls.RightTriggerPressed)
+                else if (GameInput.InputControls.RightTriggerPressed && Game.HUD.showInventory)
                 {
                     updateCurrentDishIndex(1);
                 }

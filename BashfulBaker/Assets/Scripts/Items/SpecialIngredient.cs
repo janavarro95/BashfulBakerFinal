@@ -28,7 +28,7 @@ namespace Assets.Scripts.Items
         {
             if(ingredient== Enums.SpecialIngredients.Carrots)
             {
-                this.Name = "Carrots";
+                this.Name = "Carrot";
             }
             else if(ingredient== Enums.SpecialIngredients.ChocolateChips)
             {
@@ -48,7 +48,7 @@ namespace Assets.Scripts.Items
             }
             else if(ingredient== Enums.SpecialIngredients.Strawberries)
             {
-                this.Name = "Strawberries";
+                this.Name = "Strawberry";
             }
 
             this.ingredientType = ingredient;

@@ -42,7 +42,113 @@ public class StartMinigame : MonoBehaviour
     {
         if (Assets.Scripts.GameInformation.Game.IsMenuUp) return;
 
-        if (collision.GetComponent<PlayerMovement>().currentStep == thisStep)
+        if (Game.TutorialCompleted == false)
+        {
+            if (collision.GetComponent<PlayerMovement>().currentStep == thisStep)
+            {
+                if (baked != 1)
+                {
+                    //arrow.GetComponent<SpriteRenderer>().enabled = false;
+                    //arrow.GetComponent<progress>().A.SetActive(true);
+                    SetSprite(1);
+                }
+
+                if (InputControls.APressed)
+                {
+                    /*
+                    if (Game.Player.activeItem == null || (Game.Player.activeItem is SpecialIngredient))
+                    {
+                        Game.DialogueManager.StartDialogue(new Dialogue("Dane", new List<string>()
+                {
+                    "I'm not holding anything I could "+getCookingVerb()
+                }.ToArray()));
+                        return;
+                    }
+                    */
+                    if (minigame == "Oven")
+                    {
+                        if (baked == 0)
+                        {
+                            baked = 1;
+                            SetSprite(2);
+                            timerSFX.Play();
+
+                            ovenDish = (Dish)Game.Player.activeItem;
+                            Game.Player.dishesInventory.Remove(Game.Player.activeItem);
+                            Game.Player.removeActiveItem();
+                            Game.Player.updateHeldItemSprite();
+                            Invoke("Bake", 5);
+
+                            this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Play();
+
+                        }
+                        else if (baked == 2) //The dish has been baked
+                        {
+                            SetSprite(0);
+                            collision.GetComponent<PlayerMovement>().NextStep();
+                            this.ovenDish.currentDishState = Enums.DishState.Baked;
+                            Game.Player.dishesInventory.Add(this.ovenDish);
+                            Game.Player.resetActiveDishFromMenu();
+
+                            this.ovenDish = null;
+                        }
+                        return;
+                    }
+
+                    if (Game.Player.activeItem is Dish)
+                    {
+
+                        Dish d = (Game.Player.activeItem as Dish);
+                        /*
+                        if (d.currentDishState == Enums.DishState.Ingredients && station != Enums.CookingStationMinigame.MixingBowl)
+                        {
+                            Game.DialogueManager.StartDialogue(new Dialogue("Dane", new List<string>()
+                    {
+                        "I'm not holding anything I could "+getCookingVerb()
+                    }.ToArray()));
+                            return;
+                        }
+                        if (d.currentDishState == Enums.DishState.Mixed && station != Enums.CookingStationMinigame.RollingStation)
+                        {
+                            Game.DialogueManager.StartDialogue(new Dialogue("Dane", new List<string>()
+                    {
+                        "I'm not holding anything I could "+getCookingVerb()
+                    }.ToArray()));
+                            return;
+                        }
+                        if (d.currentDishState == Enums.DishState.Prepped && station != Enums.CookingStationMinigame.Oven)
+                        {
+                            Game.DialogueManager.StartDialogue(new Dialogue("Dane", new List<string>()
+                    {
+                        "I'm not holding anything I could "+getCookingVerb()
+                    }.ToArray()));
+                            return;
+                        }
+                        if (d.currentDishState == Enums.DishState.Baked && station != Enums.CookingStationMinigame.PackingStation)
+                        {
+                            Game.DialogueManager.StartDialogue(new Dialogue("Dane", new List<string>()
+                    {
+                        "I'm not holding anything I could "+getCookingVerb()
+                    }.ToArray()));
+                            return;
+                        }
+                        */
+
+                        //arrow.GetComponent<SpriteRenderer>().enabled = true;
+                        //arrow.GetComponent<progress>().A.SetActive(false);
+                        SetSprite(0);
+                        collision.GetComponent<PlayerMovement>().NextStep();
+                        if (makePlayerInvisible) Assets.Scripts.GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
+                        Game.HUD.showOnlyTimer();
+                        startTransition();
+                        //SceneManager.LoadScene(minigame);
+                        playMinigame(d);
+                    }
+                }
+
+            }
+        }
+        else
         {
             if (baked != 1)
             {
@@ -51,7 +157,7 @@ public class StartMinigame : MonoBehaviour
                 SetSprite(1);
             }
 
-            if (InputControls.APressed && collision.GetComponent<PlayerMovement>().currentStep == thisStep)
+            if (InputControls.APressed)
             {
                 /*
                 if (Game.Player.activeItem == null || (Game.Player.activeItem is SpecialIngredient))
@@ -63,15 +169,16 @@ public class StartMinigame : MonoBehaviour
                     return;
                 }
                 */
-                if(minigame == "Oven")
+                if (minigame == "Oven")
                 {
-                    if (baked == 0)
+                    if (baked == 0 && Game.Player.activeItem!=null)
                     {
+                        if ((Game.Player.activeItem as Dish).currentDishState != Enums.DishState.Prepped) return;
                         baked = 1;
                         SetSprite(2);
                         timerSFX.Play();
 
-                        ovenDish =(Dish)Game.Player.activeItem;
+                        ovenDish = (Dish)Game.Player.activeItem;
                         Game.Player.dishesInventory.Remove(Game.Player.activeItem);
                         Game.Player.removeActiveItem();
                         Game.Player.updateHeldItemSprite();
@@ -83,18 +190,21 @@ public class StartMinigame : MonoBehaviour
                     else if (baked == 2) //The dish has been baked
                     {
                         SetSprite(0);
-                        collision.GetComponent<PlayerMovement>().NextStep();
+                        //collision.GetComponent<PlayerMovement>().NextStep();
                         this.ovenDish.currentDishState = Enums.DishState.Baked;
+                        this.ovenDish.Update();
                         Game.Player.dishesInventory.Add(this.ovenDish);
-                        Game.Player.getActiveDishFromMenu();
+                        Game.HUD.InventoryHUD.updateDishes();
+                        Game.Player.resetActiveDishFromMenu();
 
                         this.ovenDish = null;
                     }
+                    return;
                 }
 
-                else if (Game.Player.activeItem is Dish)
+                if (Game.Player.activeItem is Dish)
                 {
-                    
+
                     Dish d = (Game.Player.activeItem as Dish);
                     /*
                     if (d.currentDishState == Enums.DishState.Ingredients && station != Enums.CookingStationMinigame.MixingBowl)
@@ -133,25 +243,28 @@ public class StartMinigame : MonoBehaviour
 
                     //arrow.GetComponent<SpriteRenderer>().enabled = true;
                     //arrow.GetComponent<progress>().A.SetActive(false);
+                    if(playMinigame(d)==false) return;
                     SetSprite(0);
-                    collision.GetComponent<PlayerMovement>().NextStep();
+                    //collision.GetComponent<PlayerMovement>().NextStep();
                     if (makePlayerInvisible) Assets.Scripts.GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
                     Game.HUD.showOnlyTimer();
-                    actuallyTransition();
                     //SceneManager.LoadScene(minigame);
-                    updateDishState(d);
                 }
             }
-
         }
-
 
     }
 
-    private void actuallyTransition()
+    /// <summary>
+    /// Starts the scene transition for the fade out sequence.
+    /// </summary>
+    private void startTransition()
     {
         ScreenTransitions.StartSceneTransition(.5f, minigame, Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
     }
+    /// <summary>
+    /// Finish the scene fade out transition and loads the scene.
+    /// </summary>
     private void finishedTransition()
     {
         Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
@@ -165,38 +278,46 @@ public class StartMinigame : MonoBehaviour
         //arrow.GetComponent<SpriteRenderer>().enabled = true;
         //arrow.GetComponent<progress>().A.SetActive(false);
 
-        if(minigame != "Oven" || baked != 1) SetSprite(0);
+        if (minigame != "Oven" || baked != 1) SetSprite(0);
     }
 
-    private void updateDishState(Dish d)
+    /// <summary>
+    /// Checks a dish and tries to play the appropriate minigame if possible.
+    /// </summary>
+    /// <param name="d"></param>
+    /// <returns></returns>
+    private bool playMinigame(Dish d)
     {
         if (d.currentDishState == Enums.DishState.Ingredients && station == Enums.CookingStationMinigame.MixingBowl)
         {
             d.currentDishState = Enums.DishState.Mixed;
-            return;
+            startTransition();
+            return true;
         }
         if (d.currentDishState == Enums.DishState.Mixed && station == Enums.CookingStationMinigame.RollingStation)
         {
             d.currentDishState = Enums.DishState.Prepped;
-            return;
+            startTransition();
+            return true;
         }
         if (d.currentDishState == Enums.DishState.Prepped && station == Enums.CookingStationMinigame.Oven)
         {
             d.currentDishState = Enums.DishState.Baked;
-            return;
+            return true;
         }
         if (d.currentDishState == Enums.DishState.Baked && station == Enums.CookingStationMinigame.PackingStation)
         {
             d.currentDishState = Enums.DishState.Packaged;
-            return;
+            startTransition();
+            return true;
         }
-        if (d.currentDishState == Enums.DishState.Baked && station == Enums.CookingStationMinigame.PackingStation)
-        {
-            d.currentDishState = Enums.DishState.Packaged;
-            return;
-        }
+        return false;
     }
 
+    /// <summary>
+    /// Gets a verb for the cooking station.
+    /// </summary>
+    /// <returns></returns>
     private string getCookingVerb()
     {
         if (station == Enums.CookingStationMinigame.MixingBowl)
@@ -222,6 +343,9 @@ public class StartMinigame : MonoBehaviour
         return "";
     }
 
+    /// <summary>
+    /// Bakes a thing in the oven.
+    /// </summary>
     private void Bake()
     {
         timerSFX.Stop();
@@ -233,8 +357,13 @@ public class StartMinigame : MonoBehaviour
         //arrow.GetComponent<progress>().A.SetActive(false);
     }
 
+    /// <summary>
+    /// Sets the sprite for the arrow in the tutorial.
+    /// </summary>
+    /// <param name="state"></param>
     private void SetSprite(int state)
     {
+        if (arrow == null) return; //In case it isn't set and we aren't baby gating in the tutorial anymore.
         switch (state)
         {
             case 0:
