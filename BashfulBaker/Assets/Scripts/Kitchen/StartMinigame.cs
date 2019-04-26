@@ -27,7 +27,7 @@ public class StartMinigame : MonoBehaviour
     public Enums.CookingStationMinigame station;
 
 
-    private static Dish ovenDish;
+    public static Dish ovenDish;
 
 
     private void Awake()

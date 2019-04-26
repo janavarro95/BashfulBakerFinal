@@ -320,6 +320,13 @@ namespace Assets.Scripts.GameInformation
             Game.HUD.showTimer = false;
             Game.HUD.showQuests = false;
 
+            StartMinigame.ovenDish = null;
+
+            foreach(int i in NumberOfTimesCaught.Keys)
+            {
+                NumberOfTimesCaught[i] = 0;
+            }
+
             IngredientsAddedForPlayer = false;
 
             Destroy(HUD.gameObject);
@@ -530,7 +537,15 @@ namespace Assets.Scripts.GameInformation
         public static void CaughtByGuard()
         {
             if (NumberOfTimesCaught == null) NumberOfTimesCaught = new Dictionary<int, int>();
-            NumberOfTimesCaught[CurrentDayNumber]++;
+
+            if (NumberOfTimesCaught.ContainsKey(CurrentDayNumber))
+            {
+                NumberOfTimesCaught[CurrentDayNumber]++;
+            }
+            else
+            {
+                NumberOfTimesCaught.Add(CurrentDayNumber, 1);
+            }
         }
 
 #endif
