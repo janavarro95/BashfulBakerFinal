@@ -192,7 +192,9 @@ public class StartMinigame : MonoBehaviour
                         SetSprite(0);
                         //collision.GetComponent<PlayerMovement>().NextStep();
                         this.ovenDish.currentDishState = Enums.DishState.Baked;
+                        this.ovenDish.Update();
                         Game.Player.dishesInventory.Add(this.ovenDish);
+                        Game.HUD.InventoryHUD.updateDishes();
                         Game.Player.resetActiveDishFromMenu();
 
                         this.ovenDish = null;
