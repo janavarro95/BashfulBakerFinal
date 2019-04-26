@@ -60,7 +60,7 @@ namespace Assets.Scripts.Menus
 
             Game.HUD.showInventory = false;
 
-            this.currentViewMode = Game.HUD.InventoryHUD.currentMode;
+            //this.currentViewMode = Game.HUD.InventoryHUD.currentMode;
 
             setUpMenu();
 
@@ -229,7 +229,7 @@ namespace Assets.Scripts.Menus
 
             if (Game.Player.activeItem != null&&Game.Player.activeItem.GetType()==typeof(SpecialIngredient))
             {
-                Debug.Log("Reset active ingredient");
+                //Debug.Log("Reset active ingredient");
                 this.selectedIngredient = (SpecialIngredient)Game.Player.activeItem;
                 centralImage.sprite = Content.ContentManager.Instance.loadSprite(selectedIngredient.Sprite, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
                 centralImage.color = new Color(1, 1, 1, 1);
@@ -411,21 +411,21 @@ namespace Assets.Scripts.Menus
         {
             if (currentViewMode == Enums.InventoryViewMode.DishView)
             {
-                Debug.Log("Close?");
+                //Debug.Log("Close?");
                 Game.Player.activeItem = this.selectedDish;
                 Game.Player.updateHeldItemSprite();
                 Game.HUD.showInventory = true;
-                Game.HUD.InventoryHUD.swapMode(currentViewMode);
+                //Game.HUD.InventoryHUD.swapMode(currentViewMode);
                 base.exitMenu();
                 Game.Menu = null;
             }
             else
             {
-                Debug.Log("Close2?");
+                //Debug.Log("Close2?");
                 Game.Player.activeItem = this.selectedIngredient;
                 Game.Player.updateHeldItemSprite();
                 Game.HUD.showInventory = true;
-                Game.HUD.InventoryHUD.swapMode(currentViewMode);
+                //Game.HUD.InventoryHUD.swapMode(currentViewMode);
                 base.exitMenu();
                 Game.Menu = null;
             }

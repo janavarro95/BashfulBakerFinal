@@ -76,6 +76,8 @@ public class FieldOfView : MonoBehaviour {
 
     void FindVisibleTargets()
     {
+        bool sawPlayer = visibleTargets.Contains(GameObject.FindGameObjectWithTag("Player").transform);
+        bool seesPlayer = false;
         visibleTargets.Clear();
         Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
 
@@ -89,17 +91,30 @@ public class FieldOfView : MonoBehaviour {
             float AngleDeg = (180 / Mathf.PI) * AngleRad;
             dirToTarget = Quaternion.Euler(0, 0, AngleDeg);
 
-            if (Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
+            if (!(target == GameObject.FindGameObjectWithTag("Player").transform && target.GetComponent<PlayerMovement>().hidden) && Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
             {
                 float distToTarget = Vector3.Distance(transform.position, target.position);
                 if(!Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, distToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
+                    if (target == GameObject.FindGameObjectWithTag("Player").transform)
+                    {
+                        if (!sawPlayer && target)
+                        {
+                            target.GetComponent<PlayerMovement>().Spotted();
+                        }
+                        seesPlayer = true;
+                    }
                     guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
                     if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint,true);
                     alert.SetActive(true);
                 }
             }
+        }
+
+        if (sawPlayer && !seesPlayer)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().Escaped();
         }
     }
 

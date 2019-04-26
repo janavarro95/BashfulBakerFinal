@@ -173,11 +173,11 @@ namespace Assets.Scripts.Menus
 
             if (GameCursorMenu.SimulateMouseHover(quest1))
             {
-                Debug.Log("HELLO");
+                //Debug.Log("HELLO");
             }
             else
             {
-                Debug.Log("BYE");
+                //Debug.Log("BYE");
             }
 
             if (questHovered == false)

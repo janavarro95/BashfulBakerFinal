@@ -1,5 +1,7 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.GameInformation;
+using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.Delegates;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -74,19 +76,19 @@ public class Checkpoint : MonoBehaviour {
             if (ingredients < 4)
              {
                 ingredients += 1;
-               // Debug.Log(ingredients);
-                Debug.Log(stirPercentage);
+               // //Debug.Log(ingredients);
+                //Debug.Log(stirPercentage);
             }
             else if (stirPercentage == 100 && ingredients >= 4)
             {
-                Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
-                SceneManager.LoadScene("Kitchen");
+                //SceneManager.LoadScene("Kitchen");
+                actuallyTransition();
             }
 
             //Update the Percentage
             //lower to 60% of older value to show a new ingredient has been added      
             stirPercentage = (stirPercentage * 6) / 10;
-            Debug.Log(stirPercentage);
+            //Debug.Log(stirPercentage);
 
         }
     }
@@ -103,7 +105,7 @@ public class Checkpoint : MonoBehaviour {
 
         if (coll.gameObject.tag == "Player" && state == 1)
         {
-           // Debug.Log("1st square");
+           // //Debug.Log("1st square");
             this.transform.position = new Vector3(1, -1, 0);
             state = 2;
         }else
@@ -182,8 +184,20 @@ public class Checkpoint : MonoBehaviour {
             }
         }
 
-        Debug.Log(stirPercentage);
+        //Debug.Log(stirPercentage);
 
+    }
+    private void actuallyTransition()
+    {
+        ScreenTransitions.StartSceneTransition(.5f, "Kitchen", Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
+    }
+    private void finishedTransition()
+    {
+        Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+        Game.HUD.showHUD = true;
+        Game.HUD.showAll();
+        SceneManager.LoadScene("Kitchen");
+        ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
     }
     /*
               for (int x = 0; x < totalIngredients; x++)

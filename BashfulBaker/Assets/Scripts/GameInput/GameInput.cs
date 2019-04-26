@@ -19,7 +19,11 @@ namespace Assets.Scripts.GameInput
         private static bool _DRightPressed;
         private static bool _DUpPressed;
         private static bool _DDownPressed;
-	
+
+
+        private static bool _LeftTriggerPressed;
+        private static bool _RightTriggerPressed;
+
         /// <summary>
         /// The types of input controllers supported.
         /// </summary>
@@ -193,6 +197,38 @@ namespace Assets.Scripts.GameInput
         }
 
         /// <summary>
+        /// Checks if the left trigger is pressed
+        /// </summary>
+        public static bool LeftTriggerPressed
+        {
+            get
+            {
+                float input = LeftTrigger;
+                if (_LeftTriggerPressed == false)
+                {
+                    if (input > 0)
+                    {
+                        _LeftTriggerPressed = true;
+                        return true;
+                    }
+                    else
+                    {
+                        _LeftTriggerPressed = false;
+                    }
+                }
+                else
+                {
+                    if (input <= 0)
+                    {
+                        _LeftTriggerPressed = false;
+                        return false;
+                    }
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Get the input for the right trigger.
         /// </summary>
         public static float RightTrigger
@@ -209,6 +245,38 @@ namespace Assets.Scripts.GameInput
                 if (OSChecker.OS == Enums.OperatingSystem.Mac) return Input.GetAxis("RightTrigger_Mac");
                 if (OSChecker.OS == Enums.OperatingSystem.Linux) return Input.GetAxis("RightTrigger_Linux");
                 return Input.GetAxis("RightTrigger_Windows");
+            }
+        }
+
+        /// <summary>
+        /// Checks if the right trigger is pressed or not.
+        /// </summary>
+        public static bool RightTriggerPressed
+        {
+            get
+            {
+                float input = RightTrigger;
+                if (_RightTriggerPressed == false)
+                {
+                    if (input > 0)
+                    {
+                        _RightTriggerPressed = true;
+                        return true;
+                    }
+                    else
+                    {
+                        _RightTriggerPressed = false;
+                    }
+                }
+                else
+                {
+                    if (input <= 0)
+                    {
+                        _RightTriggerPressed = false;
+                        return false;
+                    }
+                }
+                return false;
             }
         }
 

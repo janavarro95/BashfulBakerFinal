@@ -43,8 +43,6 @@ namespace Assets.Scripts.Player
         public Enums.FacingDirection facingDirection;
         public bool hidden;
 
-
-
         private SpriteRenderer renderer;
         public SpriteRenderer Renderer
         {
@@ -75,6 +73,7 @@ namespace Assets.Scripts.Player
                     _gameObject = GameObject.FindWithTag("Player");
                     _heldItemGameObject = _gameObject.transform.Find("HeldItem").gameObject;
                     GameObject.DontDestroyOnLoad(_gameObject);
+                    arrowDirection = _gameObject.transform.Find("Rotational").Find("Arrow").gameObject.GetComponent<PlayerArrowDirection>();
                     return _gameObject;
                 }
                 else
@@ -88,6 +87,7 @@ namespace Assets.Scripts.Player
                 {
                     _gameObject = value;
                     _heldItemGameObject = _gameObject.transform.Find("HeldItem").gameObject;
+                    arrowDirection = _gameObject.transform.Find("Rotational").Find("Arrow").gameObject.GetComponent<PlayerArrowDirection>();
                 }
             }
         }
@@ -104,13 +104,15 @@ namespace Assets.Scripts.Player
         }
 
 
+        public PlayerArrowDirection arrowDirection;
+
         /// <summary>
         /// Constructor.
         /// </summary>
         public PlayerInfo()
         {
             this.dishesInventory = new Inventory(4);
-            this.specialIngredientsInventory = new Inventory(4);
+            this.specialIngredientsInventory = new Inventory(6);
             this.facingDirection = Enums.FacingDirection.Down;
             this.hidden = false;
         }
@@ -177,28 +179,47 @@ namespace Assets.Scripts.Player
             return min;
         }
 
+        public Item removeActiveItem()
+        {
+            Item I = this.activeItem;
+            this.activeItem = null;
+            updateHeldItemSprite();
+            return I;
+        }
+
+        public void getActiveDishFromMenu()
+        {
+            Game.HUD.InventoryHUD.resetActiveDish();
+        }
+
         public void updateHeldItemSprite()
         {
             if (activeItem != null)
             {
-                Debug.Log("NEW SPRITE");
+                //Debug.Log("NEW SPRITE");
                 GameObject obj = this.gameObject;
-                if (this._heldItemGameObject == null) Debug.Log("NANI???");
+                if (this._heldItemGameObject == null) //Debug.Log("NANI???");
                 if (activeItem.Sprite == null)
                 {
-                    Debug.Log("Active item has no sprite");
-                    Debug.Log("Get the active item sprite");
+                    //Debug.Log("Active item has no sprite");
+                    //Debug.Log("Get the active item sprite");
                     activeItem.loadSprite();
                 }
 
                 this._heldItemGameObject.GetComponent<SpriteRenderer>().sprite = Content.ContentManager.Instance.loadSprite(activeItem.Sprite);
                 this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                 this._heldItemGameObject.SetActive(true);
+
+                this._heldItemGameObject.GetComponent<HeldObjectAnimator>().loadAnimatorFromPrefab(Game.Player.activeItem.itemName);
             }
             else
             {
-                Debug.Log("NO SPRITE");
-                if (this._heldItemGameObject == null) return;
+                if (this._heldItemGameObject == null)
+                {
+                    this._heldItemGameObject.GetComponent<HeldObjectAnimator>().clearAnimationController();
+                    return;
+
+                }
                 this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
                 this._heldItemGameObject.SetActive(true);
             }

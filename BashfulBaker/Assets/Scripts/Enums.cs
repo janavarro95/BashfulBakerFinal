@@ -119,11 +119,33 @@ namespace Assets.Scripts
             SpecialIngredientView
         }
 
+        /// <summary>
+        /// A list of all of the dishes we can make in our game.
+        /// </summary>
         public enum Dishes
         {
-            ChocolateChipCookies
+            ChocolateChipCookies,
+            MintChipCookies,
+            PecanCookies,
+            OatmealRaisinCookies
         }
 
+        /// <summary>
+        /// A list of all of the special ingredients in the game.
+        /// </summary>
+        public enum SpecialIngredients
+        {
+            ChocolateChips,
+            MintChips,
+            Pecans,
+            Raisins,
+            Carrots,
+            Strawberries
+        }
+
+        /// <summary>
+        /// The different minigame sessions that exist.
+        /// </summary>
         public enum CookingStationMinigame
         {
             MixingBowl,

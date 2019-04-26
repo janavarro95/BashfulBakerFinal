@@ -246,19 +246,31 @@ namespace Assets.Scripts.Utilities
         /// <param name="TypeOfTransition">The type of transition to occur.</param>
         public static void StartSceneTransition(float Seconds, string SceneToLoad, Color FadeColor, TransitionState TypeOfTransition)
         {
+            if (Game.CurrentTransition != null)
+            {
+                if (Game.CurrentTransition.IsTransitioning) return;
+            }
+
             string path = Path.Combine(Path.Combine("Prefabs", "ScreenTransitions"), "ScreenTransition");
             GameObject obj=Instantiate((GameObject)Resources.Load(path, typeof(GameObject)));
             ScreenTransitions transition=obj.GetComponent<ScreenTransitions>();
             transition.startNewSceneTransition(Seconds, SceneToLoad, FadeColor, TypeOfTransition);
+            Game.CurrentTransition = transition;
+
         }
 
         public static void StartSceneTransition(float Seconds, string SceneToLoad, Color FadeColor, TransitionState TypeOfTransition,VoidDelegate OnTransitionFinish)
         {
+            if (Game.CurrentTransition != null)
+            {
+                if (Game.CurrentTransition.IsTransitioning) return;
+            }
             string path = Path.Combine(Path.Combine("Prefabs", "ScreenTransitions"), "ScreenTransition");
             GameObject obj = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)));
             ScreenTransitions transition = obj.GetComponent<ScreenTransitions>();
             transition.startNewSceneTransition(Seconds, SceneToLoad, FadeColor, TypeOfTransition,OnTransitionFinish);
             transition.currentState = TypeOfTransition;
+            Game.CurrentTransition = transition;
         }
 
         /// <summary>

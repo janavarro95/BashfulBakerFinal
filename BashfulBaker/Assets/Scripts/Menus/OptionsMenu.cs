@@ -125,12 +125,12 @@ namespace Assets.Scripts.Menus
         {
             if (SceneManager.GetActiveScene().name == "MainMenu")
             {
-                Debug.Log("HELLO?");
+                //Debug.Log("HELLO?");
                 Menu.Instantiate<MainMenu>(true);
             }
             else
             {
-                Debug.Log("NANI???");
+                //Debug.Log("NANI???");
                 Game.Menu = null;
                 base.exitMenu();
             }

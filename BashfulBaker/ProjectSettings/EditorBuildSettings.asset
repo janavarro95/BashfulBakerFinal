@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Cutscene_Demo.unity
     guid: baf45203eed7fed47ab78bebd7b47f1d
   - enabled: 1
+    path: Assets/Scenes/Neighborhood.unity
+    guid: 81743193f0649d947baa3e285876a080
+  - enabled: 1
     path: Assets/Scenes/Basket.unity
     guid: 943abfbb08239ef4eb1e82488d9921f7
   - enabled: 0

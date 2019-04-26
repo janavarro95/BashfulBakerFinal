@@ -44,7 +44,7 @@ namespace Assets.Scripts.QuestSystem.Quests
                 {
                     if(I is Dish) //Send that dish to the quest manager....
                     {
-                        Debug.Log(I.itemName);
+                        //Debug.Log(I.itemName);
                         bool delivered=Game.QuestManager.checkForDeliveryQuestCompletion((I as Dish), this);
                         if (delivered == true)
                         {
@@ -68,14 +68,14 @@ namespace Assets.Scripts.QuestSystem.Quests
                 }
                 else
                 {
-                    Debug.Log("Held item is not a dish!!");
+                    //Debug.Log("Held item is not a dish!!");
                 }
 
                 foreach (Item I in removalList)
                 {
                     Game.Player.dishesInventory.Remove(I);
                 }
-                if (hasADishBeenDelivered == false) Debug.Log("No dishes to deliver here!");
+                //if (hasADishBeenDelivered == false){ Debug.Log("No dishes to deliver here!");}
 
 
                 bool completed = true;

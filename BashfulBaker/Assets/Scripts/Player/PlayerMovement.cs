@@ -6,6 +6,7 @@ using Assets.Scripts.Utilities.Timers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// A script which controls moving the player about the environment.
@@ -31,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
-    private AudioClip woodStepSound;
+    private List<AudioClip> woodStepSounds;
     [SerializeField]
     private AudioClip currentWalkingSound;
 
@@ -42,6 +43,13 @@ public class PlayerMovement : MonoBehaviour {
 
     public GameObject heldObject;
     public SpriteRenderer heldObjectRenderer;
+
+    private int guardsSeeingMe;
+    public SpriteRenderer alert;
+    private float t;
+
+    public SpriteRenderer buttonB;
+    private float height;
 
     public bool CanPlayerMove
     {
@@ -81,7 +89,7 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animator = this.GetComponent<Animator>();
-        currentWalkingSound = woodStepSound;
+        getRandomFootstepSound();
         walkingSoundTimer = new DeltaTimer(0.4d, Assets.Scripts.Enums.TimerType.CountDown, false);
         walkingSoundTimer.start();
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
@@ -91,7 +99,12 @@ public class PlayerMovement : MonoBehaviour {
 
         heldObject = this.gameObject.transform.Find("HeldItem").gameObject;
         heldObjectRenderer = heldObject.GetComponent<SpriteRenderer>();
-	}
+
+        guardsSeeingMe = 0;
+        t = 0;
+
+        height = (GetComponent<SpriteRenderer>().sprite.texture.height / 2) * transform.localScale.y;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -116,21 +129,70 @@ public class PlayerMovement : MonoBehaviour {
                 (Game.Player.activeItem as Dish).Update();
             }
         }
+
+        if (alert.enabled && guardsSeeingMe <= 0)
+        {
+            alert.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0), t);
+            t += .05f;
+            if (t >= 1)
+            {
+                alert.enabled = false;
+                t = 0;
+            }
+        }
     }
 
+    /// <summary>
+    /// Checks if the player is hidden or not.
+    /// </summary>
     private void checkForPlayerVisibility()
     {
         if (hidden == true && Game.Player.hidden == false)
         {
-            Debug.Log("HIDE");
+            //Debug.Log("HIDE");
             Game.Player.hidden = true;
             //Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Invisible);
         }
         else if (hidden == false && Game.Player.hidden == true)
         {
-            Debug.Log("UNHIDE");
+            //Debug.Log("UNHIDE");
             Game.Player.hidden = false;
             //Game.Player.setPlayerHidden(Assets.Scripts.Enums.Visibility.Visible);
+        }
+    }
+
+    /// <summary>
+    /// Gets a random walking sound depending on the location that the player is at.
+    /// </summary>
+    private void getRandomFootstepSound()
+    {
+        if (SceneManager.GetActiveScene().name.Contains("Kitchen"))
+        {
+            int rand = Random.Range(0, woodStepSounds.Count);
+            this.currentWalkingSound = woodStepSounds[rand];
+            return;
+        }
+        else
+        {
+            this.currentWalkingSound = null;
+            return;
+        }
+        
+    }
+
+    /// <summary>
+    /// Plays the footstep walking sound for the player.
+    /// </summary>
+    private void playFootstepSound()
+    {
+        if (this.currentWalkingSound != null)
+        {
+            Game.SoundManager.playSound(CurrentWalkingSound);
+            return;
+        }
+        else
+        {
+            return;
         }
     }
 
@@ -162,17 +224,22 @@ public class PlayerMovement : MonoBehaviour {
 
                 if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0) && walkingSoundTimer.IsFinished && this.spriteRenderer.enabled)
                 {
-                    //Game.SoundManager.playSound(CurrentWalkingSound, Random.Range(2f, 3f));
+                    getRandomFootstepSound();
+                    playFootstepSound();
                     this.walkingSoundTimer.restart();
                 }
 
                 if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0 && Game.Player.hidden)){
-                    Debug.Log("Unhide while moving!");
+                    //Debug.Log("Unhide while moving!");
                     this.hidden = false;
                 }
 
                 playCharacterMovementAnimation(offset);
 
+                if (!SceneManager.GetActiveScene().name.Contains("Kitchen"))
+                {
+                    transform.position = new Vector3 (transform.position.x, transform.position.y, (transform.position.y) * .01f);
+                }
             }
             else
             {
@@ -188,6 +255,9 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Checks if the player presses start to open up the game menu.
+    /// </summary>
     private void checkForMenuOpening()
     {
         if (Assets.Scripts.GameInput.InputControls.StartPressed)
@@ -197,6 +267,10 @@ public class PlayerMovement : MonoBehaviour {
         
     }
 
+    /// <summary>
+    /// Plays the animation for the player's movement.
+    /// </summary>
+    /// <param name="offset"></param>
     private void playCharacterMovementAnimation(Vector3 offset)
     {
         if (Game.Player.activeItem == null)
@@ -207,9 +281,6 @@ public class PlayerMovement : MonoBehaviour {
                 { //left walking animation
                     animator.Play("LWalk");
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
-
-
-
                     heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
 
@@ -381,24 +452,51 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    //Called when spotted by a guard
+    public void Spotted()
+    {
+        guardsSeeingMe++;
+        alert.enabled = true;
+        alert.color = new Color(1, 1, 1, 1);
+
+        //play alert sound
+    }
+    //Called when leaving a guard's vision
+    public void Escaped()
+    {
+        guardsSeeingMe--;
+        //alert.enabled = false;
+    }
+
+    /// <summary>
+    /// move the arrow to the next spot
+    /// </summary>
     public void NextStep()
     {
         currentStep++;
-        Debug.Log("Next step: " + currentStep);
+        //Debug.Log("Next step: " + currentStep);
         arrow.GetComponent<progress>().SetStep(currentStep);
     }
     
     public void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Obstacle" && !hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+        if (other.gameObject.tag == "Obstacle")
         {
-            hidden = true;
-            defaultSpeed = 0;
+            buttonB.enabled = true;
+            if (!hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+            {
+                hidden = true;
+                defaultSpeed = 0;
+            }
+            else if (hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+            {
+                hidden = false;
+                defaultSpeed = 1f;
+            }
         }
-        else if (other.gameObject.tag == "Obstacle" && hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
-        {
-            hidden = false;
-            defaultSpeed = 1f;
-        }
+    }
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        buttonB.enabled = false;
     }
 }

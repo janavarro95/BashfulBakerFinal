@@ -171,6 +171,7 @@ namespace Assets.Scripts.GameInformation
 
 
         public static int CurrentDayNumber;
+        public static bool IngredientsAddedForPlayer;
 
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
@@ -203,7 +204,7 @@ namespace Assets.Scripts.GameInformation
             {
 
 
-                Debug.Log("SET UP GAME!");
+                //Debug.Log("SET UP GAME!");
 
 
                 if (ContentManager == null)
@@ -244,6 +245,16 @@ namespace Assets.Scripts.GameInformation
                     TutorialCompleted = false;
                 }
 
+                if (IngredientsAddedForPlayer == false)
+                {
+                    Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.ChocolateChips));
+                    Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.MintChips));
+                    Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Pecans));
+                    Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Raisins));
+                    Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Carrots));
+                    Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Strawberries));
+                    IngredientsAddedForPlayer = true;
+                }
 
                 setUpScene();
 
@@ -259,11 +270,6 @@ namespace Assets.Scripts.GameInformation
                // GameObject.DontDestroyOnLoad(_MouseCursor);
             }
             */
-
-            
-
-
-
         }
 
         private static void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -302,6 +308,13 @@ namespace Assets.Scripts.GameInformation
 
             //Game.Menu.exitMenu();
 
+            Game.HUD.showHUD = false;
+            Game.HUD.showInventory = false;
+            Game.HUD.showTimer = false;
+            Game.HUD.showQuests = false;
+
+            IngredientsAddedForPlayer = false;
+
             Destroy(HUD.gameObject);
         }
 
@@ -321,12 +334,12 @@ namespace Assets.Scripts.GameInformation
                 DontDestroyOnLoad(Player.gameObject);
 
                 string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
-                Debug.Log(HUDPath);
+                //Debug.Log(HUDPath);
                 Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
 
 
                 SceneManager.LoadScene("Kitchen");
-                Debug.Log("Loading kitchen scene from the Game.cs script!");
+                //Debug.Log("Loading kitchen scene from the Game.cs script!");
 
                 //StartNewTimerPhase(2, 0);
 
@@ -346,12 +359,59 @@ namespace Assets.Scripts.GameInformation
                 Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
 
                 //Game.Player.specialIngredientsInventory.Add(new SpecialIngredient("Chocolate Chip"));
-                //
-                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
-                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
-                Game.Player.dishesInventory.Add(new Dish("Cookie Ingredients"));
-                Debug.Log("ADD CHOCO CHIP!");
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.ChocolateChipCookies));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.MintChipCookies));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.OatmealRaisinCookies));
+                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.PecanCookies));
 
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.ChocolateChips));
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.MintChips));
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Pecans));
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Raisins));
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Carrots));
+                Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Strawberries));
+
+            }
+
+            if (SceneManager.GetActiveScene().name == "Kitchen")
+            {
+                try
+                {
+                    Player.arrowDirection.setTargetObject(GameObject.Find("Warps (2)").transform.Find("ToOutside").gameObject);
+
+                }
+                catch(Exception err)
+                {
+                    return;
+                }
+                if (Game.Player.dishesInventory.Contains("Chocolate Chip Cookies"))
+                {
+                    if ((Game.player.dishesInventory.getItem("Chocolate Chip Cookies") as Dish).currentDishState == Enums.DishState.Packaged)
+                    {
+                        Player.arrowDirection.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        Player.arrowDirection.gameObject.SetActive(false);
+                    }
+                }
+                else
+                {
+                    Player.arrowDirection.gameObject.SetActive(false);
+                }
+
+                //
+            }
+            else
+            {
+                try
+                {
+                    Player.arrowDirection.gameObject.SetActive(false);
+                }
+                catch(Exception err)
+                {
+
+                }
             }
 
 
@@ -366,8 +426,25 @@ namespace Assets.Scripts.GameInformation
         }
 
 
-        public static void StartNewTimerPhase(int Minutes,int Seconds)
+        /// <summary>
+        /// Starts a new timer phase if there is currently not an active timer.
+        /// </summary>
+        /// <param name="Minutes"></param>
+        /// <param name="Seconds"></param>
+        /// <param name="checkForValidity"></param>
+        public static void StartNewTimerPhase(int Minutes, int Seconds, bool checkForValidity=false)
         {
+            if (checkForValidity == true)
+            {
+                if (PhaseTimer != null)
+                {
+                    if (PhaseTimer.state == Enums.TimerState.Ticking)
+                    {
+                        return;
+                    }
+                }
+            }
+
             int actualTime = (Minutes * 60) + Seconds;
             PhaseTimer = new Utilities.Timers.DeltaTimer(actualTime, Enums.TimerType.CountDown, false, new Utilities.Delegates.VoidDelegate(phaseTimerRunsOut));
             PhaseTimer.start();
