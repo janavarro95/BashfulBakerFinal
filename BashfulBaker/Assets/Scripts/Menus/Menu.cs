@@ -91,6 +91,18 @@ namespace Assets.Scripts.Menus
             {
                 Instantiate("ReturnToTitleConfirmationMenu", OverrideMenu);
             }
+            else if (typeof(T) == typeof(ReturnToDailySelectMenu))
+            {
+                Instantiate("ReturnToDaySelectConfirmationMenu", OverrideMenu);
+            }
+            else if (typeof(T) == typeof(EndofDayMenu))
+            {
+                Instantiate("EndOfDayMenu", OverrideMenu);
+            }
+            else if(typeof(T)== typeof(DaySelectMenu))
+            {
+                Instantiate("DailySelectMenu", OverrideMenu);
+            }
             else
             {
                 throw new Exception("Hmm trying to call on a type of menu that doesn't exist.");

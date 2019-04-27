@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Menus
 {
-    public class ReturnToTitleConfirmationMenu:Menu
+    public class ReturnToDailySelectMenu:Menu
     {
 
         MenuComponent yes;
@@ -17,10 +16,9 @@ namespace Assets.Scripts.Menus
 
         public override void Start()
         {
-            GameInformation.Game.Menu = this;
             GameObject canvas = this.gameObject.transform.Find("Canvas").gameObject;
-            yes=new MenuComponent(canvas.transform.Find("YesButton").GetComponent<Button>());
-            no =new MenuComponent(canvas.transform.Find("NoButton").GetComponent<Button>());
+            yes = new MenuComponent(canvas.transform.Find("YesButton").GetComponent<Button>());
+            no = new MenuComponent(canvas.transform.Find("NoButton").GetComponent<Button>());
 
             this.menuCursor = canvas.transform.Find("MenuMouseCursor").gameObject.GetComponent<GameInput.GameCursorMenu>();
             setUpForSnapping();
@@ -54,14 +52,12 @@ namespace Assets.Scripts.Menus
 
         public void yesButtonClick()
         {
-            GameInformation.Game.returnToMainMenu();
-            
+            GameInformation.Game.returnToDailySelectMenu();
         }
 
         public void noButtonClick()
         {
-            Menu.Instantiate<DaySelectMenu>(true);
+            Menu.Instantiate<EndofDayMenu>(true);
         }
-
     }
 }

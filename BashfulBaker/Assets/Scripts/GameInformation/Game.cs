@@ -290,6 +290,15 @@ namespace Assets.Scripts.GameInformation
             
 
         }
+        public static void returnToDailySelectMenu()
+        {
+
+            DestroyAllForGameCleanUp();
+
+            SceneManager.LoadScene("DaySelectMenu");
+            InitializeAfterLoad();
+            setUpScene();
+        }
 
         private static void DestroyAllForGameCleanUp()
         {
@@ -300,8 +309,9 @@ namespace Assets.Scripts.GameInformation
             Serializer.JSONSerializer = null;
             QuestManager.Quests = null;
 
-            Destroy(Player.gameObject);
-            player = null;
+            Player.setSpriteVisibility(Enums.Visibility.Invisible);
+            //Destroy(Player.gameObject);
+            //player = null;
 
             Destroy(SoundManager.gameObject);
             SoundManager = null;
@@ -315,21 +325,23 @@ namespace Assets.Scripts.GameInformation
             Game.Player.dishesInventory.actualItems.Clear();
             Game.player.removeActiveItem();
 
-            Game.HUD.showHUD = false;
+
             Game.HUD.showInventory = false;
             Game.HUD.showTimer = false;
             Game.HUD.showQuests = false;
 
             StartMinigame.ovenDish = null;
 
-            foreach(int i in NumberOfTimesCaught.Keys)
+            if (NumberOfTimesCaught != null)
             {
-                NumberOfTimesCaught[i] = 0;
-            }
 
+                foreach (int i in NumberOfTimesCaught.Keys)
+                {
+                    NumberOfTimesCaught[i] = 0;
+                }
+            }
             IngredientsAddedForPlayer = false;
 
-            Destroy(HUD.gameObject);
         }
 
         public static void setUpScene()

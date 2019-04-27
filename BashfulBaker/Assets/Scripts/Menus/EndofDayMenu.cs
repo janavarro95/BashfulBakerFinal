@@ -63,11 +63,12 @@ namespace Assets.Scripts.Menus
             quest3Image.gameObject.SetActive(false);
             finishedImage.gameObject.SetActive(false);
 
-            finishedButton = new Components.MenuComponent(canvas.transform.Find("Close Button").GetComponent<Button>());
+            finishedButton = new Components.MenuComponent(canvas.transform.Find("Close Button").gameObject.GetComponent<Button>());
 
             if (Game.CurrentDayNumber == 0) Game.CurrentDayNumber = 1;
 
             getQuestImages();
+            setUpForSnapping();
         }
 
         /// <summary>
@@ -174,10 +175,10 @@ namespace Assets.Scripts.Menus
         public override void setUpForSnapping()
         {
 
-            finishedButton.setNeighbors(null, null, null, null);
+            finishedButton.setNeighbors(finishedButton, finishedButton, finishedButton, finishedButton);
 
             this.selectedComponent = finishedButton;
-            this.selectedComponent.snapToThisComponent();
+            this.menuCursor.snapToCurrentComponent();
 
         }
         
@@ -212,7 +213,7 @@ namespace Assets.Scripts.Menus
         {
             if (GameCursorMenu.SimulateMousePress(finishedButton))
             {
-                Game.returnToMainMenu();
+                Menu.Instantiate<ReturnToDailySelectMenu>(true);
             }
         }
 

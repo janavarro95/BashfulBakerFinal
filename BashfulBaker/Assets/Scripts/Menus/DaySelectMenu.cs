@@ -48,6 +48,8 @@ namespace Assets.Scripts.Menus
                     try
                     {
                         specialPreDaySetUp(component.Key);
+                        GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+                        GameInformation.Game.Player.position = new Vector3(-3.2f, -9.5f, 0);
                         SceneManager.LoadScene(component.Key);
                     }
                     catch (Exception err)

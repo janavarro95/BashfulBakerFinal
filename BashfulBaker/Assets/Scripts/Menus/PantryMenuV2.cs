@@ -440,6 +440,8 @@ namespace Assets.Scripts.Menus
 
             //Debug.Log("Picked up ingredients");
 
+            Game.HUD.showHUD = true;
+
             Game.HUD.showInventory = true;
             //Game.Player.dishesInventory.Add(new Dish("Chocolate Chip Cookie"));
             Game.HUD.updateInventoryHUD();
