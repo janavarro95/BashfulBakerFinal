@@ -29,6 +29,8 @@ namespace Assets.Scripts.Menus.HUDS
         /// </summary>
         public GameObject specialIngredients;
 
+        public GameObject specialIngredientsIcon;
+
 
 
 
@@ -129,6 +131,7 @@ namespace Assets.Scripts.Menus.HUDS
 
             dishes = canvas.transform.Find("DishesView").gameObject;
             specialIngredients = canvas.transform.Find("SpecialIngredientsView").gameObject;
+            specialIngredientsIcon = canvas.transform.Find("SpecialIngredientsViewIcon").gameObject;
             setUpComponents();
             currentDishIndex = 0;
         }
@@ -413,6 +416,29 @@ namespace Assets.Scripts.Menus.HUDS
         {
             if (visibility == Enums.Visibility.Invisible) canvas.SetActive(false);
             if (visibility == Enums.Visibility.Visible) canvas.SetActive(true);
+        }
+
+        public void showEverything()
+        {
+            this.canvas.SetActive(true);
+            showAllComponents();
+        }
+
+        public void showAllComponents()
+        {
+            foreach(Transform t in this.canvas.transform)
+            {
+                t.gameObject.SetActive(true);
+            }
+        }
+
+        public void showOnlySpecialIngredients()
+        {
+            Game.HUD.showHUD = true;
+            Game.HUD.showSpecialIngredients = true;
+            this.dishes.SetActive(false);
+            this.specialIngredients.SetActive(true);
+            this.specialIngredientsIcon.SetActive(true);
         }
     }
 }

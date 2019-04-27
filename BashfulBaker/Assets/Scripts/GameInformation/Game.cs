@@ -244,7 +244,6 @@ namespace Assets.Scripts.GameInformation
                 if (Pantry == null)
                 {
                     Pantry = new Pantry();
-                    TutorialCompleted = false;
                 }
 
                 if (IngredientsAddedForPlayer == false)
@@ -329,6 +328,7 @@ namespace Assets.Scripts.GameInformation
             Game.HUD.showInventory = false;
             Game.HUD.showTimer = false;
             Game.HUD.showQuests = false;
+            Game.HUD.showSpecialIngredients = false;
 
             StartMinigame.ovenDish = null;
 

@@ -52,6 +52,9 @@ namespace Assets.Scripts.Menus
 
         public void yesButtonClick()
         {
+            Debug.Log("Current Day is: " + GameInformation.Game.CurrentDayNumber);
+            GameInformation.Game.TutorialCompleted = true;
+
             GameInformation.Game.returnToDailySelectMenu();
         }
 
