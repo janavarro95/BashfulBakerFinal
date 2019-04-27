@@ -4,7 +4,16 @@ using System.Collections.Generic;
 using Assets.Scripts.Utilities.Timers;
 using Assets.Scripts.Stealth;
 
-public class FieldOfView : MonoBehaviour {
+public class FieldOfView : MonoBehaviour
+{
+    // seeing variables
+    public bool sawPlayer = false;
+    public bool seesPlayer = false;
+    // stealth awareness zone
+    StealthAwarenessZone zone;
+    public float pathUpdateReset = 1f;
+    private float pathUpdateTimer = 0f;
+
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
@@ -35,6 +44,7 @@ public class FieldOfView : MonoBehaviour {
 
     private void Start()
     {
+        zone = GetComponent<StealthAwarenessZone>();
         cam = GameObject.Find("Main Camera");
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
@@ -60,7 +70,14 @@ public class FieldOfView : MonoBehaviour {
     {
         if (Static) return;
 
-        FindVisibleTargets();
+        pathUpdateTimer += Time.deltaTime;
+        if (pathUpdateTimer > pathUpdateReset)
+        {
+            FindVisibleTargets();
+            pathUpdateTimer = 0;
+        }
+
+
         if(visibleTargets.Count < 1)
         {
             guard.transform.position = Vector3.MoveTowards(guard.transform.position, startPoint, 0.02f);
@@ -77,8 +94,8 @@ public class FieldOfView : MonoBehaviour {
 
     void FindVisibleTargets()
     {
-        bool sawPlayer = visibleTargets.Contains(GameObject.FindGameObjectWithTag("Player").transform);
-        bool seesPlayer = false;
+        sawPlayer = visibleTargets.Contains(GameObject.FindGameObjectWithTag("Player").transform);
+        seesPlayer = false;
         visibleTargets.Clear();
         Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
 
@@ -92,7 +109,12 @@ public class FieldOfView : MonoBehaviour {
             float AngleDeg = (180 / Mathf.PI) * AngleRad;
             dirToTarget = Quaternion.Euler(0, 0, AngleDeg);
 
-            if (!(target == GameObject.FindGameObjectWithTag("Player").transform && target.GetComponent<PlayerMovement>().hidden) && Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
+            RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, target.position - this.gameObject.transform.position);
+            if (hit.collider.gameObject.tag == "Obstacle")
+            {
+                continue;
+            }
+            else if (!(target == GameObject.FindGameObjectWithTag("Player").transform && target.GetComponent<PlayerMovement>().hidden) && Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
             {
                 float distToTarget = Vector3.Distance(transform.position, target.position);
                 if(!Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, distToTarget, obstacleMask))
@@ -108,6 +130,7 @@ public class FieldOfView : MonoBehaviour {
                     }
                     //guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
                     //if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint,true);
+                    zone.AddToPath(target.transform);
                     alert.SetActive(true);
                 }
             }

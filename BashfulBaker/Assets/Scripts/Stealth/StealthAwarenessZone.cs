@@ -54,7 +54,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// The minimum amount of distance a player can move inside the awareness zone for their location to be added to the queue of spots to go to.
     /// Smaller number = more refined/smoother path.
     /// </summary>
-    public float minAwarenessDistance=1f;
+    public float minAwarenessDistance = 1f;
 
     /// <summary>
     /// A list of all the spots we should explore.
@@ -98,7 +98,7 @@ public class StealthAwarenessZone : MonoBehaviour
     [SerializeField]
     private DeltaTimer patrolPauseTimer;
     [SerializeField]
-    private float minPauseTime=1f;
+    private float minPauseTime = 1f;
     [SerializeField]
     private float maxPauseTime = 5f;
 
@@ -133,18 +133,19 @@ public class StealthAwarenessZone : MonoBehaviour
         spotsToGoTo = new List<Vector2>();
         pathBackToStart = new Stack<Vector2>();
         listOfSpotsToLookAt = new List<Vector3>();
+        flashlight = GetComponent<FieldOfView>();
 
-        if (movementLogic == MovementType.ContinuousPatrolling ||this.movementLogic== MovementType.PatrollAndPause)
+        if (movementLogic == MovementType.ContinuousPatrolling || this.movementLogic == MovementType.PatrollAndPause)
         {
             setUpPatrolPoint();
         }
-        if(movementLogic == MovementType.PatrollAndPause)
+        if (movementLogic == MovementType.PatrollAndPause)
         {
             float pauseTime = Random.Range(minPauseTime, maxPauseTime);
             this.patrolPauseTimer = new DeltaTimer((double)pauseTime, Assets.Scripts.Enums.TimerType.CountDown, false, null);
         }
 
-        
+
     }
 
     /// <summary>
@@ -164,7 +165,7 @@ public class StealthAwarenessZone : MonoBehaviour
         patrollPoints.Add(patrollPoints[0]);
         currentPatrolPoint = 0;
 
-        if(this.patrollPoints.Count==0 && (this.movementLogic== MovementType.ContinuousPatrolling || this.movementLogic== MovementType.PatrollAndPause))
+        if (this.patrollPoints.Count == 0 && (this.movementLogic == MovementType.ContinuousPatrolling || this.movementLogic == MovementType.PatrollAndPause))
         {
             //Debug.Log("WARNING! GUARD AI HAS NO MOVEMENT POINTS! SETTING TO NON-PATROLLING AI!");
             this.movementLogic = MovementType.None;
@@ -177,13 +178,13 @@ public class StealthAwarenessZone : MonoBehaviour
     /// </summary>
     private void patrol()
     {
-        
-        if(this.movementLogic== MovementType.PatrollAndPause)
+
+        if (this.movementLogic == MovementType.PatrollAndPause)
         {
             this.patrolPauseTimer.tick();
             if (this.patrolPauseTimer.IsFinished)
             {
-                this.patrolPauseTimer.maxTime =(double)Random.Range(minPauseTime, maxPauseTime);
+                this.patrolPauseTimer.maxTime = (double)Random.Range(minPauseTime, maxPauseTime);
                 this.patrolPauseTimer.restart();
                 this.patrolPauseTimer.pause();
             }
@@ -197,9 +198,9 @@ public class StealthAwarenessZone : MonoBehaviour
         {
             currentPatrolPoint = 0;
         }
-        this.gameObject.transform.parent.transform.position=Vector3.Lerp(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1],movementLerp);
+        this.gameObject.transform.parent.transform.position = Vector3.Lerp(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1], movementLerp);
 
-        if(shouldMove==true)this.movementLerp += getProperMovementSpeed(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
+        if (shouldMove) this.movementLerp += getProperMovementSpeed(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
 
         animateGuard(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
 
@@ -208,7 +209,7 @@ public class StealthAwarenessZone : MonoBehaviour
             this.gameObject.transform.right = (Vector2)patrollPoints[currentPatrolPoint + 1] - (Vector2)transform.position;
         }
 
-        if (this.movementLerp>=1.00f)
+        if (this.movementLerp >= 1.00f)
         {
             currentPatrolPoint++;
             this.movementLerp = 0f;
@@ -220,13 +221,16 @@ public class StealthAwarenessZone : MonoBehaviour
         }
     }
 
-    
+
 
     // Update is called once per frame
     void FixedUpdate()
     {
         // state tracking
         myState = 1;
+
+        awareOfPlayer = (flashlight.seesPlayer || flashlight.sawPlayer || this.investigate != null);
+        shouldMove = awareOfPlayer;
 
         // INTRIGUED
         if (awareOfPlayer)
@@ -237,7 +241,8 @@ public class StealthAwarenessZone : MonoBehaviour
 
             // going back so some waypoint
             // PURSUIT
-            if (shouldChasePlayer())
+            //if (shouldChasePlayer())
+            if (flashlight.seesPlayer)
             {
                 // state tracking
                 myState = 64;
@@ -245,52 +250,65 @@ public class StealthAwarenessZone : MonoBehaviour
                 // movement
                 if (shouldMove)
                     proximityToTarget += getProperMovementSpeed();
-                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
-
-                //Animate here
-                animateGuard(sequenceStartingSpot, nextTargetSpot);
-
                 // get next spot in the path
                 if (proximityToTarget >= 1.0f)
                 {
                     getNextTargetSpot();
                 }
+                // lerp there
+                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+
+                // keep flashlight looking at player
+                aiLookLogic();
+
+                //Animate here
+                animateGuard(sequenceStartingSpot, nextTargetSpot);
 
                 //https://answers.unity.com/questions/585035/lookat-2d-equivalent-.html
-                this.gameObject.transform.right = nextTargetSpot - (Vector2)transform.position;
+                //this.gameObject.transform.right = nextTargetSpot - (Vector2)transform.position;
                 return;
             }
-            // INVESTIGATE
-            /*else if (this.investigate != null)
+            // INVESTIGATING
+            else if (this.investigate != null)
             {
                 // state tracking
-                myState = 32;
+                myState = 50;
 
                 // movement
                 if (shouldMove)
                     proximityToTarget += getProperMovementSpeed();
+                // get next spot in the path
+                if (proximityToTarget >= 1.0f)
+                {
+                    /*if (spotsToGoTo.Count > 0)
+                    {
+                        if (Vector2.Distance(spotsToGoTo[spotsToGoTo.Count - 1], investigate.position) <= minAwarenessDistance)
+                        {
+                            this.investigate = null;
+                        }
+                    }
+                    else spotsToGoTo.Add(investigate.position);*/
+                    getNextTargetSpot();
+                }
+                // lerp there
                 this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+
+                // keep flashlight looking at player
+                aiLookLogic();
 
                 //Animate here
                 animateGuard(sequenceStartingSpot, nextTargetSpot);
 
-                // get next spot in the path
-                if (proximityToTarget >= 1.0f)
-                {
-                    getNextTargetSpot();
-                }
-
                 //https://answers.unity.com/questions/585035/lookat-2d-equivalent-.html
-                this.gameObject.transform.right = nextTargetSpot - (Vector2)transform.position;
+                //this.gameObject.transform.right = nextTargetSpot - (Vector2)transform.position;
                 return;
-            }*/
+            }
             // RETURNING HOME 
             // AFTER INVESTIGATING
             else if (returnHome)
             {
                 // state tracking
                 myState = 16;
-
                 //Debug.Log("GOING HOME!");
                 //randomly look around
                 if (aiType == LookingType.LookAroundWhileReturning)
@@ -324,7 +342,7 @@ public class StealthAwarenessZone : MonoBehaviour
                 }
                 if (aiType != LookingType.LookAroundWhileReturning)
                 {
-                    this.gameObject.transform.right = nextTargetSpot - (Vector2)transform.position;
+                    //this.gameObject.transform.right = nextTargetSpot - (Vector2)transform.position;
                 }
                 return;
             }
@@ -399,11 +417,24 @@ public class StealthAwarenessZone : MonoBehaviour
         }
     }
 
+    public void AddToPath(Transform t)
+    {
+        if (this.pathBackToStart.Count == 0 && this.awareOfPlayer == false)
+            this.startingLocation = this.gameObject.transform.position;
+
+        this.investigate = t.gameObject.transform;
+        spotsToGoTo.Add(investigate.position); //Add the spot where the player was seen onto the queue
+        awareOfPlayer = true;
+        getNextTargetSpot();
+        returnHome = false;
+    }
+
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" && !collision.gameObject.GetComponent<PlayerMovement>().hidden)
         {
-            if (shouldMove == false) return;
+            if (!shouldMove) return;
 
             RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, collision.gameObject.transform.position - this.gameObject.transform.position);
             if (hit.collider.gameObject.tag == "Obstacle")
@@ -450,7 +481,7 @@ public class StealthAwarenessZone : MonoBehaviour
             }
             spotsToGoTo.Add(investigate.position); //Add the spot where the player was seen onto the queue
         }
-    }
+    }*/
 
     /// <summary>
     /// Gets the next spot the player was seen and try to move towards that location.
