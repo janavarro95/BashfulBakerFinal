@@ -106,8 +106,8 @@ public class FieldOfView : MonoBehaviour {
                         }
                         seesPlayer = true;
                     }
-                    guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
-                    if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint,true);
+                    //guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
+                    //if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint,true);
                     alert.SetActive(true);
                 }
             }

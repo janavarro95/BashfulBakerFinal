@@ -11,6 +11,15 @@ using UnityEngine;
 /// </summary>
 public class StealthAwarenessZone : MonoBehaviour
 {
+    /// <summary>
+    /// Tracking guard states with ints
+    /// </summary>
+    public int myState = 0;
+
+    /// <summary>
+    /// The flashlight that lights the player up
+    /// </summary>
+    public FieldOfView flashlight;
 
     /// <summary>
     /// Keeps track of all of the moves made so that the guard can hopefully return home.
@@ -18,7 +27,7 @@ public class StealthAwarenessZone : MonoBehaviour
     private Stack<Vector2> pathBackToStart;
 
     /// <summary>
-    /// The staring location of the guard.
+    /// The starting location of the guard.
     /// </summary>
     private Vector2 startingLocation;
     /// <summary>
@@ -56,6 +65,11 @@ public class StealthAwarenessZone : MonoBehaviour
     /// If the guard is currently aware of the player.
     /// </summary>
     private bool awareOfPlayer;
+
+    /// <summary>
+    /// If the guard is currently aware of the player.
+    /// </summary>
+    private Transform investigate = null;
 
     /// <summary>
     /// If the guard is finished looking around.
@@ -211,10 +225,72 @@ public class StealthAwarenessZone : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // state tracking
+        myState = 1;
+
+        // INTRIGUED
         if (awareOfPlayer)
         {
-            if (returnHome == true)
+            // state tracking
+            myState = 2;
+            Debug.Log("Aware of Player");
+
+            // going back so some waypoint
+            // PURSUIT
+            if (shouldChasePlayer())
             {
+                // state tracking
+                myState = 64;
+
+                // movement
+                if (shouldMove)
+                    proximityToTarget += getProperMovementSpeed();
+                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+
+                //Animate here
+                animateGuard(sequenceStartingSpot, nextTargetSpot);
+
+                // get next spot in the path
+                if (proximityToTarget >= 1.0f)
+                {
+                    getNextTargetSpot();
+                }
+
+                //https://answers.unity.com/questions/585035/lookat-2d-equivalent-.html
+                this.gameObject.transform.right = nextTargetSpot - (Vector2)transform.position;
+                return;
+            }
+            // INVESTIGATE
+            /*else if (this.investigate != null)
+            {
+                // state tracking
+                myState = 32;
+
+                // movement
+                if (shouldMove)
+                    proximityToTarget += getProperMovementSpeed();
+                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+
+                //Animate here
+                animateGuard(sequenceStartingSpot, nextTargetSpot);
+
+                // get next spot in the path
+                if (proximityToTarget >= 1.0f)
+                {
+                    getNextTargetSpot();
+                }
+
+                //https://answers.unity.com/questions/585035/lookat-2d-equivalent-.html
+                this.gameObject.transform.right = nextTargetSpot - (Vector2)transform.position;
+                return;
+            }*/
+            // RETURNING HOME 
+            // AFTER INVESTIGATING
+            else if (returnHome)
+            {
+                // state tracking
+                myState = 16;
+
                 //Debug.Log("GOING HOME!");
                 //randomly look around
                 if (aiType == LookingType.LookAroundWhileReturning)
@@ -227,12 +303,16 @@ public class StealthAwarenessZone : MonoBehaviour
                     return;
                 }
                 
+                // returning home and reseting
                 if (hasReturnedHome())
                 {
                     resetGuardAwareness();
                     return;
                 }
-                if(shouldMove==true) proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
+
+                // movement
+                if(shouldMove)
+                    proximityToTarget += getProperMovementSpeed();
                 this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
 
                 //Animate here
@@ -248,26 +328,11 @@ public class StealthAwarenessZone : MonoBehaviour
                 }
                 return;
             }
-            else if (shouldChasePlayer())
-            {
-                if(shouldMove==true)proximityToTarget += getProperMovementSpeed()*Time.deltaTime;
-                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
-
-                //Animate here
-                animateGuard(sequenceStartingSpot,nextTargetSpot);
-
-                if (proximityToTarget >= 1.0f)
-                {
-                    getNextTargetSpot();
-                }
-
-                //https://answers.unity.com/questions/585035/lookat-2d-equivalent-.html
-                this.gameObject.transform.right = nextTargetSpot - (Vector2)transform.position;
-                return;
-            }
             else
             {
-                
+                // state tracking
+                myState = 8;
+
                 if (needsToGoHome())
                 {
                     if (proximityToTarget >= 1.0f || proximityToTarget == 0.0f)
@@ -278,8 +343,12 @@ public class StealthAwarenessZone : MonoBehaviour
                 
             }
         }
+        // UNAWARE
         else
         {
+            // state tracking
+            myState = 4;
+
             //randomly look around
             if (aiType != LookingType.None)
             {
@@ -342,8 +411,11 @@ public class StealthAwarenessZone : MonoBehaviour
                 return;
             }
 
-            if(this.pathBackToStart.Count==0 && this.awareOfPlayer==false)this.startingLocation = this.gameObject.transform.position;
-            spotsToGoTo.Add(collision.gameObject.transform.position); //Add the spot where the player was seen onto the queue
+            if(this.pathBackToStart.Count==0 && this.awareOfPlayer==false)
+                this.startingLocation = this.gameObject.transform.position;
+
+            this.investigate = collision.gameObject.transform;
+            spotsToGoTo.Add(investigate.position); //Add the spot where the player was seen onto the queue
             awareOfPlayer = true;
             getNextTargetSpot();
             returnHome = false;
@@ -361,21 +433,22 @@ public class StealthAwarenessZone : MonoBehaviour
                 return;
             }
 
-
             returnHome = false;
             awareOfPlayer = true;
+            this.investigate = collision.gameObject.transform;
+
             if (spotsToGoTo.Count > 0)
             {
-                if (spotsToGoTo[spotsToGoTo.Count - 1] == (Vector2)collision.gameObject.transform.position)
+                if (spotsToGoTo[spotsToGoTo.Count - 1] == (Vector2)investigate.position)
                 {
                     return;
                 }
-                if (Vector2.Distance(spotsToGoTo[spotsToGoTo.Count - 1], collision.gameObject.transform.position) <= minAwarenessDistance)
+                if (Vector2.Distance(spotsToGoTo[spotsToGoTo.Count - 1], investigate.position) <= minAwarenessDistance)
                 {
                     return;
                 }
             }
-            spotsToGoTo.Add(collision.gameObject.transform.position); //Add the spot where the player was seen onto the queue
+            spotsToGoTo.Add(investigate.position); //Add the spot where the player was seen onto the queue
         }
     }
 
@@ -384,8 +457,8 @@ public class StealthAwarenessZone : MonoBehaviour
     /// </summary>
     private void getNextTargetSpot()
     {
-
         proximityToTarget = 0.0f;
+
         if (this.spotsToGoTo.Count == 0)
         {
             getNextReturnSpot();
@@ -393,6 +466,7 @@ public class StealthAwarenessZone : MonoBehaviour
             finishedLookingAround = false;
             return;
         }
+
         this.sequenceStartingSpot = this.gameObject.transform.position;
         this.nextTargetSpot = spotsToGoTo[0];
         this.pathBackToStart.Push(spotsToGoTo[0]);
@@ -425,7 +499,7 @@ public class StealthAwarenessZone : MonoBehaviour
 
     private bool needsToGoHome()
     {
-        if (spotsToGoTo.Count == 0 && pathBackToStart.Count != 0) return true;
+        if (spotsToGoTo.Count == 0 && pathBackToStart.Count != 0 && this.investigate != null) return true;
         else return false;
     }
 
@@ -504,13 +578,35 @@ public class StealthAwarenessZone : MonoBehaviour
     private float getProperMovementSpeed()
     {
         float dist=Vector2.Distance(this.sequenceStartingSpot, this.nextTargetSpot);
-        return movementSpeed/dist; //If dist is small then guard will move to target seemingly faster. If dist is large, then guard will move to target seemingly slower but all of it is at the same "speed"
+        return (movementSpeed/dist) * Time.deltaTime; //If dist is small then guard will move to target seemingly faster. If dist is large, then guard will move to target seemingly slower but all of it is at the same "speed"
+    }
+
+    private float getProperMovementSpeed(float threshold)
+    {
+        float dist = Vector2.Distance(this.sequenceStartingSpot, this.nextTargetSpot);
+        float speed;
+        if (dist < threshold)
+            speed = (movementSpeed / dist) * Time.deltaTime;
+        else speed = 0;
+
+        return speed; //If dist is small then guard will move to target seemingly faster. If dist is large, then guard will move to target seemingly slower but all of it is at the same "speed"
     }
 
     private float getProperMovementSpeed(Vector2 startSpot, Vector2 endSpot)
     {
         float dist = Vector2.Distance(startSpot, endSpot);
         return (movementSpeed / dist)*Time.deltaTime; //If dist is small then guard will move to target seemingly faster. If dist is large, then guard will move to target seemingly slower but all of it is at the same "speed"
+    }
+
+    private float getProperMovementSpeed(Vector2 startSpot, Vector2 endSpot, float threshold)
+    {
+        float dist = Vector2.Distance(startSpot, endSpot);
+        float speed;
+        if (dist < threshold)
+            speed = (movementSpeed / dist) * Time.deltaTime;
+        else speed = 0;
+
+        return speed; //If dist is small then guard will move to target seemingly faster. If dist is large, then guard will move to target seemingly slower but all of it is at the same "speed"
     }
 
     private float getProperLookSpeed()
