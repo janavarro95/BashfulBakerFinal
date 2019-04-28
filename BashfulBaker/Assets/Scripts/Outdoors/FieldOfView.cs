@@ -80,8 +80,8 @@ public class FieldOfView : MonoBehaviour
 
         if(visibleTargets.Count < 1)
         {
-            guard.transform.position = Vector3.MoveTowards(guard.transform.position, startPoint, 0.02f);
-            if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint);
+            //guard.transform.position = Vector3.MoveTowards(guard.transform.position, startPoint, 0.02f);
+            //if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint);
             alert.SetActive(false);
         }
         if (Vector3.Distance(transform.position, cam.transform.position) < (Camera.main.orthographicSize * Screen.width / Screen.height) + viewRadius * 2)
