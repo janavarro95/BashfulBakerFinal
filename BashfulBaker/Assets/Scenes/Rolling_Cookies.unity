@@ -585,7 +585,7 @@ Transform:
   m_GameObject: {fileID: 683815124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.01, y: 1.77, z: -0.25195312}
-  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -1197,7 +1197,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ae234cfb1b1664839a34cd99e31db813, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a5eb922a104a27c42ba26f854bbbc381, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1208,8 +1208,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!224 &1449644833
-RectTransform:
+--- !u!4 &1449644833
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1217,16 +1217,11 @@ RectTransform:
   m_GameObject: {fileID: 1449644831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.010578336}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 3.01, y: 3.04}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1449644834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1253,10 +1248,10 @@ MonoBehaviour:
   - {fileID: 683815124}
   - {fileID: 1459145951}
   sprites:
-  - {fileID: 21300000, guid: 3c46e653f822c4baf8dd15912c16963d, type: 3}
-  - {fileID: 21300000, guid: 5868fac221df84110827c9f1edd5c6a0, type: 3}
-  - {fileID: 21300000, guid: 685c1c9d5340f49ef85af2a8f6516836, type: 3}
-  - {fileID: 21300000, guid: ae234cfb1b1664839a34cd99e31db813, type: 3}
+  - {fileID: 21300000, guid: e2cf64ffd062f1e4a9cb73468ac01e00, type: 3}
+  - {fileID: 21300000, guid: 7ddad8b763969cd448831b756a9ffcb4, type: 3}
+  - {fileID: 21300000, guid: c1ab3a22ab5cec3488dc4ef772dd9ac3, type: 3}
+  - {fileID: 21300000, guid: a5eb922a104a27c42ba26f854bbbc381, type: 3}
   progressBar: {fileID: 962850415}
   chime: {fileID: 8300000, guid: 8f5ade69e4e2a9f4e8b8b6f0e9c48553, type: 3}
   spinningSource: {fileID: 1449644835}
@@ -1430,7 +1425,7 @@ Transform:
   m_GameObject: {fileID: 1459145951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.1, y: 1.87, z: -0.2519531}
-  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
