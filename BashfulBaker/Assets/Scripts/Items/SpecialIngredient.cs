@@ -44,7 +44,7 @@ namespace Assets.Scripts.Items
             }
             else if(ingredient== Enums.SpecialIngredients.Raisins)
             {
-                this.Name = "Rasins";
+                this.Name = "Raisins";
             }
             else if(ingredient== Enums.SpecialIngredients.Strawberries)
             {
@@ -65,7 +65,7 @@ namespace Assets.Scripts.Items
             string combinedFolders = Path.Combine("Graphics", "Items");
             combinedFolders = Path.Combine(combinedFolders, "SpecialIngredients");
 
-            this._sprite = Game.ContentManager.loadTexture2DFromStreamingAssets(Path.Combine(combinedFolders, this.itemName+ ".png"));
+            this._sprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(combinedFolders, this.itemName));
         }
     }
 }

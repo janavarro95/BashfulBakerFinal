@@ -16,6 +16,7 @@ namespace Assets.Scripts.Menus.HUDS
 
         public bool showHUD=true;
         public bool showInventory=true;
+        public bool showSpecialIngredients = true;
         public bool showTimer=true;
         public bool showQuests=true;
 
@@ -31,6 +32,7 @@ namespace Assets.Scripts.Menus.HUDS
             Game.HUD.showInventory = true;
             Game.HUD.showTimer = true;
             Game.HUD.showQuests = false;
+            Game.HUD.showSpecialIngredients = true;
 
         }
 
@@ -58,13 +60,6 @@ namespace Assets.Scripts.Menus.HUDS
         /// </summary>
         protected void checkForInput()
         {
-            if (GameInput.InputControls.RightBumperPressed)
-            {
-                if (showQuests)
-                {
-                    Menu.Instantiate<Menus.QuestMenu>();
-                }
-            }
         }
 
         /// <summary>
@@ -161,6 +156,11 @@ namespace Assets.Scripts.Menus.HUDS
         public void toggleQuestVisibility(Enums.Visibility Visibility)
         {
             QuestHUD.setVisibility(Visibility);
+        }
+
+        public void toggleSpecialIngredientsVisibility(Enums.Visibility visibility)
+        {
+           if(visibility== Enums.Visibility.Visible)InventoryHUD.showOnlySpecialIngredients();
         }
         
         public void showAll()

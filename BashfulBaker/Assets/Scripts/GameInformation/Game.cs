@@ -173,6 +173,8 @@ namespace Assets.Scripts.GameInformation
         public static int CurrentDayNumber;
         public static bool IngredientsAddedForPlayer;
 
+        public static Dictionary<int, int> NumberOfTimesCaught;
+
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
         static Game()
@@ -242,7 +244,6 @@ namespace Assets.Scripts.GameInformation
                 if (Pantry == null)
                 {
                     Pantry = new Pantry();
-                    TutorialCompleted = false;
                 }
 
                 if (IngredientsAddedForPlayer == false)
@@ -288,6 +289,15 @@ namespace Assets.Scripts.GameInformation
             
 
         }
+        public static void returnToDailySelectMenu()
+        {
+
+            DestroyAllForGameCleanUp();
+
+            SceneManager.LoadScene("DaySelectMenu");
+            InitializeAfterLoad();
+            setUpScene();
+        }
 
         private static void DestroyAllForGameCleanUp()
         {
@@ -298,8 +308,9 @@ namespace Assets.Scripts.GameInformation
             Serializer.JSONSerializer = null;
             QuestManager.Quests = null;
 
-            Destroy(Player.gameObject);
-            player = null;
+            Player.setSpriteVisibility(Enums.Visibility.Invisible);
+            //Destroy(Player.gameObject);
+            //player = null;
 
             Destroy(SoundManager.gameObject);
             SoundManager = null;
@@ -308,14 +319,29 @@ namespace Assets.Scripts.GameInformation
 
             //Game.Menu.exitMenu();
 
-            Game.HUD.showHUD = false;
+            Game.PhaseTimer = null;
+
+            Game.Player.dishesInventory.actualItems.Clear();
+            Game.player.removeActiveItem();
+
+
             Game.HUD.showInventory = false;
             Game.HUD.showTimer = false;
             Game.HUD.showQuests = false;
+            Game.HUD.showSpecialIngredients = false;
 
+            StartMinigame.ovenDish = null;
+
+            if (NumberOfTimesCaught != null)
+            {
+
+                foreach (int i in NumberOfTimesCaught.Keys)
+                {
+                    NumberOfTimesCaught[i] = 0;
+                }
+            }
             IngredientsAddedForPlayer = false;
 
-            Destroy(HUD.gameObject);
         }
 
         public static void setUpScene()
@@ -517,6 +543,22 @@ namespace Assets.Scripts.GameInformation
         }
 
 
+        /// <summary>
+        /// Updates the index for how many times the player was caught by the guard today.
+        /// </summary>
+        public static void CaughtByGuard()
+        {
+            if (NumberOfTimesCaught == null) NumberOfTimesCaught = new Dictionary<int, int>();
+
+            if (NumberOfTimesCaught.ContainsKey(CurrentDayNumber))
+            {
+                NumberOfTimesCaught[CurrentDayNumber]++;
+            }
+            else
+            {
+                NumberOfTimesCaught.Add(CurrentDayNumber, 1);
+            }
+        }
 
 #endif
 
