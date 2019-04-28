@@ -10,7 +10,10 @@ public class DepthSetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateChildrenDepth();
+        if (other)
+            UpdateChildrenDepth();
+        if (self)
+            UpdateSelfDepth(this.transform);
     }
 
     private void Update()

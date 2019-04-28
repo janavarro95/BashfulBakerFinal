@@ -22,6 +22,15 @@ public class PlayerArrowDirection : MonoBehaviour
         if (targetObject != null)
         {
             lookAt();
+
+            if (Vector3.Distance(transform.position, targetObject.transform.position) < (Camera.main.orthographicSize * Screen.width / Screen.height))
+            {
+                GetComponent<SpriteRenderer>().enabled = false;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
     }
     /// <summary>
