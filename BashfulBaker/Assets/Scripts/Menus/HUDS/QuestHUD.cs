@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.GameInformation;
-using Assets.Scripts.GameInput;
 using Assets.Scripts.QuestSystem.Quests;
 using Assets.Scripts.Utilities;
 using System;
@@ -9,9 +8,9 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Menus
+namespace Assets.Scripts.Menus.HUDS
 {
-    public class QuestMenu : Menu
+    public class QuestHUD:HUD
     {
         GameObject canvas;
         private Button exitButton;
@@ -23,16 +22,20 @@ namespace Assets.Scripts.Menus
         Image quest4Image;
         Image quest5Image;
 
+        GameObject menuBackground;
+
         public override void Start()
         {
             updateForTheDay();
+            menuBackground.SetActive(false);
         }
 
         public void updateForTheDay()
         {
             GameObject canvas = this.transform.Find("Canvas").gameObject;
 
-            GameObject menuBackground = canvas.transform.Find("MenuBackground").gameObject;
+            menuBackground = canvas.transform.Find("MenuBackground").gameObject;
+
             quest1Image = menuBackground.transform.Find("Quest1").gameObject.GetComponent<Image>();
             quest2Image = menuBackground.transform.Find("Quest2").gameObject.GetComponent<Image>();
             quest3Image = menuBackground.transform.Find("Quest3").gameObject.GetComponent<Image>();
@@ -90,7 +93,6 @@ namespace Assets.Scripts.Menus
         {
             if (quest.personToDeliverTo == "Sylvia" && quest.RequiredDish == "Chocolate Chip Cookies")
             {
-                Debug.Log("Quest is for Sylvia and her Choco Cookies!");
                 Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
                     "Graphics",
                     "UI",
@@ -114,13 +116,24 @@ namespace Assets.Scripts.Menus
 
         public override void Update()
         {
-        }
+            if (Game.HUD.showQuests == true)
+            {
+                if (GameInput.InputControls.RightBumperPressed)
+                {
+                    if (menuBackground.activeInHierarchy)
+                    {
+                        menuBackground.SetActive(false);
+                        return;
+                    }
+                    else
+                    {
+                        setUpMenuForDisplay();
+                        menuBackground.SetActive(true);
+                        return;
+                    }
+                }
+            }
 
-
-        public void exitButtonPress()
-        {
-            this.exitMenu();
-            Game.Menu = null;
         }
 
     }

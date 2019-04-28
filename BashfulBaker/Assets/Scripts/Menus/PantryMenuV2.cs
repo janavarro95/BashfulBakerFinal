@@ -206,10 +206,8 @@ namespace Assets.Scripts.Menus
 
                     Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.ChocolateChips).stack -= 1;
 
-                    //updateTutorial();
+                    updateTutorial();
                     exitMenu();
-
-                    Debug.Log("Testing more a presses!");
                 }
                 else if (GameInput.InputControls.BPressed && Game.Player.specialIngredientsInventory.items.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.MintChips).stack > 0)
                 {
@@ -441,6 +439,8 @@ namespace Assets.Scripts.Menus
         {
 
             //Debug.Log("Picked up ingredients");
+
+            Game.HUD.showHUD = true;
 
             Game.HUD.showInventory = true;
             //Game.Player.dishesInventory.Add(new Dish("Chocolate Chip Cookie"));

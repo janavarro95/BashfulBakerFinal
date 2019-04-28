@@ -369,6 +369,14 @@ namespace Assets.Scripts.Items
             return null;
         }
 
+        public void updateSprite()
+        {
+            if (this.currentDishState == Enums.DishState.Ingredients) this.Sprite = this.ingredientsSprite;
+            if (this.currentDishState == Enums.DishState.Mixed) this.Sprite = this.mixedSprite;
+            if (this.currentDishState == Enums.DishState.Prepped) this.Sprite = this.preppedSprite;
+            if (this.currentDishState == Enums.DishState.Baked) this.Sprite = this.bakedSprite;
+            if (this.currentDishState == Enums.DishState.Packaged) this.Sprite = this.packagedSprite;
+        }
 
     }
 }

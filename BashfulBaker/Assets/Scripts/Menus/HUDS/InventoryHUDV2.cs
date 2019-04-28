@@ -29,23 +29,7 @@ namespace Assets.Scripts.Menus.HUDS
         /// </summary>
         public GameObject specialIngredients;
 
-
-        /// <summary>
-        /// The first dish.
-        /// </summary>
-        private Dish firstDish;
-        /// <summary>
-        /// The second dish.
-        /// </summary>
-        private Dish secondDish;
-        /// <summary>
-        /// The 3rd dish.
-        /// </summary>
-        private Dish thirdDish;
-        /// <summary>
-        /// The 4th dish.
-        /// </summary>
-        private Dish fourthDish;
+        public GameObject specialIngredientsIcon;
 
         /// <summary>
         /// The first special ingredient.
@@ -144,6 +128,7 @@ namespace Assets.Scripts.Menus.HUDS
 
             dishes = canvas.transform.Find("DishesView").gameObject;
             specialIngredients = canvas.transform.Find("SpecialIngredientsView").gameObject;
+            specialIngredientsIcon = canvas.transform.Find("SpecialIngredientsViewIcon").gameObject;
             setUpComponents();
             currentDishIndex = 0;
         }
@@ -195,8 +180,8 @@ namespace Assets.Scripts.Menus.HUDS
                 Texture2D texture = dishesList[0].currentSprite;
                 firstDishImage.sprite = Content.ContentManager.Instance.loadSprite(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 firstDishImage.color = Color.white;
-                firstDish = dishesList[0];
                 firstDishImage.gameObject.SetActive(true);
+                dishesList[0].loadSprite();
             }
 
             //right ingredient sprite
@@ -205,8 +190,8 @@ namespace Assets.Scripts.Menus.HUDS
                 Texture2D texture = dishesList[1].currentSprite;
                 secondDishImage.sprite = Content.ContentManager.Instance.loadSprite(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 secondDishImage.color = Color.white;
-                secondDish = dishesList[1];
                 secondDishImage.gameObject.SetActive(true);
+                dishesList[1].loadSprite();
             }
 
             //Top ingredient sprite
@@ -215,8 +200,8 @@ namespace Assets.Scripts.Menus.HUDS
                 Texture2D texture = dishesList[2].currentSprite;
                 thirdDishImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 thirdDishImage.color = Color.white;
-                thirdDish = dishesList[2];
                 thirdDishImage.gameObject.SetActive(true);
+                dishesList[2].loadSprite();
             }
 
             //Bottom ingredient sprite
@@ -225,8 +210,8 @@ namespace Assets.Scripts.Menus.HUDS
                 Texture2D texture = dishesList[3].currentSprite;
                 fourthDishImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 fourthDishImage.color = Color.white;
-                fourthDish = dishesList[3];
                 fourthDishImage.gameObject.SetActive(true);
+                dishesList[3].loadSprite();
             }
 
 
@@ -291,6 +276,12 @@ namespace Assets.Scripts.Menus.HUDS
                 sixthSpecialIngredientImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 sixthSpecialIngredientImage.color = Color.white;             
             }
+
+            foreach(Dish d in Game.Player.dishesInventory)
+            {
+                d.updateSprite();
+            }
+
         }
 
         /// <summary>
@@ -329,6 +320,7 @@ namespace Assets.Scripts.Menus.HUDS
                     this.specialIngredients.SetActive(false);
                     return;
                 }
+                updateCurrentDishIndex(0);
             }
 
         }
@@ -351,24 +343,53 @@ namespace Assets.Scripts.Menus.HUDS
 
             if (currentDishIndex == 0)
             {
-                Game.Player.activeItem = this.firstDish;
+                try
+                {
+                    Game.Player.activeItem = Game.Player.dishesInventory.actualItems.ElementAt(0);
+                    showOvenMitIcon();
+                }
+                catch(Exception err)
+                {
+                    Game.Player.activeItem = null;
+                }
             }
             else if (currentDishIndex == 1)
             {
-                Game.Player.activeItem = this.secondDish;
+                try
+                {
+                    Game.Player.activeItem = Game.Player.dishesInventory.actualItems.ElementAt(1);
+                    showOvenMitIcon();
+                }
+                catch(Exception err)
+                {
+                    Game.Player.activeItem = null;
+                }
             }
             else if (currentDishIndex == 2)
             {
-                Game.Player.activeItem = this.thirdDish;
+                try
+                {
+                    Game.Player.activeItem = Game.Player.dishesInventory.actualItems.ElementAt(2);
+                    showOvenMitIcon();
+                }
+                catch(Exception err)
+                {
+                    Game.Player.activeItem = null;
+                }
             }
             else if (currentDishIndex == 3)
             {
-                Game.Player.activeItem = this.fourthDish;
+                try
+                {
+                    Game.Player.activeItem = Game.Player.dishesInventory.actualItems.ElementAt(3);
+                    showOvenMitIcon();
+                }
+                catch(Exception err)
+                {
+                    Game.Player.activeItem = null;
+                }
             }
-
             Game.Player.updateHeldItemSprite();
-
-            Debug.Log("Current index is :" + currentDishIndex);
             updateDishes();
         }
 
@@ -394,6 +415,62 @@ namespace Assets.Scripts.Menus.HUDS
         {
             if (visibility == Enums.Visibility.Invisible) canvas.SetActive(false);
             if (visibility == Enums.Visibility.Visible) canvas.SetActive(true);
+        }
+
+        public void showEverything()
+        {
+            this.canvas.SetActive(true);
+            showAllComponents();
+        }
+
+        public void showAllComponents()
+        {
+            foreach(Transform t in this.canvas.transform)
+            {
+                t.gameObject.SetActive(true);
+            }
+        }
+
+        public void showOnlySpecialIngredients()
+        {
+            Game.HUD.showHUD = true;
+            Game.HUD.showSpecialIngredients = true;
+            this.dishes.SetActive(false);
+            this.specialIngredients.SetActive(true);
+            this.specialIngredientsIcon.SetActive(true);
+        }
+
+
+        private void showOvenMitIcon()
+        {
+            if (currentDishIndex == 0)
+            {
+                firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(true);
+                secondDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+            }
+            if (currentDishIndex == 1)
+            {
+                firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                secondDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(true);
+                thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+            }
+            if (currentDishIndex == 2)
+            {
+                firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                secondDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(true);
+                fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+            }
+            if (currentDishIndex == 3)
+            {
+                firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                secondDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(true);
+            }
         }
     }
 }

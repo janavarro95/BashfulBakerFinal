@@ -28,6 +28,15 @@ namespace Assets.Scripts.Menus
             daySelectionComponents = new Dictionary<string, MenuComponent>();
             setUpForSnapping();
 
+            if (GameInformation.Game.TutorialCompleted)
+            {
+                GameInformation.Game.HUD.InventoryHUD.showOnlySpecialIngredients();
+                Debug.Log("SHOW THE INGREDIENTS");
+            }
+            else
+            {
+                Debug.Log("Tutorial not completed???");
+            }
         }
 
         /// <summary>
@@ -48,6 +57,10 @@ namespace Assets.Scripts.Menus
                     try
                     {
                         specialPreDaySetUp(component.Key);
+                        GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
+                        GameInformation.Game.Player.position = new Vector3(-3.2f, -9.5f, 0);
+                        GameInformation.Game.HUD.showHUD = false;
+                        GameInformation.Game.HUD.InventoryHUD.showAllComponents();
                         SceneManager.LoadScene(component.Key);
                     }
                     catch (Exception err)
@@ -67,6 +80,12 @@ namespace Assets.Scripts.Menus
 
         private void specialPreDaySetUp(string componentName)
         {
+
+            if (componentName == "Kitchen")
+            {
+                GameInformation.Game.CurrentDayNumber = 1;
+            }
+
             if (componentName == "KitchenDay2")
             {
                 GameInformation.Game.TutorialCompleted = true;
@@ -74,11 +93,12 @@ namespace Assets.Scripts.Menus
 
 
                 Debug.Log("REMOVE THIS LATER!!!!!!!");
+                GameInformation.Game.Player.addSpecialIngredientForPlayer(Enums.SpecialIngredients.ChocolateChips);
                 GameInformation.Game.Player.addSpecialIngredientForPlayer(Enums.SpecialIngredients.MintChips);
                 GameInformation.Game.Player.addSpecialIngredientForPlayer(Enums.SpecialIngredients.Pecans);
                 GameInformation.Game.Player.addSpecialIngredientForPlayer(Enums.SpecialIngredients.Raisins);
 
-                GameInformation.Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Sylvia", new List<string>()));
+                GameInformation.Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
             }
         }
 
@@ -111,14 +131,17 @@ namespace Assets.Scripts.Menus
             daySelectionComponents.Add("Kitchen", new MenuComponent(background.transform.Find("Day1").Find("Image").GetComponent<Image>()));
             daySelectionComponents.Add("KitchenDay2", new MenuComponent(background.transform.Find("Day2").Find("Image").GetComponent<Image>()));
             daySelectionComponents.Add("KitchenDay3", new MenuComponent(background.transform.Find("Day3").Find("Image").GetComponent<Image>()));
+            daySelectionComponents.Add("KitchenDay4", new MenuComponent(background.transform.Find("Day4").Find("Image").GetComponent<Image>()));
 
             this.menuCursor = canvas.transform.Find("MenuMouseCursor").gameObject.GetComponent<Assets.Scripts.GameInput.GameCursorMenu>();
             this.selectedComponent = daySelectionComponents["Kitchen"];
             this.menuCursor.snapToCurrentComponent();
 
             daySelectionComponents["Kitchen"].setNeighbors(null, daySelectionComponents["KitchenDay3"], null, daySelectionComponents["KitchenDay2"]);
-            daySelectionComponents["KitchenDay2"].setNeighbors(null, null, daySelectionComponents["Kitchen"], null);
-            daySelectionComponents["KitchenDay3"].setNeighbors(daySelectionComponents["Kitchen"], null, null, null);
+            daySelectionComponents["KitchenDay2"].setNeighbors(null, daySelectionComponents["KitchenDay4"], daySelectionComponents["Kitchen"], null);
+            daySelectionComponents["KitchenDay3"].setNeighbors(daySelectionComponents["Kitchen"], null, null, daySelectionComponents["KitchenDay4"]);
+            daySelectionComponents["KitchenDay4"].setNeighbors(daySelectionComponents["KitchenDay2"], null, daySelectionComponents["KitchenDay3"], null);
+
         }
 
         /// <summary>
