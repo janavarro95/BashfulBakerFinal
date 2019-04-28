@@ -31,9 +31,6 @@ namespace Assets.Scripts.Menus.HUDS
 
         public GameObject specialIngredientsIcon;
 
-
-
-
         /// <summary>
         /// The first special ingredient.
         /// </summary>
@@ -323,6 +320,7 @@ namespace Assets.Scripts.Menus.HUDS
                     this.specialIngredients.SetActive(false);
                     return;
                 }
+                updateCurrentDishIndex(0);
             }
 
         }
@@ -348,6 +346,7 @@ namespace Assets.Scripts.Menus.HUDS
                 try
                 {
                     Game.Player.activeItem = Game.Player.dishesInventory.actualItems.ElementAt(0);
+                    showOvenMitIcon();
                 }
                 catch(Exception err)
                 {
@@ -359,6 +358,7 @@ namespace Assets.Scripts.Menus.HUDS
                 try
                 {
                     Game.Player.activeItem = Game.Player.dishesInventory.actualItems.ElementAt(1);
+                    showOvenMitIcon();
                 }
                 catch(Exception err)
                 {
@@ -370,6 +370,7 @@ namespace Assets.Scripts.Menus.HUDS
                 try
                 {
                     Game.Player.activeItem = Game.Player.dishesInventory.actualItems.ElementAt(2);
+                    showOvenMitIcon();
                 }
                 catch(Exception err)
                 {
@@ -381,16 +382,14 @@ namespace Assets.Scripts.Menus.HUDS
                 try
                 {
                     Game.Player.activeItem = Game.Player.dishesInventory.actualItems.ElementAt(3);
+                    showOvenMitIcon();
                 }
                 catch(Exception err)
                 {
                     Game.Player.activeItem = null;
                 }
             }
-
             Game.Player.updateHeldItemSprite();
-
-            Debug.Log("Current index is :" + currentDishIndex);
             updateDishes();
         }
 
@@ -439,6 +438,39 @@ namespace Assets.Scripts.Menus.HUDS
             this.dishes.SetActive(false);
             this.specialIngredients.SetActive(true);
             this.specialIngredientsIcon.SetActive(true);
+        }
+
+
+        private void showOvenMitIcon()
+        {
+            if (currentDishIndex == 0)
+            {
+                firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(true);
+                secondDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+            }
+            if (currentDishIndex == 1)
+            {
+                firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                secondDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(true);
+                thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+            }
+            if (currentDishIndex == 2)
+            {
+                firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                secondDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(true);
+                fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+            }
+            if (currentDishIndex == 3)
+            {
+                firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                secondDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+                fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(true);
+            }
         }
     }
 }
