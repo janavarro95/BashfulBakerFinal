@@ -351,6 +351,7 @@ namespace Assets.Scripts.Menus.HUDS
                 catch(Exception err)
                 {
                     Game.Player.activeItem = null;
+                    hidAllOvenMits();
                 }
             }
             else if (currentDishIndex == 1)
@@ -363,6 +364,7 @@ namespace Assets.Scripts.Menus.HUDS
                 catch(Exception err)
                 {
                     Game.Player.activeItem = null;
+                    hidAllOvenMits();
                 }
             }
             else if (currentDishIndex == 2)
@@ -375,6 +377,7 @@ namespace Assets.Scripts.Menus.HUDS
                 catch(Exception err)
                 {
                     Game.Player.activeItem = null;
+                    hidAllOvenMits();
                 }
             }
             else if (currentDishIndex == 3)
@@ -387,6 +390,7 @@ namespace Assets.Scripts.Menus.HUDS
                 catch(Exception err)
                 {
                     Game.Player.activeItem = null;
+                    hidAllOvenMits();
                 }
             }
             Game.Player.updateHeldItemSprite();
@@ -471,6 +475,13 @@ namespace Assets.Scripts.Menus.HUDS
                 thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
                 fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(true);
             }
+        }
+        private void hidAllOvenMits()
+        {
+            firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+            secondDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+            thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+            fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
         }
     }
 }
