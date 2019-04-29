@@ -387,7 +387,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
+      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -901,7 +901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &176016055
 Transform:
   m_ObjectHideFlags: 0
@@ -1062,7 +1062,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
+      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -2419,7 +2419,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452380434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.2, y: -15.959999, z: 0}
+  m_LocalPosition: {x: -16.2, y: -14.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 64561850}
@@ -3785,7 +3785,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523959838}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 47.49, y: 0, z: 0}
+  m_LocalPosition: {x: 47.49, y: -1.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1322857612}
@@ -3872,7 +3872,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
+      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -4067,12 +4067,12 @@ PrefabInstance:
     - target: {fileID: 3586872297600807283, guid: b77cca2e01994ce4ca73146ca192f2fd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.45
+      value: 25.41
       objectReference: {fileID: 0}
     - target: {fileID: 3586872297600807283, guid: b77cca2e01994ce4ca73146ca192f2fd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.88
+      value: -6.63
       objectReference: {fileID: 0}
     - target: {fileID: 3586872297600807283, guid: b77cca2e01994ce4ca73146ca192f2fd,
         type: 3}
@@ -7256,7 +7256,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883822715}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.02, y: 31.26, z: 0}
+  m_LocalPosition: {x: -40.02, y: 32.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1477343117}
@@ -7446,7 +7446,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897012854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.82, y: 0, z: 0}
+  m_LocalPosition: {x: 7.82, y: -1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 876505514}
@@ -10647,7 +10647,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
+      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -11825,7 +11825,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
+      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -12291,7 +12291,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
+      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
