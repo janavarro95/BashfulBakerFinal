@@ -15,6 +15,8 @@ public class CookieMover : MonoBehaviour
     public Animator[] cookies;
     private int Count;
     private int[] whichButton;
+    public Sprite[] cookiesprites;
+    public GameObject[] cookieObj;
     public AudioClip chime;
     public AudioSource moverSource;
 
@@ -22,6 +24,7 @@ public class CookieMover : MonoBehaviour
 
     private void Start()
     {
+        setCookies();
         moverSource.clip = chime;
         Count = 0;
         whichButton = new int[cookies.Length];
@@ -100,6 +103,34 @@ public class CookieMover : MonoBehaviour
         //Debug.Log("Arrow shows the way!");
         Game.Player.arrowDirection.gameObject.SetActive(true);
         ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
+    }
+    private void setCookies()
+    {
+        if (Game.Player.activeItem.Name == "Mint Chip Cookies")
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                cookieObj[i].GetComponent<SpriteRenderer>().sprite = cookiesprites[0];
+            }
+        }
+        else if (Game.Player.activeItem.Name == "Oatmeal Raisin Cookies")
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                cookieObj[i].GetComponent<SpriteRenderer>().sprite = cookiesprites[1];
+            }
+        }
+        else if (Game.Player.activeItem.Name == "Pecan Crescent Cookies")
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                cookieObj[i].GetComponent<SpriteRenderer>().sprite = cookiesprites[2];
+            }
+        }
+        else
+        {
+            Debug.Log("default");
+        }
     }
 
 }

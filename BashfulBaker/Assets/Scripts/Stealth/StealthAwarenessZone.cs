@@ -80,6 +80,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// Should the guard return home.
     /// </summary>
     private bool returnHome;
+    public bool talkingToPlayer = false;
 
     private List<Vector3> listOfSpotsToLookAt;
     [SerializeField]
@@ -218,7 +219,7 @@ public class StealthAwarenessZone : MonoBehaviour
         // might just comment out
         if (aiType != LookingType.LookAroundWhileReturning)
         {
-            this.gameObject.transform.right = (Vector2)patrollPoints[currentPatrolPoint + 1] - (Vector2)transform.position;
+            this.gameObject.transform.right = (Vector2)patrollPoints[currentPatrolPoint+1] - (Vector2)transform.position;
         }
 
         // lerp it up
@@ -242,7 +243,7 @@ public class StealthAwarenessZone : MonoBehaviour
         myState = 1;
 
         awareOfPlayer = (flashlight.seesPlayer || this.investigate != null || returnHome);
-        shouldMove = awareOfPlayer;
+        shouldMove = awareOfPlayer && !talkingToPlayer;
         question.SetActive(false);
 
         // INTRIGUED
@@ -368,10 +369,10 @@ public class StealthAwarenessZone : MonoBehaviour
     /// </summary>
     private void aiLookLogic()
     {
-        if (gameObject.GetComponent<FieldOfView>() == null) return;
-        if(gameObject.GetComponent<FieldOfView>().visibleTargets.Count > 0)
+        if (flashlight == null) return;
+        if(flashlight.visibleTargets.Count > 0)
         {
-            Transform target = gameObject.GetComponent<FieldOfView>().visibleTargets[0].transform;
+            Transform target = flashlight.visibleTargets[0].transform;
             Quaternion dirToTarget;
             // Get Angle in Radians
             float AngleRad = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x);
@@ -483,7 +484,7 @@ public class StealthAwarenessZone : MonoBehaviour
     private void lookAround()
     {
 
-        if (lookAroundLerp ==0.0f) {
+        if (lookAroundLerp == 0.0f) {
             lookAtStart = this.gameObject.transform.right;
             Vector2 lookAtSpot = listOfSpotsToLookAt[0];
             this.gameObject.transform.right = Vector2.Lerp(lookAtStart,lookAtSpot - (Vector2)lookAtStart,lookAroundLerp);
@@ -491,7 +492,7 @@ public class StealthAwarenessZone : MonoBehaviour
             //if (this.gameObject.transform.position.z < 0) this.gameObject.transform.position += new Vector3(0, 0, 180);
             return;
         }
-        else if(lookAroundLerp>0.0f && lookAroundLerp<1.0f)
+        else if(lookAroundLerp > 0.0f && lookAroundLerp < 1.0f)
         {
             Vector2 lookAtSpot = listOfSpotsToLookAt[0];
             this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - (Vector2)lookAtStart, lookAroundLerp);

@@ -52,7 +52,7 @@ public class StealthCaughtZone : MonoBehaviour
             if (this.guardType == GuardType.Guard)
             {
 
-                awareness.shouldMove = false;
+                awareness.talkingToPlayer = true;
 
                 if (Game.Player.activeItem != null && (Game.Player.activeItem is Dish) && hasEaten == false)
                 {
@@ -66,13 +66,13 @@ public class StealthCaughtZone : MonoBehaviour
                     dishConsumedName = Game.Player.activeItem.Name;
                     Game.Player.dishesInventory.Remove(Game.Player.activeItem);
                     Game.Player.activeItem = null;
-                    awareness.shouldMove = true;
+                    awareness.talkingToPlayer = false;
                     hasEaten = true;
                     return;
                 }
                 else if (Game.Player.dishesInventory.getAllDishes().Count > 0 && hasEaten == false)
                 {
-                    awareness.shouldMove = false;
+                    awareness.talkingToPlayer = true;
                     Item I = Game.Player.dishesInventory.getRandomDish();
                     Game.DialogueManager.StartDialogue(new Dialogue("Guard", Assets.Scripts.Utilities.StringUtilities.FormatStringList(new List<string>()
                 {
@@ -81,14 +81,14 @@ public class StealthCaughtZone : MonoBehaviour
                     "Is that for me? Thanks! Now be carefull this late at night!"
                 }, I.Name).ToArray()));
                     dishConsumedName = I.Name;
-                    awareness.shouldMove = true;
+                    awareness.talkingToPlayer = false;
                     Game.Player.dishesInventory.Remove(I);
                     hasEaten = true;
                     return;
                 }
                 else if (hasEaten == true)
                 {
-                    awareness.shouldMove = false;
+                    awareness.talkingToPlayer = true;
                     Game.DialogueManager.StartDialogue(new Dialogue("Guard",StringUtilities.FormatStringList(new List<string>()
                 {
                     "Hey there, your {0} you gave me was delicious! When can you make me some more!?",
@@ -97,24 +97,24 @@ public class StealthCaughtZone : MonoBehaviour
                     
                     Game.PhaseTimer.subtractTime(15);
                     //Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
-                    awareness.shouldMove = true;
+                    awareness.talkingToPlayer = false;
                 }
                 else
                 {
-                    awareness.shouldMove = false;
+                    awareness.talkingToPlayer = true;
                     Game.DialogueManager.StartDialogue(new Dialogue("Guard", new List<string>()
                 {
                     "Hey, what are you doing out here late at night???",
                     "You can't be out this late! Let me escort you back home!"
                 }.ToArray()));
                     Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
-                    awareness.shouldMove = true;
+                    awareness.talkingToPlayer = false;
                     return;
                 }
             }
             else if (guardType == GuardType.Villager)
             {
-                awareness.shouldMove = false;
+                awareness.talkingToPlayer = true;
                 Game.DialogueManager.StartDialogue(new Dialogue("Villager", new List<string>()
             {
                     "Hey, what are you doing out here late at night???",
@@ -122,7 +122,7 @@ public class StealthCaughtZone : MonoBehaviour
                     "(The villager talks your ear off for quite some time causing you to loose a bit of time.)"
             }.ToArray()));
                 Game.PhaseTimer.subtractTime(15);
-                awareness.shouldMove = true;
+                awareness.talkingToPlayer = true;
             }
             else
             {

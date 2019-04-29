@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6369378731292939772}
   - component: {fileID: 6369378731292939773}
   - component: {fileID: 6369378731292939714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e86afcafd9c8b42aa25543945dcd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sawPlayer: 0
+  seesPlayer: 0
+  pathUpdateReset: 1
   viewRadius: 2
   viewAngle: 360
   targetMask:
@@ -118,9 +121,9 @@ GameObject:
   - component: {fileID: 6369378731970085629}
   - component: {fileID: 6369378731970085570}
   - component: {fileID: 6369378731970085571}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bakery
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,7 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6369378732044299272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Jeb's Jollies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +273,7 @@ GameObject:
   - component: {fileID: 6369378732332287393}
   - component: {fileID: 6369378732332287398}
   - component: {fileID: 6369378732332287399}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: window (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,6 +306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e86afcafd9c8b42aa25543945dcd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sawPlayer: 0
+  seesPlayer: 0
+  pathUpdateReset: 1
   viewRadius: 1
   viewAngle: 360
   targetMask:
