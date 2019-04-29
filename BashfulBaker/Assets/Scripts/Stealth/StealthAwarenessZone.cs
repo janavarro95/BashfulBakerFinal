@@ -80,6 +80,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// Should the guard return home.
     /// </summary>
     private bool returnHome;
+    public bool talkingToPlayer = false;
 
     private List<Vector3> listOfSpotsToLookAt;
     [SerializeField]
@@ -242,7 +243,7 @@ public class StealthAwarenessZone : MonoBehaviour
         myState = 1;
 
         awareOfPlayer = (flashlight.seesPlayer || this.investigate != null || returnHome);
-        shouldMove = awareOfPlayer;
+        shouldMove = awareOfPlayer && !talkingToPlayer;
         question.SetActive(false);
 
         // INTRIGUED

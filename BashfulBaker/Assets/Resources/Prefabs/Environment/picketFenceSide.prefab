@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1013155317550942907}
   - component: {fileID: 1013155317550942906}
   - component: {fileID: 7602626725320053300}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: picketFenceSide
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
