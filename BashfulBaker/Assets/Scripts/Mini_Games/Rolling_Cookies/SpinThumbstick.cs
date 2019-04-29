@@ -18,7 +18,13 @@ namespace Assets.Scripts.GameInput
         public GameObject[] buttons;
         private SpriteRenderer sprite;
         public Sprite[] sprites;
+        public Sprite[] mint;
+        public Sprite[] raisin;
+        public Sprite[] pecan;
+        public Sprite[] flavorcookies;
         public GameObject progressBar;
+        public GameObject Bowl;
+        public Sprite[] bowlsprites;
 
         public AudioClip chime;
         public AudioSource spinningSource;
@@ -26,6 +32,8 @@ namespace Assets.Scripts.GameInput
         // Start is called before the first frame update
         void Start()
         {
+            setcookies();
+            setDough();
             spinningSource.clip = chime;
             startR = new Vector2(0, 0);
             startL = new Vector2(0, 0);
@@ -146,6 +154,53 @@ namespace Assets.Scripts.GameInput
             Game.HUD.showAll();
             Game.LoadCorrectKitchenScene();
             ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
+        }
+
+        private void setDough()
+        {
+             if (Game.Player.activeItem.Name == "Mint Chip Cookies")
+            {
+                sprites = mint;
+            }
+            else if (Game.Player.activeItem.Name == "Oatmeal Raisin Cookies")
+            {
+                sprites = raisin;
+            }
+            else if (Game.Player.activeItem.Name == "Pecan Crescent Cookies")
+            {
+                sprites = pecan;
+            }
+            else
+            {
+                Debug.Log("default");
+            }
+        }
+        private void setcookies()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                if (Game.Player.activeItem.Name == "Mint Chip Cookies")
+                {
+                    cookies[i].GetComponent<SpriteRenderer>().sprite = flavorcookies[0];
+                    Bowl.GetComponent<SpriteRenderer>().sprite = bowlsprites[0];
+                }
+                else if (Game.Player.activeItem.Name == "Oatmeal Raisin Cookies")
+                {
+                    cookies[i].GetComponent<SpriteRenderer>().sprite = flavorcookies[1];
+                    Bowl.GetComponent<SpriteRenderer>().sprite = bowlsprites[1];
+                }
+                else if (Game.Player.activeItem.Name == "Pecan Crescent Cookies")
+                {
+                    cookies[i].GetComponent<SpriteRenderer>().sprite = flavorcookies[2];
+                    Bowl.GetComponent<SpriteRenderer>().sprite = bowlsprites[2];
+                }
+                else
+                {
+                    Debug.Log("default");
+                }
+                
+            }
+
         }
     }
 
