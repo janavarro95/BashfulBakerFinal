@@ -30,7 +30,6 @@ namespace Assets.Scripts.Menus
 
             if (GameInformation.Game.TutorialCompleted)
             {
-                GameInformation.Game.HUD.InventoryHUD.showOnlySpecialIngredients();
                 Debug.Log("SHOW THE INGREDIENTS");
             }
             else
@@ -117,7 +116,6 @@ namespace Assets.Scripts.Menus
                         GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
                         GameInformation.Game.Player.position = new Vector3(-3.2f, -9.5f, 0);
                         GameInformation.Game.HUD.showHUD = false;
-                        GameInformation.Game.HUD.InventoryHUD.showAllComponents();
                         SceneManager.LoadScene(component.Key);
                     }
                     catch (Exception err)

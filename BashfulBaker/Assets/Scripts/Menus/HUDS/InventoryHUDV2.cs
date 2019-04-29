@@ -316,7 +316,7 @@ namespace Assets.Scripts.Menus.HUDS
             fourthDishImage.color = new Color(1, 1, 1, 0);
 
             this.dishes.SetActive(true);
-            this.specialIngredients.SetActive(true);
+            //this.specialIngredients.SetActive(true);
 
             //left ingredient sprite
             if (dishesList.Count > 0)
@@ -573,30 +573,9 @@ namespace Assets.Scripts.Menus.HUDS
             if (visibility == Enums.Visibility.Visible) canvas.SetActive(true);
         }
 
-        public void showEverything()
-        {
-            this.canvas.SetActive(true);
-            showAllComponents();
-        }
-
-        public void showAllComponents()
-        {
-            foreach(Transform t in this.canvas.transform)
-            {
-                t.gameObject.SetActive(true);
-            }
-        }
-
-        public void showOnlySpecialIngredients()
-        {
-            Game.HUD.showHUD = true;
-            Game.HUD.showSpecialIngredients = true;
-            this.dishes.SetActive(false);
-            this.specialIngredients.SetActive(true);
-            this.specialIngredientsGameObject.SetActive(true);
-        }
-
-
+        /// <summary>
+        /// Show the correct oven mit icons.
+        /// </summary>
         private void showOvenMitIcon()
         {
             if (currentDishIndex == 0)
@@ -628,6 +607,10 @@ namespace Assets.Scripts.Menus.HUDS
                 fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(true);
             }
         }
+
+        /// <summary>
+        /// Hides all of the oven mit sprites
+        /// </summary>
         private void hidAllOvenMits()
         {
             firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
@@ -637,6 +620,10 @@ namespace Assets.Scripts.Menus.HUDS
         }
 
 
+        /// <summary>
+        /// Rotate a special ingredient icon in the HUD.
+        /// </summary>
+        /// <param name="ingredient"></param>
         public void rotateSpecialIngredient(Enums.SpecialIngredients ingredient)
         {
             if (ingredient == 0)
