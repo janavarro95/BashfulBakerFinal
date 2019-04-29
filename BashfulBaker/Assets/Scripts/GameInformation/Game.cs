@@ -354,26 +354,27 @@ namespace Assets.Scripts.GameInformation
 
             if (SceneManager.GetActiveScene().name == "preloadScene")
             {
-                string path = Path.Combine("Prefabs", "Player");
-                Player.gameObject = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)));
-                Player.gameObject.transform.position = new Vector3(-3.06971f, -9.5f, 0);
-                DontDestroyOnLoad(Player.gameObject);
-
-                string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
-                //Debug.Log(HUDPath);
-                Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
-
-
-                SceneManager.LoadScene("DaySelectMenu");
-                //Debug.Log("Loading kitchen scene from the Game.cs script!");
-
-                //StartNewTimerPhase(2, 0);
-
-                if (Game.TutorialCompleted == false)
+                if (GameObject.Find("Player(Clone)")==null)
                 {
-                    (HUD as GameHUD).showInventory = false;
+                    string path = Path.Combine("Prefabs", "Player");
+                    Player.gameObject = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)));
+                    Player.gameObject.transform.position = new Vector3(-3.06971f, -9.5f, 0);
+                    DontDestroyOnLoad(Player.gameObject);
+
+                    string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
+                    //Debug.Log(HUDPath);
+                    Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
+                    //Debug.Log("Loading kitchen scene from the Game.cs script!");
+
+                    //StartNewTimerPhase(2, 0);
+
+                    if (Game.TutorialCompleted == false)
+                    {
+                        (HUD as GameHUD).showInventory = false;
+                    }
                 }
 
+                SceneManager.LoadScene("DaySelectMenu");
             }
 
             if (SceneManager.GetActiveScene().name == "SampleScene")

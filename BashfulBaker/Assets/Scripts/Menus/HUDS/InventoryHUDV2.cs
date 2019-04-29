@@ -635,5 +635,40 @@ namespace Assets.Scripts.Menus.HUDS
             thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
             fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
         }
+
+
+        public void rotateSpecialIngredient(Enums.SpecialIngredients ingredient)
+        {
+            if (ingredient == 0)
+            {
+                sp1Rot.doCycle();
+                basketRot.doCycle();
+            }
+            else if ((int)ingredient == 1)
+            {
+                sp2Rot.doCycle();
+                basketRot.doCycle();
+            }
+            else if ((int)ingredient == 2)
+            {
+                sp3Rot.doCycle();
+                basketRot.doCycle();
+            }
+            else if ((int)ingredient == 3)
+            {
+                sp4Rot.doCycle();
+                basketRot.doCycle();
+            }
+            else if ((int)ingredient == 4)
+            {
+                sp5Rot.doCycle();
+                basketRot.doCycle();
+            }
+            else if ((int)ingredient == 5)
+            {
+                sp6Rot.doCycle();
+                basketRot.doCycle();
+            }
+        }
     }
 }
