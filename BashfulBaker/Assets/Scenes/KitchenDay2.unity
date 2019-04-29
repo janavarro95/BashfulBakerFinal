@@ -401,7 +401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &265374695
 Transform:
   m_ObjectHideFlags: 0
@@ -850,6 +850,7 @@ MonoBehaviour:
   sceneToWarpTo: Neighborhood
   warpLocation: {x: -7, y: 1}
   transitionTime: 0.5
+  warpsToKitchen: 0
 --- !u!1 &479467069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1556,6 +1557,7 @@ MonoBehaviour:
   sceneToWarpTo: Bakery
   warpLocation: {x: -0.6, y: 1.5}
   transitionTime: 0.5
+  warpsToKitchen: 0
 --- !u!1 &750998068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,7 +1989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &773525485
 Transform:
   m_ObjectHideFlags: 0
@@ -2044,6 +2046,7 @@ MonoBehaviour:
   sceneToWarpTo: Outside
   warpLocation: {x: -5.65, y: 0}
   transitionTime: 0.5
+  warpsToKitchen: 0
 --- !u!1 &775808433
 GameObject:
   m_ObjectHideFlags: 0
