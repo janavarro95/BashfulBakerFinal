@@ -68,6 +68,8 @@ public class StealthCaughtZone : MonoBehaviour
                     Game.Player.activeItem = null;
                     awareness.shouldMove = true;
                     hasEaten = true;
+
+                    Game.CaughtByGuard();
                     return;
                 }
                 else if (Game.Player.dishesInventory.getAllDishes().Count > 0 && hasEaten == false)
@@ -84,6 +86,7 @@ public class StealthCaughtZone : MonoBehaviour
                     awareness.shouldMove = true;
                     Game.Player.dishesInventory.Remove(I);
                     hasEaten = true;
+                    Game.CaughtByGuard();
                     return;
                 }
                 else if (hasEaten == true)

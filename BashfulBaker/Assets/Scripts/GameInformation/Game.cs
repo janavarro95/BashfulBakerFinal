@@ -175,6 +175,8 @@ namespace Assets.Scripts.GameInformation
 
         public static Dictionary<int, int> NumberOfTimesCaught;
 
+        public static Dictionary<int, bool> DaysUnlocked;
+
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
         static Game()
@@ -255,6 +257,16 @@ namespace Assets.Scripts.GameInformation
                     Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Carrots));
                     Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Strawberries));
                     IngredientsAddedForPlayer = true;
+                }
+
+                if (DaysUnlocked == null)
+                {
+                    DaysUnlocked = new Dictionary<int, bool>();
+                    DaysUnlocked.Add(0, true);
+                    DaysUnlocked.Add(1, true);
+                    DaysUnlocked.Add(2, true);
+                    DaysUnlocked.Add(3, false);
+                    DaysUnlocked.Add(4, false);
                 }
 
                 setUpScene();
@@ -558,6 +570,21 @@ namespace Assets.Scripts.GameInformation
             else
             {
                 NumberOfTimesCaught.Add(CurrentDayNumber, 1);
+            }
+        }
+
+        /// <summary>
+        /// Unlocks the next day.
+        /// </summary>
+        public static void UnlockDay()
+        {
+            try
+            {
+                DaysUnlocked[CurrentDayNumber+1] = true;
+            }
+            catch(Exception err)
+            {
+
             }
         }
 
