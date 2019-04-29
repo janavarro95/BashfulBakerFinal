@@ -192,6 +192,82 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &423544520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 423544522}
+  - component: {fileID: 423544521}
+  m_Layer: 0
+  m_Name: Dough Type Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &423544521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423544520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44e43b03b2f0a349b3b47e93766801e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cookies:
+  - {fileID: 1646062909}
+  - {fileID: 1625418078}
+  - {fileID: 1894249627}
+  - {fileID: 1619689293}
+  - {fileID: 812438036}
+  - {fileID: 808386951}
+  doughBall: {fileID: 1449644831}
+  cookieSprites:
+  - {fileID: 21300000, guid: d6af631e85763854daea2224626a5df0, type: 3}
+  - {fileID: 21300000, guid: af0c9ed049e006242b1c2c8be7315534, type: 3}
+  - {fileID: 21300000, guid: e75ac4a7769018c479a6b48abe985dff, type: 3}
+  - {fileID: 21300000, guid: 9140418b85c9ef743a516ac4e5e4b5bd, type: 3}
+  mintdough:
+  - {fileID: 21300000, guid: 1499182c8d0cefe41b4353d337c8bac8, type: 3}
+  - {fileID: 21300000, guid: a1274ea7b5f52f742a41098a371703a6, type: 3}
+  - {fileID: 21300000, guid: 7f7937e9fb4b467438a4ae054cb050ac, type: 3}
+  - {fileID: 21300000, guid: 1722f97815b685c47a91d47af7d03e3e, type: 3}
+  raisindough:
+  - {fileID: 21300000, guid: e5d1a2c4228a3674dbc197c5fa7cdb7a, type: 3}
+  - {fileID: 21300000, guid: b15c5be10a306734a853f6031fa8f7b7, type: 3}
+  - {fileID: 21300000, guid: c356c4039167cd0498f87e03a92d9626, type: 3}
+  - {fileID: 21300000, guid: aa85a33d40e69a448bfd99cbf180948e, type: 3}
+  pecandough:
+  - {fileID: 21300000, guid: b9a3d8f998e84b7489100d55feac61a0, type: 3}
+  - {fileID: 21300000, guid: 254c7d07467f9ba4ea182783b5043e5e, type: 3}
+  - {fileID: 21300000, guid: edbc45fe51ebd6e4e974c3cf8590bef1, type: 3}
+  - {fileID: 21300000, guid: e6fa1d770fda4b844b9fd41db1b62d10, type: 3}
+  Bowls:
+  - {fileID: 21300000, guid: f4875dc46ad52ce4f9658e216ac84e98, type: 3}
+  - {fileID: 21300000, guid: d77f6ee24295d5b4abcd754cee374587, type: 3}
+  - {fileID: 21300000, guid: 72be57f7e63aa024b9cf9707052f1ad0, type: 3}
+  - {fileID: 21300000, guid: 454ea0e0aaf47b240b3f6ff514d4105b, type: 3}
+--- !u!4 &423544522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423544520}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.096239604, y: -2.1828423, z: -74.82031}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &527566491
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +404,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f4875dc46ad52ce4f9658e216ac84e98, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fe8ee289b964849bfbb0f61612e6e7ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -347,7 +423,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571148254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5, y: -0.11, z: 1}
+  m_LocalPosition: {x: -5.5, y: -1.82, z: 1}
   m_LocalScale: {x: 2.892, y: 2.918, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1252,7 +1328,31 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7ddad8b763969cd448831b756a9ffcb4, type: 3}
   - {fileID: 21300000, guid: c1ab3a22ab5cec3488dc4ef772dd9ac3, type: 3}
   - {fileID: 21300000, guid: a5eb922a104a27c42ba26f854bbbc381, type: 3}
+  mint:
+  - {fileID: 21300000, guid: 1499182c8d0cefe41b4353d337c8bac8, type: 3}
+  - {fileID: 21300000, guid: a1274ea7b5f52f742a41098a371703a6, type: 3}
+  - {fileID: 21300000, guid: 7f7937e9fb4b467438a4ae054cb050ac, type: 3}
+  - {fileID: 21300000, guid: 1722f97815b685c47a91d47af7d03e3e, type: 3}
+  raisin:
+  - {fileID: 21300000, guid: e5d1a2c4228a3674dbc197c5fa7cdb7a, type: 3}
+  - {fileID: 21300000, guid: b15c5be10a306734a853f6031fa8f7b7, type: 3}
+  - {fileID: 21300000, guid: c356c4039167cd0498f87e03a92d9626, type: 3}
+  - {fileID: 21300000, guid: aa85a33d40e69a448bfd99cbf180948e, type: 3}
+  pecan:
+  - {fileID: 21300000, guid: b9a3d8f998e84b7489100d55feac61a0, type: 3}
+  - {fileID: 21300000, guid: 254c7d07467f9ba4ea182783b5043e5e, type: 3}
+  - {fileID: 21300000, guid: edbc45fe51ebd6e4e974c3cf8590bef1, type: 3}
+  - {fileID: 21300000, guid: e6fa1d770fda4b844b9fd41db1b62d10, type: 3}
+  flavorcookies:
+  - {fileID: 21300000, guid: af0c9ed049e006242b1c2c8be7315534, type: 3}
+  - {fileID: 21300000, guid: e75ac4a7769018c479a6b48abe985dff, type: 3}
+  - {fileID: 21300000, guid: 9140418b85c9ef743a516ac4e5e4b5bd, type: 3}
   progressBar: {fileID: 962850415}
+  Bowl: {fileID: 571148254}
+  bowlsprites:
+  - {fileID: 21300000, guid: d77f6ee24295d5b4abcd754cee374587, type: 3}
+  - {fileID: 21300000, guid: 72be57f7e63aa024b9cf9707052f1ad0, type: 3}
+  - {fileID: 21300000, guid: 454ea0e0aaf47b240b3f6ff514d4105b, type: 3}
   chime: {fileID: 8300000, guid: 8f5ade69e4e2a9f4e8b8b6f0e9c48553, type: 3}
   spinningSource: {fileID: 1449644835}
 --- !u!82 &1449644835

@@ -24,6 +24,10 @@ namespace Assets.Scripts.GameInput
         public GameObject[] buttons;
         public SpriteRenderer bowl;
         public Sprite[] bowlsprites;
+       
+        public Sprite[] mintsprites;
+        public Sprite[] raisinprites;
+        public Sprite[] pecansprites;
         public Animator[]foodAnimation;
 
 
@@ -32,6 +36,7 @@ namespace Assets.Scripts.GameInput
         // Start is called before the first frame update
         void Start()
         {
+            
             stirringSource.clip = chime;
             Prev = new Vector2(0, 0);
             Next = new Vector2(0, 0);
@@ -50,17 +55,21 @@ namespace Assets.Scripts.GameInput
             if (Game.Player.activeItem.Name == "Chocolate Chip Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Choc;
+                
             } else if (Game.Player.activeItem.Name == "Mint Chip Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Mint;
+                bowlsprites = mintsprites;
             }
             else if (Game.Player.activeItem.Name == "Oatmeal Raisin Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Raisin;
+                bowlsprites = raisinprites;
             }
             else if (Game.Player.activeItem.Name == "Pecan Crescent Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Pecan;
+                bowlsprites = pecansprites;
             }
             else
             {
