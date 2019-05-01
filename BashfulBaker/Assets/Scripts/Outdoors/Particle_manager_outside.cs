@@ -11,7 +11,7 @@ public class Particle_manager_outside : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.Find("Player(Clone)").GetComponent<ParticleSystem>().enableEmission = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<ParticleSystem>().enableEmission = false;
         
     }
 
@@ -22,7 +22,7 @@ public class Particle_manager_outside : MonoBehaviour
         if (spawn_timer < 0)
         {
             Instantiate(beacon);
-            beacon.transform.position = (GameObject.Find("Player(Clone)").GetComponent<Transform>().position);
+            beacon.transform.position = (GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position);
             spawn_timer = 1;
         }
     }

@@ -8,10 +8,14 @@ public class Darken : MonoBehaviour
 {
     public Material mat;
     public float transparency, darkenSpeed;
+    public bool darken = true;
+    public bool startAtZero = true;
     // Start is called before the first frame update
     void Start()
     {
-        transparency = 0;
+        if (startAtZero)
+            transparency = 0;
+        mat.SetFloat("_Transparency", transparency);
     }
 
     // Update is called once per frame
@@ -21,14 +25,10 @@ public class Darken : MonoBehaviour
         if(transparency < .9)
             transparency += darkenSpeed;
         */
-        try
+        if (darken)
         {
             transparency = 1 - (float)(Game.PhaseTimer.currentTime / Game.PhaseTimer.maxTime);
             mat.SetFloat("_Transparency", transparency);
-        }
-        catch(Exception err)
-        {
-
         }
     }
 }

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4689565675054395426}
   - component: {fileID: 4689565675054395428}
   - component: {fileID: 4689565675054395429}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: House
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4689565675866051961}
   - component: {fileID: 4689565675866051974}
   - component: {fileID: 4689565675866051975}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: window top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,6 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e86afcafd9c8b42aa25543945dcd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sawPlayer: 0
+  seesPlayer: 0
+  pathUpdateReset: 1
   viewRadius: 1
   viewAngle: 360
   targetMask:
@@ -227,7 +230,7 @@ GameObject:
   - component: {fileID: 4689565676030009211}
   - component: {fileID: 4689565676030009208}
   - component: {fileID: 4689565676030009209}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: window bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,6 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e86afcafd9c8b42aa25543945dcd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sawPlayer: 0
+  seesPlayer: 0
+  pathUpdateReset: 1
   viewRadius: 2
   viewAngle: 360
   targetMask:
@@ -331,7 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1241214363872615540}
   - component: {fileID: 8273296214821917925}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: blankRoof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
