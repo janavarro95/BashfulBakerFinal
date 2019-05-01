@@ -568,6 +568,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1651442390}
     m_Modifications:
+    - target: {fileID: 3024523048064800265, guid: 9577406c2aa295b42aee036cfe803f2d,
+        type: 3}
+      propertyPath: m_Name
+      value: Sensory Guard (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 1999957425, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
       propertyPath: viewRadius
       value: 12
@@ -575,11 +580,6 @@ PrefabInstance:
     - target: {fileID: 1999957425, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
       propertyPath: viewAngle
       value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3024523048064800265, guid: 9577406c2aa295b42aee036cfe803f2d,
-        type: 3}
-      propertyPath: m_Name
-      value: Sensory Guard (2)
       objectReference: {fileID: 0}
     - target: {fileID: 3024523048064800268, guid: 9577406c2aa295b42aee036cfe803f2d,
         type: 3}
@@ -1062,7 +1062,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
+      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -2729,14 +2729,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1651442390}
     m_Modifications:
-    - target: {fileID: 1999957425, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
-      propertyPath: viewRadius
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3024523048064800265, guid: 9577406c2aa295b42aee036cfe803f2d,
         type: 3}
       propertyPath: m_Name
       value: Sensory Guard
+      objectReference: {fileID: 0}
+    - target: {fileID: 1999957425, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
+      propertyPath: viewRadius
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3024523048064800268, guid: 9577406c2aa295b42aee036cfe803f2d,
         type: 3}
@@ -3872,7 +3872,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
+      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -5900,7 +5900,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
+      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -7144,14 +7144,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1651442390}
     m_Modifications:
-    - target: {fileID: 1999957425, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
-      propertyPath: viewRadius
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3024523048064800265, guid: 9577406c2aa295b42aee036cfe803f2d,
         type: 3}
       propertyPath: m_Name
       value: Sensory Guard (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1999957425, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
+      propertyPath: viewRadius
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3024523048064800268, guid: 9577406c2aa295b42aee036cfe803f2d,
         type: 3}
@@ -7783,7 +7783,11 @@ MonoBehaviour:
     sentences:
     - Phew, I'm glad that's done.
     - 'Hopefully Silvia likes her cookies! '
+  wrongCookies:
+    name: 
+    sentences: []
   daneFace: {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  poutingboy: {fileID: 0}
 --- !u!1001 &927561946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8253,7 +8257,12 @@ MonoBehaviour:
     sentences:
     - Phew, I'm glad that's done.
     - 'Hopefully Silvia likes her cookies! '
+  wrongCookies:
+    name: Dane
+    sentences:
+    - Yup this is Sylvia's house, now I just need those chocolate chip cookies.
   daneFace: {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  poutingboy: {fileID: 0}
 --- !u!4 &999737536
 Transform:
   m_ObjectHideFlags: 0
@@ -8657,6 +8666,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1651442390}
     m_Modifications:
+    - target: {fileID: 3024523048064800265, guid: 9577406c2aa295b42aee036cfe803f2d,
+        type: 3}
+      propertyPath: m_Name
+      value: Sensory Guard (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 1999957425, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
       propertyPath: viewRadius
       value: 8
@@ -8664,11 +8678,6 @@ PrefabInstance:
     - target: {fileID: 1999957425, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
       propertyPath: viewAngle
       value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 3024523048064800265, guid: 9577406c2aa295b42aee036cfe803f2d,
-        type: 3}
-      propertyPath: m_Name
-      value: Sensory Guard (4)
       objectReference: {fileID: 0}
     - target: {fileID: 3024523048064800268, guid: 9577406c2aa295b42aee036cfe803f2d,
         type: 3}
@@ -9663,14 +9672,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1651442390}
     m_Modifications:
-    - target: {fileID: 1999957425, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
-      propertyPath: viewRadius
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3024523048064800265, guid: 9577406c2aa295b42aee036cfe803f2d,
         type: 3}
       propertyPath: m_Name
       value: Sensory Guard (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1999957425, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
+      propertyPath: viewRadius
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3024523048064800268, guid: 9577406c2aa295b42aee036cfe803f2d,
         type: 3}
@@ -10647,7 +10656,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
+      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -11090,6 +11099,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1651442390}
     m_Modifications:
+    - target: {fileID: 3024523048064800265, guid: 9577406c2aa295b42aee036cfe803f2d,
+        type: 3}
+      propertyPath: m_Name
+      value: Sensory Guard (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 1999957425, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
       propertyPath: viewRadius
       value: 6
@@ -11097,11 +11111,6 @@ PrefabInstance:
     - target: {fileID: 1999957425, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
       propertyPath: viewAngle
       value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 3024523048064800265, guid: 9577406c2aa295b42aee036cfe803f2d,
-        type: 3}
-      propertyPath: m_Name
-      value: Sensory Guard (5)
       objectReference: {fileID: 0}
     - target: {fileID: 3024523048064800268, guid: 9577406c2aa295b42aee036cfe803f2d,
         type: 3}
@@ -11825,7 +11834,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
+      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -12291,7 +12300,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
+      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -13053,7 +13062,11 @@ MonoBehaviour:
     sentences:
     - Phew, I'm glad that's done.
     - 'Hopefully Silvia likes her cookies! '
+  wrongCookies:
+    name: 
+    sentences: []
   daneFace: {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  poutingboy: {fileID: 0}
 --- !u!1001 &1805669759
 PrefabInstance:
   m_ObjectHideFlags: 0

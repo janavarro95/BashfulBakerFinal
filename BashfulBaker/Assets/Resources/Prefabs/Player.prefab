@@ -476,7 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a7b54f52d7b3c4f905947fb2ad8f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpeed: 1
+  defaultSpeed: 1.25
   movementDampening: 20
   woodStepSounds:
   - {fileID: 8300000, guid: 2447ece8f659d1b47bf1458a87b9159a, type: 3}
@@ -1434,7 +1434,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
