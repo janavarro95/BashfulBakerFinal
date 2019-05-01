@@ -147,6 +147,7 @@ namespace Assets.Scripts.Menus
                     this.currentMode = PantryMode.Cookies;
                     return true;
                 }
+                /*
                 else if (GameInput.InputControls.BPressed)
                 {
                     cakeSelect.SetActive(true);
@@ -165,6 +166,7 @@ namespace Assets.Scripts.Menus
                     this.currentMode = PantryMode.Breads;
                     return true;
                 }
+                */
             }
             else if ( GameInput.InputControls.StartPressed)
             {
@@ -474,6 +476,15 @@ namespace Assets.Scripts.Menus
         private void getDailyQuests()
         {
             if (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0) Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
+
+            if (Game.CurrentDayNumber == 2)
+            {
+                Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
+                Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Norville", new List<string>()));
+                Game.QuestManager.addQuest(new CookingQuest("Oatmeal Raisin Cookies", "Lylia", new List<string>()));
+
+            }
+
         }
     }
 }

@@ -79,10 +79,6 @@ namespace Assets.Scripts.Menus
             {
                 Instantiate("PantryMenuV2", OverrideMenu);
             }
-            else if (typeof(T) == typeof(QuestMenu))
-            {
-                Instantiate("CookingQuestMenu", OverrideMenu);
-            }
             else if (typeof(T) == typeof(GameMenu))
             {
                 Instantiate("GameMenu", OverrideMenu);
