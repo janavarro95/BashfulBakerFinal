@@ -157,11 +157,6 @@ namespace Assets.Scripts.Menus.HUDS
         {
             QuestHUD.setVisibility(Visibility);
         }
-
-        public void toggleSpecialIngredientsVisibility(Enums.Visibility visibility)
-        {
-           if(visibility== Enums.Visibility.Visible)InventoryHUD.showOnlySpecialIngredients();
-        }
         
         public void showAll()
         {
