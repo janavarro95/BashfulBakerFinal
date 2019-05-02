@@ -21,6 +21,10 @@ public class PickUp : MonoBehaviour
         if (other.gameObject.tag == "Player" && (InputControls.APressed || Input.GetKeyDown(KeyCode.E)))
         {
             specItemInv.items.Find(ing => (ing as SpecialIngredient).ingredientType == item).stack++;
+
+            Game.HUD.showHUD = true;
+            Game.HUD.showInventory = true;
+            Game.HUD.updateInventoryHUD();
         }
     }
 }
