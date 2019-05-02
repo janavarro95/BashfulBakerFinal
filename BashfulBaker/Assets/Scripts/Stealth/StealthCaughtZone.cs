@@ -14,6 +14,7 @@ public class StealthCaughtZone : MonoBehaviour
     public Sprite guardFace;
     public Item itemToTake;
     public Material pacMat;
+    public DialogueManager dm;
 
     public bool inDialogue = false;
     private int dialoguePressesExit = 0;
@@ -145,20 +146,19 @@ public class StealthCaughtZone : MonoBehaviour
         // start dialog and take item
         Game.DialogueManager.StartDialogue(d);
         itemToTake = i;
-        TakeItemAway();
+        if (itemToTake != null)
+        {
+            TakeItemAway();
+        }
         // stop the player
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().CanPlayerMove = false;
     }
 
     private void ProgressDialogue()
     {
-        if (InputControls.APressed)
+        if (!dm.IsDialogueUp)
         {
-            exitPresses++;
-            if (exitPresses >= dialoguePressesExit)
-            {
-                EndDialogue();
-            }
+            EndDialogue();
         }
     }
 
@@ -175,7 +175,7 @@ public class StealthCaughtZone : MonoBehaviour
         {
             // transport to outside the bakery
             Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
-            //Pacify();
+            Pacify();
         }
 
         // start player movement
