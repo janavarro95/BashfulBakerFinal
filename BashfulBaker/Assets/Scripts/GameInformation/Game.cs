@@ -416,7 +416,7 @@ namespace Assets.Scripts.GameInformation
             {
                 try
                 {
-                    Player.arrowDirection.setTargetObject(GameObject.Find("Warps (2)").transform.Find("ToOutside").gameObject);
+                    Player.arrowDirection.setTargetObject(GameObject.Find("OutsideTarget").transform.gameObject);
 
                 }
                 catch(Exception err)
