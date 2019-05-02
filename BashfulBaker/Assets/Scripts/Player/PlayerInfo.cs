@@ -218,7 +218,11 @@ namespace Assets.Scripts.Player
             {
                 if (this._heldItemGameObject == null)
                 {
-                    this._heldItemGameObject.GetComponent<HeldObjectAnimator>().clearAnimationController();
+                    // if it's null....
+                    //... why are we accessing it?
+
+                    //this._heldItemGameObject.GetComponent<HeldObjectAnimator>().clearAnimationController();
+
                     return;
 
                 }

@@ -9,6 +9,8 @@ using UnityEngine;
 /// TODO:
 /// Also add in moving logic.
 /// </summary>
+[RequireComponent(typeof(FieldOfView))]
+[RequireComponent(typeof(StealthCaughtZone))]
 public class StealthAwarenessZone : MonoBehaviour
 {
     /// <summary>
@@ -20,6 +22,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// The flashlight that lights the player up
     /// </summary>
     public FieldOfView flashlight;
+    public StealthCaughtZone catching;
 
     /// <summary>
     /// Keeps track of all of the moves made so that the guard can hopefully return home.
@@ -137,6 +140,7 @@ public class StealthAwarenessZone : MonoBehaviour
         pathBackToStart = new Stack<Vector2>();
         listOfSpotsToLookAt = new List<Vector3>();
         flashlight = GetComponent<FieldOfView>();
+        catching = GetComponent<StealthCaughtZone>();
 
         this.startingLocation = this.transform.position;
 
@@ -242,7 +246,7 @@ public class StealthAwarenessZone : MonoBehaviour
         // state tracking
         myState = 1;
 
-        awareOfPlayer = (flashlight.seesPlayer || this.investigate != null || returnHome);
+        awareOfPlayer = (!catching.hasEaten && (flashlight.seesPlayer || this.investigate != null || returnHome));
         shouldMove = awareOfPlayer && !talkingToPlayer;
         question.SetActive(false);
 
@@ -251,29 +255,30 @@ public class StealthAwarenessZone : MonoBehaviour
         {
             // state tracking
             myState = 2;
-            // going back so some waypoint
+
             // PURSUIT
-            //if (shouldChasePlayer())
             if (flashlight.seesPlayer)
             {
                 // state tracking
                 myState = 64;
-                Debug.Log("Aware of Player");
+                //Debug.Log("Aware of Player");
 
                 // movement
                 if (shouldMove)
+                {
                     proximityToTarget += getProperMovementSpeed();
 
-                // get next spot in the path
-                if (proximityToTarget >= 1.0f)
-                {
-                    getNextTargetSpot();
-                }
-                // lerp there
-                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+                    // get next spot in the path
+                    if (proximityToTarget >= 1.0f)
+                    {
+                        getNextTargetSpot();
+                    }
 
-                // keep flashlight looking at player
-                aiLookLogic();
+                    // lerp there
+                    this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+                    // keep flashlight looking at player
+                    aiLookLogic();
+                }
 
                 //Animate here
                 animateGuard(sequenceStartingSpot, nextTargetSpot);
@@ -283,24 +288,27 @@ public class StealthAwarenessZone : MonoBehaviour
             // INVESTIGATING
             else if (this.investigate != null)
             {
-                Debug.Log("Investigating Player");
+                //Debug.Log("Investigating Player");
                 question.SetActive(true);
                 // state tracking
                 myState = 50;
 
                 // movement
                 if (shouldMove)
-                    proximityToTarget += getProperMovementSpeed();
-                // get next spot in the path
-                if (proximityToTarget >= 1.0f)
                 {
-                    getNextTargetSpot();
-                }
-                // lerp there
-                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+                    proximityToTarget += getProperMovementSpeed();
 
-                // keep flashlight looking at player
-                aiLookLogic();
+                    // get next spot in the path
+                    if (proximityToTarget >= 1.0f)
+                    {
+                        getNextTargetSpot();
+                    }
+
+                    // lerp there
+                    this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+                    // keep flashlight looking at player
+                    aiLookLogic();
+                }
 
                 //Animate here
                 animateGuard(sequenceStartingSpot, nextTargetSpot);
@@ -311,21 +319,24 @@ public class StealthAwarenessZone : MonoBehaviour
             {
                 // state tracking
                 myState = 8;
-                Debug.Log("Returning Home");
+                //Debug.Log("Returning Home");
 
                 // movement
                 if (shouldMove)
-                    proximityToTarget += getProperMovementSpeed();
-                // get next spot in the path
-                if (proximityToTarget >= 1.0f)
                 {
-                    getNextReturnSpot();
-                }
-                // lerp there
-                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+                    proximityToTarget += getProperMovementSpeed();
 
-                // look around
-                aiLookLogic();
+                    // get next spot in the path
+                    if (proximityToTarget >= 1.0f)
+                    {
+                        getNextReturnSpot();
+                    }
+
+                    // lerp there
+                    this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+                    // keep flashlight looking at player
+                    aiLookLogic();
+                }
                 //Animate here
                 animateGuard(sequenceStartingSpot, nextTargetSpot);
             }
@@ -335,7 +346,7 @@ public class StealthAwarenessZone : MonoBehaviour
         {
             // state tracking
             myState = 4;
-            Debug.Log("UNaware of Player");
+            //Debug.Log("UNaware of Player");
 
             // looking
             if (aiType != LookingType.None)
