@@ -94,51 +94,54 @@ public class FieldOfView : MonoBehaviour
 
     void FindVisibleTargets()
     {
-        sawPlayer = visibleTargets.Contains(GameObject.FindGameObjectWithTag("Player").transform);
-        seesPlayer = false;
-        visibleTargets.Clear();
-        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
-
-        for (int x = 0; x < targetsInViewRadius.Length; x++)
+        if (!zone.talkingToPlayer)
         {
-            Transform target = targetsInViewRadius[x].transform;
-            Quaternion dirToTarget;
-            // Get Angle in Radians
-            float AngleRad = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x);
-            // Get Angle in Degrees
-            float AngleDeg = (180 / Mathf.PI) * AngleRad;
-            dirToTarget = Quaternion.Euler(0, 0, AngleDeg);
+            sawPlayer = visibleTargets.Contains(GameObject.FindGameObjectWithTag("Player").transform);
+            seesPlayer = false;
+            visibleTargets.Clear();
+            Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
 
-            RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, target.position - this.gameObject.transform.position);
-            if (hit.collider.gameObject.tag == "Obstacle")
+            for (int x = 0; x < targetsInViewRadius.Length; x++)
             {
-                continue;
-            }
-            else if (!(target == GameObject.FindGameObjectWithTag("Player").transform && target.GetComponent<PlayerMovement>().hidden) && Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
-            {
-                float distToTarget = Vector3.Distance(transform.position, target.position);
-                if(!Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, distToTarget, obstacleMask))
+                Transform target = targetsInViewRadius[x].transform;
+                Quaternion dirToTarget;
+                // Get Angle in Radians
+                float AngleRad = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x);
+                // Get Angle in Degrees
+                float AngleDeg = (180 / Mathf.PI) * AngleRad;
+                dirToTarget = Quaternion.Euler(0, 0, AngleDeg);
+
+                RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, target.position - this.gameObject.transform.position);
+                if (hit.collider.gameObject.tag == "Obstacle")
                 {
-                    visibleTargets.Add(target);
-                    if (target == GameObject.FindGameObjectWithTag("Player").transform)
+                    continue;
+                }
+                else if (!(target == GameObject.FindGameObjectWithTag("Player").transform && target.GetComponent<PlayerMovement>().hidden) && Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
+                {
+                    float distToTarget = Vector3.Distance(transform.position, target.position);
+                    if (!Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, distToTarget, obstacleMask))
                     {
-                        if (!sawPlayer && target)
+                        visibleTargets.Add(target);
+                        if (target == GameObject.FindGameObjectWithTag("Player").transform)
                         {
-                            target.GetComponent<PlayerMovement>().Spotted();
+                            if (!sawPlayer && target)
+                            {
+                                target.GetComponent<PlayerMovement>().Spotted();
+                            }
+                            seesPlayer = true;
                         }
-                        seesPlayer = true;
+                        //guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
+                        //if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint,true);
+                        zone.AddToPath(target.transform);
+                        alert.SetActive(true);
                     }
-                    //guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
-                    //if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint,true);
-                    zone.AddToPath(target.transform);
-                    alert.SetActive(true);
                 }
             }
-        }
 
-        if (sawPlayer && !seesPlayer)
-        {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().Escaped();
+            if (sawPlayer && !seesPlayer)
+            {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().Escaped();
+            }
         }
     }
 
