@@ -18,12 +18,12 @@ public class Particle_manager_outside : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawn_timer -= Time.deltaTime;
+       /* spawn_timer -= Time.deltaTime;
         if (spawn_timer < 0)
         {
             Instantiate(beacon);
             beacon.transform.position = (GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position);
             spawn_timer = 1;
-        }
+        }*/
     }
 }

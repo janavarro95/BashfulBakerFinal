@@ -259,7 +259,11 @@ MonoBehaviour:
   stirringSource: {fileID: 83488272}
   Count: 0
   HeldObject: {fileID: 0}
-  particles: []
+  particles:
+  - {fileID: 2100000, guid: 140a0548c73afa3428d2543b8d36ca2b, type: 2}
+  - {fileID: 2100000, guid: a61350b1e818185488ac21171d7e5a07, type: 2}
+  - {fileID: 2100000, guid: b9590e0db5a868346afe013c1bbee333, type: 2}
+  - {fileID: 2100000, guid: 23e879aea888cdd409538445f9c3c3ac, type: 2}
   Choc: {fileID: 21300000, guid: c4fb0731f3153244a886229fabfe1d53, type: 3}
   Mint: {fileID: 21300000, guid: d7fa4d4d18da1024d8c6402d0e50567f, type: 3}
   Raisin: {fileID: 21300000, guid: dec9ad42a51848344a8c2b516be9eb69, type: 3}
