@@ -125,6 +125,14 @@ namespace Assets.Scripts.Player
         public void addSpecialIngredientForPlayer(Enums.SpecialIngredients ingredient,int amount=1)
         {
             Game.Player.specialIngredientsInventory.actualItems.Find(i => (i as SpecialIngredient).ingredientType == ingredient).stack+=amount;
+
+            if (ingredient == 0)
+            {
+                if (Game.HUD != null)
+                {
+                    Game.HUD.InventoryHUD.rotateSpecialIngredient(ingredient);
+                }
+            }
         }
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace Assets.Scripts.Menus.HUDS
     /// <summary>
     /// Deals with managing all UI with the inventory!
     /// </summary>
-    public class InventoryHUDV2:HUD
+    public class InventoryHUDV2 : HUD
     {
         /// <summary>
         /// The canvas!
@@ -29,7 +29,9 @@ namespace Assets.Scripts.Menus.HUDS
         /// </summary>
         public GameObject specialIngredients;
 
-        public GameObject specialIngredientsIcon;
+        public GameObject specialIngredientsGameObject;
+
+        public Image specialIngredientsIcon;
 
         /// <summary>
         /// The first special ingredient.
@@ -108,6 +110,118 @@ namespace Assets.Scripts.Menus.HUDS
         public Text fifthSpecialIngredientText;
         public Text sixthSpecialIngredientText;
 
+        [System.Serializable]
+        private class SpecialIngredientRotation{
+
+            /// <summary>
+            /// The max rotation of the image.
+            /// </summary>
+            [SerializeField]
+            private int maxRotation;
+            /// <summary>
+            /// How fast to rotate.
+            /// </summary>
+            [SerializeField]
+            private float roationAmount;
+
+            /// <summary>
+            /// If the ingredient should update.
+            /// </summary>
+            public bool shouldUpdate;
+            /// <summary>
+            /// If the ingredient has done a full rotation wiggle.
+            /// </summary>
+            private bool hasDoneCycle;
+            /// <summary>
+            /// The rotational direction/
+            /// </summary>
+            private enum Direction
+            {
+                Left,
+                Right
+            }
+            /// <summary>
+            /// The direction to move.
+            /// </summary>
+            [SerializeField]
+            private Direction dir;
+
+            /// <summary>
+            /// Constructor.
+            /// </summary>
+            public SpecialIngredientRotation()
+            {
+                maxRotation = 20;
+                roationAmount = 1;
+                shouldUpdate = false;
+                hasDoneCycle = false;
+            }
+
+            /// <summary>
+            /// Constuctor.
+            /// </summary>
+            /// <param name="speed">How fast the rotation should happen.</param>
+            public SpecialIngredientRotation(float speed)
+            {
+                maxRotation = 20;
+                roationAmount = speed;
+                shouldUpdate = false;
+                hasDoneCycle = false;
+            }
+            /// <summary>
+            /// Causes the special ingredient icon to do a wiggle motion.
+            /// </summary>
+            public void doCycle()
+            {
+                shouldUpdate = true;
+            }
+
+            /// <summary>
+            /// Update the rotation of the ingredient.
+            /// </summary>
+            /// <param name="img"></param>
+            public void update(Image img)
+            {
+                if (shouldUpdate == false) return;
+                rotate(img);
+            }
+
+            /// <summary>
+            /// Rotate the icon.
+            /// </summary>
+            /// <param name="img"></param>
+            private void rotate(Image img)
+            {
+                Quaternion quad = img.rectTransform.rotation;
+                Vector3 angles = img.rectTransform.rotation.eulerAngles;
+                quad.eulerAngles = new Vector3(angles.x, angles.y, (dir == Direction.Left) ? angles.z+ (-roationAmount) : angles.z+(roationAmount));
+
+                if (quad.eulerAngles.z < 360 - maxRotation && quad.eulerAngles.z > 180)
+                {
+                    dir = Direction.Right;
+                    Debug.Log("GO RIGHT!");
+                }
+                else if (quad.eulerAngles.z > maxRotation && quad.eulerAngles.z < 180)
+                {
+                    dir = Direction.Left;
+                    Debug.Log("Go LEFT");
+                    hasDoneCycle = true;
+                }
+
+                if(hasDoneCycle==true && quad.eulerAngles.z <= 0)
+                {
+                    hasDoneCycle = false;
+                    shouldUpdate = false;
+                    quad.eulerAngles = new Vector3(angles.x, angles.y, 0);
+                }
+
+                //Debug.Log(quad.eulerAngles);
+
+                img.rectTransform.rotation = quad;
+            }
+
+        }
+
 
         /// <summary>
         /// Used to delay visual updates for the inventory.
@@ -119,6 +233,23 @@ namespace Assets.Scripts.Menus.HUDS
         /// </summary>
         public int currentDishIndex;
 
+
+        [SerializeField]
+        SpecialIngredientRotation sp1Rot;
+        [SerializeField]
+        SpecialIngredientRotation sp2Rot;
+        [SerializeField]
+        SpecialIngredientRotation sp3Rot;
+        [SerializeField]
+        SpecialIngredientRotation sp4Rot;
+        [SerializeField]
+        SpecialIngredientRotation sp5Rot;
+        [SerializeField]
+        SpecialIngredientRotation sp6Rot;
+
+        [SerializeField]
+        SpecialIngredientRotation basketRot;
+
         /// <summary>
         /// Initialize information.
         /// </summary>
@@ -128,9 +259,22 @@ namespace Assets.Scripts.Menus.HUDS
 
             dishes = canvas.transform.Find("DishesView").gameObject;
             specialIngredients = canvas.transform.Find("SpecialIngredientsView").gameObject;
-            specialIngredientsIcon = canvas.transform.Find("SpecialIngredientsViewIcon").gameObject;
+            specialIngredientsGameObject = canvas.transform.Find("SpecialIngredientsViewIcon").gameObject;
+            specialIngredientsIcon = specialIngredientsGameObject.GetComponent<Image>();
             setUpComponents();
             currentDishIndex = 0;
+
+            sp1Rot = new SpecialIngredientRotation();
+            sp2Rot = new SpecialIngredientRotation();
+            sp3Rot = new SpecialIngredientRotation();
+            sp4Rot = new SpecialIngredientRotation();
+            sp5Rot = new SpecialIngredientRotation();
+            sp6Rot = new SpecialIngredientRotation();
+            basketRot = new SpecialIngredientRotation();
+
+
+            //sp1Rot.doCycle();
+            //basketRot.doCycle();
         }
 
         public void setUpComponents()
@@ -143,12 +287,12 @@ namespace Assets.Scripts.Menus.HUDS
             sixthSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage6").gameObject.GetComponent<Image>();
 
 
-            firstSpecialIngredientText = firstSpecialIngredientImage.gameObject.transform.Find("Amount").GetComponent<Text>();
-            secondSpecialIngredientText = secondSpecialIngredientImage.gameObject.transform.Find("Amount").GetComponent<Text>();
-            thirdSpecialIngredientText = thirdSpecialIngredientImage.gameObject.transform.Find("Amount").GetComponent<Text>();
-            fourthSpecialIngredientText = fourthSpecialIngredientImage.gameObject.transform.Find("Amount").GetComponent<Text>();
-            fifthSpecialIngredientText = fifthSpecialIngredientImage.gameObject.transform.Find("Amount").GetComponent<Text>();
-            sixthSpecialIngredientText = sixthSpecialIngredientImage.gameObject.transform.Find("Amount").GetComponent<Text>();
+            firstSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount1").GetComponent<Text>();
+            secondSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount2").GetComponent<Text>();
+            thirdSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount3").GetComponent<Text>();
+            fourthSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount4").GetComponent<Text>();
+            fifthSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount5").GetComponent<Text>();
+            sixthSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount6").GetComponent<Text>();
 
             firstDishImage =dishes.transform.Find("DishImage1").gameObject.GetComponent<Image>();
             secondDishImage = dishes.transform.Find("DishImage2").gameObject.GetComponent<Image>();
@@ -172,7 +316,7 @@ namespace Assets.Scripts.Menus.HUDS
             fourthDishImage.color = new Color(1, 1, 1, 0);
 
             this.dishes.SetActive(true);
-            this.specialIngredients.SetActive(true);
+            //this.specialIngredients.SetActive(true);
 
             //left ingredient sprite
             if (dishesList.Count > 0)
@@ -299,6 +443,14 @@ namespace Assets.Scripts.Menus.HUDS
                 if (Game.HUD.showHUD && Game.HUD.showInventory)
                 {
                     updateTimer.Update();
+
+                    sp1Rot.update(firstSpecialIngredientImage);
+                    sp2Rot.update(secondSpecialIngredientImage);
+                    sp3Rot.update(thirdSpecialIngredientImage);
+                    sp4Rot.update(fourthSpecialIngredientImage);
+                    sp5Rot.update(fifthSpecialIngredientImage);
+                    sp6Rot.update(sixthSpecialIngredientImage);
+                    basketRot.update(specialIngredientsIcon);
                 }
 
                 if (GameInput.InputControls.LeftTriggerPressed && Game.HUD.showInventory)
@@ -351,6 +503,7 @@ namespace Assets.Scripts.Menus.HUDS
                 catch(Exception err)
                 {
                     Game.Player.activeItem = null;
+                    showOvenMitIcon();
                 }
             }
             else if (currentDishIndex == 1)
@@ -363,6 +516,7 @@ namespace Assets.Scripts.Menus.HUDS
                 catch(Exception err)
                 {
                     Game.Player.activeItem = null;
+                    showOvenMitIcon();
                 }
             }
             else if (currentDishIndex == 2)
@@ -375,6 +529,7 @@ namespace Assets.Scripts.Menus.HUDS
                 catch(Exception err)
                 {
                     Game.Player.activeItem = null;
+                    showOvenMitIcon();
                 }
             }
             else if (currentDishIndex == 3)
@@ -387,6 +542,7 @@ namespace Assets.Scripts.Menus.HUDS
                 catch(Exception err)
                 {
                     Game.Player.activeItem = null;
+                    showOvenMitIcon();
                 }
             }
             Game.Player.updateHeldItemSprite();
@@ -417,30 +573,9 @@ namespace Assets.Scripts.Menus.HUDS
             if (visibility == Enums.Visibility.Visible) canvas.SetActive(true);
         }
 
-        public void showEverything()
-        {
-            this.canvas.SetActive(true);
-            showAllComponents();
-        }
-
-        public void showAllComponents()
-        {
-            foreach(Transform t in this.canvas.transform)
-            {
-                t.gameObject.SetActive(true);
-            }
-        }
-
-        public void showOnlySpecialIngredients()
-        {
-            Game.HUD.showHUD = true;
-            Game.HUD.showSpecialIngredients = true;
-            this.dishes.SetActive(false);
-            this.specialIngredients.SetActive(true);
-            this.specialIngredientsIcon.SetActive(true);
-        }
-
-
+        /// <summary>
+        /// Show the correct oven mit icons.
+        /// </summary>
         private void showOvenMitIcon()
         {
             if (currentDishIndex == 0)
@@ -470,6 +605,56 @@ namespace Assets.Scripts.Menus.HUDS
                 secondDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
                 thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
                 fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(true);
+            }
+        }
+
+        /// <summary>
+        /// Hides all of the oven mit sprites
+        /// </summary>
+        private void hidAllOvenMits()
+        {
+            firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+            secondDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+            thirdDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+            fourthDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
+        }
+
+
+        /// <summary>
+        /// Rotate a special ingredient icon in the HUD.
+        /// </summary>
+        /// <param name="ingredient"></param>
+        public void rotateSpecialIngredient(Enums.SpecialIngredients ingredient)
+        {
+            if (ingredient == 0)
+            {
+                sp1Rot.doCycle();
+                basketRot.doCycle();
+            }
+            else if ((int)ingredient == 1)
+            {
+                sp2Rot.doCycle();
+                basketRot.doCycle();
+            }
+            else if ((int)ingredient == 2)
+            {
+                sp3Rot.doCycle();
+                basketRot.doCycle();
+            }
+            else if ((int)ingredient == 3)
+            {
+                sp4Rot.doCycle();
+                basketRot.doCycle();
+            }
+            else if ((int)ingredient == 4)
+            {
+                sp5Rot.doCycle();
+                basketRot.doCycle();
+            }
+            else if ((int)ingredient == 5)
+            {
+                sp6Rot.doCycle();
+                basketRot.doCycle();
             }
         }
     }

@@ -30,7 +30,6 @@ namespace Assets.Scripts.Menus
 
             if (GameInformation.Game.TutorialCompleted)
             {
-                GameInformation.Game.HUD.InventoryHUD.showOnlySpecialIngredients();
                 Debug.Log("SHOW THE INGREDIENTS");
             }
             else
@@ -47,6 +46,60 @@ namespace Assets.Scripts.Menus
             checkForInput();
         }
 
+        public void initializeImages()
+        {
+            foreach(KeyValuePair<string, MenuComponent> component in daySelectionComponents)
+            {
+                if (component.Key == "Kitchen")
+                {
+                    if (GameInformation.Game.DaysUnlocked[1] == true)
+                    {
+                        (component.Value.unityObject as Image).color = new Color(1f, 1f, 1f, 1);
+                        
+                    }
+                    else
+                    {
+                        (component.Value.unityObject as Image).color = new Color(0.5f, 0.5f, 0.5f, 1);
+                    }
+                }
+                else if (component.Key == "KitchenDay2")
+                {
+                    if (GameInformation.Game.DaysUnlocked[2] == true)
+                    {
+                        (component.Value.unityObject as Image).color = new Color(1f, 1f, 1f, 1);
+                    }
+                    else
+                    {
+                        (component.Value.unityObject as Image).color = new Color(0.5f, 0.5f, 0.5f, 1);
+                    }
+                }
+                else if (component.Key == "KitchenDay3")
+                {
+                    if (GameInformation.Game.DaysUnlocked[3] == true)
+                    {
+                        Debug.Log("INIT");
+                        (component.Value.unityObject as Image).color = new Color(1f, 1f, 1f, 1);
+                    }
+                    else
+                    {
+                        Debug.Log("INIT AHH");
+                        (component.Value.unityObject as Image).color = new Color(0.5f, 0.5f, 0.5f, 1);
+                    }
+                }
+                else if (component.Key == "KitchenDay4")
+                {
+                    if (GameInformation.Game.DaysUnlocked[4] == true)
+                    {
+                        (component.Value.unityObject as Image).color = new Color(1f, 1f, 1f, 1);
+                    }
+                    else
+                    {
+                        (component.Value.unityObject as Image).color = new Color(0.5f, 0.5f, 0.5f, 1);
+                    }
+                }
+            }
+        }
+
         private void checkForInput()
         {
             ///Checks for day selection buttons.
@@ -56,11 +109,13 @@ namespace Assets.Scripts.Menus
                 {
                     try
                     {
-                        specialPreDaySetUp(component.Key);
+                        if (specialPreDaySetUp(component.Key) == false)
+                        {
+                            return;
+                        }
                         GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
                         GameInformation.Game.Player.position = new Vector3(-3.2f, -9.5f, 0);
                         GameInformation.Game.HUD.showHUD = false;
-                        GameInformation.Game.HUD.InventoryHUD.showAllComponents();
                         SceneManager.LoadScene(component.Key);
                     }
                     catch (Exception err)
@@ -78,16 +133,18 @@ namespace Assets.Scripts.Menus
             }
         }
 
-        private void specialPreDaySetUp(string componentName)
+        private bool specialPreDaySetUp(string componentName)
         {
 
             if (componentName == "Kitchen")
             {
+                if (GameInformation.Game.DaysUnlocked[1] == false) return false;
                 GameInformation.Game.CurrentDayNumber = 1;
             }
 
             if (componentName == "KitchenDay2")
             {
+                if (GameInformation.Game.DaysUnlocked[2] == false) return false;
                 GameInformation.Game.TutorialCompleted = true;
                 GameInformation.Game.CurrentDayNumber = 2;
 
@@ -100,6 +157,16 @@ namespace Assets.Scripts.Menus
 
                 GameInformation.Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
             }
+
+            if (componentName == "KitchenDay3")
+            {
+                if (GameInformation.Game.DaysUnlocked[3] == false) return false;
+            }
+            if (componentName == "KitchenDay4")
+            {
+                if (GameInformation.Game.DaysUnlocked[4] == false) return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -142,6 +209,7 @@ namespace Assets.Scripts.Menus
             daySelectionComponents["KitchenDay3"].setNeighbors(daySelectionComponents["Kitchen"], null, null, daySelectionComponents["KitchenDay4"]);
             daySelectionComponents["KitchenDay4"].setNeighbors(daySelectionComponents["KitchenDay2"], null, daySelectionComponents["KitchenDay3"], null);
 
+            initializeImages();
         }
 
         /// <summary>

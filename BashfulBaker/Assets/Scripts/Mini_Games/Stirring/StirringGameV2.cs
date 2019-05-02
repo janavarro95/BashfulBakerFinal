@@ -16,6 +16,7 @@ namespace Assets.Scripts.GameInput
         private float Percent_Stirred;
         public int Count;
         public GameObject HeldObject;
+        public Material[] particles;
         public Sprite Choc;
         public Sprite Mint;
         public Sprite Raisin;
@@ -24,7 +25,6 @@ namespace Assets.Scripts.GameInput
         public GameObject[] buttons;
         public SpriteRenderer bowl;
         public Sprite[] bowlsprites;
-       
         public Sprite[] mintsprites;
         public Sprite[] raisinprites;
         public Sprite[] pecansprites;
@@ -55,25 +55,30 @@ namespace Assets.Scripts.GameInput
             if (Game.Player.activeItem.Name == "Chocolate Chip Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Choc;
-                
+                GameObject.Find("chocChip_Bag").GetComponent<ParticleSystem>().GetComponent<Renderer>().material = particles[0];
+
             } else if (Game.Player.activeItem.Name == "Mint Chip Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Mint;
+                GameObject.Find("chocChip_Bag").GetComponent<ParticleSystem>().GetComponent<Renderer>().material = particles[1];
                 bowlsprites = mintsprites;
             }
             else if (Game.Player.activeItem.Name == "Oatmeal Raisin Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Raisin;
+                GameObject.Find("chocChip_Bag").GetComponent<ParticleSystem>().GetComponent<Renderer>().material = particles[2];
                 bowlsprites = raisinprites;
             }
             else if (Game.Player.activeItem.Name == "Pecan Crescent Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Pecan;
+                GameObject.Find("chocChip_Bag").GetComponent<ParticleSystem>().GetComponent<Renderer>().material = particles[3];
                 bowlsprites = pecansprites;
             }
             else
             {
                 Debug.Log("default");
+                GameObject.Find("chocChip_Bag").GetComponent<ParticleSystem>().GetComponent<Renderer>().material = particles[0];
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Choc;
             }
         }

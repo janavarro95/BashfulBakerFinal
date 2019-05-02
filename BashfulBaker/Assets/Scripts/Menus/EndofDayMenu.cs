@@ -132,6 +132,7 @@ namespace Assets.Scripts.Menus
                 }
             }
             finishedImage.gameObject.SetActive(true);
+            Game.UnlockDay();
 
         }
 
