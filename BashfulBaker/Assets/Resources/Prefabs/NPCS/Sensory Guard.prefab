@@ -448,6 +448,7 @@ MonoBehaviour:
     itemName: 
     stack: 0
   pacMat: {fileID: 2100000, guid: d738c1efa66c4be49b371d0b027545a5, type: 2}
+  dm: {fileID: 0}
   inDialogue: 0
   exitPresses: 0
   guardType: 0

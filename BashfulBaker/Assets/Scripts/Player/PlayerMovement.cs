@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         get
         {
-            if (Game.IsMenuUp == false && Game.IsScreenTransitionHappening == false && canPlayerMove) return true;
+            if (Game.IsMenuUp == false && Game.IsScreenTransitionHappening == false) return true;
             else return false;
         }
         set

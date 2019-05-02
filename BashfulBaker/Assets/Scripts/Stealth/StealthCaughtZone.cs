@@ -37,7 +37,8 @@ public class StealthCaughtZone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (dm == null)
+            dm = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
     }
 
     // update
