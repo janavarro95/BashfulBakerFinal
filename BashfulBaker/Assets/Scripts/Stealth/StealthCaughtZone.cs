@@ -13,6 +13,7 @@ public class StealthCaughtZone : MonoBehaviour
     public Dialogue dialogue;
     public Sprite guardFace;
     public Item itemToTake;
+    public Material pacMat;
 
     public bool inDialogue = false;
     private int dialoguePressesExit = 0;
@@ -97,19 +98,6 @@ public class StealthCaughtZone : MonoBehaviour
                         }
                         return;
                     }
-                    /*else if (hasEaten == true)
-                    {
-                        awareness.talkingToPlayer = true;
-                        Game.DialogueManager.StartDialogue(new Dialogue("Guard",StringUtilities.FormatStringList(new List<string>()
-                    {
-                        "Hey there, your {0} you gave me was delicious! When can you make me some more!?",
-                        "(You ended up getting caught up in converstation for quite some time.)"
-                    },dishConsumedName).ToArray()));
-
-                        Game.PhaseTimer.subtractTime(15);
-                        //Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
-                        awareness.talkingToPlayer = false;
-                    }*/
                     else
                     {
                         Debug.Log("---escort the player, they have nothing");
@@ -148,12 +136,18 @@ public class StealthCaughtZone : MonoBehaviour
     // dialogue exit options
     private void BeginDialogue(Dialogue d, Item i)
     {
+        // adjust awareness
         awareness.talkingToPlayer = true;
         inDialogue = true;
+        // determine number of presses to exit
         exitPresses = 0;
         dialoguePressesExit = d.sentences.Length+1;
-        itemToTake = i;
+        // start dialog and take item
         Game.DialogueManager.StartDialogue(d);
+        itemToTake = i;
+        TakeItemAway();
+        // stop the player
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().CanPlayerMove = false;
     }
 
     private void ProgressDialogue()
@@ -171,21 +165,47 @@ public class StealthCaughtZone : MonoBehaviour
     private void EndDialogue()
     {
         inDialogue = false;
+        awareness.talkingToPlayer = false;
 
         if (itemToTake != null)
         {
-            // consume the dish
-            dishConsumedName = itemToTake.Name;
-            Game.Player.dishesInventory.Remove(itemToTake);
-            Game.Player.activeItem = null;
-            hasEaten = true;
+            Pacify();
         }
         else
         {
             // transport to outside the bakery
             Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
+            //Pacify();
         }
 
-        awareness.talkingToPlayer = false;
+        // start player movement
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().CanPlayerMove = true;
+    }
+
+    // Pacify makes the guard useless
+    private void Pacify()
+    {
+        // adjust light
+        awareness.flashlight.viewRadius /= 2;
+        awareness.flashlight.viewMeshFilter.GetComponent<MeshRenderer>().material = pacMat;
+        awareness.flashlight.DrawFieldOfView();
+
+        // slow me down
+        awareness.lookSpeed /= 2;
+        awareness.movementSpeed /= 2;
+        hasEaten = true;
+
+        // disable this collision
+        GetComponent<Collider2D>().enabled = false;
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
+    }
+
+    // take awy the previously saved item
+    private void TakeItemAway()
+    {
+        // consume the dish
+        dishConsumedName = itemToTake.Name;
+        Game.Player.dishesInventory.Remove(itemToTake);
+        Game.Player.activeItem = null;
     }
 }

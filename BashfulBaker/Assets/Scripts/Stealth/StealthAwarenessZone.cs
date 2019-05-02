@@ -91,7 +91,7 @@ public class StealthAwarenessZone : MonoBehaviour
     private Vector3 lookAtStart;
 
     [SerializeField]
-    private float lookSpeed = 1f;
+    public float lookSpeed = 1f;
 
 
     GameObject patrollInformation;

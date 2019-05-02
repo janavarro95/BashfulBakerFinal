@@ -51,16 +51,17 @@ public class PlayerMovement : MonoBehaviour {
     public SpriteRenderer buttonB;
     private float height;
 
+    private bool canPlayerMove = true;
     public bool CanPlayerMove
     {
         get
         {
-            if (Game.IsMenuUp == false && Game.IsScreenTransitionHappening == false) return true;
+            if (Game.IsMenuUp == false && Game.IsScreenTransitionHappening == false && canPlayerMove) return true;
             else return false;
         }
         set
         {
-            CanPlayerMove = value;
+            canPlayerMove = value;
         }
     }
 
@@ -205,7 +206,7 @@ public class PlayerMovement : MonoBehaviour {
         //If the player is visible they probably should be able to open a menu.
         if (this.spriteRenderer.enabled)
         {
-            if (CanPlayerMove)
+            if (canPlayerMove)
             {
                 checkForMenuOpening();
 

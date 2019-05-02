@@ -406,9 +406,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myState: 0
   flashlight: {fileID: 0}
+  catching: {fileID: 0}
   movementSpeed: 2
   proximityToTarget: 0
   minAwarenessDistance: 1
+  talkingToPlayer: 0
   lookAroundLerp: 0
   lookSpeed: 0.5
   patrolPauseTimer:
@@ -442,6 +444,12 @@ MonoBehaviour:
     name: 
     sentences: []
   guardFace: {fileID: 21300000, guid: bcaecea08e8b67b45b38c6e2210ba709, type: 3}
+  itemToTake:
+    itemName: 
+    stack: 0
+  pacMat: {fileID: 2100000, guid: d738c1efa66c4be49b371d0b027545a5, type: 2}
+  inDialogue: 0
+  exitPresses: 0
   guardType: 0
   hasEaten: 0
   dishConsumedName: 
@@ -460,7 +468,7 @@ MonoBehaviour:
   sawPlayer: 0
   seesPlayer: 0
   pathUpdateReset: 1
-  viewRadius: 6.5
+  viewRadius: 10
   viewAngle: 90
   targetMask:
     serializedVersion: 2

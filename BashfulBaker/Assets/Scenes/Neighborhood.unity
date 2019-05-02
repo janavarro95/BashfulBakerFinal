@@ -826,7 +826,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 148711028}
-  - component: {fileID: 148711029}
   m_Layer: 0
   m_Name: Houses
   m_TagString: Untagged
@@ -850,21 +849,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &148711029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 148711027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f69f0a0d68cd6ca46a644c8e59e79244, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  update: 0
-  other: 1
-  self: 0
 --- !u!1001 &161573475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -972,7 +956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &176016055
 Transform:
   m_ObjectHideFlags: 0
@@ -1622,6 +1606,27 @@ Transform:
   m_Father: {fileID: 64561850}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &312371390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6369378731970085568, guid: cff7f89c7b9742c46b3b5c1f6ba2ea82,
+    type: 3}
+  m_PrefabInstance: {fileID: 6369378732130539741}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &312371391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312371390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f69f0a0d68cd6ca46a644c8e59e79244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 0
+  other: 0
+  self: 1
 --- !u!1001 &324534455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2336,7 +2341,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
+      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -5304,7 +5309,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
+      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -6196,7 +6201,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
+      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -12146,7 +12151,7 @@ GameObject:
   - component: {fileID: 1514446551}
   - component: {fileID: 1514446552}
   m_Layer: 0
-  m_Name: Mint
+  m_Name: Mints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12237,8 +12242,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   update: 0
-  other: 0
-  self: 1
+  other: 1
+  self: 0
 --- !u!114 &1514446552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16879,7 +16884,7 @@ PrefabInstance:
     - target: {fileID: 6369378731292939772, guid: cff7f89c7b9742c46b3b5c1f6ba2ea82,
         type: 3}
       propertyPath: obstacleMask.m_Bits
-      value: 0
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 6369378731292939714, guid: cff7f89c7b9742c46b3b5c1f6ba2ea82,
         type: 3}
