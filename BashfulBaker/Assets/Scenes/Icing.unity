@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 443451911}
   - component: {fileID: 443451910}
   - component: {fileID: 443451909}
+  - component: {fileID: 443451912}
   m_Layer: 0
   m_Name: Icing
   m_TagString: Untagged
@@ -281,12 +282,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443451908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.29, y: 2.72, z: -2}
+  m_LocalPosition: {x: -4.33, y: 2.7, z: -2}
   m_LocalScale: {x: 2.497, y: 2.342186, z: 2.497}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &443451912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443451908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 552abf8171ff32a4982bb8d2e1d708bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.2
+  r: {fileID: 1018882613}
+  count: 0
 --- !u!1 &685095114
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +599,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.09, y: 0.55}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
