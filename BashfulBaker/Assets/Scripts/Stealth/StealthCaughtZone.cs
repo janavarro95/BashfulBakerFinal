@@ -188,6 +188,7 @@ public class StealthCaughtZone : MonoBehaviour
     {
         // adjust light
         awareness.flashlight.viewRadius /= 2;
+        awareness.flashlight.viewAngle /= 2;
         awareness.flashlight.viewMeshFilter.GetComponent<MeshRenderer>().material = pacMat;
         awareness.flashlight.DrawFieldOfView();
 

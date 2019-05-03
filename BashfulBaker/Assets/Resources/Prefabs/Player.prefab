@@ -165,6 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7542703227272353702}
   - component: {fileID: 5273863966973995274}
+  - component: {fileID: 7789931350574980403}
   m_Layer: 0
   m_Name: Alert_Icon
   m_TagString: Untagged
@@ -223,7 +224,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d28714f5f57974326b42c3038a7721ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f646551675a638469942d5b6f6602e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -234,6 +235,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7789931350574980403
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708797559262206185}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b32a9f820516c494fa9363567d3c41e4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6324178739719613617
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a7b54f52d7b3c4f905947fb2ad8f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpeed: 1.25
+  defaultSpeed: 2
   movementDampening: 20
   woodStepSounds:
   - {fileID: 8300000, guid: 2447ece8f659d1b47bf1458a87b9159a, type: 3}
@@ -5249,7 +5269,7 @@ ParticleSystem:
 --- !u!199 &4918382076304924411
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

@@ -248,7 +248,6 @@ public class StealthAwarenessZone : MonoBehaviour
 
         awareOfPlayer = (!catching.hasEaten && (flashlight.seesPlayer || this.investigate != null || returnHome));
         shouldMove = awareOfPlayer && !talkingToPlayer;
-        question.SetActive(false);
 
         // INTRIGUED
         if (awareOfPlayer)
@@ -261,6 +260,7 @@ public class StealthAwarenessZone : MonoBehaviour
             {
                 // state tracking
                 myState = 64;
+                question.SetActive(false);
                 //Debug.Log("Aware of Player");
 
                 // movement
@@ -317,6 +317,7 @@ public class StealthAwarenessZone : MonoBehaviour
             }
             else
             {
+                question.SetActive(false);
                 // state tracking
                 myState = 8;
                 //Debug.Log("Returning Home");
@@ -344,6 +345,7 @@ public class StealthAwarenessZone : MonoBehaviour
         // UNAWARE
         else
         {
+            question.SetActive(false);
             // state tracking
             myState = 4;
             //Debug.Log("UNaware of Player");
