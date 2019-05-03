@@ -146,16 +146,21 @@ namespace Assets.Scripts.Menus.HUDS
             [SerializeField]
             private Direction dir;
 
+
+            private Image image;
             /// <summary>
             /// Constructor.
             /// </summary>
-            public SpecialIngredientRotation()
+            public SpecialIngredientRotation(Image img)
             {
                 maxRotation = 20;
                 roationAmount = 1;
                 shouldUpdate = false;
                 hasDoneCycle = false;
+                this.image = img;
             }
+
+            
 
             /// <summary>
             /// Constuctor.
@@ -173,17 +178,24 @@ namespace Assets.Scripts.Menus.HUDS
             /// </summary>
             public void doCycle()
             {
+                Quaternion quad = this.image.rectTransform.localRotation;
+                Vector3 euler = quad.eulerAngles;
+                euler.z = 0;
+                quad.eulerAngles = euler;
+                this.image.rectTransform.localRotation = quad;
+
                 shouldUpdate = true;
+                hasDoneCycle = false;
             }
 
             /// <summary>
             /// Update the rotation of the ingredient.
             /// </summary>
             /// <param name="img"></param>
-            public void update(Image img)
+            public void update()
             {
                 if (shouldUpdate == false) return;
-                rotate(img);
+                rotate(this.image);
             }
 
             /// <summary>
@@ -261,16 +273,40 @@ namespace Assets.Scripts.Menus.HUDS
             specialIngredients = canvas.transform.Find("SpecialIngredientsView").gameObject;
             specialIngredientsGameObject = canvas.transform.Find("SpecialIngredientsViewIcon").gameObject;
             specialIngredientsIcon = specialIngredientsGameObject.GetComponent<Image>();
+
+            firstSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage1").gameObject.GetComponent<Image>();
+            secondSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage2").gameObject.GetComponent<Image>();
+            thirdSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage3").gameObject.GetComponent<Image>();
+            fourthSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage4").gameObject.GetComponent<Image>();
+            fifthSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage5").gameObject.GetComponent<Image>();
+            sixthSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage6").gameObject.GetComponent<Image>();
+
+            firstSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount1").GetComponent<Text>();
+            secondSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount2").GetComponent<Text>();
+            thirdSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount3").GetComponent<Text>();
+            fourthSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount4").GetComponent<Text>();
+            fifthSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount5").GetComponent<Text>();
+            sixthSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount6").GetComponent<Text>();
+
+            firstDishImage = dishes.transform.Find("DishImage1").gameObject.GetComponent<Image>();
+            secondDishImage = dishes.transform.Find("DishImage2").gameObject.GetComponent<Image>();
+            thirdDishImage = dishes.transform.Find("DishImage3").gameObject.GetComponent<Image>();
+            fourthDishImage = dishes.transform.Find("DishImage4").gameObject.GetComponent<Image>();
+            sp1Rot = new SpecialIngredientRotation(firstSpecialIngredientImage);
+            sp2Rot = new SpecialIngredientRotation(secondSpecialIngredientImage);
+            sp3Rot = new SpecialIngredientRotation(thirdSpecialIngredientImage);
+            sp4Rot = new SpecialIngredientRotation(fourthSpecialIngredientImage);
+            sp5Rot = new SpecialIngredientRotation(fifthSpecialIngredientImage);
+            sp6Rot = new SpecialIngredientRotation(sixthSpecialIngredientImage);
+            basketRot = new SpecialIngredientRotation(specialIngredientsIcon);
+
+            firstDishImage.gameObject.SetActive(true);
+            secondDishImage.gameObject.SetActive(true);
+            thirdDishImage.gameObject.SetActive(true);
+            fourthDishImage.gameObject.SetActive(true);
+
             setUpComponents();
             currentDishIndex = 0;
-
-            sp1Rot = new SpecialIngredientRotation();
-            sp2Rot = new SpecialIngredientRotation();
-            sp3Rot = new SpecialIngredientRotation();
-            sp4Rot = new SpecialIngredientRotation();
-            sp5Rot = new SpecialIngredientRotation();
-            sp6Rot = new SpecialIngredientRotation();
-            basketRot = new SpecialIngredientRotation();
 
             /*
             sp1Rot.doCycle();
@@ -285,27 +321,6 @@ namespace Assets.Scripts.Menus.HUDS
 
         public void setUpComponents()
         {
-            firstSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage1").gameObject.GetComponent<Image>();
-            secondSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage2").gameObject.GetComponent<Image>();
-            thirdSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage3").gameObject.GetComponent<Image>();
-            fourthSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage4").gameObject.GetComponent<Image>();
-            fifthSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage5").gameObject.GetComponent<Image>();
-            sixthSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage6").gameObject.GetComponent<Image>();
-
-
-            firstSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount1").GetComponent<Text>();
-            secondSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount2").GetComponent<Text>();
-            thirdSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount3").GetComponent<Text>();
-            fourthSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount4").GetComponent<Text>();
-            fifthSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount5").GetComponent<Text>();
-            sixthSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount6").GetComponent<Text>();
-
-            firstDishImage =dishes.transform.Find("DishImage1").gameObject.GetComponent<Image>();
-            secondDishImage = dishes.transform.Find("DishImage2").gameObject.GetComponent<Image>();
-            thirdDishImage = dishes.transform.Find("DishImage3").gameObject.GetComponent<Image>();
-            fourthDishImage = dishes.transform.Find("DishImage4").gameObject.GetComponent<Image>();
-
-
             List<Dish> dishesList = Game.Player.dishesInventory.getAllDishes();
             List<SpecialIngredient> specialIngredientsList = Game.Player.specialIngredientsInventory.getAllSpecialIngredients();
 
@@ -315,7 +330,6 @@ namespace Assets.Scripts.Menus.HUDS
             fourthSpecialIngredientImage.color = new Color(1, 1, 1, 0);
             fifthSpecialIngredientImage.color = new Color(1, 1, 1, 0);
             sixthSpecialIngredientImage.color = new Color(1, 1, 1, 0);
-
             firstDishImage.color = new Color(1, 1, 1, 0);
             secondDishImage.color = new Color(1, 1, 1, 0);
             thirdDishImage.color = new Color(1, 1, 1, 0);
@@ -450,20 +464,20 @@ namespace Assets.Scripts.Menus.HUDS
                 {
                     updateTimer.Update();
 
-                    sp1Rot.update(firstSpecialIngredientImage);
-                    sp2Rot.update(secondSpecialIngredientImage);
-                    sp3Rot.update(thirdSpecialIngredientImage);
-                    sp4Rot.update(fourthSpecialIngredientImage);
-                    sp5Rot.update(fifthSpecialIngredientImage);
-                    sp6Rot.update(sixthSpecialIngredientImage);
-                    basketRot.update(specialIngredientsIcon);
+                    sp1Rot.update();
+                    sp2Rot.update();
+                    sp3Rot.update();
+                    sp4Rot.update();
+                    sp5Rot.update();
+                    sp6Rot.update();
+                    basketRot.update();
                 }
 
-                if (GameInput.InputControls.LeftTriggerPressed && Game.HUD.showInventory)
+                if (GameInput.InputControls.LeftTriggerPressed && Game.HUD.showInventory && Game.Player.dishesInventory.IsEmpty==false)
                 {
                     updateCurrentDishIndex(-1);
                 }
-                else if (GameInput.InputControls.RightTriggerPressed && Game.HUD.showInventory)
+                else if (GameInput.InputControls.RightTriggerPressed && Game.HUD.showInventory && Game.Player.dishesInventory.IsEmpty == false)
                 {
                     updateCurrentDishIndex(1);
                 }
@@ -584,6 +598,11 @@ namespace Assets.Scripts.Menus.HUDS
         /// </summary>
         private void showOvenMitIcon()
         {
+            if (Game.Player.dishesInventory.Count == 0)
+            {
+                hideAllOvenMits();
+                return;
+            }
             if (currentDishIndex == 0)
             {
                 firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(true);
@@ -617,7 +636,7 @@ namespace Assets.Scripts.Menus.HUDS
         /// <summary>
         /// Hides all of the oven mit sprites
         /// </summary>
-        private void hidAllOvenMits()
+        private void hideAllOvenMits()
         {
             firstDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);
             secondDishImage.gameObject.transform.Find("OvenMit").gameObject.SetActive(false);

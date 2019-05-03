@@ -122,15 +122,16 @@ namespace Assets.Scripts.Player
         /// </summary>
         /// <param name="ingredient">The ingredient to add to.</param>
         /// <param name="amount">The amount to add.</param>
-        public void addSpecialIngredientForPlayer(Enums.SpecialIngredients ingredient,int amount=1)
+        public void addSpecialIngredientForPlayer(Enums.SpecialIngredients ingredient,int amount=1,bool playSound=true)
         {
             Game.Player.specialIngredientsInventory.actualItems.Find(i => (i as SpecialIngredient).ingredientType == ingredient).stack+=amount;
 
-            if (ingredient == 0)
+            if (amount >= 0)
             {
                 if (Game.HUD != null)
                 {
                     Game.HUD.InventoryHUD.rotateSpecialIngredient(ingredient);
+                    if (playSound) Game.SoundEffects.playSIPickUpSound();
                 }
             }
         }

@@ -29,6 +29,7 @@ public class StartMinigame : MonoBehaviour
 
     public static Dish ovenDish;
 
+    public int ovenCookingTime = 30;
 
     private void Awake()
     {
@@ -71,13 +72,14 @@ public class StartMinigame : MonoBehaviour
                         {
                             baked = 1;
                             SetSprite(2);
+                            timerSFX.loop = true;
                             timerSFX.Play();
 
                             ovenDish = (Dish)Game.Player.activeItem;
                             Game.Player.dishesInventory.Remove(Game.Player.activeItem);
                             Game.Player.removeActiveItem();
                             Game.Player.updateHeldItemSprite();
-                            Invoke("Bake", 5);
+                            Invoke("Bake", ovenCookingTime);
 
                             this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Play();
 
@@ -182,7 +184,7 @@ public class StartMinigame : MonoBehaviour
                         Game.Player.removeActiveItem();
                         Game.Player.updateHeldItemSprite();
                         Game.HUD.InventoryHUD.updateDishes();
-                        Invoke("Bake", 5);
+                        Invoke("Bake", ovenCookingTime);
 
                         this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Play();
 

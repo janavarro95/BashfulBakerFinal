@@ -22,6 +22,9 @@ public class WarpTile : MonoBehaviour
     [SerializeField]
     bool warpsToKitchen;
 
+    [SerializeField]
+    private AudioClip warpSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +51,7 @@ public class WarpTile : MonoBehaviour
             }
             else
             {
+                if (Game.CurrentTransition == null && warpSound!=null) Game.SoundManager.playSound(warpSound);
                 ScreenTransitions.StartSceneTransition(transitionTime, sceneToWarpTo, Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
             }
         }

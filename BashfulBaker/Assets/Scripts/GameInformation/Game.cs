@@ -356,6 +356,9 @@ namespace Assets.Scripts.GameInformation
 
         }
 
+        /// <summary>
+        /// Sets up all of the necessary components when a scene changes
+        /// </summary>
         public static void setUpScene()
         {
 
@@ -527,7 +530,8 @@ namespace Assets.Scripts.GameInformation
                     "Oh man it's getting pretty dark.",
                     "I guess I won't have any more time to do my deliveries..."
                 }.ToArray()));
-            SceneManager.LoadScene("EndofDay");
+
+            ScreenTransitions.StartSceneTransition(5f, "EndOfDay", Color.black, ScreenTransitions.TransitionState.FadeOut);
         }
 
         public static void QuitGame()
