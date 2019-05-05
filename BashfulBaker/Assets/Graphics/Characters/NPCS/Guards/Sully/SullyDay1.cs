@@ -11,12 +11,16 @@ public class SullyDay1 : MonoBehaviour
 
     public GameObject trigger;
     public GameObject DiaBoxReference;
-    public Animator jeb_animator;
+    public Animator sully_animator;
+    public Sprite sully_Face;
+    public Sprite dane_Face;
     public bool isOpen;
    public int step;
+    public Dialogue StopRightThere;
     public Dialogue Sully_Hey;
     public Dialogue Dane_Thanks;
     public Dialogue Sully_Bye;
+
 
     private void Start()
     {
@@ -31,15 +35,17 @@ public class SullyDay1 : MonoBehaviour
         if (isOpen ==false && step > 0){
             if (step == 3)
             {
-                jeb_animator.SetInteger("Phase", 3);
+                sully_animator.SetInteger("Phase", 3);
             }
             if (step == 2)
             {
+                GameObject.Find("Headshot").GetComponent<Image>().sprite = sully_Face;
                 Sully_Byebye();
                 step++;
             }
             if (step == 1)
             {
+                GameObject.Find("Headshot").GetComponent<Image>().sprite = dane_Face;
                 Dane_Speaks();
                 step++;
             }
@@ -51,7 +57,9 @@ public class SullyDay1 : MonoBehaviour
         if (trigger.GetComponent<triggercheck>().beenHit == true && step == 0 && isOpen == false)
         {
            // step++;
-            jeb_animator.SetInteger("Phase", 1);
+            sully_animator.SetInteger("Phase", 1);
+   
+
         }
 
 
@@ -59,12 +67,17 @@ public class SullyDay1 : MonoBehaviour
     }
     private void endApproach()
     {
-        jeb_animator.SetInteger("Phase", 2);
+        GameObject.Find("Headshot").GetComponent<Image>().sprite = sully_Face;
+        sully_animator.SetInteger("Phase", 2);
         Debug.Log("set");
     }
     private void increasestep()
     {
         step++;
+    }
+    void Getattention()
+    {
+        FindObjectOfType<DialogueManager>().StartDialogue(StopRightThere);
     }
     void Sully_Speaks()
     {
@@ -77,6 +90,11 @@ public class SullyDay1 : MonoBehaviour
     void Sully_Byebye()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(Sully_Bye);
+    }
+    void kill_Sully()
+    {
+        GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
+        this.gameObject.SetActive(false);
     }
 
 

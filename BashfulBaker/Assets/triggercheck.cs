@@ -21,5 +21,6 @@ public class triggercheck : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         beenHit = true;
+        GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 0f;
     }
 }
