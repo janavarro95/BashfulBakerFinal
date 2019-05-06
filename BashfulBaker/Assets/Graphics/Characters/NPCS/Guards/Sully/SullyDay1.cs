@@ -26,6 +26,7 @@ public class SullyDay1 : MonoBehaviour
     {
 
         step = 0;
+        GameObject.Find("Headshot").GetComponent<Image>().sprite = sully_Face;
 
     }
     private void Update()
