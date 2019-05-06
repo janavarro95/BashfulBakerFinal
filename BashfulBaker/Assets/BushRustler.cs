@@ -25,15 +25,20 @@ public class BushRustler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            anim.enabled = true;
+            //anim.enabled = true;
+            anim.SetBool("shaking", true);
+            Invoke("StopShaking", .2f);
         }
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
+    void StopShaking()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            anim.enabled = false;
-        }
+        anim.SetBool("shaking", false);
     }
+    /*  private void OnTriggerExit2D(Collider2D collision)
+      {
+          if (collision.gameObject.CompareTag("Player"))
+          {
+              anim.enabled = false;
+          }
+      } */
 }

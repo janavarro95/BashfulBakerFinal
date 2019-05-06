@@ -483,21 +483,23 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (other.gameObject.tag == "Obstacle")
         {
-            buttonB.enabled = true;
-            if (!hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
-            {
+            //buttonB.enabled = true;
+            //if (!hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+            //{
                 hidden = true;
-                defaultSpeed = 0;
-            }
-            else if (hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
-            {
-                hidden = false;
-                defaultSpeed = 1f;
-            }
+                defaultSpeed = .7f;
+            //}
+            //else if (hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
+           // {
+           //     hidden = false;
+           //     defaultSpeed = 1f;
+           // }
         }
     }
     public void OnTriggerExit2D(Collider2D other)
     {
-        buttonB.enabled = false;
+        //buttonB.enabled = false;
+        hidden = false;
+        defaultSpeed = 1f;
     }
 }
