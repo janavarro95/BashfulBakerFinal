@@ -267,8 +267,8 @@ namespace Assets.Scripts.GameInformation
                     DaysUnlocked.Add(0, true);
                     DaysUnlocked.Add(1, true);
                     DaysUnlocked.Add(2, true);
-                    DaysUnlocked.Add(3, false);
-                    DaysUnlocked.Add(4, false);
+                    DaysUnlocked.Add(3, true);
+                    DaysUnlocked.Add(4, true);
                 }
 
                 setUpScene();
@@ -560,6 +560,10 @@ namespace Assets.Scripts.GameInformation
             else if (CurrentDayNumber == 3)
             {
                 SceneManager.LoadScene("KitchenDay3");
+            }
+            else if (CurrentDayNumber == 4)
+            {
+                SceneManager.LoadScene("KitchenDay4");
             }
         }
 
