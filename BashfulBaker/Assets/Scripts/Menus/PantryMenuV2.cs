@@ -119,6 +119,11 @@ namespace Assets.Scripts.Menus
             if (currentMode == PantryMode.Cakes) checkForInput_Cakes();
             if (currentMode == PantryMode.Pies) checkForInput_Pies();
             if (currentMode == PantryMode.Breads) checkForInput_Breads();
+
+            if (GameInput.InputControls.StartPressed)
+            {
+                exitMenu();
+            }
         }
 
         private bool checkForInput_Select()
