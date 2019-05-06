@@ -36,10 +36,19 @@ namespace Assets.Scripts.Menus
         /// The image for the third completed quest for that day.
         /// </summary>
         private Image quest3Image;
-        /// <summary>
-        /// The image that is shown for when the player has completed all the quests.
-        /// </summary>
-        private Image finishedImage;
+
+        private Image quest4Image;
+        private Image quest5Image;
+        private Image quest6Image;
+
+        private Image minigame1Performance;
+        private Image minigame2Performance;
+        private Image minigame3Performance;
+        private Image minigame4Performance;
+        private Image minigame5Performance;
+        private Image minigame6Performance;
+
+        private TMPro.TextMeshProUGUI text;
 
         /// <summary>
         /// Runs when this script is started up by Unity.
@@ -56,12 +65,23 @@ namespace Assets.Scripts.Menus
             quest1Image = background.transform.Find("Delivery1").gameObject.transform.GetComponent<Image>();
             quest2Image = background.transform.Find("Delivery2").gameObject.transform.GetComponent<Image>();
             quest3Image = background.transform.Find("Delivery3").gameObject.transform.GetComponent<Image>();
-            finishedImage = background.transform.Find("FinishedImage").gameObject.transform.GetComponent<Image>();
+            quest4Image = background.transform.Find("Delivery4").gameObject.transform.GetComponent<Image>();
+            quest5Image = background.transform.Find("Delivery5").gameObject.transform.GetComponent<Image>();
+            quest6Image = background.transform.Find("Delivery6").gameObject.transform.GetComponent<Image>();
+
+            minigame1Performance = background.transform.Find("MG1Performance").gameObject.transform.GetComponent<Image>();
+            minigame2Performance = background.transform.Find("MG2Performance").gameObject.transform.GetComponent<Image>();
+            minigame3Performance = background.transform.Find("MG3Performance").gameObject.transform.GetComponent<Image>();
+            minigame4Performance = background.transform.Find("MG4Performance").gameObject.transform.GetComponent<Image>();
+            minigame5Performance = background.transform.Find("MG5Performance").gameObject.transform.GetComponent<Image>();
+            minigame6Performance = background.transform.Find("MG6Performance").gameObject.transform.GetComponent<Image>();
 
             quest1Image.gameObject.SetActive(false);
             quest2Image.gameObject.SetActive(false);
             quest3Image.gameObject.SetActive(false);
-            finishedImage.gameObject.SetActive(false);
+            quest4Image.gameObject.SetActive(false);
+            quest5Image.gameObject.SetActive(false);
+            quest6Image.gameObject.SetActive(false);
 
             finishedButton = new Components.MenuComponent(canvas.transform.Find("Close Button").gameObject.GetComponent<Button>());
 
@@ -69,6 +89,9 @@ namespace Assets.Scripts.Menus
 
             getQuestImages();
             setUpForSnapping();
+
+            text = background.transform.Find("GuardsFed").gameObject.transform.GetComponent<TMPro.TextMeshProUGUI>();
+            text.text ="x"+Game.NumberOfTimesCaught[Game.CurrentDayNumber].ToString();
         }
 
         /// <summary>
@@ -77,61 +100,50 @@ namespace Assets.Scripts.Menus
         private void getQuestImages()
         {
             List<CookingQuest> cookingQuests = Game.QuestManager.getCookingQuests();
-            if (cookingQuests.Count >= 1)
-            {
-                CookingQuest quest = cookingQuests[0];
-                quest1Image.sprite = loadQuestImage(quest);
-                if (quest.IsCompleted == false)
-                {
-                    //quest1Image.rectTransform.sizeDelta = new Vector2(-140, quest1Image.rectTransform.sizeDelta.y);
-                    quest1Image.rectTransform.localPosition = new Vector3(140, quest1Image.rectTransform.localPosition.y);
-                }
-                else
-                {
-                    quest1Image.rectTransform.localPosition = new Vector2(-140, quest1Image.rectTransform.localPosition.y);
-                }
-                quest1Image.gameObject.SetActive(true);
-
-            }
-            if (cookingQuests.Count >= 2)
-            {
-                CookingQuest quest = cookingQuests[1];
-                quest2Image.sprite = loadQuestImage(quest);
-                if (quest.IsCompleted == false)
-                {
-                    quest2Image.rectTransform.localPosition = new Vector2(140, quest2Image.rectTransform.localPosition.y);
-                }
-                else
-                {
-                    quest2Image.rectTransform.localPosition = new Vector2(-140, quest2Image.rectTransform.localPosition.y);
-                }
-                quest2Image.gameObject.SetActive(true);
-            }
-            if (cookingQuests.Count >= 3)
-            {
-                CookingQuest quest = cookingQuests[2];
-                quest3Image.sprite = loadQuestImage(quest);
-                if (quest.IsCompleted == false)
-                {
-                    quest3Image.rectTransform.localPosition = new Vector2(140, quest3Image.rectTransform.localPosition.y);
-                }
-                else
-                {
-                    quest3Image.rectTransform.localPosition = new Vector2(-140, quest3Image.rectTransform.localPosition.y);
-                }
-                quest3Image.gameObject.SetActive(true);
-            }
+            List<CookingQuest> finishedQuests = new List<CookingQuest>();
 
             foreach(CookingQuest cq in cookingQuests)
             {
-                if (cq.IsCompleted == true) continue;
-                else
+                if (cq.IsCompleted == true)
                 {
-                    finishedImage.gameObject.SetActive(false);
-                    return;
+                    finishedQuests.Add(cq);
+                    continue;
                 }
             }
-            finishedImage.gameObject.SetActive(true);
+
+            foreach (CookingQuest cq in finishedQuests) {
+                if (finishedQuests.Count >= 1)
+                {
+                    quest1Image.gameObject.SetActive(true);
+                    quest1Image.sprite = loadQuestImage(cq);
+                }
+                if (finishedQuests.Count >= 2)
+                {
+                    quest2Image.gameObject.SetActive(true);
+                    quest2Image.sprite = loadQuestImage(cq);
+                }
+                if (finishedQuests.Count >= 3)
+                {
+                    quest3Image.gameObject.SetActive(true);
+                    quest3Image.sprite = loadQuestImage(cq);
+                }
+                if (finishedQuests.Count >= 4)
+                {
+                    quest4Image.gameObject.SetActive(true);
+                    quest4Image.sprite = loadQuestImage(cq);
+                }
+                if (finishedQuests.Count >= 5)
+                {
+                    quest5Image.gameObject.SetActive(true);
+                    quest5Image.sprite = loadQuestImage(cq);
+                }
+                if (finishedQuests.Count >= 6)
+                {
+                    quest6Image.gameObject.SetActive(true);
+                    quest6Image.sprite = loadQuestImage(cq);
+                }
+            }
+
             Game.UnlockDay();
 
         }
@@ -145,16 +157,15 @@ namespace Assets.Scripts.Menus
         {
             if (quest.personToDeliverTo == "Sylvia" && quest.RequiredDish == "Chocolate Chip Cookies")
             {
-                Debug.Log("Quest is for Sylvia and her Choco Cookies!");
                 Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
                     "Graphics",
                     "UI",
                     "Menus",
                     "DailyRecap",
-                    "Quest_SylviaCookies"
+                    "QuestButton_SylviaCC"
                 }));
             
-                Sprite sprite=Game.ContentManager.loadSprite(texture, new Rect(new Rect(0,0,122,52)), new Vector2(0.5f, 0.5f), 16);
+                Sprite sprite=Game.ContentManager.loadSprite(texture, new Rect(new Rect(0,0,110,38)), new Vector2(0.5f, 0.5f), 16);
                 return sprite;
             }
 

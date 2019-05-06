@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 5566101163790233945}
   - component: {fileID: 2347811556397678488}
   - component: {fileID: 4657993697422056873}
+  - component: {fileID: 259636283872449698}
   m_Layer: 0
   m_Name: Sensory Guard
   m_TagString: Untagged
@@ -320,6 +321,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &259636283872449698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3024523048064800265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f69f0a0d68cd6ca46a644c8e59e79244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  other: 0
+  self: 1
 --- !u!1 &3024523048893541773
 GameObject:
   m_ObjectHideFlags: 0
