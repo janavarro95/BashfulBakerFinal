@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6178609771217324410}
   - component: {fileID: 3378184327900873813}
+  - component: {fileID: 7910710207488721998}
   m_Layer: 0
   m_Name: Alert_Icon
   m_TagString: Untagged
@@ -68,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d28714f5f57974326b42c3038a7721ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f646551675a638469942d5b6f6602e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -79,6 +80,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7910710207488721998
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484554563386775200}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b32a9f820516c494fa9363567d3c41e4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2474199046943678107
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,9 +426,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myState: 0
   flashlight: {fileID: 0}
+  catching: {fileID: 0}
   movementSpeed: 2
   proximityToTarget: 0
   minAwarenessDistance: 1
+  talkingToPlayer: 0
   lookAroundLerp: 0
   lookSpeed: 0.5
   patrolPauseTimer:
@@ -442,6 +464,13 @@ MonoBehaviour:
     name: 
     sentences: []
   guardFace: {fileID: 21300000, guid: bcaecea08e8b67b45b38c6e2210ba709, type: 3}
+  itemToTake:
+    itemName: 
+    stack: 0
+  pacMat: {fileID: 2100000, guid: d738c1efa66c4be49b371d0b027545a5, type: 2}
+  dm: {fileID: 0}
+  inDialogue: 0
+  exitPresses: 0
   guardType: 0
   hasEaten: 0
   dishConsumedName: 
@@ -460,7 +489,7 @@ MonoBehaviour:
   sawPlayer: 0
   seesPlayer: 0
   pathUpdateReset: 1
-  viewRadius: 6.5
+  viewRadius: 6
   viewAngle: 90
   targetMask:
     serializedVersion: 2
@@ -486,6 +515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5449875378383313458}
   - component: {fileID: 1327021924598956551}
+  - component: {fileID: 2762912709476905835}
   m_Layer: 0
   m_Name: Inevestigate_Icon
   m_TagString: Untagged
@@ -544,7 +574,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3e62ec3d5ec828b4496033758331d8aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 118ffa423a68a0643859ed931e14c0a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -555,6 +585,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2762912709476905835
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4247124446377787189}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e5df0cfa368a264dadc90e5d8cf57ac, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5566101163382397565
 GameObject:
   m_ObjectHideFlags: 0

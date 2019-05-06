@@ -27,8 +27,16 @@ public class Darken : MonoBehaviour
         */
         if (darken)
         {
-            transparency = 1 - (float)(Game.PhaseTimer.currentTime / Game.PhaseTimer.maxTime);
-            mat.SetFloat("_Transparency", transparency);
+            if (Game.PhaseTimer != null)
+            {
+                transparency = 1 - (float)(Game.PhaseTimer.currentTime / Game.PhaseTimer.maxTime);
+                mat.SetFloat("_Transparency", transparency);
+            }
+            else
+            {
+                transparency = 0.5f;
+                mat.SetFloat("_Transparency", transparency);
+            }
         }
     }
 }

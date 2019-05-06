@@ -60,7 +60,7 @@ namespace Assets.Scripts.Menus
 
         public void noButtonClick()
         {
-            Menu.Instantiate<DaySelectMenu>(true);
+            Menu.Instantiate<GameMenu>(true);
         }
 
     }

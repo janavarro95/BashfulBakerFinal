@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour {
     public SpriteRenderer buttonB;
     private float height;
 
+    private bool canPlayerMove = true;
     public bool CanPlayerMove
     {
         get
@@ -60,7 +61,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         set
         {
-            CanPlayerMove = value;
+            canPlayerMove = value;
         }
     }
 
@@ -205,7 +206,7 @@ public class PlayerMovement : MonoBehaviour {
         //If the player is visible they probably should be able to open a menu.
         if (this.spriteRenderer.enabled)
         {
-            if (CanPlayerMove)
+            if (canPlayerMove)
             {
                 checkForMenuOpening();
 

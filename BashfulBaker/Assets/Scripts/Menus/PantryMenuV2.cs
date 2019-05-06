@@ -457,9 +457,6 @@ namespace Assets.Scripts.Menus
                 {
                     FindObjectOfType<DialogueManager>().StartDialogue(tutorialProgress.pickUpText);
                 }
-
-                getDailyQuests();
-
                 Game.Player.gameObject.GetComponent<PlayerMovement>().NextStep();
                 tutorialProgress.arrow.GetComponent<progress>().SetStep(1);
                 tutorialProgress.arrow.GetComponent<UnityEngine.SpriteRenderer>().enabled = true;
@@ -469,11 +466,6 @@ namespace Assets.Scripts.Menus
             {
 
             }
-        }
-
-        private void getDailyQuests()
-        {
-            if (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0) Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
         }
     }
 }
