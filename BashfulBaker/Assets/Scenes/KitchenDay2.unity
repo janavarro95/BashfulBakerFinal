@@ -966,6 +966,7 @@ MonoBehaviour:
   warpLocation: {x: -7, y: 1}
   transitionTime: 0.5
   warpsToKitchen: 0
+  warpSound: {fileID: 8300000, guid: 352943432de448749a8e70cacaa75019, type: 3}
 --- !u!1 &479467069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,6 +1793,7 @@ MonoBehaviour:
   warpLocation: {x: -0.6, y: 1.5}
   transitionTime: 0.5
   warpsToKitchen: 0
+  warpSound: {fileID: 0}
 --- !u!1 &750998068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,6 +1944,7 @@ GameObject:
   - component: {fileID: 768034917}
   - component: {fileID: 768034916}
   - component: {fileID: 768034918}
+  - component: {fileID: 768034919}
   m_Layer: 0
   m_Name: Oven
   m_TagString: Untagged
@@ -2255,6 +2258,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &768034919
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768034912}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.98, y: 1.55}
+    newSize: {x: 0.98, y: 1.55}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.98, y: 1.55}
+  m_EdgeRadius: 0
 --- !u!1 &773525484
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,6 +2359,7 @@ MonoBehaviour:
   warpLocation: {x: -5.65, y: 0}
   transitionTime: 0.5
   warpsToKitchen: 0
+  warpSound: {fileID: 0}
 --- !u!1 &775808433
 GameObject:
   m_ObjectHideFlags: 0

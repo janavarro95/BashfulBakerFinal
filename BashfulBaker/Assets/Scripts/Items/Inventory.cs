@@ -16,7 +16,7 @@ namespace Assets.Scripts.Items
         /// <summary>
         /// All of the items 
         /// </summary>
-        public List<Item> items;
+        private List<Item> items;
 
         public int maxCapaxity;
 
@@ -25,6 +25,17 @@ namespace Assets.Scripts.Items
             get
             {
                 return items;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the inventory is empty or not.
+        /// </summary>
+        public bool IsEmpty
+        {
+            get
+            {
+                return this.Count == 0;
             }
         }
 
