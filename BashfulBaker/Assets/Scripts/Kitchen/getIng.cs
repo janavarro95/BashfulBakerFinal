@@ -10,7 +10,22 @@ namespace Assets.Scripts.GameInput {
     {
         public GameObject arrow;
         public Dialogue pickUpText;
+        /// <summary>
+        /// Checks for interacting.
+        /// </summary>
+        /// <param name="collision"></param>
         private void OnTriggerStay2D(Collider2D collision)
+        {
+            if (Game.TutorialCompleted == false) checkForTutorialInteraction(collision);
+            else checkForNonTutorialInteraction(collision);
+
+        }
+
+        /// <summary>
+        /// Checks for interacting with this during the tutorial.
+        /// </summary>
+        /// <param name="collision"></param>
+        private void checkForTutorialInteraction(Collider2D collision)
         {
             if (arrow.GetComponent<progress>().step == 0)
             {
@@ -33,10 +48,32 @@ namespace Assets.Scripts.GameInput {
                 */
             }
         }
+        /// <summary>
+        /// Checks for interacting with this not during a tutorial.
+        /// </summary>
+        /// <param name="collision"></param>
+        private void checkForNonTutorialInteraction(Collider2D collision)
+        {
+            if (InputControls.APressed && collision.gameObject.tag == "Player")
+            {
+                Menu.Instantiate<PantryMenuV2>();
+            }
+        }
+
+
+        /// <summary>
+        /// Checks when the player leaves the trigger hitbox.
+        /// </summary>
+        /// <param name="collision"></param>
         private void OnTriggerExit2D(Collider2D collision)
         {
-            arrow.GetComponent<SpriteRenderer>().enabled = true;
-            arrow.GetComponent<progress>().A.SetActive(false);
+            if (Game.TutorialCompleted == false)
+            {
+                arrow.GetComponent<SpriteRenderer>().enabled = true;
+                arrow.GetComponent<progress>().A.SetActive(false);
+            }
         }
+
+        
     }
 }

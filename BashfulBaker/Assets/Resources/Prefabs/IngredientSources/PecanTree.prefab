@@ -61,9 +61,9 @@ GameObject:
   - component: {fileID: 5653575242541305574}
   - component: {fileID: 5653575242541305569}
   - component: {fileID: 5653575242541305578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PecanTree
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 840a12cb8b3e5e242a7159b66d5d15ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: Pecan
+  item: 2
 --- !u!61 &5653575242541305569
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -4,7 +4,16 @@ using System.Collections.Generic;
 using Assets.Scripts.Utilities.Timers;
 using Assets.Scripts.Stealth;
 
-public class FieldOfView : MonoBehaviour {
+public class FieldOfView : MonoBehaviour
+{
+    // seeing variables
+    public bool sawPlayer = false;
+    public bool seesPlayer = false;
+    // stealth awareness zone
+    StealthAwarenessZone zone;
+    public float pathUpdateReset = 1f;
+    private float pathUpdateTimer = 0f;
+
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
@@ -35,6 +44,7 @@ public class FieldOfView : MonoBehaviour {
 
     private void Start()
     {
+        zone = GetComponent<StealthAwarenessZone>();
         cam = GameObject.Find("Main Camera");
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
@@ -60,14 +70,22 @@ public class FieldOfView : MonoBehaviour {
     {
         if (Static) return;
 
-        FindVisibleTargets();
+        pathUpdateTimer += Time.deltaTime;
+        if (pathUpdateTimer > pathUpdateReset)
+        {
+            FindVisibleTargets();
+            pathUpdateTimer = 0;
+        }
+
+
         if(visibleTargets.Count < 1)
         {
-            guard.transform.position = Vector3.MoveTowards(guard.transform.position, startPoint, 0.02f);
-            if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint);
+            //guard.transform.position = Vector3.MoveTowards(guard.transform.position, startPoint, 0.02f);
+            //if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint);
             alert.SetActive(false);
         }
-        if (Vector3.Distance(transform.position, cam.transform.position) < (Camera.main.orthographicSize * Screen.width / Screen.height) + viewRadius) {
+        if (Vector3.Distance(transform.position, cam.transform.position) < (Camera.main.orthographicSize * Screen.width / Screen.height) + viewRadius * 2)
+        {
             DrawFieldOfView();
             //meshTimer.Update();
 
@@ -76,45 +94,54 @@ public class FieldOfView : MonoBehaviour {
 
     void FindVisibleTargets()
     {
-        bool sawPlayer = visibleTargets.Contains(GameObject.FindGameObjectWithTag("Player").transform);
-        bool seesPlayer = false;
-        visibleTargets.Clear();
-        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
-
-        for (int x = 0; x < targetsInViewRadius.Length; x++)
+        if (!zone.talkingToPlayer)
         {
-            Transform target = targetsInViewRadius[x].transform;
-            Quaternion dirToTarget;
-            // Get Angle in Radians
-            float AngleRad = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x);
-            // Get Angle in Degrees
-            float AngleDeg = (180 / Mathf.PI) * AngleRad;
-            dirToTarget = Quaternion.Euler(0, 0, AngleDeg);
+            sawPlayer = visibleTargets.Contains(GameObject.FindGameObjectWithTag("Player").transform);
+            seesPlayer = false;
+            visibleTargets.Clear();
+            Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
 
-            if (!(target == GameObject.FindGameObjectWithTag("Player").transform && target.GetComponent<PlayerMovement>().hidden) && Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
+            for (int x = 0; x < targetsInViewRadius.Length; x++)
             {
-                float distToTarget = Vector3.Distance(transform.position, target.position);
-                if(!Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, distToTarget, obstacleMask))
+                Transform target = targetsInViewRadius[x].transform;
+                Quaternion dirToTarget;
+                // Get Angle in Radians
+                float AngleRad = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x);
+                // Get Angle in Degrees
+                float AngleDeg = (180 / Mathf.PI) * AngleRad;
+                dirToTarget = Quaternion.Euler(0, 0, AngleDeg);
+
+                RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, target.position - this.gameObject.transform.position);
+                if (hit.collider.gameObject.tag == "Obstacle")
                 {
-                    visibleTargets.Add(target);
-                    if (target == GameObject.FindGameObjectWithTag("Player").transform)
+                    continue;
+                }
+                else if (!(target == GameObject.FindGameObjectWithTag("Player").transform && target.GetComponent<PlayerMovement>().hidden) && Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
+                {
+                    float distToTarget = Vector3.Distance(transform.position, target.position);
+                    if (!Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, distToTarget, obstacleMask))
                     {
-                        if (!sawPlayer && target)
+                        visibleTargets.Add(target);
+                        if (target == GameObject.FindGameObjectWithTag("Player").transform)
                         {
-                            target.GetComponent<PlayerMovement>().Spotted();
+                            if (!sawPlayer && target)
+                            {
+                                target.GetComponent<PlayerMovement>().Spotted();
+                            }
+                            seesPlayer = true;
                         }
-                        seesPlayer = true;
+                        //guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
+                        //if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint,true);
+                        zone.AddToPath(target.transform);
+                        alert.SetActive(true);
                     }
-                    guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
-                    if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint,true);
-                    alert.SetActive(true);
                 }
             }
-        }
 
-        if (sawPlayer && !seesPlayer)
-        {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().Escaped();
+            if (sawPlayer && !seesPlayer)
+            {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().Escaped();
+            }
         }
     }
 
@@ -127,7 +154,7 @@ public class FieldOfView : MonoBehaviour {
         return new Vector3(Mathf.Cos(angleInDegrees * Mathf.Deg2Rad), Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0);
     }
 
-    void DrawFieldOfView()
+    public void DrawFieldOfView()
     {
         int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
         float stepAngleSize = viewAngle / stepCount;

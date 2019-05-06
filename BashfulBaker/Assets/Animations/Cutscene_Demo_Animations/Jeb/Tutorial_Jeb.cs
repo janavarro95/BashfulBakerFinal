@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.GameInput;
 using Assets.Scripts.GameInformation;
-
-
+using Assets.Scripts.QuestSystem.Quests;
 
 public class Tutorial_Jeb : MonoBehaviour
 {
@@ -28,12 +27,12 @@ public class Tutorial_Jeb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep >= 0)
+        if (GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep >= 0)
         {
             this.gameObject.SetActive(false);
         }
         canCount = false;
-        
+
     }
 
     // Update is called once per frame
@@ -90,7 +89,7 @@ public class Tutorial_Jeb : MonoBehaviour
     {
         GameObject.Find("Headshot").GetComponent<Image>().sprite = Jeb_Face_surprised;
         //GameObject.Find("speechBubble")
-            Bubble.SetActive(false);
+        Bubble.SetActive(false);
         FindObjectOfType<DialogueManager>().StartDialogue(tutorial_lines_pt1);
     }
     void Mission()
@@ -102,6 +101,10 @@ public class Tutorial_Jeb : MonoBehaviour
     {
         GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1;
         this.gameObject.SetActive(false);
+        Game.HUD.showHUD = true;
+        Game.HUD.showQuests = true;
+        if (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0) Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
+
     }
     void Begin_Count()
     {

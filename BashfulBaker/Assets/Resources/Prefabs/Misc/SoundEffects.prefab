@@ -48,3 +48,5 @@ MonoBehaviour:
     type: 3}
   menuCloseSound: {fileID: 8300000, guid: 27d7dd35a3b6e2641a161a92b7644d51, type: 3}
   itemSelectSound: {fileID: 8300000, guid: a26bc456e1910f54385a0cf8eb78c93e, type: 3}
+  specialIngredientPickUp: {fileID: 8300000, guid: bcec8a68ba59d3d47b082c576510186b,
+    type: 3}

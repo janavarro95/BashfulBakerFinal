@@ -31,26 +31,29 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
         Game.DialogueManager = this;
     }
+
     private void Update()
     {
-        if (animator.GetBool("isOpen") &&InputControls.APressed)
+        if (animator.GetBool("isOpen") && InputControls.APressed)
         {
             if (String.IsNullOrEmpty(this.currentSentence))
             {
                 DisplayNextSentence();
             }
-            else if(this.dialogueText.text!=this.currentSentence)
+            else if(this.dialogueText.text != this.currentSentence)
             {
                 this.dialogueText.text = this.currentSentence;
                 StopAllCoroutines();
             }
             else if (this.dialogueText.text == this.currentSentence)
             {
-                this.currentSentence = "";
+                if (sentences.Count != 0)
+                    this.currentSentence = "";
                 DisplayNextSentence();
             }
         }
     }
+
     public void StartDialogue (Dialogue dialogue)
     {
         animator.SetBool("isOpen", true);
@@ -64,11 +67,15 @@ public class DialogueManager : MonoBehaviour
         }
         DisplayNextSentence();
     }
+
     public void DisplayNextSentence()
     {
         if (sentences.Count == 0)
         {
-            EndDialogue();
+            if (this.dialogueText.text == this.currentSentence)
+            {
+                EndDialogue();
+            }
             return;
         }
         string sentence = sentences.Dequeue();
@@ -76,6 +83,7 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
+
     IEnumerator TypeSentence (string sentence)
     {
         dialogueText.text = "";

@@ -173,6 +173,10 @@ namespace Assets.Scripts.GameInformation
         public static int CurrentDayNumber;
         public static bool IngredientsAddedForPlayer;
 
+        public static Dictionary<int, int> NumberOfTimesCaught;
+
+        public static Dictionary<int, bool> DaysUnlocked;
+
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
         static Game()
@@ -242,7 +246,6 @@ namespace Assets.Scripts.GameInformation
                 if (Pantry == null)
                 {
                     Pantry = new Pantry();
-                    TutorialCompleted = false;
                 }
 
                 if (IngredientsAddedForPlayer == false)
@@ -254,6 +257,16 @@ namespace Assets.Scripts.GameInformation
                     Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Carrots));
                     Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Strawberries));
                     IngredientsAddedForPlayer = true;
+                }
+
+                if (DaysUnlocked == null)
+                {
+                    DaysUnlocked = new Dictionary<int, bool>();
+                    DaysUnlocked.Add(0, true);
+                    DaysUnlocked.Add(1, true);
+                    DaysUnlocked.Add(2, true);
+                    DaysUnlocked.Add(3, false);
+                    DaysUnlocked.Add(4, false);
                 }
 
                 setUpScene();
@@ -288,6 +301,15 @@ namespace Assets.Scripts.GameInformation
             
 
         }
+        public static void returnToDailySelectMenu()
+        {
+
+            DestroyAllForGameCleanUp();
+
+            SceneManager.LoadScene("DaySelectMenu");
+            InitializeAfterLoad();
+            setUpScene();
+        }
 
         private static void DestroyAllForGameCleanUp()
         {
@@ -298,8 +320,9 @@ namespace Assets.Scripts.GameInformation
             Serializer.JSONSerializer = null;
             QuestManager.Quests = null;
 
-            Destroy(Player.gameObject);
-            player = null;
+            Player.setSpriteVisibility(Enums.Visibility.Invisible);
+            //Destroy(Player.gameObject);
+            //player = null;
 
             Destroy(SoundManager.gameObject);
             SoundManager = null;
@@ -308,17 +331,35 @@ namespace Assets.Scripts.GameInformation
 
             //Game.Menu.exitMenu();
 
-            Game.HUD.showHUD = false;
+            Game.PhaseTimer = null;
+
+            Game.Player.dishesInventory.actualItems.Clear();
+            Game.player.removeActiveItem();
+
+
             Game.HUD.showInventory = false;
             Game.HUD.showTimer = false;
             Game.HUD.showQuests = false;
+            Game.HUD.showSpecialIngredients = false;
 
+            StartMinigame.ovenDish = null;
+
+            if (NumberOfTimesCaught != null)
+            {
+
+                foreach (int i in NumberOfTimesCaught.Keys)
+                {
+                    NumberOfTimesCaught[i] = 0;
+                }
+            }
             IngredientsAddedForPlayer = false;
 
-            Destroy(HUD.gameObject);
         }
 
-        static void setUpScene()
+        /// <summary>
+        /// Sets up all of the necessary components when a scene changes
+        /// </summary>
+        public static void setUpScene()
         {
 
             if (SceneManager.GetActiveScene().name == "MainMenu")
@@ -328,26 +369,27 @@ namespace Assets.Scripts.GameInformation
 
             if (SceneManager.GetActiveScene().name == "preloadScene")
             {
-                string path = Path.Combine("Prefabs", "Player");
-                Player.gameObject = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)));
-                Player.gameObject.transform.position = new Vector3(-3.06971f, -9.5f, 0);
-                DontDestroyOnLoad(Player.gameObject);
-
-                string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
-                //Debug.Log(HUDPath);
-                Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
-
-
-                SceneManager.LoadScene("Kitchen");
-                //Debug.Log("Loading kitchen scene from the Game.cs script!");
-
-                //StartNewTimerPhase(2, 0);
-
-                if (Game.TutorialCompleted == false)
+                if (GameObject.Find("Player(Clone)")==null)
                 {
-                    (HUD as GameHUD).showInventory = false;
+                    string path = Path.Combine("Prefabs", "Player");
+                    Player.gameObject = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)));
+                    Player.gameObject.transform.position = new Vector3(-3.06971f, -9.5f, 0);
+                    DontDestroyOnLoad(Player.gameObject);
+
+                    string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
+                    //Debug.Log(HUDPath);
+                    Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
+                    //Debug.Log("Loading kitchen scene from the Game.cs script!");
+
+                    //StartNewTimerPhase(2, 0);
+
+                    if (Game.TutorialCompleted == false)
+                    {
+                        (HUD as GameHUD).showInventory = false;
+                    }
                 }
 
+                SceneManager.LoadScene("DaySelectMenu");
             }
 
             if (SceneManager.GetActiveScene().name == "SampleScene")
@@ -377,7 +419,7 @@ namespace Assets.Scripts.GameInformation
             {
                 try
                 {
-                    Player.arrowDirection.setTargetObject(GameObject.Find("Warps (2)").transform.Find("ToOutside").gameObject);
+                    Player.arrowDirection.setTargetObject(GameObject.Find("OutsideTarget").transform.gameObject);
 
                 }
                 catch(Exception err)
@@ -415,6 +457,35 @@ namespace Assets.Scripts.GameInformation
             }
 
 
+            if (SceneManager.GetActiveScene().name == "KitchenDay2")
+            {
+                //Debug.Log("REMOVE THE COUNTERS!");
+                //GameObject.Find("backCounter 1").SetActive(false);
+                GameObject.Find("backCounter 1 (1)").SetActive(false);
+            }
+
+            if (SceneManager.GetActiveScene().name == "Neighborhood")
+            {
+                GameObject obj=GameObject.Find("DeliveryZones");
+                if(CurrentDayNumber==0 || CurrentDayNumber == 1)
+                {
+                    obj.transform.Find("Day_1").gameObject.SetActive(true);
+                    obj.transform.Find("Day_2").gameObject.SetActive(false);
+                    obj.transform.Find("Day_3").gameObject.SetActive(false);
+                }
+                if (CurrentDayNumber == 2)
+                {
+                    obj.transform.Find("Day_1").gameObject.SetActive(false);
+                    obj.transform.Find("Day_2").gameObject.SetActive(true);
+                    obj.transform.Find("Day_3").gameObject.SetActive(false);
+                }
+                if (CurrentDayNumber == 3)
+                {
+                    obj.transform.Find("Day_1").gameObject.SetActive(false);
+                    obj.transform.Find("Day_2").gameObject.SetActive(false);
+                    obj.transform.Find("Day_3").gameObject.SetActive(true);
+                }
+            }
 
             if (ScreenTransitions.shouldFadeInAfterWarp)
             {
@@ -459,7 +530,8 @@ namespace Assets.Scripts.GameInformation
                     "Oh man it's getting pretty dark.",
                     "I guess I won't have any more time to do my deliveries..."
                 }.ToArray()));
-            SceneManager.LoadScene("EndofDay");
+
+            ScreenTransitions.StartSceneTransition(5f, "EndOfDay", Color.black, ScreenTransitions.TransitionState.FadeOut);
         }
 
         public static void QuitGame()
@@ -468,7 +540,57 @@ namespace Assets.Scripts.GameInformation
             Application.Quit();
         }
 
+        /// <summary>
+        /// Loads the correct kitchen scene when the minigame finishes.
+        /// </summary>
+        public static void LoadCorrectKitchenScene()
+        {
+            if(CurrentDayNumber==0 || CurrentDayNumber == 1)
+            {
+                SceneManager.LoadScene("Kitchen");
+            }
+            else if (CurrentDayNumber == 2)
+            {
+                SceneManager.LoadScene("KitchenDay2");
+            }
+            else if (CurrentDayNumber == 3)
+            {
+                SceneManager.LoadScene("KitchenDay3");
+            }
+        }
 
+
+        /// <summary>
+        /// Updates the index for how many times the player was caught by the guard today.
+        /// </summary>
+        public static void CaughtByGuard()
+        {
+            if (NumberOfTimesCaught == null) NumberOfTimesCaught = new Dictionary<int, int>();
+
+            if (NumberOfTimesCaught.ContainsKey(CurrentDayNumber))
+            {
+                NumberOfTimesCaught[CurrentDayNumber]++;
+            }
+            else
+            {
+                NumberOfTimesCaught.Add(CurrentDayNumber, 1);
+            }
+        }
+
+        /// <summary>
+        /// Unlocks the next day.
+        /// </summary>
+        public static void UnlockDay()
+        {
+            try
+            {
+                DaysUnlocked[CurrentDayNumber+1] = true;
+            }
+            catch(Exception err)
+            {
+
+            }
+        }
 
 #endif
 

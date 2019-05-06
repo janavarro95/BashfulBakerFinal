@@ -28,7 +28,7 @@ namespace Assets.Scripts.Items
         {
             if(ingredient== Enums.SpecialIngredients.Carrots)
             {
-                this.Name = "Carrots";
+                this.Name = "Carrot";
             }
             else if(ingredient== Enums.SpecialIngredients.ChocolateChips)
             {
@@ -44,11 +44,11 @@ namespace Assets.Scripts.Items
             }
             else if(ingredient== Enums.SpecialIngredients.Raisins)
             {
-                this.Name = "Rasins";
+                this.Name = "Raisins";
             }
             else if(ingredient== Enums.SpecialIngredients.Strawberries)
             {
-                this.Name = "Strawberries";
+                this.Name = "Strawberry";
             }
 
             this.ingredientType = ingredient;
@@ -65,7 +65,7 @@ namespace Assets.Scripts.Items
             string combinedFolders = Path.Combine("Graphics", "Items");
             combinedFolders = Path.Combine(combinedFolders, "SpecialIngredients");
 
-            this._sprite = Game.ContentManager.loadTexture2DFromStreamingAssets(Path.Combine(combinedFolders, this.itemName+ ".png"));
+            this._sprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(combinedFolders, this.itemName));
         }
     }
 }

@@ -23,7 +23,7 @@ public class PantryCollider : MonoBehaviour
         if(collision.gameObject.tag=="Player" && Assets.Scripts.GameInput.InputControls.APressed)
         {
             Menu.Instantiate("PantryMenu");
-            (Game.Menu as PantryMenu).isTutorial = !Game.TutorialCompleted;
+            
         }
     }
 

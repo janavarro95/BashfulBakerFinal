@@ -75,13 +75,9 @@ namespace Assets.Scripts.Menus
             {
                 Instantiate("InventoryMenu", OverrideMenu);
             }
-            else if (typeof(T) == typeof(PantryMenuV2) || typeof(T) == typeof(PantryMenu))
+            else if (typeof(T) == typeof(PantryMenuV2))
             {
                 Instantiate("PantryMenuV2", OverrideMenu);
-            }
-            else if (typeof(T) == typeof(QuestMenu))
-            {
-                Instantiate("CookingQuestMenu", OverrideMenu);
             }
             else if (typeof(T) == typeof(GameMenu))
             {
@@ -90,6 +86,18 @@ namespace Assets.Scripts.Menus
             else if (typeof(T) == typeof(ReturnToTitleConfirmationMenu))
             {
                 Instantiate("ReturnToTitleConfirmationMenu", OverrideMenu);
+            }
+            else if (typeof(T) == typeof(ReturnToDailySelectMenu))
+            {
+                Instantiate("ReturnToDaySelectConfirmationMenu", OverrideMenu);
+            }
+            else if (typeof(T) == typeof(EndofDayMenu))
+            {
+                Instantiate("EndOfDayMenu", OverrideMenu);
+            }
+            else if(typeof(T)== typeof(DaySelectMenu))
+            {
+                Instantiate("DailySelectMenu", OverrideMenu);
             }
             else
             {

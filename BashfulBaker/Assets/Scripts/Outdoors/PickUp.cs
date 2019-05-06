@@ -4,34 +4,28 @@ using UnityEngine;
 using Assets.Scripts.Items;
 using Assets.Scripts.GameInformation;
 using Assets.Scripts.GameInput;
+using Assets.Scripts;
 
 public class PickUp : MonoBehaviour
 {
-    public string item;
-    private SpecialIngredient item_;
+    public Enums.SpecialIngredients item;
     Inventory specItemInv;
     
-
-    // Start is called before the first frame update
     void Start()
     {
         specItemInv = Game.Player.specialIngredientsInventory;
-        item_ = new SpecialIngredient(item);
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player" && (InputControls.APressed || Input.GetKeyDown(KeyCode.E)))
         {
-            if (specItemInv.Count < specItemInv.maxCapaxity)
-            {
-                specItemInv.Add(item_);
-                //Debug.Log("items: " + specItemInv.Count);
-            }
-            else
-            {
-                //Debug.Log("full");
-            }
+            Game.Player.addSpecialIngredientForPlayer(item);
+
+
+            Game.HUD.showHUD = true;
+            Game.HUD.showInventory = true;
+            Game.HUD.updateInventoryHUD();
         }
     }
 }

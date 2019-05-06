@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 073670a4f49222540af6bf8bc81e526b
   - enabled: 1
+    path: Assets/Scenes/DaySelectMenu.unity
+    guid: 6cdcd10932b5cff428816eed49524a37
+  - enabled: 1
     path: Assets/Scenes/Kitchen.unity
     guid: 28257caef4de5a046a264d68a1123288
   - enabled: 1
@@ -44,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndOfDay.unity
     guid: 8ae0db1a56bf597428ac7b7d3633ebe0
+  - enabled: 1
+    path: Assets/Scenes/KitchenDay2.unity
+    guid: 359a7be276e2ef344a92a1bbe3ca574e
   m_configObjects: {}

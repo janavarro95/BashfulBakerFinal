@@ -9,6 +9,7 @@ public class SoundEffects : MonoBehaviour
     public AudioClip mainMenu_StartButton;
     public AudioClip menuCloseSound;
     public AudioClip itemSelectSound;
+    public AudioClip specialIngredientPickUp;
 
     // Start is called before the first frame update
     void Start()
@@ -41,5 +42,13 @@ public class SoundEffects : MonoBehaviour
     public void playItemSelectSound()
     {
         Game.SoundManager.playSound(itemSelectSound, 1f);
+    }
+
+    /// <summary>
+    /// Plays the special ingredient pickup sound
+    /// </summary>
+    public void playSIPickUpSound()
+    {
+        Game.SoundManager.playSound(specialIngredientPickUp, 1f);
     }
 }

@@ -17,6 +17,7 @@ namespace Assets.Scripts.Menus
 
         public override void Start()
         {
+            GameInformation.Game.Menu = this;
             GameObject canvas = this.gameObject.transform.Find("Canvas").gameObject;
             yes=new MenuComponent(canvas.transform.Find("YesButton").GetComponent<Button>());
             no =new MenuComponent(canvas.transform.Find("NoButton").GetComponent<Button>());

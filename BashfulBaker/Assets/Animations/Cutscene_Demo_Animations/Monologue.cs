@@ -88,6 +88,9 @@ public class Monologue : MonoBehaviour
         if(dialogue == Third)
         {
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().NextStep();
+            GameObject.Find("Arrow").SetActive(false);
+            GameObject.Find("pantry").SetActive(false);
+            GameObject.Find("FakeShit").GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 }

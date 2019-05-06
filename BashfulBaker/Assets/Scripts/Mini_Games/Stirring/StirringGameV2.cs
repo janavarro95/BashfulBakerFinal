@@ -14,11 +14,20 @@ namespace Assets.Scripts.GameInput
         public AudioSource stirringSource;
         private Vector2 Prev, Next;
         private float Percent_Stirred;
-        public int Count; 
+        public int Count;
+        public GameObject HeldObject;
+        public Material[] particles;
+        public Sprite Choc;
+        public Sprite Mint;
+        public Sprite Raisin;
+        public Sprite Pecan;
         public Sprite completeIcon;
         public GameObject[] buttons;
         public SpriteRenderer bowl;
         public Sprite[] bowlsprites;
+        public Sprite[] mintsprites;
+        public Sprite[] raisinprites;
+        public Sprite[] pecansprites;
         public Animator[]foodAnimation;
 
 
@@ -27,6 +36,7 @@ namespace Assets.Scripts.GameInput
         // Start is called before the first frame update
         void Start()
         {
+            
             stirringSource.clip = chime;
             Prev = new Vector2(0, 0);
             Next = new Vector2(0, 0);
@@ -40,6 +50,37 @@ namespace Assets.Scripts.GameInput
 
             Game.HUD.showHUD = false;
             Game.HUD.showOnlyTimer();
+
+            Debug.Log(Game.Player.activeItem.Name);
+            if (Game.Player.activeItem.Name == "Chocolate Chip Cookies")
+            {
+                GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Choc;
+                GameObject.Find("chocChip_Bag").GetComponent<ParticleSystemRenderer>().material = particles[0];
+
+            } else if (Game.Player.activeItem.Name == "Mint Chip Cookies")
+            {
+                GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Mint;
+                GameObject.Find("chocChip_Bag").GetComponent<ParticleSystemRenderer>().material = particles[1];
+                bowlsprites = mintsprites;
+            }
+            else if (Game.Player.activeItem.Name == "Oatmeal Raisin Cookies")
+            {
+                GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Raisin;
+                GameObject.Find("chocChip_Bag").GetComponent<ParticleSystemRenderer>().material = particles[2];
+                bowlsprites = raisinprites;
+            }
+            else if (Game.Player.activeItem.Name == "Pecan Crescent Cookies")
+            {
+                GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Pecan;
+                GameObject.Find("chocChip_Bag").GetComponent<ParticleSystemRenderer>().material = particles[3];
+                bowlsprites = pecansprites;
+            }
+            else
+            {
+                Debug.Log("default");
+                GameObject.Find("chocChip_Bag").GetComponent<ParticleSystemRenderer>().material = particles[0];
+                GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Choc;
+            }
         }
 
         // Update is called once per frame
@@ -53,7 +94,7 @@ namespace Assets.Scripts.GameInput
             }
             Prev = Next;
 
-            if (Percent_Stirred >= 720 || Count >= foodAnimation.Length)
+            if (Percent_Stirred >= 720)
             {
                 Percent_Stirred = 720;
                 buttons[0].SetActive(false);
@@ -65,12 +106,13 @@ namespace Assets.Scripts.GameInput
                     Count++;
                     Percent_Stirred = 0;
                     stirringSource.Play();
-                    //Debug.Log(Count);
-                    if (Count < foodAnimation.Length)
+
+                    if (Count <= foodAnimation.Length)
                     {
                         foodAnimation[Count - 1].SetBool("enterBowl",true);
+                        
                     }
-                    else if (Count <= foodAnimation.Length)
+                    else if (Count > foodAnimation.Length)
                     {
                         Invoke("getOutOfStirring", 1.5f);
                     }
@@ -79,18 +121,13 @@ namespace Assets.Scripts.GameInput
             }
 
             int angle = (int)Vector2.SignedAngle(new Vector2(1, 0), Next);
-
-            if (Mathf.Abs(angle) > 144)
+            if (Next.magnitude < (new Vector2(.1f, .1f)).magnitude)
             {
-                angle = 2;
-            }
-            else if (Mathf.Abs(angle) > 72)
-            {
-                angle = angle > 0 ? 3 : 1;
+                angle = 7;
             }
             else
             {
-                angle = angle > 0 ? 4 : 0;
+                angle = ((angle / 25) + 7) % 14;
             }
 
             bowl.sprite = bowlsprites[angle];
@@ -100,7 +137,6 @@ namespace Assets.Scripts.GameInput
         void getOutOfStirring()
         {
             actuallyTransition();
-            //SceneManager.LoadScene("Kitchen");
         }
         private void actuallyTransition()
         {
@@ -111,7 +147,7 @@ namespace Assets.Scripts.GameInput
             Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
             Game.HUD.showHUD = true;
             Game.HUD.showAll();
-            SceneManager.LoadScene("Kitchen");
+            Game.LoadCorrectKitchenScene();
             ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
         }
     }

@@ -25,38 +25,33 @@ namespace Assets.Scripts.Menus
         [SerializeField]
         MenuComponent optionsButton;
 
-        [SerializeField]
-        MenuComponent creditsButton;
-        [SerializeField]
-        MenuComponent saveLoadButton;
+        GameObject canvas;
 
         /// <summary>
         /// Instantiate all menu logic here.
         /// </summary>
         public override void Start()
         {
-            GameObject canvas=this.transform.Find("Canvas").gameObject;
+            canvas=this.transform.Find("Canvas").gameObject;
             startButton = new MenuComponent(canvas.transform.Find("StartButton").gameObject.GetComponent<Button>());
             quitButton = new MenuComponent(canvas.transform.Find("QuitButton").gameObject.GetComponent<Button>());
             optionsButton =new MenuComponent(canvas.transform.Find("OptionsButton").gameObject.GetComponent<Button>());
 
-            creditsButton = new MenuComponent(canvas.transform.Find("CreditsButton").gameObject.GetComponent<Button>());
-            saveLoadButton =new MenuComponent(canvas.transform.Find("SaveLoadButton").gameObject.GetComponent<Button>());
 
             menuCursor = canvas.transform.Find("MenuMouseCursor").GetComponent<GameCursorMenu>();
             Game.Menu = this;
 
+            //canvas.transform.Find("Image").GetComponent<Image>().rectTransform.sizeDelta = new Vector2(Camera.main.pixelWidth, Camera.main.pixelHeight);
+
             setUpForSnapping();
 
-        }
+        }       
 
         public override void setUpForSnapping()
         {
             startButton.setNeighbors(null, optionsButton, null, null);
-            quitButton.setNeighbors(saveLoadButton, creditsButton, null, null);
-            optionsButton.setNeighbors(startButton, saveLoadButton, null, null);
-            saveLoadButton.setNeighbors(optionsButton, quitButton, null, null);
-            creditsButton.setNeighbors(quitButton, null, null, null);
+            quitButton.setNeighbors(optionsButton, null, null, null);
+            optionsButton.setNeighbors(startButton, quitButton, null, null);
             this.selectedComponent = startButton;
             menuCursor.snapToCurrentComponent();
 
@@ -93,18 +88,6 @@ namespace Assets.Scripts.Menus
             if (GameCursorMenu.SimulateMousePress(optionsButton))
             {
                 this.optionsButtonClick();
-                return;
-            }
-
-            if (GameCursorMenu.SimulateMousePress(saveLoadButton))
-            {
-                this.openSaveLoadSelectMenu();
-                return;
-            }
-
-            if (GameCursorMenu.SimulateMousePress(creditsButton))
-            {
-                this.creditsButtonClick();
                 return;
             }
         }

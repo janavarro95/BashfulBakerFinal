@@ -117,6 +117,24 @@ namespace Assets.Scripts.Player
             this.hidden = false;
         }
 
+        /// <summary>
+        /// Adds a specific amount of special ingredients to a special ingredient stack.
+        /// </summary>
+        /// <param name="ingredient">The ingredient to add to.</param>
+        /// <param name="amount">The amount to add.</param>
+        public void addSpecialIngredientForPlayer(Enums.SpecialIngredients ingredient,int amount=1,bool playSound=true)
+        {
+            Game.Player.specialIngredientsInventory.actualItems.Find(i => (i as SpecialIngredient).ingredientType == ingredient).stack+=amount;
+
+            if (amount >= 0)
+            {
+                if (Game.HUD != null)
+                {
+                    Game.HUD.InventoryHUD.rotateSpecialIngredient(ingredient);
+                    if (playSound) Game.SoundEffects.playSIPickUpSound();
+                }
+            }
+        }
 
         /// <summary>
         /// This makes the player's sprite invisible but DOESN'T make the player "hidden"
@@ -162,23 +180,10 @@ namespace Assets.Scripts.Player
             }
         }
 
-
-        public int getIngredientsCountForRecipes(string recipeName)
-        {
-            Dictionary<string, Recipe> recipes = Game.CookBook.getAllRecipes();
-
-            List<string> items = recipes[recipeName].itemsNeeded;
-            List<int> ingredientsNumberList = new List<int>();
-
-            foreach (string item in items)
-            {
-                int value = this.dishesInventory.Contains(item) ? this.dishesInventory.getItem(item).stack : 0;
-                ingredientsNumberList.Add(value);
-            }
-            int min = Convert.ToInt32(ingredientsNumberList.Min());
-            return min;
-        }
-
+        /// <summary>
+        /// Removes the active item that the player is holding.
+        /// </summary>
+        /// <returns></returns>
         public Item removeActiveItem()
         {
             Item I = this.activeItem;
@@ -186,12 +191,18 @@ namespace Assets.Scripts.Player
             updateHeldItemSprite();
             return I;
         }
-
-        public void getActiveDishFromMenu()
+        
+        /// <summary>
+        /// Resets the visual for the player's held item.
+        /// </summary>
+        public void resetActiveDishFromMenu()
         {
             Game.HUD.InventoryHUD.resetActiveDish();
         }
 
+        /// <summary>
+        /// Update the currently held player animation to reflect the actual item the playe is holding.
+        /// </summary>
         public void updateHeldItemSprite()
         {
             if (activeItem != null)
@@ -216,7 +227,11 @@ namespace Assets.Scripts.Player
             {
                 if (this._heldItemGameObject == null)
                 {
-                    this._heldItemGameObject.GetComponent<HeldObjectAnimator>().clearAnimationController();
+                    // if it's null....
+                    //... why are we accessing it?
+
+                    //this._heldItemGameObject.GetComponent<HeldObjectAnimator>().clearAnimationController();
+
                     return;
 
                 }
@@ -225,6 +240,10 @@ namespace Assets.Scripts.Player
             }
         }
 
+        /// <summary>
+        /// Plays the held object animation for Dane when he is walking around.
+        /// </summary>
+        /// <param name="moving"></param>
         public void playHeldObjectAnimation(bool moving)
         {
             if (Game.Player.activeItem == null) return;
