@@ -106,7 +106,6 @@ public class StealthAwarenessZone : MonoBehaviour
     [SerializeField]
     private float maxPauseTime = 5f;
 
-
     public enum LookingType
     {
         None,
@@ -136,6 +135,7 @@ public class StealthAwarenessZone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         spotsToGoTo = new List<Vector2>();
         pathBackToStart = new Stack<Vector2>();
         listOfSpotsToLookAt = new List<Vector3>();
