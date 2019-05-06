@@ -95,6 +95,7 @@ public class SullyDay1 : MonoBehaviour
     {
         GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
         this.gameObject.SetActive(false);
+        Destroy(trigger);
     }
 
 
