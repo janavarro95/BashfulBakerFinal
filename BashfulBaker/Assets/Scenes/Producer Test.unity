@@ -993,6 +993,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 154886287816571988, guid: 83fe879519adb6147945cb81bdd9887c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83fe879519adb6147945cb81bdd9887c, type: 3}
 --- !u!1 &485310376
@@ -1327,6 +1332,7 @@ MonoBehaviour:
   warpLocation: {x: -3.25, y: -10}
   transitionTime: 0.5
   warpsToKitchen: 1
+  warpSound: {fileID: 0}
 --- !u!4 &608853683 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1373223866931376218, guid: 9a52c6911f3304b959b11ec148b99a42,
