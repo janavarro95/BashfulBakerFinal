@@ -34,9 +34,28 @@ public class StealthCaughtZone : MonoBehaviour
     public bool hasEaten = false;
     public string dishConsumedName;
 
+
+    private string _guardUniqueID;
+    public string GuardID
+    {
+        get
+        {
+            return _guardUniqueID;
+        }
+    }
+
+    private void Awake()
+    {
+        this.awareness = this.gameObject.GetComponent<StealthAwarenessZone>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        Vector3 pos = this.gameObject.transform.position;
+        _guardUniqueID = pos.x + "_" + pos.y + "_" + pos.z;
+
+
         if (dm == null)
             dm = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
     }
@@ -44,6 +63,11 @@ public class StealthCaughtZone : MonoBehaviour
     // update
     private void Update()
     {
+        if (Game.HasGuardBeenFed(this.GuardID) && this.hasEaten==false)
+        {
+            Pacify();
+        }
+
         if (inDialogue)
         {
             ProgressDialogue();
@@ -209,6 +233,6 @@ public class StealthCaughtZone : MonoBehaviour
         dishConsumedName = itemToTake.Name;
         Game.Player.dishesInventory.Remove(itemToTake);
         Game.Player.activeItem = null;
-        Game.CaughtByGuard();
+        Game.CaughtByGuard(this.GuardID,dishConsumedName);
     }
 }

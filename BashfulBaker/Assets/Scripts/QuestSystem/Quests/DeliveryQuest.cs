@@ -69,15 +69,6 @@ namespace Assets.Scripts.QuestSystem.Quests
         }
 
         /// <summary>
-        /// Gets a clone of the delivery quest.
-        /// </summary>
-        /// <returns></returns>
-        public override Quest Clone()
-        {
-            return new DeliveryQuest(this.dishToDeliver, this.personToDeliverTo);
-        }
-
-        /// <summary>
         /// Delivers a dish to the completed quest. 
         /// </summary>
         /// <param name="Dish">The dish to deliver</param>
@@ -90,6 +81,11 @@ namespace Assets.Scripts.QuestSystem.Quests
                 //Debug.Log("Dish: " + Dish.Name + " has been delivered to: " + this.personToDeliverTo);
                 this.IsCompleted = true;
                 return true; 
+            }
+            else
+            {
+                Debug.Log("Dish is: "+Dish.Name+" for: "+ this.personToDeliverTo);
+                Debug.Log("This is:" + Dish.Name + " for: " +DropOffZone.npcNamesWhoLiveHere[0]);
             }
             return false;
         }

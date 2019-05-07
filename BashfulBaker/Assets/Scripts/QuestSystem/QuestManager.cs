@@ -98,7 +98,7 @@ namespace Assets.Scripts.QuestSystem
             }
 
             int index = UnityEngine.Random.Range(0, recipes.Count - 1);
-            CookingQuest newQuest = new CookingQuest(keys[index], ClientName, SpecialIngredientsWanted,UnwantedIngredients);
+            CookingQuest newQuest = new CookingQuest(keys[index], ClientName);
             return newQuest;
         }
 
@@ -124,7 +124,7 @@ namespace Assets.Scripts.QuestSystem
             }
             if (String.IsNullOrEmpty(recipeName)) throw new Exception("Recipe not found! Not generating cooking quest!");
 
-            CookingQuest newQuest = new CookingQuest(RequestedDish, ClientName, SpecialIngredientsWanted, UnwantedIngredients);
+            CookingQuest newQuest = new CookingQuest(RequestedDish, ClientName);
             return newQuest;
         }
 
@@ -241,8 +241,10 @@ namespace Assets.Scripts.QuestSystem
                 if (q is CookingQuest)
                 {
                     //Debug.Log("Found a delivery quest!");
-                    if (q.IsCompleted) continue; //Don't want to throw away dishes at completed quests.
+                    if ((q as CookingQuest).HasBeenDelivered) continue; //Don't want to throw away dishes at completed quests.
+                    
                     bool delivered = (q as CookingQuest).deliveryQuestPart.deliverDish(Dish, Zone);
+                    if (delivered == false) continue;
                     q.IsCompleted = true;
                     (q as CookingQuest).deliveryQuestPart.IsCompleted = true;
                     return delivered; //If the dish was accepted, return true, otherwise return false;

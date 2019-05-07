@@ -482,7 +482,7 @@ namespace Assets.Scripts.Menus
 
         private void getDailyQuests()
         {
-            if (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0) Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
+            //if (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0) Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
 
             if (Game.CurrentDayNumber == 2)
             {
