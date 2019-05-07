@@ -40,7 +40,7 @@ public class StartMinigame : MonoBehaviour
         {
             this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Stop();
             glow = GetComponent<Animator>();
-            glow.enabled = false;
+            glow.enabled = true;
             spriteRend = GetComponent<SpriteRenderer>();
             basicOven = spriteRend.sprite;
         }
@@ -376,7 +376,7 @@ public class StartMinigame : MonoBehaviour
         baked = 2;
         SetSprite(0);
         this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Stop();
-        glow.enabled = false;
+       // glow.enabled = false;
         spriteRend.sprite = basicOven;
         //arrow.GetComponent<SpriteRenderer>().enabled = true;
         //arrow.GetComponent<progress>().A.SetActive(false);
