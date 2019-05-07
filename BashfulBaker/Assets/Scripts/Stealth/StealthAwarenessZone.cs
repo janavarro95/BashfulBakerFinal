@@ -218,21 +218,21 @@ public class StealthAwarenessZone : MonoBehaviour
         // movement lerp
         if (!talkingToPlayer)
         {
+            Vector3 here, there;
             if (capturePatrolPoint != capturePatrolPointReset)
             {
-
-                this.movementLerp += getProperMovementSpeed(capturePatrolPoint, patrollPoints[currentPatrolPoint + 1]);
-                this.gameObject.transform.parent.transform.position = Vector3.Lerp(capturePatrolPoint, patrollPoints[currentPatrolPoint + 1], movementLerp);
+                here = capturePatrolPoint;
+                there = patrollPoints[currentPatrolPoint + 1];
             }
             else
             {
-                this.movementLerp += getProperMovementSpeed(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
-                this.gameObject.transform.parent.transform.position = Vector3.Lerp(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1], movementLerp);
+                here = patrollPoints[currentPatrolPoint];
+                there = patrollPoints[currentPatrolPoint + 1];
             }
+            this.movementLerp += getProperMovementSpeed(here, there);
+            this.gameObject.transform.parent.transform.position = Vector3.Lerp(here, there, movementLerp);
+            animateGuard(here, there);
         }
-
-        // Animate here
-        animateGuard(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
 
         // looking around while returning?
         // might just comment out
