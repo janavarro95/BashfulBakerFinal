@@ -487,7 +487,7 @@ public class PlayerMovement : MonoBehaviour {
             //if (!hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
             //{
                 hidden = true;
-                defaultSpeed = .7f;
+                defaultSpeed = 1f;
             //}
             //else if (hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
            // {
@@ -502,7 +502,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             //buttonB.enabled = false;
             hidden = false;
-            defaultSpeed = 1f;
+            defaultSpeed = 1.25f;
         }
     }
 }

@@ -124,6 +124,7 @@ namespace Assets.Scripts.GameInput
                     {
                         buttons[i].SetActive(false);
                     }
+
                     Invoke("exitspinnning", 1.5f);
                 }
                 else
