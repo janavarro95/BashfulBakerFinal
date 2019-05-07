@@ -56,8 +56,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         get
         {
-            bool temp = (Game.IsMenuUp == false && Game.IsScreenTransitionHappening == false);
-            CanPlayerMove = temp;
+            bool temp = (Game.IsMenuUp == false && Game.IsScreenTransitionHappening == false && canPlayerMove);
             return temp;
         }
         set
@@ -207,7 +206,7 @@ public class PlayerMovement : MonoBehaviour {
         //If the player is visible they probably should be able to open a menu.
         if (this.spriteRenderer.enabled)
         {
-            if (canPlayerMove)
+            if (CanPlayerMove)
             {
                 checkForMenuOpening();
 

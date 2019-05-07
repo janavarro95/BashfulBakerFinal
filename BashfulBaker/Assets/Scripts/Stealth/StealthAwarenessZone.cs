@@ -82,7 +82,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// <summary>
     /// Should the guard return home.
     /// </summary>
-    private bool returnHome;
+    public bool returnHome;
     public bool talkingToPlayer = false;
 
     private List<Vector3> listOfSpotsToLookAt;
@@ -314,7 +314,7 @@ public class StealthAwarenessZone : MonoBehaviour
                 animateGuard(sequenceStartingSpot, nextTargetSpot);
                 
                 return;
-            }
+            }// returning home
             else
             {
                 question.SetActive(false);
@@ -341,6 +341,33 @@ public class StealthAwarenessZone : MonoBehaviour
                 //Animate here
                 animateGuard(sequenceStartingSpot, nextTargetSpot);
             }
+        }
+        // returning home
+        else if (returnHome)
+        {
+            question.SetActive(false);
+            // state tracking
+            myState = 8;
+            //Debug.Log("Returning Home");
+
+            // movement
+            if (shouldMove)
+            {
+                proximityToTarget += getProperMovementSpeed();
+
+                // get next spot in the path
+                if (proximityToTarget >= 1.0f)
+                {
+                    getNextReturnSpot();
+                }
+
+                // lerp there
+                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+                // keep flashlight looking at player
+                aiLookLogic();
+            }
+            //Animate here
+            animateGuard(sequenceStartingSpot, nextTargetSpot);
         }
         // UNAWARE
         else
@@ -453,6 +480,7 @@ public class StealthAwarenessZone : MonoBehaviour
             return;
         }
 
+        //returnHome = hasReturnedHome();
         this.sequenceStartingSpot = this.gameObject.transform.position;
         this.nextTargetSpot = this.pathBackToStart.Pop();
     }
