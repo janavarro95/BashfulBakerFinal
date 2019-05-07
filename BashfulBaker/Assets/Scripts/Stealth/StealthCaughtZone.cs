@@ -210,6 +210,8 @@ public class StealthCaughtZone : MonoBehaviour
             // slow me down
             awareness.lookSpeed /= 2;
             awareness.movementSpeed /= 2;
+            awareness.capturePatrolPoint = this.transform.position;
+            awareness.movementLerp = 0.0f;
 
             // send me home
             awareness.returnHome = true;
