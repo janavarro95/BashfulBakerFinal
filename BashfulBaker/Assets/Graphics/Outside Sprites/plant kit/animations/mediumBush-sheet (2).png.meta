@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: d445e79ad0065f146a9aba9901a7e250
+guid: 368d3f5489f2f1545ad13e9d3e86271a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mediumBush-sheet_0
-    21300002: mediumBush-sheet_1
-    21300004: mediumBush-sheet_2
-    21300006: mediumBush-sheet_3
-    21300008: mediumBush-sheet_4
+    21300000: mediumBush-sheet (2)_0
+    21300002: mediumBush-sheet (2)_1
+    21300004: mediumBush-sheet (2)_2
+    21300006: mediumBush-sheet (2)_3
+    21300008: mediumBush-sheet (2)_4
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -68,7 +68,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -79,7 +79,40 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -89,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mediumBush-sheet_0
+      name: mediumBush-sheet (2)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -103,13 +136,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 330228305ec021744a874965dc0ef047
+      spriteID: 25e15f5696b60ea48af1d8afa3119b17
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mediumBush-sheet_1
+      name: mediumBush-sheet (2)_1
       rect:
         serializedVersion: 2
         x: 70
@@ -123,13 +156,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5f26f16b6905724686522942b33243d
+      spriteID: fa040710f1ac26d44a7dd7399d27fee6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mediumBush-sheet_2
+      name: mediumBush-sheet (2)_2
       rect:
         serializedVersion: 2
         x: 140
@@ -143,13 +176,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e2b7b19983ee75468877ef33fe685ab
+      spriteID: f97c772fc40792944a1312cd4c9af0f0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mediumBush-sheet_3
+      name: mediumBush-sheet (2)_3
       rect:
         serializedVersion: 2
         x: 210
@@ -163,7 +196,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed5c3b1f9fce32c4085ed9d46b18e71c
+      spriteID: 07733398e3ffc61458f5c35acd696e9d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mediumBush-sheet (2)_4
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 0
+        width: 70
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bfcdce780c119c4f8feaabad6d1dc09
       vertices: []
       indices: 
       edges: []
@@ -171,7 +224,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 519c5c5654a33b6489bd025c64b91847
+    spriteID: 9eaaaffec45ef22439b1678a784c2ca0
     vertices: []
     indices: 
     edges: []
