@@ -498,8 +498,11 @@ public class PlayerMovement : MonoBehaviour {
     }
     public void OnTriggerExit2D(Collider2D other)
     {
-        //buttonB.enabled = false;
-        hidden = false;
-        defaultSpeed = 1f;
+        if (other.gameObject.tag == "Obstacle")
+        {
+            //buttonB.enabled = false;
+            hidden = false;
+            defaultSpeed = 1f;
+        }
     }
 }

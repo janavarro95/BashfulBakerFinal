@@ -120,6 +120,10 @@ namespace Assets.Scripts.GameInput
             {
                 if (count >= 6 )
                 {
+                    for (int i = 0; i < buttons.Length; i++)
+                    {
+                        buttons[i].SetActive(false);
+                    }
                     Invoke("exitspinnning", 1.5f);
                 }
                 else

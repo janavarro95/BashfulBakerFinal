@@ -24,7 +24,8 @@ public class Day2Jeb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        step = 0;   
+        step = 0;
+        Game.HUD.showAll();
     }
 
     // Update is called once per frame
@@ -89,7 +90,7 @@ public class Day2Jeb : MonoBehaviour
             Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Norville", new List<string>()));
             Game.QuestManager.addQuest(new CookingQuest("Oatmeal Raisin Cookies", "Lylia", new List<string>()));
             Game.HUD.showQuests = true;
-            Game.StartNewTimerPhase(5, 0, true);
+            Game.StartNewTimerPhase(10, 0, true);
         }
 
     }
