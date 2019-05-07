@@ -96,8 +96,10 @@ public class StealthAwarenessZone : MonoBehaviour
 
     GameObject patrollInformation;
     private List<Vector3> patrollPoints;
+    public Vector3 capturePatrolPoint;
+    private Vector3 capturePatrolPointReset;
     private int currentPatrolPoint;
-    private float movementLerp;
+    public float movementLerp;
 
     [SerializeField]
     private DeltaTimer patrolPauseTimer;
@@ -141,6 +143,9 @@ public class StealthAwarenessZone : MonoBehaviour
         listOfSpotsToLookAt = new List<Vector3>();
         flashlight = GetComponent<FieldOfView>();
         catching = GetComponent<StealthCaughtZone>();
+
+        capturePatrolPointReset = new Vector3(-1000, -1000, -1000);
+        capturePatrolPoint = capturePatrolPointReset;
 
         this.startingLocation = this.transform.position;
 
@@ -210,11 +215,21 @@ public class StealthAwarenessZone : MonoBehaviour
             currentPatrolPoint = 0;
         }
 
-        //if (shouldMove)
-        this.movementLerp += getProperMovementSpeed(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
-
         // movement lerp
-        this.gameObject.transform.parent.transform.position = Vector3.Lerp(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1], movementLerp);
+        if (!talkingToPlayer)
+        {
+            if (capturePatrolPoint != capturePatrolPointReset)
+            {
+
+                this.movementLerp += getProperMovementSpeed(capturePatrolPoint, patrollPoints[currentPatrolPoint + 1]);
+                this.gameObject.transform.parent.transform.position = Vector3.Lerp(capturePatrolPoint, patrollPoints[currentPatrolPoint + 1], movementLerp);
+            }
+            else
+            {
+                this.movementLerp += getProperMovementSpeed(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
+                this.gameObject.transform.parent.transform.position = Vector3.Lerp(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1], movementLerp);
+            }
+        }
 
         // Animate here
         animateGuard(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
@@ -232,6 +247,7 @@ public class StealthAwarenessZone : MonoBehaviour
             currentPatrolPoint++;
             this.startingLocation = this.transform.position;
             this.movementLerp = 0f;
+            this.capturePatrolPoint = this.capturePatrolPointReset;
 
             if (this.movementLogic == MovementType.PatrollAndPause)
             {
@@ -343,7 +359,7 @@ public class StealthAwarenessZone : MonoBehaviour
             }
         }
         // returning home
-        else if (returnHome)
+        /*else if (returnHome)
         {
             question.SetActive(false);
             // state tracking
@@ -368,7 +384,7 @@ public class StealthAwarenessZone : MonoBehaviour
             }
             //Animate here
             animateGuard(sequenceStartingSpot, nextTargetSpot);
-        }
+        }*/
         // UNAWARE
         else
         {
