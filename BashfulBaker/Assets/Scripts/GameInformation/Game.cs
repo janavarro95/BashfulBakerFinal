@@ -267,8 +267,8 @@ namespace Assets.Scripts.GameInformation
                     DaysUnlocked.Add(0, true);
                     DaysUnlocked.Add(1, true);
                     DaysUnlocked.Add(2, true);
-                    DaysUnlocked.Add(3, true);
-                    DaysUnlocked.Add(4, true);
+                    DaysUnlocked.Add(3, false);
+                    DaysUnlocked.Add(4, false);
                 }
 
                 setUpScene();
@@ -476,18 +476,30 @@ namespace Assets.Scripts.GameInformation
                     obj.transform.Find("Day_1").gameObject.SetActive(true);
                     obj.transform.Find("Day_2").gameObject.SetActive(false);
                     obj.transform.Find("Day_3").gameObject.SetActive(false);
+                    obj.transform.Find("Day_4").gameObject.SetActive(false);
                 }
+            
                 if (CurrentDayNumber == 2)
                 {
                     obj.transform.Find("Day_1").gameObject.SetActive(false);
                     obj.transform.Find("Day_2").gameObject.SetActive(true);
                     obj.transform.Find("Day_3").gameObject.SetActive(false);
-                }
+                    obj.transform.Find("Day_4").gameObject.SetActive(false);
+            }
                 if (CurrentDayNumber == 3)
                 {
                     obj.transform.Find("Day_1").gameObject.SetActive(false);
                     obj.transform.Find("Day_2").gameObject.SetActive(false);
                     obj.transform.Find("Day_3").gameObject.SetActive(true);
+                    obj.transform.Find("Day_4").gameObject.SetActive(false);
+                }
+
+                if (CurrentDayNumber == 4)
+                {
+                    obj.transform.Find("Day_1").gameObject.SetActive(false);
+                    obj.transform.Find("Day_2").gameObject.SetActive(false);
+                    obj.transform.Find("Day_3").gameObject.SetActive(false);
+                    obj.transform.Find("Day_4").gameObject.SetActive(true);
                 }
             }
 

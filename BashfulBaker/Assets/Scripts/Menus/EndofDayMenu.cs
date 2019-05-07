@@ -91,7 +91,16 @@ namespace Assets.Scripts.Menus
             setUpForSnapping();
 
             text = background.transform.Find("GuardsFed").gameObject.transform.GetComponent<TMPro.TextMeshProUGUI>();
-            text.text ="x"+Game.NumberOfTimesCaught[Game.CurrentDayNumber].ToString();
+            if (Game.NumberOfTimesCaught != null)
+            {
+                text.text = "x" + Game.NumberOfTimesCaught[Game.CurrentDayNumber].ToString();
+            }
+            else
+            {
+                text.text = "x0";
+            }
+                
+            
         }
 
         /// <summary>
@@ -104,43 +113,55 @@ namespace Assets.Scripts.Menus
 
             foreach(CookingQuest cq in cookingQuests)
             {
-                if (cq.IsCompleted == true)
+                if (cq.HasBeenDelivered == true)
                 {
                     finishedQuests.Add(cq);
                     continue;
                 }
             }
-
+            int count = 0;
             foreach (CookingQuest cq in finishedQuests) {
-                if (finishedQuests.Count >= 1)
+                if (finishedQuests.Count >= 1 && count==0)
                 {
                     quest1Image.gameObject.SetActive(true);
                     quest1Image.sprite = loadQuestImage(cq);
+                    count++;
+                    continue;
                 }
-                if (finishedQuests.Count >= 2)
+                if (finishedQuests.Count >= 2 && count == 1)
                 {
                     quest2Image.gameObject.SetActive(true);
                     quest2Image.sprite = loadQuestImage(cq);
+                    count++;
+                    continue;
                 }
-                if (finishedQuests.Count >= 3)
+                if (finishedQuests.Count >= 3 && count == 2)
                 {
                     quest3Image.gameObject.SetActive(true);
                     quest3Image.sprite = loadQuestImage(cq);
+                    count++;
+                    continue;
                 }
-                if (finishedQuests.Count >= 4)
+                if (finishedQuests.Count >= 4 && count == 3)
                 {
                     quest4Image.gameObject.SetActive(true);
                     quest4Image.sprite = loadQuestImage(cq);
+                    count++;
+                    continue;
                 }
-                if (finishedQuests.Count >= 5)
+                if (finishedQuests.Count >= 5 && count == 4)
                 {
                     quest5Image.gameObject.SetActive(true);
                     quest5Image.sprite = loadQuestImage(cq);
+                    count++;
+                    continue;
                 }
-                if (finishedQuests.Count >= 6)
+                if (finishedQuests.Count >= 6 && count == 5)
                 {
                     quest6Image.gameObject.SetActive(true);
                     quest6Image.sprite = loadQuestImage(cq);
+                    count++;
+                    continue;
                 }
             }
 
@@ -164,14 +185,42 @@ namespace Assets.Scripts.Menus
                     "DailyRecap",
                     "QuestButton_SylviaCC"
                 }));
-            
-                Sprite sprite=Game.ContentManager.loadSprite(texture, new Rect(new Rect(0,0,110,38)), new Vector2(0.5f, 0.5f), 16);
+
+                Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
                 return sprite;
             }
 
+            if (quest.personToDeliverTo == "Lylia" && quest.RequiredDish == "Oatmeal Raisin Cookies")
+            {
+                Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
+                    "Graphics",
+                    "UI",
+                    "Menus",
+                    "DailyRecap",
+                    "QuestButton_LyliaOR"
+                }));
+                Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
+                return sprite;
+            }
+
+
+            if (quest.personToDeliverTo == "Norville" && quest.RequiredDish == "Mint Chip Cookies")
+            {
+                Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
+                    "Graphics",
+                    "UI",
+                    "Menus",
+                    "DailyRecap",
+                    "QuestButton_NorvilleMC"
+                }));
+                Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
+                return sprite;
+            }
+
+            Debug.Log("Quest is: " + quest.personToDeliverTo + " for: " + quest.RequiredDish);
+
             return null;
         }
-
         /// <summary>
         /// Logic that occurs when exiting the menu.
         /// </summary>

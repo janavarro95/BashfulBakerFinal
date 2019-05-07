@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
+
 namespace Assets.Scripts.QuestSystem.Quests
 {
     /// <summary>
@@ -103,9 +105,13 @@ namespace Assets.Scripts.QuestSystem.Quests
         }
 
         /// <summary>
-        /// Base constructor.
+        /// Constructor.
         /// </summary>
-        public CookingQuest():this("","",null,null)
+        /// <param name="RequiredDishName">The name of the wanted dish.</param>
+        /// <param name="PersonToDeliverTo">The name of the person to deliver to. I.E Mr. Jenkins</param>
+        /// <param name="WantedIngredients">All of the wanted ingredients in the list.</param>
+        /// <param name="UnWantedIngredients">All of the wanted ingredients in the list.</param>
+        public CookingQuest(string RequiredDishName, string PersonToDeliverTo, List<string> WantedIngredients):this(RequiredDishName,PersonToDeliverTo)
         {
 
         }
@@ -117,26 +123,13 @@ namespace Assets.Scripts.QuestSystem.Quests
         /// <param name="PersonToDeliverTo">The name of the person to deliver to. I.E Mr. Jenkins</param>
         /// <param name="WantedIngredients">All of the wanted ingredients in the list.</param>
         /// <param name="UnWantedIngredients">All of the wanted ingredients in the list.</param>
-        public CookingQuest(string RequiredDishName, string PersonToDeliverTo, List<string> WantedIngredients):this(RequiredDishName,PersonToDeliverTo,WantedIngredients,null)
-        {
-
-            generateDeliveryQuest();
-        }
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="RequiredDishName">The name of the wanted dish.</param>
-        /// <param name="PersonToDeliverTo">The name of the person to deliver to. I.E Mr. Jenkins</param>
-        /// <param name="WantedIngredients">All of the wanted ingredients in the list.</param>
-        /// <param name="UnWantedIngredients">All of the wanted ingredients in the list.</param>
-        public CookingQuest(string RequiredDishName, string PersonToDeliverTo, List<string> WantedIngredients, List<string> UnWantedIngredients) :base()
+        public CookingQuest(string RequiredDishName, string PersonToDeliverTo) :base()
         {
             this.requiredDishName = RequiredDishName ?? "";
             this.personToDeliverTo = PersonToDeliverTo ?? "";
-            this.wantedIngredients = WantedIngredients ?? new List<string>();
-            this.unwantedIngredients = UnWantedIngredients ?? new List<string>();
             generateDeliveryQuest();
+
+            Debug.Log("Dish is: " + this.requiredDishName + " for: " + this.personToDeliverTo);
         }
 
         /// <summary>
@@ -193,15 +186,6 @@ namespace Assets.Scripts.QuestSystem.Quests
         public override bool specialMissionCompleted()
         {
             return this.specialIngredientsIncluded;
-        }
-
-        /// <summary>
-        /// Gets a clone of the quest and sets the IsComplete bool to false. Good for making quick copies of quests.
-        /// </summary>
-        /// <returns></returns>
-        public override Quest Clone()
-        {
-            return new CookingQuest(this.requiredDishName, this.personToDeliverTo, this.wantedIngredients, this.unwantedIngredients);
         }
     }
 }
