@@ -32,7 +32,7 @@ public class StartMinigame : MonoBehaviour
 
     public static Dish ovenDish;
 
-    public int ovenCookingTime = 30;
+    private int ovenCookingTime = 10;
 
     private void Awake()
     {
