@@ -10,18 +10,40 @@ public class PickUp : MonoBehaviour
 {
     public Enums.SpecialIngredients item;
     Inventory specItemInv;
-    
+    public string Name;
+    public int max;
+    private Game.IngSource mySource;
+    private bool exists;
+
     void Start()
     {
+        exists = false;
+        for (int x = 0; x < Game.Sources.Count; x++)
+        {
+            if(Game.Sources[x].name == Name)
+            {
+                mySource = Game.Sources[x];
+                exists = true;
+            }
+        }
+        
         specItemInv = Game.Player.specialIngredientsInventory;
+        if (!exists)
+        {
+            mySource = new Game.IngSource(Name, max);
+            Game.Sources.Add(mySource);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player" && (InputControls.APressed || Input.GetKeyDown(KeyCode.E)))
         {
-            Game.Player.addSpecialIngredientForPlayer(item);
-
+            if (mySource.current < max)
+            {
+                Game.Player.addSpecialIngredientForPlayer(item);
+                mySource.current++;
+            }
 
             Game.HUD.showHUD = true;
             Game.HUD.showInventory = true;
