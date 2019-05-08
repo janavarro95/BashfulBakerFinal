@@ -446,10 +446,13 @@ MonoBehaviour:
   movementSpeed: 2
   proximityToTarget: 0
   minAwarenessDistance: 1
+  investigate: {fileID: 0}
   returnHome: 0
   talkingToPlayer: 0
   lookAroundLerp: 0
-  lookSpeed: 0.5
+  lookSpeed: 2
+  capturePatrolPoint: {x: 0, y: 0, z: 0}
+  movementLerp: 0
   patrolPauseTimer:
     currentTime: 0
     maxTime: 0
