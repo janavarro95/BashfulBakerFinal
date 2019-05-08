@@ -189,6 +189,8 @@ public class StealthCaughtZone : MonoBehaviour
         {
             // transport to outside the bakery
             Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
+
+            Game.StealthManager.caughtByGuard();
             //Pacify();
         }
 

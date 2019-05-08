@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Stealth;
+﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.Stealth;
 using Assets.Scripts.Utilities.Timers;
 using System.Collections;
 using System.Collections.Generic;
@@ -274,6 +275,7 @@ public class StealthAwarenessZone : MonoBehaviour
             // PURSUIT
             if (flashlight.seesPlayer)
             {
+                Game.StealthManager.AddAwareGuard(this);
                 // state tracking
                 myState = 64;
                 question.SetActive(false);
@@ -337,7 +339,7 @@ public class StealthAwarenessZone : MonoBehaviour
                 // state tracking
                 myState = 8;
                 //Debug.Log("Returning Home");
-
+                Game.StealthManager.RemoveAwareGuard(this);
                 // movement
                 if (shouldMove)
                 {
@@ -392,6 +394,8 @@ public class StealthAwarenessZone : MonoBehaviour
             // state tracking
             myState = 4;
             //Debug.Log("UNaware of Player");
+
+            
 
             // looking
             if (aiType != LookingType.None)

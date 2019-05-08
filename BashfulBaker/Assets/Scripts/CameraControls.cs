@@ -8,6 +8,8 @@ public class CameraControls : MonoBehaviour
     public bool shouldFollowTarget;
     public GameObject followTarget;
 
+    public float zOffset = -10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,8 @@ public class CameraControls : MonoBehaviour
     {
         if (shouldFollowTarget)
         {
-            this.gameObject.transform.position = followTarget.transform.position + new Vector3(0, 0, -10);
+            if (zOffset > 0) zOffset *= -1;
+            this.gameObject.transform.position = followTarget.transform.position + new Vector3(0, 0, zOffset);
         }
     }
 }
