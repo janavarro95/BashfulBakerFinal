@@ -72,7 +72,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// <summary>
     /// If the guard is currently aware of the player.
     /// </summary>
-    private Transform investigate = null;
+    public Transform investigate = null;
 
     /// <summary>
     /// If the guard is finished looking around.
@@ -236,10 +236,21 @@ public class StealthAwarenessZone : MonoBehaviour
 
         // looking around while returning?
         // might just comment out
-        if (aiType != LookingType.LookAroundWhileReturning)
+        /*if (aiType != LookingType.LookAroundWhileReturning)
         {
-            this.gameObject.transform.right = (Vector2)patrollPoints[currentPatrolPoint+1] - (Vector2)transform.position;
-        }
+            Vector2 me = (Vector2)transform.position;
+            Vector2 to = (Vector2)patrollPoints[currentPatrolPoint + 1];
+            Vector2 next = (Vector2)patrollPoints[(currentPatrolPoint + 2) % patrollPoints.Count];
+
+            // change rotations
+            to += LookMod(me, to);
+            to += LookMod(me, next);
+
+            // set right
+            this.gameObject.transform.right = to - me;
+        }*/
+
+        aiLookLogic();
 
         // lerp it up
         if (this.movementLerp >= 1.00f)
@@ -255,6 +266,7 @@ public class StealthAwarenessZone : MonoBehaviour
             }
         }
     }
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -540,21 +552,19 @@ public class StealthAwarenessZone : MonoBehaviour
     /// </summary>
     private void lookAround()
     {
-
-        if (lookAroundLerp == 0.0f) {
+        if (lookAroundLerp == 0.0f)
+        {
             lookAtStart = this.gameObject.transform.right;
             Vector2 lookAtSpot = listOfSpotsToLookAt[0];
-            this.gameObject.transform.right = Vector2.Lerp(lookAtStart,lookAtSpot - (Vector2)lookAtStart,lookAroundLerp);
             lookAroundLerp += getProperLookSpeed();
-            //if (this.gameObject.transform.position.z < 0) this.gameObject.transform.position += new Vector3(0, 0, 180);
+            this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - (Vector2)lookAtStart,lookAroundLerp);
             return;
         }
         else if(lookAroundLerp > 0.0f && lookAroundLerp < 1.0f)
         {
             Vector2 lookAtSpot = listOfSpotsToLookAt[0];
-            this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - (Vector2)lookAtStart, lookAroundLerp);
             lookAroundLerp += getProperLookSpeed();
-            //if (this.gameObject.transform.position.z < 0) this.gameObject.transform.position += new Vector3(0, 0, 180);
+            this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - (Vector2)lookAtStart, lookAroundLerp);
             return;
         }
         else if (lookAroundLerp >= 1.0f)
@@ -567,12 +577,28 @@ public class StealthAwarenessZone : MonoBehaviour
 
     private void createLookAroundPoints()
     {
-        int amount=Random.Range(1, 5);
-        for(int i = 0; i < amount; i++)
+        if (movementLogic == MovementType.None)
         {
-            
-            Vector2 lookAtSpot = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
-            listOfSpotsToLookAt.Add(lookAtSpot);
+            int amount = Random.Range(1, 5);
+            for (int i = 0; i < amount; i++)
+            {
+
+                Vector2 lookAtSpot = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+                listOfSpotsToLookAt.Add(lookAtSpot);
+            }
+        }
+        else
+        {
+            Vector2 me = (Vector2)patrollPoints[currentPatrolPoint];
+            Vector2 to = (Vector2)patrollPoints[(currentPatrolPoint + 1) % patrollPoints.Count];
+            Vector2 next = (Vector2)patrollPoints[(currentPatrolPoint + 2) % patrollPoints.Count];
+
+            // the direction to look
+            Vector2 add = LookMod(me, to, 1f);
+            add += LookMod(me, next, 0.5f);
+            add += LookMod(to, next, 0.2f);
+            // add
+            listOfSpotsToLookAt.Add(add);
         }
         
     }
@@ -622,61 +648,51 @@ public class StealthAwarenessZone : MonoBehaviour
 
         float dist = Vector2.Distance(lookAtStart, lookAtSpot);
         float speed = lookSpeed / (dist);
-        //return speed*Time.deltaTime;
-        return lookSpeed*Time.deltaTime;
+        return speed*Time.deltaTime;
+        //return lookSpeed*Time.deltaTime;
     }
 
-    /*
-    private void OnTriggerEnter2D(Collider2D collision)
+    private Vector2 LookMod(Vector2 here, Vector2 there)
     {
-        if (collision.gameObject.tag == "Player" && !collision.gameObject.GetComponent<PlayerMovement>().hidden)
+        Vector2 ret = new Vector2(0, 0);
+
+        if (here.y == there.y)
         {
-            if (!shouldMove) return;
-
-            RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, collision.gameObject.transform.position - this.gameObject.transform.position);
-            if (hit.collider.gameObject.tag == "Obstacle")
-            {
-                return;
-            }
-
-            if(this.pathBackToStart.Count==0 && this.awareOfPlayer==false)
-                this.startingLocation = this.gameObject.transform.position;
-
-            this.investigate = collision.gameObject.transform;
-            spotsToGoTo.Add(investigate.position); //Add the spot where the player was seen onto the queue
-            awareOfPlayer = true;
-            getNextTargetSpot();
-            returnHome = false;
+            if (here.x > there.x)
+                ret.x -= 1;
+            else
+                ret.x += 1;
+        }
+        if (here.x == there.x)
+        {
+            if (here.y > there.y)
+                ret.y -= 1;
+            else
+                ret.y += 1;
         }
 
+        return ret;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private Vector2 LookMod(Vector2 here, Vector2 there, float weight)
     {
-        if (collision.gameObject.tag == "Player" && !collision.gameObject.GetComponent<PlayerMovement>().hidden)
+        Vector2 ret = new Vector2(0, 0);
+
+        if (here.y == there.y)
         {
-            RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, collision.gameObject.transform.position - this.gameObject.transform.position);
-            if (hit.collider.gameObject.tag == "Obstacle")
-            {
-                return;
-            }
-
-            returnHome = false;
-            awareOfPlayer = true;
-            this.investigate = collision.gameObject.transform;
-
-            if (spotsToGoTo.Count > 0)
-            {
-                if (spotsToGoTo[spotsToGoTo.Count - 1] == (Vector2)investigate.position)
-                {
-                    return;
-                }
-                if (Vector2.Distance(spotsToGoTo[spotsToGoTo.Count - 1], investigate.position) <= minAwarenessDistance)
-                {
-                    return;
-                }
-            }
-            spotsToGoTo.Add(investigate.position); //Add the spot where the player was seen onto the queue
+            if (here.x > there.x)
+                ret.x -= weight;
+            else
+                ret.x += weight;
         }
-    }*/
+        if (here.x == there.x)
+        {
+            if (here.y > there.y)
+                ret.y -= weight;
+            else
+                ret.y += weight;
+        }
+
+        return ret;
+    }
 }
