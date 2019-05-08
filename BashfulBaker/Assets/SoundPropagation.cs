@@ -26,6 +26,9 @@ public class SoundPropagation : MonoBehaviour
 
         // set radius
         circleCollider.radius = soundStartRad;
+
+        // play the audio
+        audioSource.Play();
     }
 
     // the sound will grow up to a point
@@ -48,9 +51,11 @@ public class SoundPropagation : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // check if guard
+        Debug.Log("Sound Found : " + collision.name);
         GameObject g = collision.gameObject;
-        if (g.CompareTag("Guard"))
+        if (g.tag == "Guard")
         {
+            Debug.Log("--- Hit Guard");
             // investiagte set
             g.GetComponentInChildren<StealthAwarenessZone>().investigate = this.transform;
         }
