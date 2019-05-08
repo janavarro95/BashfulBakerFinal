@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8268412410933899899}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.029999971, y: 2.23, z: 3.9611502}
+  m_LocalPosition: {x: 0, y: 0.85, z: 3}
   m_LocalScale: {x: 0.1, y: 0.60000026, z: 0.10000006}
   m_Children: []
   m_Father: {fileID: 8268412411219730201}
@@ -107,7 +107,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 2
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -168,7 +168,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5.2
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -600,7 +600,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 2000
+    maxNumParticles: 100
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 400
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1360,8 +1360,8 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -1479,7 +1479,7 @@ ParticleSystem:
     uvChannelMask: -1
     randomRow: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4639,7 +4639,7 @@ ParticleSystem:
 --- !u!199 &8268412410933899896
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4654,7 +4654,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4749,7 +4749,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.043220043, y: -0.057626843}
+  m_Offset: {x: 0, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4760,7 +4760,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0155149, y: 1.2438054}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &8268412411219730203
 MonoBehaviour:
@@ -5040,7 +5040,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.014189541, y: -0.03817451}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5051,7 +5051,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.95344794, y: 1.0151134}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!95 &4521689521197999637
 Animator:

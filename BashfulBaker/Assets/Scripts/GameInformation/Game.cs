@@ -172,6 +172,7 @@ namespace Assets.Scripts.GameInformation
 
         public static int CurrentDayNumber;
         public static bool IngredientsAddedForPlayer;
+        public static bool TalkedtoSully;
 
         public static Dictionary<int, int> NumberOfTimesCaught;
 

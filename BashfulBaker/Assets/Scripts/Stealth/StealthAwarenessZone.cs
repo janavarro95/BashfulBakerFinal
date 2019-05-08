@@ -82,7 +82,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// <summary>
     /// Should the guard return home.
     /// </summary>
-    private bool returnHome;
+    public bool returnHome;
     public bool talkingToPlayer = false;
 
     private List<Vector3> listOfSpotsToLookAt;
@@ -96,8 +96,10 @@ public class StealthAwarenessZone : MonoBehaviour
 
     GameObject patrollInformation;
     private List<Vector3> patrollPoints;
+    public Vector3 capturePatrolPoint;
+    private Vector3 capturePatrolPointReset;
     private int currentPatrolPoint;
-    private float movementLerp;
+    public float movementLerp;
 
     [SerializeField]
     private DeltaTimer patrolPauseTimer;
@@ -141,6 +143,9 @@ public class StealthAwarenessZone : MonoBehaviour
         listOfSpotsToLookAt = new List<Vector3>();
         flashlight = GetComponent<FieldOfView>();
         catching = GetComponent<StealthCaughtZone>();
+
+        capturePatrolPointReset = new Vector3(-1000, -1000, -1000);
+        capturePatrolPoint = capturePatrolPointReset;
 
         this.startingLocation = this.transform.position;
 
@@ -210,14 +215,24 @@ public class StealthAwarenessZone : MonoBehaviour
             currentPatrolPoint = 0;
         }
 
-        //if (shouldMove)
-        this.movementLerp += getProperMovementSpeed(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
-
         // movement lerp
-        this.gameObject.transform.parent.transform.position = Vector3.Lerp(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1], movementLerp);
-
-        // Animate here
-        animateGuard(patrollPoints[currentPatrolPoint], patrollPoints[currentPatrolPoint + 1]);
+        if (!talkingToPlayer)
+        {
+            Vector3 here, there;
+            if (capturePatrolPoint != capturePatrolPointReset)
+            {
+                here = capturePatrolPoint;
+                there = patrollPoints[currentPatrolPoint + 1];
+            }
+            else
+            {
+                here = patrollPoints[currentPatrolPoint];
+                there = patrollPoints[currentPatrolPoint + 1];
+            }
+            this.movementLerp += getProperMovementSpeed(here, there);
+            this.gameObject.transform.parent.transform.position = Vector3.Lerp(here, there, movementLerp);
+            animateGuard(here, there);
+        }
 
         // looking around while returning?
         // might just comment out
@@ -232,6 +247,7 @@ public class StealthAwarenessZone : MonoBehaviour
             currentPatrolPoint++;
             this.startingLocation = this.transform.position;
             this.movementLerp = 0f;
+            this.capturePatrolPoint = this.capturePatrolPointReset;
 
             if (this.movementLogic == MovementType.PatrollAndPause)
             {
@@ -314,7 +330,7 @@ public class StealthAwarenessZone : MonoBehaviour
                 animateGuard(sequenceStartingSpot, nextTargetSpot);
                 
                 return;
-            }
+            }// returning home
             else
             {
                 question.SetActive(false);
@@ -342,6 +358,33 @@ public class StealthAwarenessZone : MonoBehaviour
                 animateGuard(sequenceStartingSpot, nextTargetSpot);
             }
         }
+        // returning home
+        /*else if (returnHome)
+        {
+            question.SetActive(false);
+            // state tracking
+            myState = 8;
+            //Debug.Log("Returning Home");
+
+            // movement
+            if (shouldMove)
+            {
+                proximityToTarget += getProperMovementSpeed();
+
+                // get next spot in the path
+                if (proximityToTarget >= 1.0f)
+                {
+                    getNextReturnSpot();
+                }
+
+                // lerp there
+                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
+                // keep flashlight looking at player
+                aiLookLogic();
+            }
+            //Animate here
+            animateGuard(sequenceStartingSpot, nextTargetSpot);
+        }*/
         // UNAWARE
         else
         {
@@ -453,6 +496,7 @@ public class StealthAwarenessZone : MonoBehaviour
             return;
         }
 
+        //returnHome = hasReturnedHome();
         this.sequenceStartingSpot = this.gameObject.transform.position;
         this.nextTargetSpot = this.pathBackToStart.Pop();
     }

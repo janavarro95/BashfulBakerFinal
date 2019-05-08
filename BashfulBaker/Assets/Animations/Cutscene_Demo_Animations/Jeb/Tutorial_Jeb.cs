@@ -99,7 +99,7 @@ public class Tutorial_Jeb : MonoBehaviour
     }
     void Jeb_disappear()
     {
-        GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1;
+        GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
         this.gameObject.SetActive(false);
         Game.HUD.showHUD = true;
         Game.HUD.showQuests = true;
