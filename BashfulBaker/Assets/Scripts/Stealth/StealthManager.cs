@@ -69,11 +69,12 @@ namespace Assets.Scripts.Stealth
                 GameInformation.Game.StealthManager = this;
                 DontDestroyOnLoad(this.gameObject);
             }
-            if (AnxietyMeter == null) AnxietyMeter = new AnxietyMeter(Camera.main.gameObject.GetComponent<PixelPerfectCamera>());
+            if (AnxietyMeter == null) AnxietyMeter = new AnxietyMeter(Camera.main);
         }
 
         public void Update()
         {
+            return;
             if (AreGuardsAware == true)
             {
                 AnxietyMeter.gainAnxiety(this.anxietyGain);
@@ -88,7 +89,7 @@ namespace Assets.Scripts.Stealth
         {
             if (this.AnxietyMeter != null)
             {
-                this.AnxietyMeter.setCamera(Camera.main.gameObject.GetComponent<PixelPerfectCamera>());
+                this.AnxietyMeter.setCamera(Camera.main);
             }
         }
     }

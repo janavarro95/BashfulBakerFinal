@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using UnityEngine.U2D;
 
 namespace Assets.Scripts.Stealth
@@ -23,7 +24,7 @@ namespace Assets.Scripts.Stealth
         /// <summary>
         /// Unity's pixel perfect camera.
         /// </summary>
-        PixelPerfectCamera camera;
+        Camera camera;
 
         /// <summary>
         /// The way to mess with the camera zoom level since pixel perfect doesn't like zoom
@@ -40,7 +41,7 @@ namespace Assets.Scripts.Stealth
         /// Create the object.
         /// </summary>
         /// <param name="Camera"></param>
-        public AnxietyMeter(PixelPerfectCamera Camera)
+        public AnxietyMeter(Camera Camera)
         {
             this.currentValue = 0;
             this.maxValue = 100;
@@ -58,13 +59,16 @@ namespace Assets.Scripts.Stealth
             if (camera == null) return;
             if (this.currentValue >= maxValue)
             {
-                camera.assetsPPU = this.zoomValue;
+                //camera.assetsPPU = this.zoomValue;
                 tooMuchAnxiety();
                 return;
             }
             this.currentValue += amount;
             if (this.currentValue >= maxValue) this.currentValue = maxValue;
-            this.camera.assetsPPU = zoomValue;
+            //this.camera.assetsPPU = zoomValue;
+
+            //camera.rect.size = new Vector2(100, 100);
+            camera.rect = new Rect(camera.rect.position, new Vector2(100, 100));
 
         }
 
@@ -82,19 +86,21 @@ namespace Assets.Scripts.Stealth
             if (camera == null) return;
             if (this.currentValue <= 0)
             {
-                camera.assetsPPU = this.zoomValue;
+                //camera.assetsPPU = this.zoomValue;
                 return;
             }
             this.currentValue -= amount;
             if (this.currentValue <= 0) this.currentValue = 0;
-            camera.assetsPPU = this.zoomValue;
+            //camera.assetsPPU = this.zoomValue;
+
+            camera.rect = new Rect(camera.rect.position, new Vector2(100, 100));
         }
 
         /// <summary>
         /// Resets the camera between sceenes.
         /// </summary>
         /// <param name="Camera"></param>
-        public void setCamera(PixelPerfectCamera Camera)
+        public void setCamera(Camera Camera)
         {
             this.camera = Camera;
         }
