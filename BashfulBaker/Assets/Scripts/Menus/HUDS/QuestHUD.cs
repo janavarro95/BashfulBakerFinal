@@ -26,13 +26,14 @@ namespace Assets.Scripts.Menus.HUDS
 
         public override void Start()
         {
+            canvas = this.gameObject.transform.Find("Canvas").gameObject;
             updateForTheDay();
-            menuBackground.SetActive(false);
+            menuBackground.SetActive(true);
         }
 
         public void updateForTheDay()
         {
-            GameObject canvas = this.transform.Find("Canvas").gameObject;
+            
 
             menuBackground = canvas.transform.Find("MenuBackground").gameObject;
 
@@ -149,7 +150,7 @@ namespace Assets.Scripts.Menus.HUDS
             return null;
         }
 
-        private void setUpMenuForDisplay()
+        public void setUpMenuForDisplay()
         {
             getQuestImages();
         }
@@ -177,5 +178,11 @@ namespace Assets.Scripts.Menus.HUDS
 
         }
 
+
+        public override void setVisibility(Enums.Visibility visibility)
+        {
+            if (visibility == Enums.Visibility.Invisible) canvas.SetActive(false);
+            if (visibility == Enums.Visibility.Visible) canvas.SetActive(true);
+        }
     }
 }
