@@ -48,18 +48,6 @@ public class StealthAwarenessZone : MonoBehaviour
     public float movementSpeed = 1f;
 
     /// <summary>
-    /// The lerp to the next target spot.
-    /// </summary>
-    [SerializeField]
-    private float proximityToTarget;
-
-    /// <summary>
-    /// The minimum amount of distance a player can move inside the awareness zone for their location to be added to the queue of spots to go to.
-    /// Smaller number = more refined/smoother path.
-    /// </summary>
-    public float minAwarenessDistance = 1f;
-
-    /// <summary>
     /// A list of all the spots we should explore.
     /// </summary>
     private List<Vector2> spotsToGoTo;
@@ -70,14 +58,9 @@ public class StealthAwarenessZone : MonoBehaviour
     private bool awareOfPlayer;
 
     /// <summary>
-    /// If the guard is currently aware of the player.
+    /// Guard is not aware, but needs to investigate
     /// </summary>
     public Transform investigate = null;
-
-    /// <summary>
-    /// If the guard is finished looking around.
-    /// </summary>
-    private bool finishedLookingAround;
 
     /// <summary>
     /// Should the guard return home.
@@ -88,13 +71,13 @@ public class StealthAwarenessZone : MonoBehaviour
     private List<Vector3> listOfSpotsToLookAt;
     [SerializeField]
     private float lookAroundLerp;
-    private Vector3 lookAtStart;
+    private Vector2 lookAtStart;
 
     [SerializeField]
     public float lookSpeed = 1f;
 
 
-    GameObject patrollInformation;
+    GameObject patrolInformation;
     private List<Vector3> patrolPoints;
     public Vector3 capturePatrolPoint;
     private Vector3 capturePatrolPointReset;
@@ -163,16 +146,16 @@ public class StealthAwarenessZone : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets all of the patrol points for the guard.
+    /// Gets all of the Patrol points for the guard.
     /// </summary>
     private void setUpPatrolPoint()
     {
         patrolPoints = new List<Vector3>();
-        patrollInformation = this.gameObject.transform.parent.transform.Find("PatrolInformation").gameObject;
+        patrolInformation = this.gameObject.transform.parent.transform.Find("PatrolInformation").gameObject;
 
-        if (patrollInformation.transform.childCount == 0) return;
+        if (patrolInformation.transform.childCount == 0) return;
 
-        foreach (Transform point in patrollInformation.transform)
+        foreach (Transform point in patrolInformation.transform)
         {
             patrolPoints.Add(point.gameObject.transform.position);
         }
@@ -188,172 +171,73 @@ public class StealthAwarenessZone : MonoBehaviour
         movementLerp = 0f;
     }
 
+
     /// <summary>
-    /// Patrols around different points looking for the player.
+    /// Operate on state
     /// </summary>
-    private void patrol()
-    {
-        // patrol and pause
-        if (this.movementLogic == MovementType.PatrollAndPause)
-        {
-            this.patrolPauseTimer.tick();
-            if (this.patrolPauseTimer.IsFinished)
-            {
-                this.patrolPauseTimer.maxTime = (double)Random.Range(minPauseTime, maxPauseTime);
-                this.patrolPauseTimer.restart();
-                this.patrolPauseTimer.pause();
-            }
-            else if (this.patrolPauseTimer.IsTicking)
-            {
-                return;
-            }
-        }
-
-        // patrol point wrap around
-        if (currentPatrolPoint + 1 >= patrolPoints.Count)
-        {
-            currentPatrolPoint = 0;
-        }
-
-        // movement lerp
-        if (!talkingToPlayer)
-        {
-            Vector3 here, there;
-            if (capturePatrolPoint != capturePatrolPointReset)
-            {
-                here = capturePatrolPoint;
-                there = patrolPoints[currentPatrolPoint + 1];
-            }
-            else
-            {
-                here = patrolPoints[currentPatrolPoint];
-                there = patrolPoints[currentPatrolPoint + 1];
-            }
-            this.movementLerp += getProperMovementSpeed(here, there);
-            this.gameObject.transform.parent.transform.position = Vector3.Lerp(here, there, movementLerp);
-            animateGuard(here, there);
-        }
-
-        aiLookLogic();
-
-        // lerp it up
-        if (this.movementLerp >= 1.00f)
-        {
-            this.startingLocation = (Vector2)patrolPoints[(currentPatrolPoint)];
-            this.startingLocation = patrolPoints[(currentPatrolPoint+1)];
-            currentPatrolPoint++;
-            this.movementLerp = 0f;
-            this.capturePatrolPoint = this.capturePatrolPointReset;
-
-            if (this.movementLogic == MovementType.PatrollAndPause)
-            {
-                this.patrolPauseTimer.start();
-            }
-        }
-    }
-
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         // state tracking
         myState = 1;
 
-        awareOfPlayer = (!catching.hasEaten && (flashlight.seesPlayer || this.investigate != null || returnHome));
-        shouldMove = awareOfPlayer && !talkingToPlayer;
+        awareOfPlayer = (!catching.hasEaten && (flashlight.seesPlayer || this.investigate != null));
+        shouldMove = (awareOfPlayer) && !talkingToPlayer;
 
-        // INTRIGUED
+        // AWARE
         if (awareOfPlayer)
         {
+            // PURSUIT or INVESTIGATE
+            bool pursuit = (flashlight.seesPlayer);
+            bool invest  = (this.investigate != null);
+            myState = 64 - (invest ? 0 : 14);
+
+            // set question mark
+            question.SetActive(invest && !pursuit);
+            //Debug.Log("Aware of Player");
+
+            // movement
+            if (shouldMove)
+            {
+                movementLerp += getProperMovementSpeed();
+
+                // get next spot in the path
+                if (movementLerp >= 1.0f)
+                {
+                    getNextTargetSpot();
+                }
+
+                // lerp there
+                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, movementLerp);
+                // keep flashlight looking at player
+                aiLookLogic();
+            }
+
+            //Animate here
+            animateGuard(sequenceStartingSpot, nextTargetSpot);
+        }
+        // RETURN HOME
+        else if (returnHome)
+        {
+            question.SetActive(false);
             // state tracking
-            myState = 2;
+            myState = 8;
+            //Debug.Log("Returning Home");
 
-            // PURSUIT
-            if (flashlight.seesPlayer)
+            // movement
+            movementLerp += getProperMovementSpeed();
+
+            // get next spot in the path
+            if (movementLerp >= 1.0f)
             {
-                // state tracking
-                myState = 64;
-                question.SetActive(false);
-                //Debug.Log("Aware of Player");
-
-                // movement
-                if (shouldMove)
-                {
-                    proximityToTarget += getProperMovementSpeed();
-
-                    // get next spot in the path
-                    if (proximityToTarget >= 1.0f)
-                    {
-                        getNextTargetSpot();
-                    }
-
-                    // lerp there
-                    this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
-                    // keep flashlight looking at player
-                    aiLookLogic();
-                }
-
-                //Animate here
-                animateGuard(sequenceStartingSpot, nextTargetSpot);
-
-                return;
+                getNextReturnSpot();
             }
-            // INVESTIGATING
-            else if (this.investigate != null)
-            {
-                //Debug.Log("Investigating Player");
-                question.SetActive(true);
-                // state tracking
-                myState = 50;
 
-                // movement
-                if (shouldMove)
-                {
-                    proximityToTarget += getProperMovementSpeed();
-
-                    // get next spot in the path
-                    if (proximityToTarget >= 1.0f)
-                    {
-                        getNextTargetSpot();
-                    }
-
-                    // lerp there
-                    this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
-                    // keep flashlight looking at player
-                    aiLookLogic();
-                }
-
-                //Animate here
-                animateGuard(sequenceStartingSpot, nextTargetSpot);
-                
-                return;
-            }// returning home
-            else
-            {
-                question.SetActive(false);
-                // state tracking
-                myState = 8;
-                //Debug.Log("Returning Home");
-
-                // movement
-                if (shouldMove)
-                {
-                    proximityToTarget += getProperMovementSpeed();
-
-                    // get next spot in the path
-                    if (proximityToTarget >= 1.0f)
-                    {
-                        getNextReturnSpot();
-                    }
-
-                    // lerp there
-                    this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, proximityToTarget);
-                    // keep flashlight looking at player
-                    aiLookLogic();
-                }
-                //Animate here
-                animateGuard(sequenceStartingSpot, nextTargetSpot);
-            }
+            // lerp there
+            this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, movementLerp);
+            // keep flashlight looking at player
+            aiLookLogic();
+            //Animate here
+            animateGuard(sequenceStartingSpot, nextTargetSpot);
         }
         // UNAWARE
         else
@@ -378,67 +262,102 @@ public class StealthAwarenessZone : MonoBehaviour
             }
             else if (movementLogic == MovementType.ContinuousPatrolling || movementLogic== MovementType.PatrollAndPause)
             {
-                patrol();
-                // Animate here
-                //animateGuard(sequenceStartingSpot, nextTargetSpot);
+                //Patrol
+                Patrol();
             }
         }
     }
 
+    /// <summary>
+    /// Patrols around different points looking for the player.
+    /// </summary>
+    private void Patrol()
+    {
+        // Patrol and pause
+        if (this.movementLogic == MovementType.PatrollAndPause)
+        {
+            this.patrolPauseTimer.tick();
+            if (this.patrolPauseTimer.IsFinished)
+            {
+                this.patrolPauseTimer.maxTime = (double)Random.Range(minPauseTime, maxPauseTime);
+                this.patrolPauseTimer.restart();
+                this.patrolPauseTimer.pause();
+            }
+            else if (this.patrolPauseTimer.IsTicking)
+            {
+                return;
+            }
+        }
+
+        // Patrol point wrap around
+        if (currentPatrolPoint >= patrolPoints.Count)
+        {
+            currentPatrolPoint = 0;
+        }
+
+        // Only move if not talking to player
+        if (!talkingToPlayer)
+        {
+            // lerp 
+            this.movementLerp += getProperMovementSpeed(sequenceStartingSpot, nextTargetSpot);  
+            
+            // reset sequences
+            if (this.movementLerp >= 1.00f)
+            {                
+                // deterine sequences
+                if (capturePatrolPoint != capturePatrolPointReset)
+                {
+                    sequenceStartingSpot = capturePatrolPoint;
+                    nextTargetSpot = patrolPoints[(currentPatrolPoint+1) % patrolPoints.Count];
+                }
+                else
+                {
+                    sequenceStartingSpot = patrolPoints[currentPatrolPoint];
+                    nextTargetSpot = patrolPoints[(currentPatrolPoint+1) % patrolPoints.Count];
+                }
+
+                // reset capture
+                this.capturePatrolPoint = this.capturePatrolPointReset;
+
+                // reset movement lerps
+                this.movementLerp = 0f;
+                this.lookAroundLerp = 0f;
+                currentPatrolPoint++;
+
+                if (this.movementLogic == MovementType.PatrollAndPause)
+                {
+                    this.patrolPauseTimer.start();
+                }
+            }
+
+            // move and animate
+            this.gameObject.transform.parent.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, movementLerp);
+            animateGuard(sequenceStartingSpot, nextTargetSpot);
+        }
+    }
+
+    /// <summary>
+    /// animates the guard using its animator
+    /// </summary>
+    /// <param name="currentPos"></param>
+    /// <param name="nextPos"></param>
     public void animateGuard(Vector3 currentPos,Vector3 nextPos)
     {
         animationScript.animateGuard(currentPos,nextPos);
     }
 
     /// <summary>
-    /// Randomly look around in a circle in an attempt to find the player.
+    /// ADD TO PATH
     /// </summary>
-    private void aiLookLogic()
-    {
-        if (flashlight == null) return;
-        if(flashlight.seesPlayer)
-        {
-            if (flashlight.visibleTargets.Count > 0)
-                aiLookAt(flashlight.visibleTargets[0].transform);
-        }
-        else if (this.investigate != null)
-        {
-            aiLookAt(investigate);
-        }
-        else if (listOfSpotsToLookAt.Count == 0)
-        {
-            createLookAroundPoints();
-            finishedLookingAround = true;
-        }
-        else
-        {
-            lookAround();
-        }
-    }
-
-    private void aiLookAt(Transform t)
-    {
-        Quaternion dirToTarget;
-        // Get Angle in Radians
-        float AngleRad = Mathf.Atan2(t.position.y - transform.position.y, t.position.x - transform.position.x);
-        // Get Angle in Degrees
-        float AngleDeg = (180 / Mathf.PI) * AngleRad;
-        dirToTarget = Quaternion.Euler(0, 0, AngleDeg);
-        this.transform.rotation = dirToTarget;
-    }
-
+    /// <param name="t"></param>
     public void AddToPath(Transform t)
     {
         if (pathBackToStart.Count == 0)
             this.pathBackToStart.Push(this.transform.position);
-        //else
-          //  this.pathBackToStart.Push(t.position);
 
         this.investigate = t;
-        //this.movementLerp = 0.0f;
-        //this.proximityToTarget = 0.0f;
+        returnHome = false;
         spotsToGoTo.Add(t.position);
-        
         getNextTargetSpot();
     }
 
@@ -447,7 +366,6 @@ public class StealthAwarenessZone : MonoBehaviour
     /// </summary>
     private void getNextTargetSpot()
     {
-        proximityToTarget = 0.0f;
         movementLerp = 0;
 
         if (this.spotsToGoTo.Count == 0)
@@ -469,33 +387,84 @@ public class StealthAwarenessZone : MonoBehaviour
     /// </summary>
     private void getNextReturnSpot()
     {
-        proximityToTarget = 0.0f;
         movementLerp = 0;
 
         if (this.pathBackToStart.Count == 0)
         {
-            returnHome = hasReturnedHome();
-            this.sequenceStartingSpot = this.gameObject.transform.position;
-            this.nextTargetSpot = this.startingLocation;
+            returnHome = false;
+            //this.sequenceStartingSpot = this.gameObject.transform.position;
+            //this.nextTargetSpot = this.startingLocation;
             return;
         }
-
-        //returnHome = hasReturnedHome();
+        
         this.sequenceStartingSpot = this.gameObject.transform.position;
         this.nextTargetSpot = this.pathBackToStart.Pop();
     }
-    
 
-    private bool hasReturnedHome()
+
+    /// <summary>
+    /// Randomly look around in a circle in an attempt to find the player.
+    /// </summary>
+    private void aiLookLogic()
     {
-        Debug.Log("returning home??");
-        if ((Vector2)this.gameObject.transform.position==this.startingLocation) return true;
-        else return false;
+        if (flashlight == null) return;
+        if (flashlight.seesPlayer)
+        {
+            aiLookDirectlyAt(flashlight.visibleTargets[0].transform.position);
+        }
+        else if (this.investigate != null)
+        {
+            aiLookDirectlyAt(investigate.position);
+        }
+        else
+        {
+            if (movementLogic == MovementType.ContinuousPatrolling || movementLogic == MovementType.PatrollAndPause)
+            {
+                //aiLookAt(patrolPoints[(currentPatrolPoint + 1) % patrolPoints.Count]);
+                aiLookDirectlyAt(patrolPoints[(currentPatrolPoint) % patrolPoints.Count]);
+            }
+            else if (listOfSpotsToLookAt.Count == 0)
+            {
+                createLookAroundPoints();
+            }
+            else
+            {
+                lookAround();
+            }
+        }
     }
-    
+
+    /// <summary>
+    /// LOOK AT THIS POINT OR TRANSFORM
+    /// </summary>
+    /// <param name="t"></param>
+    #region aiLookAt(t or v)
+    private void aiLookAt(Transform t)
+    {
+        Vector3 v = transform.position;
+        aiLookAt(v);
+    }
+    private void aiLookAt(Vector3 v)
+    {
+        lookAround(v - this.transform.position);
+    }
+    private void aiLookDirectlyAt(Vector3 v)
+    {
+        Quaternion dirToTarget;
+        // Get Angle in Radians
+        float AngleRad = Mathf.Atan2(v.y - transform.position.y, v.x - transform.position.x);
+        // Get Angle in Degrees
+        float AngleDeg = (180 / Mathf.PI) * AngleRad;
+        dirToTarget = Quaternion.Euler(0, 0, AngleDeg);
+        this.transform.rotation = dirToTarget;
+    }
+    #endregion
+
     /// <summary>
     /// Actually look around in a circle.
+    /// Or at a given vector
     /// </summary>
+    #region lookAround()
     private void lookAround()
     {
         if (lookAroundLerp == 0.0f)
@@ -503,14 +472,14 @@ public class StealthAwarenessZone : MonoBehaviour
             lookAtStart = this.gameObject.transform.right;
             Vector2 lookAtSpot = listOfSpotsToLookAt[0];
             lookAroundLerp += getProperLookSpeed();
-            this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - (Vector2)lookAtStart,lookAroundLerp);
+            this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - lookAtStart, lookAroundLerp);
             return;
         }
         else if(lookAroundLerp > 0.0f && lookAroundLerp < 1.0f)
         {
             Vector2 lookAtSpot = listOfSpotsToLookAt[0];
             lookAroundLerp += getProperLookSpeed();
-            this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - (Vector2)lookAtStart, lookAroundLerp);
+            this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - lookAtStart, lookAroundLerp);
             return;
         }
         else if (lookAroundLerp >= 1.0f)
@@ -520,6 +489,42 @@ public class StealthAwarenessZone : MonoBehaviour
             return;
         }
     }
+    private void lookAround(Vector2 v)
+    {
+        if (lookAroundLerp == 0.0f)
+        {
+            lookAtStart = this.gameObject.transform.right;
+            Vector2 lookAtSpot = v;
+
+            // check for 180 degree exception
+            if (lookAtStart.y == lookAtSpot.y)
+                lookAtStart.y += (lookAtStart.x > lookAtSpot.x ? 1 : -1);
+
+            lookAroundLerp += getProperLookSpeed(v);
+            //this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - lookAtStart, lookAroundLerp);
+            this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - lookAtStart, movementLerp);
+            return;
+        }
+        else if(lookAroundLerp > 0.0f && lookAroundLerp < 1.0f)
+        {
+            Vector2 lookAtSpot = v;
+            lookAroundLerp += getProperLookSpeed(v);
+            //this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - lookAtStart, lookAroundLerp);
+            this.gameObject.transform.right = Vector2.Lerp(lookAtStart, lookAtSpot - lookAtStart, movementLerp);
+            return;
+        }
+        else if (lookAroundLerp >= 1.0f)
+        {
+            lookAroundLerp = 0.0f;
+            return;
+        }
+    }
+    private void lookAround(Transform t)
+    {
+        Vector2 v = t.position;
+        lookAround(v);
+    }
+    #endregion
 
     private void createLookAroundPoints()
     {
@@ -553,6 +558,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// Get the movement speed of the guard.
     /// </summary>
     /// <returns></returns>
+    #region PropermMovementSpeed
     private float getProperMovementSpeed()
     {
         float dist=Vector2.Distance(this.sequenceStartingSpot, this.nextTargetSpot);
@@ -586,15 +592,24 @@ public class StealthAwarenessZone : MonoBehaviour
 
         return speed; //If dist is small then guard will move to target seemingly faster. If dist is large, then guard will move to target seemingly slower but all of it is at the same "speed"
     }
+    #endregion
 
     private float getProperLookSpeed()
     {
-        //lookAtStart = this.gameObject.transform.right;
         Vector2 lookAtSpot = listOfSpotsToLookAt[0];
 
         float dist = Vector2.Distance(lookAtStart, lookAtSpot);
-        float speed = lookSpeed / (dist);
-        return speed*Time.deltaTime;
+        float sp = lookSpeed / (dist);
+        return sp*Time.deltaTime;
+        //return lookSpeed*Time.deltaTime;
+    }
+    private float getProperLookSpeed(Vector2 v)
+    {
+        Vector2 lookAtSpot = v;
+
+        float dist = Vector2.Distance(lookAtStart, lookAtSpot);
+        float sp = lookSpeed / (dist);
+        return sp*Time.deltaTime;
         //return lookSpeed*Time.deltaTime;
     }
 
