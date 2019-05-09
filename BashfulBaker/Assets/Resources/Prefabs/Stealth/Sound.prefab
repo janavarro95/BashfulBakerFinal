@@ -157,6 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6ae5a8c6f6f3641887401c3c4e1bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundStartRad: 3.54
-  soundEndRad: 10
-  soundGrowthSpeed: 0.01
+  soundStartRad: 1
+  soundEndRad: 6
+  soundGrowthSpeed: 0.1

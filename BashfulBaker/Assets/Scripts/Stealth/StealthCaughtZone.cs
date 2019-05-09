@@ -77,12 +77,14 @@ public class StealthCaughtZone : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject.Find("Headshot").GetComponent<Image>().sprite = guardFace;
-
-        if (!collision.gameObject.GetComponent<PlayerMovement>().hidden)
+        PlayerMovement pm = collision.gameObject.GetComponent<PlayerMovement>();
+        if (pm == null)
+            return;
+        if (!pm.hidden)
         {
             Debug.Log("YOU GOT CAUGHT!");
 
-            collision.gameObject.GetComponent<PlayerMovement>().currentStep = 0;
+            pm.currentStep = 0;
 
             if (this.guardType == GuardType.Guard)
             {

@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 2347811556397678488}
   - component: {fileID: 4657993697422056873}
   - component: {fileID: 259636283872449698}
+  - component: {fileID: 477302401372952863}
   m_Layer: 0
   m_Name: Sensory Guard
   m_TagString: Guard
@@ -336,6 +337,27 @@ MonoBehaviour:
   update: 1
   other: 0
   self: 1
+--- !u!50 &477302401372952863
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3024523048064800265}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3024523048893541773
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.GameInformation;
 using Assets.Scripts.Items;
 using Assets.Scripts.Menus;
+using Assets.Scripts.GameInput;
 using Assets.Scripts.Utilities;
 using Assets.Scripts.Utilities.Timers;
 using System.Collections;
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private int guardsSeeingMe;
     public SpriteRenderer alert;
+    public GameObject soundPrefab;
     private float t;
 
     public SpriteRenderer buttonB;
@@ -108,7 +110,14 @@ public class PlayerMovement : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        // TEMP
+        // also recomment the code about game input
+        if (InputControls.BPressed)
+        {
+            Instantiate(soundPrefab, this.transform.position, Quaternion.identity);
+        }
 
         walkingSoundTimer.Update();
         checkForMovement();

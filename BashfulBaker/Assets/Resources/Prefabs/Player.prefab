@@ -508,6 +508,8 @@ MonoBehaviour:
   heldObject: {fileID: 0}
   heldObjectRenderer: {fileID: 0}
   alert: {fileID: 5273863966973995274}
+  soundPrefab: {fileID: 2646647941674954673, guid: 411ddb4a4cea79b469bec4cd6f5715f1,
+    type: 3}
   buttonB: {fileID: 143707514738644138}
   currentStep: 0
   arrow: {fileID: 0}
@@ -5269,7 +5271,7 @@ ParticleSystem:
 --- !u!199 &4918382076304924411
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

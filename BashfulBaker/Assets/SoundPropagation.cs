@@ -41,6 +41,11 @@ public class SoundPropagation : MonoBehaviour
         // grow
         circleCollider.radius += soundGrowthSpeed;
 
+        // wiggle?
+        //Vector3 temp = this.transform.position;
+        //this.transform.position += new Vector3(0.0000001f, 0.0f);
+        //this.transform.position = temp;
+
         // destroy
         // also check that sound has finished playing?
         if (circleCollider.radius >= soundEndRad)
@@ -57,7 +62,9 @@ public class SoundPropagation : MonoBehaviour
         {
             Debug.Log("--- Hit Guard");
             // investiagte set
-            g.GetComponentInChildren<StealthAwarenessZone>().investigate = this.transform;
+            StealthAwarenessZone saz = g.GetComponentInChildren<StealthAwarenessZone>();
+            saz.AddToPath(this.transform);
+            saz.capturePatrolPoint = this.transform.position;
         }
     }
 }
