@@ -271,5 +271,15 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2206497756485596552, guid: 0eaecb3d5ba18c642b4aad67a983d8b1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206497755475450782, guid: 0eaecb3d5ba18c642b4aad67a983d8b1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0eaecb3d5ba18c642b4aad67a983d8b1, type: 3}
