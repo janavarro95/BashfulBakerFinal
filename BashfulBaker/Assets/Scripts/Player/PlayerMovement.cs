@@ -90,7 +90,8 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject arrow;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         animator = this.GetComponent<Animator>();
         getRandomFootstepSound();
         walkingSoundTimer = new DeltaTimer(0.4d, Assets.Scripts.Enums.TimerType.CountDown, false);
@@ -114,10 +115,10 @@ public class PlayerMovement : MonoBehaviour {
     {
         // TEMP
         // also recomment the code about game input
-        if (InputControls.BPressed)
+        /*if (InputControls.BPressed)
         {
             Instantiate(soundPrefab, this.transform.position, Quaternion.identity);
-        }
+        }*/
 
         walkingSoundTimer.Update();
         checkForMovement();
