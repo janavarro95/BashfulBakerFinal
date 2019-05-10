@@ -10,11 +10,13 @@ using Assets.Scripts.QuestSystem.Quests;
 using Assets.Scripts.Stealth;
 using Assets.Scripts.Utilities;
 using Assets.Scripts.Utilities.Serialization;
+using Assets.Scripts.Utilities.Timers;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -183,8 +185,10 @@ namespace Assets.Scripts.GameInformation
 
         public static StealthManager StealthManager;
 
+        public static DeltaTimer EndOfDayDelay;
+
         // Notice that these methods are static! This is key!
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         static Game()
         {
             // Outside of the editor, this doesn't get called, and RuntimeInitializeOnLoad does NOT
@@ -475,7 +479,14 @@ namespace Assets.Scripts.GameInformation
             {
                 //Debug.Log("REMOVE THE COUNTERS!");
                 //GameObject.Find("backCounter 1").SetActive(false);
-                GameObject.Find("backCounter 1 (1)").SetActive(false);
+                try
+                {
+                    GameObject.Find("backCounter 1 (1)").SetActive(false);
+                }
+                catch(Exception err)
+                {
+
+                }
             }
 
             if (SceneManager.GetActiveScene().name == "Neighborhood")
@@ -557,7 +568,14 @@ namespace Assets.Scripts.GameInformation
                     "I guess I won't have any more time to do my deliveries..."
                 }.ToArray()));
 
-            ScreenTransitions.StartSceneTransition(5f, "EndOfDay", Color.black, ScreenTransitions.TransitionState.FadeOut);
+            //ScreenTransitions.StartSceneTransition(5f, "EndOfDay", Color.black, ScreenTransitions.TransitionState.FadeOut);
+            EndOfDayDelay = new DeltaTimer(3f, Enums.TimerType.CountDown, false, EndTheDay);
+            EndOfDayDelay.start();
+        }
+
+        private static void EndTheDay()
+        {
+            SceneManager.LoadScene("EndOfDay");
         }
 
         public static void QuitGame()

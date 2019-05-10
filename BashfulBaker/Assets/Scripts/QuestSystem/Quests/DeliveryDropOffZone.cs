@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameInformation;
 using Assets.Scripts.Items;
+using Assets.Scripts.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,9 +70,14 @@ namespace Assets.Scripts.QuestSystem.Quests
                 //Debug.Log("COUNT!: "+Game.QuestManager.quests.Count);
                 if (completed == Game.QuestManager.quests.Count)
                 {
-                    Game.PhaseTimer.currentTime = 1;
+                    ScreenTransitions.StartSceneTransition(2, "", Color.black, ScreenTransitions.TransitionState.FadeOut,actuallyTransition);
                 }
             }
+        }
+
+        private void actuallyTransition()
+        {
+            Game.PhaseTimer.currentTime = 1;
         }
 
     }

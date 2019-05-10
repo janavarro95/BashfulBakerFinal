@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.Utilities.Timers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Assets.Scripts.Menus.HUDS
 {
     public class TimerHUD : HUD
     {
+        
+
         private GameObject timerCanvas;
         private Text timeRemaining;
 
@@ -59,6 +62,11 @@ namespace Assets.Scripts.Menus.HUDS
             else
             {
                 Game.HUD.showTimer = false;
+            }
+
+            if (Game.EndOfDayDelay != null)
+            {
+                Game.EndOfDayDelay.Update();
             }
         }
 
