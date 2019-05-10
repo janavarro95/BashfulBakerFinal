@@ -173,6 +173,7 @@ namespace Assets.Scripts.GameInformation
         public static int CurrentDayNumber;
         public static bool IngredientsAddedForPlayer;
         public static bool TalkedtoSully;
+        public static bool Day2JebTalkedTo;
         
         public struct IngSource
         {

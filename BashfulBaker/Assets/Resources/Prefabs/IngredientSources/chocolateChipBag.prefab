@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: 0
+  Name: BakeryChocChps
+  max: 100
 --- !u!61 &7484911326515962287
 BoxCollider2D:
   m_ObjectHideFlags: 0
