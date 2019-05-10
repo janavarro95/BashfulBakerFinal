@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Stealth;
+﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.Stealth;
 using Assets.Scripts.Utilities.Timers;
 using System.Collections;
 using System.Collections.Generic;
@@ -205,7 +206,6 @@ public class StealthAwarenessZone : MonoBehaviour
                 {
                     getNextTargetSpot();
                 }
-
                 // lerp there
                 this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, movementLerp);
                 // keep flashlight looking at player
@@ -246,6 +246,8 @@ public class StealthAwarenessZone : MonoBehaviour
             // state tracking
             myState = 4;
             //Debug.Log("UNaware of Player");
+
+            
 
             // looking
             if (aiType != LookingType.None)

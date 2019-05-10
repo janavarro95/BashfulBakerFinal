@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Darken : MonoBehaviour
 {
@@ -37,6 +38,12 @@ public class Darken : MonoBehaviour
                 transparency = 0.5f;
                 mat.SetFloat("_Transparency", transparency);
             }
+        }
+
+        if (SceneManager.GetActiveScene().name == "EndOfDay")
+        {
+            transparency = 0.5f;
+            mat.SetFloat("_Transparency", transparency);
         }
     }
 }

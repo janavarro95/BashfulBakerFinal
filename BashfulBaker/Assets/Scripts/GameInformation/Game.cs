@@ -7,6 +7,7 @@ using Assets.Scripts.Menus.HUDS;
 using Assets.Scripts.Player;
 using Assets.Scripts.QuestSystem;
 using Assets.Scripts.QuestSystem.Quests;
+using Assets.Scripts.Stealth;
 using Assets.Scripts.Utilities;
 using Assets.Scripts.Utilities.Serialization;
 using System;
@@ -197,6 +198,8 @@ namespace Assets.Scripts.GameInformation
 
         public static Dictionary<string, string> GuardsFed;
 
+        public static StealthManager StealthManager;
+
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
         static Game()
@@ -287,6 +290,12 @@ namespace Assets.Scripts.GameInformation
                     DaysUnlocked.Add(2, true);
                     DaysUnlocked.Add(3, false);
                     DaysUnlocked.Add(4, false);
+                }
+
+                if (StealthManager == null)
+                {
+                    string stealth = Path.Combine(Path.Combine("Prefabs", "Misc"), "StealthManager");
+                    Instantiate((GameObject)Resources.Load(stealth, typeof(GameObject)));
                 }
 
                 setUpScene();

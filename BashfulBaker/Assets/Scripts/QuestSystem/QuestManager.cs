@@ -31,6 +31,7 @@ namespace Assets.Scripts.QuestSystem
 
         public QuestManager()
         {
+          
             this.quests = new List<Quest>();
             /*
             quests.Add(new CookingQuest("Example", "Mr.Example", new List<string>()
@@ -47,6 +48,10 @@ namespace Assets.Scripts.QuestSystem
         public void addQuest(Quest q)
         {
             this.quests.Add(q);
+            if (Game.HUD != null)
+            {
+                Game.HUD.QuestHUD.setUpMenuForDisplay();
+            }
         }
 
         /// <summary>
