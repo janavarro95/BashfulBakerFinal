@@ -24,6 +24,10 @@ public class Day2Jeb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (Game.Day2JebTalkedTo)
+        {
+            gameObject.SetActive(false);
+        }
         step = 0;
         Game.HUD.showAll();
     }
@@ -63,6 +67,7 @@ public class Day2Jeb : MonoBehaviour
     {
         if (InputControls.APressed && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false)
         {
+            Game.Day2JebTalkedTo = true;
             Bubble.SetActive(false);
             GameObject.Find("Headshot").GetComponent<Image>().sprite = Jeb_Face;
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 0;

@@ -176,6 +176,23 @@ namespace Assets.Scripts.GameInformation
         public static int CurrentDayNumber;
         public static bool IngredientsAddedForPlayer;
         public static bool TalkedtoSully;
+        public static bool Day2JebTalkedTo;
+        
+        public struct IngSource
+        {
+            public String name;
+            public int max;
+            public int current;
+
+            public IngSource(String Name, int Max)
+            {
+                name = Name;
+                max = Max;
+                current = 0;
+            }
+        }
+
+        public static List<IngSource> Sources = new List<IngSource>();
 
         public static Dictionary<int, int> NumberOfTimesCaught;
 
