@@ -39,6 +39,22 @@ namespace Assets.Scripts.Player
         }
 
         private GameObject _heldItemGameObject;
+        private PlayerMovement _playerMovement;
+        public PlayerMovement PlayerMovement
+        {
+            get
+            {
+                if (_playerMovement == null)
+                {
+                   this._playerMovement=gameObject.GetComponent<PlayerMovement>();
+                   return _playerMovement;
+                }
+                else
+                {
+                    return _playerMovement;
+                }
+            }
+        }
 
         public Enums.FacingDirection facingDirection;
         public bool hidden;
@@ -189,6 +205,7 @@ namespace Assets.Scripts.Player
             Item I = this.activeItem;
             this.activeItem = null;
             updateHeldItemSprite();
+            Game.Player.dishesInventory.Remove(I);
             return I;
         }
         

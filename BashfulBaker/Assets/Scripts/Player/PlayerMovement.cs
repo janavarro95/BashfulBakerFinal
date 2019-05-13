@@ -80,15 +80,22 @@ public class PlayerMovement : MonoBehaviour {
     {
         get
         {
-            return (defaultSpeed) / movementDampening;
+            return (defaultSpeed) / movementDampening * ((anxietyTimer.state == Assets.Scripts.Enums.TimerState.Ticking) ? anxietySpeedBonus:1f);
         }
     }
 
     public int currentStep;
     public GameObject arrow;
 
+
+    public bool nervousFromRacoon;
+    public float anxietyCooldown = 10f;
+    public DeltaTimer anxietyTimer;
+    public float anxietySpeedBonus=1.2f;
+
 	// Use this for initialization
 	void Start () {
+        anxietyTimer = new DeltaTimer(anxietyCooldown, Assets.Scripts.Enums.TimerType.CountDown, false);
         animator = this.GetComponent<Animator>();
         getRandomFootstepSound();
         walkingSoundTimer = new DeltaTimer(0.4d, Assets.Scripts.Enums.TimerType.CountDown, false);
@@ -109,6 +116,11 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (anxietyTimer != null)
+        {
+            anxietyTimer.Update();
+        }
 
         walkingSoundTimer.Update();
         checkForMovement();

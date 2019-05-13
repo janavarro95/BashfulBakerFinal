@@ -401,10 +401,10 @@ namespace Assets.Scripts.GameInformation
                 Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
 
                 //Game.Player.specialIngredientsInventory.Add(new SpecialIngredient("Chocolate Chip"));
-                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.ChocolateChipCookies));
-                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.MintChipCookies));
-                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.OatmealRaisinCookies));
-                Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.PecanCookies));
+                //Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.ChocolateChipCookies));
+                ////Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.MintChipCookies));
+                //Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.OatmealRaisinCookies));
+                //Game.Player.dishesInventory.Add(new Dish(Enums.Dishes.PecanCookies));
 
                 Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.ChocolateChips));
                 Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.MintChips));
