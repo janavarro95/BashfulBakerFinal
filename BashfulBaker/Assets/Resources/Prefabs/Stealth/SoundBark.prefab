@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2646647941674954672}
   - component: {fileID: 7267582346770895322}
   m_Layer: 0
-  m_Name: Sound
+  m_Name: SoundBark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundStartRad: 1
-  soundEndRad: 6
+  soundEndRad: 10
   soundGrowthSpeed: 0.1
 --- !u!114 &7267582346770895322
 MonoBehaviour:

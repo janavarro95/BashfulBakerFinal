@@ -8,6 +8,7 @@ public class BushRustler : MonoBehaviour
     private Animator anim;
     private Animation rustle;
 
+    public GameObject soundPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +31,12 @@ public class BushRustler : MonoBehaviour
     {
         if (g.CompareTag("Player"))
         {
+            // animate the bush
             anim.SetBool("shaking", true);
             Invoke("StopShaking", 0.5f);
+
+            // play sound
+            Instantiate(soundPrefab, this.transform.position, Quaternion.identity);
         }
     }
 

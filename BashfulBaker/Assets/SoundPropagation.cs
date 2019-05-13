@@ -16,6 +16,9 @@ public class SoundPropagation : MonoBehaviour
     AudioSource audioSource;
     CircleCollider2D circleCollider;
 
+    // circle drawer
+    private CircleDraw drawnCircle;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,9 @@ public class SoundPropagation : MonoBehaviour
 
         // play the audio
         audioSource.Play();
+
+        // drawing the sound
+        drawnCircle = GetComponent<CircleDraw>();
     }
 
     // the sound will grow up to a point
@@ -41,10 +47,8 @@ public class SoundPropagation : MonoBehaviour
         // grow
         circleCollider.radius += soundGrowthSpeed;
 
-        // wiggle?
-        //Vector3 temp = this.transform.position;
-        //this.transform.position += new Vector3(0.0000001f, 0.0f);
-        //this.transform.position = temp;
+        // draw circle
+        drawnCircle.radius = circleCollider.radius;
 
         // destroy
         // also check that sound has finished playing?
