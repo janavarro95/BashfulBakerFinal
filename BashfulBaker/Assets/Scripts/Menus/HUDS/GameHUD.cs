@@ -12,7 +12,7 @@ namespace Assets.Scripts.Menus.HUDS
         [SerializeField]
         public InventoryHUDV2 InventoryHUD;
         public TimerHUD TimerHUD;
-        public HUD QuestHUD;
+        public QuestHUD QuestHUD;
 
         public bool showHUD=true;
         public bool showInventory=true;
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Menus.HUDS
         {
             InventoryHUD = this.gameObject.transform.Find("InventoryHUDV2").gameObject.GetComponent<InventoryHUDV2>();
             TimerHUD = this.gameObject.transform.Find("TimerHUD").gameObject.GetComponent<TimerHUD>();
-            QuestHUD = this.gameObject.transform.Find("QuestHUD").gameObject.GetComponent<HUD>();
+            QuestHUD = this.gameObject.transform.Find("QuestHUD").gameObject.GetComponent<QuestHUD>();
         }
 
         /// <summary>

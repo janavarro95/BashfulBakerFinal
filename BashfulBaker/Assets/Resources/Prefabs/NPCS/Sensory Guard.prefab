@@ -190,9 +190,10 @@ GameObject:
   - component: {fileID: 2347811556397678488}
   - component: {fileID: 4657993697422056873}
   - component: {fileID: 259636283872449698}
+  - component: {fileID: 477302401372952863}
   m_Layer: 0
   m_Name: Sensory Guard
-  m_TagString: Untagged
+  m_TagString: Guard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,6 +337,27 @@ MonoBehaviour:
   update: 1
   other: 0
   self: 1
+--- !u!50 &477302401372952863
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3024523048064800265}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3024523048893541773
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,10 +467,13 @@ MonoBehaviour:
   catching: {fileID: 0}
   movementSpeed: 2
   proximityToTarget: 0
-  minAwarenessDistance: 1
+  investigate: {fileID: 0}
+  returnHome: 0
   talkingToPlayer: 0
   lookAroundLerp: 0
-  lookSpeed: 0.5
+  lookSpeed: 0.2
+  capturePatrolPoint: {x: 0, y: 0, z: 0}
+  movementLerp: 0
   patrolPauseTimer:
     currentTime: 0
     maxTime: 0
@@ -479,7 +504,7 @@ MonoBehaviour:
   dialogue:
     name: 
     sentences: []
-  guardFace: {fileID: 21300000, guid: bcaecea08e8b67b45b38c6e2210ba709, type: 3}
+  guardFace: {fileID: 21300000, guid: 273034a71d1a69d41b99fa9748bb8b3a, type: 3}
   itemToTake:
     itemName: 
     stack: 0
@@ -658,7 +683,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5566101163382397565}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

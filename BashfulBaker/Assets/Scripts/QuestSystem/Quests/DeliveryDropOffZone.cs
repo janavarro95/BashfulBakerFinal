@@ -25,8 +25,6 @@ namespace Assets.Scripts.QuestSystem.Quests
             
         }
 
-        
-
         /// <summary>
         /// If player is in the drop off zone and they interact with it, try to deliver the dish.
         /// </summary>
@@ -58,13 +56,18 @@ namespace Assets.Scripts.QuestSystem.Quests
                 //if (hasADishBeenDelivered == false){ Debug.Log("No dishes to deliver here!");}
 
 
-                bool completed = true;
+                int completed = 0;
                 foreach(CookingQuest q in Game.QuestManager.quests)
                 {
-                    if (q.deliveryQuestPart.IsCompleted == false) completed = false;
-                    break;
+                    //Debug.Log(q.RequiredDish + " " + q.personToDeliverTo);
+                    if (q.HasBeenDelivered == true)
+                    {
+                        completed++;
+                    }
+                    
                 }
-                if (completed == true)
+                //Debug.Log("COUNT!: "+Game.QuestManager.quests.Count);
+                if (completed == Game.QuestManager.quests.Count)
                 {
                     Game.PhaseTimer.currentTime = 1;
                 }

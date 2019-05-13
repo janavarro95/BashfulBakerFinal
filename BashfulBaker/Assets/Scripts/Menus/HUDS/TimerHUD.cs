@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Menus.HUDS
 {
-    public class TimerHUD:HUD
+    public class TimerHUD : HUD
     {
         private GameObject timerCanvas;
         private Text timeRemaining;
@@ -29,11 +29,15 @@ namespace Assets.Scripts.Menus.HUDS
         {
             if (Game.PhaseTimer != null)
             {
+#if UNITY_EDITOR
+                if (Input.GetKeyDown(KeyCode.T)) Game.PhaseTimer.currentTime = 1;
+#endif
+
                 Game.PhaseTimer.Update();
 
                 if (Game.PhaseTimer.seconds % 2 == 0)
                 {
-                 
+
                     timeRemaining.text = Game.PhaseTimer.minutes + ":" + parseSeconds();
                 }
                 else

@@ -24,7 +24,12 @@ public class Day2Jeb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        step = 0;   
+        if (Game.Day2JebTalkedTo)
+        {
+            gameObject.SetActive(false);
+        }
+        step = 0;
+        Game.HUD.showAll();
     }
 
     // Update is called once per frame
@@ -62,6 +67,7 @@ public class Day2Jeb : MonoBehaviour
     {
         if (InputControls.APressed && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false)
         {
+            Game.Day2JebTalkedTo = true;
             Bubble.SetActive(false);
             GameObject.Find("Headshot").GetComponent<Image>().sprite = Jeb_Face;
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 0;
@@ -79,11 +85,18 @@ public class Day2Jeb : MonoBehaviour
     }
     void Jeb_disappear()
     {
-        GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1;
+        GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
         this.gameObject.SetActive(false);
         Game.HUD.showHUD = true;
         Game.HUD.showQuests = true;
-       // if (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0) Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
+        if (Game.CurrentDayNumber == 2)
+        {
+            Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
+            Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Norville", new List<string>()));
+            Game.QuestManager.addQuest(new CookingQuest("Oatmeal Raisin Cookies", "Lylia", new List<string>()));
+            Game.HUD.showQuests = true;
+            Game.StartNewTimerPhase(10, 0, true);
+        }
 
     }
 }

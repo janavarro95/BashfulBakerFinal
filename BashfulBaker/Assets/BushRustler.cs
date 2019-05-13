@@ -17,28 +17,26 @@ public class BushRustler : MonoBehaviour
         //rustle = GetComponent<Animation>();
     }
 
-    private void LateUpdate()
-    {
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        SetShake(collision.gameObject);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        SetShake(collision.gameObject);
+    }
+
+    void SetShake(GameObject g)
+    {
+        if (g.CompareTag("Player"))
         {
-            //anim.enabled = true;
             anim.SetBool("shaking", true);
-            Invoke("StopShaking", .2f);
+            Invoke("StopShaking", 0.5f);
         }
     }
+
     void StopShaking()
     {
         anim.SetBool("shaking", false);
     }
-    /*  private void OnTriggerExit2D(Collider2D collision)
-      {
-          if (collision.gameObject.CompareTag("Player"))
-          {
-              anim.enabled = false;
-          }
-      } */
 }

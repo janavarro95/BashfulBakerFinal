@@ -96,6 +96,7 @@ public class FieldOfView : MonoBehaviour
     {
         if (!zone.talkingToPlayer)
         {
+            if (GameObject.FindGameObjectWithTag("Player") == null) return;
             sawPlayer = visibleTargets.Contains(GameObject.FindGameObjectWithTag("Player").transform);
             seesPlayer = false;
             visibleTargets.Clear();

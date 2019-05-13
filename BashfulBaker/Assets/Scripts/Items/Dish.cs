@@ -185,6 +185,28 @@ namespace Assets.Scripts.Items
             this.currentDishState = Enums.DishState.Ingredients;
         }
 
+        public Dish(Enums.Dishes Dishes,Enums.DishState state)
+        {
+            if (Dishes == Enums.Dishes.ChocolateChipCookies)
+            {
+                this.Name = "Chocolate Chip Cookies";
+            }
+            if (Dishes == Enums.Dishes.MintChipCookies)
+            {
+                this.Name = "Mint Chip Cookies";
+            }
+            if (Dishes == Enums.Dishes.OatmealRaisinCookies)
+            {
+                this.Name = "Oatmeal Raisin Cookies";
+            }
+            if (Dishes == Enums.Dishes.PecanCookies)
+            {
+                this.Name = "Pecan Crescent Cookies";
+            }
+
+            this.currentDishState = state;
+        }
+
         public Dish(string DishName, List<Item> Ingredients, Enums.DishState State = Enums.DishState.Ingredients) :base(DishName)
         {
             this.ingredients = Ingredients; 

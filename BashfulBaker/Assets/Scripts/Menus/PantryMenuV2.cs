@@ -32,6 +32,11 @@ namespace Assets.Scripts.Menus
         GameObject breadSelect;
         GameObject cookieSelectTutorial;
 
+        GameObject cookieHidden1;
+        GameObject cookieHidden2;
+        GameObject cookieHidden3;
+        GameObject cookieHidden4;
+
         [SerializeField]
         private enum PantryMode
         {
@@ -62,6 +67,11 @@ namespace Assets.Scripts.Menus
             this.pieSelect.SetActive(false);
             this.breadSelect.SetActive(false);
             this.cookieSelectTutorial.SetActive(false);
+
+            this.cookieHidden1 = this.cookieSelect.gameObject.transform.Find("Image").Find("Blackout1").gameObject;
+            this.cookieHidden2 = this.cookieSelect.gameObject.transform.Find("Image").Find("Blackout2").gameObject;
+            this.cookieHidden3 = this.cookieSelect.gameObject.transform.Find("Image").Find("Blackout3").gameObject;
+            this.cookieHidden4 = this.cookieSelect.gameObject.transform.Find("Image").Find("Blackout4").gameObject;
 
             currentMode = PantryMode.Select;
 
@@ -210,8 +220,42 @@ namespace Assets.Scripts.Menus
             if (setForTutorial == false)
             {
 
+                if (Game.Player.specialIngredientsInventory.actualItems.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.ChocolateChips).stack > 0)
+                {
+                    cookieHidden1.SetActive(false);
+                }
+                else
+                {
+                    cookieHidden1.SetActive(true);
+                }
+                if (Game.Player.specialIngredientsInventory.actualItems.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.MintChips).stack > 0)
+                {
+                    cookieHidden2.SetActive(false);
+                }
+                else
+                {
+                    cookieHidden2.SetActive(true);
+                }
+                if (Game.Player.specialIngredientsInventory.actualItems.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Pecans).stack > 0)
+                {
+                    cookieHidden3.SetActive(false);
+                }
+                else
+                {
+                    cookieHidden3.SetActive(true);
+                }
+                if (Game.Player.specialIngredientsInventory.actualItems.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.Raisins).stack > 0)
+                {
+                    cookieHidden4.SetActive(false);
+                }
+                else
+                {
+                    cookieHidden4.SetActive(true);
+                }
+
                 if (GameInput.InputControls.APressed && Game.Player.specialIngredientsInventory.actualItems.Find(ing=>(ing as SpecialIngredient).ingredientType== Enums.SpecialIngredients.ChocolateChips).stack>0)
                 {
+                    
                     Dish d = new Dish(Enums.Dishes.ChocolateChipCookies);
                     Game.Player.dishesInventory.Add(d);
                     Game.Player.activeItem = d;
@@ -460,7 +504,7 @@ namespace Assets.Scripts.Menus
 
             
             Game.HUD.showQuests = true;
-            Game.StartNewTimerPhase(5, 0,true);
+            Game.StartNewTimerPhase(10, 0,true);
 
             try
             {
@@ -482,7 +526,7 @@ namespace Assets.Scripts.Menus
 
         private void getDailyQuests()
         {
-            if (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0) Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
+            //if (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0) Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
 
             if (Game.CurrentDayNumber == 2)
             {

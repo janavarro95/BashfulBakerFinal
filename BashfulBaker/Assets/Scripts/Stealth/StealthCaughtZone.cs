@@ -34,9 +34,28 @@ public class StealthCaughtZone : MonoBehaviour
     public bool hasEaten = false;
     public string dishConsumedName;
 
+
+    private string _guardUniqueID;
+    public string GuardID
+    {
+        get
+        {
+            return _guardUniqueID;
+        }
+    }
+
+    private void Awake()
+    {
+        this.awareness = this.gameObject.GetComponent<StealthAwarenessZone>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        Vector3 pos = this.gameObject.transform.position;
+        _guardUniqueID = pos.x + "_" + pos.y + "_" + pos.z;
+
+
         if (dm == null)
             dm = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
     }
@@ -44,6 +63,11 @@ public class StealthCaughtZone : MonoBehaviour
     // update
     private void Update()
     {
+        if (Game.HasGuardBeenFed(this.GuardID) && this.hasEaten==false)
+        {
+            Pacify();
+        }
+
         if (inDialogue)
         {
             ProgressDialogue();
@@ -53,12 +77,14 @@ public class StealthCaughtZone : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject.Find("Headshot").GetComponent<Image>().sprite = guardFace;
-
-        if (!collision.gameObject.GetComponent<PlayerMovement>().hidden)
+        PlayerMovement pm = collision.gameObject.GetComponent<PlayerMovement>();
+        if (pm == null)
+            return;
+        if (!pm.hidden)
         {
             Debug.Log("YOU GOT CAUGHT!");
 
-            collision.gameObject.GetComponent<PlayerMovement>().currentStep = 0;
+            pm.currentStep = 0;
 
             if (this.guardType == GuardType.Guard)
             {
@@ -70,7 +96,7 @@ public class StealthCaughtZone : MonoBehaviour
                     {
                         Debug.Log("---player is holding something");
 
-                        Item item = Game.Player.dishesInventory.getRandomDish();
+                        Item item = Game.Player.activeItem;
                         if (!inDialogue)
                         {
                             dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
@@ -116,21 +142,10 @@ public class StealthCaughtZone : MonoBehaviour
                     }
                 }
             }
-            /*else if (guardType == GuardType.Villager)
-            {
-                awareness.talkingToPlayer = true;
-                Game.DialogueManager.StartDialogue(new Dialogue("Villager", new List<string>()
-            {
-                    "Hey, what are you doing out here late at night???",
-                    "Well I suppose you are fine. Mind if we chat for a bit?",
-                    "(The villager talks your ear off for quite some time causing you to loose a bit of time.)"
-            }.ToArray()));
-                Game.PhaseTimer.subtractTime(15);
-                awareness.talkingToPlayer = true;
-            }*/
             else
             {
                 //Not sure why you would end up here.
+                // this means this guard... is not a guard?
             }
         }
     }
@@ -141,11 +156,11 @@ public class StealthCaughtZone : MonoBehaviour
         // adjust awareness
         awareness.talkingToPlayer = true;
         inDialogue = true;
-        // determine number of presses to exit
-        exitPresses = 0;
-        dialoguePressesExit = d.sentences.Length+1;
-        // start dialog and take item
+
+        // start dialog
         Game.DialogueManager.StartDialogue(d);
+
+        // take item
         itemToTake = i;
         if (itemToTake != null)
         {
@@ -176,7 +191,9 @@ public class StealthCaughtZone : MonoBehaviour
         {
             // transport to outside the bakery
             Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
-            Pacify();
+
+            Game.StealthManager.caughtByGuard();
+            //Pacify();
         }
 
         // start player movement
@@ -186,20 +203,29 @@ public class StealthCaughtZone : MonoBehaviour
     // Pacify makes the guard useless
     private void Pacify()
     {
-        // adjust light
-        awareness.flashlight.viewRadius /= 2;
-        awareness.flashlight.viewAngle /= 2;
-        awareness.flashlight.viewMeshFilter.GetComponent<MeshRenderer>().material = pacMat;
-        awareness.flashlight.DrawFieldOfView();
+        if (!hasEaten)
+        {
+            // adjust light
+            awareness.flashlight.viewRadius /= 2;
+            awareness.flashlight.viewAngle /= 2;
+            awareness.flashlight.viewMeshFilter.GetComponent<MeshRenderer>().material = pacMat;
+            awareness.flashlight.DrawFieldOfView();
 
-        // slow me down
-        awareness.lookSpeed /= 2;
-        awareness.movementSpeed /= 2;
+            // slow me down
+            awareness.lookSpeed /= 2;
+            awareness.movementSpeed /= 2;
+            awareness.capturePatrolPoint = this.transform.position;
+            awareness.movementLerp = 0.0f;
+
+            // send me home
+            awareness.returnHome = true;
+
+            // disable this collision
+            GetComponent<Collider2D>().enabled = false;
+            GetComponentInChildren<SpriteRenderer>().enabled = false;
+        }
+
         hasEaten = true;
-
-        // disable this collision
-        GetComponent<Collider2D>().enabled = false;
-        GetComponentInChildren<SpriteRenderer>().enabled = false;
     }
 
     // take awy the previously saved item
@@ -209,6 +235,6 @@ public class StealthCaughtZone : MonoBehaviour
         dishConsumedName = itemToTake.Name;
         Game.Player.dishesInventory.Remove(itemToTake);
         Game.Player.activeItem = null;
-        Game.CaughtByGuard();
+        Game.CaughtByGuard(this.GuardID,dishConsumedName);
     }
 }

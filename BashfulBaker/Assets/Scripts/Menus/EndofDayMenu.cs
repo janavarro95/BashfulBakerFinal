@@ -17,7 +17,7 @@ namespace Assets.Scripts.Menus
     /// <summary>
     /// Deals with displaying the player's end results to them when finishing a day.
     /// </summary>
-    public class EndofDayMenu:Menu
+    public class EndofDayMenu : Menu
     {
         /// <summary>
         /// The finished button for closing the menu.
@@ -50,11 +50,61 @@ namespace Assets.Scripts.Menus
 
         private TMPro.TextMeshProUGUI text;
 
+
+        private List<Vector3> cameraPositions;
+        int positionIndex;
+        float lerpSpeed = 0.001f;
+        float currentLerp = 0f;
+
+        public List<Camera> cameras;
+
+        private Vector3 currentPos
+        {
+            get
+            {
+                if (positionIndex < cameraPositions.Count)
+                {
+                    return cameraPositions[positionIndex];
+                }
+                else
+                {
+                    positionIndex = positionIndex % cameraPositions.Count;
+                    return cameraPositions[positionIndex];
+                }
+            }
+        }
+        private Vector3 nextPos
+        {
+            get
+            {
+                if (positionIndex + 1 < cameraPositions.Count)
+                {
+                    return cameraPositions[positionIndex+1];
+                }
+                if (positionIndex + 1 == cameraPositions.Count)
+                {
+                    return cameraPositions[0];
+                }
+                else if(positionIndex+1>cameraPositions.Count)
+                {
+                    positionIndex = positionIndex % cameraPositions.Count;
+                    return cameraPositions[positionIndex+1];
+                }
+                else
+                {
+                    return cameraPositions[positionIndex+1];
+                }
+            }
+        }
+
+
         /// <summary>
         /// Runs when this script is started up by Unity.
         /// </summary>
         public override void Start()
         {
+            Game.Player.gameObject.SetActive(false);
+            ScreenTransitions.StartSceneTransition(2f, "", Color.black, ScreenTransitions.TransitionState.FadeIn);
             Game.Menu = this;
             Game.HUD.showHUD = false;
 
@@ -91,8 +141,19 @@ namespace Assets.Scripts.Menus
             setUpForSnapping();
 
             text = background.transform.Find("GuardsFed").gameObject.transform.GetComponent<TMPro.TextMeshProUGUI>();
-            text.text ="x"+Game.NumberOfTimesCaught[Game.CurrentDayNumber].ToString();
+            if (Game.NumberOfTimesCaught != null)
+            {
+                text.text = "x" + Game.NumberOfTimesCaught[Game.CurrentDayNumber].ToString();
+            }
+            else
+            {
+                text.text = "x0";
+            }
+            SceneManager.LoadScene("Neighborhood", LoadSceneMode.Additive);
+            
+
         }
+
 
         /// <summary>
         /// Sets the actual quest images based off of positions and data.
@@ -102,45 +163,58 @@ namespace Assets.Scripts.Menus
             List<CookingQuest> cookingQuests = Game.QuestManager.getCookingQuests();
             List<CookingQuest> finishedQuests = new List<CookingQuest>();
 
-            foreach(CookingQuest cq in cookingQuests)
+            foreach (CookingQuest cq in cookingQuests)
             {
-                if (cq.IsCompleted == true)
+                if (cq.HasBeenDelivered == true)
                 {
                     finishedQuests.Add(cq);
                     continue;
                 }
             }
-
-            foreach (CookingQuest cq in finishedQuests) {
-                if (finishedQuests.Count >= 1)
+            int count = 0;
+            foreach (CookingQuest cq in finishedQuests)
+            {
+                if (finishedQuests.Count >= 1 && count == 0)
                 {
                     quest1Image.gameObject.SetActive(true);
                     quest1Image.sprite = loadQuestImage(cq);
+                    count++;
+                    continue;
                 }
-                if (finishedQuests.Count >= 2)
+                if (finishedQuests.Count >= 2 && count == 1)
                 {
                     quest2Image.gameObject.SetActive(true);
                     quest2Image.sprite = loadQuestImage(cq);
+                    count++;
+                    continue;
                 }
-                if (finishedQuests.Count >= 3)
+                if (finishedQuests.Count >= 3 && count == 2)
                 {
                     quest3Image.gameObject.SetActive(true);
                     quest3Image.sprite = loadQuestImage(cq);
+                    count++;
+                    continue;
                 }
-                if (finishedQuests.Count >= 4)
+                if (finishedQuests.Count >= 4 && count == 3)
                 {
                     quest4Image.gameObject.SetActive(true);
                     quest4Image.sprite = loadQuestImage(cq);
+                    count++;
+                    continue;
                 }
-                if (finishedQuests.Count >= 5)
+                if (finishedQuests.Count >= 5 && count == 4)
                 {
                     quest5Image.gameObject.SetActive(true);
                     quest5Image.sprite = loadQuestImage(cq);
+                    count++;
+                    continue;
                 }
-                if (finishedQuests.Count >= 6)
+                if (finishedQuests.Count >= 6 && count == 5)
                 {
                     quest6Image.gameObject.SetActive(true);
                     quest6Image.sprite = loadQuestImage(cq);
+                    count++;
+                    continue;
                 }
             }
 
@@ -164,14 +238,42 @@ namespace Assets.Scripts.Menus
                     "DailyRecap",
                     "QuestButton_SylviaCC"
                 }));
-            
-                Sprite sprite=Game.ContentManager.loadSprite(texture, new Rect(new Rect(0,0,110,38)), new Vector2(0.5f, 0.5f), 16);
+
+                Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
                 return sprite;
             }
 
+            if (quest.personToDeliverTo == "Lylia" && quest.RequiredDish == "Oatmeal Raisin Cookies")
+            {
+                Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
+                    "Graphics",
+                    "UI",
+                    "Menus",
+                    "DailyRecap",
+                    "QuestButton_LyliaOR"
+                }));
+                Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
+                return sprite;
+            }
+
+
+            if (quest.personToDeliverTo == "Norville" && quest.RequiredDish == "Mint Chip Cookies")
+            {
+                Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
+                    "Graphics",
+                    "UI",
+                    "Menus",
+                    "DailyRecap",
+                    "QuestButton_NorvilleMC"
+                }));
+                Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
+                return sprite;
+            }
+
+            Debug.Log("Quest is: " + quest.personToDeliverTo + " for: " + quest.RequiredDish);
+
             return null;
         }
-
         /// <summary>
         /// Logic that occurs when exiting the menu.
         /// </summary>
@@ -193,7 +295,7 @@ namespace Assets.Scripts.Menus
             this.menuCursor.snapToCurrentComponent();
 
         }
-        
+
         /// <summary>
         /// Checks to see if the menu is set up for snappy controls.
         /// </summary>
@@ -202,13 +304,66 @@ namespace Assets.Scripts.Menus
         {
             return true;
         }
-        
+
         /// <summary>
         /// Checks for updates ~60x a second.
         /// </summary>
         public override void Update()
         {
+
+
+            if (cameraPositions == null)
+            {
+
+                GameObject obj = GameObject.Find("CameraPoints");
+                Debug.Log("HELLO");
+                if (obj == null) return;
+                List<GameObject> objs= GameObject.FindGameObjectsWithTag("MainCamera").ToList();
+                foreach(GameObject ok in objs)
+                {
+                    cameras.Add(ok.GetComponent<Camera>());
+                }
+                this.cameraPositions = new List<Vector3>();
+                foreach (Transform t in obj.transform)
+                {
+                    cameraPositions.Add(t.position);
+                }
+                
+                foreach(Camera c in cameras)
+                {
+                    c.gameObject.transform.position = cameraPositions[0] + new Vector3(0, 0, -10);
+                }
+                
+            }
+
+
+
+
             checkForInput();
+            cameraPan();
+        }
+
+        public void cameraPan()
+        {
+            if (cameraPositions.Count > 0)
+            {
+                Debug.Log("HELLO WORLD");
+                if (currentLerp == 0)
+                {
+
+                }
+                if (currentLerp >= 1f)
+                {
+                    currentLerp = 0;
+                    positionIndex++;
+                }
+                currentLerp += lerpSpeed;
+
+                foreach (Camera c in cameras)
+                {
+                    c.gameObject.transform.position = Vector3.Lerp(currentPos, nextPos, currentLerp)+new Vector3(0,0,-10);
+                }
+            }
         }
 
         /// <summary>

@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1669767559337657880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5436422517643888138}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5436422517643888138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669767559337657880}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.28564, y: 0.28564, z: 0.28564}
+  m_Children: []
+  m_Father: {fileID: 8997189449512951732}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8997189449512951733
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +42,9 @@ GameObject:
   - component: {fileID: 8997189449512951729}
   - component: {fileID: 8997189449512951730}
   - component: {fileID: 5680476004580728894}
-  - component: {fileID: 1024753525657611893}
+  - component: {fileID: 5898301139038873242}
+  - component: {fileID: 7917694669041795279}
+  - component: {fileID: 7788174886677151371}
   m_Layer: 8
   m_Name: BushMedium
   m_TagString: Obstacle
@@ -30,7 +62,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 13.117973, y: -11.156565, z: 1.2953367}
   m_LocalScale: {x: 3.50091, y: 3.50091, z: 3.50091}
-  m_Children: []
+  m_Children:
+  - {fileID: 5436422517643888138}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -109,8 +142,39 @@ MonoBehaviour:
   update: 0
   other: 0
   self: 1
---- !u!70 &1024753525657611893
-CapsuleCollider2D:
+--- !u!114 &5898301139038873242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8997189449512951733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77dbf1474c386e47a12f8703e46e226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &7917694669041795279
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8997189449512951733}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bd0ee7d9edb1f0b449763b4ff6ecfea8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!60 &7788174886677151371
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,6 +186,40 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.004662873, y: -0.040802345}
-  m_Size: {x: 0.55010694, y: 0.24311323}
-  m_Direction: 1
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.69, y: 0.39}
+    newSize: {x: 0.69, y: 0.39}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.19577603, y: 0.08329214}
+      - {x: 0.11891978, y: 0.121928796}
+      - {x: 0.056217287, y: 0.124940805}
+      - {x: 0.02933829, y: 0.15401976}
+      - {x: 0.003967071, y: 0.16250825}
+      - {x: -0.043803133, y: 0.14355332}
+      - {x: -0.09406041, y: 0.114347965}
+      - {x: -0.16179073, y: 0.10116944}
+      - {x: -0.19856085, y: 0.06027507}
+      - {x: -0.22986047, y: 0.05398627}
+      - {x: -0.26884145, y: 0.0038186088}
+      - {x: -0.26252678, y: -0.012468638}
+      - {x: -0.24493223, y: -0.008852428}
+      - {x: -0.22007395, y: 0.019424291}
+      - {x: -0.19564255, y: 0.026591334}
+      - {x: -0.12766133, y: 0.07790883}
+      - {x: -0.07312344, y: 0.092855014}
+      - {x: -0.004096192, y: 0.1257444}
+      - {x: 0.0636028, y: 0.095031545}
+      - {x: 0.13266791, y: 0.083311215}
+      - {x: 0.184254, y: 0.05751858}
+      - {x: 0.22243872, y: 0.002798715}
+      - {x: 0.2447658, y: -0.015276342}
+      - {x: 0.26130122, y: -0.0041806386}
+      - {x: 0.23796895, y: 0.030883115}

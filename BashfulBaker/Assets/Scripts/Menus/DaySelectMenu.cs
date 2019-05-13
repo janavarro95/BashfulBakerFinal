@@ -1,4 +1,5 @@
-﻿﻿using Assets.Scripts.Menus;
+﻿using Assets.Scripts.Items;
+using Assets.Scripts.Menus;
 using Assets.Scripts.Menus.Components;
 using Assets.Scripts.QuestSystem.Quests;
 using System;
@@ -148,14 +149,12 @@ namespace Assets.Scripts.Menus
                 GameInformation.Game.TutorialCompleted = true;
                 GameInformation.Game.CurrentDayNumber = 2;
 
-
-                Debug.Log("REMOVE THIS LATER!!!!!!!");
+                /*
                 GameInformation.Game.Player.addSpecialIngredientForPlayer(Enums.SpecialIngredients.ChocolateChips);
                 GameInformation.Game.Player.addSpecialIngredientForPlayer(Enums.SpecialIngredients.MintChips);
                 GameInformation.Game.Player.addSpecialIngredientForPlayer(Enums.SpecialIngredients.Pecans);
                 GameInformation.Game.Player.addSpecialIngredientForPlayer(Enums.SpecialIngredients.Raisins);
-
-                GameInformation.Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
+                */
             }
 
             if (componentName == "KitchenDay3")

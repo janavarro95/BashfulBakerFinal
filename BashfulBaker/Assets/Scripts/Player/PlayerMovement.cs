@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.GameInformation;
 using Assets.Scripts.Items;
 using Assets.Scripts.Menus;
+using Assets.Scripts.GameInput;
 using Assets.Scripts.Utilities;
 using Assets.Scripts.Utilities.Timers;
 using System.Collections;
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private int guardsSeeingMe;
     public SpriteRenderer alert;
+    public GameObject soundPrefab;
     private float t;
 
     public SpriteRenderer buttonB;
@@ -56,8 +58,8 @@ public class PlayerMovement : MonoBehaviour {
     {
         get
         {
-            if (Game.IsMenuUp == false && Game.IsScreenTransitionHappening == false) return true;
-            else return false;
+            bool temp = (Game.IsMenuUp == false && Game.IsScreenTransitionHappening == false && canPlayerMove);
+            return temp;
         }
         set
         {
@@ -93,7 +95,7 @@ public class PlayerMovement : MonoBehaviour {
     public DeltaTimer anxietyTimer;
     public float anxietySpeedBonus=1.2f;
 
-	// Use this for initialization
+
 	void Start () {
         anxietyTimer = new DeltaTimer(anxietyCooldown, Assets.Scripts.Enums.TimerType.CountDown, false);
         animator = this.GetComponent<Animator>();
@@ -115,7 +117,14 @@ public class PlayerMovement : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        // TEMP
+        // also recomment the code about game input
+        /*if (InputControls.BPressed)
+        {
+            Instantiate(soundPrefab, this.transform.position, Quaternion.identity);
+        }*/
 
         if (anxietyTimer != null)
         {
@@ -218,7 +227,7 @@ public class PlayerMovement : MonoBehaviour {
         //If the player is visible they probably should be able to open a menu.
         if (this.spriteRenderer.enabled)
         {
-            if (canPlayerMove)
+            if (CanPlayerMove)
             {
                 checkForMenuOpening();
 
@@ -499,7 +508,7 @@ public class PlayerMovement : MonoBehaviour {
             //if (!hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
             //{
                 hidden = true;
-                defaultSpeed = .7f;
+                defaultSpeed = 1f;
             //}
             //else if (hidden && (Assets.Scripts.GameInput.InputControls.BPressed || Input.GetKeyDown(KeyCode.F)))
            // {
@@ -510,8 +519,11 @@ public class PlayerMovement : MonoBehaviour {
     }
     public void OnTriggerExit2D(Collider2D other)
     {
-        //buttonB.enabled = false;
-        hidden = false;
-        defaultSpeed = 1f;
+        if (other.gameObject.tag == "Obstacle")
+        {
+            //buttonB.enabled = false;
+            hidden = false;
+            defaultSpeed = 1.25f;
+        }
     }
 }

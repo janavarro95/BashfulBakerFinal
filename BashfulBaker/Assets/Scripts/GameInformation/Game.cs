@@ -7,6 +7,7 @@ using Assets.Scripts.Menus.HUDS;
 using Assets.Scripts.Player;
 using Assets.Scripts.QuestSystem;
 using Assets.Scripts.QuestSystem.Quests;
+using Assets.Scripts.Stealth;
 using Assets.Scripts.Utilities;
 using Assets.Scripts.Utilities.Serialization;
 using System;
@@ -172,10 +173,32 @@ namespace Assets.Scripts.GameInformation
 
         public static int CurrentDayNumber;
         public static bool IngredientsAddedForPlayer;
+        public static bool TalkedtoSully;
+        public static bool Day2JebTalkedTo;
+        
+        public struct IngSource
+        {
+            public String name;
+            public int max;
+            public int current;
+
+            public IngSource(String Name, int Max)
+            {
+                name = Name;
+                max = Max;
+                current = 0;
+            }
+        }
+
+        public static List<IngSource> Sources = new List<IngSource>();
 
         public static Dictionary<int, int> NumberOfTimesCaught;
 
         public static Dictionary<int, bool> DaysUnlocked;
+
+        public static Dictionary<string, string> GuardsFed;
+
+        public static StealthManager StealthManager;
 
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
@@ -269,6 +292,12 @@ namespace Assets.Scripts.GameInformation
                     DaysUnlocked.Add(4, false);
                 }
 
+                if (StealthManager == null)
+                {
+                    string stealth = Path.Combine(Path.Combine("Prefabs", "Misc"), "StealthManager");
+                    Instantiate((GameObject)Resources.Load(stealth, typeof(GameObject)));
+                }
+
                 setUpScene();
 
                 SceneManager.sceneLoaded += SceneManager_sceneLoaded;
@@ -352,6 +381,8 @@ namespace Assets.Scripts.GameInformation
                     NumberOfTimesCaught[i] = 0;
                 }
             }
+            if(GuardsFed!=null)GuardsFed.Clear();
+
             IngredientsAddedForPlayer = false;
 
         }
@@ -472,18 +503,30 @@ namespace Assets.Scripts.GameInformation
                     obj.transform.Find("Day_1").gameObject.SetActive(true);
                     obj.transform.Find("Day_2").gameObject.SetActive(false);
                     obj.transform.Find("Day_3").gameObject.SetActive(false);
+                    obj.transform.Find("Day_4").gameObject.SetActive(false);
                 }
+            
                 if (CurrentDayNumber == 2)
                 {
                     obj.transform.Find("Day_1").gameObject.SetActive(false);
                     obj.transform.Find("Day_2").gameObject.SetActive(true);
                     obj.transform.Find("Day_3").gameObject.SetActive(false);
-                }
+                    obj.transform.Find("Day_4").gameObject.SetActive(false);
+            }
                 if (CurrentDayNumber == 3)
                 {
                     obj.transform.Find("Day_1").gameObject.SetActive(false);
                     obj.transform.Find("Day_2").gameObject.SetActive(false);
                     obj.transform.Find("Day_3").gameObject.SetActive(true);
+                    obj.transform.Find("Day_4").gameObject.SetActive(false);
+                }
+
+                if (CurrentDayNumber == 4)
+                {
+                    obj.transform.Find("Day_1").gameObject.SetActive(false);
+                    obj.transform.Find("Day_2").gameObject.SetActive(false);
+                    obj.transform.Find("Day_3").gameObject.SetActive(false);
+                    obj.transform.Find("Day_4").gameObject.SetActive(true);
                 }
             }
 
@@ -557,14 +600,19 @@ namespace Assets.Scripts.GameInformation
             {
                 SceneManager.LoadScene("KitchenDay3");
             }
+            else if (CurrentDayNumber == 4)
+            {
+                SceneManager.LoadScene("KitchenDay4");
+            }
         }
 
 
         /// <summary>
         /// Updates the index for how many times the player was caught by the guard today.
         /// </summary>
-        public static void CaughtByGuard()
+        public static void CaughtByGuard(string ID,string DishName)
         {
+            if (GuardsFed == null) GuardsFed = new Dictionary<string, string>();
             if (NumberOfTimesCaught == null) NumberOfTimesCaught = new Dictionary<int, int>();
 
             if (NumberOfTimesCaught.ContainsKey(CurrentDayNumber))
@@ -574,6 +622,22 @@ namespace Assets.Scripts.GameInformation
             else
             {
                 NumberOfTimesCaught.Add(CurrentDayNumber, 1);
+            }
+
+            GuardsFed.Add(ID, DishName);
+        }
+
+        /// <summary>
+        /// Checks if a guard has been fed today.
+        /// </summary>
+        /// <param name="ID">The unique ID of the guard.</param>
+        /// <returns></returns>
+        public static bool HasGuardBeenFed(string ID)
+        {
+            if (GuardsFed == null) return false;
+            else
+            {
+                return GuardsFed.ContainsKey(ID);
             }
         }
 

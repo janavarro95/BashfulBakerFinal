@@ -6,6 +6,8 @@ using Assets.Scripts.GameInput;
 using Assets.Scripts.GameInformation;
 
 
+
+
 public class SullyDay1 : MonoBehaviour
 {
 
@@ -15,7 +17,7 @@ public class SullyDay1 : MonoBehaviour
     public Sprite sully_Face;
     public Sprite dane_Face;
     public bool isOpen;
-   public int step;
+    public int step;
     public Dialogue StopRightThere;
     public Dialogue Sully_Hey;
     public Dialogue Dane_Thanks;
@@ -24,8 +26,14 @@ public class SullyDay1 : MonoBehaviour
 
     private void Start()
     {
+       if(Game.TalkedtoSully || Game.CurrentDayNumber != 1)
+        {
+           gameObject.SetActive(false);
+            Destroy(trigger);
+        }
 
         step = 0;
+        GameObject.Find("Headshot").GetComponent<Image>().sprite = sully_Face;
 
     }
     private void Update()
@@ -58,7 +66,7 @@ public class SullyDay1 : MonoBehaviour
         {
            // step++;
             sully_animator.SetInteger("Phase", 1);
-   
+            Game.TalkedtoSully = true;
 
         }
 
