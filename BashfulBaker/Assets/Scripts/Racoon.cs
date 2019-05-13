@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.GameInput;
 using Assets.Scripts.Utilities.Timers;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,22 +32,22 @@ public class Racoon : MonoBehaviour
             hasNoticedRacoon = true;
             Game.DialogueManager.StartDialogue(racoonDialogue);
         }
+
+
     }
-
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
-
-        if (Game.Player.activeItem != null && collision.gameObject==Game.Player.gameObject)
+        if (Game.Player.activeItem != null && collision.gameObject == Game.Player.gameObject && InputControls.BPressed)
         {
             Game.Player.removeActiveItem();
             Game.DialogueManager.StartDialogue(fedDialogue);
             Destroy(this.gameObject);
         }
-        else if (Game.Player.activeItem == null && collision.gameObject == Game.Player.gameObject)
+        else if (Game.Player.activeItem == null && collision.gameObject == Game.Player.gameObject && InputControls.BPressed)
         {
             Game.DialogueManager.StartDialogue(noFoodDialogue);
             DeltaTimer anxiety = Game.Player.gameObject.GetComponent<PlayerMovement>().anxietyTimer;
-            if (anxiety.state==Assets.Scripts.Enums.TimerState.Initialized || anxiety.state== Assets.Scripts.Enums.TimerState.Finished)
+            if (anxiety.state == Assets.Scripts.Enums.TimerState.Initialized || anxiety.state == Assets.Scripts.Enums.TimerState.Finished)
             {
                 anxiety.restart();
             }

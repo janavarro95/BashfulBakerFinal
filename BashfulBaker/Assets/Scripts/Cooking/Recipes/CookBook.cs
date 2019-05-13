@@ -21,7 +21,8 @@ namespace Assets.Scripts.Cooking.Recipes
 
         public CookBook()
         {
-            Initialize();
+            return;
+            //Initialize();
         }
 
         /// <summary>

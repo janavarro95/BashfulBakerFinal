@@ -1,10 +1,13 @@
 ﻿using Assets.Scripts.Menus.Components;
+using Assets.Scripts.Menus.MenuTypes;
+using Assets.Scripts.Utilities.Timers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Menus {
+namespace Assets.Scripts.Menus
+{
 
     public class GameMenu : Menu
     {
@@ -15,19 +18,42 @@ namespace Assets.Scripts.Menus {
         MenuComponent closeMenu;
         MenuComponent resume;
 
+        GameObject canvas;
+        Canvas actualCanvas;
+
+        DeltaTimer breathIn;
+
+        MenuBreath breath;
+        SlideIn slide;
+
+        public void Awake()
+        {
+            canvas = this.gameObject.transform.Find("Canvas").gameObject;
+            actualCanvas = canvas.gameObject.GetComponent<Canvas>();
+            //actualCanvas.scaleFactor = 0f;
+            
+            //breath = new MenuBreath(actualCanvas, 1, finishIntro, actualyExit);
+        }
+
         // Start is called before the first frame update
         public override void Start()
         {
+            slide = new SlideIn(canvas, 4f, finishIntro);
             GameInformation.Game.Menu = this;
+            //breath.breathIn();
+            //actualCanvas.scaleFactor = 0f;
+        }
 
-            GameObject canvas = this.gameObject.transform.Find("Canvas").gameObject;
+        public void finishIntro()
+        {
+
 
             resume = new MenuComponent(canvas.transform.Find("Resume").GetComponent<Button>());
 
-            save =new MenuComponent(canvas.transform.Find("Save").GetComponent<Button>());
-            load =new MenuComponent(canvas.transform.Find("Load").GetComponent<Button>());
-            toTitle =new MenuComponent(canvas.transform.Find("ExitToTitle").GetComponent<Button>());
-            closeGame =new MenuComponent(canvas.transform.Find("ExitGame").GetComponent<Button>());
+            save = new MenuComponent(canvas.transform.Find("Save").GetComponent<Button>());
+            load = new MenuComponent(canvas.transform.Find("Load").GetComponent<Button>());
+            toTitle = new MenuComponent(canvas.transform.Find("ExitToTitle").GetComponent<Button>());
+            closeGame = new MenuComponent(canvas.transform.Find("ExitGame").GetComponent<Button>());
             closeMenu = new MenuComponent(canvas.transform.Find("CloseMenu").GetComponent<Button>());
 
             this.menuCursor = canvas.transform.Find("MenuMouseCursor").gameObject.GetComponent<GameInput.GameCursorMenu>();
@@ -58,6 +84,12 @@ namespace Assets.Scripts.Menus {
         // Update is called once per frame
         public override void Update()
         {
+            //if (breath.Update() == false) return;
+            if (slide != null)
+            {
+                if (slide.Update() == false) return;
+            }
+
             if (GameInput.GameCursorMenu.SimulateMousePress(save))
             {
                 openSaveMenu();
@@ -117,6 +149,12 @@ namespace Assets.Scripts.Menus {
         }
 
         public override void exitMenu()
+        {
+            //breath.breathOut();
+            actualyExit();
+        }
+
+        public void actualyExit()
         {
             base.exitMenu();
             GameInformation.Game.Menu = null;

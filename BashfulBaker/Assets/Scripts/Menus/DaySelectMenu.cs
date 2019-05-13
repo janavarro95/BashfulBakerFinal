@@ -37,6 +37,8 @@ namespace Assets.Scripts.Menus
             {
                 Debug.Log("Tutorial not completed???");
             }
+
+            
         }
 
         /// <summary>
@@ -193,6 +195,10 @@ namespace Assets.Scripts.Menus
         public override void setUpForSnapping()
         {
             GameObject canvas = this.gameObject.transform.Find("Canvas").gameObject;
+            Image actualBckground = canvas.gameObject.transform.Find("SceneBackground").gameObject.GetComponent<Image>();
+
+
+
             GameObject background = canvas.transform.Find("Background").gameObject;
             daySelectionComponents.Add("Kitchen", new MenuComponent(background.transform.Find("Day1").Find("Image").GetComponent<Image>()));
             daySelectionComponents.Add("KitchenDay2", new MenuComponent(background.transform.Find("Day2").Find("Image").GetComponent<Image>()));
