@@ -3190,7 +3190,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 655028996}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1452343724
+--- !u!114 &1452343729
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3202,7 +3202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317ef08784e8b2e4db3a601fb4af18a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundPrefab: {fileID: 2646647941674954673, guid: 411ddb4a4cea79b469bec4cd6f5715f1,
+  soundPrefab: {fileID: 2646647941674954673, guid: 155ff4a70c908634bb86ea74f8d6a689,
     type: 3}
   timer: 0
   timerReset: 5
