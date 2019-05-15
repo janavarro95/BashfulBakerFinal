@@ -12,6 +12,8 @@ namespace Assets.Scripts.Menus.HUDS
     {
         private GameObject timerCanvas;
         private Text timeRemaining;
+        private Image timerKnob;
+        private Image giftImage;
 
         /// <summary>
         /// Start the monobehaviour for the timer hud.
@@ -20,6 +22,9 @@ namespace Assets.Scripts.Menus.HUDS
         {
             timerCanvas = this.gameObject.transform.Find("Canvas").gameObject;
             timeRemaining = timerCanvas.transform.Find("TimeText").GetComponent<Text>();
+            timerKnob = timerCanvas.transform.Find("TimerKnob").GetComponent<Image>();
+
+            giftImage = timerCanvas.gameObject.transform.Find("TimerImage").Find("Image").gameObject.GetComponent<Image>();
         }
 
         /// <summary>
@@ -51,7 +56,8 @@ namespace Assets.Scripts.Menus.HUDS
                     {
                         seconds = Game.PhaseTimer.seconds.ToString();
                     }
-
+                    updateGiftImage();
+                    updateKnobRotation();
 
                     timeRemaining.text = Game.PhaseTimer.minutes + " " + parseSeconds();
                 }
@@ -60,6 +66,21 @@ namespace Assets.Scripts.Menus.HUDS
             {
                 Game.HUD.showTimer = false;
             }
+        }
+
+        private void updateGiftImage()
+        {
+            this.giftImage.transform.localPosition = Vector3.Lerp(new Vector3(-40, 35, 0), new Vector3(40, 35, 0),1f-(float)Game.PhaseTimer.TimeFractionRemaining);
+        }
+
+        private void updateKnobRotation()
+        {
+            Quaternion q = timerKnob.rectTransform.localRotation;
+            Vector3 euler = q.eulerAngles;
+            euler.z = (360f * (float)Game.PhaseTimer.currentTime / (float)Game.PhaseTimer.maxTime);
+            q.eulerAngles = euler;
+            timerKnob.rectTransform.localRotation = q;
+
         }
 
         /// <summary>
