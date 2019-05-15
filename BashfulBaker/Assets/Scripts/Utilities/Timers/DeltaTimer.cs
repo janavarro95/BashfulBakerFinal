@@ -44,6 +44,17 @@ namespace Assets.Scripts.Utilities.Timers
         public bool autoRestart;
 
         /// <summary>
+        /// Get a fraction of the time remaining
+        /// </summary>
+        public double TimeFractionRemaining
+        {
+            get
+            {
+                return this.currentTime / this.maxTime;
+            }
+        }
+
+        /// <summary>
         /// Gets hours 
         /// </summary>
         public int hours
