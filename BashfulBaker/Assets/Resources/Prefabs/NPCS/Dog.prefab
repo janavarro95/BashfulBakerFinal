@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 7817557327652901841}
   m_Layer: 0
   m_Name: Dog
-  m_TagString: Guard
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -624,7 +624,7 @@ MonoBehaviour:
   minPauseTime: 3
   maxPauseTime: 5
   movementLogic: 1
-  aiType: 1
+  aiType: 0
   chasesPlayer: 0
   shouldMove: 0
   animationScript: {fileID: 7817557327652901841}
