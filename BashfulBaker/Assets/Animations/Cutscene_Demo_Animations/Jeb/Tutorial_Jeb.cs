@@ -8,94 +8,76 @@ using Assets.Scripts.QuestSystem.Quests;
 
 public class Tutorial_Jeb : MonoBehaviour
 {
-    public Sprite Jeb_Face;
-    public Sprite Jeb_Face_surprised;
+    public GameObject DiaBoxReference;
+    public Dialogue[] backandforth;
+    public Sprite[] headshots;
+    public Dialogue Jebs_Warning; 
     public Animator jeb_animator;
-    private int ApressCount;
-    public Dialogue tutorial_lines_pt1;
-    public Dialogue tutorial_lines_pt2;
-    public Dialogue tutorial_lines_pt3;
-    private bool check_one;
-    private bool check_two;
-    private bool check_three;
-    public bool canCount;
+    private int step;
     public GameObject Bubble;
-
+    private bool waitingtoend;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        if (GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep >= 0)
+        waitingtoend = false;
+        if (Game.Day1JebTalkedTo)
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
-        canCount = false;
-
+        step = 0;
+       // Game.HUD.showAll();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && step <16 && step>0)
+        {
+                GameObject.Find("Headshot").GetComponent<Image>().sprite = headshots[step];
+                FindObjectOfType<DialogueManager>().StartDialogue(backandforth[step]);
+                step++;
+            Debug.Log(step);
 
-        if (InputControls.APressed && canCount == true)
+        }else if (step == 16)
         {
-            ApressCount++;
-            //Debug.Log(ApressCount);
+            jeb_animator.SetInteger("Movement_Phase", 4);
         }
-        if (ApressCount >= 3 && check_three == true && jeb_animator.GetInteger("Movement_Phase") == 2)
+
+
+        if (waitingtoend && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && step == 17)
         {
-            End_Count();
+            freeDane();
             Jeb_disappear();
         }
-        if (ApressCount >= 5 && check_two == true && jeb_animator.GetInteger("Movement_Phase") == 1)
-        {
-            jeb_animator.SetInteger("Movement_Phase", 2);
-            End_Count();
-            check_three = true;
-        }
 
-        if (ApressCount >= 5 && check_one == true && jeb_animator.GetInteger("Movement_Phase") == 0)
-        {
-            jeb_animator.SetInteger("Movement_Phase", 1);
-            End_Count();
-            check_two = true;
-        }
+
     }
+
+
+
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-
-
-        if (InputControls.APressed && check_one == false)
+        if (InputControls.APressed && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false)
         {
+            Game.Day2JebTalkedTo = true;
+            Bubble.SetActive(false);
+            GameObject.Find("Headshot").GetComponent<Image>().sprite = headshots[0];
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 0;
-            Introduction();
-            check_one = true;
-            Begin_Count();
+            FindObjectOfType<DialogueManager>().StartDialogue(backandforth[step]);
+            step++;
         }
-
-
-
-
     }
-
-
-    void Bye()
+    private void increasestep()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(tutorial_lines_pt3);
+        step++;
     }
-    void Introduction()
+    private void freeDane()
     {
-        GameObject.Find("Headshot").GetComponent<Image>().sprite = Jeb_Face_surprised;
-        //GameObject.Find("speechBubble")
-        Bubble.SetActive(false);
-        FindObjectOfType<DialogueManager>().StartDialogue(tutorial_lines_pt1);
-    }
-    void Mission()
-    {
-        GameObject.Find("Headshot").GetComponent<Image>().sprite = Jeb_Face;
-        FindObjectOfType<DialogueManager>().StartDialogue(tutorial_lines_pt2);
+        GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
     }
     void Jeb_disappear()
     {
@@ -103,26 +85,19 @@ public class Tutorial_Jeb : MonoBehaviour
         this.gameObject.SetActive(false);
         Game.HUD.showHUD = true;
         Game.HUD.showQuests = true;
-        if (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0) Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
+        if (Game.CurrentDayNumber == 1)
+        {
+            Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
+            Game.HUD.showQuests = true;
+           // Game.StartNewTimerPhase(10, 0, true);
+        }
+        
 
     }
-    void Begin_Count()
+    public void warning()
     {
-        ApressCount = 0;
-        canCount = true;
-    }
-    void End_Count()
-    {
-        ApressCount = 0;
-        canCount = false;
-    }
-    void turn_Dane()
-    {
-        Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
-        //GameObject.Find("Player(Clone)").GetComponent<SpriteRenderer>().sprite = ;
-    }
-    void turn_Dane_Down()
-    {
-        Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Down;
+        FindObjectOfType<DialogueManager>().StartDialogue(Jebs_Warning);
+        waitingtoend = true;
+        step++;
     }
 }

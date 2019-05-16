@@ -8,18 +8,11 @@ using UnityEngine.UI;
 public class Monologue : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Sprite Dane_Face_relief;
-    public Sprite Dane_Face_smile;
-    public Sprite Dane_Face_Pout;
-    public Dialogue First;
-    public Dialogue Second;
-    public Dialogue Third;
-    private bool canCount;
-    private int ApressCount;
-    private bool check_one;
-    private bool check_two;
-    private bool check_three;
-    private bool beginable;
+    public GameObject DiaBoxReference;
+    public Sprite[] face;
+    public Dialogue[] dias;
+    private int step;
+    private bool flag;
 
     void Start()
     {
@@ -27,70 +20,58 @@ public class Monologue : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
-        canCount = false;
-        ApressCount = 0;
-        check_one = false;
-        check_two = false;
-        check_three = false;
-        beginable = true;
-
+        step = 0;
+        flag = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (InputControls.APressed && canCount == true)
-        {
-            ApressCount++;
-            //Debug.Log(ApressCount);
-        }
-        if(ApressCount >= 1 & check_one == false && beginable == false)
-        {
-            canCount = false;
-            ApressCount = 0;
-            check_one = true;
-            StartCoroutine(WaitforTime(2, Second, Dane_Face_Pout));
 
-        }
-        if (check_one == true && check_two == false && ApressCount >= 2)
+        if (DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && step > 0)
         {
-            canCount = false;
-            ApressCount = 0;
-            check_two = true;
-            StartCoroutine(WaitforTime(2, Third, Dane_Face_relief));
-
+            if (flag && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false)
+            {
+                saysomething(2);
+                flag = false;
+            }
         }
-      /*  if (check_one == true && check_two == true && ApressCount >= 2)
-        {
-            canCount = false;
-            ApressCount = 0;
-            check_two = true;
-            WaitforTime(3, Third);
-        }*/
-
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (beginable == true)
-        {
-            GameObject.Find("Headshot").GetComponent<Image>().sprite = Dane_Face_smile;
-            FindObjectOfType<DialogueManager>().StartDialogue(First);
-            canCount = true;
-            beginable = false;
-        }
-    }
-    IEnumerator WaitforTime(int seconds, Dialogue dialogue, Sprite face)
-    {
-        yield return new WaitForSeconds(seconds);
-        GameObject.Find("Headshot").GetComponent<Image>().sprite = face;
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
-        canCount = true;
-        if(dialogue == Third)
+        if (step == 3)
         {
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().NextStep();
             GameObject.Find("Arrow").SetActive(false);
             GameObject.Find("pantry").SetActive(false);
             GameObject.Find("FakeShit").GetComponent<SpriteRenderer>().enabled = true;
+            step++;
+        }
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (step == 0)
+        {
+            GameObject.Find("Headshot").GetComponent<Image>().sprite = face[step];
+            FindObjectOfType<DialogueManager>().StartDialogue(dias[step]);
+            step++;
+            flag = true;
         }
     }
+
+    public void saysomething(float seconds)
+    {
+        Invoke("starttalking", seconds);
+
+    }
+
+    public void starttalking()
+    {
+        GameObject.Find("Headshot").GetComponent<Image>().sprite = face[step];
+        FindObjectOfType<DialogueManager>().StartDialogue(dias[step]);
+        step++;
+        flag = true;
+        Debug.Log(step);
+
+    }
+
+
 }
