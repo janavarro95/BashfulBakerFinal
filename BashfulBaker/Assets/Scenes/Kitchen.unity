@@ -1494,23 +1494,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da3031ab95e6304aa8fb1469e238c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dane_Face_relief: {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
-  Dane_Face_smile: {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
-  Dane_Face_Pout: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
-  First:
-    name: Dane
+  DiaBoxReference: {fileID: 8603696837113512536}
+  face:
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  dias:
+  - name: Dane
     sentences:
-    - Alright, let's get these cookies.
-  Second:
-    name: Dane
+    - "(Where are the cookies? I don\u2019t see them.)"
+  - name: Dane
     sentences:
-    - Uh... Where are the cookies? Did he forget?
-    - Yeah... Definitely no cookies for Silvia here...
-  Third:
-    name: Dane
+    - "(Jeb must have believed he made the cookies, but didn\u2019t.)"
+  - name: Dane
     sentences:
-    - 'The oven still looks hot.. '
-    - Maybe I can make this delivery after all...
+    - '*Sigh*'
+    - (.. hmmm? Well I can make them!)
 --- !u!224 &611194603
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3009,36 +3008,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf624b53dbf04254abd732771df7f9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jeb_Face: {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
-  Jeb_Face_surprised: {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
+  DiaBoxReference: {fileID: 8603696837113512536}
+  backandforth:
+  - name: Jeb
+    sentences:
+    - "Oh! My boy Dave, you scared me! Welcome to Jeb\u2019s Jollies."
+  - name: Dane
+    sentences:
+    - "Oh sorry I didn\u2019t mean too\u2026 But my\u2026\r\n"
+  - name: Jeb
+    sentences:
+    - "Don\u2019t worry about it! I\u2019m lucky my hearing is still good. Can\u2019t
+      sneak up on this old man Dave! HAHAHA"
+  - name: Dane
+    sentences:
+    - Ha...umm Jeb?
+  - name: Jeb
+    sentences:
+    - Yes Dave?
+  - name: Dane
+    sentences:
+    - "Umm\u2026 my name is\u2026\r\n"
+  - name: Jeb
+    sentences:
+    - "Huh? I can\u2019t hear you?"
+  - name: Dane
+    sentences:
+    - "My name is\u2026"
+  - name: Jeb
+    sentences:
+    - "What! I can\u2019t hear you Dave! "
+  - name: Dane
+    sentences:
+    - My name is Dane!
+  - name: Jeb
+    sentences:
+    - " Oh my! I\u2019m sorry Dane! How silly of me. You gotta speak up boy, I could
+      barely hear you."
+  - name: Dane
+    sentences:
+    - "(Didn\u2019t he just say he was good at hearing?)"
+    - It's okay.
+  - name: Jeb
+    sentences:
+    - How are you my boy? I hope you are settling in nicely.
+  - name: Dane
+    sentences:
+    - "I\u2019m alright. I\u2019m a bit nervous being in a new town."
+  - name: Jeb
+    sentences:
+    - "Ah! Don\u2019t be nervous, everyone here is pretty friendly! I\u2019m sure
+      they will make you feel welcome. "
+    - Plus today has been a pretty quiet day for the Bakery. I think we only have
+      one last delivery to do.
+    - A regular of mine, Silvia ordered half a dozen Chocolate Chip Cookies. She heard
+      I hired a new delivery boy and she is very excited to meet you!
+    - " I already made the cookies and they are ready to go in the kitchen! Please
+      take them to the house with a BLUE ROOF on the southeast of town.\r"
+  - name: Jeb
+    sentences:
+    - I'm sure you'll do a great job!
+  headshots:
+  - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  Jebs_Warning:
+    name: Jeb
+    sentences:
+    - 'Oh yes! I almost forgot. Please be careful during the night. '
+    - The town is very safe and quiet because our outstanding Town Watch.  However,
+      their work makes them very hungry.
+    - "Have a good night Dane!\r"
   jeb_animator: {fileID: 1083138370}
-  tutorial_lines_pt1:
-    name: Jeb
-    sentences:
-    - 'Hello there Dave!
-
-'
-    - 'Oh my... DANE! Not Dave! How silly of me! '
-    - How are you my boy?
-    - I hope you are settling in nicely.
-    - I was just closing up for the night, but I do have a quick job for you.
-  tutorial_lines_pt2:
-    name: Jeb
-    sentences:
-    - Today was a pretty quiet day for the Bakery.
-    - ' But we got one last delivery to do!'
-    - A regular of ours, Silvia, ordered a basket of Chocolate Chip Cookies..
-    - She heard I hired a new delivery boy, and was so jazzed to meet you!
-    - The cookies are in the back ready to go!
-    - Take them to the house with the BLUE ROOF on the SOUTH SIDE of town.
-  tutorial_lines_pt3:
-    name: Jeb
-    sentences:
-    - 'Oh yes one last reminder! '
-    - 'Be careful of the Town Watch! '
-    - They are an outstanding group, but they work up a mighty appetite!
-    - Good night Dane!
-  canCount: 0
   Bubble: {fileID: 2075414951}
 --- !u!50 &1083138366
 Rigidbody2D:
@@ -5904,70 +5958,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.sprites.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.sprites.Array.data[0].sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
-        type: 3}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.sprites.Array.data[1].sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
-        type: 3}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.sprites.Array.data[2].sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
-        type: 3}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.sprites.Array.data[3].sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
-        type: 3}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: scalingMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: InitialModule.size3D
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8268412411219730201, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6034,6 +6024,70 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300006, guid: 7a591e24823bb8242ac700961d8b7122,
         type: 3}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
+        type: 3}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.data[1].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
+        type: 3}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.data[2].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
+        type: 3}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.data[3].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
+        type: 3}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: scalingMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: InitialModule.size3D
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8268412410933899896, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6169,3 +6223,9 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4d8ad7ef50d21948b3cbdb627a6b69f, type: 3}
+--- !u!1 &8603696837113512536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8603696835699974021, guid: e4d8ad7ef50d21948b3cbdb627a6b69f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8603696837113512535}
+  m_PrefabAsset: {fileID: 0}
