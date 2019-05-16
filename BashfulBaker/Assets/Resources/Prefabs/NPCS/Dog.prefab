@@ -497,7 +497,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 437783656965318473}
-  animator: {fileID: 437783656965318473}
 --- !u!1 &8020513790074148717
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +612,7 @@ MonoBehaviour:
   returnHome: 0
   talkingToPlayer: 0
   lookAroundLerp: 0
-  lookSpeed: 0.2
+  lookSpeed: 1
   capturePatrolPoint: {x: 0, y: 0, z: 0}
   movementLerp: 0
   patrolPauseTimer:
@@ -673,7 +672,7 @@ MonoBehaviour:
   seesPlayer: 0
   pathUpdateReset: 1
   viewRadius: 6
-  viewAngle: 90
+  viewAngle: 80
   targetMask:
     serializedVersion: 2
     m_Bits: 512
