@@ -19,28 +19,28 @@ public class SullyDay1 : MonoBehaviour
     public bool isOpen;
     public int step;
     public Dialogue StopRightThere;
+    public Dialogue Sully_Hey;
+    public Dialogue Dane_Thanks;
     public Dialogue Sully_Bye;
-    public Dialogue[] Conversation;
-    private int convosteps;
-    public Sprite[] convofaces;
 
 
     private void Start()
     {
-        if (Game.TalkedtoSully || Game.CurrentDayNumber != 1)
+       if(Game.TalkedtoSully || Game.CurrentDayNumber != 1)
         {
-            gameObject.SetActive(false);
+           gameObject.SetActive(false);
             Destroy(trigger);
         }
-        GameObject.Find("Headshot").GetComponent<Image>().sprite = sully_Face;
+
         step = 0;
+        GameObject.Find("Headshot").GetComponent<Image>().sprite = sully_Face;
+
     }
     private void Update()
     {
         isOpen = DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp;
 
-        if (isOpen == false && step > 0)
-        {
+        if (isOpen ==false && step > 0){
             if (step == 3)
             {
                 sully_animator.SetInteger("Phase", 3);
@@ -53,27 +53,26 @@ public class SullyDay1 : MonoBehaviour
             }
             if (step == 1)
             {
-                //GameObject.Find("Headshot").GetComponent<Image>().sprite = dane_Face;
-
-                if (convosteps == 7)
-                {
-                    step++;
-                }
-                else
-                {
-                    Dane_Speaks();
-                }
+                GameObject.Find("Headshot").GetComponent<Image>().sprite = dane_Face;
+                Dane_Speaks();
+                step++;
             }
+ 
 
         }
+
+
         if (trigger.GetComponent<triggercheck>().beenHit == true && step == 0 && isOpen == false)
         {
+           // step++;
             sully_animator.SetInteger("Phase", 1);
             Game.TalkedtoSully = true;
+
         }
+
+
+
     }
-
-
     private void endApproach()
     {
         GameObject.Find("Headshot").GetComponent<Image>().sprite = sully_Face;
@@ -90,14 +89,11 @@ public class SullyDay1 : MonoBehaviour
     }
     void Sully_Speaks()
     {
-        Dane_Speaks();
+        FindObjectOfType<DialogueManager>().StartDialogue(Sully_Hey);
     }
     void Dane_Speaks()
     {
-        GameObject.Find("Headshot").GetComponent<Image>().sprite = convofaces[convosteps];
-        FindObjectOfType<DialogueManager>().StartDialogue(Conversation[convosteps]);
-        convosteps++;
-        Debug.Log(convosteps);
+        FindObjectOfType<DialogueManager>().StartDialogue(Dane_Thanks);
     }
     void Sully_Byebye()
     {
@@ -109,4 +105,72 @@ public class SullyDay1 : MonoBehaviour
         this.gameObject.SetActive(false);
         Destroy(trigger);
     }
+
+
+
+
+
+    // Start is called before the first frame update
+    /*  void Start()
+      {
+          canCount = false;
+          step = 0;
+          triggered = trigger.GetComponent<triggercheck>().beenHit;
+      }
+
+      // Update is called once per frame
+      void Update()
+      {
+
+          if (InputControls.APressed && canCount == true)
+          {
+              ApressCount++;
+              //Debug.Log(ApressCount);
+          }
+
+          if (triggered && step == 0 && arrived == true)
+          {
+
+              GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 0;
+              killtrigger();
+              Begin_Count();
+              step++;
+          }
+          if (step ==1 && ApressCount == 4)
+          {
+              End_Count();
+
+
+          }
+      }
+
+      void endAmination()
+      {
+          triggered = false;
+      }
+      void killtrigger()
+      {
+          Destroy(GameObject.Find("triggercheck"));
+      }
+      void Begin_Count()
+      {
+          ApressCount = 0;
+          canCount = true;
+      }
+      void End_Count()
+      {
+          ApressCount = 0;
+          canCount = false;
+      }
+      void release_Dane()
+      {
+          GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
+      }
+
+      void madeIt()
+      {
+          arrived = true;
+      }
+  }
+  */
 }
