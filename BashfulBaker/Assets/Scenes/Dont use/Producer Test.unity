@@ -1728,11 +1728,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dog
       objectReference: {fileID: 0}
-    - target: {fileID: 8020513789643877609, guid: 3bab82417eb9ad349829de72f7981a19,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 8020513789643877612, guid: 3bab82417eb9ad349829de72f7981a19,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1786,11 +1781,6 @@ PrefabInstance:
     - target: {fileID: 8020513789643877612, guid: 3bab82417eb9ad349829de72f7981a19,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8020513790395684755, guid: 3bab82417eb9ad349829de72f7981a19,
-        type: 3}
-      propertyPath: aiType
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
