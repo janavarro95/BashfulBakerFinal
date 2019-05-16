@@ -731,7 +731,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &110176163 stripped
 Transform:
@@ -6667,7 +6667,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
+      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -7767,7 +7767,7 @@ PrefabInstance:
     - target: {fileID: 3210238604482016428, guid: 3cc04f272e2a642d587be2d4963b4e43,
         type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3210238604482016428, guid: 3cc04f272e2a642d587be2d4963b4e43,
         type: 3}
@@ -13096,7 +13096,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
+      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -13244,23 +13244,14 @@ MonoBehaviour:
   trigger: {fileID: 66524256}
   DiaBoxReference: {fileID: 856803592}
   sully_animator: {fileID: 1572889371}
-  sully_Face: {fileID: 21300000, guid: 273034a71d1a69d41b99fa9748bb8b3a, type: 3}
+  sully_Face: {fileID: 21300000, guid: 1e12f315474fde0409df413f73c1c9ef, type: 3}
   dane_Face: {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   isOpen: 0
   step: 0
   StopRightThere:
-    name: ????
-    sentences:
-    - 'Hey there delivery boy! '
-  Sully_Hey:
     name: Sully
     sentences:
-    - Hello my name is Sully and before you go deliver those cookies, you best know
-      whats going on here.
-    - Those of us in the town guard are on the lookout at night and we work up a mighty
-      hunger and back in the day Jeb used to make us some snacks.
-    - So if they catch you with that batch of cookies, they might just help themselves.
-      Be careful young man!
+    - Hey, you stop there!
   Dane_Thanks:
     name: Dane
     sentences:
@@ -13270,6 +13261,47 @@ MonoBehaviour:
     name: Sully
     sentences:
     - Then good luck Mr. Dane, I'll be rooting for you!
+  Conversation:
+  - name: Sully
+    sentences:
+    - You must be Dane right?
+  - name: Dane
+    sentences:
+    - Umm yes sir.
+  - name: Sully
+    sentences:
+    - "Oh you don\u2019t have to be so formal. Please call me Sully."
+    - ' I heard about you from my wife Sylvia. '
+    - "I just wanted to stop by and welcome you to the neighborhood before I start
+      my shift.\r"
+  - name: Dane
+    sentences:
+    - "Oh, it\u2019s nice to meet you Sully. I was just about to delivery cookies
+      to Sylvia."
+  - name: Sully
+    sentences:
+    - 'Ahh makes sense. She always order cookies during the time I work. '
+    - "She doesn\u2019t like to share. HAHA. But I do want to want to warn you. "
+  - name: Dane
+    sentences:
+    - "Oh! Warn me about what?\r"
+  - name: Sully
+    sentences:
+    - "My men in the Town Watch love Jeb\u2019s cookies. Jeb used to feed them cookies
+      all the time and they are a bunch of spoiled brats that crave Jeb\u2019s cookies."
+    - So I had to ask Jeb to stop sharing his cookies, because they only came to work
+      to get feed. Then after getting feed, these jerks would go to sleep!
+    - "Now they heard there is a new guy delivering the cookies. I\u2019m sure they
+      will beg for you to share them. Don\u2019t get bullied by those rascals Dane.
+      \r\n"
+  convofaces:
+  - {fileID: 21300000, guid: 273034a71d1a69d41b99fa9748bb8b3a, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 273034a71d1a69d41b99fa9748bb8b3a, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 273034a71d1a69d41b99fa9748bb8b3a, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 273034a71d1a69d41b99fa9748bb8b3a, type: 3}
 --- !u!61 &1572889376
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14290,7 +14322,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
+      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
         type: 3}
     - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
@@ -15550,7 +15582,7 @@ PrefabInstance:
     - target: {fileID: 3210238604482016428, guid: 3cc04f272e2a642d587be2d4963b4e43,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 3210238604482016428, guid: 3cc04f272e2a642d587be2d4963b4e43,
         type: 3}
@@ -17773,7 +17805,7 @@ PrefabInstance:
     - target: {fileID: 7305338008555703335, guid: 560b19f2b3bb81b4eb48c0b460fd57ed,
         type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7305338008555703335, guid: 560b19f2b3bb81b4eb48c0b460fd57ed,
         type: 3}
