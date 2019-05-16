@@ -10,12 +10,12 @@ namespace Assets.Scripts.Stealth
     {
         public Animator animator;
 
-        public void Start()
+        public virtual void Start()
         {
             animator = this.gameObject.GetComponent<Animator>();
         }
 
-        public void animateGuard(Vector3 currentPos,Vector3 nextPos,bool flip=false)
+        public virtual void animateGuard(Vector3 currentPos,Vector3 nextPos,bool flip=false)
         {
             Vector3 nextTargetSpot = nextPos - currentPos;
 

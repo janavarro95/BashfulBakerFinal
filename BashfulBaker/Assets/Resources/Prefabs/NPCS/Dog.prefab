@@ -497,6 +497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 437783656965318473}
+  animator: {fileID: 437783656965318473}
 --- !u!1 &8020513790074148717
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +628,7 @@ MonoBehaviour:
   aiType: 1
   chasesPlayer: 0
   shouldMove: 0
-  animationScript: {fileID: 0}
+  animationScript: {fileID: 7817557327652901841}
   question: {fileID: 8955131136733054421}
 --- !u!114 &7714562924864321936
 MonoBehaviour:

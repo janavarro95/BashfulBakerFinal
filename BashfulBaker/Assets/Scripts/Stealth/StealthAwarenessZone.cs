@@ -199,7 +199,7 @@ public class StealthAwarenessZone : MonoBehaviour
             // movement
             if (shouldMove)
             {
-                movementLerp += getProperMovementSpeed();
+                movementLerp += getProperMovementSpeed(2f);
 
                 // get next spot in the path
                 if (movementLerp >= 1.0f)
@@ -213,7 +213,7 @@ public class StealthAwarenessZone : MonoBehaviour
             }
 
             //Animate here
-            animateGuard(sequenceStartingSpot, nextTargetSpot);
+            animateGuard(this.transform.position, nextTargetSpot);
         }
         // RETURN HOME
         else if (returnHome)
@@ -247,13 +247,8 @@ public class StealthAwarenessZone : MonoBehaviour
             myState = 4;
             //Debug.Log("UNaware of Player");
 
-            
-
             // looking
-            if (aiType != LookingType.None)
-            {
-                aiLookLogic();
-            }
+            aiLookLogic();
 
             // movement
             if(movementLogic == MovementType.None)
@@ -311,20 +306,22 @@ public class StealthAwarenessZone : MonoBehaviour
                 {
                     sequenceStartingSpot = capturePatrolPoint;
                     nextTargetSpot = patrolPoints[(currentPatrolPoint+1) % patrolPoints.Count];
+
+                    // reset capture
+                    this.capturePatrolPoint = this.capturePatrolPointReset;
                 }
                 else
                 {
-                    sequenceStartingSpot = patrolPoints[currentPatrolPoint];
-                    nextTargetSpot = patrolPoints[(currentPatrolPoint+1) % patrolPoints.Count];
+                    sequenceStartingSpot = this.transform.position;
+                    nextTargetSpot = patrolPoints[currentPatrolPoint];
+
+                    currentPatrolPoint++;
                 }
 
-                // reset capture
-                this.capturePatrolPoint = this.capturePatrolPointReset;
 
                 // reset movement lerps
                 this.movementLerp = 0f;
                 this.lookAroundLerp = 0f;
-                currentPatrolPoint++;
 
                 if (this.movementLogic == MovementType.PatrollAndPause)
                 {
@@ -394,8 +391,8 @@ public class StealthAwarenessZone : MonoBehaviour
         if (this.pathBackToStart.Count == 0)
         {
             returnHome = false;
-            //this.sequenceStartingSpot = this.gameObject.transform.position;
-            //this.nextTargetSpot = this.startingLocation;
+            this.sequenceStartingSpot = this.gameObject.transform.position;
+            this.nextTargetSpot = this.startingLocation;
             return;
         }
         
@@ -420,7 +417,7 @@ public class StealthAwarenessZone : MonoBehaviour
         }
         else
         {
-            if (movementLogic == MovementType.ContinuousPatrolling || movementLogic == MovementType.PatrollAndPause)
+            if (this.aiType != LookingType.None && (movementLogic == MovementType.ContinuousPatrolling || movementLogic == MovementType.PatrollAndPause))
             {
                 //aiLookAt(patrolPoints[(currentPatrolPoint + 1) % patrolPoints.Count]);
                 aiLookDirectlyAt(patrolPoints[(currentPatrolPoint) % patrolPoints.Count]);
@@ -530,8 +527,8 @@ public class StealthAwarenessZone : MonoBehaviour
 
     private void createLookAroundPoints()
     {
-        if (movementLogic == MovementType.None)
-        {
+        //if (aiType == LookingType.None)
+        //{
             int amount = Random.Range(1, 5);
             for (int i = 0; i < amount; i++)
             {
@@ -539,8 +536,8 @@ public class StealthAwarenessZone : MonoBehaviour
                 Vector2 lookAtSpot = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
                 listOfSpotsToLookAt.Add(lookAtSpot);
             }
-        }
-        else
+        //}
+        /*else
         {
             Vector2 me = (Vector2)patrolPoints[currentPatrolPoint];
             Vector2 to = (Vector2)patrolPoints[(currentPatrolPoint + 1) % patrolPoints.Count];
@@ -552,7 +549,7 @@ public class StealthAwarenessZone : MonoBehaviour
             //add += LookMod(to, next, 0.2f);
             // add
             listOfSpotsToLookAt.Add(add);
-        }
+        }*/
         
     }
 
@@ -571,7 +568,7 @@ public class StealthAwarenessZone : MonoBehaviour
     {
         float dist = Vector2.Distance(this.sequenceStartingSpot, this.nextTargetSpot);
         float speed;
-        if (dist < threshold)
+        if (dist > threshold)
             speed = (movementSpeed / dist) * Time.deltaTime;
         else speed = 0;
 
@@ -588,7 +585,7 @@ public class StealthAwarenessZone : MonoBehaviour
     {
         float dist = Vector2.Distance(startSpot, endSpot);
         float speed;
-        if (dist < threshold)
+        if (dist > threshold)
             speed = (movementSpeed / dist) * Time.deltaTime;
         else speed = 0;
 
