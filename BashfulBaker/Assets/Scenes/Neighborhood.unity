@@ -15676,24 +15676,12 @@ MonoBehaviour:
     name: ????
     sentences:
     - 'Hey there delivery boy! '
-  Sully_Hey:
-    name: Sully
-    sentences:
-    - Hello my name is Sully and before you go deliver those cookies, you best know
-      whats going on here.
-    - Those of us in the town guard are on the lookout at night and we work up a mighty
-      hunger and back in the day Jeb used to make us some snacks.
-    - So if they catch you with that batch of cookies, they might just help themselves.
-      Be careful young man!
-  Dane_Thanks:
-    name: Dane
-    sentences:
-    - So thats what Jeb meant! Thank you mister!
-    - Oh and my name is Dane by the way...
   Sully_Bye:
     name: Sully
     sentences:
     - Then good luck Mr. Dane, I'll be rooting for you!
+  Conversation: []
+  convofaces: []
 --- !u!61 &1572889376
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18747,17 +18735,17 @@ PrefabInstance:
     - target: {fileID: 6383983427605396519, guid: 83fe879519adb6147945cb81bdd9887c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6383983427605396512, guid: 83fe879519adb6147945cb81bdd9887c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.08
+      value: -6.56
       objectReference: {fileID: 0}
     - target: {fileID: 6383983427605396512, guid: 83fe879519adb6147945cb81bdd9887c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.56
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 6383983427605396512, guid: 83fe879519adb6147945cb81bdd9887c,
         type: 3}
