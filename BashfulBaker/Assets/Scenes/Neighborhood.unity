@@ -1622,7 +1622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &176016055
 Transform:
   m_ObjectHideFlags: 0
@@ -8305,12 +8305,12 @@ PrefabInstance:
     - target: {fileID: 4706530218426925650, guid: 8d537620c63c65b45acf66b81975a0e8,
         type: 3}
       propertyPath: m_Name
-      value: Fake Camera
+      value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 4706530218426925650, guid: 8d537620c63c65b45acf66b81975a0e8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4706530218426925487, guid: 8d537620c63c65b45acf66b81975a0e8,
         type: 3}
@@ -10680,6 +10680,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 943919813}
+  - component: {fileID: 943919814}
   m_Layer: 0
   m_Name: Lights (non-house)
   m_TagString: Untagged
@@ -10708,6 +10709,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &943919814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943919812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f69f0a0d68cd6ca46a644c8e59e79244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 0
+  other: 1
+  self: 0
 --- !u!1 &1005100313
 GameObject:
   m_ObjectHideFlags: 0
@@ -16465,7 +16481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1651442390
 Transform:
   m_ObjectHideFlags: 0
@@ -18974,7 +18990,12 @@ PrefabInstance:
     - target: {fileID: 6383983427605396516, guid: 83fe879519adb6147945cb81bdd9887c,
         type: 3}
       propertyPath: defaultSpeed
-      value: 3
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151726780998263588, guid: 83fe879519adb6147945cb81bdd9887c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83fe879519adb6147945cb81bdd9887c, type: 3}
