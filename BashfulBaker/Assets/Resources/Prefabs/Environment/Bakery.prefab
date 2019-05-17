@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 6147839252105156040}
   - component: {fileID: 1080608676710046335}
   - component: {fileID: 7318585268486250473}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: window bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 6820928608215146548}
   - component: {fileID: 276811754914669249}
   - component: {fileID: 654153597214057261}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: window top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
