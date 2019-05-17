@@ -41,9 +41,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dont use/Bakery.unity
     guid: 7fe5e3a88d56be64882d2a4a476d30b8
-  - enabled: 1
-    path: Assets/Scenes/Outside.unity
-    guid: de20ef4bae3ef3f46b1f6dfebded9544
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/EndOfDay.unity
     guid: 8ae0db1a56bf597428ac7b7d3633ebe0

@@ -20,7 +20,6 @@ namespace Assets.Scripts.Menus.HUDS
         Image quest2Image;
         Image quest3Image;
         Image quest4Image;
-        Image quest5Image;
 
         GameObject menuBackground;
 
@@ -41,7 +40,6 @@ namespace Assets.Scripts.Menus.HUDS
             quest2Image = menuBackground.transform.Find("Quest2").gameObject.GetComponent<Image>();
             quest3Image = menuBackground.transform.Find("Quest3").gameObject.GetComponent<Image>();
             quest4Image = menuBackground.transform.Find("Quest4").gameObject.GetComponent<Image>();
-            quest5Image = menuBackground.transform.Find("Quest5").gameObject.GetComponent<Image>();
 
             getQuestImages();
         }
@@ -56,7 +54,6 @@ namespace Assets.Scripts.Menus.HUDS
             quest2Image.enabled = false;
             quest3Image.enabled = false;
             quest4Image.enabled = false;
-            quest5Image.enabled = false;
 
             if (cookingQuests.Count >= 1)
             {
@@ -85,13 +82,6 @@ namespace Assets.Scripts.Menus.HUDS
                 quest4Image.sprite = loadQuestImage(quest);
                 quest4Image.enabled = true;
                 quest4Image.gameObject.SetActive(true);
-            }
-            if (cookingQuests.Count >= 5)
-            {
-                CookingQuest quest = cookingQuests[4];
-                quest5Image.sprite = loadQuestImage(quest);
-                quest5Image.enabled = true;
-                quest5Image.gameObject.SetActive(true);
             }
 
         }

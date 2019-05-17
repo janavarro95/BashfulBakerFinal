@@ -49,15 +49,6 @@ namespace Assets.Scripts.Menus.HUDS
         /// The 4th special ingredient.
         /// </summary>
         private SpecialIngredient fourthSpecialIngredient;
-        /// <summary>
-        /// The 5th special ingredient.
-        /// </summary>
-        private SpecialIngredient fifthSpecialIngredient;
-
-        /// <summary>
-        /// The 6th special ingredient object.
-        /// </summary>
-        private SpecialIngredient sixthSpecialIngredient;
 
         //Images
         /// <summary>
@@ -93,22 +84,12 @@ namespace Assets.Scripts.Menus.HUDS
         /// The image representing the 4th special ingredient.
         /// </summary>
         public Image fourthSpecialIngredientImage;
-        /// <summary>
-        /// The image representing the 5th special ingredient.
-        /// </summary>
-        public Image fifthSpecialIngredientImage;
-        /// <summary>
-        /// The image representing the 6th special ingredient.
-        /// </summary>
-        public Image sixthSpecialIngredientImage;
 
 
         public Text firstSpecialIngredientText;
         public Text secondSpecialIngredientText;
         public Text thirdSpecialIngredientText;
         public Text fourthSpecialIngredientText;
-        public Text fifthSpecialIngredientText;
-        public Text sixthSpecialIngredientText;
 
         [System.Serializable]
         private class SpecialIngredientRotation{
@@ -254,10 +235,6 @@ namespace Assets.Scripts.Menus.HUDS
         SpecialIngredientRotation sp3Rot;
         [SerializeField]
         SpecialIngredientRotation sp4Rot;
-        [SerializeField]
-        SpecialIngredientRotation sp5Rot;
-        [SerializeField]
-        SpecialIngredientRotation sp6Rot;
 
         [SerializeField]
         SpecialIngredientRotation basketRot;
@@ -278,15 +255,12 @@ namespace Assets.Scripts.Menus.HUDS
             secondSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage2").gameObject.GetComponent<Image>();
             thirdSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage3").gameObject.GetComponent<Image>();
             fourthSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage4").gameObject.GetComponent<Image>();
-            fifthSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage5").gameObject.GetComponent<Image>();
-            sixthSpecialIngredientImage = specialIngredients.transform.Find("SpecialIngredientImage6").gameObject.GetComponent<Image>();
+            
 
             firstSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount1").GetComponent<Text>();
             secondSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount2").GetComponent<Text>();
             thirdSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount3").GetComponent<Text>();
             fourthSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount4").GetComponent<Text>();
-            fifthSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount5").GetComponent<Text>();
-            sixthSpecialIngredientText = specialIngredients.gameObject.transform.Find("Amount6").GetComponent<Text>();
 
             firstDishImage = dishes.transform.Find("DishImage1").gameObject.GetComponent<Image>();
             secondDishImage = dishes.transform.Find("DishImage2").gameObject.GetComponent<Image>();
@@ -296,8 +270,6 @@ namespace Assets.Scripts.Menus.HUDS
             sp2Rot = new SpecialIngredientRotation(secondSpecialIngredientImage);
             sp3Rot = new SpecialIngredientRotation(thirdSpecialIngredientImage);
             sp4Rot = new SpecialIngredientRotation(fourthSpecialIngredientImage);
-            sp5Rot = new SpecialIngredientRotation(fifthSpecialIngredientImage);
-            sp6Rot = new SpecialIngredientRotation(sixthSpecialIngredientImage);
             basketRot = new SpecialIngredientRotation(specialIngredientsIcon);
 
             firstDishImage.gameObject.SetActive(true);
@@ -328,8 +300,6 @@ namespace Assets.Scripts.Menus.HUDS
             secondSpecialIngredientImage.color = new Color(1, 1, 1, 0);
             thirdSpecialIngredientImage.color = new Color(1, 1, 1, 0);
             fourthSpecialIngredientImage.color = new Color(1, 1, 1, 0);
-            fifthSpecialIngredientImage.color = new Color(1, 1, 1, 0);
-            sixthSpecialIngredientImage.color = new Color(1, 1, 1, 0);
             firstDishImage.color = new Color(1, 1, 1, 0);
             secondDishImage.color = new Color(1, 1, 1, 0);
             thirdDishImage.color = new Color(1, 1, 1, 0);
@@ -422,25 +392,6 @@ namespace Assets.Scripts.Menus.HUDS
                 
             }
 
-            if (specialIngredientsList.Count > 4)
-            {
-                fifthSpecialIngredient = specialIngredientsList.Find(ing => ing.ingredientType == Enums.SpecialIngredients.Carrots);
-                fifthSpecialIngredientText.text = "x" + fifthSpecialIngredient.stack.ToString();
-                //Texture2D texture = fifthSpecialIngredient.Sprite;
-                //fifthSpecialIngredientImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
-                fifthSpecialIngredientImage.color = Color.white;
-               
-            }
-
-            if (specialIngredientsList.Count > 5)
-            {
-                sixthSpecialIngredient = specialIngredientsList.Find(ing => ing.ingredientType == Enums.SpecialIngredients.Strawberries);
-                sixthSpecialIngredientText.text = "x" + sixthSpecialIngredient.stack.ToString();
-                //Texture2D texture = sixthSpecialIngredient.Sprite;
-                //sixthSpecialIngredientImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
-                sixthSpecialIngredientImage.color = Color.white;             
-            }
-
             foreach(Dish d in Game.Player.dishesInventory)
             {
                 d.updateSprite();
@@ -468,8 +419,6 @@ namespace Assets.Scripts.Menus.HUDS
                     sp2Rot.update();
                     sp3Rot.update();
                     sp4Rot.update();
-                    sp5Rot.update();
-                    sp6Rot.update();
                     basketRot.update();
                 }
 
@@ -669,16 +618,6 @@ namespace Assets.Scripts.Menus.HUDS
             else if ((int)ingredient == 3)
             {
                 sp4Rot.doCycle();
-                basketRot.doCycle();
-            }
-            else if ((int)ingredient == 4)
-            {
-                sp5Rot.doCycle();
-                basketRot.doCycle();
-            }
-            else if ((int)ingredient == 5)
-            {
-                sp6Rot.doCycle();
                 basketRot.doCycle();
             }
         }
