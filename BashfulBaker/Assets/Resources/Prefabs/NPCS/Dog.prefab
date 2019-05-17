@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5095776232934995164}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Wawypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,36 +103,6 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5095776232934995155}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 13.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8020513790074148718}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5095776232948629178
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5095776232948629179}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5095776232948629179
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5095776232948629178}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -524,7 +494,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5095776232948629179}
   - {fileID: 5095776232934995164}
   m_Father: {fileID: 8020513789643877612}
   m_RootOrder: 1
@@ -612,7 +581,7 @@ MonoBehaviour:
   returnHome: 0
   talkingToPlayer: 0
   lookAroundLerp: 0
-  lookSpeed: 1
+  lookSpeed: 2
   capturePatrolPoint: {x: 0, y: 0, z: 0}
   movementLerp: 0
   patrolPauseTimer:
@@ -671,8 +640,8 @@ MonoBehaviour:
   sawPlayer: 0
   seesPlayer: 0
   pathUpdateReset: 1
-  viewRadius: 6
-  viewAngle: 80
+  viewRadius: 5
+  viewAngle: 90
   targetMask:
     serializedVersion: 2
     m_Bits: 512
