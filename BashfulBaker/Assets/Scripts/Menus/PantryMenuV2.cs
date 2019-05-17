@@ -504,7 +504,7 @@ namespace Assets.Scripts.Menus
 
             
             Game.HUD.showQuests = true;
-            Game.StartNewTimerPhase(10, 0,true);
+            Game.StartNewTimerPhase(5, 0,true);
 
             try
             {
