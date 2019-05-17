@@ -1502,14 +1502,14 @@ MonoBehaviour:
   dias:
   - name: Dane
     sentences:
-    - "(Where are the cookies? I don\u2019t see them.)"
+    - (Hmm where's Sylvia's order? I don't see it anywhere.)
   - name: Dane
     sentences:
-    - "(Jeb must have believed he made the cookies, but didn\u2019t.)"
+    - (Didn't he say he made the cookies? Maybe I misheard him...)
   - name: Dane
     sentences:
     - '*Sigh*'
-    - (.. hmmm? Well I can make them!)
+    - (Well... the oven still looks hot, maybe I can make them for her.)
 --- !u!224 &611194603
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2955,7 +2955,7 @@ MonoBehaviour:
   whereAreThey:
     name: Dane
     sentences:
-    - Looks like I need to grab some choclate chips.
+    - Looks like I need to grab some chocolate chips.
   hereTheyAre:
     name: Dane
     sentences:
@@ -3012,17 +3012,17 @@ MonoBehaviour:
   backandforth:
   - name: Jeb
     sentences:
-    - "Oh! My boy Dave, you scared me! Welcome to Jeb\u2019s Jollies."
+    - "Oh, Dave! You scared me. Welcome to Jeb\u2019s Jollies."
   - name: Dane
     sentences:
-    - "Oh sorry I didn\u2019t mean too\u2026 But my\u2026\r\n"
+    - "Oh sorry I didn\u2019t mean to\u2026 But my\u2026\r\n"
   - name: Jeb
     sentences:
     - "Don\u2019t worry about it! I\u2019m lucky my hearing is still good. Can\u2019t
       sneak up on this old man Dave! HAHAHA"
   - name: Dane
     sentences:
-    - Ha...umm Jeb?
+    - Hah...umm Jeb?
   - name: Jeb
     sentences:
     - Yes Dave?
@@ -3037,7 +3037,7 @@ MonoBehaviour:
     - "My name is\u2026"
   - name: Jeb
     sentences:
-    - "What! I can\u2019t hear you Dave! "
+    - "What! I can\u2019t hear you Dave! No need to be shy."
   - name: Dane
     sentences:
     - My name is Dane!
@@ -3047,8 +3047,8 @@ MonoBehaviour:
       barely hear you."
   - name: Dane
     sentences:
-    - "(Didn\u2019t he just say he was good at hearing?)"
-    - It's okay.
+    - (Didn't he just say his hearing was good?)
+    - It's fine, don't worry about it.
   - name: Jeb
     sentences:
     - How are you my boy? I hope you are settling in nicely.
@@ -3061,10 +3061,10 @@ MonoBehaviour:
       they will make you feel welcome. "
     - Plus today has been a pretty quiet day for the Bakery. I think we only have
       one last delivery to do.
-    - A regular of mine, Silvia ordered half a dozen Chocolate Chip Cookies. She heard
+    - A regular of mine, Sylvia ordered half a dozen Chocolate Chip Cookies. She heard
       I hired a new delivery boy and she is very excited to meet you!
-    - " I already made the cookies and they are ready to go in the kitchen! Please
-      take them to the house with a BLUE ROOF on the southeast of town.\r"
+    - I already made the cookies and they are ready to go in the kitchen!
+    - "Please take them to the house with a BLUE ROOF on the southeast side of town.\r"
   - name: Jeb
     sentences:
     - I'm sure you'll do a great job!
@@ -5958,6 +5958,70 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
+        type: 3}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.data[1].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
+        type: 3}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.data[2].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
+        type: 3}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: UVModule.sprites.Array.data[3].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
+        type: 3}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: scalingMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: InitialModule.size3D
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8268412411219730201, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6024,70 +6088,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300006, guid: 7a591e24823bb8242ac700961d8b7122,
         type: 3}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.sprites.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.sprites.Array.data[0].sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
-        type: 3}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.sprites.Array.data[1].sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
-        type: 3}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.sprites.Array.data[2].sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
-        type: 3}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: UVModule.sprites.Array.data[3].sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 40ca4c1d837513b4bb0e7430d4fc3b0e,
-        type: 3}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: scalingMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
-        type: 3}
-      propertyPath: InitialModule.size3D
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8268412410933899896, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
