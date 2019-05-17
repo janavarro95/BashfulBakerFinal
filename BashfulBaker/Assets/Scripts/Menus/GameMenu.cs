@@ -31,17 +31,18 @@ namespace Assets.Scripts.Menus
             canvas = this.gameObject.transform.Find("Canvas").gameObject;
             actualCanvas = canvas.gameObject.GetComponent<Canvas>();
             //actualCanvas.scaleFactor = 0f;
-            
+
             //breath = new MenuBreath(actualCanvas, 1, finishIntro, actualyExit);
         }
 
         // Start is called before the first frame update
         public override void Start()
         {
-            slide = new SlideIn(canvas, 4f, finishIntro);
+            //slide = new SlideIn(canvas, 4f, finishIntro);
             GameInformation.Game.Menu = this;
             //breath.breathIn();
             //actualCanvas.scaleFactor = 0f;
+            finishIntro();
         }
 
         public void finishIntro()
@@ -84,11 +85,7 @@ namespace Assets.Scripts.Menus
         // Update is called once per frame
         public override void Update()
         {
-            //if (breath.Update() == false) return;
-            if (slide != null)
-            {
-                if (slide.Update() == false) return;
-            }
+            
 
             if (GameInput.GameCursorMenu.SimulateMousePress(save))
             {

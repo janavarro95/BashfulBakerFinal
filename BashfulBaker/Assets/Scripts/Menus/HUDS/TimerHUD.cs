@@ -56,11 +56,11 @@ namespace Assets.Scripts.Menus.HUDS
                     {
                         seconds = Game.PhaseTimer.seconds.ToString();
                     }
-                    updateGiftImage();
-                    updateKnobRotation();
 
                     timeRemaining.text = Game.PhaseTimer.minutes + " " + parseSeconds();
                 }
+                updateGiftImage();
+                updateKnobRotation();
             }
             else
             {
