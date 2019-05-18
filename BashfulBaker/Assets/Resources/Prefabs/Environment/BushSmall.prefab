@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3586872297600807286}
   - component: {fileID: 3586872297600807285}
   - component: {fileID: 274239843148091129}
-  - component: {fileID: 504796990459270644}
-  m_Layer: 8
+  - component: {fileID: 8318048186020476247}
+  m_Layer: 0
   m_Name: BushSmall
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -30,7 +30,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 13.6, y: -12.8, z: 1.11}
   m_LocalScale: {x: 3, y: 3, z: 3}
-  m_Children: []
+  m_Children:
+  - {fileID: 361967090940325864}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -109,8 +110,8 @@ MonoBehaviour:
   update: 0
   other: 0
   self: 1
---- !u!70 &504796990459270644
-CapsuleCollider2D:
+--- !u!61 &8318048186020476247
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -119,9 +120,99 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01, y: -0.03}
-  m_Size: {x: 0.34, y: 0.21}
-  m_Direction: 1
+  m_Offset: {x: 0.0016167723, y: -0.056594655}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.43, y: 0.3}
+    newSize: {x: 0.43, y: 0.3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.25213146, y: 0.14476871}
+  m_EdgeRadius: 0
+--- !u!1 &3751764506445225640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 361967090940325864}
+  - component: {fileID: 6556331589550080905}
+  m_Layer: 8
+  m_Name: Lighthitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &361967090940325864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3751764506445225640}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+  m_Children: []
+  m_Father: {fileID: 3586872297600807283}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &6556331589550080905
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3751764506445225640}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.45293713, y: 0.12311364}
+      - {x: 0.355155, y: 0.1604271}
+      - {x: 0.21458817, y: 0.2899723}
+      - {x: 0.10658455, y: 0.33276558}
+      - {x: 0.029105186, y: 0.38392738}
+      - {x: -0.022651672, y: 0.3791132}
+      - {x: -0.07641506, y: 0.34148312}
+      - {x: -0.209548, y: 0.30270863}
+      - {x: -0.25055695, y: 0.24050523}
+      - {x: -0.3204298, y: 0.19744492}
+      - {x: -0.3664713, y: 0.097229004}
+      - {x: -0.41800117, y: 0.030200958}
+      - {x: -0.4088459, y: 0.002688408}
+      - {x: -0.3555498, y: 0.03769207}
+      - {x: -0.28156757, y: 0.18142986}
+      - {x: -0.14491653, y: 0.2854252}
+      - {x: -0.028288841, y: 0.33096123}
+      - {x: 0.06693554, y: 0.32399654}
+      - {x: 0.19105911, y: 0.25724506}
+      - {x: 0.33377838, y: 0.119493484}
+      - {x: 0.39769077, y: 0.082966805}
+      - {x: 0.43941692, y: 0.06846714}
+      - {x: 0.49486828, y: 0.048677444}
+      - {x: 0.49506474, y: 0.07131958}

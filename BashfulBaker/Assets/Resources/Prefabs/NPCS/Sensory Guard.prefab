@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 1599690729584334758}
   - component: {fileID: 2697602161223358511}
   - component: {fileID: 740354500420731831}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,6 @@ MonoBehaviour:
   flashlight: {fileID: 0}
   catching: {fileID: 0}
   movementSpeed: 2
-  proximityToTarget: 0
   investigate: {fileID: 0}
   returnHome: 0
   talkingToPlayer: 0
@@ -544,6 +543,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 0
+  unlit: 0
   guard: {fileID: 0}
   alert: {fileID: 1484554563386775200}
 --- !u!1 &4247124446377787189
