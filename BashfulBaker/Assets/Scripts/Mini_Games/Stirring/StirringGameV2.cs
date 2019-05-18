@@ -46,7 +46,7 @@ namespace Assets.Scripts.GameInput
             buttons[0].SetActive(true);
             buttons[1].SetActive(false);
 
-            progressBar.transform.localScale = new Vector3(.1f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
+            progressBar.transform.position = new Vector3(progressBar.GetComponent<StartEnd>().start, progressBar.transform.position.y, progressBar.transform.position.z);
 
             Game.HUD.showHUD = false;
             Game.HUD.showOnlyTimer();
@@ -132,7 +132,7 @@ namespace Assets.Scripts.GameInput
 
             bowl.sprite = bowlsprites[angle];
 
-            progressBar.transform.localScale = new Vector3((Percent_Stirred * 20)/720f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
+            progressBar.transform.position = new Vector3(Mathf.Lerp(progressBar.GetComponent<StartEnd>().start, progressBar.GetComponent<StartEnd>().end, Percent_Stirred/720f), progressBar.transform.position.y, progressBar.transform.position.z);
         }
         void getOutOfStirring()
         {
