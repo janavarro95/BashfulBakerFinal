@@ -24,7 +24,10 @@ public class DogBarker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Timer();
+        if (awareness.seesPlayer)
+        {
+            Timer();
+        }
     }
 
     void Timer()
@@ -35,10 +38,6 @@ public class DogBarker : MonoBehaviour
         {
             // reset
             timer = timerReset + Random.Range(-timerResetVariance, timerResetVariance);
-            if (awareness.seesPlayer)
-            {
-                timer /= 3;
-            }
             // trigger
             Instantiate(soundPrefab, this.transform.position, Quaternion.identity);
         }

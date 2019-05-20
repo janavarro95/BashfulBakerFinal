@@ -31,48 +31,50 @@ namespace Assets.Scripts.QuestSystem.Quests
         /// <param name="collision"></param>
         public void OnTriggerStay2D(Collider2D collision)
         {
-            //Debug.Log("HELLO!");
-            if (GameInput.InputControls.APressed) //If player presses A
+            if (collision.tag == "Player")
             {
-                List<Item> removalList = new List<Item>();
-                if (Game.Player.activeItem is Dish) //Send that dish to the quest manager....
+                //Debug.Log("HELLO!");
+                if (GameInput.InputControls.APressed) //If player presses A
                 {
-                    bool delivered = Game.QuestManager.checkForDeliveryQuestCompletion((Game.Player.activeItem as Dish), this);
-                    if (delivered == true)
+                    List<Item> removalList = new List<Item>();
+                    if (Game.Player.activeItem is Dish) //Send that dish to the quest manager....
                     {
-                        removalList.Add(Game.Player.activeItem);
-                        Game.Player.activeItem = null;
+                        bool delivered = Game.QuestManager.checkForDeliveryQuestCompletion((Game.Player.activeItem as Dish), this);
+                        if (delivered == true)
+                        {
+                            removalList.Add(Game.Player.activeItem);
+                            Game.Player.activeItem = null;
+                        }
                     }
-                }
-                else
-                {
-                    //Debug.Log("Held item is not a dish!!");
-                }
-
-                foreach (Item I in removalList)
-                {
-                    Game.Player.dishesInventory.Remove(I);
-                }
-                //if (hasADishBeenDelivered == false){ Debug.Log("No dishes to deliver here!");}
-
-
-                int completed = 0;
-                foreach(CookingQuest q in Game.QuestManager.quests)
-                {
-                    //Debug.Log(q.RequiredDish + " " + q.personToDeliverTo);
-                    if (q.HasBeenDelivered == true)
+                    else
                     {
-                        completed++;
+                        //Debug.Log("Held item is not a dish!!");
                     }
-                    
-                }
-                //Debug.Log("COUNT!: "+Game.QuestManager.quests.Count);
-                if (completed == Game.QuestManager.quests.Count)
-                {
-                    Game.PhaseTimer.currentTime = 1;
+
+                    foreach (Item I in removalList)
+                    {
+                        Game.Player.dishesInventory.Remove(I);
+                    }
+                    //if (hasADishBeenDelivered == false){ Debug.Log("No dishes to deliver here!");}
+
+
+                    int completed = 0;
+                    foreach (CookingQuest q in Game.QuestManager.quests)
+                    {
+                        //Debug.Log(q.RequiredDish + " " + q.personToDeliverTo);
+                        if (q.HasBeenDelivered == true)
+                        {
+                            completed++;
+                        }
+
+                    }
+                    //Debug.Log("COUNT!: "+Game.QuestManager.quests.Count);
+                    if (completed == Game.QuestManager.quests.Count)
+                    {
+                        Game.PhaseTimer.currentTime = 1;
+                    }
                 }
             }
         }
-
     }
 }

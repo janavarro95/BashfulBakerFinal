@@ -671,8 +671,8 @@ MonoBehaviour:
   soundPrefab: {fileID: 2646647941674954673, guid: 155ff4a70c908634bb86ea74f8d6a689,
     type: 3}
   timer: 0
-  timerReset: 5
-  timerResetVariance: 2
+  timerReset: 2
+  timerResetVariance: 1
 --- !u!1 &8955131136733054421
 GameObject:
   m_ObjectHideFlags: 0

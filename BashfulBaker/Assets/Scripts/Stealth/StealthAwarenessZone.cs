@@ -305,7 +305,7 @@ public class StealthAwarenessZone : MonoBehaviour
                 if (capturePatrolPoint != capturePatrolPointReset)
                 {
                     sequenceStartingSpot = capturePatrolPoint;
-                    nextTargetSpot = patrolPoints[(currentPatrolPoint+1) % patrolPoints.Count];
+                    nextTargetSpot = patrolPoints[(currentPatrolPoint) % patrolPoints.Count];
 
                     // reset capture
                     this.capturePatrolPoint = this.capturePatrolPointReset;
@@ -420,7 +420,7 @@ public class StealthAwarenessZone : MonoBehaviour
             if (this.aiType != LookingType.None && (movementLogic == MovementType.ContinuousPatrolling || movementLogic == MovementType.PatrollAndPause))
             {
                 //aiLookAt(patrolPoints[(currentPatrolPoint + 1) % patrolPoints.Count]);
-                aiLookDirectlyAt(patrolPoints[(currentPatrolPoint) % patrolPoints.Count]);
+                aiLookDirectlyAt(patrolPoints[(currentPatrolPoint + patrolPoints.Count - 1) % patrolPoints.Count]);
             }
             else if (listOfSpotsToLookAt.Count == 0)
             {
