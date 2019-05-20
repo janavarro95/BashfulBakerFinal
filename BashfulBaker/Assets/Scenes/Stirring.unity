@@ -344,6 +344,17 @@ MonoBehaviour:
   - {fileID: 1615478147}
   - {fileID: 369199344}
   progressBar: {fileID: 1518192661}
+  barFill: {fileID: 2097982588}
+  progressBarSprites:
+  - {fileID: 21300000, guid: 516ddcec44c5bc54db14df0176388138, type: 3}
+  - {fileID: 21300000, guid: af03d67ecca8cdb4389ca9454d3cffb1, type: 3}
+  - {fileID: 21300000, guid: 479b922344b90f345877645178664000, type: 3}
+  - {fileID: 21300000, guid: 80123141307407d4c9b7648126270683, type: 3}
+  barFillSprites:
+  - {fileID: 21300000, guid: 65d94f32a5c49044bb146a15ecf0d897, type: 3}
+  - {fileID: 21300000, guid: 188cbfdccb67c384da262e66d801de7c, type: 3}
+  - {fileID: 21300000, guid: a888551c90203fc468c335cb4f16b673, type: 3}
+  - {fileID: 21300000, guid: c48d102c0950b434d8168556af9a7680, type: 3}
 --- !u!82 &83488272
 AudioSource:
   m_ObjectHideFlags: 0
@@ -35313,3 +35324,9 @@ Transform:
   m_Father: {fileID: 138588745}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2097982588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 654806156802859324, guid: 1240a623fc2dce240bc93dc452430ecd,
+    type: 3}
+  m_PrefabInstance: {fileID: 713562678}
+  m_PrefabAsset: {fileID: 0}

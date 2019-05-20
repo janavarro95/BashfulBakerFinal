@@ -31,7 +31,8 @@ namespace Assets.Scripts.GameInput
         public Animator[]foodAnimation;
 
 
-        public GameObject progressBar;
+        public GameObject progressBar, barFill;
+        public Sprite[] progressBarSprites, barFillSprites;
 
         // Start is called before the first frame update
         void Start()
@@ -56,24 +57,32 @@ namespace Assets.Scripts.GameInput
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Choc;
                 GameObject.Find("chocChip_Bag").GetComponent<ParticleSystemRenderer>().material = particles[0];
+                progressBar.GetComponent<SpriteRenderer>().sprite = progressBarSprites[0];
+                barFill.GetComponent<SpriteRenderer>().sprite = barFillSprites[0];
 
             } else if (Game.Player.activeItem.Name == "Mint Chip Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Mint;
                 GameObject.Find("chocChip_Bag").GetComponent<ParticleSystemRenderer>().material = particles[1];
                 bowlsprites = mintsprites;
+                progressBar.GetComponent<SpriteRenderer>().sprite = progressBarSprites[1];
+                barFill.GetComponent<SpriteRenderer>().sprite = barFillSprites[1];
             }
             else if (Game.Player.activeItem.Name == "Oatmeal Raisin Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Raisin;
                 GameObject.Find("chocChip_Bag").GetComponent<ParticleSystemRenderer>().material = particles[2];
                 bowlsprites = raisinprites;
+                progressBar.GetComponent<SpriteRenderer>().sprite = progressBarSprites[2];
+                barFill.GetComponent<SpriteRenderer>().sprite = barFillSprites[2];
             }
             else if (Game.Player.activeItem.Name == "Pecan Crescent Cookies")
             {
                 GameObject.Find("chocChip_Bag").GetComponent<SpriteRenderer>().sprite = Pecan;
                 GameObject.Find("chocChip_Bag").GetComponent<ParticleSystemRenderer>().material = particles[3];
                 bowlsprites = pecansprites;
+                progressBar.GetComponent<SpriteRenderer>().sprite = progressBarSprites[3];
+                barFill.GetComponent<SpriteRenderer>().sprite = barFillSprites[3];
             }
             else
             {
