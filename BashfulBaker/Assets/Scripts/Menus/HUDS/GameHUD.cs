@@ -60,6 +60,10 @@ namespace Assets.Scripts.Menus.HUDS
         /// </summary>
         protected void checkForInput()
         {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                Menu.Instantiate("CheatsMenu", true);
+            }
         }
 
         /// <summary>

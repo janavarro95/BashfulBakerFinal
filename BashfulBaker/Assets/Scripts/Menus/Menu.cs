@@ -99,6 +99,10 @@ namespace Assets.Scripts.Menus
             {
                 Instantiate("DailySelectMenu", OverrideMenu);
             }
+            else if (typeof(T) == typeof(CheatsMenu))
+            {
+                Instantiate("CheatsMenu", OverrideMenu);
+            }
             else
             {
                 throw new Exception("Hmm trying to call on a type of menu that doesn't exist.");
@@ -114,7 +118,10 @@ namespace Assets.Scripts.Menus
             }
             else
             {
-                Game.Menu.exitMenu();
+                if (Game.Menu != null)
+                {
+                    Game.Menu.exitMenu();
+                }
                 Game.Menu = LoadMenuFromPrefab(Name).GetComponent<Menu>();
             }
             

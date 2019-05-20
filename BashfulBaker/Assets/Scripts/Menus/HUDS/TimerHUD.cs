@@ -115,7 +115,7 @@ namespace Assets.Scripts.Menus.HUDS
 
         private void updateGiftImage()
         {
-            this.giftImage.transform.localPosition = Vector3.Lerp(new Vector3(-40, 35, 0), new Vector3(40, 35, 0),(float)Game.PhaseTimer.TimeFractionRemaining);
+            this.giftImage.transform.localPosition = Vector3.Lerp(new Vector3(-40, -25, 0), new Vector3(40, -25, 0),(float)Game.PhaseTimer.TimeFractionRemaining);
         }
 
         private void updateKnobRotation()

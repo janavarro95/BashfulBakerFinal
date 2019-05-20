@@ -13,16 +13,23 @@ public class Racoon : MonoBehaviour
     public Dialogue fedDialogue;
     public Dialogue noFoodDialogue;
 
+    private DeltaTimer movementTimer;
+    private Vector3 ogPosition;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        ogPosition = this.gameObject.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (this.movementTimer != null)
+        {
+            this.movementTimer.Update();
+            this.gameObject.transform.position = Vector3.Lerp(ogPosition, ogPosition + new Vector3(20, 0), (float)movementTimer.TimeFractionRemaining);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -41,7 +48,7 @@ public class Racoon : MonoBehaviour
         {
             Game.Player.removeActiveItem();
             Game.DialogueManager.StartDialogue(fedDialogue);
-            Destroy(this.gameObject);
+            moveRight();
         }
         else if (Game.Player.activeItem == null && collision.gameObject == Game.Player.gameObject && InputControls.BPressed)
         {
@@ -54,7 +61,16 @@ public class Racoon : MonoBehaviour
         }
     }
 
+    public void moveRight()
+    {
+        if (movementTimer == null) movementTimer = new DeltaTimer(3, Assets.Scripts.Enums.TimerType.CountUp, false, disappear);
+        movementTimer.start();
+    }
 
+    private void disappear()
+    {
+        Destroy(this.gameObject);
+    }
     
 
 }
