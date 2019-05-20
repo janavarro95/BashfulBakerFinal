@@ -32,7 +32,7 @@ public class FieldOfView : MonoBehaviour
     public int edgeResolveIterations;
     public float edgeDistThreshold;
 
-    public bool Static;
+    public bool Static, unlit;
 
     private DeltaTimer meshTimer;
 
@@ -84,7 +84,7 @@ public class FieldOfView : MonoBehaviour
             //if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint);
             alert.SetActive(false);
         }
-        if (Vector3.Distance(transform.position, cam.transform.position) < (Camera.main.orthographicSize * Screen.width / Screen.height) + viewRadius * 2)
+        if (!unlit && Vector3.Distance(transform.position, cam.transform.position) < (Camera.main.orthographicSize * Screen.width / Screen.height) + viewRadius * 2)
         {
             DrawFieldOfView();
             //meshTimer.Update();

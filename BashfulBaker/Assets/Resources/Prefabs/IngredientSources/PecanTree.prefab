@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5653575241987832904}
-  - component: {fileID: 5653575241987832905}
+  - component: {fileID: 1120732960910506882}
   m_Layer: 8
   m_Name: lighting collider
   m_TagString: Untagged
@@ -31,8 +31,8 @@ Transform:
   m_Father: {fileID: 5653575242541305573}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &5653575241987832905
-CapsuleCollider2D:
+--- !u!60 &1120732960910506882
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -41,12 +41,36 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01949811, y: 0.43404853}
-  m_Size: {x: 0.20169401, y: 1.1246684}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.06272514, y: 1.0663615}
+      - {x: -0.14634903, y: 1.0121957}
+      - {x: -0.14613827, y: 0.94319534}
+      - {x: -0.103122786, y: 0.6766931}
+      - {x: -0.091097906, y: 0.28776586}
+      - {x: -0.13654335, y: 0.13005412}
+      - {x: -0.13383205, y: -0.018941045}
+      - {x: -0.039190367, y: -0.03599751}
+      - {x: 0.09599583, y: -0.07457936}
+      - {x: 0.1853265, y: -0.016293883}
+      - {x: 0.18819515, y: 0.09718478}
+      - {x: 0.13363926, y: 0.31480062}
+      - {x: 0.08540718, y: 0.7433207}
+      - {x: 0.028078958, y: 0.90409946}
+      - {x: 0.011983797, y: 1.0407614}
 --- !u!1 &5653575242541305568
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,7 +87,7 @@ GameObject:
   - component: {fileID: 5653575242541305578}
   m_Layer: 8
   m_Name: PecanTree
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,6 +194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: 2
+  Name: 
+  max: 0
 --- !u!61 &5653575242541305569
 BoxCollider2D:
   m_ObjectHideFlags: 0
