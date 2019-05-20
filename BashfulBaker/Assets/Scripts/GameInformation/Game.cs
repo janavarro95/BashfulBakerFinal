@@ -561,7 +561,7 @@ namespace Assets.Scripts.GameInformation
             }
 
             int actualTime = (Minutes * 60) + Seconds;
-            PhaseTimer = new Utilities.Timers.DeltaTimer(actualTime, Enums.TimerType.CountDown, false, new Utilities.Delegates.VoidDelegate(phaseTimerRunsOut));
+            PhaseTimer = new Utilities.Timers.DeltaTimer(actualTime, Enums.TimerType.CountUp, false, new Utilities.Delegates.VoidDelegate(phaseTimerRunsOut));
             PhaseTimer.start();
             Game.HUD.showTimer = true;
         }

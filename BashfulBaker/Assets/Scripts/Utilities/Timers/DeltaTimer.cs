@@ -245,6 +245,34 @@ namespace Assets.Scripts.Utilities.Timers
             }
         }
 
+        public void Update(float speedMultiplier)
+        {
+            if (state != TimerState.Ticking) return; //Only update if timer should tick.
+
+            if (type == TimerType.CountUp)
+            {
+                currentTime += (double)Time.deltaTime*speedMultiplier;
+                if (currentTime >= maxTime)
+                {
+                    //do something
+                    invoke();
+                    state = TimerState.Finished;
+                    if (autoRestart == true) restart();
+                }
+            }
+            else if (type == TimerType.CountDown)
+            {
+                currentTime -= (double)Time.deltaTime*speedMultiplier;
+                if (currentTime <= 0)
+                {
+                    //do something.
+                    invoke();
+                    state = TimerState.Finished;
+                    if (autoRestart == true) restart();
+                }
+            }
+        }
+
         /// <summary>
         /// invoke the timer's functionality upon finish.
         /// </summary>

@@ -190,14 +190,15 @@ MonoBehaviour:
   - name: Sully
     sentences:
     - 'Ahh makes sense. She always order cookies during the time I work. '
-    - "She doesn\u2019t like to share. HAHA. But I do want to want to warn you. "
+    - "She doesn\u2019t like to share. HAHA. But I do want to warn you. "
   - name: Dane
     sentences:
     - "Oh! Warn me about what?\r"
   - name: Sully
     sentences:
     - "My men in the Town Watch love Jeb\u2019s cookies. Jeb used to feed them cookies
-      all the time and they are a bunch of spoiled brats that crave Jeb\u2019s cookies."
+      all the time and now they are a bunch of spoiled brats that crave Jeb\u2019s
+      cookies."
     - So I had to ask Jeb to stop sharing his cookies, because they only came to work
       to get feed. Then after getting feed, these jerks would go to sleep!
     - "Now they heard there is a new guy delivering the cookies. I\u2019m sure they

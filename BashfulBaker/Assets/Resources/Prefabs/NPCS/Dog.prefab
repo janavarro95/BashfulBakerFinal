@@ -647,13 +647,14 @@ MonoBehaviour:
     m_Bits: 512
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   visibleTargets: []
   meshResolution: 1
   viewMeshFilter: {fileID: 7194530794037142223}
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 0
+  unlit: 1
   guard: {fileID: 0}
   alert: {fileID: 5921644165810138176}
 --- !u!114 &5095776233633990741

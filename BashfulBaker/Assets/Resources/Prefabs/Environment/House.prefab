@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 4689565675866051961}
   - component: {fileID: 4689565675866051974}
   - component: {fileID: 4689565675866051975}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: light top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 4689565676030009211}
   - component: {fileID: 4689565676030009208}
   - component: {fileID: 4689565676030009209}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: light bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

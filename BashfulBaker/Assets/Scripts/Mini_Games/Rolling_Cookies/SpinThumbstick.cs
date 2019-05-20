@@ -57,9 +57,9 @@ namespace Assets.Scripts.GameInput
             buttons[2].SetActive(false);
             buttons[3].SetActive(false);
 
-            progressBar.transform.localScale = new Vector3(.1f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
+            progressBar.transform.position = new Vector3(progressBar.GetComponent<StartEnd>().start, progressBar.transform.position.y, progressBar.transform.position.z);
 
-            
+
         }
 
         // Update is called once per frame
@@ -91,7 +91,7 @@ namespace Assets.Scripts.GameInput
 
                 if (sumR < 720f || sumL < 720f)
                 {
-                    progressBar.transform.localScale = new Vector3(((sumR + sumL) * 30) / 1440f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
+                    progressBar.transform.position = new Vector3(Mathf.Lerp(progressBar.GetComponent<StartEnd>().start, progressBar.GetComponent<StartEnd>().end, (sumR + sumL) / 1440f), progressBar.transform.position.y, progressBar.transform.position.z);
                     transform.Rotate(0f, 0f, 90f * Time.deltaTime * spinning);
                     //this.transform.rotation = new Quaternion(this.transform.rotation.x, this.transform.rotation.y, Mathf.Lerp(0f, 720f, ((sumR < 720f ? sumR : 720f) + (sumL < 720f ? sumL : 720f)) / 1440f), this.transform.rotation.w);
                 }

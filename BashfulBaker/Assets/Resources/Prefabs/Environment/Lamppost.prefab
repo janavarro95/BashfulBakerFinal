@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7415608115019463306}
   - component: {fileID: 3755654925265048833}
   - component: {fileID: 4458550955933065251}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: light bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4019008147402302976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.64, z: 0.263}
+  m_LocalPosition: {x: 0, y: 1.64, z: 0}
   m_LocalScale: {x: 2.57076, y: 2.57076, z: 0.85692}
   m_Children:
   - {fileID: 564735646263155943}
@@ -283,7 +283,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.74580956}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -294,5 +294,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.29, y: 2.28125}
+  m_Size: {x: 0.29, y: 0.7896309}
   m_EdgeRadius: 0
