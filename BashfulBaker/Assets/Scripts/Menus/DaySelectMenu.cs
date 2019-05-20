@@ -119,6 +119,7 @@ namespace Assets.Scripts.Menus
                         GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
                         GameInformation.Game.Player.position = new Vector3(-3.2f, -9.5f, 0);
                         GameInformation.Game.HUD.showHUD = false;
+                        this.exitMenu();
                         SceneManager.LoadScene(component.Key);
                     }
                     catch (Exception err)
@@ -175,7 +176,7 @@ namespace Assets.Scripts.Menus
         /// </summary>
         public override void exitMenu()
         {
-            base.exitMenu();
+            Destroy(this.gameObject);
             Assets.Scripts.GameInformation.Game.Menu = null;
         }
 
