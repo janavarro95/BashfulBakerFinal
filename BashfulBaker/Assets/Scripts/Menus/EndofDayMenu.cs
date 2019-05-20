@@ -236,7 +236,7 @@ namespace Assets.Scripts.Menus
                     "UI",
                     "Menus",
                     "DailyRecap",
-                    "QuestButton_SylviaCC"
+                    "QuestMenu_button_SylviaCC"
                 }));
 
                 Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
