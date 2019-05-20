@@ -22,9 +22,9 @@ namespace Assets.Scripts.GameInput
         public Sprite[] raisin;
         public Sprite[] pecan;
         public Sprite[] flavorcookies;
-        public GameObject progressBar;
+        public GameObject progressBar, barFill;
         public GameObject Bowl;
-        public Sprite[] bowlsprites;
+        public Sprite[] bowlsprites, progressBarSprites, barFillSprites;
 
         public AudioClip chime;
         public AudioSource spinningSource;
@@ -166,14 +166,20 @@ namespace Assets.Scripts.GameInput
              if (Game.Player.activeItem.Name == "Mint Chip Cookies")
             {
                 sprites = mint;
+                progressBar.GetComponent<SpriteRenderer>().sprite = progressBarSprites[0];
+                barFill.GetComponent<SpriteRenderer>().sprite = barFillSprites[0];
             }
             else if (Game.Player.activeItem.Name == "Oatmeal Raisin Cookies")
             {
                 sprites = raisin;
+                progressBar.GetComponent<SpriteRenderer>().sprite = progressBarSprites[1];
+                barFill.GetComponent<SpriteRenderer>().sprite = barFillSprites[1];
             }
             else if (Game.Player.activeItem.Name == "Pecan Crescent Cookies")
             {
                 sprites = pecan;
+                progressBar.GetComponent<SpriteRenderer>().sprite = progressBarSprites[2];
+                barFill.GetComponent<SpriteRenderer>().sprite = barFillSprites[2];
             }
             else
             {
