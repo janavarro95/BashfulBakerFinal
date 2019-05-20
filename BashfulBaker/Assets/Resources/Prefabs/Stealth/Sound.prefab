@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundStartRad: 1
-  soundEndRad: 6
+  soundEndRad: 4
   soundGrowthSpeed: 0.1
 --- !u!114 &7267582346770895322
 MonoBehaviour:
