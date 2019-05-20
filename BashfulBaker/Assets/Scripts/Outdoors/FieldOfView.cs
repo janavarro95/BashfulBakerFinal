@@ -11,7 +11,7 @@ public class FieldOfView : MonoBehaviour
     public bool seesPlayer = false;
     // stealth awareness zone
     StealthAwarenessZone zone;
-    public float pathUpdateReset = 1f;
+    public float pathUpdateReset = 0.5f;
     private float pathUpdateTimer = 0f;
 
     public float viewRadius;

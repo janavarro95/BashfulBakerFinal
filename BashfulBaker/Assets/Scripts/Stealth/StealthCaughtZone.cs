@@ -11,6 +11,7 @@ public class StealthCaughtZone : MonoBehaviour
 {
     public StealthAwarenessZone awareness;
     public Dialogue dialogue;
+    private Dialogue specialDialogue;
     public Sprite guardFace;
     public Item itemToTake;
     public Material pacMat;
@@ -47,6 +48,7 @@ public class StealthCaughtZone : MonoBehaviour
     private void Awake()
     {
         this.awareness = this.gameObject.GetComponent<StealthAwarenessZone>();
+        specialDialogue = dialogue;
     }
 
     // Start is called before the first frame update
@@ -145,8 +147,11 @@ public class StealthCaughtZone : MonoBehaviour
             }
             else
             {
-                //Not sure why you would end up here.
-                // this means this guard... is not a guard?
+                if (!inDialogue)
+                {
+                    BeginDialogue(specialDialogue, null);
+                }
+                return;
             }
         }
     }
@@ -188,11 +193,10 @@ public class StealthCaughtZone : MonoBehaviour
         {
             Pacify();
         }
-        else
+        else if (guardType == GuardType.Guard)
         {
             // transport to outside the bakery
             Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
-
             Game.StealthManager.caughtByGuard();
             //Pacify();
         }
@@ -233,9 +237,12 @@ public class StealthCaughtZone : MonoBehaviour
     private void TakeItemAway()
     {
         // consume the dish
-        dishConsumedName = itemToTake.Name;
-        Game.Player.dishesInventory.Remove(itemToTake);
-        Game.Player.activeItem = null;
-        Game.CaughtByGuard(this.GuardID,dishConsumedName);
+        if (guardType == GuardType.Guard)
+        {
+            dishConsumedName = itemToTake.Name;
+            Game.Player.dishesInventory.Remove(itemToTake);
+            Game.Player.activeItem = null;
+            Game.CaughtByGuard(this.GuardID, dishConsumedName);
+        }
     }
 }

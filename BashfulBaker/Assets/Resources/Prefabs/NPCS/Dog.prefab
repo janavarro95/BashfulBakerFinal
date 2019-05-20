@@ -255,7 +255,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7269315095934149755}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -542,7 +542,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8020513790395684753}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -612,8 +612,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   awareness: {fileID: 8020513790395684755}
   dialogue:
-    name: 
-    sentences: []
+    name: Dog
+    sentences:
+    - BORK BORK!
   guardFace: {fileID: 21300000, guid: 4970dbf69f406314ea2e15fdae71715a, type: 3}
   itemToTake:
     itemName: 
@@ -622,7 +623,7 @@ MonoBehaviour:
   dm: {fileID: 0}
   inDialogue: 0
   exitPresses: 0
-  guardType: 0
+  guardType: 1
   hasEaten: 0
   dishConsumedName: 
 --- !u!114 &5095776233590806353
@@ -641,13 +642,13 @@ MonoBehaviour:
   seesPlayer: 0
   pathUpdateReset: 1
   viewRadius: 5
-  viewAngle: 90
+  viewAngle: 180
   targetMask:
     serializedVersion: 2
     m_Bits: 512
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   visibleTargets: []
   meshResolution: 1
   viewMeshFilter: {fileID: 7194530794037142223}
