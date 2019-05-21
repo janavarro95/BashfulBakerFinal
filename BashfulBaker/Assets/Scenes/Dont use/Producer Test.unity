@@ -311,12 +311,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45179939}
   m_CullTransparentMesh: 0
---- !u!4 &70750305 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8020513790074148718, guid: 3bab82417eb9ad349829de72f7981a19,
-    type: 3}
-  m_PrefabInstance: {fileID: 752033348}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &124836690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,36 +1355,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5cd5610c8fd5ad4eb73640e01335ca8, type: 3}
---- !u!1 &556396800
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 556396801}
-  m_Layer: 0
-  m_Name: Wawypoint (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &556396801
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556396800}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.88, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 70750305}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &589676232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,46 +1781,6 @@ PrefabInstance:
     - target: {fileID: 8020513789643877612, guid: 3bab82417eb9ad349829de72f7981a19,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8020513790395684756, guid: 3bab82417eb9ad349829de72f7981a19,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7714562924864321936, guid: 3bab82417eb9ad349829de72f7981a19,
-        type: 3}
-      propertyPath: dialogue.sentences.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7714562924864321936, guid: 3bab82417eb9ad349829de72f7981a19,
-        type: 3}
-      propertyPath: dialogue.name
-      value: Dog
-      objectReference: {fileID: 0}
-    - target: {fileID: 7714562924864321936, guid: 3bab82417eb9ad349829de72f7981a19,
-        type: 3}
-      propertyPath: dialogue.sentences.Array.data[0]
-      value: BORK BORK!
-      objectReference: {fileID: 0}
-    - target: {fileID: 7714562924864321936, guid: 3bab82417eb9ad349829de72f7981a19,
-        type: 3}
-      propertyPath: guardType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5095776233590806353, guid: 3bab82417eb9ad349829de72f7981a19,
-        type: 3}
-      propertyPath: viewAngle
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 831220863158313107, guid: 3bab82417eb9ad349829de72f7981a19,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5544372057406093655, guid: 3bab82417eb9ad349829de72f7981a19,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
