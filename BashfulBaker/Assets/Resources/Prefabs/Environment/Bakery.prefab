@@ -102,6 +102,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  unlit: 0
   guard: {fileID: 0}
   alert: {fileID: 0}
 --- !u!33 &1080608676710046335
@@ -211,6 +212,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  unlit: 0
   guard: {fileID: 0}
   alert: {fileID: 0}
 --- !u!23 &276811754914669249
@@ -273,7 +275,7 @@ GameObject:
   - component: {fileID: 312371391}
   m_Layer: 8
   m_Name: Bakery
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -813,27 +815,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: picketFence (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8087712362063164855, guid: f7d7c5a6639d75642a9c88a27cc337e6,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8087712362063164855, guid: f7d7c5a6639d75642a9c88a27cc337e6,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 8087712362063164854, guid: f7d7c5a6639d75642a9c88a27cc337e6,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
-        type: 3}
-    - target: {fileID: 3726845945490707403, guid: f7d7c5a6639d75642a9c88a27cc337e6,
-        type: 3}
-      propertyPath: decided
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1894151158868519070, guid: a0283298a4281a04da94e9041a43b074,
         type: 3}

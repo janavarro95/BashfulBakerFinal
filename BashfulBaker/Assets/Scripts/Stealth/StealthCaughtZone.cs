@@ -16,6 +16,7 @@ public class StealthCaughtZone : MonoBehaviour
     public Item itemToTake;
     public Material pacMat;
     public DialogueManager dm;
+    private GameObject breathing;
 
     public bool inDialogue = false;
     private int dialoguePressesExit = 0;
@@ -49,6 +50,8 @@ public class StealthCaughtZone : MonoBehaviour
     {
         this.awareness = this.gameObject.GetComponent<StealthAwarenessZone>();
         specialDialogue = dialogue;
+
+        breathing = GameObject.Find("bar");
     }
 
     // Start is called before the first frame update
@@ -60,6 +63,9 @@ public class StealthCaughtZone : MonoBehaviour
 
         if (dm == null)
             dm = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+
+
+        breathing.SetActive(false);
     }
 
     // update
@@ -87,8 +93,11 @@ public class StealthCaughtZone : MonoBehaviour
             GameObject.Find("Headshot").GetComponent<Image>().sprite = guardFace;
             Debug.Log("YOU GOT CAUGHT!");
 
-            pm.currentStep = 0;
+            // enable the minigame
+            breathing.SetActive(true);
 
+            // take the things
+            pm.currentStep = 0;
             if (this.guardType == GuardType.Guard)
             {
                 if (hasEaten == false)
@@ -203,6 +212,12 @@ public class StealthCaughtZone : MonoBehaviour
 
         // start player movement
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().CanPlayerMove = true;
+
+        // stop breathing
+        Breathe bb = breathing.GetComponentInChildren<Breathe>();
+        bb.progress = 0;
+        bb.pbar.transform.localScale = new Vector3(0, bb.pbar.transform.localScale.y, 1);
+        breathing.SetActive(false);
     }
 
     // Pacify makes the guard useless
