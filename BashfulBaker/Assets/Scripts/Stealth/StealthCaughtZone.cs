@@ -65,7 +65,7 @@ public class StealthCaughtZone : MonoBehaviour
             dm = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
 
 
-        breathing.SetActive(false);
+        BreathingMinigame(false);
     }
 
     // update
@@ -94,7 +94,7 @@ public class StealthCaughtZone : MonoBehaviour
             Debug.Log("YOU GOT CAUGHT!");
 
             // enable the minigame
-            breathing.SetActive(true);
+            BreathingMinigame(true);
 
             // take the things
             pm.currentStep = 0;
@@ -179,6 +179,8 @@ public class StealthCaughtZone : MonoBehaviour
         itemToTake = i;
         if (itemToTake != null)
         {
+
+            Debug.Log("Taking item away");
             TakeItemAway();
         }
         // stop the player
@@ -197,32 +199,32 @@ public class StealthCaughtZone : MonoBehaviour
     {
         inDialogue = false;
         awareness.talkingToPlayer = false;
-
-        if (itemToTake != null)
-        {
-            Pacify();
-        }
-        else if (guardType == GuardType.Guard)
-        {
-            // transport to outside the bakery
-            Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
-            Game.StealthManager.caughtByGuard();
-            //Pacify();
-        }
+        if (guardType == GuardType.Guard)
+        { 
+            if (itemToTake != null)
+            {
+                Pacify();
+            }
+            else
+            {
+                // transport to outside the bakery
+                Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
+                Game.StealthManager.caughtByGuard();
+            }
+    }
 
         // start player movement
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().CanPlayerMove = true;
 
         // stop breathing
-        Breathe bb = breathing.GetComponentInChildren<Breathe>();
-        bb.progress = 0;
-        bb.pbar.transform.localScale = new Vector3(0, bb.pbar.transform.localScale.y, 1);
-        breathing.SetActive(false);
+        BreathingMinigame(false);
     }
 
     // Pacify makes the guard useless
     private void Pacify()
     {
+
+        Debug.Log("Pacifying");
         if (!hasEaten)
         {
             // adjust light
@@ -259,5 +261,22 @@ public class StealthCaughtZone : MonoBehaviour
             Game.Player.activeItem = null;
             Game.CaughtByGuard(this.GuardID, dishConsumedName);
         }
+    }
+
+    // breathing minigame
+    void BreathingMinigame(bool activate)
+    {
+        if (breathing == null)
+            return;
+
+        if (!activate)
+        {
+            Breathe bb = breathing.GetComponentInChildren<Breathe>();
+            bb.progress = 0;
+            bb.pbar.transform.localScale = new Vector3(0, bb.pbar.transform.localScale.y, 1);
+        }
+
+        if (this.tag == "Guard")
+            breathing.SetActive(activate);
     }
 }

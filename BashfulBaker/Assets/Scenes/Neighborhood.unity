@@ -2263,7 +2263,7 @@ Transform:
   m_LocalScale: {x: 3.0089502, y: 3.0089502, z: 3.0089502}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &228787294
 MonoBehaviour:
@@ -8463,16 +8463,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
-        type: 3}
-      propertyPath: m_RefResolutionX
-      value: 1591
-      objectReference: {fileID: 0}
-    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
-        type: 3}
-      propertyPath: m_RefResolutionY
-      value: 1287
-      objectReference: {fileID: 0}
     - target: {fileID: 4706530218426925484, guid: 8d537620c63c65b45acf66b81975a0e8,
         type: 3}
       propertyPath: orthographic size
@@ -8482,6 +8472,16 @@ PrefabInstance:
         type: 3}
       propertyPath: shouldFollowTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: m_RefResolutionX
+      value: 1591
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: m_RefResolutionY
+      value: 1287
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d537620c63c65b45acf66b81975a0e8, type: 3}
@@ -15285,6 +15285,7 @@ GameObject:
   - component: {fileID: 1490762279}
   - component: {fileID: 1490762281}
   - component: {fileID: 1490762280}
+  - component: {fileID: 1490762282}
   m_Layer: 0
   m_Name: Victory
   m_TagString: Untagged
@@ -18977,6 +18978,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383983427605396519, guid: 83fe879519adb6147945cb81bdd9887c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6383983427605396512, guid: 83fe879519adb6147945cb81bdd9887c,
         type: 3}

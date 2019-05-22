@@ -615,7 +615,7 @@ MonoBehaviour:
     name: Dog
     sentences:
     - BORK BORK!
-  guardFace: {fileID: 21300000, guid: 4970dbf69f406314ea2e15fdae71715a, type: 3}
+  guardFace: {fileID: 21300000, guid: b63d57b9717ffcd429fc7eb17ccf0ef4, type: 3}
   itemToTake:
     itemName: 
     stack: 0
