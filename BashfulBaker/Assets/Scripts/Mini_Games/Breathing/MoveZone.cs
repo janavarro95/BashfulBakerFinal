@@ -13,6 +13,6 @@ public class MoveZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, Mathf.Cos(Time.time / 1.5f) * 3f, transform.position.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Cos(Time.time / 1.5f) / 2f, transform.localPosition.z);
     }
 }

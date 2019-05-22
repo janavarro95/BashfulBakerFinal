@@ -6,7 +6,7 @@ using Assets.Scripts.GameInput;
 public class Breathe : MonoBehaviour
 {
     public float LT;
-    private float progress;
+    public float progress;
     public GameObject pbar, top, bot;
     // Start is called before the first frame update
     void Start()

@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 4689565675054395429}
   m_Layer: 8
   m_Name: House
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -557,6 +557,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  unlit: 0
   guard: {fileID: 0}
   alert: {fileID: 0}
 --- !u!23 &4689565675866051974
@@ -666,6 +667,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
   Static: 1
+  unlit: 0
   guard: {fileID: 0}
   alert: {fileID: 0}
 --- !u!33 &4689565676030009208
