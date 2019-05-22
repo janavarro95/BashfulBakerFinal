@@ -15,7 +15,6 @@ public class PorchConvo : MonoBehaviour
     public Sprite[] faces;
     public Dialogue wrongCookies;
     public string deliveryOBJ;
-    public Sprite daneFace;
     public Sprite poutingboy;
     public SpriteRenderer Neighbor_Sprite;
     //public Animator Neighbor_animator;

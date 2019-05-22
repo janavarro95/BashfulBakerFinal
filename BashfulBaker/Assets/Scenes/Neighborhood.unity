@@ -2175,34 +2175,14 @@ GameObject:
   m_Component:
   - component: {fileID: 228787293}
   - component: {fileID: 228787292}
-  - component: {fileID: 228787291}
   - component: {fileID: 228787294}
   m_Layer: 0
-  m_Name: sylvia
+  m_Name: Sylvia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &228787291
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 228787289}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6f677ffb0187bc243b3a201c41176ac3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &228787292
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2210,7 +2190,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228787289}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2240,7 +2220,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ba07883c7f62f244e9d01f4a6888d815, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eeb4215bdabae124d9c8a57bb5e4de70, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2259,8 +2239,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228787289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.2, y: -30.82, z: -0.35}
-  m_LocalScale: {x: 3.0089502, y: 3.0089502, z: 3.0089502}
+  m_LocalPosition: {x: 11.29, y: -30.96, z: -0.35}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 19
@@ -4844,7 +4824,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ec967f87508ad34478a0adcdde909157, type: 2}
+  - {fileID: 2100000, guid: cf94dea86f3d8744d835c51cea428216, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6092,68 +6072,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 585289639}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &587684905
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 587684906}
-  - component: {fileID: 587684908}
-  - component: {fileID: 587684907}
-  m_Layer: 0
-  m_Name: Victory (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &587684906
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587684905}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.38, y: -12.13, z: 9.828125}
-  m_LocalScale: {x: 1, y: 1.375, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1405314504}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &587684907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587684905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daaa5f81cc0247c48ab57da52b27fbc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcNamesWhoLiveHere:
-  - Lylia
---- !u!58 &587684908
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587684905}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.16943082}
-  serializedVersion: 2
-  m_Radius: 0.65
 --- !u!1 &590318736
 GameObject:
   m_ObjectHideFlags: 0
@@ -7280,6 +7198,101 @@ Transform:
   m_Father: {fileID: 1651442390}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &675705976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 675705979}
+  - component: {fileID: 675705978}
+  - component: {fileID: 675705977}
+  m_Layer: 0
+  m_Name: Amari
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &675705977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675705976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f69f0a0d68cd6ca46a644c8e59e79244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 0
+  other: 0
+  self: 1
+--- !u!212 &675705978
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675705976}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: fac5ffb0fd8288a488559da774a66173, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2, y: 4}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &675705979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675705976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 27.61, y: -6.43, z: -0.35}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &707856513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7404,6 +7417,7 @@ GameObject:
   - component: {fileID: 711755321}
   - component: {fileID: 711755323}
   - component: {fileID: 711755322}
+  - component: {fileID: 711755324}
   m_Layer: 0
   m_Name: Victory (2)
   m_TagString: Untagged
@@ -7423,7 +7437,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1.375, z: 1}
   m_Children: []
   m_Father: {fileID: 1405314504}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &711755322
 MonoBehaviour:
@@ -7455,6 +7469,32 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.16943082}
   serializedVersion: 2
   m_Radius: 0.6694308
+--- !u!114 &711755324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711755320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb78ba188fbe8a4a92cd84ccbfbeae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convo:
+  - name: Amari
+    sentences:
+    - Thank you Dane!
+  faces:
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  wrongCookies:
+    name: Dane
+    sentences:
+    - This is Sylvia's house, now all I need are her Chocolate Chip Cookies.
+  deliveryOBJ: Chocolate Chip Cookies
+  poutingboy: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  Neighbor_Sprite: {fileID: 675705978}
+  DiaBoxReference: {fileID: 856803592}
 --- !u!1001 &724297386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10588,25 +10628,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   convo:
-  - name: 1
+  - name: Sylvia
     sentences:
-    - sup, how is u
-  - name: 2
-    sentences:
-    - 'im good '
-  - name: 3
-    sentences:
-    - 'this is sentence one '
-    - this is sentence two
+    - Thank you Dane!
   faces:
   - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
-  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
-  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
   wrongCookies:
-    name: 
-    sentences: []
+    name: Dane
+    sentences:
+    - This is Sylvia's house, now all I need are her Chocolate Chip Cookies.
   deliveryOBJ: Chocolate Chip Cookies
-  daneFace: {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
   poutingboy: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
   Neighbor_Sprite: {fileID: 228787292}
   DiaBoxReference: {fileID: 856803592}
@@ -14378,7 +14409,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 920602021}
-  - {fileID: 587684906}
   - {fileID: 711755321}
   m_Father: {fileID: 1322340840}
   m_RootOrder: 1
@@ -17119,6 +17149,7 @@ GameObject:
   - component: {fileID: 1784968002}
   - component: {fileID: 1784968001}
   - component: {fileID: 1784968000}
+  - component: {fileID: 1784968003}
   m_Layer: 0
   m_Name: Victory
   m_TagString: Untagged
@@ -17192,6 +17223,82 @@ MonoBehaviour:
     sentences: []
   daneFace: {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
   poutingboy: {fileID: 0}
+--- !u!114 &1784968003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784967998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb78ba188fbe8a4a92cd84ccbfbeae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convo:
+  - name: Sylvia
+    sentences:
+    - Oh Hello!
+  - name: Dane
+    sentences:
+    - "Hi, I\u2019m here to drop off your cookies ma\u2019am."
+  - name: Sylvia
+    sentences:
+    - Ah. You must be Dane. Thank you. How was the journey getting here?
+  - name: Dane
+    sentences:
+    - "It was okay\u2026 even though I had to hide from the Town Watch so they don\u2019t
+      eat your cookies."
+  - name: Sylvia
+    sentences:
+    - You hid? Maybe I should have made my husband escort you here?
+  - name: Dane
+    sentences:
+    - "Oh No! It\u2019s okay!"
+    - "(I shouldn\u2019t had told her that) "
+  - name: Sylvia
+    sentences:
+    - " I\u2019m sorry, I didn\u2019t mean to offend you. The Town Watch are good
+      people working to keep this town safe. "
+    - "But the night shift makes them extremely hungry and Jeb\u2019s sweets are the
+      best in town."
+    - "So you don\u2019t have to be afraid of them. They all want to be your friends
+      for the sweets haha."
+  - name: Dane
+    sentences:
+    - "Yes ma\u2019am. "
+    - "(Now I feel like I\u2019m the jerk.)"
+  - name: Sylvia
+    sentences:
+    - I'll tell you what Dane! You see my herb garden over there?
+    - Whenever you need some fresh Mint for your cookies feel free to come by and
+      take some.
+  - name: Dane
+    sentences:
+    - "Umm okay. Will do ma\u2019am!"
+  - name: Sylvia
+    sentences:
+    - Thank you! You see you tomorrow!
+  faces:
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  wrongCookies:
+    name: Dane
+    sentences:
+    - This is Sylvia's house, now all I need are her Chocolate Chip Cookies.
+  deliveryOBJ: Chocolate Chip Cookies
+  poutingboy: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  Neighbor_Sprite: {fileID: 228787292}
+  DiaBoxReference: {fileID: 856803592}
 --- !u!1001 &1788860342
 PrefabInstance:
   m_ObjectHideFlags: 0
