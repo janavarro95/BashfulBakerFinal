@@ -215,7 +215,7 @@ public class StealthAwarenessZone : MonoBehaviour
             }
 
             //Animate here
-            if (movementLerpChange != 0)
+            if (movementLerpChange != 0 && !talkingToPlayer)
             {
                 animateGuard(this.transform.position, nextTargetSpot);
             }

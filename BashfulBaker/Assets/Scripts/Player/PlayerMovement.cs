@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour {
     public SpriteRenderer heldObjectRenderer;
 
     private int guardsSeeingMe;
+    private DialogueManager dialogueManager;
     public SpriteRenderer alert;
     public GameObject soundPrefab;
     private float t;
@@ -114,6 +115,8 @@ public class PlayerMovement : MonoBehaviour {
         t = 0;
 
         height = (GetComponent<SpriteRenderer>().sprite.texture.height / 2) * transform.localScale.y;
+
+        dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
     }
 	
 	// Update is called once per frame
@@ -269,6 +272,8 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     Game.Menu.exitMenu();
                 }
+
+                playCharacterMovementAnimation(Vector3.zero);
             }
         }
         else
