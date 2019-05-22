@@ -2414,7 +2414,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cd329b5332192af4d9d62c630354d6d4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3bde105a28c9339419ebf1a2e114f1f1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -8503,16 +8503,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4706530218426925484, guid: 8d537620c63c65b45acf66b81975a0e8,
-        type: 3}
-      propertyPath: orthographic size
-      value: 41.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4706530218426925481, guid: 8d537620c63c65b45acf66b81975a0e8,
-        type: 3}
-      propertyPath: shouldFollowTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
         type: 3}
       propertyPath: m_RefResolutionX
@@ -8522,6 +8512,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RefResolutionY
       value: 1287
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925484, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: orthographic size
+      value: 41.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925481, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: shouldFollowTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d537620c63c65b45acf66b81975a0e8, type: 3}
