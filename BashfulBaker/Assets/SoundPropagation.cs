@@ -60,11 +60,11 @@ public class SoundPropagation : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // check if guard
-        Debug.Log("Sound Found : " + collision.name);
+        //Debug.Log("Sound Found : " + collision.name);
         GameObject g = collision.gameObject;
         if (g.tag == "Guard")
         {
-            Debug.Log("--- Hit Guard");
+            //Debug.Log("--- Hit Guard");
             // investiagte set
             StealthAwarenessZone saz = g.GetComponentInChildren<StealthAwarenessZone>();
             saz.AddToPath(this.transform);

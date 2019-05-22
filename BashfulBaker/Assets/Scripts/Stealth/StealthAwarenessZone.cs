@@ -84,6 +84,7 @@ public class StealthAwarenessZone : MonoBehaviour
     private Vector3 capturePatrolPointReset;
     private int currentPatrolPoint;
     public float movementLerp;
+    private float movementLerpChange;
 
     [SerializeField]
     private DeltaTimer patrolPauseTimer;
@@ -199,7 +200,8 @@ public class StealthAwarenessZone : MonoBehaviour
             // movement
             if (shouldMove)
             {
-                movementLerp += getProperMovementSpeed(2f);
+                movementLerpChange = getProperMovementSpeed(2.5f);
+                movementLerp += movementLerpChange;
 
                 // get next spot in the path
                 if (movementLerp >= 1.0f)
@@ -213,7 +215,14 @@ public class StealthAwarenessZone : MonoBehaviour
             }
 
             //Animate here
-            animateGuard(this.transform.position, nextTargetSpot);
+            if (movementLerpChange != 0)
+            {
+                animateGuard(this.transform.position, nextTargetSpot);
+            }
+            else
+            {
+                animateGuard(this.transform.position, this.transform.position, (this.transform.position.x < nextTargetSpot.x));
+            }
         }
         // RETURN HOME
         else if (returnHome)
@@ -343,6 +352,10 @@ public class StealthAwarenessZone : MonoBehaviour
     public void animateGuard(Vector3 currentPos,Vector3 nextPos)
     {
         animationScript.animateGuard(currentPos,nextPos);
+    }
+    public void animateGuard(Vector3 currentPos,Vector3 nextPos, bool flip)
+    {
+        animationScript.animateGuard(currentPos,nextPos, flip);
     }
 
     /// <summary>
