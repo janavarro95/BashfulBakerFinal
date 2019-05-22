@@ -15,7 +15,7 @@ namespace Assets.Scripts.Stealth
             animator = this.gameObject.GetComponent<Animator>();
         }
 
-        public virtual void animateGuard(Vector3 currentPos,Vector3 nextPos,bool flip=false)
+        public  virtual void animateGuard(Vector3 currentPos,Vector3 nextPos,bool flip=false)
         {
             Vector3 nextTargetSpot = nextPos - currentPos;
 
@@ -93,5 +93,6 @@ namespace Assets.Scripts.Stealth
                 animator.Play("GuardIdleAnimation");
             }
         }
+
     }
 }

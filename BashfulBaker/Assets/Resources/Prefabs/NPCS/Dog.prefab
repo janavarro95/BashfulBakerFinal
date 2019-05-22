@@ -548,7 +548,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.06, y: 0.09}
+  m_Offset: {x: 1.25, y: 0.09}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -559,7 +559,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.31, y: 1.79}
+  m_Size: {x: 1.63, y: 1.79}
   m_EdgeRadius: 0
 --- !u!114 &8020513790395684755
 MonoBehaviour:
@@ -576,7 +576,7 @@ MonoBehaviour:
   myState: 0
   flashlight: {fileID: 0}
   catching: {fileID: 0}
-  movementSpeed: 3
+  movementSpeed: 1.5
   investigate: {fileID: 0}
   returnHome: 0
   talkingToPlayer: 0

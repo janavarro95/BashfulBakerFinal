@@ -8,7 +8,7 @@ namespace Assets.Scripts.Stealth
 {
     public class DogAnimationScript:GuardAnimationScript
     {
-        public override void animateGuard(Vector3 currentPos,Vector3 nextPos,bool flip=false)
+        public override void animateGuard(Vector3 currentPos, Vector3 nextPos, bool flip=false)
         {
             Vector3 nextTargetSpot = nextPos - currentPos;
             
