@@ -7,7 +7,7 @@ public class Breathe : MonoBehaviour
 {
     public float LT;
     private float progress;
-    public GameObject pbar;
+    public GameObject pbar, top, bot;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +19,7 @@ public class Breathe : MonoBehaviour
     void Update()
     {
         LT = InputControls.LeftTrigger;
-        transform.position = new Vector3(transform.position.x, (1 - 2 * LT) * 4.1f, transform.position.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Lerp(top.transform.localPosition.y, bot.transform.localPosition.y, LT), transform.localPosition.z);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
