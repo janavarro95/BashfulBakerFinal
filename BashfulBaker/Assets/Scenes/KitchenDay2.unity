@@ -1454,23 +1454,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da3031ab95e6304aa8fb1469e238c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dane_Face_relief: {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
-  Dane_Face_smile: {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
-  Dane_Face_Pout: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
-  First:
-    name: Dane
-    sentences:
-    - Alright, let's get these cookies.
-  Second:
-    name: Dane
-    sentences:
-    - Uh... Where are the cookies? Did he forget?
-    - Yeah... Definitely no cookies for Silvia here...
-  Third:
-    name: Dane
-    sentences:
-    - 'The oven still looks hot.. '
-    - Maybe I can make this delivery after all...
+  DiaBoxReference: {fileID: 0}
+  face: []
+  dias: []
 --- !u!224 &611194603
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2747,10 +2733,8 @@ MonoBehaviour:
     - Ah there's the star delivery boy himself! You did a great job last night!
     - Sylvia was so pleased with her cookies she ordered another batch of choclate
       chip cookies
-    - We also got a request for Mint chip Cookies from Mr. Norville in the house with
-      the GREEN ROOF.
-    - 'And finally an order of raisin cookies for Lyla! She''s such a sweet heart.
-      You''ll find her in the house with a PINK roof and strawberries to the side. '
+    - We also got a request for Mint chip Cookies from Little miss Amari in the house
+      with the GREEN ROOF.
   Dane1:
     name: Dane
     sentences:
