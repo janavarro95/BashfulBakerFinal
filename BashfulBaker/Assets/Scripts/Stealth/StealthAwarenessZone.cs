@@ -86,6 +86,7 @@ public class StealthAwarenessZone : MonoBehaviour
     public float movementLerp;
     private float movementLerpChange;
 
+
     [SerializeField]
     private DeltaTimer patrolPauseTimer;
     [SerializeField]
