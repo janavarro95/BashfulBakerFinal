@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Items;
+﻿using Assets.Scripts.GameInformation;
+using Assets.Scripts.Items;
 using Assets.Scripts.Menus;
 using Assets.Scripts.Menus.Components;
 using Assets.Scripts.QuestSystem.Quests;
@@ -139,7 +140,7 @@ namespace Assets.Scripts.Menus
 
         private bool specialPreDaySetUp(string componentName)
         {
-
+            Game.Player.gameObject.SetActive(true);
             if (componentName == "Kitchen")
             {
                 if (GameInformation.Game.DaysUnlocked[1] == false) return false;

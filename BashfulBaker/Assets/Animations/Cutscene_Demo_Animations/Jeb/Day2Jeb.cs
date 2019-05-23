@@ -92,7 +92,7 @@ public class Day2Jeb : MonoBehaviour
         if (Game.CurrentDayNumber == 2)
         {
             Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
-            Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Norville", new List<string>()));
+            Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Amari", new List<string>()));
            // Game.QuestManager.addQuest(new CookingQuest("Oatmeal Raisin Cookies", "Lylia", new List<string>()));
             Game.HUD.showQuests = true;
             Game.StartNewTimerPhase(5, 0, true);

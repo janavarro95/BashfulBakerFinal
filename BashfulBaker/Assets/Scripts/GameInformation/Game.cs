@@ -348,13 +348,13 @@ namespace Assets.Scripts.GameInformation
             //Unload all info here.
             gameLoaded = false;
             Serializer.JSONSerializer = null;
-            QuestManager.Quests = null;
+            QuestManager.Quests.Clear();
 
             Player.setSpriteVisibility(Enums.Visibility.Invisible);
             //Destroy(Player.gameObject);
             //player = null;
 
-            Destroy(SoundManager.gameObject);
+            //Destroy(SoundManager.gameObject);
             SoundManager = null;
             Options = null;
             Pantry = null;

@@ -6,6 +6,7 @@ using Assets.Scripts.GameInput;
 using Assets.Scripts;
 using Assets.Scripts.GameInformation;
 using System;
+using Assets.Scripts.Utilities.Delegates;
 
 public class DialogueManager : MonoBehaviour
 {

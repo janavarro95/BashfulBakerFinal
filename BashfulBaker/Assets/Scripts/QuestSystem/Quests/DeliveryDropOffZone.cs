@@ -8,21 +8,26 @@ using UnityEngine;
 
 namespace Assets.Scripts.QuestSystem.Quests
 {
-    public class DeliveryDropOffZone:MonoBehaviour
+    public class DeliveryDropOffZone : MonoBehaviour
     {
         /// <summary>
         /// A list of all of the npcs who live here. This is to be check to a delivery quest.
         /// </summary>
         public List<string> npcNamesWhoLiveHere;
 
+        public bool shouldFinishDay;
+
         public void Start()
         {
-            
+
         }
 
         public void Update()
         {
-            
+            if (shouldFinishDay == true && Game.DialogueManager.IsDialogueUp == false)
+            {
+                Game.PhaseTimer.currentTime = Game.PhaseTimer.maxTime;
+            }
         }
 
         /// <summary>
@@ -69,12 +74,23 @@ namespace Assets.Scripts.QuestSystem.Quests
 
                     }
                     //Debug.Log("COUNT!: "+Game.QuestManager.quests.Count);
-                    if (completed == Game.QuestManager.quests.Count)
+                    if (completed == Game.QuestManager.quests.Count && (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0))
                     {
-                        Game.PhaseTimer.currentTime = 1;
+                        Debug.Log("NOPE");
+                    }
+                    else if (completed == Game.QuestManager.quests.Count && Game.CurrentDayNumber > 1)
+                    {
+                        Debug.Log("Current day is: " + Game.CurrentDayNumber);
+                        Invoke("finish", 1f);
                     }
                 }
             }
+        }
+
+        private void finish()
+        {
+            shouldFinishDay = true;
+
         }
     }
 }

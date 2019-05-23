@@ -257,14 +257,14 @@ namespace Assets.Scripts.Menus
             }
 
 
-            if (quest.personToDeliverTo == "Norville" && quest.RequiredDish == "Mint Chip Cookies")
+            if (quest.personToDeliverTo == "Amari" && quest.RequiredDish == "Mint Chip Cookies")
             {
                 Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
                     "Graphics",
                     "UI",
                     "Menus",
                     "DailyRecap",
-                    "QuestButton_NorvilleMC"
+                    "QuestMenu_button_AmariMC"
                 }));
                 Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
                 return sprite;

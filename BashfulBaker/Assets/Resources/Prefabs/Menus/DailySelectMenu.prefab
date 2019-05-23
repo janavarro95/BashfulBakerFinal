@@ -1096,7 +1096,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3667244570984821418
 MonoBehaviour:
@@ -1486,12 +1486,12 @@ PrefabInstance:
     - target: {fileID: 2140510279324637940, guid: b8b947bba696d5a44b6d55f34b6ef48a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 16
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 2140510279324637940, guid: b8b947bba696d5a44b6d55f34b6ef48a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 16
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 2140510279324637940, guid: b8b947bba696d5a44b6d55f34b6ef48a,
         type: 3}
@@ -1523,6 +1523,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4823093453562416767, guid: b8b947bba696d5a44b6d55f34b6ef48a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aaf767809dc0b564abfcd24ce4ba7ab2,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8b947bba696d5a44b6d55f34b6ef48a, type: 3}
 --- !u!224 &3409283482531460039 stripped

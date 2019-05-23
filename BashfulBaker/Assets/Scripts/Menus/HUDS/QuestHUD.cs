@@ -122,14 +122,14 @@ namespace Assets.Scripts.Menus.HUDS
             }
 
 
-            if (quest.personToDeliverTo == "Norville" && quest.RequiredDish == "Mint Chip Cookies")
+            if (quest.personToDeliverTo == "Amari" && quest.RequiredDish == "Mint Chip Cookies")
             {
                 Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
                     "Graphics",
                     "UI",
                     "Menus",
                     "DailyRecap",
-                    "QuestButton_NorvilleMC"
+                    "QuestMenu_button_AmariMC"
                 }));
                 Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
                 return sprite;
@@ -171,8 +171,15 @@ namespace Assets.Scripts.Menus.HUDS
 
         public override void setVisibility(Enums.Visibility visibility)
         {
-            if (visibility == Enums.Visibility.Invisible) canvas.SetActive(false);
-            if (visibility == Enums.Visibility.Visible) canvas.SetActive(true);
+            if (visibility == Enums.Visibility.Invisible)
+            {
+                canvas.SetActive(false);
+                updateForTheDay();
+            }
+            if (visibility == Enums.Visibility.Visible)
+            {
+                canvas.SetActive(true);
+            }
         }
     }
 }

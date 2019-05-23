@@ -63,7 +63,7 @@ public class Tutorial_Jeb : MonoBehaviour
     {
         if (InputControls.APressed && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false)
         {
-            Game.Day2JebTalkedTo = true;
+            Game.Day1JebTalkedTo = true;
             Bubble.SetActive(false);
             GameObject.Find("Headshot").GetComponent<Image>().sprite = headshots[0];
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 0;

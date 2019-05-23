@@ -279,5 +279,21 @@ namespace Assets.Scripts.QuestSystem
             return this.quests.GetEnumerator();
         }
 
+
+        public bool completedAllQuests()
+        {
+            int completed = 0;
+            foreach (CookingQuest q in Game.QuestManager.quests)
+            {
+                //Debug.Log(q.RequiredDish + " " + q.personToDeliverTo);
+                if (q.HasBeenDelivered == true)
+                {
+                    completed++;
+                }
+
+            }
+            if (completed == Game.QuestManager.quests.Count) return true;
+            return false;
+        }
     }
 }

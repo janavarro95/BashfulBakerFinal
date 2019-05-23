@@ -26,8 +26,8 @@ namespace Assets.Scripts.Menus
 
         public override void setUpForSnapping()
         {
-            yes.setNeighbors(null, null, null, no);
-            no.setNeighbors(null, null, yes, null);
+            yes.setNeighbors(null, no, null, null);
+            no.setNeighbors(yes, null, null, null);
 
             selectedComponent = no;
             menuCursor.snapToCurrentComponent();

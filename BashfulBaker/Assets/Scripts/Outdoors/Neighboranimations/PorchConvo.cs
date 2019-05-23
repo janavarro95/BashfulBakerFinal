@@ -39,8 +39,17 @@ public class PorchConvo : MonoBehaviour
         {
             Neighbor_Sprite.enabled = false;
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
+            finishEndOfDay();
         }
 
+    }
+
+    void finishEndOfDay()
+    {
+        if (Game.CurrentDayNumber == 1 && Game.QuestManager.completedAllQuests())
+        {
+            Game.PhaseTimer.currentTime = Game.PhaseTimer.maxTime;
+        }
     }
 
 
