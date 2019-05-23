@@ -2385,6 +2385,21 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 823
       objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925484, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.10588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925484, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.20000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925484, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.0627451
+      objectReference: {fileID: 0}
     - target: {fileID: 4706530218426925481, guid: 8d537620c63c65b45acf66b81975a0e8,
         type: 3}
       propertyPath: shouldFollowTarget
@@ -19853,7 +19868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2044311416
 Transform:
   m_ObjectHideFlags: 0
