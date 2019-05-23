@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Utilities.Timers;
 using Assets.Scripts.Stealth;
+using Assets.Scripts.GameInformation;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -66,16 +67,16 @@ public class FieldOfView : MonoBehaviour
         startPoint = guard.transform.position;
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (Static) return;
 
-        pathUpdateTimer += Time.deltaTime;
-        if (pathUpdateTimer > pathUpdateReset)
-        {
+        //pathUpdateTimer += Time.deltaTime;
+        //if (pathUpdateTimer > pathUpdateReset)
+        //{
             FindVisibleTargets();
-            pathUpdateTimer = 0;
-        }
+        //    pathUpdateTimer = 0;
+        //}
 
 
         if(visibleTargets.Count < 1)
@@ -96,9 +97,9 @@ public class FieldOfView : MonoBehaviour
     {
         if (!zone.talkingToPlayer)
         {
-            if (GameObject.FindGameObjectWithTag("Player") == null) return;
+            if (Game.Player.gameObject == null) return;
 
-            sawPlayer = visibleTargets.Contains(GameObject.FindGameObjectWithTag("Player").transform);
+            sawPlayer = visibleTargets.Contains(Game.Player.gameObject.transform);
             seesPlayer = false;
             visibleTargets.Clear();
             Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
@@ -122,13 +123,13 @@ public class FieldOfView : MonoBehaviour
                 {
                     continue;
                 }
-                else if (!(target == GameObject.FindGameObjectWithTag("Player").transform && target.GetComponent<PlayerMovement>().hidden) && Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
+                else if (!(target == Game.Player.gameObject.transform && Game.Player.PlayerMovement.hidden) && Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
                 {
                     float distToTarget = Vector3.Distance(transform.position, target.position);
                     if (!Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, distToTarget, obstacleMask))
                     {
                         visibleTargets.Add(target);
-                        if (target == GameObject.FindGameObjectWithTag("Player").transform)
+                        if (target == Game.Player.gameObject.transform)
                         {
                             if (!sawPlayer && target)
                             {
@@ -148,7 +149,7 @@ public class FieldOfView : MonoBehaviour
 
             if (sawPlayer && !seesPlayer)
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().Escaped();
+                Game.Player.PlayerMovement.Escaped();
             }
         }
     }

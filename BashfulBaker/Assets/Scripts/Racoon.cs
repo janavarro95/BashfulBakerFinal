@@ -3,6 +3,7 @@ using Assets.Scripts.GameInput;
 using Assets.Scripts.Utilities.Timers;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Racoon : MonoBehaviour
@@ -12,6 +13,8 @@ public class Racoon : MonoBehaviour
     public Dialogue racoonDialogue;
     public Dialogue fedDialogue;
     public Dialogue noFoodDialogue;
+
+    public Sprite daneFace;
 
     private DeltaTimer movementTimer;
     private Vector3 ogPosition;
@@ -36,6 +39,7 @@ public class Racoon : MonoBehaviour
     {
         if (collision.gameObject == Game.Player.gameObject && hasNoticedRacoon == false)
         {
+            GameObject.Find("Headshot").GetComponent<Image>().sprite = daneFace;
             hasNoticedRacoon = true;
             Game.DialogueManager.StartDialogue(racoonDialogue);
         }

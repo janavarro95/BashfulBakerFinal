@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour {
 
         height = (GetComponent<SpriteRenderer>().sprite.texture.height / 2) * transform.localScale.y;
 
-        dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+        //dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
     }
 	
 	// Update is called once per frame

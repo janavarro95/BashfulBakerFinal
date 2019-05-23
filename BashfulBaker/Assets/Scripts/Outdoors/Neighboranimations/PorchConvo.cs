@@ -56,6 +56,8 @@ public class PorchConvo : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag != "Player")
+            return;
 
         if (Game.Player.activeItem.Name == deliveryOBJ)
         {
