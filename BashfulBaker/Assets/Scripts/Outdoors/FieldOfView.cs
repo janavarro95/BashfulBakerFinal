@@ -97,6 +97,7 @@ public class FieldOfView : MonoBehaviour
         if (!zone.talkingToPlayer)
         {
             if (GameObject.FindGameObjectWithTag("Player") == null) return;
+
             sawPlayer = visibleTargets.Contains(GameObject.FindGameObjectWithTag("Player").transform);
             seesPlayer = false;
             visibleTargets.Clear();
@@ -105,6 +106,10 @@ public class FieldOfView : MonoBehaviour
             for (int x = 0; x < targetsInViewRadius.Length; x++)
             {
                 Transform target = targetsInViewRadius[x].transform;
+
+                if (target.tag != "Player")
+                    continue;
+
                 Quaternion dirToTarget;
                 // Get Angle in Radians
                 float AngleRad = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x);
@@ -128,6 +133,8 @@ public class FieldOfView : MonoBehaviour
                             if (!sawPlayer && target)
                             {
                                 target.GetComponent<PlayerMovement>().Spotted();
+                                // play alert sound
+                                this.GetComponent<AudioSource>().Play();
                             }
                             seesPlayer = true;
                         }

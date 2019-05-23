@@ -22,10 +22,10 @@ public class BushRustler : MonoBehaviour
     {
         SetShake(collision.gameObject);
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    /*private void OnTriggerExit2D(Collider2D collision)
     {
         SetShake(collision.gameObject);
-    }
+    }*/
 
     void SetShake(GameObject g)
     {

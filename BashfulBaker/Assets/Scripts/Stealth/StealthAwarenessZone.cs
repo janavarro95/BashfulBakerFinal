@@ -201,7 +201,7 @@ public class StealthAwarenessZone : MonoBehaviour
             // movement
             if (shouldMove)
             {
-                movementLerpChange = getProperMovementSpeed(2.5f);
+                movementLerpChange = getProperMovementSpeed(2f);
                 movementLerp += movementLerpChange;
 
                 // get next spot in the path
