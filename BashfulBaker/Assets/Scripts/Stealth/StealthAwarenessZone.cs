@@ -52,7 +52,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// <summary>
     /// A list of all the spots we should explore.
     /// </summary>
-    private List<Vector2> spotsToGoTo;
+    public List<Vector2> spotsToGoTo;
 
     /// <summary>
     /// If the guard is currently aware of the player.
@@ -185,7 +185,7 @@ public class StealthAwarenessZone : MonoBehaviour
         myState = 1;
 
         awareOfPlayer = (!catching.hasEaten && (flashlight.seesPlayer || this.investigate != null));
-        shouldMove = (awareOfPlayer) && !talkingToPlayer;
+        shouldMove = (awareOfPlayer || returnHome) && !talkingToPlayer;
 
         // AWARE
         if (awareOfPlayer)
@@ -233,22 +233,32 @@ public class StealthAwarenessZone : MonoBehaviour
             // state tracking
             myState = 8;
             //Debug.Log("Returning Home");
-
-            // movement
-            movementLerp += getProperMovementSpeed();
-
-            // get next spot in the path
-            if (movementLerp >= 1.0f)
+            if (shouldMove)
             {
-                getNextReturnSpot();
-            }
+                // movement
+                movementLerpChange = getProperMovementSpeed();
+                movementLerp += movementLerpChange;
 
-            // lerp there
-            this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, movementLerp);
-            // keep flashlight looking at player
-            aiLookLogic();
+                // get next spot in the path
+                if (movementLerp >= 1.0f)
+                {
+                    getNextReturnSpot();
+                }
+
+                // lerp there
+                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, movementLerp);
+                // keep flashlight looking at player
+                aiLookLogic();
+            }
             //Animate here
-            animateGuard(sequenceStartingSpot, nextTargetSpot);
+            if (movementLerpChange != 0 && !talkingToPlayer)
+            {
+                animateGuard(this.transform.position, nextTargetSpot);
+            }
+            else
+            {
+                animateGuard(this.transform.position, this.transform.position, (this.transform.position.x < nextTargetSpot.x));
+            }
         }
         // UNAWARE
         else
@@ -323,9 +333,10 @@ public class StealthAwarenessZone : MonoBehaviour
                 }
                 else
                 {
+                    // patrol
                     sequenceStartingSpot = this.transform.position;
                     nextTargetSpot = patrolPoints[currentPatrolPoint];
-
+                    // iterate
                     currentPatrolPoint++;
                 }
 
@@ -334,6 +345,7 @@ public class StealthAwarenessZone : MonoBehaviour
                 this.movementLerp = 0f;
                 this.lookAroundLerp = 0f;
 
+                // pause timer
                 if (this.movementLogic == MovementType.PatrollAndPause)
                 {
                     this.patrolPauseTimer.start();
@@ -341,6 +353,7 @@ public class StealthAwarenessZone : MonoBehaviour
             }
 
             // move and animate
+
             this.gameObject.transform.parent.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, movementLerp);
             animateGuard(sequenceStartingSpot, nextTargetSpot);
         }
