@@ -141,10 +141,12 @@ public class PlayerMovement : MonoBehaviour {
         if (hidden && spriteRenderer.color.a > 0.2f)
         {
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a - .02f);
+			heldObjectRenderer.color = new Color(heldObjectRenderer.color.r, heldObjectRenderer.color.g, heldObjectRenderer.color.b, heldObjectRenderer.color.a - .02f);
         }
         else if (!hidden && spriteRenderer.color.a < 1)
         {
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a + .02f);
+			heldObjectRenderer.color = new Color(heldObjectRenderer.color.r, heldObjectRenderer.color.g, heldObjectRenderer.color.b, heldObjectRenderer.color.a + .02f);
         }
 
         if (Game.Player.activeItem != null)
