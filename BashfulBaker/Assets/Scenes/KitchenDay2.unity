@@ -2466,25 +2466,18 @@ MonoBehaviour:
   Jeb1:
     name: Jeb
     sentences:
-    - Ah there's the star delivery boy himself! You did a great job last night!
-    - Sylvia was so pleased with her cookies she ordered another batch of choclate
-      chip cookies
-    - We also got a request for Mint chip Cookies from Little miss Amari in the house
-      with the GREEN ROOF.
+    - Hello Dane! How was meeting Sylvia?
   Dane1:
     name: Dane
     sentences:
-    - 'Sounds great Mr. Jeb! '
-    - There was one problem last night I'd like to ask you about, when I wen-
+    - 'It was fine. She seems nice. '
   Jeb2:
     name: Jeb
     sentences:
-    - Oh did you have a fan club of guards trying to sniff you out?
-    - I am sorry they do that, I used to feed them but they starting having trouble
-      chasing down the odd prankster or escaped pet.
-    - So I stopped for their own sake. I have shouldered the burden of eating the
-      leftovers hahaha!
-    - Well, have a good night Mr. Dane! Thank you for your hard work.
+    - "Yeah she\u2019s pretty popular here. Everyone is familiar with her and Sully.
+      They look out for everyone."
+    - "I got your note about Sylvia\u2019s order. I prepare the orders in the back
+      already. I\u2019ll see you later Dane."
   Jeb_Face: {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
   Dane_Face: {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
   jeb_animator: {fileID: 1083138370}

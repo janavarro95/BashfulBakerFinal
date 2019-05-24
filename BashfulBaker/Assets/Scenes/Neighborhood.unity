@@ -7561,8 +7561,8 @@ MonoBehaviour:
   wrongCookies:
     name: Dane
     sentences:
-    - This is Sylvia's house, now all I need are her Chocolate Chip Cookies.
-  deliveryOBJ: Chocolate Chip Cookies
+    - This is Amari's house, now all I need are her Chocolate Chip Cookies.
+  deliveryOBJ: Mint Chip Cookies
   poutingboy: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
   Neighbor_Sprite: {fileID: 675705978}
   DiaBoxReference: {fileID: 856803592}
@@ -10716,8 +10716,62 @@ MonoBehaviour:
   convo:
   - name: Sylvia
     sentences:
-    - Thank you Dane!
+    - "Hi Dane. It\u2019s nice to see you again. "
+    - Was the journey better this time?
+  - name: Dane
+    sentences:
+    - Yeah. I think I found a better route that has the least amount of town watch?
+  - name: Sylvia
+    sentences:
+    - Ah so you are still avoiding them, I see.
+  - name: Dane
+    sentences:
+    - I would just prefer not to deal with them.
+    - "I get really nervous around people\u2026"
+  - name: Sylvia
+    sentences:
+    - Oh I see. Well this is going to be awkward then.
+  - name: Dane
+    sentences:
+    - What do you mean?
+  - name: Sylvia
+    sentences:
+    - "Those Mint cookies I made Jeb baked are not for me.\r\n"
+  - name: Dane
+    sentences:
+    - huh?
+  - name: Sylvia
+    sentences:
+    - 'I want you to deliver them to AMARI. She is a little girl that is home alone
+      because her mother works as one of the Town Watch. '
+    - 'You and her are similar in ways so I thought it was a good idea for you to
+      introduce yourself to her. '
+    - Will you do this for me?
+  - name: Dane
+    sentences:
+    - "Umm I guess\u2026 but I\u2019m not good with kids."
+  - name: Sylvia
+    sentences:
+    - "Haha it\u2019s fine Dane. Kids are easier to talk to than adults.\r\n"
+  - name: Dane
+    sentences:
+    - Okay, if you say so.
+  - name: Sylvia
+    sentences:
+    - Great! You can find her NORTH of here in the house with a GREEN ROOF. Good luck!
   faces:
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
   - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
   wrongCookies:
     name: Dane
@@ -17504,9 +17558,12 @@ MonoBehaviour:
     - "(Now I feel like I\u2019m the jerk.)"
   - name: Sylvia
     sentences:
-    - I'll tell you what Dane! You see my herb garden over there?
-    - Whenever you need some fresh Mint for your cookies feel free to come by and
-      take some.
+    - 'Hmm... Hey I want you to do me a favor Dane. You see my herb garden? '
+    - "I want you to go collect some mint and tell Jeb to make some Mint Chocolate
+      Chips Cookies with my regular for me tomorrow night. \n"
+    - 'Then deliver them to me please.
+
+'
   - name: Dane
     sentences:
     - "Umm okay. Will do ma\u2019am!"

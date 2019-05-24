@@ -28,6 +28,7 @@ public class StealthAwarenessZone : MonoBehaviour
     /// <summary>
     /// Keeps track of all of the moves made so that the guard can hopefully return home.
     /// </summary>
+    [SerializeField]
     private Stack<Vector2> pathBackToStart;
 
     /// <summary>
@@ -421,7 +422,7 @@ public class StealthAwarenessZone : MonoBehaviour
     private void aiLookLogic()
     {
         if (flashlight == null) return;
-        if (flashlight.seesPlayer)
+        if (flashlight.seesPlayer && flashlight.visibleTargets.Count > 0)
         {
             aiLookDirectlyAt(flashlight.visibleTargets[0].transform.position);
         }
