@@ -17,7 +17,6 @@ public class PorchConvo : MonoBehaviour
     public string deliveryOBJ;
     public Sprite poutingboy;
     public SpriteRenderer Neighbor_Sprite;
-    //public Animator Neighbor_animator;
     public GameObject DiaBoxReference;
     private int step;
 
@@ -48,26 +47,35 @@ public class PorchConvo : MonoBehaviour
     {
         if (Game.CurrentDayNumber == 1 && Game.QuestManager.completedAllQuests())
         {
+            Game.HUD.showHUD = true;
             Game.PhaseTimer.currentTime = Game.PhaseTimer.maxTime;
+
+        }else if (Game.CurrentDayNumber == 2 && Neighbor_Sprite.name == "sylvia-grey")
+        {
+            Game.QuestManager.Clear();
+            Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Amari", new List<string>()));
+            Game.HUD.showHUD = true;
         }
+
     }
 
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag != "Player")
             return;
 
-        if (Game.Player.activeItem.Name == deliveryOBJ)
+        if (Game.Player.activeItem.Name == deliveryOBJ && step==0)
         {
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 0;
             Neighbor_Sprite.enabled = true;
             GameObject.Find("Headshot").GetComponent<Image>().sprite = faces[step];
             FindObjectOfType<DialogueManager>().StartDialogue(convo[step]);
+            Game.HUD.showHUD = false;
             step++;
         }
-        else
+        else if (step ==0)
         {
             GameObject.Find("Headshot").GetComponent<Image>().sprite = poutingboy;
             FindObjectOfType<DialogueManager>().StartDialogue(wrongCookies);
