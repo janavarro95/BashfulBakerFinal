@@ -95,13 +95,14 @@ public class FieldOfView : MonoBehaviour
 
     void FindVisibleTargets()
     {
-        if (!zone.talkingToPlayer)
-        {
-            if (Game.Player.gameObject == null) return;
+        if (Game.Player.gameObject == null) return;
 
+        if (!zone.talkingToPlayer && !zone.catching.hasEaten)
+        {
             sawPlayer = visibleTargets.Contains(Game.Player.gameObject.transform);
             seesPlayer = false;
             visibleTargets.Clear();
+
             Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
 
             for (int x = 0; x < targetsInViewRadius.Length; x++)
@@ -135,12 +136,12 @@ public class FieldOfView : MonoBehaviour
                             {
                                 target.GetComponent<PlayerMovement>().Spotted();
                                 // play alert sound
-                                this.GetComponent<AudioSource>().Play();
+                                AudioSource aSource = this.GetComponent<AudioSource>();
+                                if (aSource != null)
+                                    aSource.Play();
                             }
                             seesPlayer = true;
                         }
-                        //guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
-                        //if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint,true);
                         zone.AddToPath(target.transform);
                         alert.SetActive(true);
                     }
@@ -152,6 +153,12 @@ public class FieldOfView : MonoBehaviour
                 Game.Player.PlayerMovement.Escaped();
             }
         }
+        else
+        {
+            seesPlayer = false;
+            visibleTargets.Clear();
+        }
+
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
