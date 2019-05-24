@@ -34,27 +34,37 @@ public class PorchConvo : MonoBehaviour
             FindObjectOfType<DialogueManager>().StartDialogue(convo[step]);
             step++;
         }
-        else if (DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && step >= convo.Length)
+        else if (DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && step == convo.Length)
         {
             Neighbor_Sprite.enabled = false;
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
             finishEndOfDay();
+            step++;
         }
 
     }
-
     void finishEndOfDay()
-    {
+    {    
         if (Game.CurrentDayNumber == 1 && Game.QuestManager.completedAllQuests())
         {
             Game.HUD.showHUD = true;
+            Game.PhaseTimer.resume();
             Game.PhaseTimer.currentTime = Game.PhaseTimer.maxTime;
 
-        }else if (Game.CurrentDayNumber == 2 && Neighbor_Sprite.name == "sylvia-grey")
+        }else if (Game.CurrentDayNumber == 2 && Game.QuestManager.completedAllQuests() == false)
         {
-            Game.QuestManager.Clear();
             Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Amari", new List<string>()));
+            Game.QuestManager.quests.RemoveAt(1);
+            Debug.Log(Game.QuestManager.quests.Count);
+            Game.HUD.QuestHUD.updateForTheDay();
+            Game.PhaseTimer.resume();
             Game.HUD.showHUD = true;
+        }
+        else if (Game.CurrentDayNumber == 2 && Game.QuestManager.completedAllQuests())
+        {
+            Game.HUD.showHUD = true;
+            Game.PhaseTimer.resume();
+            Game.PhaseTimer.currentTime = Game.PhaseTimer.maxTime;
         }
 
     }
@@ -73,6 +83,7 @@ public class PorchConvo : MonoBehaviour
             GameObject.Find("Headshot").GetComponent<Image>().sprite = faces[step];
             FindObjectOfType<DialogueManager>().StartDialogue(convo[step]);
             Game.HUD.showHUD = false;
+            Game.PhaseTimer.pause();
             step++;
         }
         else if (step ==0)
