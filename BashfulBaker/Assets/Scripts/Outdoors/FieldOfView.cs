@@ -155,6 +155,7 @@ public class FieldOfView : MonoBehaviour
         }
         else
         {
+            zone.investigate = null;
             seesPlayer = false;
             visibleTargets.Clear();
         }

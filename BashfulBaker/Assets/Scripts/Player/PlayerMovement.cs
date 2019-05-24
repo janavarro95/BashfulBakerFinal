@@ -494,7 +494,7 @@ public class PlayerMovement : MonoBehaviour {
     public void Escaped()
     {
         guardsSeeingMe--;
-        //alert.enabled = false;
+        alert.enabled = false;
     }
 
     /// <summary>

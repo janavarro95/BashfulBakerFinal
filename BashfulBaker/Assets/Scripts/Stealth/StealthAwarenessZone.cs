@@ -422,6 +422,7 @@ public class StealthAwarenessZone : MonoBehaviour
     private void aiLookLogic()
     {
         if (flashlight == null) return;
+
         if (flashlight.seesPlayer && flashlight.visibleTargets.Count > 0)
         {
             aiLookDirectlyAt(flashlight.visibleTargets[0].transform.position);
@@ -432,9 +433,8 @@ public class StealthAwarenessZone : MonoBehaviour
         }
         else
         {
-            if (this.aiType != LookingType.None && (movementLogic == MovementType.ContinuousPatrolling || movementLogic == MovementType.PatrollAndPause))
+            if (this.aiType != LookingType.None && movementLogic == MovementType.ContinuousPatrolling)
             {
-                //aiLookAt(patrolPoints[(currentPatrolPoint + 1) % patrolPoints.Count]);
                 aiLookDirectlyAt(patrolPoints[(currentPatrolPoint + patrolPoints.Count - 1) % patrolPoints.Count]);
             }
             else if (listOfSpotsToLookAt.Count == 0)
