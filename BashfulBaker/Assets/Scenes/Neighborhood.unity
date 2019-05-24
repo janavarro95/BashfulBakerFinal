@@ -7562,7 +7562,7 @@ MonoBehaviour:
     name: Dane
     sentences:
     - This is Amari's house, now all I need are her Chocolate Chip Cookies.
-  deliveryOBJ: Chocolate Chip Cookies
+  deliveryOBJ: Mint Chip Cookies
   poutingboy: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
   Neighbor_Sprite: {fileID: 675705978}
   DiaBoxReference: {fileID: 856803592}
