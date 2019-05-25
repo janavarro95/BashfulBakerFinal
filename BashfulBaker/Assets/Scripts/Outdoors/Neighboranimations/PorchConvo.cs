@@ -19,9 +19,11 @@ public class PorchConvo : MonoBehaviour
     public SpriteRenderer Neighbor_Sprite;
     public GameObject DiaBoxReference;
     private int step;
+    private bool realquestrecieved;
 
     void Start()
     {
+        realquestrecieved = false;
         Neighbor_Sprite.enabled = false;
         step = 0;
     }
@@ -59,8 +61,9 @@ public class PorchConvo : MonoBehaviour
             Game.HUD.QuestHUD.updateForTheDay();
             Game.PhaseTimer.resume();
             Game.HUD.showHUD = true;
+            realquestrecieved = true;
         }
-        else if (Game.CurrentDayNumber == 2 && Game.QuestManager.completedAllQuests())
+        else if (Game.CurrentDayNumber == 2 && Game.QuestManager.completedAllQuests() && realquestrecieved == true)
         {
             Game.HUD.showHUD = true;
             Game.PhaseTimer.resume();
