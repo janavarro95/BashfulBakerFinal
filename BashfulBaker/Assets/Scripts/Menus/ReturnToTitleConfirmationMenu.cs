@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Menus.Components;
+using Assets.Scripts.Utilities.Delegates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace Assets.Scripts.Menus
         MenuComponent yes;
         MenuComponent no;
 
+        private VoidDelegate altNoSelect;
+
         public override void Start()
         {
             GameInformation.Game.Menu = this;
@@ -24,6 +27,11 @@ namespace Assets.Scripts.Menus
 
             this.menuCursor = canvas.transform.Find("MenuMouseCursor").gameObject.GetComponent<GameInput.GameCursorMenu>();
             setUpForSnapping();
+        }
+
+        public void setNoFunctionality(VoidDelegate del)
+        {
+            this.altNoSelect = del;
         }
 
         public override void setUpForSnapping()
@@ -58,9 +66,19 @@ namespace Assets.Scripts.Menus
             
         }
 
+        /// <summary>
+        /// What happens when the no button is clicked.
+        /// </summary>
         public void noButtonClick()
         {
-            Menu.Instantiate<GameMenu>(true);
+            if (altNoSelect == null)
+            {
+                Menu.Instantiate<GameMenu>(true);
+            }
+            else
+            {
+                this.altNoSelect.Invoke();
+            }
         }
 
     }

@@ -24,6 +24,8 @@ namespace Assets.Scripts.Menus
         /// </summary>
         private Menus.Components.MenuComponent finishedButton;
 
+        private MenuComponent mainMenuButton;
+
         /// <summary>
         /// The image for the first completed quest fro that day.
         /// </summary>
@@ -44,9 +46,11 @@ namespace Assets.Scripts.Menus
         private Image minigame1Performance;
         private Image minigame2Performance;
         private Image minigame3Performance;
-        private Image minigame4Performance;
-        private Image minigame5Performance;
-        private Image minigame6Performance;
+
+
+        private Text StirringPerformance;
+        private Text RollingPerformance;
+        private Text PackingPerformance;
 
         private TMPro.TextMeshProUGUI text;
 
@@ -122,9 +126,15 @@ namespace Assets.Scripts.Menus
             minigame1Performance = background.transform.Find("MG1Performance").gameObject.transform.GetComponent<Image>();
             minigame2Performance = background.transform.Find("MG2Performance").gameObject.transform.GetComponent<Image>();
             minigame3Performance = background.transform.Find("MG3Performance").gameObject.transform.GetComponent<Image>();
-            minigame4Performance = background.transform.Find("MG4Performance").gameObject.transform.GetComponent<Image>();
-            minigame5Performance = background.transform.Find("MG5Performance").gameObject.transform.GetComponent<Image>();
-            minigame6Performance = background.transform.Find("MG6Performance").gameObject.transform.GetComponent<Image>();
+
+
+            StirringPerformance = background.transform.Find("StirringTime").gameObject.transform.GetComponent<Text>();
+            RollingPerformance = background.transform.Find("RollingTime").gameObject.transform.GetComponent<Text>();
+            PackingPerformance = background.transform.Find("PackingTime").gameObject.transform.GetComponent<Text>();
+
+            StirringPerformance.text = Game.MinigameStats[Enums.CookingStationMinigame.MixingBowl].averageTimeMinSec;
+            RollingPerformance.text = Game.MinigameStats[Enums.CookingStationMinigame.RollingStation].averageTimeMinSec;
+            PackingPerformance.text = Game.MinigameStats[Enums.CookingStationMinigame.PackingStation].averageTimeMinSec;
 
             quest1Image.gameObject.SetActive(false);
             quest2Image.gameObject.SetActive(false);
@@ -134,6 +144,7 @@ namespace Assets.Scripts.Menus
             quest6Image.gameObject.SetActive(false);
 
             finishedButton = new Components.MenuComponent(canvas.transform.Find("Close Button").gameObject.GetComponent<Button>());
+            mainMenuButton = new Components.MenuComponent(canvas.transform.Find("MainMenu").gameObject.GetComponent<Button>());
 
             if (Game.CurrentDayNumber == 0) Game.CurrentDayNumber = 1;
 
@@ -149,8 +160,11 @@ namespace Assets.Scripts.Menus
             {
                 text.text = "x0";
             }
-            SceneManager.LoadScene("Neighborhood", LoadSceneMode.Additive);
-            
+
+            if (SceneManager.sceneCount <= 2)
+            {
+                SceneManager.LoadScene("Neighborhood", LoadSceneMode.Additive);
+            }
 
         }
 
@@ -289,7 +303,8 @@ namespace Assets.Scripts.Menus
         public override void setUpForSnapping()
         {
 
-            finishedButton.setNeighbors(finishedButton, finishedButton, finishedButton, finishedButton);
+            finishedButton.setNeighbors(null, null, mainMenuButton, null);
+            mainMenuButton.setNeighbors(null, null, null, finishedButton);
 
             this.selectedComponent = finishedButton;
             this.menuCursor.snapToCurrentComponent();
@@ -310,13 +325,10 @@ namespace Assets.Scripts.Menus
         /// </summary>
         public override void Update()
         {
-
-
             if (cameraPositions == null)
             {
 
                 GameObject obj = GameObject.Find("CameraPoints");
-                Debug.Log("HELLO");
                 if (obj == null) return;
                 List<GameObject> objs= GameObject.FindGameObjectsWithTag("MainCamera").ToList();
                 foreach(GameObject ok in objs)
@@ -335,19 +347,17 @@ namespace Assets.Scripts.Menus
                 }
                 
             }
-
-
-
-
             checkForInput();
             cameraPan();
         }
 
+        /// <summary>
+        /// Pan the camera around the neighborhood.
+        /// </summary>
         public void cameraPan()
         {
             if (cameraPositions.Count > 0)
             {
-                Debug.Log("HELLO WORLD");
                 if (currentLerp == 0)
                 {
 
@@ -382,6 +392,17 @@ namespace Assets.Scripts.Menus
             {
                 Menu.Instantiate<ReturnToDailySelectMenu>(true);
             }
+
+            if (GameCursorMenu.SimulateMousePress(mainMenuButton))
+            {
+                Menu.Instantiate<ReturnToTitleConfirmationMenu>(true);
+                (Game.Menu as ReturnToTitleConfirmationMenu).setNoFunctionality(restart);
+            }
+        }
+
+        private static void restart()
+        {
+            Menu.Instantiate<EndofDayMenu>(true);
         }
 
     }

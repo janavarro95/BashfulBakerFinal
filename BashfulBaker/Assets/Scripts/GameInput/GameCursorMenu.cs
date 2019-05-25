@@ -70,7 +70,7 @@ namespace Assets.Scripts.GameInput
                         if (delta.x < -snapSensitivity)
                         {
                             Game.Menu.selectedComponent.snapToNextComponent(Enums.FacingDirection.Left);
-                            Game.SoundEffects.playMenuButtonMovementSnap();
+                            if (Game.Menu.selectedComponent.leftNeighbor != null) Game.SoundEffects.playMenuButtonMovementSnap();
                             movedByCursor = false;
                             timer.restart();
                             isVisible = true;
@@ -79,7 +79,7 @@ namespace Assets.Scripts.GameInput
                         else if(delta.x>snapSensitivity)
                         {
                             Game.Menu.selectedComponent.snapToNextComponent(Enums.FacingDirection.Right);
-                            Game.SoundEffects.playMenuButtonMovementSnap();
+                            if (Game.Menu.selectedComponent.rightNeighbor != null) Game.SoundEffects.playMenuButtonMovementSnap();
                             movedByCursor = false;
                             timer.restart();
                             isVisible = true;
@@ -91,7 +91,7 @@ namespace Assets.Scripts.GameInput
                         if (delta.y < -snapSensitivity)
                         {
                             Game.Menu.selectedComponent.snapToNextComponent(Enums.FacingDirection.Down);
-                            Game.SoundEffects.playMenuButtonMovementSnap();
+                            if (Game.Menu.selectedComponent.bottomNeighbor != null) Game.SoundEffects.playMenuButtonMovementSnap();
                             movedByCursor = false;
                             timer.restart();
                             isVisible = true;
@@ -100,7 +100,7 @@ namespace Assets.Scripts.GameInput
                         else if (delta.y > snapSensitivity)
                         {
                             Game.Menu.selectedComponent.snapToNextComponent(Enums.FacingDirection.Up);
-                            Game.SoundEffects.playMenuButtonMovementSnap();
+                            if (Game.Menu.selectedComponent.topNeighbor != null) Game.SoundEffects.playMenuButtonMovementSnap();
                             movedByCursor = false;
                             timer.restart();
                             isVisible = true;

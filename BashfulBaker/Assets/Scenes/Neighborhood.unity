@@ -2390,6 +2390,26 @@ PrefabInstance:
       propertyPath: shouldFollowTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: m_RefResolutionX
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: m_RefResolutionY
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: m_AssetsPPU
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: m_PixelSnapping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d537620c63c65b45acf66b81975a0e8, type: 3}
 --- !u!4 &276814089 stripped
@@ -8504,16 +8524,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
-        type: 3}
-      propertyPath: m_RefResolutionX
-      value: 1591
-      objectReference: {fileID: 0}
-    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
-        type: 3}
-      propertyPath: m_RefResolutionY
-      value: 1287
-      objectReference: {fileID: 0}
     - target: {fileID: 4706530218426925484, guid: 8d537620c63c65b45acf66b81975a0e8,
         type: 3}
       propertyPath: orthographic size
@@ -8523,6 +8533,16 @@ PrefabInstance:
         type: 3}
       propertyPath: shouldFollowTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: m_RefResolutionX
+      value: 1591
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706530218426925486, guid: 8d537620c63c65b45acf66b81975a0e8,
+        type: 3}
+      propertyPath: m_RefResolutionY
+      value: 1287
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d537620c63c65b45acf66b81975a0e8, type: 3}
@@ -16751,13 +16771,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
+      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
         type: 3}
     - target: {fileID: 8087712362063164854, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 52d06e1c9438e7e4a8176db0dc360ce0,
+      objectReference: {fileID: 21300000, guid: d3f4f87877ca0714894637cd626144fa,
         type: 3}
     - target: {fileID: 8087712362063164855, guid: f7d7c5a6639d75642a9c88a27cc337e6,
         type: 3}

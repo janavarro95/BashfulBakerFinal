@@ -6,6 +6,7 @@ using UnityEngine;
 using TimerType = Assets.Scripts.Enums.TimerType;
 using TimerState = Assets.Scripts.Enums.TimerState;
 using Assets.Scripts.Utilities.Delegates;
+using Assets.Scripts.GameInformation;
 
 namespace Assets.Scripts.Utilities.Timers
 {
@@ -248,6 +249,7 @@ namespace Assets.Scripts.Utilities.Timers
         public void Update(float speedMultiplier)
         {
             if (state != TimerState.Ticking) return; //Only update if timer should tick.
+            if (Game.DialogueManager.IsDialogueUp) return;
 
             if (type == TimerType.CountUp)
             {
@@ -292,6 +294,11 @@ namespace Assets.Scripts.Utilities.Timers
         {
             this.currentTime += seconds;
             if (this.currentTime > maxTime) this.currentTime = maxTime;
+        }
+
+        public string minSecString()
+        {
+            return this.minutes.ToString() +":"+ ((this.seconds<10)? ("0"+this.seconds.ToString()) : this.seconds.ToString());
         }
 
     }

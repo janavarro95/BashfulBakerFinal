@@ -73,7 +73,8 @@ namespace Assets.Scripts.Menus
             this.cookieHidden3 = this.cookieSelect.gameObject.transform.Find("Image").Find("Blackout3").gameObject;
             this.cookieHidden4 = this.cookieSelect.gameObject.transform.Find("Image").Find("Blackout4").gameObject;
 
-            currentMode = PantryMode.Select;
+            this.cookieSelect.SetActive(true);
+            currentMode = PantryMode.Cookies;
 
             Game.Menu = this;
         }
@@ -204,17 +205,29 @@ namespace Assets.Scripts.Menus
                 return;
             }
 
-            if (setForTutorial && InputControls.APressed)
+            if (setForTutorial == true)
             {
-                
-                Dish d = new Dish(Enums.Dishes.ChocolateChipCookies);
-                Game.Player.dishesInventory.Add(d);
-                Game.Player.activeItem = d;
-                Game.Player.updateHeldItemSprite();
+                if (Game.Player.specialIngredientsInventory.actualItems.Find(ing => (ing as SpecialIngredient).ingredientType == Enums.SpecialIngredients.ChocolateChips).stack > 0)
+                {
+                    cookieHidden1.SetActive(false);
+                }
+                else
+                {
+                    cookieHidden1.SetActive(true);
+                }
 
-                updateTutorial();
-                exitMenu();
-                
+                if (InputControls.APressed)
+                {
+
+                    Dish d = new Dish(Enums.Dishes.ChocolateChipCookies);
+                    Game.Player.dishesInventory.Add(d);
+                    Game.Player.activeItem = d;
+                    Game.Player.updateHeldItemSprite();
+
+                    updateTutorial();
+                    exitMenu();
+
+                }
             }
 
             if (setForTutorial == false)

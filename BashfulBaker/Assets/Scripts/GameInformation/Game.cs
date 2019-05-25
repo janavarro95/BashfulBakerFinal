@@ -7,6 +7,7 @@ using Assets.Scripts.Menus.HUDS;
 using Assets.Scripts.Player;
 using Assets.Scripts.QuestSystem;
 using Assets.Scripts.QuestSystem.Quests;
+using Assets.Scripts.Stats;
 using Assets.Scripts.Stealth;
 using Assets.Scripts.Utilities;
 using Assets.Scripts.Utilities.Serialization;
@@ -201,6 +202,8 @@ namespace Assets.Scripts.GameInformation
 
         public static StealthManager StealthManager;
 
+        public static Dictionary<Enums.CookingStationMinigame, MinigameStatistic> MinigameStats;
+
         // Notice that these methods are static! This is key!
         #if UNITY_EDITOR
         static Game()
@@ -281,6 +284,14 @@ namespace Assets.Scripts.GameInformation
                     Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Carrots));
                     Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.Strawberries));
                     IngredientsAddedForPlayer = true;
+                }
+
+                if (MinigameStats == null)
+                {
+                    MinigameStats = new Dictionary<Enums.CookingStationMinigame, MinigameStatistic>();
+                    MinigameStats.Add(Enums.CookingStationMinigame.MixingBowl, new MinigameStatistic());
+                    MinigameStats.Add(Enums.CookingStationMinigame.PackingStation, new MinigameStatistic());
+                    MinigameStats.Add(Enums.CookingStationMinigame.RollingStation, new MinigameStatistic());
                 }
 
                 if (DaysUnlocked == null)
@@ -385,6 +396,11 @@ namespace Assets.Scripts.GameInformation
             if(GuardsFed!=null)GuardsFed.Clear();
 
             IngredientsAddedForPlayer = false;
+
+            MinigameStats.Clear();
+            MinigameStats.Add(Enums.CookingStationMinigame.MixingBowl, new MinigameStatistic());
+            MinigameStats.Add(Enums.CookingStationMinigame.PackingStation, new MinigameStatistic());
+            MinigameStats.Add(Enums.CookingStationMinigame.RollingStation, new MinigameStatistic());
 
         }
 
@@ -655,6 +671,11 @@ namespace Assets.Scripts.GameInformation
             {
 
             }
+        }
+
+        public static void AddMinigameTime(Enums.CookingStationMinigame station, int hours,int mins, int seconds)
+        {
+            MinigameStats[station].addPlayTime(hours, mins, seconds);
         }
 
 #endif

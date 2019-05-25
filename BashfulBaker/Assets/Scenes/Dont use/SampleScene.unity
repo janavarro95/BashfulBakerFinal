@@ -739,6 +739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcNamesWhoLiveHere:
   - Mr.Example
+  shouldFinishDay: 0
 --- !u!4 &365647198
 Transform:
   m_ObjectHideFlags: 0
@@ -1019,15 +1020,6 @@ PrefabInstance:
     - target: {fileID: 4362439614132237467, guid: 5085232a3bd529e4aa7e44bdcc7bfc4c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1848322737, guid: 5085232a3bd529e4aa7e44bdcc7bfc4c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365359825885277031, guid: 5085232a3bd529e4aa7e44bdcc7bfc4c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
