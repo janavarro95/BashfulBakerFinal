@@ -106,9 +106,11 @@ namespace Assets.Scripts.Menus
 
         private void checkForInput()
         {
+            if (Game.Menu == null) return;
             ///Checks for day selection buttons.
             foreach (KeyValuePair<string, MenuComponent> component in daySelectionComponents)
             {
+                if (Game.Menu == null) return;
                 if (Assets.Scripts.GameInput.GameCursorMenu.SimulateMousePress(component.Value))
                 {
                     try
@@ -122,6 +124,7 @@ namespace Assets.Scripts.Menus
                         GameInformation.Game.HUD.showHUD = false;
                         this.exitMenu();
                         SceneManager.LoadScene(component.Key);
+                        break;
                     }
                     catch (Exception err)
                     {

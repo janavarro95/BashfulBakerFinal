@@ -159,3 +159,4 @@ MonoBehaviour:
     name: Dane
     sentences:
     - I don't have any food to give him. Yikes!
+  daneFace: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}

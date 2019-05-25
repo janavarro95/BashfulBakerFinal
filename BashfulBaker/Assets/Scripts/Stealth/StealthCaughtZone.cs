@@ -228,16 +228,20 @@ public class StealthCaughtZone : MonoBehaviour
         if (!hasEaten)
         {
             // adjust light
-            awareness.flashlight.viewRadius /= 2;
-            awareness.flashlight.viewAngle /= 2;
+            //awareness.flashlight.viewRadius /= 2;
+            //awareness.flashlight.viewAngle /= 2;
             awareness.flashlight.viewMeshFilter.GetComponent<MeshRenderer>().material = pacMat;
             awareness.flashlight.DrawFieldOfView();
 
             // slow me down
-            awareness.lookSpeed /= 2;
-            awareness.movementSpeed /= 2;
+            //awareness.lookSpeed /= 2;
+            awareness.movementSpeed /= 1.5f;
             awareness.capturePatrolPoint = this.transform.position;
             awareness.movementLerp = 0.0f;
+
+            // remove spots
+            awareness.spotsToGoTo.Clear();
+            awareness.investigate = null;
 
             // send me home
             awareness.returnHome = true;

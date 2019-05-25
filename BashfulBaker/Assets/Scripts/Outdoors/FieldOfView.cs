@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Utilities.Timers;
 using Assets.Scripts.Stealth;
+using Assets.Scripts.GameInformation;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -66,16 +67,16 @@ public class FieldOfView : MonoBehaviour
         startPoint = guard.transform.position;
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (Static) return;
 
-        pathUpdateTimer += Time.deltaTime;
-        if (pathUpdateTimer > pathUpdateReset)
-        {
+        //pathUpdateTimer += Time.deltaTime;
+        //if (pathUpdateTimer > pathUpdateReset)
+        //{
             FindVisibleTargets();
-            pathUpdateTimer = 0;
-        }
+        //    pathUpdateTimer = 0;
+        //}
 
 
         if(visibleTargets.Count < 1)
@@ -94,17 +95,23 @@ public class FieldOfView : MonoBehaviour
 
     void FindVisibleTargets()
     {
-        if (!zone.talkingToPlayer)
+        if (Game.Player.gameObject == null) return;
+
+        if (!zone.talkingToPlayer && !zone.catching.hasEaten)
         {
-            if (GameObject.FindGameObjectWithTag("Player") == null) return;
-            sawPlayer = visibleTargets.Contains(GameObject.FindGameObjectWithTag("Player").transform);
+            sawPlayer = visibleTargets.Contains(Game.Player.gameObject.transform);
             seesPlayer = false;
             visibleTargets.Clear();
+
             Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
 
             for (int x = 0; x < targetsInViewRadius.Length; x++)
             {
                 Transform target = targetsInViewRadius[x].transform;
+
+                if (target.tag != "Player")
+                    continue;
+
                 Quaternion dirToTarget;
                 // Get Angle in Radians
                 float AngleRad = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x);
@@ -117,22 +124,24 @@ public class FieldOfView : MonoBehaviour
                 {
                     continue;
                 }
-                else if (!(target == GameObject.FindGameObjectWithTag("Player").transform && target.GetComponent<PlayerMovement>().hidden) && Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
+                else if (!(target == Game.Player.gameObject.transform && Game.Player.PlayerMovement.hidden) && Quaternion.Angle(transform.rotation, dirToTarget) < viewAngle / 2)
                 {
                     float distToTarget = Vector3.Distance(transform.position, target.position);
                     if (!Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, distToTarget, obstacleMask))
                     {
                         visibleTargets.Add(target);
-                        if (target == GameObject.FindGameObjectWithTag("Player").transform)
+                        if (target == Game.Player.gameObject.transform)
                         {
                             if (!sawPlayer && target)
                             {
                                 target.GetComponent<PlayerMovement>().Spotted();
+                                // play alert sound
+                                AudioSource aSource = this.GetComponent<AudioSource>();
+                                if (aSource != null)
+                                    aSource.Play();
                             }
                             seesPlayer = true;
                         }
-                        //guard.transform.position = Vector3.MoveTowards(guard.transform.position, target.transform.position, .1f / distToTarget);
-                        //if (guardAnimator != null) guardAnimator.animateGuard(guard.transform.position, startPoint,true);
                         zone.AddToPath(target.transform);
                         alert.SetActive(true);
                     }
@@ -141,9 +150,15 @@ public class FieldOfView : MonoBehaviour
 
             if (sawPlayer && !seesPlayer)
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().Escaped();
+                Game.Player.PlayerMovement.Escaped();
             }
         }
+        else
+        {
+            seesPlayer = false;
+            visibleTargets.Clear();
+        }
+
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)

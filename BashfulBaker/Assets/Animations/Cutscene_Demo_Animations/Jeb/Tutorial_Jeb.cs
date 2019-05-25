@@ -36,8 +36,9 @@ public class Tutorial_Jeb : MonoBehaviour
     {
         if (DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && step <16 && step>0)
         {
-                GameObject.Find("Headshot").GetComponent<Image>().sprite = headshots[step];
-                FindObjectOfType<DialogueManager>().StartDialogue(backandforth[step]);
+            FindObjectOfType<DialogueManager>().StartDialogue(backandforth[step]);
+            GameObject.Find("Headshot").GetComponent<Image>().sprite = headshots[step];
+
                 step++;
             Debug.Log(step);
 
