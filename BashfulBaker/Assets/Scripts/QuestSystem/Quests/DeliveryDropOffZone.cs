@@ -22,14 +22,6 @@ namespace Assets.Scripts.QuestSystem.Quests
 
         }
 
-        public void Update()
-        {
-            if (shouldFinishDay == true && Game.DialogueManager.IsDialogueUp == false)
-            {
-                Game.PhaseTimer.currentTime = Game.PhaseTimer.maxTime;
-            }
-        }
-
         /// <summary>
         /// If player is in the drop off zone and they interact with it, try to deliver the dish.
         /// </summary>
@@ -60,37 +52,8 @@ namespace Assets.Scripts.QuestSystem.Quests
                     {
                         Game.Player.dishesInventory.Remove(I);
                     }
-                    //if (hasADishBeenDelivered == false){ Debug.Log("No dishes to deliver here!");}
-
-
-                    int completed = 0;
-                    foreach (CookingQuest q in Game.QuestManager.quests)
-                    {
-                        //Debug.Log(q.RequiredDish + " " + q.personToDeliverTo);
-                        if (q.HasBeenDelivered == true)
-                        {
-                            completed++;
-                        }
-
-                    }
-                    //Debug.Log("COUNT!: "+Game.QuestManager.quests.Count);
-                    if (completed == Game.QuestManager.quests.Count && (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0))
-                    {
-                        Debug.Log("NOPE");
-                    }
-                    else if (completed == Game.QuestManager.quests.Count && Game.CurrentDayNumber > 1)
-                    {
-                        Debug.Log("Current day is: " + Game.CurrentDayNumber);
-                        Invoke("finish", 1f);
-                    }
                 }
             }
-        }
-
-        private void finish()
-        {
-            shouldFinishDay = true;
-
         }
     }
 }

@@ -311,6 +311,15 @@ namespace Assets.Scripts.Menus.HUDS
             //left ingredient sprite
             if (dishesList.Count > 0)
             {
+                if (dishesList[0].currentDishState == Enums.DishState.Packaged)
+                {
+                    firstDishImage.rectTransform.sizeDelta = new Vector2(39, 38);
+                }
+                else
+                {
+                    firstDishImage.rectTransform.sizeDelta = new Vector2(64, 128);
+                }
+
                 Texture2D texture = dishesList[0].currentSprite;
                 firstDishImage.sprite = Content.ContentManager.Instance.loadSprite(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 firstDishImage.color = Color.white;
@@ -321,6 +330,16 @@ namespace Assets.Scripts.Menus.HUDS
             //right ingredient sprite
             if (dishesList.Count > 1)
             {
+                if (dishesList[1].currentDishState == Enums.DishState.Packaged)
+                {
+                    secondDishImage.rectTransform.sizeDelta = new Vector2(39, 38);
+                }
+                else
+                {
+                    secondDishImage.rectTransform.sizeDelta = new Vector2(64, 128);
+                }
+
+
                 Texture2D texture = dishesList[1].currentSprite;
                 secondDishImage.sprite = Content.ContentManager.Instance.loadSprite(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 secondDishImage.color = Color.white;
@@ -331,6 +350,15 @@ namespace Assets.Scripts.Menus.HUDS
             //Top ingredient sprite
             if (dishesList.Count > 2)
             {
+                if (dishesList[2].currentDishState == Enums.DishState.Packaged)
+                {
+                    thirdDishImage.rectTransform.sizeDelta = new Vector2(39, 38);
+                }
+                else
+                {
+                    thirdDishImage.rectTransform.sizeDelta = new Vector2(64, 128);
+                }
+
                 Texture2D texture = dishesList[2].currentSprite;
                 thirdDishImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 thirdDishImage.color = Color.white;
@@ -341,6 +369,15 @@ namespace Assets.Scripts.Menus.HUDS
             //Bottom ingredient sprite
             if (dishesList.Count > (3))
             {
+                if (dishesList[3].currentDishState == Enums.DishState.Packaged)
+                {
+                    fourthDishImage.rectTransform.sizeDelta = new Vector2(39, 38);
+                }
+                else
+                {
+                    fourthDishImage.rectTransform.sizeDelta = new Vector2(64, 128);
+                }
+
                 Texture2D texture = dishesList[3].currentSprite;
                 fourthDishImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16);
                 fourthDishImage.color = Color.white;

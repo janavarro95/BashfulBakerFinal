@@ -6,7 +6,7 @@ using Assets.Scripts;
 using Assets.Scripts.GameInformation;
 using Assets.Scripts.GameInput;
 using Assets.Scripts.QuestSystem.Quests;
-
+using Assets.Scripts.Items;
 
 public class PorchConvo : MonoBehaviour
 {
@@ -79,7 +79,7 @@ public class PorchConvo : MonoBehaviour
         if (collision.tag != "Player")
             return;
 
-        if (Game.Player.activeItem.Name == deliveryOBJ && step==0)
+        if (Game.Player.activeItem.Name == deliveryOBJ&& (Game.Player.activeItem as Dish).currentDishState== Enums.DishState.Packaged && step==0 && Game.DialogueManager.IsDialogueUp==false)
         {
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 0;
             Neighbor_Sprite.enabled = true;

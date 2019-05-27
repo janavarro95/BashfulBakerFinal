@@ -54,6 +54,9 @@ public class PlayerMovement : MonoBehaviour {
     public SpriteRenderer buttonB;
     private float height;
 
+    public RuntimeAnimatorController bakeryAnimator;
+    public RuntimeAnimatorController nightAnimator;
+
     private bool canPlayerMove = true;
     public bool CanPlayerMove
     {
@@ -98,9 +101,11 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	void Start () {
+       
         anxietyTimer = new DeltaTimer(anxietyCooldown, Assets.Scripts.Enums.TimerType.CountDown, false);
         animator = this.GetComponent<Animator>();
-        getRandomFootstepSound();
+        SceneManager.sceneLoaded += sceneChange;
+       getRandomFootstepSound();
         walkingSoundTimer = new DeltaTimer(0.4d, Assets.Scripts.Enums.TimerType.CountDown, false);
         walkingSoundTimer.start();
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
@@ -115,6 +120,8 @@ public class PlayerMovement : MonoBehaviour {
         t = 0;
 
         height = (GetComponent<SpriteRenderer>().sprite.texture.height / 2) * transform.localScale.y;
+
+
 
         //dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
     }
@@ -531,6 +538,18 @@ public class PlayerMovement : MonoBehaviour {
             //buttonB.enabled = false;
             hidden = false;
             defaultSpeed = 1.25f;
+        }
+    }
+
+    public void sceneChange(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().name == "Neighborhood")
+        {
+            this.animator.runtimeAnimatorController = nightAnimator;
+        }
+        else
+        {
+            this.animator.runtimeAnimatorController = bakeryAnimator;
         }
     }
 }

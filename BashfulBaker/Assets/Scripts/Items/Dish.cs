@@ -278,7 +278,9 @@ namespace Assets.Scripts.Items
 
             this.preppedSprite = getAppropriatePreppedSprite();
             this.bakedSprite = getAppropriateBakedSprite();
-            this.packagedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(pastryBox, "PastryBox"));
+            //this.packagedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(pastryBox, "PastryBox"));
+            this.packagedSprite = getAppropriatePackagedSprite();
+
 
             this._sprite = this.ingredientsSprite;
         }
@@ -348,6 +350,34 @@ namespace Assets.Scripts.Items
             {
                 sheetTrays = Path.Combine(sheetTrays, "Pecan Crescent");
                 return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "Carry_Tray_RawPC_sprite"));
+            }
+            return null;
+        }
+
+        private Texture2D getAppropriatePackagedSprite()
+        {
+            string combinedFolders = Path.Combine("Graphics", "Objects");
+
+            string sheetTrays = Path.Combine(combinedFolders, "Pastry Box");
+
+
+            if (this.itemName == "Chocolate Chip Cookies" || this.itemName == "Chocolate Chip Cookie")
+            {
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "InventoryMenu_Boxed_CC"));
+            }
+
+            else if (this.itemName == "Mint Chip Cookies" || this.itemName == "Mint Chip Cookie")
+            {
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "InventoryMenu_Boxed_MC"));
+            }
+            else if (this.itemName == "Oatmeal Raisin Cookies" || this.itemName == "Oatmeal Raisin Cookie")
+            {
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "InventoryMenu_Boxed_OR"));
+            }
+
+            else if (this.itemName == "Pecan Crescent Cookies")
+            {
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "InventoryMenu_Boxed_PC"));
             }
             return null;
         }

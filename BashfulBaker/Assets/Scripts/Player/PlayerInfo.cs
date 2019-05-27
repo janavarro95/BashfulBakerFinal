@@ -25,6 +25,9 @@ namespace Assets.Scripts.Player
 
         private Item _activeItem;
 
+        /// <summary>
+        /// The active item held by the player.
+        /// </summary>
         public Item activeItem
         {
             get
@@ -39,7 +42,13 @@ namespace Assets.Scripts.Player
         }
 
         private GameObject _heldItemGameObject;
+        /// <summary>
+        /// Reference to the player's movement script on the player object.
+        /// </summary>
         private PlayerMovement _playerMovement;
+        /// <summary>
+        /// Reference to the player's movement script on the player object.
+        /// </summary>
         public PlayerMovement PlayerMovement
         {
             get
@@ -122,6 +131,28 @@ namespace Assets.Scripts.Player
 
         public PlayerArrowDirection arrowDirection;
 
+
+        private PlayerUI _playerUI;
+
+        /// <summary>
+        /// A reference to the player UI script.
+        /// </summary>
+        public PlayerUI PlayerUI
+        {
+            get
+            {
+                if (_playerUI == null)
+                {
+                    _playerUI = this.gameObject.transform.Find("PlayerUI").gameObject.GetComponent<PlayerUI>();
+                    return _playerUI;
+                }
+                else
+                {
+                    return _playerUI;
+                }
+            }
+        }
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -131,6 +162,7 @@ namespace Assets.Scripts.Player
             this.specialIngredientsInventory = new Inventory(6);
             this.facingDirection = Enums.FacingDirection.Down;
             this.hidden = false;
+           
         }
 
         /// <summary>
@@ -147,6 +179,7 @@ namespace Assets.Scripts.Player
                 if (Game.HUD != null)
                 {
                     Game.HUD.InventoryHUD.rotateSpecialIngredient(ingredient);
+                    PlayerUI.pickUp(ingredient);
                     if (playSound) Game.SoundEffects.playSIPickUpSound();
                 }
             }
