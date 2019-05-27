@@ -51,12 +51,17 @@ public class PorchConvo : MonoBehaviour
         {
             Game.HUD.showHUD = true;
             Game.PhaseTimer.resume();
-            Game.PhaseTimer.currentTime = Game.PhaseTimer.maxTime;
+            //Game.PhaseTimer.currentTime = Game.PhaseTimer.maxTime;
+            promptToEndDay();
 
-        }else if (Game.CurrentDayNumber == 2 && Game.QuestManager.completedAllQuests() == false)
+        }else if (Game.CurrentDayNumber == 2 && Game.QuestManager.completedAllQuests()&& Game.QuestManager.containsQuest("Amari", "Mint Chip Cookies")==false)
         {
+            Game.QuestManager.removeQuest("Sylvia", "Mint Chip Cookies");
             Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Amari", new List<string>()));
-            Game.QuestManager.quests.RemoveAt(1);
+
+            Dish d = new Dish(Enums.Dishes.MintChipCookies, Enums.DishState.Packaged);
+            Game.Player.dishesInventory.Add(d);
+
             Debug.Log(Game.QuestManager.quests.Count);
             Game.HUD.QuestHUD.updateForTheDay();
             Game.PhaseTimer.resume();
@@ -67,8 +72,14 @@ public class PorchConvo : MonoBehaviour
         {
             Game.HUD.showHUD = true;
             Game.PhaseTimer.resume();
-            Game.PhaseTimer.currentTime = Game.PhaseTimer.maxTime;
+            //Game.PhaseTimer.currentTime = Game.PhaseTimer.maxTime;
+            promptToEndDay();
         }
+
+    }
+
+    private void promptToEndDay()
+    {
 
     }
 
@@ -78,21 +89,29 @@ public class PorchConvo : MonoBehaviour
     {
         if (collision.tag != "Player")
             return;
+        if (Game.Player.activeItem != null)
+        {
+            if (Game.Player.activeItem.Name == deliveryOBJ && (Game.Player.activeItem as Dish).currentDishState == Enums.DishState.Packaged && step == 0 && Game.DialogueManager.IsDialogueUp == false)
+            {
+                GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 0;
+                Neighbor_Sprite.enabled = true;
+                GameObject.Find("Headshot").GetComponent<Image>().sprite = faces[step];
+                FindObjectOfType<DialogueManager>().StartDialogue(convo[step]);
+                Game.HUD.showHUD = false;
+                Game.PhaseTimer.pause();
+                step++;
+            }
+            else if (step == 0)
+            {
+                GameObject.Find("Headshot").GetComponent<Image>().sprite = poutingboy;
+                FindObjectOfType<DialogueManager>().StartDialogue(wrongCookies);
+            }
+        }
+    }
 
-        if (Game.Player.activeItem.Name == deliveryOBJ&& (Game.Player.activeItem as Dish).currentDishState== Enums.DishState.Packaged && step==0 && Game.DialogueManager.IsDialogueUp==false)
-        {
-            GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 0;
-            Neighbor_Sprite.enabled = true;
-            GameObject.Find("Headshot").GetComponent<Image>().sprite = faces[step];
-            FindObjectOfType<DialogueManager>().StartDialogue(convo[step]);
-            Game.HUD.showHUD = false;
-            Game.PhaseTimer.pause();
-            step++;
-        }
-        else if (step ==0)
-        {
-            GameObject.Find("Headshot").GetComponent<Image>().sprite = poutingboy;
-            FindObjectOfType<DialogueManager>().StartDialogue(wrongCookies);
-        }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Game.HUD.showHUD = true;
+        Game.PhaseTimer.resume();
     }
 }

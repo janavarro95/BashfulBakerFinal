@@ -301,5 +301,16 @@ namespace Assets.Scripts.Utilities.Timers
             return this.minutes.ToString() +":"+ ((this.seconds<10)? ("0"+this.seconds.ToString()) : this.seconds.ToString());
         }
 
+        public void finish()
+        {
+            if(this.type== TimerType.CountDown)
+            {
+                this.currentTime = 0;
+            }
+            else
+            {
+                this.currentTime = maxTime;
+            }
+        }
     }
 }

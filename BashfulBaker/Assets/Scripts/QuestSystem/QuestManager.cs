@@ -283,6 +283,7 @@ namespace Assets.Scripts.QuestSystem
         public bool completedAllQuests()
         {
             int completed = 0;
+            if (Game.QuestManager.quests.Count == 0) return false;
             foreach (CookingQuest q in Game.QuestManager.quests)
             {
                 //Debug.Log(q.RequiredDish + " " + q.personToDeliverTo);
@@ -293,6 +294,37 @@ namespace Assets.Scripts.QuestSystem
 
             }
             if (completed == Game.QuestManager.quests.Count) return true;
+            return false;
+        }
+
+        public bool removeQuest(string npc, string dish)
+        {
+            CookingQuest remove=null;
+            foreach(CookingQuest q in this.quests)
+            {
+                if(q.personToDeliverTo==npc && q.RequiredDish == dish)
+                {
+                    remove = q;
+                }
+            }
+            if (remove != null)
+            {
+                quests.Remove(remove);
+                return true;
+            }
+            return false;
+        }
+
+        public bool containsQuest(string npc, string dish)
+        {
+            CookingQuest remove=null;
+            foreach(CookingQuest q in this.quests)
+            {
+                if(q.personToDeliverTo==npc && q.RequiredDish == dish)
+                {
+                    return true;
+                }
+            }
             return false;
         }
     }

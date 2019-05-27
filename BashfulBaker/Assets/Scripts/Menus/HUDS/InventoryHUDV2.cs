@@ -226,6 +226,8 @@ namespace Assets.Scripts.Menus.HUDS
         /// </summary>
         public int currentDishIndex;
 
+        public TMPro.TextMeshProUGUI endText;
+
 
         [SerializeField]
         SpecialIngredientRotation sp1Rot;
@@ -271,6 +273,9 @@ namespace Assets.Scripts.Menus.HUDS
             sp3Rot = new SpecialIngredientRotation(thirdSpecialIngredientImage);
             sp4Rot = new SpecialIngredientRotation(fourthSpecialIngredientImage);
             basketRot = new SpecialIngredientRotation(specialIngredientsIcon);
+
+            endText = dishes.transform.Find("EndDay").GetComponent<TMPro.TextMeshProUGUI>();
+            endText.gameObject.SetActive(false);
 
             firstDishImage.gameObject.SetActive(true);
             secondDishImage.gameObject.SetActive(true);
@@ -457,6 +462,15 @@ namespace Assets.Scripts.Menus.HUDS
                     sp3Rot.update();
                     sp4Rot.update();
                     basketRot.update();
+
+                    if (Game.QuestManager.completedAllQuests())
+                    {
+                        endText.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        endText.gameObject.SetActive(false);
+                    }
                 }
 
                 if (GameInput.InputControls.LeftTriggerPressed && Game.HUD.showInventory && Game.Player.dishesInventory.IsEmpty==false)
@@ -479,6 +493,13 @@ namespace Assets.Scripts.Menus.HUDS
                     return;
                 }
                 updateCurrentDishIndex(0);
+
+                if (GameInput.InputControls.SelectPressed && Game.QuestManager.completedAllQuests())
+                {
+                    //DO NEW MENU!
+                    Game.PhaseTimer.finish();
+                }
+
             }
 
         }
