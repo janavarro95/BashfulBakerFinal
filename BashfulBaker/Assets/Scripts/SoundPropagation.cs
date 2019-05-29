@@ -11,6 +11,7 @@ public class SoundPropagation : MonoBehaviour
     public float soundStartRad = 0.0f;
     public float soundEndRad = 1.0f;
     public float soundGrowthSpeed = 0.5f;
+    public LayerMask obstacleMask;
 
     // Components
     AudioSource audioSource;
@@ -64,11 +65,22 @@ public class SoundPropagation : MonoBehaviour
         GameObject g = collision.gameObject;
         if (g.tag == "Guard")
         {
-            //Debug.Log("--- Hit Guard");
-            // investiagte set
-            StealthAwarenessZone saz = g.GetComponentInChildren<StealthAwarenessZone>();
-            saz.AddToPath(this.transform);
-            saz.capturePatrolPoint = this.transform.position;
+            Transform target = g.transform;
+            float distToTarget = Vector3.Distance(transform.position, target.position);
+            if (!Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, distToTarget, obstacleMask))
+            {
+                // investiagte set
+                StealthAwarenessZone saz = g.GetComponentInChildren<StealthAwarenessZone>();
+                saz.AddToPath(this.transform);
+                saz.capturePatrolPoint = this.transform.position;
+            }
+            else
+            {
+                StealthAwarenessZone saz = g.GetComponentInChildren<StealthAwarenessZone>();
+                saz.PatrolPause();
+                saz.investigate = this.transform;
+                saz.lookSpeed += 0.1f;
+            }
         }
     }
 }

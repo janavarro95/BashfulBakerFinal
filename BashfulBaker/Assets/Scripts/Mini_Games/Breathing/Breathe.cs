@@ -24,9 +24,9 @@ public class Breathe : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag.Equals("zone") && progress < 20)
+        if (collision.tag.Equals("zone") && progress < 5)
         {
-            progress += .03f;
+            progress += .01f;
             pbar.transform.localScale = new Vector3(progress, pbar.transform.localScale.y, 1);
         }
     }

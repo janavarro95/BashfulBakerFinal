@@ -188,7 +188,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6443600809147988306}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8322258, y: -0.3915133, z: 0}
+  m_LocalPosition: {x: 0.8322258, y: -0.21, z: 0}
   m_LocalScale: {x: 0.15950051, y: 0.099824905, z: 1}
   m_Children: []
   m_Father: {fileID: 6443600808551986455}
@@ -456,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LT: 0
+  progress: 0
   pbar: {fileID: 6443600809147988306}
   top: {fileID: 7325610273680362281}
   bot: {fileID: 4094394032623622854}

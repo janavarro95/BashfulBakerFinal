@@ -2276,6 +2276,7 @@ GameObject:
   - component: {fileID: 1083138370}
   - component: {fileID: 1083138371}
   - component: {fileID: 1083138372}
+  - component: {fileID: 1083138365}
   m_Layer: 0
   m_Name: Jeb
   m_TagString: Untagged
@@ -2293,6 +2294,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99a467fa26e24174e80f4f0963a8b74a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1083138365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083138363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1381fc5e9d5e41628b88436f63ddc44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &1083138366
