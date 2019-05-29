@@ -120,6 +120,7 @@ public class StealthAwarenessZone : MonoBehaviour
     public GuardAnimationScript animationScript;
 
     public GameObject question;
+    public bool paused = false;
 
     // Start is called before the first frame update
     void Start()
@@ -140,11 +141,9 @@ public class StealthAwarenessZone : MonoBehaviour
         {
             setUpPatrolPoint();
         }
-        if (movementLogic == MovementType.PatrollAndPause)
-        {
-            float pauseTime = Random.Range(minPauseTime, maxPauseTime);
-            this.patrolPauseTimer = new DeltaTimer((double)pauseTime, Assets.Scripts.Enums.TimerType.CountDown, false, null);
-        }
+
+        float pauseTime = Random.Range(minPauseTime, maxPauseTime);
+        this.patrolPauseTimer = new DeltaTimer((double)pauseTime, Assets.Scripts.Enums.TimerType.CountDown, false, null);
 
 
     }
@@ -291,24 +290,16 @@ public class StealthAwarenessZone : MonoBehaviour
     /// </summary>
     private void Patrol()
     {
-        // Patrol and pause
-        if (this.movementLogic == MovementType.PatrollAndPause)
+        // pause
+        if (paused)
         {
-            this.patrolPauseTimer.tick();
-            if (this.patrolPauseTimer.IsFinished)
-            {
-                this.patrolPauseTimer.maxTime = (double)Random.Range(minPauseTime, maxPauseTime);
-                this.patrolPauseTimer.restart();
-                this.patrolPauseTimer.pause();
-            }
-            else if (this.patrolPauseTimer.IsTicking)
-            {
-                return;
-            }
+            animateGuard(this.transform.position, this.transform.position);
+            PatrolPauseTick();
+            return;
         }
 
         // Patrol point wrap around
-        if (currentPatrolPoint >= patrolPoints.Count)
+        if (currentPatrolPoint >= patrolPoints.Count || currentPatrolPoint < 0)
         {
             currentPatrolPoint = 0;
         }
@@ -330,12 +321,15 @@ public class StealthAwarenessZone : MonoBehaviour
 
                     // reset capture
                     this.capturePatrolPoint = this.capturePatrolPointReset;
+                    // deiterate
+                    //currentPatrolPoint-=2;
                 }
                 else
                 {
                     // patrol
                     sequenceStartingSpot = this.transform.position;
                     nextTargetSpot = patrolPoints[currentPatrolPoint];
+                    this.startingLocation = nextTargetSpot;
                     // iterate
                     currentPatrolPoint++;
                 }
@@ -344,19 +338,42 @@ public class StealthAwarenessZone : MonoBehaviour
                 // reset movement lerps
                 this.movementLerp = 0f;
                 this.lookAroundLerp = 0f;
-
-                // pause timer
-                if (this.movementLogic == MovementType.PatrollAndPause)
-                {
-                    this.patrolPauseTimer.start();
-                }
             }
 
             // move and animate
-
             this.gameObject.transform.parent.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, movementLerp);
             animateGuard(sequenceStartingSpot, nextTargetSpot);
         }
+    }
+
+    void PatrolPauseTick()
+    {
+        question.SetActive(true);
+        this.patrolPauseTimer.tick();
+        if (this.patrolPauseTimer.IsFinished)
+        {
+            this.patrolPauseTimer.maxTime = (double)Random.Range(minPauseTime, maxPauseTime);
+            this.patrolPauseTimer.restart();
+            this.patrolPauseTimer.pause();
+            paused = false;
+            this.investigate = null;
+            question.SetActive(false);
+        }
+    }
+
+    public void PatrolPause()
+    {
+        paused = true;
+        this.patrolPauseTimer.maxTime = (double)Random.Range(minPauseTime, maxPauseTime);
+        this.patrolPauseTimer.restart();
+        this.patrolPauseTimer.start();
+    }
+    public void PatrolPause(float time)
+    {
+        paused = true;
+        this.patrolPauseTimer.maxTime = (double)time;
+        this.patrolPauseTimer.restart();
+        this.patrolPauseTimer.start();
     }
 
     /// <summary>
@@ -446,7 +463,7 @@ public class StealthAwarenessZone : MonoBehaviour
         }
         else
         {
-            if (this.aiType != LookingType.None && movementLogic == MovementType.ContinuousPatrolling)
+            if (this.aiType != LookingType.None && !paused && !returnHome)
             {
                 aiLookDirectlyAt(patrolPoints[(currentPatrolPoint + patrolPoints.Count - 1) % patrolPoints.Count]);
             }

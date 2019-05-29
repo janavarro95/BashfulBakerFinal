@@ -467,6 +467,7 @@ MonoBehaviour:
   flashlight: {fileID: 0}
   catching: {fileID: 0}
   movementSpeed: 2
+  spotsToGoTo: []
   investigate: {fileID: 0}
   returnHome: 0
   talkingToPlayer: 0
@@ -480,14 +481,15 @@ MonoBehaviour:
     type: 0
     state: 0
     autoRestart: 0
-  minPauseTime: 3
-  maxPauseTime: 5
-  movementLogic: 0
+  minPauseTime: 1
+  maxPauseTime: 3
+  movementLogic: 1
   aiType: 3
   chasesPlayer: 0
   shouldMove: 0
   animationScript: {fileID: 2347811556397678488}
   question: {fileID: 4247124446377787189}
+  paused: 0
 --- !u!114 &3294514413177242480
 MonoBehaviour:
   m_ObjectHideFlags: 0
