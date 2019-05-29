@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 7701428843284771273}
   m_Layer: 0
   m_Name: Guard Awareness
-  m_TagString: Untagged
+  m_TagString: Guard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -467,6 +467,7 @@ MonoBehaviour:
   flashlight: {fileID: 0}
   catching: {fileID: 0}
   movementSpeed: 2
+  spotsToGoTo: []
   investigate: {fileID: 0}
   returnHome: 0
   talkingToPlayer: 0
@@ -539,7 +540,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   visibleTargets: []
-  meshResolution: 0.5
+  meshResolution: 1
   viewMeshFilter: {fileID: 2697602161223358511}
   edgeResolveIterations: 4
   edgeDistThreshold: 0.5
