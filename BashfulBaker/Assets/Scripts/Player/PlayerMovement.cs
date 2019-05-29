@@ -233,7 +233,7 @@ public class PlayerMovement : MonoBehaviour {
     /// <summary>
     /// Checks for the player to open up a menu.
     /// </summary>
-    private void checkForMovement()
+    public void checkForMovement(bool justChecking=false)
     {
 
         //If the player is visible they probably should be able to open a menu.
@@ -244,16 +244,18 @@ public class PlayerMovement : MonoBehaviour {
                 checkForMenuOpening();
 
                 Vector3 offset = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * MovementSpeed;
-
-                //Non-diagonal movement.
-                if ((Mathf.Abs(offset.x) > Mathf.Abs(offset.y)))
+                if (justChecking == false)
                 {
+                    //Non-diagonal movement.
+                    if ((Mathf.Abs(offset.x) > Mathf.Abs(offset.y)))
+                    {
 
-                    this.gameObject.transform.position += new Vector3(offset.x, 0, 0);
-                }
-                else
-                {
-                    this.gameObject.transform.position += new Vector3(0, offset.y, 0);
+                        this.gameObject.transform.position += new Vector3(offset.x, 0, 0);
+                    }
+                    else
+                    {
+                        this.gameObject.transform.position += new Vector3(0, offset.y, 0);
+                    }
                 }
 
                 if ((Mathf.Abs(offset.x) > 0 || Mathf.Abs(offset.y) > 0) && walkingSoundTimer.IsFinished && this.spriteRenderer.enabled)
@@ -269,11 +271,12 @@ public class PlayerMovement : MonoBehaviour {
                 }
 
                 playCharacterMovementAnimation(offset);
-
+                
                 if (!SceneManager.GetActiveScene().name.Contains("Kitchen"))
                 {
                     transform.position = new Vector3 (transform.position.x, transform.position.y, (transform.position.y) * .01f);
                 }
+                
             }
             else
             {
@@ -317,7 +320,7 @@ public class PlayerMovement : MonoBehaviour {
                 { //left walking animation
                     animator.Play("LWalk");
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
-                    heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
+                    heldObject.transform.localPosition = new Vector3(0f, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
 
                 }
@@ -325,7 +328,7 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     animator.Play("RWalk");
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
-                    heldObject.transform.localPosition = new Vector3(1f, 0, heldObject.transform.localPosition.z);
+                    heldObject.transform.localPosition = new Vector3(0f, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
                 }
             }
@@ -352,14 +355,14 @@ public class PlayerMovement : MonoBehaviour {
                 { //left walking animation
                     animator.Play("LWalk");
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Left;
-                    heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
+                    heldObject.transform.localPosition = new Vector3(0f, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
                 }
                 else
                 {
                     animator.Play("RWalk");
                     Game.Player.facingDirection = Assets.Scripts.Enums.FacingDirection.Right;
-                    heldObject.transform.localPosition = new Vector3(1f, 0, heldObject.transform.localPosition.z);
+                    heldObject.transform.localPosition = new Vector3(0f, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
                 }
             }
@@ -375,13 +378,13 @@ public class PlayerMovement : MonoBehaviour {
                 else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Left)
                 {
                     animator.Play("LIdle");
-                    heldObject.transform.localPosition = new Vector3(-1f, 0, heldObject.transform.localPosition.z);
+                    heldObject.transform.localPosition = new Vector3(0f, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
                 }
                 else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Right)
                 {
                     animator.Play("RIdle");
-                    heldObject.transform.localPosition = new Vector3(1f, 0, heldObject.transform.localPosition.z);
+                    heldObject.transform.localPosition = new Vector3(0f, 0, heldObject.transform.localPosition.z);
                     heldObjectRenderer.enabled = true;
                 }
                 else if (Game.Player.facingDirection == Assets.Scripts.Enums.FacingDirection.Up)

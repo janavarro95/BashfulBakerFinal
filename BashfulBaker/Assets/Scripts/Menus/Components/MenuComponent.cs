@@ -57,24 +57,28 @@ namespace Assets.Scripts.Menus.Components
                 {
                     Game.Menu.menuCursor.gameObject.GetComponent<RectTransform>().position = topNeighbor.unityObject.transform.position;
                     Game.Menu.selectedComponent = topNeighbor;
+                    Game.SoundEffects.playMenuButtonMovementSnap();
                     return topNeighbor;
                 }
                 if (NextDirection == Enums.FacingDirection.Down && bottomNeighbor != null)
                 {
                     Game.Menu.menuCursor.gameObject.GetComponent<RectTransform>().position = bottomNeighbor.unityObject.transform.position;
                     Game.Menu.selectedComponent = bottomNeighbor;
+                    Game.SoundEffects.playMenuButtonMovementSnap();
                     return bottomNeighbor;
                 }
                 if (NextDirection == Enums.FacingDirection.Left && leftNeighbor != null)
                 {
                     Game.Menu.menuCursor.gameObject.GetComponent<RectTransform>().position = leftNeighbor.unityObject.transform.position;
                     Game.Menu.selectedComponent = leftNeighbor;
+                    Game.SoundEffects.playMenuButtonMovementSnap();
                     return leftNeighbor;
                 }
                 if (NextDirection == Enums.FacingDirection.Right && rightNeighbor != null)
                 {
                     Game.Menu.menuCursor.gameObject.GetComponent<RectTransform>().position = rightNeighbor.unityObject.transform.position;
                     Game.Menu.selectedComponent = rightNeighbor;
+                    Game.SoundEffects.playMenuButtonMovementSnap();
                     return rightNeighbor;
                 }
 

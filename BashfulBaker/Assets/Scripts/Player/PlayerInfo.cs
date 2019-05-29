@@ -268,7 +268,13 @@ namespace Assets.Scripts.Player
                 }
 
                 this._heldItemGameObject.GetComponent<SpriteRenderer>().sprite = Content.ContentManager.Instance.loadSprite(activeItem.Sprite);
-                this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                //this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+
+                if (this._heldItemGameObject.activeInHierarchy == false)
+                {
+                    this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                }
+
                 this._heldItemGameObject.SetActive(true);
 
                 this._heldItemGameObject.GetComponent<HeldObjectAnimator>().loadAnimatorFromPrefab(Game.Player.activeItem.itemName);
@@ -286,7 +292,7 @@ namespace Assets.Scripts.Player
 
                 }
                 this._heldItemGameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
-                this._heldItemGameObject.SetActive(true);
+                this._heldItemGameObject.SetActive(false);
             }
         }
 
