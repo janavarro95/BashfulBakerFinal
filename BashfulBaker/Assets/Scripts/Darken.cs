@@ -30,7 +30,7 @@ public class Darken : MonoBehaviour
         {
             if (Game.PhaseTimer != null)
             {
-                transparency = (float)(Game.PhaseTimer.currentTime / Game.PhaseTimer.maxTime);
+                transparency = Mathf.Lerp(.5f, .9f, (float)(Game.PhaseTimer.currentTime / Game.PhaseTimer.maxTime));
                 mat.SetFloat("_Transparency", transparency);
             }
             else
