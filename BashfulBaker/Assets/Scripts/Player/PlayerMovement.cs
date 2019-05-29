@@ -493,9 +493,6 @@ public class PlayerMovement : MonoBehaviour {
     {
         guardsSeeingMe++;
         alert.enabled = true;
-        alert.color = new Color(1, 1, 1, 1);
-
-        //play alert sound
     }
     //Called when leaving a guard's vision
     public void Escaped()

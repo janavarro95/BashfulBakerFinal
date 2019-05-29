@@ -264,6 +264,7 @@ public class StealthCaughtZone : MonoBehaviour
             Game.Player.dishesInventory.Remove(itemToTake);
             Game.Player.activeItem = null;
             Game.CaughtByGuard(this.GuardID, dishConsumedName);
+            Game.Player.PlayerMovement.Escaped();
         }
     }
 
