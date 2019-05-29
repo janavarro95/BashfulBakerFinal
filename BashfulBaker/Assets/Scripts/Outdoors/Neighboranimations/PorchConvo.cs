@@ -91,7 +91,7 @@ public class PorchConvo : MonoBehaviour
             return;
         if (Game.Player.activeItem != null)
         {
-            if (Game.Player.activeItem.Name == deliveryOBJ && (Game.Player.activeItem as Dish).currentDishState == Enums.DishState.Packaged && step == 0 && Game.DialogueManager.IsDialogueUp == false)
+            if (Game.Player.activeItem.Name == deliveryOBJ && (Game.Player.activeItem as Dish).currentDishState == Enums.DishState.Packaged && step == 0 && Game.DialogueManager.IsDialogueUp == false && (Game.Player.activeItem as Dish).IsDishComplete)
             {
                 GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 0;
                 Neighbor_Sprite.enabled = true;
@@ -101,13 +101,18 @@ public class PorchConvo : MonoBehaviour
                 Game.PhaseTimer.pause();
                 step++;
             }
-            else if (step == 0)
-            {
-                GameObject.Find("Headshot").GetComponent<Image>().sprite = poutingboy;
-                FindObjectOfType<DialogueManager>().StartDialogue(wrongCookies);
-            }
+
         }
     }
+
+   /* private void OnTriggerEnter2D(Collision2D collision)
+    {
+        if (step == 0 && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && )
+        {
+            GameObject.Find("Headshot").GetComponent<Image>().sprite = poutingboy;
+            FindObjectOfType<DialogueManager>().StartDialogue(wrongCookies);
+        }
+    }*/
 
     private void OnTriggerExit2D(Collider2D collision)
     {
