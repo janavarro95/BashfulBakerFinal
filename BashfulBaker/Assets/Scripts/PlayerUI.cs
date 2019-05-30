@@ -1,4 +1,5 @@
-﻿using Assets.Scripts;
+
+using Assets.Scripts;
 using Assets.Scripts.Content;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,7 +19,8 @@ public class PlayerUI : MonoBehaviour
     public Texture2D mintChip;
     public Texture2D raisin;
     public Texture2D pecan;
-    
+
+    private float y;
 
     // Start is called before the first frame update
     public void Start()
@@ -26,6 +28,7 @@ public class PlayerUI : MonoBehaviour
         uiPickupImage = this.gameObject.transform.Find("Canvas").Find("PickupImage").gameObject.GetComponent<Image>();
         uiPickupImage.gameObject.SetActive(false);
         lerp = 0f;
+        y = uiPickupImage.rectTransform.localPosition.y;
     }
 
     // Update is called once per frame
@@ -40,7 +43,7 @@ public class PlayerUI : MonoBehaviour
                 uiPickupImage.gameObject.SetActive(false);
                 shouldLerp = false;
             }
-            uiPickupImage.rectTransform.localPosition = Vector3.Lerp(new Vector3(0, 0, 0), new Vector3(0, 50, 0), lerp);
+            uiPickupImage.rectTransform.localPosition = Vector3.Lerp(new Vector3(0, y, 0), new Vector3(0, y+50, 0), lerp);
             float scale= (lerp < 0.5f) ? 1f + (lerp * 3f) : 4f - (lerp * 3f);
             uiPickupImage.rectTransform.localScale = new Vector3(scale, scale, 1f);
         }
@@ -65,7 +68,7 @@ public class PlayerUI : MonoBehaviour
             uiPickupImage.sprite = Sprite.Create(pecan, new Rect(0, 0, 48, 32), new Vector2(0.5f, 0.5f));
         }
 
-        uiPickupImage.rectTransform.localPosition = new Vector3(0, 0, 0);
+        uiPickupImage.rectTransform.localPosition = new Vector3(0, y, 0);
         uiPickupImage.gameObject.SetActive(true);
         lerp = 0f;
         shouldLerp = true;
