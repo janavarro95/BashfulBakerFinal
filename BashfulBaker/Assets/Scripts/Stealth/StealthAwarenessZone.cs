@@ -182,105 +182,107 @@ public class StealthAwarenessZone : MonoBehaviour
     {
         // state tracking
         myState = 1;
-
-        awareOfPlayer = (!catching.hasEaten && (flashlight.seesPlayer || this.investigate != null));
-        shouldMove = (awareOfPlayer || returnHome) && !talkingToPlayer;
-
-        // AWARE
-        if (awareOfPlayer)
+        if (!catching.dm.IsDialogueUp)
         {
-            // PURSUIT or INVESTIGATE
-            bool pursuit = (flashlight.seesPlayer);
-            bool invest  = (this.investigate != null);
-            myState = 64 - (invest ? 0 : 14);
+            awareOfPlayer = (!catching.hasEaten && (flashlight.seesPlayer || this.investigate != null));
+            shouldMove = (awareOfPlayer || returnHome) && !talkingToPlayer;
 
-            // set question mark
-            question.SetActive(invest && !pursuit);
-            //Debug.Log("Aware of Player");
+            // AWARE
+            if (awareOfPlayer)
+            {
+                // PURSUIT or INVESTIGATE
+                bool pursuit = (flashlight.seesPlayer);
+                bool invest = (this.investigate != null);
+                myState = 64 - (invest ? 0 : 14);
 
-            // movement
-            if (shouldMove)
-            {
-                movementLerpChange = getProperMovementSpeed(2f);
-                movementLerp += movementLerpChange;
+                // set question mark
+                question.SetActive(invest && !pursuit);
+                //Debug.Log("Aware of Player");
 
-                // get next spot in the path
-                if (movementLerp >= 1.0f)
-                {
-                    getNextTargetSpot();
-                }
-                // lerp there
-                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, movementLerp);
-                // keep flashlight looking at player
-                aiLookLogic();
-            }
-
-            //Animate here
-            if (movementLerpChange != 0 && !talkingToPlayer)
-            {
-                animateGuard(this.transform.position, nextTargetSpot);
-            }
-            else
-            {
-                animateGuard(this.transform.position, this.transform.position, (this.transform.position.x < nextTargetSpot.x));
-            }
-        }
-        // RETURN HOME
-        else if (returnHome)
-        {
-            question.SetActive(false);
-            // state tracking
-            myState = 8;
-            //Debug.Log("Returning Home");
-            if (shouldMove)
-            {
                 // movement
-                movementLerpChange = getProperMovementSpeed();
-                movementLerp += movementLerpChange;
-
-                // get next spot in the path
-                if (movementLerp >= 1.0f)
+                if (shouldMove)
                 {
-                    getNextReturnSpot();
+                    movementLerpChange = getProperMovementSpeed(2f);
+                    movementLerp += movementLerpChange;
+
+                    // get next spot in the path
+                    if (movementLerp >= 1.0f)
+                    {
+                        getNextTargetSpot();
+                    }
+                    // lerp there
+                    this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, movementLerp);
+                    // keep flashlight looking at player
+                    aiLookLogic();
                 }
 
-                // lerp there
-                this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, movementLerp);
-                // keep flashlight looking at player
-                aiLookLogic();
+                //Animate here
+                if (movementLerpChange != 0 && !talkingToPlayer)
+                {
+                    animateGuard(this.transform.position, nextTargetSpot);
+                }
+                else
+                {
+                    animateGuard(this.transform.position, this.transform.position, (this.transform.position.x < nextTargetSpot.x));
+                }
             }
-            //Animate here
-            if (movementLerpChange != 0 && !talkingToPlayer)
+            // RETURN HOME
+            else if (returnHome)
             {
-                animateGuard(this.transform.position, nextTargetSpot);
+                question.SetActive(false);
+                // state tracking
+                myState = 8;
+                //Debug.Log("Returning Home");
+                if (shouldMove)
+                {
+                    // movement
+                    movementLerpChange = getProperMovementSpeed();
+                    movementLerp += movementLerpChange;
+
+                    // get next spot in the path
+                    if (movementLerp >= 1.0f)
+                    {
+                        getNextReturnSpot();
+                    }
+
+                    // lerp there
+                    this.transform.parent.gameObject.transform.position = Vector3.Lerp(sequenceStartingSpot, nextTargetSpot, movementLerp);
+                    // keep flashlight looking at player
+                    aiLookLogic();
+                }
+                //Animate here
+                if (movementLerpChange != 0 && !talkingToPlayer)
+                {
+                    animateGuard(this.transform.position, nextTargetSpot);
+                }
+                else
+                {
+                    animateGuard(this.transform.position, this.transform.position, (this.transform.position.x < nextTargetSpot.x));
+                }
             }
+            // UNAWARE
             else
             {
-                animateGuard(this.transform.position, this.transform.position, (this.transform.position.x < nextTargetSpot.x));
-            }
-        }
-        // UNAWARE
-        else
-        {
-            question.SetActive(false);
-            // state tracking
-            myState = 4;
-            //Debug.Log("UNaware of Player");
+                question.SetActive(false);
+                // state tracking
+                myState = 4;
+                //Debug.Log("UNaware of Player");
 
-            // looking
-            aiLookLogic();
+                // looking
+                aiLookLogic();
 
-            // movement
-            if(movementLogic == MovementType.None)
-            {
-                //Do nothing.
-                //Animate here
-                animateGuard(this.gameObject.transform.position, this.gameObject.transform.position);
-            }
-            else if (movementLogic == MovementType.ContinuousPatrolling || movementLogic== MovementType.PatrollAndPause)
-            {
-                //Patrol
-                Patrol();
+                // movement
+                if (movementLogic == MovementType.None)
+                {
+                    //Do nothing.
+                    //Animate here
+                    animateGuard(this.gameObject.transform.position, this.gameObject.transform.position);
+                }
+                else if (movementLogic == MovementType.ContinuousPatrolling || movementLogic == MovementType.PatrollAndPause)
+                {
+                    //Patrol
+                    Patrol();
+                }
             }
         }
     }
