@@ -463,7 +463,7 @@ public class StealthAwarenessZone : MonoBehaviour
         }
         else
         {
-            if (this.aiType != LookingType.None && !paused && !returnHome)
+            if (movementLogic == MovementType.ContinuousPatrolling && !paused && !returnHome)
             {
                 aiLookDirectlyAt(patrolPoints[(currentPatrolPoint + patrolPoints.Count - 1) % patrolPoints.Count]);
             }

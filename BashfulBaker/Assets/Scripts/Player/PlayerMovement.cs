@@ -500,6 +500,11 @@ public class PlayerMovement : MonoBehaviour {
         guardsSeeingMe--;
         alert.enabled = false;
     }
+    public void EscapedReset()
+    {
+        guardsSeeingMe = 0;
+        alert.enabled = false;
+    }
 
     /// <summary>
     /// move the arrow to the next spot

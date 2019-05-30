@@ -3,6 +3,7 @@ using Assets.Scripts.Items;
 using Assets.Scripts.Utilities;
 using Assets.Scripts.GameInput;
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -177,12 +178,6 @@ public class StealthCaughtZone : MonoBehaviour
 
         // take item
         itemToTake = i;
-        if (itemToTake != null)
-        {
-
-            Debug.Log("Taking item away");
-            TakeItemAway();
-        }
         // stop the player
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().CanPlayerMove = false;
     }
@@ -201,16 +196,19 @@ public class StealthCaughtZone : MonoBehaviour
         awareness.talkingToPlayer = false;
         if (guardType == GuardType.Guard)
         { 
-            if (itemToTake != null)
+            if (!String.IsNullOrEmpty(itemToTake.Name))
             {
-                Pacify();
+                TakeItemAway();
                 Game.Player.PlayerMovement.Escaped();
+                awareness.investigate = null;
             }
             else
             {
                 // transport to outside the bakery
                 Game.Player.position = GameObject.Find("BakeryOutsideRespawn").transform.position;
                 Game.StealthManager.caughtByGuard();
+                awareness.investigate = null;
+                Game.Player.PlayerMovement.EscapedReset();
             }
     }
 
@@ -224,7 +222,6 @@ public class StealthCaughtZone : MonoBehaviour
     // Pacify makes the guard useless
     private void Pacify()
     {
-
         Debug.Log("Pacifying");
         if (!hasEaten)
         {
@@ -258,6 +255,7 @@ public class StealthCaughtZone : MonoBehaviour
         // consume the dish
         if (guardType == GuardType.Guard)
         {
+            Pacify();
             dishConsumedName = itemToTake.Name;
             Game.Player.dishesInventory.Remove(itemToTake);
             Game.Player.activeItem = null;

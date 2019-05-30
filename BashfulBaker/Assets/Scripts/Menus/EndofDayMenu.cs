@@ -403,6 +403,8 @@ namespace Assets.Scripts.Menus
         private static void restart()
         {
             Menu.Instantiate<EndofDayMenu>(true);
+            // make sure that exclamation is disabled
+            Game.Player.PlayerMovement.EscapedReset();
         }
 
     }

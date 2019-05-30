@@ -495,6 +495,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3024523049384947059, guid: 9577406c2aa295b42aee036cfe803f2d,
+        type: 3}
+      propertyPath: movementLogic
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9577406c2aa295b42aee036cfe803f2d, type: 3}
 --- !u!1 &150448453
@@ -1526,6 +1531,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BushMedium
+      objectReference: {fileID: 0}
+    - target: {fileID: 8997189449512951733, guid: ff9506c27389a1c45b9e03f60551cece,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8997189449512951732, guid: ff9506c27389a1c45b9e03f60551cece,
         type: 3}
@@ -3105,6 +3115,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BushLarge
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353719830447102551, guid: 96d59eebe2f65bb4dbb980b06d27d11e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2353719830447102550, guid: 96d59eebe2f65bb4dbb980b06d27d11e,
         type: 3}
