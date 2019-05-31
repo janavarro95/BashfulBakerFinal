@@ -30,4 +30,9 @@ public class Breathe : MonoBehaviour
             pbar.transform.localScale = new Vector3(progress, pbar.transform.localScale.y, 1);
         }
     }
+
+    public bool isFinished()
+    {
+        return (progress >= 5);
+    }
 }
