@@ -140,6 +140,12 @@ public class StealthCaughtZone : MonoBehaviour
 
                             BeginDialogue(dialogue, item);
                         }
+
+                        // need to put active item in hand
+                        /*while (Game.Player.activeItem != itemToTake)
+                        {
+                            Game.updateCurrentDishIndex(1);
+                        }*/
                         return;
                     }
                     else
