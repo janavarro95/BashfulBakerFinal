@@ -7646,16 +7646,6 @@ MonoBehaviour:
       so I usually try to avoid them.
   - name: Amari
     sentences:
-    - Yeah but I still want to go home.
-  - name: Dane
-    sentences:
-    - "*What can I say?* ...Hey Amari, I can\u2019t say I been through the same thing
-      you have. "
-    - But I know what it feels like to want to close yourself off to others.  I have
-      a hard time talking to the Town Watch.
-    - 'I get super nervous around them so I usually try to avoid them.  '
-  - name: Amari
-    sentences:
     - Really?
   - name: Dane
     sentences:
@@ -7713,14 +7703,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
   - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
-  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
-  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
   - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
   - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
-  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
   - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   wrongCookies:
@@ -30786,6 +30776,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1241214363872615540, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7840346606221647523, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -30795,11 +30790,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 1241214363872615540, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3913963898112098859, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}
