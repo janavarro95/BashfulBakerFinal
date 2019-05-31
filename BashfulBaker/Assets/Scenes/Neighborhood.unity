@@ -3905,11 +3905,6 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1.55
       objectReference: {fileID: 0}
-    - target: {fileID: 1241214363872615540, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.68
-      objectReference: {fileID: 0}
     - target: {fileID: 6846402877687325459, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3986,6 +3981,11 @@ PrefabInstance:
         type: 3}
       propertyPath: viewRadius
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241214363872615540, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.68
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
@@ -7570,9 +7570,159 @@ MonoBehaviour:
   convo:
   - name: Amari
     sentences:
-    - Thank you Dane!
+    - Who is it?
+  - name: Dane
+    sentences:
+    - "*Why is she talking to me through the door?* I\u2019m here to deliver you cookies
+      from Jeb\u2019s Jollies?\r"
+  - name: Amari
+    sentences:
+    - "I didn\u2019t order any cookies...."
+  - name: Dane
+    sentences:
+    - " Sylvia ordered them for you.\r"
+  - name: Amari
+    sentences:
+    - "Oh\u2026 then I guess it\u2019s okay. Thank you\u2026 for the cookies."
+  - name: Dane
+    sentences:
+    - '*She looks so sad* Are you okay?'
+  - name: Amari
+    sentences:
+    - "Yeah. I want to go home.\r\n"
+  - name: Dane
+    sentences:
+    - Are you not home?
+  - name: Amari
+    sentences:
+    - "No. I don\u2019t call this home. My mom and I just moved here last month.\r\n"
+  - name: Dane
+    sentences:
+    - Oh yeah. Sylvia told me she works with the Town Watch.
+  - name: Amari
+    sentences:
+    - 'Yeah but I only get to see her in the mornings or sometimes for dinner. '
+    - "But usually she has to rush to work so I don\u2019t get to see her often. We
+      use to be closer before we moved here\u2026\r\n"
+  - name: Dane
+    sentences:
+    - "Well it seems like Sylvia is trying to make you feel more comfortable. Are
+      mint cookies your favorite?\r"
+  - name: Amari
+    sentences:
+    - "No. I don\u2019t care for them."
+  - name: Dane
+    sentences:
+    - '*Ack! So honest!* Then why did Sylvia order them for you?'
+  - name: Amari
+    sentences:
+    - Because Jeb would always give me free mint cookies when he saw me walking home
+      after school.
+    - I guess she thinks they are my favorite.
+  - name: Dane
+    sentences:
+    - Jeb gave you free cookies?
+  - name: Amari
+    sentences:
+    - "Yeah\u2026 I been having a hard time at school. The teachers have been finding
+      it difficult to teach me anything because I\u2019m having trouble understand
+      what is going on in my classes."
+    - 'I also feel like the other kids look down at me because I ask alot of questions.  So
+      I stopped asking question in class. '
+    - "My mom was so sad when she found out about my grades. Now I feel like a disappointment
+      to her. I just don\u2019t feel like I belong here."
+    - "So when Jeb sees me pass his shop, he would stop me and give me mint cookies.\r"
+  - name: Dane
+    sentences:
+    - Did they help you feel better?
+  - name: Amari
+    sentences:
+    - Yeah but I still want to go home.
+  - name: Dane
+    sentences:
+    - "...Hey Amari, I can\u2019t say I been through the same thing you have. But
+      I know what it feels like to want to close yourself off to others.  "
+    - I have a hard time talking to the Town Watch. I get super nervous around them
+      so I usually try to avoid them.
+  - name: Amari
+    sentences:
+    - Yeah but I still want to go home.
+  - name: Dane
+    sentences:
+    - "*What can I say?* ...Hey Amari, I can\u2019t say I been through the same thing
+      you have. "
+    - But I know what it feels like to want to close yourself off to others.  I have
+      a hard time talking to the Town Watch.
+    - 'I get super nervous around them so I usually try to avoid them.  '
+  - name: Amari
+    sentences:
+    - Really?
+  - name: Dane
+    sentences:
+    - But how about I make a deal with you. If you and I do our best to speak up for
+      ourselves, I will make sure to sneak you some cookies every night. Deal?
+  - name: Amari
+    sentences:
+    - "As long as it isn\u2019t just mint cookies. They are good but geez. \r\n"
+  - name: Dane
+    sentences:
+    - "HAHA! I\u2019ll make sure he makes you something else.\r"
+  - name: Amari
+    sentences:
+    - Pinky promise?
+  - name: Dane
+    sentences:
+    - Pinky promise.
+  - name: Dane
+    sentences:
+    - Ah! But what sweets do you like?
+  - name: Amari
+    sentences:
+    - "My grandmother use to make the best PECAN pie back at my hometown!\r\r"
+  - name: Dane
+    sentences:
+    - "Aww okay. Well I\u2019ll see you tomorrow then. Let\u2019s do our best!"
+  - name: Amari
+    sentences:
+    - Yes! See you later Dane!
+  - name: Dane
+    sentences:
+    - ' * I want to surprise her with something good tomorrow. I never made a pie
+      before but I did see a Pecan tree earlier. Maybe I can make her Pecan Cookies
+      tomorrow night.'
+    - Maybe this will make her feel closer to her hometown!*
   faces:
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   wrongCookies:
     name: Dane
     sentences:
@@ -30621,11 +30771,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1241214363872615540, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 8273296214821917925, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}
       propertyPath: m_Color.r
@@ -30650,6 +30795,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241214363872615540, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3913963898112098859, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}

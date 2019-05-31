@@ -1,0 +1,246 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3475651864887161629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3475651864887161628}
+  - component: {fileID: 3475651864887161630}
+  - component: {fileID: 3475651864887161631}
+  - component: {fileID: 3475651864887161625}
+  m_Layer: 0
+  m_Name: Victory (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3475651864887161628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475651864887161629}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.27, y: -7.9, z: 9.828125}
+  m_LocalScale: {x: 1, y: 1.375, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &3475651864887161630
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475651864887161629}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.16943082}
+  serializedVersion: 2
+  m_Radius: 0.6694308
+--- !u!114 &3475651864887161631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475651864887161629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daaa5f81cc0247c48ab57da52b27fbc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcNamesWhoLiveHere:
+  - Amari
+  shouldFinishDay: 0
+--- !u!114 &3475651864887161625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475651864887161629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb78ba188fbe8a4a92cd84ccbfbeae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convo:
+  - name: Amari
+    sentences:
+    - Who is it?
+  - name: Dane
+    sentences:
+    - "*Why is she talking to me through the door?* I\u2019m here to deliver you cookies
+      from Jeb\u2019s Jollies?\r"
+  - name: Amari
+    sentences:
+    - "I didn\u2019t order any cookies...."
+  - name: Dane
+    sentences:
+    - " Sylvia ordered them for you.\r"
+  - name: Amari
+    sentences:
+    - "Oh\u2026 then I guess it\u2019s okay. Thank you\u2026 for the cookies."
+  - name: Dane
+    sentences:
+    - '*She looks so sad* Are you okay?'
+  - name: Amari
+    sentences:
+    - "Yeah. I want to go home.\r\n"
+  - name: Dane
+    sentences:
+    - Are you not home?
+  - name: Amari
+    sentences:
+    - "No. I don\u2019t call this home. My mom and I just moved here last month.\r\n"
+  - name: Dane
+    sentences:
+    - Oh yeah. Sylvia told me she works with the Town Watch.
+  - name: Amari
+    sentences:
+    - 'Yeah but I only get to see her in the mornings or sometimes for dinner. '
+    - "But usually she has to rush to work so I don\u2019t get to see her often. We
+      use to be closer before we moved here\u2026\r\n"
+  - name: Dane
+    sentences:
+    - "Well it seems like Sylvia is trying to make you feel more comfortable. Are
+      mint cookies your favorite?\r"
+  - name: Amari
+    sentences:
+    - "No. I don\u2019t care for them."
+  - name: Dane
+    sentences:
+    - '*Ack! So honest!* Then why did Sylvia order them for you?'
+  - name: Amari
+    sentences:
+    - Because Jeb would always give me free mint cookies when he saw me walking home
+      after school.
+    - I guess she thinks they are my favorite.
+  - name: Dane
+    sentences:
+    - Jeb gave you free cookies?
+  - name: Amari
+    sentences:
+    - "Yeah\u2026 I been having a hard time at school. The teachers have been finding
+      it difficult to teach me anything because I\u2019m having trouble understand
+      what is going on in my classes."
+    - 'I also feel like the other kids look down at me because I ask alot of questions.  So
+      I stopped asking question in class. '
+    - "My mom was so sad when she found out about my grades. Now I feel like a disappointment
+      to her. I just don\u2019t feel like I belong here."
+    - "So when Jeb sees me pass his shop, he would stop me and give me mint cookies.\r"
+  - name: Dane
+    sentences:
+    - Did they help you feel better?
+  - name: Amari
+    sentences:
+    - Yeah but I still want to go home.
+  - name: Dane
+    sentences:
+    - "...Hey Amari, I can\u2019t say I been through the same thing you have. But
+      I know what it feels like to want to close yourself off to others.  "
+    - I have a hard time talking to the Town Watch. I get super nervous around them
+      so I usually try to avoid them.
+  - name: Amari
+    sentences:
+    - Did they help you feel better?
+  - name: Amari
+    sentences:
+    - Yeah but I still want to go home.
+  - name: Dane
+    sentences:
+    - "*What can I say?* ...Hey Amari, I can\u2019t say I been through the same thing
+      you have. "
+    - But I know what it feels like to want to close yourself off to others.  I have
+      a hard time talking to the Town Watch.
+    - 'I get super nervous around them so I usually try to avoid them.  '
+  - name: Amari
+    sentences:
+    - Really?
+  - name: Dane
+    sentences:
+    - But how about I make a deal with you. If you and I do our best to speak up for
+      ourselves, I will make sure to sneak you some cookies every night. Deal?
+  - name: Amari
+    sentences:
+    - "As long as it isn\u2019t just mint cookies. They are good but geez. \r\n"
+  - name: Dane
+    sentences:
+    - "HAHA! I\u2019ll make sure he makes you something else.\r"
+  - name: Amari
+    sentences:
+    - Pinky promise?
+  - name: Dane
+    sentences:
+    - Pinky promise.
+  - name: Dane
+    sentences:
+    - Ah! But what sweets do you like?
+  - name: Amari
+    sentences:
+    - "My grandmother use to make the best PECAN pie back at my hometown!\r\r"
+  - name: Dane
+    sentences:
+    - "Aww okay. Well I\u2019ll see you tomorrow then. Let\u2019s do our best!"
+  - name: Amari
+    sentences:
+    - Yes! See you later Dane!
+  - name: Dane
+    sentences:
+    - ' * I want to surprise her with something good tomorrow. I never made a pie
+      before but I did see a Pecan tree earlier. Maybe I can make her Pecan Cookies
+      tomorrow night.'
+    - Maybe this will make her feel closer to her hometown!*
+  faces:
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  wrongCookies:
+    name: Dane
+    sentences:
+    - This is Amari's house, now all I need are her Mint Chip Cookies.
+  deliveryOBJ: Mint Chip Cookies
+  poutingboy: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  Neighbor_Sprite: {fileID: 0}
+  DiaBoxReference: {fileID: 0}
