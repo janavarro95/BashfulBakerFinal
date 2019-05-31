@@ -18,6 +18,8 @@ public class StealthCaughtZone : MonoBehaviour
     public Material pacMat;
     public DialogueManager dm;
     private GameObject breathing;
+    private GuardRamber ramble;
+    private bool endDia = true;
 
     public bool inDialogue = false;
     private int dialoguePressesExit = 0;
@@ -67,6 +69,8 @@ public class StealthCaughtZone : MonoBehaviour
 
 
         BreathingMinigame(false);
+
+        ramble = GameObject.FindGameObjectWithTag("Ramblings").GetComponent<GuardRamber>();
     }
 
     // update
@@ -89,6 +93,7 @@ public class StealthCaughtZone : MonoBehaviour
         PlayerMovement pm = collision.gameObject.GetComponent<PlayerMovement>();
         if (pm == null)
             return;
+
         if (!pm.hidden)
         {
             GameObject.Find("Headshot").GetComponent<Image>().sprite = guardFace;
@@ -114,9 +119,8 @@ public class StealthCaughtZone : MonoBehaviour
                         {
                             dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
                             {
-                                "*Sniff sniff* Ohh that {0} looks delicious!",
-                                "Is that for me? Thanks! Now be carefull this late at night!"
-                            }, Game.Player.activeItem.Name).ToArray());
+                                "*Sniff sniff* Ohh that {0} looks delicious!"
+                            }, item.Name).ToArray());
 
                             BeginDialogue(dialogue, item);
                         }
@@ -131,12 +135,17 @@ public class StealthCaughtZone : MonoBehaviour
                         {
                             dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
                             {
-                                "*Sniff sniff* Ohh that {0} looks delicious!",
-                                "Is that for me? Thanks! Now be carefull this late at night!"
-                            }, Game.Player.activeItem.Name).ToArray());
+                                "*Sniff sniff* Ohh that {0} looks delicious!"
+                            },item.Name).ToArray());
 
                             BeginDialogue(dialogue, item);
                         }
+
+                        // need to put active item in hand
+                        /*while (Game.Player.activeItem != itemToTake)
+                        {
+                            Game.updateCurrentDishIndex(1);
+                        }*/
                         return;
                     }
                     else
@@ -178,25 +187,67 @@ public class StealthCaughtZone : MonoBehaviour
 
         // take item
         itemToTake = i;
+
         // stop the player
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().CanPlayerMove = false;
+
+        // remove hud
+        Game.HUD.showInventory = false;
+        Game.HUD.showHUD = false;
     }
 
     private void ProgressDialogue()
     {
-        if (!dm.IsDialogueUp)
+        if (breathing.GetComponentInChildren<Breathe>().isFinished())
         {
-            EndDialogue();
+            if (!dm.IsDialogueUp)
+                EndDialogue();
+            else if (endDia)
+            {
+                if (itemToTake != null && !String.IsNullOrEmpty(itemToTake.Name))
+                {
+                    // make new dialog
+                    dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
+                    {"Thank you for the {0}, have a lovely night!"},
+                    itemToTake.Name).ToArray());
+
+                    // start new dialog
+                    Game.DialogueManager.StartDialogue(dialogue);
+                    endDia = false;
+                }
+                else
+                {
+                    // make new dialog
+                    dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
+                    {"I'll personally escort you!"},
+                    "NOTHING").ToArray());
+
+                    // start new dialog
+                    Game.DialogueManager.StartDialogue(dialogue);
+                    endDia = false;
+                }
+            }
+        }
+        else if (!dm.IsDialogueUp)
+        {
+            // make new dialog
+            dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
+            {ramble.NextRamble()}, 
+            (itemToTake!=null ? Game.Player.activeItem.Name : "NOTHING")).ToArray());
+
+            // start new dialog
+            Game.DialogueManager.StartDialogue(dialogue);
         }
     }
 
     private void EndDialogue()
     {
         inDialogue = false;
+        endDia = true;
         awareness.talkingToPlayer = false;
         if (guardType == GuardType.Guard)
         { 
-            if (!String.IsNullOrEmpty(itemToTake.Name))
+            if (itemToTake != null && !String.IsNullOrEmpty(itemToTake.Name))
             {
                 TakeItemAway();
                 Game.Player.PlayerMovement.Escaped();
@@ -210,13 +261,17 @@ public class StealthCaughtZone : MonoBehaviour
                 awareness.investigate = null;
                 Game.Player.PlayerMovement.EscapedReset();
             }
-    }
+        }
 
         // start player movement
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().CanPlayerMove = true;
 
         // stop breathing
-        BreathingMinigame(false);
+        BreathingMinigame(false);        
+        
+        // bring back hud
+        Game.HUD.showInventory = true;
+        Game.HUD.showHUD = true;
     }
 
     // Pacify makes the guard useless

@@ -4558,6 +4558,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 480720932}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &507787360
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2863531487700616797, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
+        type: 3}
+      propertyPath: m_Name
+      value: GaurdRamblings
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.61608
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.9272467
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.5157195
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6557e2d544d9b8c419fda8741d3cd8c1, type: 3}
 --- !u!1 &509800060
 GameObject:
   m_ObjectHideFlags: 0
@@ -7646,16 +7715,6 @@ MonoBehaviour:
       so I usually try to avoid them.
   - name: Amari
     sentences:
-    - Yeah but I still want to go home.
-  - name: Dane
-    sentences:
-    - "*What can I say?* ...Hey Amari, I can\u2019t say I been through the same thing
-      you have. "
-    - But I know what it feels like to want to close yourself off to others.  I have
-      a hard time talking to the Town Watch.
-    - 'I get super nervous around them so I usually try to avoid them.  '
-  - name: Amari
-    sentences:
     - Really?
   - name: Dane
     sentences:
@@ -7713,14 +7772,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
   - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
-  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
-  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
   - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
   - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
-  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
   - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   wrongCookies:
@@ -30786,6 +30845,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1241214363872615540, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7840346606221647523, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -30795,11 +30859,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 1241214363872615540, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3913963898112098859, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}

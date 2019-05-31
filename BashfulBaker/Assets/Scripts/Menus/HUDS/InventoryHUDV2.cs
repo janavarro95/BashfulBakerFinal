@@ -508,7 +508,7 @@ namespace Assets.Scripts.Menus.HUDS
         /// Update the current index for what dish the player is holding.
         /// </summary>
         /// <param name="amount"></param>
-        private void updateCurrentDishIndex(int amount)
+        public void updateCurrentDishIndex(int amount)
         {
             currentDishIndex += amount;
             if (currentDishIndex <= -1)

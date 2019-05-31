@@ -54,13 +54,13 @@ public class PorchConvo : MonoBehaviour
             //Game.PhaseTimer.currentTime = Game.PhaseTimer.maxTime;
             promptToEndDay();
 
-        }else if (Game.CurrentDayNumber == 2 && Game.QuestManager.completedAllQuests()&& Game.QuestManager.containsQuest("Amari", "Mint Chip Cookies")==false)
+        }else if (Game.CurrentDayNumber == 2 && Game.QuestManager.containsQuest("Amari", "Mint Chip Cookies")==false)
         {
             Game.QuestManager.removeQuest("Sylvia", "Mint Chip Cookies");
             Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Amari", new List<string>()));
 
-            Dish d = new Dish(Enums.Dishes.MintChipCookies, Enums.DishState.Packaged);
-            Game.Player.dishesInventory.Add(d);
+            //Dish d = new Dish(Enums.Dishes.MintChipCookies, Enums.DishState.Packaged);
+            //Game.Player.dishesInventory.Add(d);
 
             Debug.Log(Game.QuestManager.quests.Count);
             Game.HUD.QuestHUD.updateForTheDay();
