@@ -20,6 +20,8 @@ public class StartMinigame : MonoBehaviour
     private Animator glow;
     private SpriteRenderer spriteRend;
     private Sprite basicOven;
+	private float startTime, endTime, smokeTime, burnTime;
+	private ParticleSystem ps;
 
     public AudioSource timerSFX, chimeSFX;
     /// <summary>
@@ -29,7 +31,6 @@ public class StartMinigame : MonoBehaviour
 
     public Enums.CookingStationMinigame station;
 
-
     public static Dish ovenDish;
 
     private int ovenCookingTime = 10;
@@ -38,11 +39,13 @@ public class StartMinigame : MonoBehaviour
     {
         if (minigame == "Oven")
         {
-            this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Stop();
+            ps = this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>();
+			ps.Stop();
             glow = GetComponent<Animator>();
             glow.enabled = true;
             spriteRend = GetComponent<SpriteRenderer>();
             basicOven = spriteRend.sprite;
+			baked = 0;
         }
     }
 
@@ -86,9 +89,13 @@ public class StartMinigame : MonoBehaviour
                             Game.Player.dishesInventory.Remove(Game.Player.activeItem);
                             Game.Player.removeActiveItem();
                             Game.Player.updateHeldItemSprite();
-                            Invoke("Bake", ovenCookingTime);
+                            
+							startTime = (float)Game.PhaseTimer.currentTime;
+							endTime = startTime + ovenCookingTime;
+							smokeTime = endTime + 5;
+							burnTime = smokeTime + 10;
 
-                            this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Play();
+                            ps.Play();
                             glow.enabled = true;
                         }
                         else if (baked == 2) //The dish has been baked
@@ -100,6 +107,7 @@ public class StartMinigame : MonoBehaviour
                             Game.Player.resetActiveDishFromMenu();
 
                             ovenDish = null;
+							baked = 0;
                         }
                         return;
                     }
@@ -191,13 +199,17 @@ public class StartMinigame : MonoBehaviour
                         Game.Player.removeActiveItem();
                         Game.Player.updateHeldItemSprite();
                         Game.HUD.InventoryHUD.updateDishes();
-                        Invoke("Bake", ovenCookingTime);
+                        
+						startTime = (float)Game.PhaseTimer.currentTime;
+						endTime = startTime + ovenCookingTime;
+						smokeTime = endTime + 5;
+						burnTime = smokeTime + 10;
 
-                        this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Play();
+                        ps.Play();
                         glow.enabled = true;
 
                     }
-                    else if(baked==0 && ovenDish != null)
+                    else if(baked == 0 && ovenDish != null)
                     {
                         //collision.GetComponent<PlayerMovement>().NextStep();
                         ovenDish.currentDishState = Enums.DishState.Baked;
@@ -214,14 +226,14 @@ public class StartMinigame : MonoBehaviour
                     {
                         SetSprite(0);
                         //collision.GetComponent<PlayerMovement>().NextStep();
-                        ovenDish.currentDishState = Enums.DishState.Baked;
-                        ovenDish.Update();
+                        
                         Game.Player.dishesInventory.Add(ovenDish);
                         Game.HUD.InventoryHUD.updateDishes();
                         Game.Player.resetActiveDishFromMenu();
                         ovenDish.loadSprite();
 
                         ovenDish = null;
+						baked = 0;
                     }
                     return;
                 }
@@ -366,6 +378,50 @@ public class StartMinigame : MonoBehaviour
         return "";
     }
 
+	private void Update()
+	{
+		if(minigame == "Oven")
+		{
+			switch (baked)
+			{
+				case 0:
+				{ 
+					break;
+				}
+				case 1:
+				{
+					if((float)Game.PhaseTimer.currentTime >= endTime)
+					{
+						baked = 2;
+						ovenDish.currentDishState = Enums.DishState.Baked;
+                        ovenDish.Update();
+					}
+					break;
+				}
+				case 2:
+				{
+					if((float)Game.PhaseTimer.currentTime >= smokeTime)
+					{
+						//start smoke
+						var emission = ps.emission;
+						emission.rate = Mathf.Lerp(1, 10, ((float)Game.PhaseTimer.currentTime - startTime) / (endTime - startTime));
+					}
+					if((float)Game.PhaseTimer.currentTime >= burnTime)
+					{
+						//burn cookie
+						ovenDish.currentDishState = Enums.DishState.Burnt;
+                        ovenDish.Update();
+					}
+					break;
+				}
+				default:
+				{
+					break;
+				}
+			}
+		}
+	}
+
     /// <summary>
     /// Bakes a thing in the oven.
     /// </summary>
@@ -375,8 +431,8 @@ public class StartMinigame : MonoBehaviour
         chimeSFX.Play();
         baked = 2;
         SetSprite(0);
-        this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Stop();
-       // glow.enabled = false;
+        //this.gameObject.transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>().Stop();
+        // glow.enabled = false;
         spriteRend.sprite = basicOven;
         //arrow.GetComponent<SpriteRenderer>().enabled = true;
         //arrow.GetComponent<progress>().A.SetActive(false);
