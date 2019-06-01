@@ -7322,7 +7322,7 @@ GameObject:
   - component: {fileID: 711755322}
   - component: {fileID: 711755324}
   m_Layer: 0
-  m_Name: Victory (2)
+  m_Name: amari
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7391,8 +7391,8 @@ MonoBehaviour:
     - Who is it?
   - name: Dane
     sentences:
-    - "*Why is she talking to me through the door?* I\u2019m here to deliver you cookies
-      from Jeb\u2019s Jollies?\r"
+    - (Why is she talking to me through the door?)
+    - "I\u2019m here to deliver you cookies from Jeb\u2019s Jollies?\r"
   - name: Amari
     sentences:
     - "I didn\u2019t order any cookies...."
@@ -7404,7 +7404,8 @@ MonoBehaviour:
     - "Oh\u2026 then I guess it\u2019s okay. Thank you\u2026 for the cookies."
   - name: Dane
     sentences:
-    - '*She looks so sad* Are you okay?'
+    - (She looks so sad)
+    - Are you okay?
   - name: Amari
     sentences:
     - "Yeah. I want to go home.\r\n"
@@ -7431,7 +7432,8 @@ MonoBehaviour:
     - "No. I don\u2019t care for them."
   - name: Dane
     sentences:
-    - '*Ack! So honest!* Then why did Sylvia order them for you?'
+    - (Ack! So honest!)
+    - Then why did Sylvia order them for you?
   - name: Amari
     sentences:
     - Because Jeb would always give me free mint cookies when he saw me walking home
@@ -7442,14 +7444,14 @@ MonoBehaviour:
     - Jeb gave you free cookies?
   - name: Amari
     sentences:
-    - "Yeah\u2026 I been having a hard time at school. The teachers have been finding
-      it difficult to teach me anything because I\u2019m having trouble understand
-      what is going on in my classes."
-    - 'I also feel like the other kids look down at me because I ask alot of questions.  So
-      I stopped asking question in class. '
-    - "My mom was so sad when she found out about my grades. Now I feel like a disappointment
-      to her. I just don\u2019t feel like I belong here."
-    - "So when Jeb sees me pass his shop, he would stop me and give me mint cookies.\r"
+    - "Yeah\u2026 I been having a hard time at school. I ask a lot of question during
+      class which my teacher believes I should already understand most of the topics."
+    - And with all the other kids staring at me, it sends me to a panic mode because
+      I feel like they are judging me.
+    - ' So I stopped participating in class. I felt like such a disappointment when
+      my mom found out about my grades.'
+    - "So when Jeb saw me passing his shop on the way home, he would stop me and gave
+      me mint cookies.\r"
   - name: Dane
     sentences:
     - Did they help you feel better?
@@ -7459,22 +7461,22 @@ MonoBehaviour:
   - name: Dane
     sentences:
     - "...Hey Amari, I can\u2019t say I been through the same thing you have. But
-      I know what it feels like to want to close yourself off to others.  "
-    - I have a hard time talking to the Town Watch. I get super nervous around them
-      so I usually try to avoid them.
+      I know what it\u2019s like to go into a panic mode."
+    - 'When I try to talk to the Town Watch, I get nervous and hide into bushes so
+      I can sneak around them. '
   - name: Amari
     sentences:
     - Really?
   - name: Dane
     sentences:
-    - But how about I make a deal with you. If you and I do our best to speak up for
-      ourselves, I will make sure to sneak you some cookies every night. Deal?
+    - Yeah, but how about I make a deal with you. If you and I do our best to speak
+      up for ourselves, I will make sure to sneak you some cookies every night. Deal?
   - name: Amari
     sentences:
     - "As long as it isn\u2019t just mint cookies. They are good but geez. \r\n"
   - name: Dane
     sentences:
-    - "HAHA! I\u2019ll make sure he makes you something else.\r"
+    - "Haha! I\u2019ll make sure he makes you something else.\r"
   - name: Amari
     sentences:
     - Pinky promise?
@@ -7493,12 +7495,6 @@ MonoBehaviour:
   - name: Amari
     sentences:
     - Yes! See you later Dane!
-  - name: Dane
-    sentences:
-    - ' * I want to surprise her with something good tomorrow. I never made a pie
-      before but I did see a Pecan tree earlier. Maybe I can make her Pecan Cookies
-      tomorrow night.'
-    - Maybe this will make her feel closer to her hometown!*
   faces:
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
   - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
@@ -7530,7 +7526,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
   - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
-  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   wrongCookies:
     name: Dane
     sentences:
@@ -10602,7 +10597,7 @@ GameObject:
   - component: {fileID: 920602022}
   - component: {fileID: 920602024}
   m_Layer: 0
-  m_Name: Victory
+  m_Name: sylvia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12498,6 +12493,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1490762279}
+  - {fileID: 1981608507}
   m_Father: {fileID: 1322340840}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15630,7 +15626,7 @@ GameObject:
   - component: {fileID: 1490762280}
   - component: {fileID: 1490762282}
   m_Layer: 0
-  m_Name: Victory
+  m_Name: Sylvia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15690,19 +15686,123 @@ MonoBehaviour:
   m_GameObject: {fileID: 1490762278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b139b55cecc6fa4aa03c952320a284d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fb78ba188fbe8a4a92cd84ccbfbeae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VictorySpeech:
+  convo:
+  - name: Sylvia
+    sentences:
+    - Ah Dane! How was meeting Amari?
+  - name: Dane
+    sentences:
+    - "It went fine. I think\u2026 you were right about us being alike.\r"
+  - name: Sylvia
+    sentences:
+    - Ah yes. You both are new to the town and seem very shy. I thought it would be
+      nice for two shy people to become friends with each other.
+  - name: Dane
+    sentences:
+    - "What if we didn\u2019t become friends?"
+  - name: Sylvia
+    sentences:
+    - We don't need to worry abput all of the what ifs Dane.
+  - name: Dane
+    sentences:
+    - Oh, I guess you're right. Well here's your order!
+  - name: Sylvia
+    sentences:
+    - Ah and one more thing Dane.
+  - name: Dane
+    sentences:
+    - Yes?
+  - name: Sylvia
+    sentences:
+    - I know you are baking the cookies.
+  - name: Dane
+    sentences:
+    - '!!!!!!!'
+  - name: Sylvia
+    sentences:
+    - 'The last few orders I received from you have been a bit more sweeter than they
+      usually are. '
+    - At first I thought Jeb might had changed up the recipe, but that old man lives
+      by his famous recipes.
+  - name: Dane
+    sentences:
+    - "Oh.. I\u2019m Sorry Sylvia! I didn\u2019t mean to change up the recipe, I just
+      used my own because Jeb has been forgetting to make some orders."
+    - "Please don\u2019t tell Jeb! I don\u2019t  want to lose this job!"
+  - name: Sylvia
+    sentences:
+    - "Do you like to bake Dane?\r"
+  - name: Dane
+    sentences:
+    - Yes... It calms me down. It makes me happy.
+  - name: Sylvia
+    sentences:
+    - " can definitely taste the love in the cookies. You\u2019re cookies are really
+      good Dane."
+    - The fact you add a bit of cinnamon and vanilla into the dough, add a uniqueness
+      to them.
+  - name: Dane
+    sentences:
+    - Thank you.
+  - name: Sylvia
+    sentences:
+    - You should ask Jeb if you can be a baker at his bakery.
+  - name: Dane
+    sentences:
+    - "What! No! No! It\u2019s call Jeb\u2019s Jollies."
+  - name: Sylvia
+    sentences:
+    - "Yes and it will stay Jeb\u2019s Jollies. Jeb is getting old and he\u2019s going
+      to need someone he can trust to help him with baking. "
+    - With your skills, I think you are perfect candidate. Or I can tell him you been
+      baking the cookies the whole time?
+  - name: Dane
+    sentences:
+    - Sigh. Do you always stay plotting something Sylvia?
+  - name: Sylvia
+    sentences:
+    - "I don\u2019t know what you mean. "
+  - name: Dane
+    sentences:
+    - Of course not. Fine, I will ask him myself.
+  - name: Sylvia
+    sentences:
+    - "Great! I can\u2019t wait to hear back from you as a baker!"
+  faces:
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  wrongCookies:
     name: Dane
     sentences:
-    - Phew, I'm glad that's done.
-    - 'Hopefully Silvia likes her cookies! '
-  wrongCookies:
-    name: 
-    sentences: []
-  daneFace: {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
-  poutingboy: {fileID: 0}
+    - This is Sylvia's house, now all I need are her Chocolate Chip Cookies.
+  deliveryOBJ: Chocolate Chip Cookies
+  poutingboy: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  Neighbor_Sprite: {fileID: 228787292}
+  DiaBoxReference: {fileID: 856803592}
 --- !u!1001 &1511167339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19304,6 +19404,207 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cc04f272e2a642d587be2d4963b4e43, type: 3}
+--- !u!1 &1981608506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1981608507}
+  - component: {fileID: 1981608510}
+  - component: {fileID: 1981608509}
+  - component: {fileID: 1981608508}
+  m_Layer: 0
+  m_Name: Amari
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1981608507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981608506}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.27, y: -7.9, z: 9.828125}
+  m_LocalScale: {x: 1, y: 1.375, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1201092175}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1981608508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981608506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb78ba188fbe8a4a92cd84ccbfbeae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convo:
+  - name: Dane
+    sentences:
+    - Hey Amari! How was your day?
+  - name: Amari
+    sentences:
+    - Dane! It was great! I spoke to my mom today about my difficulties in school
+      and how I missed hanging out with her.
+    - 'So she took the day off of work today to help me with my studies! '
+    - "Then we went to explore the part of town we haven\u2019t seen yet. It was really
+      fun!\r"
+  - name: Dane
+    sentences:
+    - "Wow! That\u2019s amazing Amari! I\u2019m so proud of you."
+  - name: Amari
+    sentences:
+    - "Thank you but if it wasn\u2019t for you supporting me, I won\u2019t had the
+      courage to tell her.\r\n"
+  - name: Dane
+    sentences:
+    - "Well...that\u2019s apart of my job. "
+  - name: Amari
+    sentences:
+    - 'Really? Delivery boys have to support their customers?
+
+'
+  - name: Dane
+    sentences:
+    - "Ack! No\u2026 I mean.."
+  - name: Amari
+    sentences:
+    - "Hahaha. I know what you mean Dane. I\u2019m very grateful for your \u201Cadditional\u201D
+      services.\r"
+  - name: Dane
+    sentences:
+    - "...umm hey. I brought you some cookies.?\r\n"
+  - name: Amari
+    sentences:
+    - Mint cookies?
+  - name: Dane
+    sentences:
+    - No! I promised you it would be different.
+  - name: Amari
+    sentences:
+    - Cool!
+  - name: Dane
+    sentences:
+    - "They\u2019re Pecan Cookies. You said you loved your grandmother\u2019s pecan
+      pie. So I thought this would be a \u2026 nice similar treat."
+  - name: Amari
+    sentences:
+    - 'Wow these are so good! '
+  - name: Dane
+    sentences:
+    - Really? You like them?
+  - name: Amari
+    sentences:
+    - YES! They are delicious!
+  - name: Dane
+    sentences:
+    - "I\u2019m so happy you like them...I was so nervous while making them."
+  - name: Amari
+    sentences:
+    - Oh my Gosh! Dane! You made these?
+  - name: Dane
+    sentences:
+    - Ah...Yes...
+  - name: Amari
+    sentences:
+    - "Wow! You\u2019re so talented!"
+  - name: Dane
+    sentences:
+    - '... Thank you. I just wanted you to feel like you are home.'
+  - name: Amari
+    sentences:
+    - "\u2026 Dane.\n"
+    - "THANK YOU SO MUCH! \r\n"
+    - "Dane, you should join us for dinner! You can meet my mom!\r"
+  - name: Dane
+    sentences:
+    - "Oh no! I can\u2019t I have other deliveries. Maybe another time."
+  - name: Amari
+    sentences:
+    - Aww. Okay. Thank you again for the cookies. They mean the world to me.
+  - name: Dane
+    sentences:
+    - "No problem. I\u2019m glad you like them. Let\u2019s keep doing our best!\r\n"
+  - name: Dane
+    sentences:
+    - "Yes! Bye Dane!\r"
+  faces:
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
+  wrongCookies:
+    name: Dane
+    sentences:
+    - This is Amari's house, now all I need are her Mint Chip Cookies.
+  deliveryOBJ: Mint Chip Cookies
+  poutingboy: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  Neighbor_Sprite: {fileID: 675705978}
+  DiaBoxReference: {fileID: 856803592}
+--- !u!114 &1981608509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981608506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daaa5f81cc0247c48ab57da52b27fbc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcNamesWhoLiveHere:
+  - Amari
+  shouldFinishDay: 0
+--- !u!58 &1981608510
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981608506}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.16943082}
+  serializedVersion: 2
+  m_Radius: 0.6694308
 --- !u!1001 &1981883412
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -80,7 +80,7 @@ public class d3Jeb : MonoBehaviour
         {
             Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
             Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Ian", new List<string>()));
-            Game.QuestManager.addQuest(new CookingQuest("Oatmeal Raisin Cookies", "Brain", new List<string>()));
+            Game.QuestManager.addQuest(new CookingQuest("Oatmeal Raisin Cookies", "Brian", new List<string>()));
             Game.QuestManager.addQuest(new CookingQuest("Pecan Cookies", "Amari", new List<string>()));
             //Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
             Game.HUD.showQuests = true;
