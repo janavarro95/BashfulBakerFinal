@@ -246,6 +246,10 @@ namespace Assets.Scripts.Items
             {
                 this.Sprite = packagedSprite;
             }
+            else if (this.currentDishState == Enums.DishState.Burnt)
+            {
+                this.Sprite = burntSprite;
+            }
         }
 
         /// <summary>
@@ -273,14 +277,14 @@ namespace Assets.Scripts.Items
             //Debug.Log(this.ingredientsSprite != null ? "yay ingredients" : "boo nothing");
 
             //this.mixedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(doughBowls, "CCDoughBowl"));
-            this.mixedSprite = getAppropriateMixedSprite();
+            this.mixedSprite = getMixedSprite();
 
 
-            this.preppedSprite = getAppropriatePreppedSprite();
+            this.preppedSprite = getPreppedSprite();
             this.bakedSprite = getAppropriateBakedSprite();
             //this.packagedSprite = Game.ContentManager.loadTexture2DFromResources(Path.Combine(pastryBox, "PastryBox"));
-            this.packagedSprite = getAppropriatePackagedSprite();
-
+            this.packagedSprite = getPackagedSprite();
+            this.burntSprite = getBurntSprite();
 
             this._sprite = this.ingredientsSprite;
         }
@@ -289,7 +293,7 @@ namespace Assets.Scripts.Items
         /// Loads the appropriate mixed sprite for the dish.
         /// </summary>
         /// <returns></returns>
-        private Texture2D getAppropriateMixedSprite()
+        private Texture2D getMixedSprite()
         {
             string combinedFolders = Path.Combine("Graphics", "Objects");
 
@@ -321,7 +325,7 @@ namespace Assets.Scripts.Items
         /// Used to get the appropriate prepped sprites for the dish.
         /// </summary>
         /// <returns></returns>
-        private Texture2D getAppropriatePreppedSprite()
+        private Texture2D getPreppedSprite()
         {
             string combinedFolders = Path.Combine("Graphics", "Objects");
 
@@ -354,7 +358,7 @@ namespace Assets.Scripts.Items
             return null;
         }
 
-        private Texture2D getAppropriatePackagedSprite()
+        private Texture2D getPackagedSprite()
         {
             string combinedFolders = Path.Combine("Graphics", "Objects");
 
@@ -378,6 +382,38 @@ namespace Assets.Scripts.Items
             else if (this.itemName == "Pecan Crescent Cookies")
             {
                 return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "InventoryMenu_Boxed_PC"));
+            }
+            return null;
+        }
+
+        private Texture2D getBurntSprite()
+        {
+            string combinedFolders = Path.Combine("Graphics", "Objects");
+
+            string sheetTrays = Path.Combine(combinedFolders, "Sheet Trays");
+
+
+            if (this.itemName == "Chocolate Chip Cookies" || this.itemName == "Chocolate Chip Cookie")
+            {
+                sheetTrays = Path.Combine(sheetTrays, "Choc Chip");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "carry_CCTray_burnt_sprite"));
+            }
+
+            else if (this.itemName == "Mint Chip Cookies" || this.itemName == "Mint Chip Cookie")
+            {
+                sheetTrays = Path.Combine(sheetTrays, "Mint Chip");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "Carry_Tray_BurntMC_sprite"));
+            }
+            else if (this.itemName == "Oatmeal Raisin Cookies" || this.itemName == "Oatmeal Raisin Cookie")
+            {
+                sheetTrays = Path.Combine(sheetTrays, "Oatmeal Raisin");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "Carry_Tray_BurntOR_sprite"));
+            }
+
+            else if (this.itemName == "Pecan Crescent Cookies")
+            {
+                sheetTrays = Path.Combine(sheetTrays, "Pecan Crescent");
+                return Game.ContentManager.loadTexture2DFromResources(Path.Combine(sheetTrays, "Carry_Tray_BurntPC_sprite"));
             }
             return null;
         }
@@ -428,6 +464,7 @@ namespace Assets.Scripts.Items
             if (this.currentDishState == Enums.DishState.Prepped) this.Sprite = this.preppedSprite;
             if (this.currentDishState == Enums.DishState.Baked) this.Sprite = this.bakedSprite;
             if (this.currentDishState == Enums.DishState.Packaged) this.Sprite = this.packagedSprite;
+            if (this.currentDishState == Enums.DishState.Burnt) this.Sprite = this.burntSprite;
         }
 
     }
