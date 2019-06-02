@@ -212,6 +212,29 @@ namespace Assets.Scripts.Items
             return dishes[rando];
             //this.Remove(items[rando]);
         }
+        
+        /// <summary>
+        /// Gets a random boxed dish.
+        /// </summary>
+        /// <returns></returns>
+        public Dish getRandomBoxedDish()
+        {
+            if (this.items.Count == 0) return null;
+
+            List<Dish> dishes = getAllDishes();
+            if (dishes.Count == 0) return null;
+
+            foreach (Dish d in dishes)
+            {
+                if (d.currentDishState != Enums.DishState.Packaged)
+                {
+                    dishes.Remove(d);
+                }
+            }
+
+            int rando = UnityEngine.Random.Range(0, items.Count);
+            return dishes[rando];
+        }
 
         /// <summary>
         /// Removes a random item from the inventory.
