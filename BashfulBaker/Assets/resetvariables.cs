@@ -19,6 +19,7 @@ public class resetvariables : MonoBehaviour
         Game.Day3JebTalkedTo = false;
         Game.Day4JebTalkedTo = false;
         Game.TalkedtoSully = false;
+		Game.ovenStartTime = -1;
     }
 }
 

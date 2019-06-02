@@ -45,7 +45,21 @@ public class StartMinigame : MonoBehaviour
             glow.enabled = true;
             spriteRend = GetComponent<SpriteRenderer>();
             basicOven = spriteRend.sprite;
-			baked = 0;
+			//Debug.Log("Oven on load: " + Game.ovenStartTime);
+			if(Game.ovenStartTime < 0)
+			{
+				baked = 0;
+			}
+			else
+			{
+				startTime = Game.ovenStartTime;
+				endTime = startTime + ovenCookingTime;
+				smokeTime = endTime + 5;
+				burnTime = smokeTime + 10;
+
+				baked = (float)Game.PhaseTimer.currentTime < endTime ? 1 : 2;
+				ps.Play();
+			}
         }
     }
 
@@ -91,6 +105,8 @@ public class StartMinigame : MonoBehaviour
                             Game.Player.updateHeldItemSprite();
                             
 							startTime = (float)Game.PhaseTimer.currentTime;
+							Game.ovenStartTime = startTime;
+							//Debug.Log("Setting oven start time: " + Game.ovenStartTime);
 							endTime = startTime + ovenCookingTime;
 							smokeTime = endTime + 5;
 							burnTime = smokeTime + 10;
@@ -108,6 +124,10 @@ public class StartMinigame : MonoBehaviour
 
                             ovenDish = null;
 							baked = 0;
+							Game.ovenStartTime = -1f;
+							var emission = ps.emission;
+							emission.rate = 1;
+							ps.Stop();
                         }
                         return;
                     }
@@ -201,6 +221,8 @@ public class StartMinigame : MonoBehaviour
                         Game.HUD.InventoryHUD.updateDishes();
                         
 						startTime = (float)Game.PhaseTimer.currentTime;
+						Game.ovenStartTime = startTime;
+						Debug.Log("Setting oven start time: " + Game.ovenStartTime);
 						endTime = startTime + ovenCookingTime;
 						smokeTime = endTime + 5;
 						burnTime = smokeTime + 10;
@@ -234,6 +256,10 @@ public class StartMinigame : MonoBehaviour
 
                         ovenDish = null;
 						baked = 0;
+						Game.ovenStartTime = -1f;
+						var emission = ps.emission;
+						emission.rate = 1;
+						ps.Stop();
                     }
                     return;
                 }

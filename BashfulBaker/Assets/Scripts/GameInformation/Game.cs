@@ -142,6 +142,7 @@ namespace Assets.Scripts.GameInformation
         public static GameHUD HUD;
 
         public static Utilities.Timers.DeltaTimer PhaseTimer;
+		public static float ovenStartTime = -1f;
 
         public static Content.ContentManager ContentManager
         {
