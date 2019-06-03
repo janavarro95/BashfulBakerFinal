@@ -126,6 +126,15 @@ public class StealthCaughtZone : MonoBehaviour
                             BeginDialogue(dialogue, item);
 
                         }
+                        else
+                        {
+                            dialogue = new Dialogue("Guard", new List<string>()
+                            {
+                                "You can't be out this late! You should really get back home!"
+                            }.ToArray());
+
+                            BeginDialogue(dialogue, null);
+                        }
 
                         return;
                     }
