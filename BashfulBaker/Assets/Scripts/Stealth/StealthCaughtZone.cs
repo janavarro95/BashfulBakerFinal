@@ -126,6 +126,15 @@ public class StealthCaughtZone : MonoBehaviour
                             BeginDialogue(dialogue, item);
 
                         }
+                        else
+                        {
+                            dialogue = new Dialogue("Guard", new List<string>()
+                            {
+                                "You can't be out this late! You should really get back home!"
+                            }.ToArray());
+
+                            BeginDialogue(dialogue, null);
+                        }
 
                         return;
                     }
@@ -179,46 +188,50 @@ public class StealthCaughtZone : MonoBehaviour
 
     private void ProgressDialogue()
     {
-        if (breathing.GetComponentInChildren<Breathe>().isFinished())
+        if (this.guardType == GuardType.Guard)
         {
-            if (!dm.IsDialogueUp)
-                EndDialogue();
-            else if (endDia)
+            if (breathing.GetComponentInChildren<Breathe>().isFinished())
             {
-                if (itemToTake != null && !String.IsNullOrEmpty(itemToTake.Name))
+                if (!dm.IsDialogueUp)
+                    EndDialogue();
+                else if (endDia)
                 {
-                    // make new dialog
-                    dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
-                    {"Thank you for the {0}, have a lovely night!"},
-                    itemToTake.Name).ToArray());
+                    if (itemToTake != null && !String.IsNullOrEmpty(itemToTake.Name))
+                    {
+                        // make new dialog
+                        dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
+                        {"Thank you for the {0}, have a lovely night!"},
+                        itemToTake.Name).ToArray());
 
-                    // start new dialog
-                    Game.DialogueManager.StartDialogue(dialogue);
-                    endDia = false;
-                }
-                else
-                {
-                    // make new dialog
-                    dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
-                    {"I'll personally escort you!"},
-                    "NOTHING").ToArray());
+                        // start new dialog
+                        Game.DialogueManager.StartDialogue(dialogue);
+                        endDia = false;
+                    }
+                    else
+                    {
+                        // make new dialog
+                        dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
+                        {"I'll personally escort you!"},
+                        "NOTHING").ToArray());
 
-                    // start new dialog
-                    Game.DialogueManager.StartDialogue(dialogue);
-                    endDia = false;
+                        // start new dialog
+                        Game.DialogueManager.StartDialogue(dialogue);
+                        endDia = false;
+                    }
                 }
             }
-        }
-        else if (!dm.IsDialogueUp)
-        {
-            // make new dialog
-            dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
-            {ramble.NextRamble()}, 
-            (itemToTake!=null ? itemToTake.Name : "NOTHING")).ToArray());
+            else if (!dm.IsDialogueUp)
+            {
+                // make new dialog
+                dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
+                {ramble.NextRamble()},
+                (itemToTake != null ? itemToTake.Name : "NOTHING")).ToArray());
 
-            // start new dialog
-            Game.DialogueManager.StartDialogue(dialogue);
+                // start new dialog
+                Game.DialogueManager.StartDialogue(dialogue);
+            }
         }
+        else EndDialogue();
     }
 
     private void EndDialogue()

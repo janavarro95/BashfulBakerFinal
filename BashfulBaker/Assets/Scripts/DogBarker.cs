@@ -6,6 +6,7 @@ public class DogBarker : MonoBehaviour
 {
     // sound
     public GameObject soundPrefab;
+    public GameObject barkingSymbol;
 
     // timer
     public float timer = 0;
@@ -40,6 +41,15 @@ public class DogBarker : MonoBehaviour
             timer = timerReset + Random.Range(-timerResetVariance, timerResetVariance);
             // trigger
             Instantiate(soundPrefab, this.transform.position, Quaternion.identity);
+            // coroutine
+            barkingSymbol.GetComponent<SpriteRenderer>().enabled = true;
+            StartCoroutine(dropBork(1));
         }
+    }
+
+    private IEnumerator dropBork(float time)
+    {
+        yield return new WaitForSeconds(time);
+        barkingSymbol.GetComponent<SpriteRenderer>().enabled = false;
     }
 }

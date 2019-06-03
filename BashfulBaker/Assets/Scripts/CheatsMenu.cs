@@ -12,9 +12,11 @@ public class CheatsMenu : Menu
 {
 
     InputField speedInput;
+    Dropdown cookieMode;
     public override void Start()
     {
         speedInput = this.gameObject.transform.Find("Canvas").Find("Background").Find("InputField").gameObject.GetComponent<InputField>();
+        cookieMode = this.gameObject.transform.Find("Canvas").Find("Background").Find("Dropdown").gameObject.GetComponent<Dropdown>();
         speedInput.text = Game.Player.PlayerMovement.defaultSpeed.ToString();
     }
 
@@ -63,34 +65,61 @@ public class CheatsMenu : Menu
 
     public void giveChocolateChipCookies()
     {
-        Dish d = new Dish(Enums.Dishes.ChocolateChipCookies);
-        d.currentDishState = Enums.DishState.Packaged;
+        Dish d = new Dish(Enums.Dishes.ChocolateChipCookies,getState());
         Game.Player.dishesInventory.Add(d);
     }
 
     public void giveMintChipCookies()
     {
-        Dish d = new Dish(Enums.Dishes.MintChipCookies);
-        d.currentDishState = Enums.DishState.Packaged;
+        Dish d = new Dish(Enums.Dishes.MintChipCookies, getState());
         Game.Player.dishesInventory.Add(d);
     }
 
     public void givePecanCookies()
     {
-        Dish d = new Dish(Enums.Dishes.PecanCookies);
-        d.currentDishState = Enums.DishState.Packaged;
+        Dish d = new Dish(Enums.Dishes.PecanCookies, getState());
         Game.Player.dishesInventory.Add(d);
     }
 
     public void giveORCookies()
     {
-        Dish d = new Dish(Enums.Dishes.OatmealRaisinCookies);
-        d.currentDishState = Enums.DishState.Packaged;
+        Dish d = new Dish(Enums.Dishes.OatmealRaisinCookies, getState());
         Game.Player.dishesInventory.Add(d);
     }
 
     public void changePlayersSpeed()
     {
         Game.Player.PlayerMovement.defaultSpeed = (float)Convert.ToDouble(speedInput.text);
+    }
+
+    public Enums.DishState getState()
+    {
+        if (cookieMode.options[cookieMode.value].text == "Ingredients")
+        {
+            Debug.Log("ing");
+            return Enums.DishState.Ingredients;
+        }
+        if (cookieMode.options[cookieMode.value].text == "Mixed")
+        {
+            return Enums.DishState.Mixed;
+        }
+        if (cookieMode.options[cookieMode.value].text == "Prepped")
+        {
+            return Enums.DishState.Prepped;
+        }
+        if (cookieMode.options[cookieMode.value].text == "Baked")
+        {
+            return Enums.DishState.Baked;
+        }
+        if (cookieMode.options[cookieMode.value].text == "Packaged")
+        {
+            return Enums.DishState.Packaged;
+        }
+        if (cookieMode.options[cookieMode.value].text == "Burnt")
+        {
+            return Enums.DishState.Burnt;
+        }
+        Debug.Log("fuuuu");
+        return Enums.DishState.Ingredients;
     }
 }
