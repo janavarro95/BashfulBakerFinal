@@ -165,7 +165,6 @@ namespace Assets.Scripts.GameInformation
             }
         }
 
-        public static Pantry Pantry;
         public static bool TutorialCompleted;
 
         public static DialogueManager DialogueManager;
@@ -273,11 +272,6 @@ namespace Assets.Scripts.GameInformation
                     Options = new GameOptions();
                 }
 
-                if (Pantry == null)
-                {
-                    Pantry = new Pantry();
-                }
-
                 if (IngredientsAddedForPlayer == false)
                 {
                     Game.player.specialIngredientsInventory.Add(new SpecialIngredient(Enums.SpecialIngredients.ChocolateChips));
@@ -369,9 +363,6 @@ namespace Assets.Scripts.GameInformation
             //player = null;
 
             //Destroy(SoundManager.gameObject);
-            SoundManager = null;
-            Options = null;
-            Pantry = null;
 
             //Game.Menu.exitMenu();
 
@@ -420,25 +411,28 @@ namespace Assets.Scripts.GameInformation
 
             if (SceneManager.GetActiveScene().name == "preloadScene")
             {
-                if (GameObject.Find("Player(Clone)")==null)
+                if (Game.Player.gameObject==null)
                 {
                     string path = Path.Combine("Prefabs", "Player");
                     Player.gameObject = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)));
                     Player.gameObject.transform.position = new Vector3(-3.06971f, -9.5f, 0);
                     DontDestroyOnLoad(Player.gameObject);
-
+                }
+                if (Game.HUD == null)
+                {
                     string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
                     //Debug.Log(HUDPath);
                     Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
-                    //Debug.Log("Loading kitchen scene from the Game.cs script!");
+                                                                                          //Debug.Log("Loading kitchen scene from the Game.cs script!");
 
+                }
                     //StartNewTimerPhase(2, 0);
 
                     if (Game.TutorialCompleted == false)
                     {
                         (HUD as GameHUD).showInventory = false;
                     }
-                }
+                
 
                 SceneManager.LoadScene("DaySelectMenu");
             }
@@ -512,7 +506,22 @@ namespace Assets.Scripts.GameInformation
             {
                 //Debug.Log("REMOVE THE COUNTERS!");
                 //GameObject.Find("backCounter 1").SetActive(false);
-               // GameObject.Find("backCounter 1 (1)").SetActive(false);
+                // GameObject.Find("backCounter 1 (1)").SetActive(false);
+                Game.HUD.showAll();
+            }
+            if (SceneManager.GetActiveScene().name == "KitchenDay3")
+            {
+                //Debug.Log("REMOVE THE COUNTERS!");
+                //GameObject.Find("backCounter 1").SetActive(false);
+                // GameObject.Find("backCounter 1 (1)").SetActive(false);
+                Game.HUD.showAll();
+            }
+            if (SceneManager.GetActiveScene().name == "KitchenDay4")
+            {
+                //Debug.Log("REMOVE THE COUNTERS!");
+                //GameObject.Find("backCounter 1").SetActive(false);
+                // GameObject.Find("backCounter 1 (1)").SetActive(false);
+                Game.HUD.showAll();
             }
 
             if (SceneManager.GetActiveScene().name == "Neighborhood")

@@ -95,6 +95,7 @@ namespace Assets.Scripts.Player
             {
                 if (_gameObject == null)
                 {
+                    if (GameObject.FindWithTag("Player") == null) return null;
                     _gameObject = GameObject.FindWithTag("Player");
                     _heldItemGameObject = _gameObject.transform.Find("HeldItem").gameObject;
                     GameObject.DontDestroyOnLoad(_gameObject);
