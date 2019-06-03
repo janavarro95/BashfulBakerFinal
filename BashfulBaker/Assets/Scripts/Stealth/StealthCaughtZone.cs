@@ -19,6 +19,7 @@ public class StealthCaughtZone : MonoBehaviour
     public DialogueManager dm;
     private GameObject breathing;
     private GuardRamber ramble;
+    private bool rambleReady = true;
     private bool endDia = true;
 
     public bool inDialogue = false;
@@ -222,16 +223,34 @@ public class StealthCaughtZone : MonoBehaviour
             }
             else if (!dm.IsDialogueUp)
             {
-                // make new dialog
-                dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
-                {ramble.NextRamble()},
-                (itemToTake != null ? itemToTake.Name : "NOTHING")).ToArray());
-
-                // start new dialog
-                Game.DialogueManager.StartDialogue(dialogue);
+                Ramble();
+            }
+            else if (dm.sentenceFinished)
+            {
+                if (rambleReady)
+                    StartCoroutine(WaitToEndDialogue(2f));
             }
         }
         else EndDialogue();
+    }
+
+    private void Ramble()
+    {
+        // make new dialog
+        dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
+                {ramble.NextRamble()},
+        (itemToTake != null ? itemToTake.Name : "NOTHING")).ToArray());
+
+        // start new dialog
+        Game.DialogueManager.StartDialogue(dialogue);
+    }
+
+    private IEnumerator WaitToEndDialogue(float time)
+    {
+        rambleReady = false;
+        yield return new WaitForSeconds(time);
+        dm.IsDialogueUp = false;
+        rambleReady = true;
     }
 
     private void EndDialogue()

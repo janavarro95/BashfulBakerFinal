@@ -13,6 +13,7 @@ public class DialogueManager : MonoBehaviour
     public TMPro.TextMeshProUGUI nameText;
     public TMPro.TextMeshProUGUI dialogueText;
     public Animator animator;
+    public bool sentenceFinished = false;
 
 
     private Queue<string> sentences;
@@ -23,6 +24,10 @@ public class DialogueManager : MonoBehaviour
         get
         {
             return animator.GetBool("isOpen");
+        }
+        set
+        {
+            animator.SetBool("isOpen", value);
         }
     }
 
@@ -88,11 +93,13 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeSentence (string sentence)
     {
         dialogueText.text = "";
+        sentenceFinished = false;
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
             yield return null;
         }
+        sentenceFinished = true;
     }
 
     void EndDialogue()
