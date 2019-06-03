@@ -16,7 +16,8 @@ namespace Assets.Scripts.GameInput {
         /// <param name="collision"></param>
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (Game.TutorialCompleted == false) checkForTutorialInteraction(collision);
+
+            if (Game.CurrentDayNumber==1 || Game.CurrentDayNumber == 0) checkForTutorialInteraction(collision);
             else checkForNonTutorialInteraction(collision);
 
         }
@@ -27,10 +28,13 @@ namespace Assets.Scripts.GameInput {
         /// <param name="collision"></param>
         private void checkForTutorialInteraction(Collider2D collision)
         {
-            if (arrow.GetComponent<progress>().step == 0)
+            if (arrow != null)
             {
-                arrow.GetComponent<SpriteRenderer>().enabled = false;
-                arrow.GetComponent<progress>().A.SetActive(true);
+                if (arrow.GetComponent<progress>().step == 0)
+                {
+                    arrow.GetComponent<SpriteRenderer>().enabled = false;
+                    arrow.GetComponent<progress>().A.SetActive(true);
+                }
             }
             if (InputControls.APressed && collision.gameObject.tag == "Player" && arrow.GetComponent<progress>().step == 0)
             {
