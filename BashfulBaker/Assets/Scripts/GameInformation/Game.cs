@@ -512,7 +512,7 @@ namespace Assets.Scripts.GameInformation
             {
                 //Debug.Log("REMOVE THE COUNTERS!");
                 //GameObject.Find("backCounter 1").SetActive(false);
-                GameObject.Find("backCounter 1 (1)").SetActive(false);
+               // GameObject.Find("backCounter 1 (1)").SetActive(false);
             }
 
             if (SceneManager.GetActiveScene().name == "Neighborhood")

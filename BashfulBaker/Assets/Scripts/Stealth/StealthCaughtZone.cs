@@ -110,12 +110,13 @@ public class StealthCaughtZone : MonoBehaviour
                 {
                     Debug.Log("---this guard has not been fed");
 
-                    if (Game.Player.activeItem != null && (Game.Player.activeItem is Dish))
+                    if (Game.Player.dishesInventory.getAllDishes().Count > 0)
                     {
-                        Debug.Log("---player is holding something");
 
-                        Item item = Game.Player.activeItem;
-                        if (!inDialogue)
+                        //Item item = (Game.Player.activeItem != null && (Game.Player.activeItem as Dish).IsDishComplete ? Game.Player.activeItem : Game.Player.dishesInventory.getRandomBoxedDish());
+                        Item item = (Game.Player.dishesInventory.getRandomBoxedDish());
+                        
+                        if ((item as Dish).IsDishComplete)
                         {
                             dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
                             {
@@ -123,29 +124,9 @@ public class StealthCaughtZone : MonoBehaviour
                             }, item.Name).ToArray());
 
                             BeginDialogue(dialogue, item);
-                        }
-                        return;
-                    }
-                    else if (Game.Player.dishesInventory.getAllDishes().Count > 0)
-                    {
-                        Debug.Log("---player is not holding anything, but has items in inventory");
 
-                        Item item = Game.Player.dishesInventory.getRandomDish();
-                        if (!inDialogue)
-                        {
-                            dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
-                            {
-                                "*Sniff sniff* Ohh that {0} looks delicious!"
-                            },item.Name).ToArray());
-
-                            BeginDialogue(dialogue, item);
                         }
 
-                        // need to put active item in hand
-                        /*while (Game.Player.activeItem != itemToTake)
-                        {
-                            Game.updateCurrentDishIndex(1);
-                        }*/
                         return;
                     }
                     else
@@ -155,7 +136,7 @@ public class StealthCaughtZone : MonoBehaviour
                         {
                             dialogue = new Dialogue("Guard", new List<string>()
                             {
-                                "You can't be out this late! Let me escort you back home!"
+                                "You can't be out this late! You should really get back home!"
                             }.ToArray());
 
                             BeginDialogue(dialogue, null);
@@ -198,46 +179,50 @@ public class StealthCaughtZone : MonoBehaviour
 
     private void ProgressDialogue()
     {
-        if (breathing.GetComponentInChildren<Breathe>().isFinished())
+        if (this.guardType == GuardType.Guard)
         {
-            if (!dm.IsDialogueUp)
-                EndDialogue();
-            else if (endDia)
+            if (breathing.GetComponentInChildren<Breathe>().isFinished())
             {
-                if (itemToTake != null && !String.IsNullOrEmpty(itemToTake.Name))
+                if (!dm.IsDialogueUp)
+                    EndDialogue();
+                else if (endDia)
                 {
-                    // make new dialog
-                    dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
-                    {"Thank you for the {0}, have a lovely night!"},
-                    itemToTake.Name).ToArray());
+                    if (itemToTake != null && !String.IsNullOrEmpty(itemToTake.Name))
+                    {
+                        // make new dialog
+                        dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
+                        {"Thank you for the {0}, have a lovely night!"},
+                        itemToTake.Name).ToArray());
 
-                    // start new dialog
-                    Game.DialogueManager.StartDialogue(dialogue);
-                    endDia = false;
-                }
-                else
-                {
-                    // make new dialog
-                    dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
-                    {"I'll personally escort you!"},
-                    "NOTHING").ToArray());
+                        // start new dialog
+                        Game.DialogueManager.StartDialogue(dialogue);
+                        endDia = false;
+                    }
+                    else
+                    {
+                        // make new dialog
+                        dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
+                        {"I'll personally escort you!"},
+                        "NOTHING").ToArray());
 
-                    // start new dialog
-                    Game.DialogueManager.StartDialogue(dialogue);
-                    endDia = false;
+                        // start new dialog
+                        Game.DialogueManager.StartDialogue(dialogue);
+                        endDia = false;
+                    }
                 }
             }
-        }
-        else if (!dm.IsDialogueUp)
-        {
-            // make new dialog
-            dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
-            {ramble.NextRamble()}, 
-            (itemToTake!=null ? Game.Player.activeItem.Name : "NOTHING")).ToArray());
+            else if (!dm.IsDialogueUp)
+            {
+                // make new dialog
+                dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
+                {ramble.NextRamble()},
+                (itemToTake != null ? itemToTake.Name : "NOTHING")).ToArray());
 
-            // start new dialog
-            Game.DialogueManager.StartDialogue(dialogue);
+                // start new dialog
+                Game.DialogueManager.StartDialogue(dialogue);
+            }
         }
+        else EndDialogue();
     }
 
     private void EndDialogue()
