@@ -249,7 +249,7 @@ namespace Assets.Scripts.Utilities.Timers
         public void Update(float speedMultiplier)
         {
             if (state != TimerState.Ticking) return; //Only update if timer should tick.
-            if (Game.DialogueManager.IsDialogueUp) return;
+            if (Game.DialogueManager != null && Game.DialogueManager.IsDialogueUp) return;
 
             if (type == TimerType.CountUp)
             {
