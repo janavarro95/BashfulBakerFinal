@@ -167,10 +167,12 @@ namespace Assets.Scripts.Menus
             if (componentName == "KitchenDay3")
             {
                 if (GameInformation.Game.DaysUnlocked[3] == false) return false;
+                GameInformation.Game.CurrentDayNumber = 3;
             }
             if (componentName == "KitchenDay4")
             {
                 if (GameInformation.Game.DaysUnlocked[4] == false) return false;
+                GameInformation.Game.CurrentDayNumber = 4;
             }
             return true;
         }
