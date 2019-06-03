@@ -497,7 +497,7 @@ namespace Assets.Scripts.Menus.HUDS
                 if (GameInput.InputControls.SelectPressed && Game.QuestManager.completedAllQuests())
                 {
                     //DO NEW MENU!
-                    Game.PhaseTimer.finish();
+                    Game.endTheDay();
                 }
 
             }

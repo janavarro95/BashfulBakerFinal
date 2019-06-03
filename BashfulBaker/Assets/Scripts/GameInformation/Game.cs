@@ -597,6 +597,15 @@ namespace Assets.Scripts.GameInformation
             ScreenTransitions.StartSceneTransition(5f, "EndOfDay", Color.black, ScreenTransitions.TransitionState.FadeOut);
         }
 
+        public static void endTheDay()
+        {
+            if (Game.QuestManager.completedAllQuests())
+            {
+                ScreenTransitions.StartSceneTransition(5f, "EndOfDay", Color.black, ScreenTransitions.TransitionState.FadeOut);
+                Game.PhaseTimer.pause();
+            }
+        }
+
         public static void QuitGame()
         {
             SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
