@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f0339f7ae55b6d94ea5c630954cfa658
+guid: 3d97233b1ac41234883a793ae33aabce
 TextureImporter:
   fileIDToRecycleName:
     21300000: Dane_WalkOutsideLnh_0
@@ -137,7 +137,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 603b76a8e98910548943473576347336
+      spriteID: d39602c242cfa54449c8acb770160427
       vertices: []
       indices: 
       edges: []
@@ -157,7 +157,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5d1910258b29f64d872acc688b10f60
+      spriteID: c0d7dc1c84535e44d8d2ab83c588861f
       vertices: []
       indices: 
       edges: []
@@ -177,7 +177,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60057e76265ceb34683079756437b6aa
+      spriteID: ee9a2401e93c64d4e9536a26acb4bc86
       vertices: []
       indices: 
       edges: []
@@ -197,7 +197,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92658f072ad639f46980883582a2ba0e
+      spriteID: 1085ce7322eb8dc48a6f7ecc12997668
       vertices: []
       indices: 
       edges: []
@@ -217,7 +217,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 398aa5b549b72294f8ca400f18a03c5f
+      spriteID: e8b3ed3351e665343a5ad7150526a444
       vertices: []
       indices: 
       edges: []
@@ -237,7 +237,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56a45f35be020e54b91d022c37ca8ad1
+      spriteID: 0ff0d81e4c2b5624295ab3a71faf2adb
       vertices: []
       indices: 
       edges: []

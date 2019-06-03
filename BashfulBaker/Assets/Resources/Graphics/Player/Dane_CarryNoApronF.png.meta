@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 33dcf7b9385599f4e8482d0b7b141e37
+guid: 5d28534a65139bb4baf545ce5c642829
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Dane_CarryOutsideR_0
-    21300002: Dane_CarryOutsideR_1
-    21300004: Dane_CarryOutsideR_2
-    21300006: Dane_CarryOutsideR_3
-    21300008: Dane_CarryOutsideR_4
-    21300010: Dane_CarryOutsideR_5
+    21300000: Dane_CarryNoApronF_0
+    21300002: Dane_CarryNoApronF_1
+    21300004: Dane_CarryNoApronF_2
+    21300006: Dane_CarryNoApronF_3
+    21300008: Dane_CarryNoApronF_4
+    21300010: Dane_CarryNoApronF_5
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dane_CarryOutsideR_0
+      name: Dane_CarryNoApronF_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,13 +137,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c48213e5f71489743bf22a7eb6277dce
+      spriteID: 8d07b549e8ca5e14c98d79eb65837128
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dane_CarryOutsideR_1
+      name: Dane_CarryNoApronF_1
       rect:
         serializedVersion: 2
         x: 32
@@ -157,13 +157,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e1456532b436ff4384a31f70ba8e88e
+      spriteID: 66e5c10a19605e5459c2cba8bfcfd259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dane_CarryOutsideR_2
+      name: Dane_CarryNoApronF_2
       rect:
         serializedVersion: 2
         x: 64
@@ -177,13 +177,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99520e6e27ea57b429eaf1803aaf0af3
+      spriteID: 9bdeea007fb41ce40b5d3590be3d3b91
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dane_CarryOutsideR_3
+      name: Dane_CarryNoApronF_3
       rect:
         serializedVersion: 2
         x: 0
@@ -197,13 +197,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71f20fb49fac41f4ba19c04d73c259af
+      spriteID: 1f0123607350f944f90be54bfa2e974c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dane_CarryOutsideR_4
+      name: Dane_CarryNoApronF_4
       rect:
         serializedVersion: 2
         x: 32
@@ -217,13 +217,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cc720dde54946e4ea563061b15b60f1
+      spriteID: 661bd50aec9a18d458fe2d3c2fe96192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dane_CarryOutsideR_5
+      name: Dane_CarryNoApronF_5
       rect:
         serializedVersion: 2
         x: 64
@@ -237,7 +237,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e1b81c9239c05c4ebf331abd7e693ff
+      spriteID: 5b87bc1ed1eb3d4419dc8b7c7940a8de
       vertices: []
       indices: 
       edges: []
