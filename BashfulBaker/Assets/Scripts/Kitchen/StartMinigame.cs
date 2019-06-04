@@ -328,7 +328,6 @@ public class StartMinigame : MonoBehaviour
     /// </summary>
     private void finishedTransition()
     {
-        Game.HUD.showHUD = false;
         Game.Player.setSpriteVisibility(Enums.Visibility.Invisible);
         SceneManager.LoadScene(minigame);
         ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);

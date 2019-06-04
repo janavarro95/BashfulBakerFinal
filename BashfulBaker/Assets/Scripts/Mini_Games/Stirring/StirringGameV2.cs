@@ -49,7 +49,6 @@ namespace Assets.Scripts.GameInput
 
             progressBar.transform.position = new Vector3(progressBar.GetComponent<StartEnd>().start, progressBar.transform.position.y, progressBar.transform.position.z);
 
-            Game.HUD.showHUD = false;
             Game.HUD.showOnlyTimer();
 
             Debug.Log(Game.Player.activeItem.Name);

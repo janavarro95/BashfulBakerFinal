@@ -24,6 +24,7 @@ public class CookieMover : MonoBehaviour
 
     private void Start()
     {
+        Game.HUD.showOnlyTimer();
         setCookies();
         moverSource.clip = chime;
         Count = 0;
