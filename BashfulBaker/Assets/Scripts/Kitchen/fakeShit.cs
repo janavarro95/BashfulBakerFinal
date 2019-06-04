@@ -10,7 +10,7 @@ namespace Assets.Scripts.GameInput
     public class fakeShit : MonoBehaviour
     {
         private bool c;
-        public GameObject pantry, arrow, bag;
+        public GameObject pantry, arrow, bag, A;
         public Dialogue whereAreThey, hereTheyAre;
 
         private void Start()
@@ -18,15 +18,29 @@ namespace Assets.Scripts.GameInput
             c = true;
         }
 
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+            A.GetComponent<SpriteRenderer>().enabled = true;
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+            A.GetComponent<SpriteRenderer>().enabled = false;
+        }
+
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (InputControls.APressed && collision.gameObject.tag == "Player" && GetComponent<SpriteRenderer>().enabled)
+            if (InputControls.APressed && collision.gameObject.tag == "Player" && (GetComponent<SpriteRenderer>().enabled || A.GetComponent<SpriteRenderer>().enabled))
             {
                 if (c)
                 {
                     FindObjectOfType<DialogueManager>().StartDialogue(whereAreThey);
                     transform.position = new Vector3(bag.transform.position.x, bag.transform.position.y + 1, -2);
                     c = false;
+                    GetComponent<SpriteRenderer>().enabled = true;
+                    A.GetComponent<SpriteRenderer>().enabled = false;
                 }
                 else
                 {

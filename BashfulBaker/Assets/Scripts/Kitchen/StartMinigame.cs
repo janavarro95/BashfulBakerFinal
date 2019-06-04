@@ -106,10 +106,11 @@ public class StartMinigame : MonoBehaviour
                             
 							startTime = (float)Game.PhaseTimer.currentTime;
 							Game.ovenStartTime = startTime;
-							//Debug.Log("Setting oven start time: " + Game.ovenStartTime);
-							endTime = startTime + ovenCookingTime;
+                            //Debug.Log("Setting oven start time: " + Game.ovenStartTime);
+                            /*endTime = startTime + ovenCookingTime;
 							smokeTime = endTime + 5;
-							burnTime = smokeTime + 10;
+							burnTime = smokeTime + 10;*/
+                            Invoke("Bake", ovenCookingTime);
 
                             ps.Play();
                             glow.enabled = true;
@@ -405,7 +406,7 @@ public class StartMinigame : MonoBehaviour
 
 	private void Update()
 	{
-		if(minigame == "Oven")
+		if(minigame == "Oven" && Game.TutorialCompleted)
 		{
 			switch (baked)
 			{
