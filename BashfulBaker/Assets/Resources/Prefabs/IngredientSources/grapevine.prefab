@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3210238604482016427}
   - component: {fileID: 4615395918709137494}
   - component: {fileID: 2086795383368586702}
+  - component: {fileID: 1144914132772220881}
   m_Layer: 0
   m_Name: grapevine
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3210238604482016429}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.024999619, y: -0.30999947, z: 0.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6be21f67148988846b95e89306b7a37a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 335341ce57eab4784946b69e4a275857, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,6 +95,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: 3
+  Name: 
+  max: 1
+  emptySprite: {fileID: 21300000, guid: 66c7487588cea4945a4df74400a64bd3, type: 3}
 --- !u!61 &2086795383368586702
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -111,7 +115,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.35, y: 0.43}
+    oldSize: {x: 0.33, y: 0.43}
     newSize: {x: 0.35, y: 0.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -119,4 +123,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.5135727, y: 0.57223606}
+  m_EdgeRadius: 0
+--- !u!61 &1144914132772220881
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3210238604482016429}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0037859678, y: -0.12018648}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.33, y: 0.43}
+    newSize: {x: 0.35, y: 0.43}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.23894572, y: 0.18962705}
   m_EdgeRadius: 0

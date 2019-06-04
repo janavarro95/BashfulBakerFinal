@@ -14,6 +14,7 @@ public class PickUp : MonoBehaviour
     public int max;
     private Game.IngSource mySource;
     private bool exists;
+    public Sprite emptySprite;
 
     void Start()
     {
@@ -33,6 +34,11 @@ public class PickUp : MonoBehaviour
             mySource = new Game.IngSource(Name, max);
             Game.Sources.Add(mySource);
         }
+
+        if (mySource.current >= max)
+        {
+            GetComponent<SpriteRenderer>().sprite = emptySprite;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -43,6 +49,10 @@ public class PickUp : MonoBehaviour
             {
                 Game.Player.addSpecialIngredientForPlayer(item);
                 mySource.current++;
+            }
+            if (mySource.current >= max)
+            {
+                GetComponent<SpriteRenderer>().sprite = emptySprite;
             }
 
             Game.HUD.showHUD = true;

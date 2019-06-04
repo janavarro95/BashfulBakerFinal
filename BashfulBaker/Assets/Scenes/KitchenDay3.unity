@@ -2383,6 +2383,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8268412410933899897, guid: c5cd5610c8fd5ad4eb73640e01335ca8,
+        type: 3}
+      propertyPath: ColorModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5cd5610c8fd5ad4eb73640e01335ca8, type: 3}
 --- !u!1 &1201003678
@@ -4212,6 +4217,7 @@ MonoBehaviour:
   nameText: {fileID: 1954466003}
   dialogueText: {fileID: 1954466004}
   animator: {fileID: 1954466005}
+  sentenceFinished: 0
 --- !u!4 &1816206804
 Transform:
   m_ObjectHideFlags: 0

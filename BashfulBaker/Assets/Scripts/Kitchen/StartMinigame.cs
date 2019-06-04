@@ -429,7 +429,10 @@ public class StartMinigame : MonoBehaviour
 					{
 						//start smoke
 						var emission = ps.emission;
-						emission.rate = Mathf.Lerp(1, 10, ((float)Game.PhaseTimer.currentTime - startTime) / (endTime - startTime));
+						emission.rateOverTime = Mathf.Lerp(1, 10, Mathf.Clamp01(((float)Game.PhaseTimer.currentTime - smokeTime) / (burnTime - smokeTime)));
+                       // var main = ps.main;
+                       // main.startColor = Color.Lerp(new Color(202f, 195f, 195f), new Color(65f, 65f, 65f), Mathf.Clamp01(((float)Game.PhaseTimer.currentTime - smokeTime) / (burnTime - smokeTime)));
+                       // Debug.Log("lerping : " + Mathf.Clamp01(((float)Game.PhaseTimer.currentTime - smokeTime) / (burnTime - smokeTime)));
 					}
 					if((float)Game.PhaseTimer.currentTime >= burnTime)
 					{
