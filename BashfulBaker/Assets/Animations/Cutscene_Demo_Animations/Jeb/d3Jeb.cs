@@ -74,7 +74,7 @@ public class d3Jeb : MonoBehaviour
         this.gameObject.SetActive(false);
         Game.HUD.showHUD = true;
         Game.HUD.showQuests = true;
-        if (Game.CurrentDayNumber == 1)
+        if (Game.CurrentDayNumber == 3)
         {
             Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
             Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Ian", new List<string>()));
