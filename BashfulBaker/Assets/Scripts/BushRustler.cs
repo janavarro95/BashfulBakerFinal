@@ -7,7 +7,7 @@ public class BushRustler : MonoBehaviour
     // get animations
     private Animator anim;
     private Animation rustle;
-
+    private ParticleSystem ps;
     public GameObject soundPrefab;
 
     // Start is called before the first frame update
@@ -16,6 +16,7 @@ public class BushRustler : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.enabled = true;
         //rustle = GetComponent<Animation>();
+        ps = GetComponent<ParticleSystem>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,6 +34,7 @@ public class BushRustler : MonoBehaviour
         {
             // animate the bush
             anim.SetBool("shaking", true);
+            ps.Play();
             Invoke("StopShaking", 0.5f);
 
             // play sound
@@ -43,5 +45,6 @@ public class BushRustler : MonoBehaviour
     void StopShaking()
     {
         anim.SetBool("shaking", false);
+        ps.Stop();
     }
 }

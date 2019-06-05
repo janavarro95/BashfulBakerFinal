@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool hidden;
 
-
     public GameObject heldObject;
     public SpriteRenderer heldObjectRenderer;
 
@@ -52,7 +51,7 @@ public class PlayerMovement : MonoBehaviour {
     private float t;
 
     public SpriteRenderer buttonB;
-    private float height;
+   // private float height;
 
     public RuntimeAnimatorController bakeryAnimator;
     public RuntimeAnimatorController nightAnimator;
@@ -105,7 +104,7 @@ public class PlayerMovement : MonoBehaviour {
         anxietyTimer = new DeltaTimer(anxietyCooldown, Assets.Scripts.Enums.TimerType.CountDown, false);
         animator = this.GetComponent<Animator>();
         SceneManager.sceneLoaded += sceneChange;
-       getRandomFootstepSound();
+        getRandomFootstepSound();
         walkingSoundTimer = new DeltaTimer(0.4d, Assets.Scripts.Enums.TimerType.CountDown, false);
         walkingSoundTimer.start();
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
@@ -119,9 +118,7 @@ public class PlayerMovement : MonoBehaviour {
         guardsSeeingMe = 0;
         t = 0;
 
-        height = (GetComponent<SpriteRenderer>().sprite.texture.height / 2) * transform.localScale.y;
-
-
+      //  height = (GetComponent<SpriteRenderer>().sprite.texture.height / 2) * transform.localScale.y;
 
         //dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
     }
