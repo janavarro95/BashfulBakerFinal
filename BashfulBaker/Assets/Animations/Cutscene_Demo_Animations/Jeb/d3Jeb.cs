@@ -21,7 +21,7 @@ public class d3Jeb : MonoBehaviour
     void Start()
     {
         waitingtoend = false;
-        if (Game.Day3JebTalkedTo || Game.Player.PlayerMovement.currentStep > 0)
+        if (Game.Day3JebTalkedTo)
         {
             gameObject.SetActive(false);
         }
