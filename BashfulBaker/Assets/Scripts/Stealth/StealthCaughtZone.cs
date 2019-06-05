@@ -69,7 +69,7 @@ public class StealthCaughtZone : MonoBehaviour
             dm = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
 
 
-        BreathingMinigame(false);
+        BreathingMinigame(false, false);
 
         ramble = GameObject.FindGameObjectWithTag("Ramblings").GetComponent<GuardRamber>();
     }
@@ -99,10 +99,7 @@ public class StealthCaughtZone : MonoBehaviour
         {
             GameObject.Find("Headshot").GetComponent<Image>().sprite = guardFace;
             Debug.Log("YOU GOT CAUGHT!");
-
-            // enable the minigame
-            BreathingMinigame(true);
-
+            
             // take the things
             pm.currentStep = 0;
             if (this.guardType == GuardType.Guard)
@@ -111,13 +108,16 @@ public class StealthCaughtZone : MonoBehaviour
                 {
                     Debug.Log("---this guard has not been fed");
 
+                    // enable the minigame
+                    BreathingMinigame(true, false);
+
                     if (Game.Player.dishesInventory.getAllDishes().Count > 0)
                     {
 
                         //Item item = (Game.Player.activeItem != null && (Game.Player.activeItem as Dish).IsDishComplete ? Game.Player.activeItem : Game.Player.dishesInventory.getRandomBoxedDish());
                         Item item = (Game.Player.dishesInventory.getRandomBoxedDish());
                         
-                        if ((item as Dish).IsDishComplete)
+                        if (item != null && !String.IsNullOrEmpty(item.Name) && (item as Dish).IsDishComplete)
                         {
                             dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
                             {
@@ -136,7 +136,6 @@ public class StealthCaughtZone : MonoBehaviour
 
                             BeginDialogue(dialogue, null);
                         }
-
                         return;
                     }
                     else
@@ -193,11 +192,12 @@ public class StealthCaughtZone : MonoBehaviour
         {
             if (breathing.GetComponentInChildren<Breathe>().isFinished())
             {
+                BreathingMinigame(false, false);
                 if (!dm.IsDialogueUp)
                     EndDialogue();
                 else if (endDia)
                 {
-                    if (itemToTake != null && !String.IsNullOrEmpty(itemToTake.Name))
+                    if (itemToTake != null && !String.IsNullOrEmpty(itemToTake.Name) && (itemToTake as Dish).IsDishComplete)
                     {
                         // make new dialog
                         dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
@@ -280,7 +280,7 @@ public class StealthCaughtZone : MonoBehaviour
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().CanPlayerMove = true;
 
         // stop breathing
-        BreathingMinigame(false);        
+        BreathingMinigame(false, true);        
         
         // bring back hud
         Game.HUD.showInventory = true;
@@ -332,12 +332,12 @@ public class StealthCaughtZone : MonoBehaviour
     }
 
     // breathing minigame
-    void BreathingMinigame(bool activate)
+    void BreathingMinigame(bool activate, bool reset)
     {
         if (breathing == null)
             return;
 
-        if (!activate)
+        if (reset)
         {
             Breathe bb = breathing.GetComponentInChildren<Breathe>();
             bb.progress = 0;

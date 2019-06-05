@@ -222,18 +222,20 @@ namespace Assets.Scripts.Items
             if (this.items.Count == 0) return null;
 
             List<Dish> dishes = getAllDishes();
-            if (dishes.Count == 0) return null;
+            List<Dish> boxed = new List<Dish>();
 
             foreach (Dish d in dishes)
             {
-                if (d.currentDishState != Enums.DishState.Packaged)
+                if (d.IsDishComplete)
                 {
-                    dishes.Remove(d);
+                    boxed.Add(d);
                 }
             }
 
-            int rando = UnityEngine.Random.Range(0, items.Count);
-            return dishes[rando];
+            if (boxed.Count == 0) return null;
+
+            int rando = UnityEngine.Random.Range(0, boxed.Count);
+            return boxed[rando];
         }
 
         /// <summary>
