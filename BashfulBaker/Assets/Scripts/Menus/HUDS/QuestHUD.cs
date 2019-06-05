@@ -15,11 +15,15 @@ namespace Assets.Scripts.Menus.HUDS
         GameObject canvas;
         private Button exitButton;
 
-
         Image quest1Image;
         Image quest2Image;
         Image quest3Image;
         Image quest4Image;
+
+        Image quest1Complete;
+        Image quest2Complete;
+        Image quest3Complete;
+        Image quest4Complete;
 
         GameObject menuBackground;
 
@@ -41,6 +45,11 @@ namespace Assets.Scripts.Menus.HUDS
             quest3Image = menuBackground.transform.Find("Quest3").gameObject.GetComponent<Image>();
             quest4Image = menuBackground.transform.Find("Quest4").gameObject.GetComponent<Image>();
 
+            quest1Complete = quest1Image.gameObject.transform.Find("Image").GetComponent<Image>();
+            quest2Complete = quest2Image.gameObject.transform.Find("Image").GetComponent<Image>();
+            quest3Complete = quest3Image.gameObject.transform.Find("Image").GetComponent<Image>();
+            quest4Complete = quest4Image.gameObject.transform.Find("Image").GetComponent<Image>();
+
             getQuestImages();
         }
 
@@ -54,6 +63,10 @@ namespace Assets.Scripts.Menus.HUDS
             quest2Image.enabled = false;
             quest3Image.enabled = false;
             quest4Image.enabled = false;
+            quest1Complete.enabled = false;
+            quest2Complete.enabled = false;
+            quest3Complete.enabled = false;
+            quest4Complete.enabled = false;
 
             if (cookingQuests.Count >= 1)
             {
@@ -61,6 +74,8 @@ namespace Assets.Scripts.Menus.HUDS
                 quest1Image.sprite = loadQuestImage(quest);
                 quest1Image.enabled = true;
                 quest1Image.gameObject.SetActive(true);
+                if (quest.IsCompleted) quest1Complete.enabled = true;
+                else quest1Complete.enabled = false;
             }
             if (cookingQuests.Count >= 2)
             {
@@ -68,6 +83,8 @@ namespace Assets.Scripts.Menus.HUDS
                 quest2Image.sprite = loadQuestImage(quest);
                 quest2Image.enabled = true;
                 quest2Image.gameObject.SetActive(true);
+                if (quest.IsCompleted) quest2Complete.enabled = true;
+                else quest2Complete.enabled = false;
             }
             if (cookingQuests.Count >= 3)
             {
@@ -75,6 +92,8 @@ namespace Assets.Scripts.Menus.HUDS
                 quest3Image.sprite = loadQuestImage(quest);
                 quest3Image.enabled = true;
                 quest3Image.gameObject.SetActive(true);
+                if (quest.IsCompleted) quest3Complete.enabled = true;
+                else quest3Complete.enabled = false;
             }
             if (cookingQuests.Count >= 4)
             {
@@ -82,6 +101,8 @@ namespace Assets.Scripts.Menus.HUDS
                 quest4Image.sprite = loadQuestImage(quest);
                 quest4Image.enabled = true;
                 quest4Image.gameObject.SetActive(true);
+                if (quest.IsCompleted) quest4Complete.enabled = true;
+                else quest4Complete.enabled = false;
             }
 
         }
