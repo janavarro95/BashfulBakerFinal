@@ -41,6 +41,7 @@ namespace Assets.Scripts.QuestSystem.Quests
                         {
                             removalList.Add(Game.Player.activeItem);
                             Game.Player.activeItem = null;
+                            Game.HUD.QuestHUD.setUpMenuForDisplay();
                         }
                     }
                     else
