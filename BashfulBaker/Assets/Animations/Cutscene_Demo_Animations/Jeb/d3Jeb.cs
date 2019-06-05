@@ -48,8 +48,6 @@ public class d3Jeb : MonoBehaviour
     }
 
 
-
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (InputControls.APressed && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false)

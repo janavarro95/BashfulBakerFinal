@@ -28,6 +28,7 @@ namespace Assets.Scripts.GameInput {
         /// <param name="collision"></param>
         private void checkForTutorialInteraction(Collider2D collision)
         {
+            Debug.Log("HELLO????");
             if (arrow != null)
             {
                 if (arrow.GetComponent<progress>().step == 0)
@@ -38,8 +39,6 @@ namespace Assets.Scripts.GameInput {
             }
             if (InputControls.APressed && collision.gameObject.tag == "Player" && arrow.GetComponent<progress>().step == 0)
             {
-
-
                 Menu.Instantiate<PantryMenuV2>();
                 (Game.Menu as PantryMenuV2).initializeTutorialMode(this);
 
