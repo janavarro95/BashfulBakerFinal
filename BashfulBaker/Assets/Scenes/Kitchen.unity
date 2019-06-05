@@ -5745,6 +5745,31 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 190.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 27.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 27.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.36649823
+      objectReference: {fileID: 0}
     - target: {fileID: 2971227322113542835, guid: 17ab5b148b177ee4dac507cbc6add71e,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
