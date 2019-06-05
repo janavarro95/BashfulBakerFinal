@@ -40,15 +40,27 @@ public class Racoon : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == Game.Player.gameObject && hasNoticedRacoon == false)
+        if (collision.gameObject == Game.Player.gameObject)
         {
-            GameObject.Find("Headshot").GetComponent<Image>().sprite = daneFace;
-            hasNoticedRacoon = true;
-            Game.DialogueManager.StartDialogue(racoonDialogue);
-        }
+            if (hasNoticedRacoon == false)
+            {
+                GameObject.Find("Headshot").GetComponent<Image>().sprite = daneFace;
+                hasNoticedRacoon = true;
+                Game.DialogueManager.StartDialogue(racoonDialogue);
+            }
 
-        bButton.enabled = true;
+            bButton.enabled = true;
+        }
     }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject == Game.Player.gameObject)
+        {
+            bButton.enabled = false;
+        }
+    }
+
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (Game.Player.activeItem != null && collision.gameObject == Game.Player.gameObject && InputControls.BPressed)
