@@ -18,13 +18,14 @@ public class Racoon : MonoBehaviour
 
     private DeltaTimer movementTimer;
     private Vector3 ogPosition;
-
+    public SpriteRenderer bButton;
     private bool hasBeenFed;
 
     // Start is called before the first frame update
     void Start()
     {
         ogPosition = this.gameObject.transform.position;
+        bButton.enabled = false;
     }
 
     // Update is called once per frame
@@ -46,7 +47,7 @@ public class Racoon : MonoBehaviour
             Game.DialogueManager.StartDialogue(racoonDialogue);
         }
 
-
+        bButton.enabled = true;
     }
     public void OnTriggerStay2D(Collider2D collision)
     {
@@ -56,6 +57,7 @@ public class Racoon : MonoBehaviour
             Game.DialogueManager.StartDialogue(fedDialogue);
             hasBeenFed = true;
             moveRight();
+            bButton.enabled = false;
         }
         else if (Game.Player.activeItem == null && collision.gameObject == Game.Player.gameObject && InputControls.BPressed && hasBeenFed==false)
         {
