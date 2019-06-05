@@ -20,12 +20,14 @@ namespace Assets.Scripts.GameInput
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (!(GetComponent<SpriteRenderer>().enabled || GetComponent<SpriteRenderer>().enabled)) return;
             GetComponent<SpriteRenderer>().enabled = false;
             A.GetComponent<SpriteRenderer>().enabled = true;
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
+            if (!(GetComponent<SpriteRenderer>().enabled || GetComponent<SpriteRenderer>().enabled)) return;
             GetComponent<SpriteRenderer>().enabled = true;
             A.GetComponent<SpriteRenderer>().enabled = false;
         }
