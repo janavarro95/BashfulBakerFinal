@@ -17,6 +17,7 @@ public class MinigameTimer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.gameObject.SetActive(false);
         timer = new DeltaTimer(100000000, Assets.Scripts.Enums.TimerType.CountUp, false, null);
         timer.start();
         timerImage = this.gameObject.transform.Find("Canvas").Find("Image").GetComponent<Image>();
