@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4706530218426925485}
   - component: {fileID: 4706530218426925486}
   - component: {fileID: 4706530218426925481}
+  - component: {fileID: 4706530219216537520}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -118,3 +119,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldFollowTarget: 0
   followTarget: {fileID: 0}
+  zOffset: -10
+--- !u!114 &4706530219216537520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4706530218426925650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848f47a37d396934783e365d45d7154e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  songToPlay: {fileID: 8300000, guid: b0ac380a9e7b4ef47afd07486f3a3e80, type: 3}

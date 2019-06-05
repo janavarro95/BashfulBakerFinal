@@ -148,7 +148,7 @@ namespace Assets.Scripts.GameInput
         }
         private void actuallyTransition()
         {
-            GameObject.Find("MinigameTimer").GetComponent<MinigameTimer>().finishGame(Enums.CookingStationMinigame.MixingBowl);
+            //GameObject.Find("MinigameTimer").GetComponent<MinigameTimer>().finishGame(Enums.CookingStationMinigame.MixingBowl);
 
             ScreenTransitions.StartSceneTransition(.5f, "Kitchen", Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
         }
