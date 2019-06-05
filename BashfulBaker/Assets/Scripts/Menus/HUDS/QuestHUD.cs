@@ -95,15 +95,26 @@ namespace Assets.Scripts.Menus.HUDS
         {
             if (quest.personToDeliverTo == "Sylvia" && quest.RequiredDish == "Chocolate Chip Cookies")
             {
-                Debug.Log("GOT THAT GOODIES!");
                 Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
                     "Graphics",
                     "UI",
                     "Menus",
                     "DailyRecap",
-                    "QuestMenu_button_SylviaCC"
+                    "QuestButton_SylviaCC"
                 }));
 
+                Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
+                return sprite;
+            }
+            if (quest.personToDeliverTo == "Sylvia" && quest.RequiredDish == "Mint Chip Cookies")
+            {
+                Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
+                    "Graphics",
+                    "UI",
+                    "Menus",
+                    "DailyRecap",
+                    "QuestButton_SylviaMC"
+                }));
                 Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
                 return sprite;
             }
@@ -129,13 +140,50 @@ namespace Assets.Scripts.Menus.HUDS
                     "UI",
                     "Menus",
                     "DailyRecap",
-                    "QuestMenu_button_AmariMC"
+                    "QuestButton_AmariMC"
                 }));
                 Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
                 return sprite;
             }
 
-            Debug.Log("Quest is: " + quest.personToDeliverTo + " for: " + quest.RequiredDish);
+            if (quest.personToDeliverTo == "Amari" && quest.RequiredDish == "Pecan Crescent Cookies")
+            {
+                Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
+                    "Graphics",
+                    "UI",
+                    "Menus",
+                    "DailyRecap",
+                    "QuestButton_AmariPC"
+                }));
+                Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
+                return sprite;
+            }
+
+            if (quest.personToDeliverTo == "Brian" && quest.RequiredDish == "Oatmeal Raisin Cookies")
+            {
+                Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
+                    "Graphics",
+                    "UI",
+                    "Menus",
+                    "DailyRecap",
+                    "QuestButton_BrianOR"
+                }));
+                Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
+                return sprite;
+            }
+
+            if (quest.personToDeliverTo == "Ian" && quest.RequiredDish == "Mint Chip Cookies")
+            {
+                Texture2D texture = Game.ContentManager.loadTexture2DFromResources(CSExtensions.PathCombine(new List<string>() {
+                    "Graphics",
+                    "UI",
+                    "Menus",
+                    "DailyRecap",
+                    "QuestButton_IanMC"
+                }));
+                Sprite sprite = Game.ContentManager.loadSprite(texture, new Rect(new Rect(0, 0, 110, 38)), new Vector2(0.5f, 0.5f), 16);
+                return sprite;
+            }
 
             return null;
         }

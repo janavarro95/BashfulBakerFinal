@@ -19,6 +19,8 @@ public class Racoon : MonoBehaviour
     private DeltaTimer movementTimer;
     private Vector3 ogPosition;
 
+    private bool hasBeenFed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,9 +54,10 @@ public class Racoon : MonoBehaviour
         {
             Game.Player.removeActiveItem();
             Game.DialogueManager.StartDialogue(fedDialogue);
+            hasBeenFed = true;
             moveRight();
         }
-        else if (Game.Player.activeItem == null && collision.gameObject == Game.Player.gameObject && InputControls.BPressed)
+        else if (Game.Player.activeItem == null && collision.gameObject == Game.Player.gameObject && InputControls.BPressed && hasBeenFed==false)
         {
             Game.DialogueManager.StartDialogue(noFoodDialogue);
             DeltaTimer anxiety = Game.Player.gameObject.GetComponent<PlayerMovement>().anxietyTimer;

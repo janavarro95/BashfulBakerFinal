@@ -92,6 +92,15 @@ public class CheatsMenu : Menu
         Game.Player.PlayerMovement.defaultSpeed = (float)Convert.ToDouble(speedInput.text);
     }
 
+    public void clearInventories()
+    {
+        Game.Player.dishesInventory.actualItems.Clear();
+        foreach(var v in Game.Player.specialIngredientsInventory)
+        {
+            v.stack = 0;
+        }
+    }
+
     public Enums.DishState getState()
     {
         if (cookieMode.options[cookieMode.value].text == "Ingredients")
