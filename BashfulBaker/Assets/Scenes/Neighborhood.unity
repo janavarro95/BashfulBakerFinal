@@ -5075,7 +5075,7 @@ PrefabInstance:
     - target: {fileID: 2971227320814329233, guid: 17ab5b148b177ee4dac507cbc6add71e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2971227320814329238, guid: 17ab5b148b177ee4dac507cbc6add71e,
         type: 3}
@@ -5206,6 +5206,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 190.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 27.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 27.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.36649823
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17ab5b148b177ee4dac507cbc6add71e, type: 3}
@@ -14243,12 +14268,12 @@ PrefabInstance:
     - target: {fileID: 779289586609852609, guid: 9a36ed4fe6ed285468b053e0a0d75f02,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3599997
+      value: -6.74
       objectReference: {fileID: 0}
     - target: {fileID: 779289586609852609, guid: 9a36ed4fe6ed285468b053e0a0d75f02,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.6000004
+      value: -8.35
       objectReference: {fileID: 0}
     - target: {fileID: 779289586609852609, guid: 9a36ed4fe6ed285468b053e0a0d75f02,
         type: 3}
@@ -14305,6 +14330,12 @@ PrefabInstance:
       propertyPath: DiaBoxReference
       value: 
       objectReference: {fileID: 856803592}
+    - target: {fileID: 779289586609852608, guid: 9a36ed4fe6ed285468b053e0a0d75f02,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300006, guid: d7fc6aed00d507f4fbad245c01c12acf,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a36ed4fe6ed285468b053e0a0d75f02, type: 3}
 --- !u!1 &850359095
@@ -18346,7 +18377,7 @@ PrefabInstance:
     - target: {fileID: 3024523048064800268, guid: 9577406c2aa295b42aee036cfe803f2d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3024523048064800268, guid: 9577406c2aa295b42aee036cfe803f2d,
         type: 3}
@@ -22051,11 +22082,6 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 6964333130643573448, guid: 51ed6ee776ebe384eb066175398e733d,
-        type: 3}
-      propertyPath: racoonDialogue.sentences.Array.data[0]
-      value: Oh look a racoon. Maybe if I feed it it'll let me pass.
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51ed6ee776ebe384eb066175398e733d, type: 3}
 --- !u!4 &1434573322 stripped
@@ -22484,7 +22510,7 @@ PrefabInstance:
     - target: {fileID: 8020513789643877612, guid: 3bab82417eb9ad349829de72f7981a19,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8020513789643877612, guid: 3bab82417eb9ad349829de72f7981a19,
         type: 3}
@@ -25829,7 +25855,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1784967999}
-  - component: {fileID: 1784968002}
   - component: {fileID: 1784968001}
   - component: {fileID: 1784968000}
   - component: {fileID: 1784968003}
@@ -25885,28 +25910,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.16943082}
   serializedVersion: 2
   m_Radius: 0.6694308
---- !u!114 &1784968002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784967998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b139b55cecc6fa4aa03c952320a284d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  VictorySpeech:
-    name: Dane
-    sentences:
-    - Phew, I'm glad that's done.
-    - 'Hopefully Silvia likes her cookies! '
-  wrongCookies:
-    name: 
-    sentences: []
-  daneFace: {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
-  poutingboy: {fileID: 0}
 --- !u!114 &1784968003
 MonoBehaviour:
   m_ObjectHideFlags: 0

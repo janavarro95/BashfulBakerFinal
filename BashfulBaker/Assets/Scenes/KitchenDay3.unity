@@ -2280,8 +2280,8 @@ MonoBehaviour:
       people feel better and at home with themselves."
   - name: Dane
     sentences:
-    - "*He\u2019s right but Amari still want to go back to her hometown. I hope if
-      I can her Pecan Cookies, she can feel at home.*"
+    - "(He\u2019s right but Amari still want to go back to her hometown. I hope if
+      I can her Pecan Cookies, she can feel at home.)"
   - name: Jeb
     sentences:
     - "Ah shoot! I\u2019m going to be late. Sorry Dane, I have to go. I\u2019m going
@@ -2454,7 +2454,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009556767, y: -0.36622816}
+  m_Offset: {x: 0.0021139532, y: -0.39004487}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2465,7 +2465,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15822399, y: 0.5734755}
+  m_Size: {x: 0.25051358, y: 0.6211089}
   m_EdgeRadius: 0
 --- !u!1001 &1109282553
 PrefabInstance:
@@ -4697,6 +4697,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 190.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 27.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 27.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971227322113542796, guid: 17ab5b148b177ee4dac507cbc6add71e,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.36649823
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17ab5b148b177ee4dac507cbc6add71e, type: 3}

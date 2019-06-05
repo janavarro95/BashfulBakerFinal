@@ -48,8 +48,6 @@ public class d3Jeb : MonoBehaviour
     }
 
 
-
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (InputControls.APressed && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false)
@@ -76,12 +74,13 @@ public class d3Jeb : MonoBehaviour
         this.gameObject.SetActive(false);
         Game.HUD.showHUD = true;
         Game.HUD.showQuests = true;
-        if (Game.CurrentDayNumber == 1)
+        if (Game.CurrentDayNumber == 3)
         {
             Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
             Game.QuestManager.addQuest(new CookingQuest("Mint Chip Cookies", "Ian", new List<string>()));
             Game.QuestManager.addQuest(new CookingQuest("Oatmeal Raisin Cookies", "Brian", new List<string>()));
             Game.QuestManager.addQuest(new CookingQuest("Pecan Cookies", "Amari", new List<string>()));
+            Game.HUD.QuestHUD.setUpMenuForDisplay();
             //Game.QuestManager.addQuest(new CookingQuest("Chocolate Chip Cookies", "Sylvia", new List<string>()));
             Game.HUD.showQuests = true;
             // Game.StartNewTimerPhase(10, 0, true);
