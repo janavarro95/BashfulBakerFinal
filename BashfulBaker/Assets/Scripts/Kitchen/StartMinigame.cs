@@ -77,6 +77,10 @@ public class StartMinigame : MonoBehaviour
                     //arrow.GetComponent<progress>().A.SetActive(true);
                     SetSprite(1);
                 }
+				else
+				{
+					SetSprite(2);
+				}
 
                 if (InputControls.APressed)
                 {
@@ -339,8 +343,11 @@ public class StartMinigame : MonoBehaviour
         //arrow.GetComponent<SpriteRenderer>().enabled = true;
         //arrow.GetComponent<progress>().A.SetActive(false);
 
-        if (minigame != "Oven" || baked != 1) SetSprite(0);
-    }
+        if (minigame != "Oven" || baked != 1)
+		{
+			SetSprite(0);
+		}
+	}
 
     /// <summary>
     /// Checks a dish and tries to play the appropriate minigame if possible.
