@@ -26,6 +26,11 @@ public class StealthCaughtZone : MonoBehaviour
     private int dialoguePressesExit = 0;
     public int exitPresses = 0;
 
+    public float shakeIntensity = 0.5f;
+    public float shakeSpeed = 5f;
+    public float shakeProgress = 0;
+    private Vector3 playerOrigin;
+
     public enum GuardType
     {
         Guard,
@@ -84,7 +89,12 @@ public class StealthCaughtZone : MonoBehaviour
 
         if (inDialogue)
         {
+            // dialogue
             ProgressDialogue();
+
+            //wiggle player and actiavte sweat?
+            shakeProgress += Time.deltaTime * shakeSpeed;
+            Game.Player.gameObject.transform.position = playerOrigin + new Vector3(Mathf.Sin(shakeProgress) * shakeIntensity, 0);
         }
     }
 
@@ -184,6 +194,10 @@ public class StealthCaughtZone : MonoBehaviour
         // remove hud
         Game.HUD.showInventory = false;
         Game.HUD.showHUD = false;
+
+        // set shake
+        shakeProgress = 0;
+        playerOrigin = Game.Player.gameObject.transform.position;
     }
 
     private void ProgressDialogue()
@@ -278,6 +292,8 @@ public class StealthCaughtZone : MonoBehaviour
             // increase player proficiency
             if (Game.Player.PlayerMovement.breathingProficiency < Game.Player.PlayerMovement.maxProficiency)
                 Game.Player.PlayerMovement.breathingProficiency++;
+
+            playerOrigin = Game.Player.gameObject.transform.position;
         }
 
         // start player movement
