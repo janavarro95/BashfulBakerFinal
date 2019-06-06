@@ -17,16 +17,20 @@ public class MinigameTimer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.gameObject.SetActive(false);
         timer = new DeltaTimer(100000000, Assets.Scripts.Enums.TimerType.CountUp, false, null);
         timer.start();
         timerImage = this.gameObject.transform.Find("Canvas").Find("Image").GetComponent<Image>();
         timerRotation= this.gameObject.transform.Find("Canvas").Find("Image").Find("Image").GetComponent<Image>();
+
+        timerImage.enabled = false;
+        timerRotation.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        timer.Update();
+        return;
         if(timer.currentTime>0 && timer.currentTime < 15)
         {
             this.timerImage.color = new Color(0,0.5f,0);
@@ -39,7 +43,7 @@ public class MinigameTimer : MonoBehaviour
         {
             this.timerImage.color = Color.red;
         }
-        timer.Update();
+        
         updateKnobRotation();
     }
 
