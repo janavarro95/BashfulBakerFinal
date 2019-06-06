@@ -14,7 +14,7 @@ using Assets.Scripts.Utilities.Delegates;
 public class StartMinigame : MonoBehaviour
 {
     public string minigame;
-    public GameObject arrow;
+    public GameObject arrow, clock;
     public int thisStep;
     public DeltaTimer timer;
     public Sprite sadDane;
@@ -136,7 +136,7 @@ public class StartMinigame : MonoBehaviour
 							baked = 0;
 							Game.ovenStartTime = -1f;
 							var emission = ps.emission;
-							emission.rate = 1;
+							emission.rateOverTime = 1;
 							ps.Stop();
                         }
                         return;
@@ -217,7 +217,7 @@ public class StartMinigame : MonoBehaviour
                 */
                 if (minigame == "Oven")
                 {
-                    if (baked == 0 && Game.Player.activeItem!=null&& ovenDish==null)
+                    if (baked == 0 && Game.Player.activeItem != null && ovenDish == null)
                     {
                         if ((Game.Player.activeItem as Dish).currentDishState != Enums.DishState.Prepped) return;
                         baked = 1;
@@ -239,6 +239,9 @@ public class StartMinigame : MonoBehaviour
 
                         ps.Play();
                         glow.enabled = true;
+
+                        clock.GetComponent<SpriteRenderer>().enabled = true;
+                        clock.GetComponent<Animator>().SetBool("done", false);
 
                     }
                     else if(baked == 0 && ovenDish != null)
@@ -275,9 +278,15 @@ public class StartMinigame : MonoBehaviour
                         ovenDish = null;
 						baked = 0;
 						Game.ovenStartTime = -1f;
+
 						var emission = ps.emission;
-						emission.rate = 1;
-						ps.Stop();
+						emission.rateOverTime = 1;
+                        var main = ps.main;
+                        main.startColor = new Color(202f / 255f, 195f / 255f, 195f / 255f);
+
+                        ps.Stop();
+                        clock.GetComponent<SpriteRenderer>().enabled = false;
+                        clock.GetComponent<Animator>().SetBool("done", false);
                     }
                     return;
                 }
@@ -441,7 +450,10 @@ public class StartMinigame : MonoBehaviour
 						baked = 2;
 						ovenDish.currentDishState = Enums.DishState.Baked;
                         ovenDish.Update();
-					}
+                        clock.GetComponent<Animator>().SetBool("done", true);
+                        timerSFX.Stop();
+                        chimeSFX.Play();
+                    }
 					break;
 				}
 				case 2:
@@ -451,8 +463,8 @@ public class StartMinigame : MonoBehaviour
 						//start smoke
 						var emission = ps.emission;
 						emission.rateOverTime = Mathf.Lerp(1, 10, Mathf.Clamp01(((float)Game.PhaseTimer.currentTime - smokeTime) / (burnTime - smokeTime)));
-                       // var main = ps.main;
-                       // main.startColor = Color.Lerp(new Color(202f, 195f, 195f), new Color(65f, 65f, 65f), Mathf.Clamp01(((float)Game.PhaseTimer.currentTime - smokeTime) / (burnTime - smokeTime)));
+                        var main = ps.main;
+                        main.startColor = Color.Lerp(new Color(202f/255f, 195f/255f, 195f/255f), new Color(65f/255f, 65f/255f, 65f/255f), Mathf.Clamp01(((float)Game.PhaseTimer.currentTime - smokeTime) / (burnTime - smokeTime)));
                        // Debug.Log("lerping : " + Mathf.Clamp01(((float)Game.PhaseTimer.currentTime - smokeTime) / (burnTime - smokeTime)));
 					}
 					if((float)Game.PhaseTimer.currentTime >= burnTime)
