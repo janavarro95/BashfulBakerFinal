@@ -124,6 +124,9 @@ public class StartMinigame : MonoBehaviour
                         }
                         else if (baked == 2) //The dish has been baked
                         {
+                            timerSFX.Stop();
+                            chimeSFX.Play();
+
                             SetSprite(0);
                             collision.GetComponent<PlayerMovement>().NextStep();
                             ovenDish.currentDishState = Enums.DishState.Baked;
@@ -253,6 +256,9 @@ public class StartMinigame : MonoBehaviour
                     }
                     else if (baked == 2) //The dish has been baked
                     {
+                        timerSFX.Stop();
+                        chimeSFX.Play();
+
                         SetSprite(0);
                         //collision.GetComponent<PlayerMovement>().NextStep();
                         

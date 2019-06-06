@@ -11,6 +11,7 @@ namespace Assets.Scripts.GameInput
     public class StirringGameV2 : MonoBehaviour
     {
         public AudioClip chime;
+        public AudioClip finishChime;
         public AudioSource stirringSource;
         private Vector2 Prev, Next;
         private float Percent_Stirred;
@@ -39,6 +40,7 @@ namespace Assets.Scripts.GameInput
         {
             
             stirringSource.clip = chime;
+            stirringSource.pitch = 0.8f;
             Prev = new Vector2(0, 0);
             Next = new Vector2(0, 0);
             Percent_Stirred = 0;
@@ -94,37 +96,43 @@ namespace Assets.Scripts.GameInput
         // Update is called once per frame
         void Update()
         {
-            Next = new Vector2(InputControls.RightJoystickHorizontal, InputControls.RightJoystickVertical);
-            
-            if (!Prev.Equals(new Vector2(0, 0)) && !Next.Equals(new Vector2(0, 0)))
+            if (Count <= foodAnimation.Length)
             {
-                Percent_Stirred += Vector2.Angle(Prev, Next) > 45 ? 45 : Vector2.Angle(Prev, Next);
+                Next = new Vector2(InputControls.RightJoystickHorizontal, InputControls.RightJoystickVertical);
+
+                if (!Prev.Equals(new Vector2(0, 0)) && !Next.Equals(new Vector2(0, 0)))
+                {
+                    Percent_Stirred += Vector2.Angle(Prev, Next) > 45 ? 45 : Vector2.Angle(Prev, Next);
+                }
+                Prev = Next;
             }
-            Prev = Next;
 
             if (Percent_Stirred >= 720)
             {
                 Percent_Stirred = 720;
                 buttons[0].SetActive(false);
                 buttons[1].SetActive(true);
-                if (InputControls.RightBumperPressed)
+                if (InputControls.RightBumperPressed && Count < foodAnimation.Length+1)
                 {
                     buttons[0].SetActive(true);
                     buttons[1].SetActive(false);
                     Count++;
-                    Percent_Stirred = 0;
-                    stirringSource.Play();
 
                     if (Count <= foodAnimation.Length)
                     {
                         foodAnimation[Count - 1].SetBool("enterBowl",true);
-                        
+                        Percent_Stirred = 0;
+
                     }
-                    else if (Count > foodAnimation.Length)
+                    else if (Count >= foodAnimation.Length)
                     {
+                        stirringSource.clip = finishChime;
+                        stirringSource.pitch = 1.0f;
                         Invoke("getOutOfStirring", 1.5f);
                     }
 
+                    stirringSource.Play();
+                    stirringSource.pitch += 0.05f;
                 }
             }
 
@@ -148,7 +156,7 @@ namespace Assets.Scripts.GameInput
         }
         private void actuallyTransition()
         {
-            GameObject.Find("MinigameTimer").GetComponent<MinigameTimer>().finishGame(Enums.CookingStationMinigame.MixingBowl);
+            //GameObject.Find("MinigameTimer").GetComponent<MinigameTimer>().finishGame(Enums.CookingStationMinigame.MixingBowl);
 
             ScreenTransitions.StartSceneTransition(.5f, "Kitchen", Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
         }

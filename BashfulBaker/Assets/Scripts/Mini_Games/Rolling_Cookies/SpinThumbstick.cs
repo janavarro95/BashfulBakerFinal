@@ -27,6 +27,7 @@ namespace Assets.Scripts.GameInput
         public Sprite[] bowlsprites, progressBarSprites, barFillSprites;
 
         public AudioClip chime;
+        public AudioClip finishChime;
         public AudioSource spinningSource;
 
         // Start is called before the first frame update
@@ -35,6 +36,7 @@ namespace Assets.Scripts.GameInput
             setcookies();
             setDough();
             spinningSource.clip = chime;
+            spinningSource.pitch = 0.65f;
             startR = new Vector2(0, 0);
             startL = new Vector2(0, 0);
             endR = new Vector2(0, 0);
@@ -102,16 +104,20 @@ namespace Assets.Scripts.GameInput
                     buttons[3].SetActive(true);
                     if (InputControls.RightTrigger > .99)
                     {
-                        spinningSource.Play();
                         buttons[3].SetActive(false);
                         cookies[count++].SetActive(true);
                         Debug.Log(count);
                         if (count >= 6)
                         {
+
+                            spinningSource.clip = finishChime;
+                            spinningSource.pitch = 1;
                             cookies[6].SetActive(true);
                         }
                         sumR = 0;
                         sumL = 0;
+                        spinningSource.Play();
+                        spinningSource.pitch += 0.025f;
                         GetComponent<SpriteRenderer>().enabled = false;
                     }
                 }
@@ -124,7 +130,6 @@ namespace Assets.Scripts.GameInput
                     {
                         buttons[i].SetActive(false);
                     }
-
                     Invoke("exitspinnning", 1.5f);
                 }
                 else
@@ -135,11 +140,15 @@ namespace Assets.Scripts.GameInput
                     GetComponent<SpriteRenderer>().enabled = true;
                     sprite.sprite = sprites[0];
                     spinningSource.Play();
+                    spinningSource.pitch += 0.025f;
                 }
             }
             else
             {
-                buttons[2].SetActive(true);
+                if (count < 6)
+                {
+                    buttons[2].SetActive(true);
+                }
             }
         }
         void exitspinnning()
@@ -150,7 +159,7 @@ namespace Assets.Scripts.GameInput
 
         private void actuallyTransition()
         {
-            GameObject.Find("MinigameTimer").GetComponent<MinigameTimer>().finishGame(Enums.CookingStationMinigame.RollingStation);
+            //GameObject.Find("MinigameTimer").GetComponent<MinigameTimer>().finishGame(Enums.CookingStationMinigame.RollingStation);
             ScreenTransitions.StartSceneTransition(.5f, "Kitchen", Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
         }
         private void finishedTransition()
