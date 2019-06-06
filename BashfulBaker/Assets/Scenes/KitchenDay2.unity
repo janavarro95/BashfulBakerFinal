@@ -1390,6 +1390,10 @@ MonoBehaviour:
     type: 0
     state: 0
     autoRestart: 0
+  sadDane: {fileID: 0}
+  IBurntThem:
+    name: 
+    sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
   makePlayerInvisible: 1
@@ -4147,6 +4151,10 @@ MonoBehaviour:
     type: 0
     state: 0
     autoRestart: 0
+  sadDane: {fileID: 0}
+  IBurntThem:
+    name: 
+    sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
   makePlayerInvisible: 1
@@ -4580,6 +4588,10 @@ MonoBehaviour:
     type: 0
     state: 0
     autoRestart: 0
+  sadDane: {fileID: 0}
+  IBurntThem:
+    name: 
+    sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
   makePlayerInvisible: 1

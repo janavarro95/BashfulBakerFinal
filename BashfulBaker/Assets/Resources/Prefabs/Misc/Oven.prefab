@@ -4786,6 +4786,12 @@ MonoBehaviour:
     type: 0
     state: 0
     autoRestart: 0
+  sadDane: {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  IBurntThem:
+    name: Dane
+    sentences:
+    - OH NO! I burnt the cookies.... I guess I have to throw these away and start
+      over....
   timerSFX: {fileID: 8268412411219730207}
   chimeSFX: {fileID: 8268412411219730206}
   makePlayerInvisible: 0

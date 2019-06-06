@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Assets.Scripts.GameInput;
 using Assets.Scripts;
@@ -16,6 +17,8 @@ public class StartMinigame : MonoBehaviour
     public GameObject arrow;
     public int thisStep;
     public DeltaTimer timer;
+    public Sprite sadDane;
+    public Dialogue IBurntThem;
     private int baked;
     private Animator glow;
     private SpriteRenderer spriteRend;
@@ -126,7 +129,6 @@ public class StartMinigame : MonoBehaviour
                             ovenDish.currentDishState = Enums.DishState.Baked;
                             Game.Player.dishesInventory.Add(ovenDish);
                             Game.Player.resetActiveDishFromMenu();
-
                             ovenDish = null;
 							baked = 0;
 							Game.ovenStartTime = -1f;
@@ -255,6 +257,11 @@ public class StartMinigame : MonoBehaviour
                         //collision.GetComponent<PlayerMovement>().NextStep();
                         
                         Game.Player.dishesInventory.Add(ovenDish);
+                        if (ovenDish.HasBeenBurned)
+                        {
+                            GameObject.Find("Headshot").GetComponent<Image>().sprite = sadDane;
+                            FindObjectOfType<DialogueManager>().StartDialogue(IBurntThem);
+                        }
                         Game.HUD.InventoryHUD.updateDishes();
                         Game.Player.resetActiveDishFromMenu();
                         ovenDish.loadSprite();
