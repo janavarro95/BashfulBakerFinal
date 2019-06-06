@@ -18,6 +18,7 @@ public class CookieMover : MonoBehaviour
     public Sprite[] cookiesprites;
     public GameObject[] cookieObj;
     public AudioClip chime;
+    public AudioClip finishChime;
     public AudioSource moverSource;
 
 
@@ -27,6 +28,7 @@ public class CookieMover : MonoBehaviour
         Game.HUD.showOnlyTimer();
         setCookies();
         moverSource.clip = chime;
+        moverSource.pitch = 0.7f;
         Count = 0;
         whichButton = new int[cookies.Length];
         for (int x = 0; x < cookies.Length; x++)
@@ -39,60 +41,73 @@ public class CookieMover : MonoBehaviour
                     whichButton[x] = (int)Mathf.Floor(Random.Range(0, 4));
                 }
             }
-
-            
-            //Debug.Log(whichButton[x]);
         }
-
     }
 
     private void Update()
     {
-
+        bool playSound = false;
         if (Count < cookies.Length)
         {
             buttonPrompt.sprite = XYBA[whichButton[Count]];
+
+            if (InputControls.XPressed && whichButton[Count] == 0)
+            {
+                playSound = true;
+                moverSource.pitch += 0.05f;
+                cookies[Count].SetBool("moveToBasket", true);
+                Count++;
+                buttonPrompt.sprite = XYBA[whichButton[Count]];
+            }
+
+            if (InputControls.YPressed && whichButton[Count] == 1)
+            {
+                playSound = true;
+                moverSource.pitch += 0.05f;
+                cookies[Count].SetBool("moveToBasket", true);
+                Count++;
+                buttonPrompt.sprite = XYBA[whichButton[Count]];
+            }
+
+            if (InputControls.BPressed && whichButton[Count] == 2)
+            {
+                playSound = true;
+                moverSource.pitch += 0.05f;
+                cookies[Count].SetBool("moveToBasket", true);
+                Count++;
+                buttonPrompt.sprite = XYBA[whichButton[Count]];
+            }
+
+            if (InputControls.APressed && whichButton[Count] == 3)
+            {
+                playSound = true;
+                moverSource.pitch += 0.05f;
+                cookies[Count].SetBool("moveToBasket", true);
+                Count++;
+                buttonPrompt.sprite = XYBA[whichButton[Count]];
+            }
+
         }
-
-
-        if (InputControls.XPressed && whichButton[Count] == 0)
+        else if (buttonPrompt.enabled)
         {
-            moverSource.Play();
-            cookies[Count].SetBool("moveToBasket", true);
-            Count++;
-            buttonPrompt.sprite = XYBA[whichButton[Count]];
+            moverSource.pitch = 1;
+            moverSource.volume = 1.5f;
+            moverSource.clip = finishChime;
+            playSound = true;
+            buttonPrompt.enabled = false;
         }
-
-        if (InputControls.YPressed && whichButton[Count] == 1)
-        {
-            moverSource.Play();
-            cookies[Count].SetBool("moveToBasket", true);
-            Count++;
-            buttonPrompt.sprite = XYBA[whichButton[Count]];
-        }
-
-        if (InputControls.BPressed && whichButton[Count] == 2)
-        {
-            moverSource.Play();
-            cookies[Count].SetBool("moveToBasket", true);
-            Count++;
-            buttonPrompt.sprite = XYBA[whichButton[Count]];
-        }
-
-        if (InputControls.APressed && whichButton[Count] == 3)
-        {
-            moverSource.Play();
-            cookies[Count].SetBool("moveToBasket", true);
-            Count++;
-            buttonPrompt.sprite = XYBA[whichButton[Count]];
-        }
-
-
-        if (Count >= cookies.Length)
+        else
         {
             Invoke("exitcookieMover", 1f);
         }
+
+        if (playSound)
+        {
+            moverSource.Play();
+        }
     }
+
+
     private void exitcookieMover()
     {
         actuallyTransition();

@@ -871,6 +871,7 @@ MonoBehaviour:
   - {fileID: 1972054390}
   - {fileID: 155715175}
   chime: {fileID: 8300000, guid: 8f5ade69e4e2a9f4e8b8b6f0e9c48553, type: 3}
+  finishChime: {fileID: 8300000, guid: 8bd42f705477b394993a45701627d6fb, type: 3}
   moverSource: {fileID: 555858873}
 --- !u!82 &555858873
 AudioSource:
@@ -882,7 +883,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8f5ade69e4e2a9f4e8b8b6f0e9c48553, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7f0f794ef168007409b3c68e8b79b20c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
