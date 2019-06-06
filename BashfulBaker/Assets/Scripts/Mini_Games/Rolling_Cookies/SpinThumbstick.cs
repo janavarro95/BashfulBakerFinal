@@ -130,7 +130,6 @@ namespace Assets.Scripts.GameInput
                     {
                         buttons[i].SetActive(false);
                     }
-
                     Invoke("exitspinnning", 1.5f);
                 }
                 else
@@ -146,7 +145,10 @@ namespace Assets.Scripts.GameInput
             }
             else
             {
-                buttons[2].SetActive(true);
+                if (count < 6)
+                {
+                    buttons[2].SetActive(true);
+                }
             }
         }
         void exitspinnning()
