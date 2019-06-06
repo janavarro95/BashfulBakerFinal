@@ -1383,6 +1383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigame: Rolling_Cookies
   arrow: {fileID: 0}
+  clock: {fileID: 0}
   thisStep: 2
   timer:
     currentTime: 0
@@ -2656,7 +2657,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.06736028}
+  m_Offset: {x: 0, y: -0.076271415}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2667,7 +2668,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.05, y: 0.21257865}
+  m_Size: {x: 1.05, y: 0.23040092}
   m_EdgeRadius: 0
 --- !u!212 &1306397501
 SpriteRenderer:
@@ -3313,10 +3314,10 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5416139, y: 0.8510734}
+  m_Offset: {x: 1.3898469, y: 1.1805779}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3327,7 +3328,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.754527, y: 0.5964048}
+  m_Size: {x: 2.1845505, y: 0.4014867}
   m_EdgeRadius: 0
 --- !u!61 &1418523333
 BoxCollider2D:
@@ -3394,7 +3395,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1918261, y: 1.3373573}
+  m_Offset: {x: -0.1918261, y: 1.4719436}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3405,7 +3406,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.482719, y: 0.86184686}
+  m_Size: {x: 5.482719, y: 0.59267426}
   m_EdgeRadius: 0
 --- !u!61 &1418523336
 BoxCollider2D:
@@ -3507,6 +3508,7 @@ GameObject:
   - component: {fileID: 1432888360}
   - component: {fileID: 1432888359}
   - component: {fileID: 1432888358}
+  - component: {fileID: 1432888362}
   m_Layer: 0
   m_Name: trashCan
   m_TagString: Untagged
@@ -3614,6 +3616,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1432888362
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432888357}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.054012056}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.24, y: 0.43}
+    newSize: {x: 1.5, y: 2.6875}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.24, y: 0.3219759}
+  m_EdgeRadius: 0
 --- !u!1 &1497948674
 GameObject:
   m_ObjectHideFlags: 0
@@ -4228,6 +4256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigame: Basket
   arrow: {fileID: 0}
+  clock: {fileID: 0}
   thisStep: 4
   timer:
     currentTime: 0
@@ -4469,6 +4498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1926140723}
   - component: {fileID: 1926140722}
+  - component: {fileID: 1926140724}
   m_Layer: 0
   m_Name: backCounter
   m_TagString: Untagged
@@ -4538,6 +4568,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1926140724
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926140721}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.52210164}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.08, y: 1.43}
+    newSize: {x: 2.08, y: 1.45}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.08, y: 0.3857967}
+  m_EdgeRadius: 0
 --- !u!1 &1930296302
 GameObject:
   m_ObjectHideFlags: 0
@@ -4786,6 +4842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigame: Stirring
   arrow: {fileID: 0}
+  clock: {fileID: 0}
   thisStep: 1
   timer:
     currentTime: 0

@@ -2319,6 +2319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigame: Stirring
   arrow: {fileID: 0}
+  clock: {fileID: 0}
   thisStep: 1
   timer:
     currentTime: 0
@@ -2326,6 +2327,10 @@ MonoBehaviour:
     type: 0
     state: 0
     autoRestart: 0
+  sadDane: {fileID: 0}
+  IBurntThem:
+    name: 
+    sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
   makePlayerInvisible: 1
@@ -2748,7 +2753,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.06736028}
+  m_Offset: {x: 0, y: -0.07627118}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2759,7 +2764,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.05, y: 0.21257865}
+  m_Size: {x: 1.05, y: 0.23040044}
   m_EdgeRadius: 0
 --- !u!212 &1306397501
 SpriteRenderer:
@@ -3394,7 +3399,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1918261, y: 1.3373573}
+  m_Offset: {x: -0.1918261, y: 1.4394572}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3405,7 +3410,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.482719, y: 0.86184686}
+  m_Size: {x: 5.482719, y: 0.65764713}
   m_EdgeRadius: 0
 --- !u!61 &1418523336
 BoxCollider2D:
@@ -3768,6 +3773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigame: Basket
   arrow: {fileID: 0}
+  clock: {fileID: 0}
   thisStep: 4
   timer:
     currentTime: 0
@@ -3775,6 +3781,10 @@ MonoBehaviour:
     type: 0
     state: 0
     autoRestart: 0
+  sadDane: {fileID: 0}
+  IBurntThem:
+    name: 
+    sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
   makePlayerInvisible: 1
@@ -4438,6 +4448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1926140723}
   - component: {fileID: 1926140722}
+  - component: {fileID: 1926140724}
   m_Layer: 0
   m_Name: backCounter
   m_TagString: Untagged
@@ -4507,6 +4518,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1926140724
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926140721}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.52210164}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.08, y: 1.43}
+    newSize: {x: 2.08, y: 1.45}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.08, y: 0.3857967}
+  m_EdgeRadius: 0
 --- !u!1 &1930296302
 GameObject:
   m_ObjectHideFlags: 0
@@ -4817,6 +4854,7 @@ GameObject:
   - component: {fileID: 2001555585}
   - component: {fileID: 2001555584}
   - component: {fileID: 2001555583}
+  - component: {fileID: 2001555587}
   m_Layer: 0
   m_Name: trashCan
   m_TagString: Untagged
@@ -4924,6 +4962,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2001555587
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001555582}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.054012056}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.24, y: 0.43}
+    newSize: {x: 1.5, y: 2.6875}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.24, y: 0.3219759}
+  m_EdgeRadius: 0
 --- !u!1 &2016626266
 GameObject:
   m_ObjectHideFlags: 0
@@ -4997,6 +5061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigame: Rolling_Cookies
   arrow: {fileID: 0}
+  clock: {fileID: 0}
   thisStep: 2
   timer:
     currentTime: 0
@@ -5004,6 +5069,10 @@ MonoBehaviour:
     type: 0
     state: 0
     autoRestart: 0
+  sadDane: {fileID: 0}
+  IBurntThem:
+    name: 
+    sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
   makePlayerInvisible: 1

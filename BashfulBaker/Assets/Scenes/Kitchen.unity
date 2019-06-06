@@ -793,6 +793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigame: Basket
   arrow: {fileID: 1514242380}
+  clock: {fileID: 0}
   thisStep: 4
   timer:
     currentTime: 0
@@ -800,6 +801,10 @@ MonoBehaviour:
     type: 0
     state: 0
     autoRestart: 0
+  sadDane: {fileID: 0}
+  IBurntThem:
+    name: 
+    sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
   makePlayerInvisible: 1
@@ -1333,6 +1338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigame: Rolling_Cookies
   arrow: {fileID: 1514242380}
+  clock: {fileID: 0}
   thisStep: 2
   timer:
     currentTime: 0
@@ -1340,6 +1346,10 @@ MonoBehaviour:
     type: 0
     state: 0
     autoRestart: 0
+  sadDane: {fileID: 0}
+  IBurntThem:
+    name: 
+    sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
   makePlayerInvisible: 1
@@ -1503,12 +1513,12 @@ PrefabInstance:
     - target: {fileID: 7484911326515962287, guid: 7549edd9eb4b38a44b290c71ffbf7aeb,
         type: 3}
       propertyPath: m_Offset.y
-      value: -0.024425328
+      value: -0.014713585
       objectReference: {fileID: 0}
     - target: {fileID: 7484911326515962287, guid: 7549edd9eb4b38a44b290c71ffbf7aeb,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.796136
+      value: 0.6019026
       objectReference: {fileID: 0}
     - target: {fileID: 7484911326515962287, guid: 7549edd9eb4b38a44b290c71ffbf7aeb,
         type: 3}
@@ -1518,12 +1528,12 @@ PrefabInstance:
     - target: {fileID: 7484911326515962287, guid: 7549edd9eb4b38a44b290c71ffbf7aeb,
         type: 3}
       propertyPath: m_Offset.x
-      value: 0.015517056
+      value: 0.06409669
       objectReference: {fileID: 0}
     - target: {fileID: 7484911326515962287, guid: 7549edd9eb4b38a44b290c71ffbf7aeb,
         type: 3}
       propertyPath: m_Size.x
-      value: 1.05
+      value: 0.7196584
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7549edd9eb4b38a44b290c71ffbf7aeb, type: 3}
@@ -2895,6 +2905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigame: Stirring
   arrow: {fileID: 1514242380}
+  clock: {fileID: 0}
   thisStep: 1
   timer:
     currentTime: 0
@@ -2902,6 +2913,10 @@ MonoBehaviour:
     type: 0
     state: 0
     autoRestart: 0
+  sadDane: {fileID: 0}
+  IBurntThem:
+    name: 
+    sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
   makePlayerInvisible: 1
@@ -2939,7 +2954,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000059604645, y: -0.70657575}
+  m_Offset: {x: 0.06801137, y: -0.5414773}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2950,7 +2965,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.59273183, y: 0.53196025}
+  m_Size: {x: 0.7287547, y: 0.70677066}
   m_EdgeRadius: 0
 --- !u!4 &1048187755
 Transform:
@@ -3358,6 +3373,7 @@ GameObject:
   - component: {fileID: 1293354899}
   - component: {fileID: 1293354898}
   - component: {fileID: 1293354901}
+  - component: {fileID: 1293354900}
   m_Layer: 0
   m_Name: trashCan
   m_TagString: Untagged
@@ -3427,6 +3443,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1293354900
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293354897}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.054012056}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.24, y: 0.43}
+    newSize: {x: 1.5, y: 2.6875}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.24, y: 0.3219759}
+  m_EdgeRadius: 0
 --- !u!61 &1293354901
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3497,7 +3539,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.06736028}
+  m_Offset: {x: 0, y: -0.08072698}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3508,7 +3550,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.05, y: 0.21257865}
+  m_Size: {x: 1.05, y: 0.23931205}
   m_EdgeRadius: 0
 --- !u!212 &1306397501
 SpriteRenderer:
