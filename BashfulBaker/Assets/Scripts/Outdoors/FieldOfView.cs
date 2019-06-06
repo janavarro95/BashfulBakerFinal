@@ -132,6 +132,8 @@ public class FieldOfView : MonoBehaviour
                         visibleTargets.Add(target);
                         if (target == Game.Player.gameObject.transform)
                         {
+                            if (zone.movementSpeed <= 2.35f)
+                                zone.movementSpeed += 0.01f;
                             if (!sawPlayer && target)
                             {
                                 target.GetComponent<PlayerMovement>().Spotted();
@@ -139,6 +141,7 @@ public class FieldOfView : MonoBehaviour
                                 AudioSource aSource = this.GetComponent<AudioSource>();
                                 if (aSource != null)
                                     aSource.Play();
+
                             }
                             seesPlayer = true;
                         }

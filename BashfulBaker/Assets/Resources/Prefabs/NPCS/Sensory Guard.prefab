@@ -466,7 +466,7 @@ MonoBehaviour:
   myState: 0
   flashlight: {fileID: 0}
   catching: {fileID: 0}
-  movementSpeed: 2
+  movementSpeed: 1.25
   spotsToGoTo: []
   investigate: {fileID: 0}
   returnHome: 0
