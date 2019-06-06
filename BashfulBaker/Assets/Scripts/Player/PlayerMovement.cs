@@ -56,6 +56,12 @@ public class PlayerMovement : MonoBehaviour {
     public RuntimeAnimatorController bakeryAnimator;
     public RuntimeAnimatorController nightAnimator;
 
+    // proficiencies
+    public int maxProficiency = 10;
+    public int stirringProficiency = 0;
+    public int rollingProficiency = 0;
+    public int breathingProficiency = 0;
+
     private bool canPlayerMove = true;
     public bool CanPlayerMove
     {
@@ -171,6 +177,31 @@ public class PlayerMovement : MonoBehaviour {
                 t = 0;
             }
         }
+
+        if (Input.GetKeyDown("o"))
+        {
+            Debug.Log("Resetting Profs");
+            ResetProf();
+        }
+        else if (Input.GetKeyDown("p"))
+        {
+            Debug.Log("Maxing Profs");
+            MaxOutProf();
+        }
+    }
+
+    //proficiencies
+    public void ResetProf()
+    {
+        stirringProficiency = 0;
+        rollingProficiency = 0;
+        breathingProficiency = 0;
+    }
+    public void MaxOutProf()
+    {
+        stirringProficiency = maxProficiency;
+        rollingProficiency = maxProficiency;
+        breathingProficiency = maxProficiency;
     }
 
     /// <summary>

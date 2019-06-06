@@ -303,8 +303,17 @@ namespace Assets.Scripts.GameInput
                 return Input.GetButtonDown("RightBumper");
             }
         }
-		
-		/// <summary>
+
+        public static bool RightBumper
+        {
+            get
+            {
+                if (OSChecker.OS == Enums.OperatingSystem.Mac) return Input.GetButton("RightBumper_Mac");
+                return Input.GetButton("RightBumper");
+            }
+        }
+
+        /// <summary>
         /// Checks to see if the LeftDPad is being held down.
         /// </summary>
         public static bool LeftDPadDown
