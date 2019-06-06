@@ -274,6 +274,10 @@ public class StealthCaughtZone : MonoBehaviour
                 awareness.investigate = null;
                 Game.Player.PlayerMovement.EscapedReset();
             }
+
+            // increase player proficiency
+            if (Game.Player.PlayerMovement.breathingProficiency < Game.Player.PlayerMovement.maxProficiency)
+                Game.Player.PlayerMovement.breathingProficiency++;
         }
 
         // start player movement

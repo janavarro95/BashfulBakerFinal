@@ -30,6 +30,8 @@ namespace Assets.Scripts.GameInput
         public AudioClip finishChime;
         public AudioSource spinningSource;
 
+        public float proficiencyScale = 1;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -74,6 +76,7 @@ namespace Assets.Scripts.GameInput
                 if (!startR.Equals(new Vector2(0, 0)) && !endR.Equals(new Vector2(0, 0)))
                 {
                     sumR += Vector2.Angle(startR, endR) > 45f ? 45f : Vector2.Angle(startR, endR);
+                    sumR += proficiencyScale * Game.Player.PlayerMovement.rollingProficiency;
                     spinning++;
                 }
                 startR = endR;
@@ -82,6 +85,7 @@ namespace Assets.Scripts.GameInput
                 if (!startL.Equals(new Vector2(0, 0)) && !endL.Equals(new Vector2(0, 0)))
                 {
                     sumL += Vector2.Angle(startL, endL) > 45f ? 45f : Vector2.Angle(startL, endL);
+                    sumL += proficiencyScale * Game.Player.PlayerMovement.rollingProficiency;
                     spinning++;
                 }
                 startL = endL;
@@ -164,6 +168,10 @@ namespace Assets.Scripts.GameInput
         }
         private void finishedTransition()
         {
+            // increase player proficiency
+            if (Game.Player.PlayerMovement.rollingProficiency < Game.Player.PlayerMovement.maxProficiency)
+                Game.Player.PlayerMovement.rollingProficiency++;
+
             Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
             Game.HUD.showHUD = true;
             Game.HUD.showAll();

@@ -35,6 +35,8 @@ namespace Assets.Scripts.GameInput
         public GameObject progressBar, barFill;
         public Sprite[] progressBarSprites, barFillSprites;
 
+        public float proficiencyScale = 1.5f;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -103,6 +105,7 @@ namespace Assets.Scripts.GameInput
                 if (!Prev.Equals(new Vector2(0, 0)) && !Next.Equals(new Vector2(0, 0)))
                 {
                     Percent_Stirred += Vector2.Angle(Prev, Next) > 45 ? 45 : Vector2.Angle(Prev, Next);
+                    Percent_Stirred += proficiencyScale * Game.Player.PlayerMovement.stirringProficiency;
                 }
                 Prev = Next;
             }
@@ -112,7 +115,7 @@ namespace Assets.Scripts.GameInput
                 Percent_Stirred = 720;
                 buttons[0].SetActive(false);
                 buttons[1].SetActive(true);
-                if (InputControls.RightBumperPressed && Count < foodAnimation.Length+1)
+                if (InputControls.RightBumper && Count < foodAnimation.Length+1)
                 {
                     buttons[0].SetActive(true);
                     buttons[1].SetActive(false);
@@ -162,6 +165,10 @@ namespace Assets.Scripts.GameInput
         }
         private void finishedTransition()
         {
+            // increase player proficiency
+            if (Game.Player.PlayerMovement.stirringProficiency < Game.Player.PlayerMovement.maxProficiency)
+                Game.Player.PlayerMovement.stirringProficiency++;
+
             Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
             Game.HUD.showHUD = true;
             Game.HUD.showAll();
