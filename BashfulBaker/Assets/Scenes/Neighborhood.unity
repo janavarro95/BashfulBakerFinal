@@ -10681,7 +10681,7 @@ MonoBehaviour:
     - "No. I don\u2019t call this home. My mom and I just moved here last month.\r\n"
   - name: Dane
     sentences:
-    - Oh yeah. Sylvia told me she works with the Town Watch.
+    - Oh yeah. Sylvia told me she works for the Town Watch.
   - name: Amari
     sentences:
     - 'Yeah but I only get to see her in the mornings or sometimes for dinner. '
@@ -10708,26 +10708,27 @@ MonoBehaviour:
     - Jeb gave you free cookies?
   - name: Amari
     sentences:
-    - "Yeah\u2026 I been having a hard time at school. I ask a lot of question during
-      class which my teacher believes I should already understand most of the topics."
-    - And with all the other kids staring at me, it sends me to a panic mode because
-      I feel like they are judging me.
+    - "Yeah\u2026 I been having a hard time at school. I ask a lot of questions during
+      class, but my teacher doesn\u2019t have enough time to review with me."
+    - And with all the other kids staring at me, I go into panic mode because I feel
+      like they are judging me.
     - ' So I stopped participating in class. I felt like such a disappointment when
       my mom found out about my grades.'
-    - "So when Jeb saw me passing his shop on the way home, he would stop me and gave
-      me mint cookies.\r"
+    - So when Jeb would see me passing his bakery after a hard day at school, he would
+      stop me and give me mint cookies.
   - name: Dane
     sentences:
     - Did they help you feel better?
   - name: Amari
     sentences:
-    - Yeah but I still want to go home.
+    - Yeah... but I still want to go home.
   - name: Dane
     sentences:
+    - (What can I say?)
     - "...Hey Amari, I can\u2019t say I been through the same thing you have. But
       I know what it\u2019s like to go into a panic mode."
-    - 'When I try to talk to the Town Watch, I get nervous and hide into bushes so
-      I can sneak around them. '
+    - 'When I try to talk to the Town Watch, I get nervous and hide in bushes so I
+      can sneak around them. '
   - name: Amari
     sentences:
     - Really?
@@ -10740,7 +10741,7 @@ MonoBehaviour:
     - "As long as it isn\u2019t just mint cookies. They are good but geez. \r\n"
   - name: Dane
     sentences:
-    - "Haha! I\u2019ll make sure he makes you something else.\r"
+    - "HAHA! I\u2019ll make sure he makes you something else."
   - name: Amari
     sentences:
     - Pinky promise?
@@ -10749,16 +10750,24 @@ MonoBehaviour:
     - Pinky promise.
   - name: Dane
     sentences:
+    - '( She looks happier.)
+
+'
     - Ah! But what sweets do you like?
   - name: Amari
     sentences:
     - "My grandmother use to make the best PECAN pie back at my hometown!\r\r"
   - name: Dane
     sentences:
-    - "Aww okay. Well I\u2019ll see you tomorrow then. Let\u2019s do our best!"
+    - "Aww! Okay! Well, I\u2019ll see you tomorrow then. Let\u2019s do our best!"
   - name: Amari
     sentences:
     - Yes! See you later Dane!
+  - name: Dane
+    sentences:
+    - " (I never made a pie before, but I did see a Pecan tree earlier\u2026)"
+    - '(I can make her Pecan Crescents tomorrow night!) '
+    - (Hopefully, that will make her feel more at home.)
   faces:
   - {fileID: 21300000, guid: 08346fac4e397494cbbe622aa84009f7, type: 3}
   - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
@@ -10790,6 +10799,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 37b37462f87be61419a2ce3746c6911e, type: 3}
   - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: 1971febc8eea3724fb91cc05578001e7, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   wrongCookies:
     name: Dane
     sentences:
@@ -13922,6 +13932,26 @@ PrefabInstance:
       propertyPath: DiaBoxReference
       value: 
       objectReference: {fileID: 856803592}
+    - target: {fileID: 779289586609852611, guid: 9a36ed4fe6ed285468b053e0a0d75f02,
+        type: 3}
+      propertyPath: Conversation.Array.data[6].sentences.Array.data[1]
+      value: So I had to ask Jeb to stop sharing his sweets, because they only came
+        to work to get fed. Then after getting fed, these nincompoops would slack
+        off.
+      objectReference: {fileID: 0}
+    - target: {fileID: 779289586609852611, guid: 9a36ed4fe6ed285468b053e0a0d75f02,
+        type: 3}
+      propertyPath: Conversation.Array.data[6].sentences.Array.data[0]
+      value: "My men in the Town Watch love Jeb\u2019s cookies. Jeb used to feed them
+        all the time, and now they are a bunch of spoiled brats."
+      objectReference: {fileID: 0}
+    - target: {fileID: 779289586609852611, guid: 9a36ed4fe6ed285468b053e0a0d75f02,
+        type: 3}
+      propertyPath: Conversation.Array.data[6].sentences.Array.data[2]
+      value: "Now they heard there is a new guy delivering the cookies. I\u2019m sure
+        they will beg for you to share them. Don\u2019t let those rascals bully you,
+        Dane.. \r\n"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a36ed4fe6ed285468b053e0a0d75f02, type: 3}
 --- !u!1 &850359095
@@ -14996,10 +15026,10 @@ MonoBehaviour:
     - Was the journey better this time?
   - name: Dane
     sentences:
-    - Yeah. I think I found a better route that has the least amount of town watch?
+    - Yeah. I think I found a better route!
   - name: Sylvia
     sentences:
-    - Ah so you are still avoiding them, I see.
+    - Ah so you are still avoiding the Town Watch, I see.
   - name: Dane
     sentences:
     - I would just prefer not to deal with them.
@@ -15018,10 +15048,10 @@ MonoBehaviour:
     - huh?
   - name: Sylvia
     sentences:
-    - 'I want you to deliver them to AMARI. She is a little girl that is home alone
-      because her mother works as one of the Town Watch. '
-    - 'You and her are similar in ways so I thought it was a good idea for you to
-      introduce yourself to her. '
+    - I want you to deliver them to AMARI. She is a little girl that is home alone
+      because her mother works at the Town Watch Office.
+    - 'You and her are similar in ways so I thought it would be a good idea for you
+      to introduce yourself to her. '
     - Will you do this for me?
   - name: Dane
     sentences:
@@ -15034,7 +15064,8 @@ MonoBehaviour:
     - Okay, if you say so.
   - name: Sylvia
     sentences:
-    - Great! You can find her NORTH of here in the house with a GREEN ROOF. Good luck!
+    - "Great! You can find her at the house with a GREEN ROOF. It\u2019s just North
+      from here. Good luck!"
   faces:
   - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
   - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
@@ -25322,18 +25353,20 @@ MonoBehaviour:
   - name: Dane
     sentences:
     - "Yes ma\u2019am. "
-    - "(Now I feel like I\u2019m the jerk.)"
   - name: Sylvia
     sentences:
     - 'Hmm... Hey I want you to do me a favor Dane. You see my herb garden? '
-    - "I want you to go collect some mint and tell Jeb to make some Mint Chocolate
-      Chips Cookies with my regular for me tomorrow night. \n"
-    - 'Then deliver them to me please.
-
-'
   - name: Dane
     sentences:
-    - "Umm okay. Will do ma\u2019am!"
+    - Yes I do.
+  - name: Sylvia
+    sentences:
+    - Could you go collect some mint, and tell Jeb to make some Mint Chocolate Chips
+      Cookies with my regular order for tomorrow night. Then deliver them back to
+      me, please.
+  - name: Dane
+    sentences:
+    - Umm okay. Will do ma'am!
   - name: Sylvia
     sentences:
     - Thank you! You see you tomorrow!
@@ -25343,9 +25376,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
   - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
   - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
-  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
   - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
   - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
   - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}

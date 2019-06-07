@@ -2302,26 +2302,27 @@ MonoBehaviour:
       here. That\u2019s why when I see her, I always give her Mint Chocolate Chip
       Cookies."
     - "It\u2019s important for her to see this town as a fresh start rather than comparing
-      it to her previous town."
+      it to her home town."
   - name: Dane
     sentences:
+    - (I never knew Jeb was so thoughtful.)
     - "That\u2019s really kind of you Jeb.\r\n"
   - name: Jeb
     sentences:
-    - "HAHAHA. It\u2019s apart of my job. As a baker, your sweets are suppose to make
-      people feel better and at home with themselves."
+    - "HAHAHA. It\u2019s part of my job. As a baker, your sweets are suppose to make
+      people feel better and at home."
   - name: Dane
     sentences:
-    - "(He\u2019s right but Amari still want to go back to her hometown. I hope if
-      I can her Pecan Cookies, she can feel at home.)"
+    - "(He\u2019s right but Amari still wants to go back to her hometown. Hopefully
+      Pecan Crescents help her feel at home.)"
   - name: Jeb
     sentences:
     - "Ah shoot! I\u2019m going to be late. Sorry Dane, I have to go. I\u2019m going
       to be late to my daughter\u2019s baby shower! "
     - "She is going to be real upset if I don\u2019t bring her favorite OATMEAL RAISIN
       COOKIES. "
-    - "All the orders I want you to delivery should be in the kitchen and should be
-      ready to go. Got to go! Bye!\r\n"
+    - "All the orders I want you to delivery should be in the back and should be ready
+      to go. Bye-bye!\r"
   - name: Dane
     sentences:
     - Oh! Bye Jeb!

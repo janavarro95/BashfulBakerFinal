@@ -1819,11 +1819,12 @@ MonoBehaviour:
     - (Hmm where's Sylvia's order? I don't see it anywhere.)
   - name: Dane
     sentences:
-    - (Didn't he say he made the cookies? Maybe I misheard him...)
+    - "(Didn't he say he made the cookies? Jeb must have thought he made the cookies,
+      but didn\u2019t.)"
   - name: Dane
     sentences:
     - '*Sigh*'
-    - (Well... the oven still looks hot, maybe I can make them for her.)
+    - (Well... the oven still looks hot, well I can make them! )
 --- !u!224 &611194603
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3177,7 +3178,8 @@ MonoBehaviour:
     - A regular of mine, Sylvia ordered half a dozen Chocolate Chip Cookies. She heard
       I hired a new delivery boy and she is very excited to meet you!
     - I already made the cookies and they are ready to go in the kitchen!
-    - "Please take them to the house with a BLUE ROOF on the southeast side of town.\r"
+    - I would like you to deliver them to her radiant house on the southside of town.
+    - "The house has a BLUE ROOF that puts you in a relaxing mood.\r\n"
   - name: Jeb
     sentences:
     - I'm sure you'll do a great job!
