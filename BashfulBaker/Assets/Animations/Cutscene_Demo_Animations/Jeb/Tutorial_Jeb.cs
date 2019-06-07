@@ -34,7 +34,7 @@ public class Tutorial_Jeb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && step <16 && step>0)
+        if (DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && step <backandforth.Length && step>0)
         {
             FindObjectOfType<DialogueManager>().StartDialogue(backandforth[step]);
             GameObject.Find("Headshot").GetComponent<Image>().sprite = headshots[step];
@@ -42,13 +42,13 @@ public class Tutorial_Jeb : MonoBehaviour
                 step++;
             Debug.Log(step);
 
-        }else if (step == 16)
+        }else if (step == backandforth.Length)
         {
             jeb_animator.SetInteger("Movement_Phase", 4);
         }
 
 
-        if (waitingtoend && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && step == 17)
+        if (waitingtoend && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && step == backandforth.Length+1)
         {
             freeDane();
             Jeb_disappear();
@@ -62,7 +62,7 @@ public class Tutorial_Jeb : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (InputControls.APressed && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false)
+        if (InputControls.APressed && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && step < 15)
         {
             Game.Day1JebTalkedTo = true;
             Bubble.SetActive(false);
