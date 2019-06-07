@@ -9,13 +9,15 @@ public class Breathe : MonoBehaviour
     public float LT;
     public float progress;
     public float progressToWin = 5;
-    public GameObject pbar, sweat, top, bot;
+    public GameObject pbar, top, bot;
+	public ParticleSystem sweat, playerSchweat;
     public float proficiencyBase = 0.005f;
     // Start is called before the first frame update
     void Start()
     {
-        progress = 0;
+        progress = .5f;
         //pbar.transform.localScale = new Vector3(progress, pbar.transform.localScale.y, 1);
+		playerSchweat = Game.Player.gameObject.GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -23,18 +25,32 @@ public class Breathe : MonoBehaviour
     {
         LT = InputControls.LeftTrigger;
         transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Lerp(top.transform.localPosition.y, bot.transform.localPosition.y, LT), transform.localPosition.z);
-    }
+		var sweaty = sweat.emission;
+		sweaty.rateOverTime = Mathf.Ceil(progressToWin / progress);
+		var schweaty = playerSchweat.emission;
+		schweaty.rateOverTime = Mathf.Ceil(progressToWin / progress);
+	}
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag.Equals("zone") && progress <= progressToWin)
+        if (collision.tag.Equals("zone") && progress < progressToWin)
         {
             progress += .01f;
             progress += proficiencyBase * Game.Player.PlayerMovement.breathingProficiency;
             //pbar.transform.localScale = new Vector3(progress, pbar.transform.localScale.y, 1);
-			var sweaty = sweat.emission;
-			sweaty.rateOverTime = Mathf.Floor(progressToWin / progress);
+			
+			if(progress >= progressToWin)
+			{
+				var schweaty = playerSchweat.emission;
+				schweaty.rateOverTime = 0;
+				var sweaty = sweat.emission;
+				sweaty.rateOverTime = 0;
+			}
         }
+		else
+		{
+			
+		}
     }
 
     public bool isFinished()
