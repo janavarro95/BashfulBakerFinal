@@ -3179,6 +3179,8 @@ MonoBehaviour:
       I hired a new delivery boy and she is very excited to meet you!
     - I already made the cookies and they are ready to go in the kitchen!
     - I would like you to deliver them to her radiant house on the southside of town.
+  - name: Jeb
+    sentences:
     - "The house has a BLUE ROOF that puts you in a relaxing mood.\r\n"
   headshots:
   - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
@@ -3195,6 +3197,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
   - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
   - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
   - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
   Jebs_Warning:
     name: Jeb
