@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using Assets.Scripts.GameInput;
 using Assets.Scripts.GameInformation;
 using Assets.Scripts.QuestSystem.Quests;
+using UnityEngine.SceneManagement;
+using Assets.Scripts.Utilities.Delegates;
+using Assets.Scripts.Utilities;
 
 
 public class Day4Jeb : MonoBehaviour
@@ -42,10 +45,12 @@ public class Day4Jeb : MonoBehaviour
             Debug.Log(step);
 
         }
-        else if (step == backandforth.Length)
+        else if (step == backandforth.Length && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false)
         {
             // jeb_animator.SetInteger("Movement_Phase", 3);
-            GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
+           // GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
+            ScreenTransitions.StartSceneTransition(2, "", Color.black, ScreenTransitions.TransitionState.FadeOut);
+
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -57,6 +62,8 @@ public class Day4Jeb : MonoBehaviour
             GameObject.Find("Headshot").GetComponent<Image>().sprite = headshots[0];
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 0;
             FindObjectOfType<DialogueManager>().StartDialogue(backandforth[step]);
+            Game.HUD.showHUD = false;
+            Game.HUD.showQuests = false;   
             step++;
         }
     }
