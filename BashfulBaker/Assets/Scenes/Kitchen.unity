@@ -3133,10 +3133,10 @@ MonoBehaviour:
   - name: Jeb
     sentences:
     - "Don\u2019t worry about it! I\u2019m lucky my hearing is still good. Can\u2019t
-      sneak up on this old man Dave! HAHAHA"
+      sneak up on this old man Dave! HAHAHA!"
   - name: Dane
     sentences:
-    - Hah...umm Jeb?
+    - Hehe...umm Jeb?
   - name: Jeb
     sentences:
     - Yes Dave?
@@ -3180,9 +3180,6 @@ MonoBehaviour:
     - I already made the cookies and they are ready to go in the kitchen!
     - I would like you to deliver them to her radiant house on the southside of town.
     - "The house has a BLUE ROOF that puts you in a relaxing mood.\r\n"
-  - name: Jeb
-    sentences:
-    - I'm sure you'll do a great job!
   headshots:
   - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
   - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
@@ -3198,7 +3195,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
   - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
   - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
-  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
   - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
   Jebs_Warning:
     name: Jeb

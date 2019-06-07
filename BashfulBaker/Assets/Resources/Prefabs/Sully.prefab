@@ -176,7 +176,7 @@ MonoBehaviour:
     - You must be Dane right?
   - name: Dane
     sentences:
-    - Umm yes sir.
+    - Umm... yes sir.
   - name: Sully
     sentences:
     - "Oh you don\u2019t have to be so formal. Please call me Sully."
@@ -190,19 +190,18 @@ MonoBehaviour:
   - name: Sully
     sentences:
     - 'Ahh makes sense. She always order cookies during the time I work. '
-    - "She doesn\u2019t like to share. HAHA. But I do want to warn you. "
+    - "She doesn\u2019t like to share. HAH-HAH. But I do want to warn you. "
   - name: Dane
     sentences:
     - "Oh! Warn me about what?\r"
   - name: Sully
     sentences:
-    - "My men in the Town Watch love Jeb\u2019s cookies. Jeb used to feed them cookies
-      all the time and now they are a bunch of spoiled brats that crave Jeb\u2019s
-      cookies."
-    - So I had to ask Jeb to stop sharing his cookies, because they only came to work
-      to get feed. Then after getting feed, these jerks would go to sleep!
+    - "My men in the Town Watch love Jeb\u2019s cookies. Jeb used to feed them all
+      the time, and now they are a bunch of spoiled brats."
+    - So I had to ask Jeb to stop sharing his sweets, because they only came to work
+      to get fed. Then after getting fed, these nincompoops would slack off.
     - "Now they heard there is a new guy delivering the cookies. I\u2019m sure they
-      will beg for you to share them. Don\u2019t get bullied by those rascals Dane.
+      will beg for you to share them. Don\u2019t let those rascals bully you, Dane..
       \r\n"
   convofaces:
   - {fileID: 21300000, guid: 64647b33bf6d5ba42bdb0efbd0e61bb3, type: 3}

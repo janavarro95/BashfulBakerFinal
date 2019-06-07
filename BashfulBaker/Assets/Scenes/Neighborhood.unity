@@ -9261,19 +9261,133 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   convo:
+  - name: Dane
+    sentences:
+    - "Hi, I\u2019m Dane. I\u2019m here to deliver your order of Oatmeal Raisin Cookies
+      from Jeb\u2019s Jollies."
   - name: Brian
     sentences:
-    - Wow thanks Dane!
+    - Thanks. You must be new... Never seen you around before.
+  - name: Dane
+    sentences:
+    - "Yeah, I just started working at Jeb\u2019s Jollies this week."
   - name: Brian
     sentences:
-    - Wow thanks Dane!
+    - " Cool. I\u2019m Brian by the way."
+  - name: Dane
+    sentences:
+    - ' Nice to meet you.'
   - name: Brian
     sentences:
-    - Wow thanks Dane!
+    - '...Can I ask you a question Dane?'
+  - name: Dane
+    sentences:
+    - " \u2026umm sure. What is it?"
+  - name: Brian
+    sentences:
+    - "How do you deal with being friend-zoned?\r"
+  - name: Dane
+    sentences:
+    - HUH?!?!?!
+  - name: Brian
+    sentences:
+    - I assumed everyone has been friendzoned at some point of their life. You probably
+      a player huh? I can totally see it.
+  - name: Dane
+    sentences:
+    - WHAT!?!??! (what is happening here?)
+    - "I\u2019m not a player\u2026 but I do think it is a bit weird to ask someone
+      that\u2026 especially since you just meet them...\r\n"
+  - name: Brian
+    sentences:
+    - "Oh really? Dang\u2026 Oh well, I guess I\u2019ll figure it out at some point.
+      My bad Dane.\r"
+  - name: Dane
+    sentences:
+    - (This guy seems a bit clueless on how to talk with people.)
+    - '*Sigh* ...are you friendzoned?'
+  - name: Brian
+    sentences:
+    - "Yeah. We been friends since we were kids. But recently I been looking at them
+      differently or better yet I\u2019m accepting my feelings I had since I was a
+      kid. "
+    - "It\u2019s pointless though, I know the feelings are not reciprocated.\r"
+  - name: Dane
+    sentences:
+    - Did they tell you that?
+  - name: Brian
+    sentences:
+    - " No\u2026 I just know."
+  - name: Dane
+    sentences:
+    - '... how?'
+  - name: Brian
+    sentences:
+    - "... You can just tell. So I\u2019m guessing you haven\u2019t been friend-zoned
+      before?"
+  - name: Dane
+    sentences:
+    - "Umm\u2026 not really..."
+  - name: Brian
+    sentences:
+    - "Must be nice.\r"
+  - name: Dane
+    sentences:
+    - "I think you should be honest with the person Brian. If you two are really good
+      friends, I\u2019m sure they will be understanding."
+    - "Then maybe you can get closure if they don\u2019t share the same feelings."
+  - name: Brian
+    sentences:
+    - "I guess. Anyways it doesn\u2019t matter... Like I said it\u2019s pointless\u2026
+      for multiple reasons."
+  - name: Dane
+    sentences:
+    - Like what?
+  - name: Brian
+    sentences:
+    - "Well, you know\u2026 just society and whatever."
+  - name: Dane
+    sentences:
+    - Huh?
+  - name: Brian
+    sentences:
+    - " Nevermind... I have to go. Thanks again for the cookies Dane . I\u2019ll take
+      your advice into consideration."
+    - "I\u2019m going to use the cookies as a gift for the person. It\u2019s their
+      favorite. Laters."
+  - name: Dane
+    sentences:
+    - "Oh umm\u2026 ok bye? ."
+    - "(I\u2019m so confused on what just happened right now? I hope he figures out
+      his issues.)"
   faces:
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
   - {fileID: 21300000, guid: fe23aff45927acb4ab7003ac38c0ab21, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
   - {fileID: 21300000, guid: fe23aff45927acb4ab7003ac38c0ab21, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
   - {fileID: 21300000, guid: fe23aff45927acb4ab7003ac38c0ab21, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: fe23aff45927acb4ab7003ac38c0ab21, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: bad3804d21aa321468205f14ba850b72, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: bad3804d21aa321468205f14ba850b72, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: f6608298074ecb4418d8e1d81fbc861a, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: fe23aff45927acb4ab7003ac38c0ab21, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: fe23aff45927acb4ab7003ac38c0ab21, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: fe23aff45927acb4ab7003ac38c0ab21, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: f6608298074ecb4418d8e1d81fbc861a, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: bad3804d21aa321468205f14ba850b72, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: bad3804d21aa321468205f14ba850b72, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
   wrongCookies:
     name: Dane
     sentences:
@@ -10655,8 +10769,8 @@ MonoBehaviour:
     - Who is it?
   - name: Dane
     sentences:
-    - (Why is she talking to me through the door?)
-    - "I\u2019m here to deliver you cookies from Jeb\u2019s Jollies?\r"
+    - "Umm... my name is Dane. I\u2019m here to deliver you cookies from Jeb\u2019s
+      Jollies?."
   - name: Amari
     sentences:
     - "I didn\u2019t order any cookies...."
@@ -10684,7 +10798,7 @@ MonoBehaviour:
     - Oh yeah. Sylvia told me she works for the Town Watch.
   - name: Amari
     sentences:
-    - 'Yeah but I only get to see her in the mornings or sometimes for dinner. '
+    - 'Yeah... but I only get to see her in the mornings or sometimes for dinner. '
     - "But usually she has to rush to work so I don\u2019t get to see her often. We
       use to be closer before we moved here\u2026\r\n"
   - name: Dane
@@ -10741,7 +10855,7 @@ MonoBehaviour:
     - "As long as it isn\u2019t just mint cookies. They are good but geez. \r\n"
   - name: Dane
     sentences:
-    - "HAHA! I\u2019ll make sure he makes you something else."
+    - "Hehe! I\u2019ll make sure he makes you something else."
   - name: Amari
     sentences:
     - Pinky promise?
@@ -10750,7 +10864,7 @@ MonoBehaviour:
     - Pinky promise.
   - name: Dane
     sentences:
-    - '( She looks happier.)
+    - '( She looks happier!)
 
 '
     - Ah! But what sweets do you like?
@@ -13932,26 +14046,6 @@ PrefabInstance:
       propertyPath: DiaBoxReference
       value: 
       objectReference: {fileID: 856803592}
-    - target: {fileID: 779289586609852611, guid: 9a36ed4fe6ed285468b053e0a0d75f02,
-        type: 3}
-      propertyPath: Conversation.Array.data[6].sentences.Array.data[1]
-      value: So I had to ask Jeb to stop sharing his sweets, because they only came
-        to work to get fed. Then after getting fed, these nincompoops would slack
-        off.
-      objectReference: {fileID: 0}
-    - target: {fileID: 779289586609852611, guid: 9a36ed4fe6ed285468b053e0a0d75f02,
-        type: 3}
-      propertyPath: Conversation.Array.data[6].sentences.Array.data[0]
-      value: "My men in the Town Watch love Jeb\u2019s cookies. Jeb used to feed them
-        all the time, and now they are a bunch of spoiled brats."
-      objectReference: {fileID: 0}
-    - target: {fileID: 779289586609852611, guid: 9a36ed4fe6ed285468b053e0a0d75f02,
-        type: 3}
-      propertyPath: Conversation.Array.data[6].sentences.Array.data[2]
-      value: "Now they heard there is a new guy delivering the cookies. I\u2019m sure
-        they will beg for you to share them. Don\u2019t let those rascals bully you,
-        Dane.. \r\n"
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a36ed4fe6ed285468b053e0a0d75f02, type: 3}
 --- !u!1 &850359095
@@ -15058,7 +15152,7 @@ MonoBehaviour:
     - "Umm I guess\u2026 but I\u2019m not good with kids."
   - name: Sylvia
     sentences:
-    - "Haha it\u2019s fine Dane. Kids are easier to talk to than adults.\r\n"
+    - "Hmhm! it\u2019s fine Dane. Kids are easier to talk to than adults.\r\n"
   - name: Dane
     sentences:
     - Okay, if you say so.
@@ -22191,14 +22285,13 @@ MonoBehaviour:
     - "It went fine. I think\u2026 you were right about us being alike.\r"
   - name: Sylvia
     sentences:
-    - Ah yes. You both are new to the town and seem very shy. I thought it would be
-      nice for two shy people to become friends with each other.
+    - "I knew it would be nice for you two become friends with each other. \r"
   - name: Dane
     sentences:
     - "What if we didn\u2019t become friends?"
   - name: Sylvia
     sentences:
-    - We don't need to worry about all of the what ifs Dane.
+    - We don't need to worry about the what ifs Dane.
   - name: Dane
     sentences:
     - I guess you're right. Well here's your order!
@@ -22234,7 +22327,7 @@ MonoBehaviour:
     sentences:
     - I can definitely taste the love in the cookies. Your cookies are really good
       Dane.
-    - The fact you add a bit of cinnamon and vanilla into the dough, add a uniqueness
+    - The fact that you add a bit of cinnamon and vanilla into the dough, adds a uniqueness
       to them.
   - name: Dane
     sentences:
@@ -22244,25 +22337,24 @@ MonoBehaviour:
     - You should ask Jeb if you can be a baker at his bakery.
   - name: Dane
     sentences:
-    - "What! No! No! It\u2019s call Jeb\u2019s Jollies."
+    - "What?!?! No! No! It\u2019s call Jeb\u2019s Jollies, not Dane\u2019s Jollies!"
   - name: Sylvia
     sentences:
-    - "Yes and it will stay Jeb\u2019s Jollies. Jeb is getting old and he\u2019s going
-      to need someone he can trust to help him with baking. "
-    - With your skills, I think you are perfect candidate. Or I can tell him you been
-      baking the cookies the whole time?
+    - "Oh god no. We would have to change it to Dane\u2019s Delights! "
+    - "hmhmhm! I\u2019m only kidding. It will stay Jeb\u2019s Jollies, but Jeb is
+      getting old and he\u2019s going to need someone he can trust to help him with
+      baking."
+    - "With your skills, I think you are perfect candidate. Or I can tell him you
+      been baking the cookies the whole time?\r"
   - name: Dane
     sentences:
-    - Sigh. Do you always stay plotting something Sylvia?
-  - name: Sylvia
-    sentences:
-    - "I don\u2019t know what you mean. "
-  - name: Dane
-    sentences:
-    - Of course not. Fine, I will ask him myself.
+    - "Fine\u2026 I\u2019m try to ask him about it. Please just don\u2019t tell him!\r"
   - name: Sylvia
     sentences:
     - "Great! I can\u2019t wait to hear back from you as a baker!"
+  - name: Dane
+    sentences:
+    - (How is she so sure Jeb will let me? Sigh, at least she likes my baking.)
   faces:
   - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
   - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
@@ -22285,8 +22377,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
   - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
   - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
-  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
-  - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
   wrongCookies:
     name: Dane
     sentences:
@@ -25348,7 +25439,7 @@ MonoBehaviour:
     - "But the night shift makes them extremely hungry and Jeb\u2019s sweets are the
       best in town."
     - "So you don\u2019t have to be afraid of them. They all want to be your friends
-      for the sweets haha."
+      for the sweets hmhmhm!"
   - name: Dane
     sentences:
     - "Yes ma\u2019am. "
@@ -25360,9 +25451,9 @@ MonoBehaviour:
     - Yes I do.
   - name: Sylvia
     sentences:
-    - Could you go collect some mint, and tell Jeb to make some Mint Chocolate Chips
-      Cookies with my regular order for tomorrow night. Then deliver them back to
-      me, please.
+    - Great. Could you go collect some mint, and tell Jeb to make some Mint Chocolate
+      Chips Cookies with my regular order for tomorrow night. Then deliver them back
+      to me, please.
   - name: Dane
     sentences:
     - Umm okay. Will do ma'am!
@@ -28122,8 +28213,8 @@ MonoBehaviour:
     - "Wow! That\u2019s amazing Amari! I\u2019m so proud of you."
   - name: Amari
     sentences:
-    - "Thank you but if it wasn\u2019t for you supporting me, I won\u2019t had the
-      courage to tell her.\r\n"
+    - "Thank you but if it wasn\u2019t for you supporting me, I wouldn\u2019t have
+      had the courage to tell her.\r\n"
   - name: Dane
     sentences:
     - "Well...that\u2019s a part of my job. "
@@ -28137,7 +28228,7 @@ MonoBehaviour:
     - "Ack! No\u2026 I mean.."
   - name: Amari
     sentences:
-    - "Hahaha. I know what you mean Dane. I\u2019m very grateful for your \u201Cadditional\u201D
+    - "Hehehe. I know what you mean Dane. I\u2019m very grateful for your \u201Cadditional\u201D
       services.\r"
   - name: Dane
     sentences:
@@ -28153,7 +28244,7 @@ MonoBehaviour:
     - Cool!
   - name: Dane
     sentences:
-    - "They\u2019re Pecan Cookies. You said you loved your grandmother\u2019s pecan
+    - "They\u2019re Pecan Crescents. You said you loved your grandmother\u2019s pecan
       pie. So I thought this would be a \u2026 nice similar treat."
   - name: Amari
     sentences:
@@ -28178,10 +28269,12 @@ MonoBehaviour:
     - "Wow! You\u2019re so talented!"
   - name: Dane
     sentences:
-    - '... Thank you. I just wanted you to feel like you are home.'
+    - '...Thank you. I just wanted you to feel like you''re home.'
   - name: Amari
     sentences:
-    - "\u2026 Dane.\n"
+    - '...Dane...
+
+'
     - "THANK YOU SO MUCH! \r\n"
     - "Dane, you should join us for dinner! You can meet my mom!\r"
   - name: Dane
