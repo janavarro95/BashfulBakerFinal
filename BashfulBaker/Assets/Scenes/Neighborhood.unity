@@ -22198,10 +22198,10 @@ MonoBehaviour:
     - "What if we didn\u2019t become friends?"
   - name: Sylvia
     sentences:
-    - We don't need to worry abput all of the what ifs Dane.
+    - We don't need to worry about all of the what ifs Dane.
   - name: Dane
     sentences:
-    - Oh, I guess you're right. Well here's your order!
+    - I guess you're right. Well here's your order!
   - name: Sylvia
     sentences:
     - Ah and one more thing Dane.
@@ -22210,14 +22210,13 @@ MonoBehaviour:
     - Yes?
   - name: Sylvia
     sentences:
-    - I know you are baking the cookies.
+    - I know you're baking the cookies.
   - name: Dane
     sentences:
     - '!!!!!!!'
   - name: Sylvia
     sentences:
-    - 'The last few orders I received from you have been a bit more sweeter than they
-      usually are. '
+    - 'The last few orders I received from you have been a bit sweeter than usual. '
     - At first I thought Jeb might had changed up the recipe, but that old man lives
       by his famous recipes.
   - name: Dane
@@ -22233,8 +22232,8 @@ MonoBehaviour:
     - Yes... It calms me down. It makes me happy.
   - name: Sylvia
     sentences:
-    - " can definitely taste the love in the cookies. You\u2019re cookies are really
-      good Dane."
+    - I can definitely taste the love in the cookies. Your cookies are really good
+      Dane.
     - The fact you add a bit of cinnamon and vanilla into the dough, add a uniqueness
       to them.
   - name: Dane
@@ -28127,7 +28126,7 @@ MonoBehaviour:
       courage to tell her.\r\n"
   - name: Dane
     sentences:
-    - "Well...that\u2019s apart of my job. "
+    - "Well...that\u2019s a part of my job. "
   - name: Amari
     sentences:
     - 'Really? Delivery boys have to support their customers?
