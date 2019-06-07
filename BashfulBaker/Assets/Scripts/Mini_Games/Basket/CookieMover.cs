@@ -111,7 +111,7 @@ public class CookieMover : MonoBehaviour
     private void exitcookieMover()
     {
         actuallyTransition();
-        Game.Player.arrowDirection.gameObject.SetActive(true);
+        
     }
 
     private void actuallyTransition()
@@ -127,7 +127,14 @@ public class CookieMover : MonoBehaviour
         Game.LoadCorrectKitchenScene();
 
         //Debug.Log("Arrow shows the way!");
-        Game.Player.arrowDirection.gameObject.SetActive(true);
+        if (Game.CurrentDayNumber == 1 || Game.CurrentDayNumber == 0)
+        {
+            Game.Player.arrowDirection.gameObject.SetActive(true);
+        }
+        else
+        {
+            Game.Player.arrowDirection.gameObject.SetActive(false);
+        }
         ScreenTransitions.PrepareForSceneFadeIn(.5f, Color.black);
     }
     private void setCookies()

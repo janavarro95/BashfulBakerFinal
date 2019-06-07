@@ -2424,7 +2424,7 @@ GameObject:
   - component: {fileID: 1083138364}
   - component: {fileID: 1083138370}
   - component: {fileID: 1083138371}
-  - component: {fileID: 1083138372}
+  - component: {fileID: 1083138365}
   m_Layer: 0
   m_Name: Jeb
   m_TagString: Untagged
@@ -2444,6 +2444,143 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a467fa26e24174e80f4f0963a8b74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1083138365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083138363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7511134ccfea49340b292585684ffd15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DiaBoxReference: {fileID: 1816206802}
+  backandforth:
+  - name: Jeb
+    sentences:
+    - "Ah hello, Dane. I came back to drop off the cookies. When I got to my daughter\u2019s
+      house, I realized I was a week early. I\u2019m so embarrassed...\r\n"
+  - name: Dane
+    sentences:
+    - "It\u2019s okay, Jeb. It happens sometimes."
+  - name: Jeb
+    sentences:
+    - "No... It\u2019s been happening a lot lately. My daughter told me I should consider
+      retiring and spending time with my family. Maybe I should..."
+  - name: Dane
+    sentences:
+    - '......I just....I don''t know if...'
+  - name: Jeb
+    sentences:
+    - "Well it was a good run though. I had this bakery for 30 years. It\u2019s finally
+      time to close up shop."
+  - name: Dane
+    sentences:
+    - No! You can't!
+  - name: Jeb
+    sentences:
+    - Huh? No what?
+  - name: Dane
+    sentences:
+    - "You can\u2019t close the bakery!"
+  - name: Jeb
+    sentences:
+    - 'Dane...
+
+'
+  - name: Dane
+    sentences:
+    - 'You said your daughter thinks you should spend more time with your family...but
+      I would also like to believe you have a family here at the bakery. '
+    - Your cookies alone mean so much to this community. Sylvia, Amari, and Ian...
+      and I would be losing a piece of home.
+  - name: Jeb
+    sentences:
+    - "Dane... I didn\u2019t think about it like that..."
+  - name: Dane
+    sentences:
+    - I think... over this past week I have met some many people who you have impacted.
+      You are kind-hearted, thoughtful, and joyful.
+    - "Yes, you might be getting older but I don\u2019t think you should give up.
+      I\u2019m sorry if I sound selfish...\n"
+  - name: Jeb
+    sentences:
+    - "It\u2019s okay. I\u2019m just happy this bakery is a part of your home."
+  - name: Dane
+    sentences:
+    - I guess I do feel a much more comfortable.
+  - name: Jeb
+    sentences:
+    - I remember you being a bit more timid and reserved. Now you seem more outgoing
+      and confident.
+  - name: Dane
+    sentences:
+    - "Oh\u2026 you think so?"
+  - name: Jeb
+    sentences:
+    - "Absolutely! I\u2019m oh-so proud of you.\r"
+  - name: Dane
+    sentences:
+    - "Jeb let me help you around the bakery. I know how to bake. I\u2019ve been baking
+      cookies for you when you forgot some of the orders. I want to help you like
+      you helped everyone else."
+    - "Of course it will stay your bakery though! I don\u2019t want you to feel like
+      I\u2019m taking over. I wouldn\u2019t even be here if it wasn\u2019t for you!
+      \ So please allow me to be a baker for Jeb\u2019s Jollies."
+  - name: Jeb
+    sentences:
+    - "Don\u2019t you think being a baker and delivery boy is too much?"
+  - name: Dane
+    sentences:
+    - 'Not at all. I been doing it just fine. Actually, baking helps calm down my
+      anxiety. '
+  - name: Jeb
+    sentences:
+    - Ah I see. Then sure! I would love for you to be a baker.
+  - name: Dane
+    sentences:
+    - Awesome!
+  - name: Jeb
+    sentences:
+    - Also thank you Dane. I appreciate everything you said.
+  - name: Dane
+    sentences:
+    - "No problem. It\u2019s a part of my job right?"
+  - name: Jeb
+    sentences:
+    - 'Right.
+
+'
+  headshots:
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: caa10facc2a89a24a9d5240fd9c6ae85, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
+  jeb_animator: {fileID: 1083138370}
+  Bubble: {fileID: 2075414951}
 --- !u!50 &1083138366
 Rigidbody2D:
   serializedVersion: 4
@@ -2599,47 +2736,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25944477, y: 0.59729207}
   m_EdgeRadius: 0
---- !u!114 &1083138372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1083138363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 720a0a71f74943c44bba60586543d48c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DiaBoxReference: {fileID: 1816206802}
-  Jeb1:
-    name: Jeb
-    sentences:
-    - Ah there's the star delivery boy himself! You did a great job last night!
-    - Sylvia was so pleased with her cookies she ordered another batch of choclate
-      chip cookies
-    - We also got a request for Mint chip Cookies from Mr. Norville in the house with
-      the GREEN ROOF.
-    - 'And finally an order of raisin cookies for Lyla! She''s such a sweet heart.
-      You''ll find her in the house with a PINK roof and strawberries to the side. '
-  Dane1:
-    name: Dane
-    sentences:
-    - 'Sounds great Mr. Jeb! '
-    - There was one problem last night I'd like to ask you about, when I wen-
-  Jeb2:
-    name: Jeb
-    sentences:
-    - Oh did you have a fan club of guards trying to sniff you out?
-    - I am sorry they do that, I used to feed them but they starting having trouble
-      chasing down the odd prankster or escaped pet.
-    - So I stopped for their own sake. I have shouldered the burden of eating the
-      leftovers hahaha!
-    - Well, have a good night Mr. Dane! Thank you for your hard work.
-  Jeb_Face: {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
-  Dane_Face: {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
-  jeb_animator: {fileID: 1083138370}
-  Bubble: {fileID: 2075414951}
 --- !u!1001 &1109282553
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -192,6 +192,7 @@ public class GameSoundManager : MonoBehaviour
     {
         AudioSource source = this.gameObject.AddComponent<AudioSource>();
         source.clip = clip;
+        source.loop = true;
 
         if (this.currentSong==null){
             this.currentSong = source;

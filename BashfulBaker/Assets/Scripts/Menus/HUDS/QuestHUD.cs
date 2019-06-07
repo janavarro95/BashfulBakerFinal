@@ -214,6 +214,12 @@ namespace Assets.Scripts.Menus.HUDS
             getQuestImages();
         }
 
+        public void resetMenuForMainMenu()
+        {
+            getQuestImages();
+            Game.HUD.showQuests = false;
+        }
+
 
         public override void Update()
         {
