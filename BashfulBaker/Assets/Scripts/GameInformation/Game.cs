@@ -250,6 +250,9 @@ namespace Assets.Scripts.GameInformation
                 if (QuestSystem.QuestManager.Quests == null) QuestSystem.QuestManager.Quests = new QuestManager();
                 if (player == null) player = new PlayerInfo();
 
+
+
+
                 gameLoaded = true;
 
                 if (SoundManager == null)
@@ -307,6 +310,14 @@ namespace Assets.Scripts.GameInformation
                     Instantiate((GameObject)Resources.Load(stealth, typeof(GameObject)));
                 }
 
+
+                if (Game.HUD == null)
+                {
+                    string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
+                    //Debug.Log(HUDPath);
+                    Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
+                }
+
                 setUpScene();
 
                 SceneManager.sceneLoaded += SceneManager_sceneLoaded;
@@ -357,6 +368,7 @@ namespace Assets.Scripts.GameInformation
             gameLoaded = false;
             Serializer.JSONSerializer = null;
             QuestManager.Quests.Clear();
+            //Game.HUD.QuestHUD.resetMenuForMainMenu();
 
             Player.setSpriteVisibility(Enums.Visibility.Invisible);
             //Destroy(Player.gameObject);
@@ -371,21 +383,24 @@ namespace Assets.Scripts.GameInformation
             Game.Player.dishesInventory.actualItems.Clear();
             Game.player.removeActiveItem();
 
-
+            Game.HUD.showHUD = false;
             Game.HUD.showInventory = false;
             Game.HUD.showTimer = false;
             Game.HUD.showQuests = false;
             Game.HUD.showSpecialIngredients = false;
+
 
             StartMinigame.ovenDish = null;
 
             if (NumberOfTimesCaught != null)
             {
 
-                foreach (int i in NumberOfTimesCaught.Keys)
-                {
-                    NumberOfTimesCaught[i] = 0;
-                }
+                NumberOfTimesCaught.Clear();
+                NumberOfTimesCaught.Add(0, 0);
+                NumberOfTimesCaught.Add(1, 0);
+                NumberOfTimesCaught.Add(2, 0);
+                NumberOfTimesCaught.Add(3, 0);
+                NumberOfTimesCaught.Add(4, 0);
             }
             if(GuardsFed!=null)GuardsFed.Clear();
 
@@ -406,6 +421,7 @@ namespace Assets.Scripts.GameInformation
 
             if (SceneManager.GetActiveScene().name == "MainMenu")
             {
+                Game.HUD.showHUD = false;
                 Menus.Menu.Instantiate<MainMenu>();
             }
 
@@ -418,14 +434,7 @@ namespace Assets.Scripts.GameInformation
                     Player.gameObject.transform.position = new Vector3(-3.06971f, -9.5f, 0);
                     DontDestroyOnLoad(Player.gameObject);
                 }
-                if (Game.HUD == null)
-                {
-                    string HUDPath = Path.Combine(Path.Combine("Prefabs", "HUDS"), "GameHUD");
-                    //Debug.Log(HUDPath);
-                    Instantiate((GameObject)Resources.Load(HUDPath, typeof(GameObject))); //Instantiate game hud;
-                                                                                          //Debug.Log("Loading kitchen scene from the Game.cs script!");
 
-                }
                     //StartNewTimerPhase(2, 0);
 
                     if (Game.TutorialCompleted == false)
@@ -501,26 +510,26 @@ namespace Assets.Scripts.GameInformation
                 }
             }
 
+            if (SceneManager.GetActiveScene().name == "DaySelect")
+            {
+                Game.HUD.showHUD = false;
+            }
+
+            if (SceneManager.GetActiveScene().name == "Credits")
+            {
+                Game.HUD.showHUD = false;
+            }
 
             if (SceneManager.GetActiveScene().name == "KitchenDay2")
             {
-                //Debug.Log("REMOVE THE COUNTERS!");
-                //GameObject.Find("backCounter 1").SetActive(false);
-                // GameObject.Find("backCounter 1 (1)").SetActive(false);
                 Game.HUD.showAll();
             }
             if (SceneManager.GetActiveScene().name == "KitchenDay3")
             {
-                //Debug.Log("REMOVE THE COUNTERS!");
-                //GameObject.Find("backCounter 1").SetActive(false);
-                // GameObject.Find("backCounter 1 (1)").SetActive(false);
                 Game.HUD.showAll();
             }
             if (SceneManager.GetActiveScene().name == "KitchenDay4")
             {
-                //Debug.Log("REMOVE THE COUNTERS!");
-                //GameObject.Find("backCounter 1").SetActive(false);
-                // GameObject.Find("backCounter 1 (1)").SetActive(false);
                 Game.HUD.showAll();
             }
 

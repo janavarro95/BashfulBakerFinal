@@ -24,6 +24,15 @@ public class minimap : MonoBehaviour
 		{
 			map.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -3);
 			map.GetComponent<SpriteRenderer>().enabled = !map.GetComponent<SpriteRenderer>().enabled;
+            if (map.GetComponent<SpriteRenderer>().enabled)
+            {
+                Game.HUD.showHUD = false;
+            }
+            else
+            {
+                Game.HUD.showHUD = true;
+            }
+
 			player.GetComponent<PlayerMovement>().CanPlayerMove = !player.GetComponent<PlayerMovement>().CanPlayerMove;
 		}
     }
