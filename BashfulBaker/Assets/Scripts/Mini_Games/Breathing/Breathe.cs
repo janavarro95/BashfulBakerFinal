@@ -9,13 +9,13 @@ public class Breathe : MonoBehaviour
     public float LT;
     public float progress;
     public float progressToWin = 5;
-    public GameObject pbar, top, bot;
+    public GameObject pbar, sweat, top, bot;
     public float proficiencyBase = 0.005f;
     // Start is called before the first frame update
     void Start()
     {
         progress = 0;
-        pbar.transform.localScale = new Vector3(progress, pbar.transform.localScale.y, 1);
+        //pbar.transform.localScale = new Vector3(progress, pbar.transform.localScale.y, 1);
     }
 
     // Update is called once per frame
@@ -27,11 +27,13 @@ public class Breathe : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag.Equals("zone") && progress < progressToWin)
+        if (collision.tag.Equals("zone") && progress <= progressToWin)
         {
             progress += .01f;
             progress += proficiencyBase * Game.Player.PlayerMovement.breathingProficiency;
-            pbar.transform.localScale = new Vector3(progress, pbar.transform.localScale.y, 1);
+            //pbar.transform.localScale = new Vector3(progress, pbar.transform.localScale.y, 1);
+			var sweaty = sweat.emission;
+			sweaty.rateOverTime = Mathf.Floor(progressToWin / progress);
         }
     }
 
