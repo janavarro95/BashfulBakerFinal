@@ -19799,9 +19799,129 @@ MonoBehaviour:
   convo:
   - name: Ian
     sentences:
-    - Wow thanks Dane!
+    - "What\u2019s up?"
+  - name: Dane
+    sentences:
+    - "Hi, I\u2019m Dane and I\u2019m here to deliver your order of Mint Chocolate
+      Chip Cookies from Jeb\u2019s Jollies."
+  - name: Ian
+    sentences:
+    - "Nice. Thanks Dane, I\u2019m Ian."
+  - name: Dane
+    sentences:
+    - Nice to you meet.
+  - name: Ian
+    sentences:
+    - Likewise!
+  - name: Dane
+    sentences:
+    - (This guy seems very friendly and easy to talk to.)
+    - "Oh yeah. Happy Birthday!\r"
+  - name: Ian
+    sentences:
+    - "Oh! Thank you. How did you know?\r"
+  - name: Dane
+    sentences:
+    - ' Jeb told me. I made a few extra cookies for you too!'
+  - name: Ian
+    sentences:
+    - "Wow. That\u2019s really nice of you\u2026 but it might be too much for me since
+      I might be eating them alone."
+  - name: Dane
+    sentences:
+    - Are you not having friends or family come over?
+  - name: Ian
+    sentences:
+    - "...I did invite one friend but I don\u2019t think he will coming over."
+  - name: Dane
+    sentences:
+    - Really? Why not?
+  - name: Ian
+    sentences:
+    - "...are you sure you want to listen to my problems? You don\u2019t have too."
+  - name: Dane
+    sentences:
+    - "You\u2019re the first person to ask me that. Everyone else just opens up. But
+      it\u2019s fine. I learned I\u2019m a good listener."
+  - name: Ian
+    sentences:
+    - But do you enjoy it? Not everyone can be like Jeb.
+  - name: Dane
+    sentences:
+    - "...You\u2019re right. It\u2019s not for everyone but I made a promise that
+      I would try my best because I want to be more like him."
+  - name: Ian
+    sentences:
+    - "I see. Well if you say so Dane. Basically, my best friend stopped talking to
+      me and I don\u2019t know why."
+    - "He\u2019s been very distant, so I can tell he is avoiding me. I asked him about
+      it but he told me nothing was wrong. It really sucks because we been friends
+      for years."
+  - name: Dane
+    sentences:
+    - "Maybe... he feels like he can\u2019t tell you?"
+  - name: Ian
+    sentences:
+    - Why? We tell each other everything?
+  - name: Dane
+    sentences:
+    - "Ummm\u2026\r"
+  - name: Ian
+    sentences:
+    - "You\u2019re probably right though... I could care less what it\u2019s about,
+      I just really miss him. Is that selfish?"
+  - name: Dane
+    sentences:
+    - Yeah but I think he will appreciate knowing you miss him.
+  - name: Ian
+    sentences:
+    - "You think so? He\u2019s suppose to be here in a few minutes. So hopefully he
+      will show up. I got these cookies as a peace offering\u2026 they\u2019re his
+      favorites."
+  - name: Dane
+    sentences:
+    - Oh if mint cookies are not your favorite cookies, what are?
+  - name: Ian
+    sentences:
+    - Oatmeal Raisin.
+  - name: Dane
+    sentences:
+    - Oh... interesting. Well I hope it works out for you both. Have a good night!
+  - name: Ian
+    sentences:
+    - I hope so, too. See ya!
+  - name: Dane
+    sentences:
+    - (Why is everyone in this town so complicated?)
   faces:
-  - {fileID: 21300000, guid: 6e5fa2b48b8f63140a24374488bd0371, type: 3}
+  - {fileID: 21300000, guid: d1ff355021d6c2b4783d02efdd9faed2, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: d1ff355021d6c2b4783d02efdd9faed2, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: d1ff355021d6c2b4783d02efdd9faed2, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: a026dab92d0cec44782d5c0ea98e1de9, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: a026dab92d0cec44782d5c0ea98e1de9, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: 47b5ad5197aa0434189bbc13eadff581, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: a026dab92d0cec44782d5c0ea98e1de9, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: d1ff355021d6c2b4783d02efdd9faed2, type: 3}
+  - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
+  - {fileID: 21300000, guid: d1ff355021d6c2b4783d02efdd9faed2, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 47b5ad5197aa0434189bbc13eadff581, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: 47b5ad5197aa0434189bbc13eadff581, type: 3}
+  - {fileID: 21300000, guid: 4b8dbc36add569f4188301c97e0f73b1, type: 3}
+  - {fileID: 21300000, guid: 47b5ad5197aa0434189bbc13eadff581, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
+  - {fileID: 21300000, guid: d1ff355021d6c2b4783d02efdd9faed2, type: 3}
+  - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
+  - {fileID: 21300000, guid: d1ff355021d6c2b4783d02efdd9faed2, type: 3}
+  - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
   wrongCookies:
     name: Dane
     sentences:
