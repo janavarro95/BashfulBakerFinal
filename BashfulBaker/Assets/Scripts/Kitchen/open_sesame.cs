@@ -8,6 +8,10 @@ public class open_sesame : MonoBehaviour
     GameObject Jeb;
     private void Start()
     {
+        if (Game.Day1JebTalkedTo && Game.CurrentDayNumber == 1)
+        {
+            this.gameObject.SetActive(false);
+        }
         if (Game.Day2JebTalkedTo && Game.CurrentDayNumber == 2)
         {
             this.gameObject.SetActive(false);
@@ -22,10 +26,6 @@ public class open_sesame : MonoBehaviour
         }
 
         Jeb = GameObject.Find("Jeb");
-        if (GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().currentStep >= 0)
-        {
-            this.gameObject.SetActive(false);
-        }
     }
     private void Update()
     {

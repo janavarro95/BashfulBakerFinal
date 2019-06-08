@@ -23,7 +23,7 @@ public class Tutorial_Jeb : MonoBehaviour
     void Start()
     {
         waitingtoend = false;
-        if (Game.Day1JebTalkedTo || Game.Player.PlayerMovement.currentStep > 0)
+        if (Game.Day1JebTalkedTo)
         {
             gameObject.SetActive(false);
         }
