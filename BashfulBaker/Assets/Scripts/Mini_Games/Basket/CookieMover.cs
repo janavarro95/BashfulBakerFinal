@@ -116,7 +116,7 @@ public class CookieMover : MonoBehaviour
 
     private void actuallyTransition()
     {
-        //GameObject.Find("MinigameTimer").GetComponent<MinigameTimer>().finishGame(Enums.CookingStationMinigame.PackingStation);
+        GameObject.Find("MinigameTimer").GetComponent<MinigameTimer>().finishGame(Enums.CookingStationMinigame.PackingStation);
         ScreenTransitions.StartSceneTransition(.5f, "Kitchen", Color.black, ScreenTransitions.TransitionState.FadeOut, new VoidDelegate(finishedTransition));
     }
     private void finishedTransition()

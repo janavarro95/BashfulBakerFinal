@@ -356,6 +356,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 188cbfdccb67c384da262e66d801de7c, type: 3}
   - {fileID: 21300000, guid: a888551c90203fc468c335cb4f16b673, type: 3}
   - {fileID: 21300000, guid: c48d102c0950b434d8168556af9a7680, type: 3}
+  proficiencyScale: 1.5
 --- !u!82 &83488272
 AudioSource:
   m_ObjectHideFlags: 0
@@ -35168,21 +35169,6 @@ PrefabInstance:
     - target: {fileID: 6007127939994375593, guid: 1a6d90d34a266b64bb3c79709f6409bf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4192220540265185301, guid: 1a6d90d34a266b64bb3c79709f6409bf,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4192220540265185301, guid: 1a6d90d34a266b64bb3c79709f6409bf,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4192220539399981971, guid: 1a6d90d34a266b64bb3c79709f6409bf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

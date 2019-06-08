@@ -197,10 +197,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer:
     currentTime: 0
-    maxTime: 0
-    type: 0
+    maxTime: 600
+    type: 1
     state: 0
-    autoRestart: 0
+    autoRestart: 1
 --- !u!1 &8979210982226783069
 GameObject:
   m_ObjectHideFlags: 0
