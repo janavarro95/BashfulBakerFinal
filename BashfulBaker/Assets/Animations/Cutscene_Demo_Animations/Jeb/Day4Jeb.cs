@@ -48,8 +48,9 @@ public class Day4Jeb : MonoBehaviour
         else if (step == backandforth.Length && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false)
         {
             // jeb_animator.SetInteger("Movement_Phase", 3);
-           // GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
-            ScreenTransitions.StartSceneTransition(2, "", Color.black, ScreenTransitions.TransitionState.FadeOut);
+            // GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
+            Game.Player.setSpriteVisibility(Assets.Scripts.Enums.Visibility.Invisible);
+            ScreenTransitions.StartSceneTransition(2, "Credits", Color.black, ScreenTransitions.TransitionState.FadeOut);
 
         }
     }
