@@ -33,6 +33,10 @@ public class Breathe : MonoBehaviour
 		sweaty.rateOverTime = Mathf.Ceil(progressToWin / progress);
 		var schweaty = playerSchweat.emission;
 		schweaty.rateOverTime = Mathf.Ceil(progressToWin / progress);
+		if(!(fast.isPlaying || slow.isPlaying))
+		{
+			fast.Play();
+		}
 	}
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -51,11 +55,25 @@ public class Breathe : MonoBehaviour
 				sweaty.rateOverTime = 0;
 			}
         }
-		else
-		{
-			
-		}
     }
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if(collision.tag.Equals("zone") && !slow.isPlaying)
+		{
+			fast.Stop();
+			slow.Play();
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		if(collision.tag.Equals("zone") && !fast.isPlaying)
+		{
+			slow.Stop();
+			fast.Play();
+		}
+	}
 
     public bool isFinished()
     {
