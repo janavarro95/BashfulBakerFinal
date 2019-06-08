@@ -179,10 +179,10 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
 
-        if (defaultSpeed != saveSpeed)
+        /*if (defaultSpeed != saveSpeed)
         {
             defaultSpeed = saveSpeed;
-        }
+        }*/
 
         if (Input.GetKeyDown("o"))
         {
