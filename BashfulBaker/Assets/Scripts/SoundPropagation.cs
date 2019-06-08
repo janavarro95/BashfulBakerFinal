@@ -49,7 +49,8 @@ public class SoundPropagation : MonoBehaviour
         circleCollider.radius += soundGrowthSpeed;
 
         // draw circle
-        drawnCircle.radius = circleCollider.radius;
+        if (drawnCircle != null)
+            drawnCircle.radius = circleCollider.radius;
 
         // destroy
         // also check that sound has finished playing?

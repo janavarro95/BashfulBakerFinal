@@ -14,6 +14,8 @@ public class StealthCaughtZone : MonoBehaviour
     public Dialogue dialogue;
     private Dialogue specialDialogue;
     public Sprite guardFace;
+    public Sprite guardEatFace;
+    public Sprite daneFace;
     public Item itemToTake;
     public Material pacMat;
     public DialogueManager dm;
@@ -141,7 +143,7 @@ public class StealthCaughtZone : MonoBehaviour
                         {
                             dialogue = new Dialogue("Guard", new List<string>()
                             {
-                                "You can't be out this late! You should really get back home!"
+                                "What are you doing carrying around all these ingredients?"
                             }.ToArray());
 
                             BeginDialogue(dialogue, null);
@@ -155,13 +157,22 @@ public class StealthCaughtZone : MonoBehaviour
                         {
                             dialogue = new Dialogue("Guard", new List<string>()
                             {
-                                "You can't be out this late! You should really get back home!"
+                                "Hey young man, what are you doing out this late?"
                             }.ToArray());
 
                             BeginDialogue(dialogue, null);
                         }
                         return;
                     }
+                }
+                else
+                {
+                    // guard has been fed
+                    if (!dm.IsDialogueUp)
+                    {
+                        Ramble();
+                    }
+                    return;
                 }
             }
             else
@@ -214,8 +225,9 @@ public class StealthCaughtZone : MonoBehaviour
                     if (itemToTake != null && !String.IsNullOrEmpty(itemToTake.Name) && (itemToTake as Dish).IsDishComplete)
                     {
                         // make new dialog
-                        dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
-                        {"Thank you for the {0}, have a lovely night!"},
+                        GameObject.Find("Headshot").GetComponent<Image>().sprite = daneFace;
+                        dialogue = new Dialogue("Dane", StringUtilities.FormatStringList(new List<string>()
+                        {"Here just take the {0}, have a good night!"},
                         itemToTake.Name).ToArray());
 
                         // start new dialog
@@ -225,8 +237,9 @@ public class StealthCaughtZone : MonoBehaviour
                     else
                     {
                         // make new dialog
-                        dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
-                        {"Let take you back to Jeb's!"},
+                        GameObject.Find("Headshot").GetComponent<Image>().sprite = daneFace;
+                        dialogue = new Dialogue("Dane", StringUtilities.FormatStringList(new List<string>()
+                        {"Hey... Could you take me back to Jeb's Jollies?"},
                         "NOTHING").ToArray());
 
                         // start new dialog
@@ -330,7 +343,7 @@ public class StealthCaughtZone : MonoBehaviour
             awareness.returnHome = true;
 
             // disable this collision
-            GetComponent<Collider2D>().enabled = false;
+            //GetComponent<Collider2D>().enabled = false;
             GetComponentInChildren<SpriteRenderer>().enabled = false;
         }
 
@@ -344,6 +357,7 @@ public class StealthCaughtZone : MonoBehaviour
         if (guardType == GuardType.Guard)
         {
             Pacify();
+            guardFace = guardEatFace;
             dishConsumedName = itemToTake.Name;
             Game.Player.dishesInventory.Remove(itemToTake);
             Game.Player.activeItem = null;

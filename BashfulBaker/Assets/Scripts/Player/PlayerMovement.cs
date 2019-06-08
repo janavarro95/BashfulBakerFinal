@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     /// The default speed the player should move.
     /// </summary>
     public float defaultSpeed = 1.0f;
+    public float saveSpeed;
 
     [Tooltip("How much to dampen the player's speed. Bigger numbers means a slower player.")]
     /// <summary>
@@ -123,7 +124,7 @@ public class PlayerMovement : MonoBehaviour {
 
         guardsSeeingMe = 0;
         t = 0;
-
+        saveSpeed = defaultSpeed;
       //  height = (GetComponent<SpriteRenderer>().sprite.texture.height / 2) * transform.localScale.y;
 
         //dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
@@ -176,6 +177,11 @@ public class PlayerMovement : MonoBehaviour {
                 alert.enabled = false;
                 t = 0;
             }
+        }
+
+        if (defaultSpeed != saveSpeed)
+        {
+            defaultSpeed = saveSpeed;
         }
 
         if (Input.GetKeyDown("o"))
