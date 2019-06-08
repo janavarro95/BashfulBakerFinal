@@ -14,7 +14,11 @@ public class DialogueManager : MonoBehaviour
     public TMPro.TextMeshProUGUI dialogueText;
     public Animator animator;
     public bool sentenceFinished = false;
-
+    public AudioClip maleBlip;
+    public AudioClip femaleBlip;
+    public AudioSource audioSource;
+    public float pitch = 1;
+    public int blipMod = 5;
 
     private Queue<string> sentences;
     private string currentSentence;
@@ -36,6 +40,8 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         Game.DialogueManager = this;
+        audioSource = this.GetComponent<AudioSource>();
+        audioSource.clip = maleBlip;
     }
 
     private void Update()
@@ -94,9 +100,19 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueText.text = "";
         sentenceFinished = false;
+        int count = 0;
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
+
+            if (count % blipMod == 0)
+            {
+                audioSource.pitch = pitch;
+                audioSource.Play();
+            }
+
+            count++;
+
             yield return null;
         }
         sentenceFinished = true;

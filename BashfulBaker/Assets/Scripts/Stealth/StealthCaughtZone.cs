@@ -226,7 +226,7 @@ public class StealthCaughtZone : MonoBehaviour
                     {
                         // make new dialog
                         dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
-                        {"I'll personally escort you!"},
+                        {"Let take you back to Jeb's!"},
                         "NOTHING").ToArray());
 
                         // start new dialog
