@@ -128,6 +128,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundPrefab: {fileID: 2646647941674954673, guid: 411ddb4a4cea79b469bec4cd6f5715f1,
     type: 3}
+  jimmies:
+  - {fileID: 8300000, guid: 4f07ee153932c2147adf3bd17e599617, type: 3}
+  - {fileID: 8300000, guid: f65e27aa1f16bed4ea21feacdc91c263, type: 3}
+  - {fileID: 8300000, guid: c08f65f10399fa84db32acd3729ce3f5, type: 3}
+  - {fileID: 8300000, guid: e93af8841523b6e4984eb6c99a9fec31, type: 3}
+  - {fileID: 8300000, guid: c14ca8a05646ee64e9c975cb4292e666, type: 3}
+  - {fileID: 8300000, guid: 382e10b7b1cf5a34d8918ab1f716111e, type: 3}
+  - {fileID: 8300000, guid: 969e0f5b0ee0ef64eb485bb2f85e33bf, type: 3}
+  - {fileID: 8300000, guid: 430a1b95a5bfe9042bf8b574d252dc06, type: 3}
 --- !u!95 &798953078
 Animator:
   serializedVersion: 3
@@ -176,7 +185,7 @@ BoxCollider2D:
 --- !u!199 &723798293466577825
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

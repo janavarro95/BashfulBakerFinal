@@ -15,6 +15,7 @@ public class Racoon : MonoBehaviour
     public Dialogue noFoodDialogue;
 
     public Sprite daneFace;
+    public Sprite raccoonFace;
 
     private DeltaTimer movementTimer;
     private Vector3 ogPosition;
@@ -65,6 +66,7 @@ public class Racoon : MonoBehaviour
     {
         if (Game.Player.activeItem != null && collision.gameObject == Game.Player.gameObject && InputControls.BPressed)
         {
+            GameObject.Find("Headshot").GetComponent<Image>().sprite = raccoonFace;
             Game.Player.removeActiveItem();
             Game.DialogueManager.StartDialogue(fedDialogue);
             hasBeenFed = true;
@@ -90,6 +92,7 @@ public class Racoon : MonoBehaviour
 
     private void disappear()
     {
+        //Game.Player.PlayerMovement.saveSpeed += 0.1f;
         Destroy(this.gameObject);
     }
     

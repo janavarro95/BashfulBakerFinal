@@ -10,11 +10,14 @@ public class BushRustler : MonoBehaviour
     private ParticleSystem ps;
     public GameObject soundPrefab;
 
+    public List<AudioClip> jimmies = new List<AudioClip>();
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        anim.enabled = true;
+        if (anim != null)
+            anim.enabled = true;
         //rustle = GetComponent<Animation>();
         ps = GetComponent<ParticleSystem>();
     }
@@ -33,18 +36,21 @@ public class BushRustler : MonoBehaviour
         if (g.CompareTag("Player"))
         {
             // animate the bush
-            anim.SetBool("shaking", true);
+            if (anim != null)
+                anim.SetBool("shaking", true);
             ps.Play();
             Invoke("StopShaking", 0.5f);
 
             // play sound
-            Instantiate(soundPrefab, this.transform.position, Quaternion.identity);
+            GameObject s = Instantiate(soundPrefab, this.transform.position, Quaternion.identity);
+            s.GetComponent<AudioSource>().clip = jimmies[Random.Range(0, jimmies.Count-1)];
         }
     }
 
     void StopShaking()
     {
-        anim.SetBool("shaking", false);
+        if (anim != null)
+            anim.SetBool("shaking", false);
         ps.Stop();
     }
 }

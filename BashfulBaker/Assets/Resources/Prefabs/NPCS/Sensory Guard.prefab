@@ -507,6 +507,8 @@ MonoBehaviour:
     name: 
     sentences: []
   guardFace: {fileID: 21300000, guid: 273034a71d1a69d41b99fa9748bb8b3a, type: 3}
+  guardEatFace: {fileID: 21300000, guid: 6a95cfd4fcbbc344abe290f32d42fc07, type: 3}
+  daneFace: {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
   itemToTake:
     itemName: 
     stack: 0
