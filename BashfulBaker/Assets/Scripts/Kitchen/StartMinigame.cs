@@ -26,7 +26,7 @@ public class StartMinigame : MonoBehaviour
 	private float startTime, endTime, smokeTime, burnTime;
 	private ParticleSystem ps;
 
-    public AudioSource timerSFX, chimeSFX;
+    public AudioSource timerSFX, chimeSFX, pickupSFX;
     /// <summary>
     /// Used to determine if the player should be invisible in the minigame.
     /// </summary>
@@ -129,7 +129,7 @@ public class StartMinigame : MonoBehaviour
                         else if (baked == 2) //The dish has been baked
                         {
                             timerSFX.Stop();
-                            chimeSFX.Play();
+                            pickupSFX.Play();
 
                             SetSprite(0);
                             collision.GetComponent<PlayerMovement>().NextStep();

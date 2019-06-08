@@ -113,6 +113,7 @@ namespace Assets.Scripts.Menus
                 if (Game.Menu == null) return;
                 if (Assets.Scripts.GameInput.GameCursorMenu.SimulateMousePress(component.Value))
                 {
+                    this.GetComponent<AudioSource>().Play();
                     try
                     {
                         if (specialPreDaySetUp(component.Key) == false)
