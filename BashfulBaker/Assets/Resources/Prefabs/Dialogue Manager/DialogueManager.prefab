@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 8603696835699974020}
   - component: {fileID: 1288918904729153675}
   m_Layer: 0
-  m_Name: Dialogue Manager
+  m_Name: DialogueManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -799,6 +799,11 @@ MonoBehaviour:
   dialogueText: {fileID: 1344829596}
   animator: {fileID: 1604565007}
   sentenceFinished: 0
+  maleBlip: {fileID: 8300000, guid: 2694704fac29d584495af9313e7b526d, type: 3}
+  femaleBlip: {fileID: 8300000, guid: 923c8feccc22ff340b1fd739185f11cc, type: 3}
+  audioSource: {fileID: 0}
+  pitch: 1
+  blipMod: 5
 --- !u!82 &1288918904729153675
 AudioSource:
   m_ObjectHideFlags: 0
