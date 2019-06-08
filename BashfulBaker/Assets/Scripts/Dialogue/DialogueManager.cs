@@ -73,11 +73,42 @@ public class DialogueManager : MonoBehaviour
 
         sentences.Clear();
 
+        // set blips
+        if (nameText.text == "Dane")
+            SetBlip(maleBlip, 1.25f, 8);
+        else if (nameText.text == "Sylvia")
+            SetBlip(femaleBlip, 1f, 8);
+        else if(nameText.text == "Jeb")
+            SetBlip(maleBlip, 0.5f, 12);
+        else if(nameText.text == "Sully")
+            SetBlip(maleBlip, 0.75f, 4);
+        else if (nameText.text == "Amari")
+            SetBlip(femaleBlip, 1.25f, 4);
+        else if (nameText.text == "Guard")
+            SetBlip(maleBlip, 1f, 4+Game.Player.PlayerMovement.breathingProficiency);
+        else if(nameText.text == "Brian")
+            SetBlip(maleBlip, 1f, 12);
+        else if (nameText.text == "Ian")
+            SetBlip(femaleBlip, 1f, 8);
+        else if(nameText.text == "Dog")
+            SetBlip(femaleBlip, 0.5f, 4);
+        else if (nameText.text == "Raccoon")
+            SetBlip(femaleBlip, 1.5f, 4);
+        else
+            SetBlip(maleBlip, 1f, 8);
+
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
         }
         DisplayNextSentence();
+    }
+
+    void SetBlip(AudioClip b, float p, int m)
+    {
+        audioSource.clip = b;
+        audioSource.pitch = p;
+        blipMod = m;
     }
 
     public void DisplayNextSentence()
