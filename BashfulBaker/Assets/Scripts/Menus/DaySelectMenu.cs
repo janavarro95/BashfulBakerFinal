@@ -119,6 +119,7 @@ namespace Assets.Scripts.Menus
                         {
                             return;
                         }
+                        this.GetComponent<AudioSource>().Play();
                         GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
                         GameInformation.Game.Player.position = new Vector3(-3.2f, -9.5f, 0);
                         GameInformation.Game.HUD.showHUD = false;

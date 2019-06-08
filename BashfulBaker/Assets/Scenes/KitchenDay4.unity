@@ -2487,18 +2487,21 @@ MonoBehaviour:
   backandforth:
   - name: Jeb
     sentences:
+    - "Ah hello, Dane. \n"
     - "Ah hello, Dane. I came back to drop off the cookies. When I got to my daughter\u2019s
-      house, I realized I was a week early. I\u2019m so embarrassed...\r\n"
+      house, I realized I was a week early. \n"
+    - "I\u2019m so embarrassed...\r\n"
   - name: Dane
     sentences:
     - "It\u2019s okay, Jeb. It happens sometimes."
   - name: Jeb
     sentences:
-    - "No... It\u2019s been happening a lot lately. My daughter told me I should consider
-      retiring and spending time with my family. Maybe I should..."
+    - "No... It\u2019s been happening a lot lately."
+    - My daughter told me I should consider retiring and spending time with my family.
+      Maybe I should...
   - name: Dane
     sentences:
-    - '......I just....I don''t know if...'
+    - I just....I don't know if...
   - name: Jeb
     sentences:
     - "Well it was a good run though. I had this bakery for 30 years. It\u2019s finally
@@ -2519,22 +2522,21 @@ MonoBehaviour:
 '
   - name: Dane
     sentences:
-    - 'You said your daughter thinks you should spend more time with your family...but
-      I would also like to believe you have a family here at the bakery. '
-    - Your cookies alone mean so much to this community. Sylvia, Amari, and Ian...
-      and I would be losing a piece of home.
+    - You said your daughter thinks you should spend more time with your family
+    - 'But I would also like to believe you have a family here at the bakery. '
+    - Your cookies alone mean so much to this community. Sylvia, Amari, Ian... and
+      I would be losing a piece of home.
   - name: Jeb
     sentences:
-    - "Dane... I didn\u2019t think about it like that..."
+    - "Dane... I didn\u2019t think about it like that."
   - name: Dane
     sentences:
-    - I think... over this past week I have met some many people who you have impacted.
-      You are kind-hearted, thoughtful, and joyful.
-    - "Yes, you might be getting older but I don\u2019t think you should give up.
-      I\u2019m sorry if I sound selfish...\n"
+    - Over this past week I have met some many people who you have impacted. You are
+      kind-hearted, thoughtful, and joyful.
+    - "Yes, you might be getting older but I don\u2019t think you should give up."
   - name: Jeb
     sentences:
-    - "It\u2019s okay. I\u2019m just happy this bakery is a part of your home."
+    - "I\u2019m just happy this bakery is a part of your home."
   - name: Dane
     sentences:
     - I guess I do feel a much more comfortable.
@@ -2551,18 +2553,18 @@ MonoBehaviour:
   - name: Dane
     sentences:
     - "Jeb let me help you around the bakery. I know how to bake. I\u2019ve been baking
-      cookies for you when you forgot some of the orders. I want to help you like
-      you helped everyone else."
+      cookies for you when you forgot some of the orders. "
+    - I want to help you like you helped everyone else.
     - "Of course it will stay your bakery though! I don\u2019t want you to feel like
-      I\u2019m taking over. I wouldn\u2019t even be here if it wasn\u2019t for you!
-      \ So please allow me to be a baker for Jeb\u2019s Jollies."
+      I\u2019m taking over. "
+    - "I wouldn\u2019t even be here if it wasn\u2019t for you! "
+    - "So please allow me to be a baker for Jeb\u2019s Jollies."
   - name: Jeb
     sentences:
     - "Don\u2019t you think being a baker and delivery boy is too much?"
   - name: Dane
     sentences:
-    - 'Not at all. I been doing it just fine. Actually, baking helps calm down my
-      anxiety. '
+    - 'Not at all. I been doing it just fine. Baking actually helps calm down my anxiety. '
   - name: Jeb
     sentences:
     - Ah I see. Then sure! I would love for you to be a baker.
