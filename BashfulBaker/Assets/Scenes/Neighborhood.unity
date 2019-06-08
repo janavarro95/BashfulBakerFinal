@@ -11537,6 +11537,14 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 733541004, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250507682, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.72
+      objectReference: {fileID: 0}
     - target: {fileID: 7840346606221647523, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11556,14 +11564,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.452
-      objectReference: {fileID: 0}
-    - target: {fileID: 733541004, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 1250507682, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.72
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
@@ -15306,6 +15306,18 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 733541004, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 733541004, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250507682, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.72
+      objectReference: {fileID: 0}
     - target: {fileID: 7840346606221647523, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -15329,14 +15341,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.79
       objectReference: {fileID: 0}
-    - target: {fileID: 733541004, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 733541004, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.72
-      objectReference: {fileID: 0}
     - target: {fileID: 1317442123, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
       propertyPath: update
       value: 1
@@ -15345,10 +15349,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1250507682, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.72
       objectReference: {fileID: 0}
     - target: {fileID: 1894151157646364283, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}
@@ -28870,14 +28870,14 @@ MonoBehaviour:
     - "Wow! That\u2019s amazing Amari! I\u2019m so proud of you."
   - name: Amari
     sentences:
-    - "Thank you but if it wasn\u2019t for you supporting me, I wouldn\u2019t have
-      had the courage to tell her.\r\n"
+    - "Thank you, but I wouldn\u2019t have had the courage to tell her if I had never
+      met you."
   - name: Dane
     sentences:
     - "Well...that\u2019s a part of my job. "
   - name: Amari
     sentences:
-    - 'Really? Delivery boys have to support their customers?
+    - 'Really? Does every box of cookies come with a pep talk?
 
 '
   - name: Dane
@@ -28885,11 +28885,11 @@ MonoBehaviour:
     - "Ack! No\u2026 I mean.."
   - name: Amari
     sentences:
-    - "Hehehe. I know what you mean Dane. I\u2019m very grateful for your \u201Cadditional\u201D
-      services.\r"
+    - "Hehehe. I know what you mean Dane. I\u2019m grateful for your help and I couldn't
+      have done it without you.\r"
   - name: Dane
     sentences:
-    - "...umm hey. I brought you some cookies.?\r\n"
+    - "...umm hey. I brought you some cookies.\r\n"
   - name: Amari
     sentences:
     - Mint cookies?
@@ -40786,6 +40786,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 733541004, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250507682, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.72
+      objectReference: {fileID: 0}
     - target: {fileID: 7840346606221647523, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -40796,7 +40804,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.41
       objectReference: {fileID: 0}
-    - target: {fileID: 733541004, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
+    - target: {fileID: 1894151157646364283, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1259245664035842141, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.72
       objectReference: {fileID: 0}
@@ -40809,20 +40823,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1250507682, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 1894151157646364283, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 1259245664035842141, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.72
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
