@@ -2287,7 +2287,7 @@ MonoBehaviour:
       feels like it was mistake moving her here.
   - name: Dane
     sentences:
-    - Ah I see.
+    - Oh I see. That must be really hard on both of them...
   - name: Jeb
     sentences:
     - "But don\u2019t worry Dane. Amari is a tough little girl. This isn\u2019t going
@@ -2321,8 +2321,12 @@ MonoBehaviour:
       to be late to my daughter\u2019s baby shower! "
     - "She is going to be real upset if I don\u2019t bring her favorite OATMEAL RAISIN
       COOKIES. "
-    - "All the orders I want you to delivery should be in the back and should be ready
-      to go. Bye-bye!\r"
+    - "There are two new deliveries with Sylvia\u2019s regular order. Brian from the
+      YELLOW ROOF house on the southside of town would like Oatmeal Raisin Cookies."
+    - "Oh better yet! It\u2019s Ian\u2019s birthday today! Me and his father go way
+      back. So please say \u2018Happy Birthday\u2019 for me and send him some Mint
+      Chocolate Chip Cookies to the PURPLE ROOF house on the southeast side of town."
+    - "All the orders should be in the back and ready to go. Bye-bye!\r"
   - name: Dane
     sentences:
     - Oh! Bye Jeb!
