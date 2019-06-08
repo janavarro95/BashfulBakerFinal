@@ -360,7 +360,7 @@ public class StealthCaughtZone : MonoBehaviour
         if (reset)
         {
             Breathe bb = breathing.GetComponentInChildren<Breathe>();
-            bb.progress = 0;
+            bb.progress = .5f;
             bb.pbar.transform.localScale = new Vector3(0, bb.pbar.transform.localScale.y, 1);
         }
 
