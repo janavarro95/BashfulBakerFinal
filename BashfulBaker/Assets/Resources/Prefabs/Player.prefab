@@ -5101,8 +5101,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6324178739719613617}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
-  m_LocalScale: {x: 1.5, y: 2.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: -1.5, z: -2}
+  m_LocalScale: {x: 2, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1606863934821072920}
   m_RootOrder: 0
@@ -5144,7 +5144,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10000
-  m_Sprite: {fileID: 21300004, guid: 7b7b872f5784ee6468f8df432e7d65d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ef2729b56ed7ff44f808b572405cca9e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 1
@@ -5318,6 +5318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSpeed: 1.25
+  saveSpeed: 0
   movementDampening: 20
   woodStepSounds:
   - {fileID: 8300000, guid: 2447ece8f659d1b47bf1458a87b9159a, type: 3}
