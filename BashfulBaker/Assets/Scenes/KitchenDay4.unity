@@ -417,7 +417,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 915b9ec3b1a32c84894650f19becc43a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98e7a0127322e3048ae1bda657d7126e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -839,17 +839,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: chocolateChipBag
       objectReference: {fileID: 0}
-    - target: {fileID: 3403933817133813269, guid: 7549edd9eb4b38a44b290c71ffbf7aeb,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5373859842649143418, guid: 7549edd9eb4b38a44b290c71ffbf7aeb,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 85ebdf9b57d1d3f44b3fe0d17d6b48bb,
-        type: 3}
     - target: {fileID: 5787895817754209860, guid: 7549edd9eb4b38a44b290c71ffbf7aeb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -913,6 +902,17 @@ PrefabInstance:
     - target: {fileID: 5787895817754209860, guid: 7549edd9eb4b38a44b290c71ffbf7aeb,
         type: 3}
       propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373859842649143418, guid: 7549edd9eb4b38a44b290c71ffbf7aeb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 85ebdf9b57d1d3f44b3fe0d17d6b48bb,
+        type: 3}
+    - target: {fileID: 3403933817133813269, guid: 7549edd9eb4b38a44b290c71ffbf7aeb,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7484911326515962287, guid: 7549edd9eb4b38a44b290c71ffbf7aeb,
@@ -2360,6 +2360,7 @@ MonoBehaviour:
     sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
+  pickupSFX: {fileID: 0}
   makePlayerInvisible: 1
   station: 0
 --- !u!61 &1034739866
@@ -3912,6 +3913,7 @@ MonoBehaviour:
     sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
+  pickupSFX: {fileID: 0}
   makePlayerInvisible: 1
   station: 3
 --- !u!212 &1532116366
@@ -5302,6 +5304,7 @@ MonoBehaviour:
     sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
+  pickupSFX: {fileID: 0}
   makePlayerInvisible: 1
   station: 1
 --- !u!212 &2016626270
