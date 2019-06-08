@@ -70,6 +70,7 @@ public class SullyDay1 : MonoBehaviour
         {
             sully_animator.SetInteger("Phase", 1);
             Game.TalkedtoSully = true;
+            Game.PhaseTimer.pause();
         }
     }
 
@@ -106,6 +107,7 @@ public class SullyDay1 : MonoBehaviour
     void kill_Sully()
     {
         GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().defaultSpeed = 1.25f;
+        Game.PhaseTimer.resume();
         this.gameObject.SetActive(false);
         Destroy(trigger);
     }

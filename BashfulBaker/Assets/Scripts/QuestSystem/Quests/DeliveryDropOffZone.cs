@@ -33,6 +33,10 @@ namespace Assets.Scripts.QuestSystem.Quests
                 //Debug.Log("HELLO!");
                 if (GameInput.InputControls.APressed) //If player presses A
                 {
+                    if ((Game.Player.activeItem as Dish).itemName == "Mint Chip Cookies" && npcNamesWhoLiveHere[0] == "Sylvia")
+                    {
+                        return;
+                    }
                     List<Item> removalList = new List<Item>();
                     if (Game.Player.activeItem is Dish) //Send that dish to the quest manager....
                     {
