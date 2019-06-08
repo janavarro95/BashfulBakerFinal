@@ -113,13 +113,13 @@ namespace Assets.Scripts.Menus
                 if (Game.Menu == null) return;
                 if (Assets.Scripts.GameInput.GameCursorMenu.SimulateMousePress(component.Value))
                 {
+                    this.GetComponent<AudioSource>().Play();
                     try
                     {
                         if (specialPreDaySetUp(component.Key) == false)
                         {
                             return;
                         }
-                        this.GetComponent<AudioSource>().Play();
                         GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
                         GameInformation.Game.Player.position = new Vector3(-3.2f, -9.5f, 0);
                         GameInformation.Game.HUD.showHUD = false;
