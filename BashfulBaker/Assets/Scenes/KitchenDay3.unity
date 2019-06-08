@@ -2298,9 +2298,9 @@ MonoBehaviour:
     - What about her being homesick?
   - name: Jeb
     sentences:
-    - "We can never replace her memories of her hometown, but we can start new ones
-      here. That\u2019s why when I see her, I always give her Mint Chocolate Chip
-      Cookies."
+    - 'We can never replace her memories of her hometown, but we can start new ones
+      here. '
+    - "That\u2019s why when I see her, I always give her Mint Chocolate Chip Cookies."
     - "It\u2019s important for her to see this town as a fresh start rather than comparing
       it to her home town."
   - name: Dane

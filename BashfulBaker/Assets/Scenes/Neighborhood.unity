@@ -9474,7 +9474,7 @@ MonoBehaviour:
     - '...Can I ask you a question Dane?'
   - name: Dane
     sentences:
-    - " \u2026umm sure. What is it?"
+    - " \u2026Umm sure. What is it?"
   - name: Brian
     sentences:
     - "How do you deal with being friend-zoned?\r"
@@ -9483,8 +9483,8 @@ MonoBehaviour:
     - HUH?!?!?!
   - name: Brian
     sentences:
-    - I assumed everyone has been friendzoned at some point of their life. You probably
-      a player huh? I can totally see it.
+    - I assumed everyone has been friendzoned at some point of their life.
+    - You probably a player huh? I can totally see it.
   - name: Dane
     sentences:
     - WHAT!?!??! (what is happening here?)
@@ -9497,7 +9497,7 @@ MonoBehaviour:
   - name: Dane
     sentences:
     - (This guy seems a bit clueless on how to talk with people.)
-    - '*Sigh* ...are you friendzoned?'
+    - '*Sigh* ...Are you friendzoned?'
   - name: Brian
     sentences:
     - "Yeah. We been friends since we were kids. But recently I been looking at them
@@ -9512,11 +9512,10 @@ MonoBehaviour:
     - " No\u2026 I just know."
   - name: Dane
     sentences:
-    - '... how?'
+    - '... How?'
   - name: Brian
     sentences:
-    - "... You can just tell. So I\u2019m guessing you haven\u2019t been friend-zoned
-      before?"
+    - "I can just tell. So I\u2019m guessing you haven\u2019t been friend-zoned before?"
   - name: Dane
     sentences:
     - "Umm\u2026 not really..."
@@ -10962,7 +10961,7 @@ MonoBehaviour:
   - name: Dane
     sentences:
     - "Umm... my name is Dane. I\u2019m here to deliver you cookies from Jeb\u2019s
-      Jollies?."
+      Jollies"
   - name: Amari
     sentences:
     - "I didn\u2019t order any cookies...."
@@ -11031,10 +11030,9 @@ MonoBehaviour:
   - name: Dane
     sentences:
     - (What can I say?)
-    - "...Hey Amari, I can\u2019t say I been through the same thing you have. But
-      I know what it\u2019s like to go into a panic mode."
-    - 'When I try to talk to the Town Watch, I get nervous and hide in bushes so I
-      can sneak around them. '
+    - "...Hey Amari, I can\u2019t say I've been through the same thing you have. But
+      I know what it\u2019s like to go into panic mode."
+    - When I try to talk to the Town Watch, I get nervous and hide in bushes.
   - name: Amari
     sentences:
     - Really?
@@ -11056,9 +11054,7 @@ MonoBehaviour:
     - Pinky promise.
   - name: Dane
     sentences:
-    - '( She looks happier!)
-
-'
+    - (She looks happier!)
     - Ah! But what sweets do you like?
   - name: Amari
     sentences:
@@ -15506,10 +15502,10 @@ MonoBehaviour:
     - What do you mean?
   - name: Sylvia
     sentences:
-    - "Those Mint cookies I made Jeb baked are not for me.\r\n"
+    - "Those mint cookies I made Jeb bake are not for me.\r\n"
   - name: Dane
     sentences:
-    - huh?
+    - Huh...?
   - name: Sylvia
     sentences:
     - I want you to deliver them to AMARI. She is a little girl that is home alone
@@ -15522,7 +15518,7 @@ MonoBehaviour:
     - "Umm I guess\u2026 but I\u2019m not good with kids."
   - name: Sylvia
     sentences:
-    - "Hmhm! it\u2019s fine Dane. Kids are easier to talk to than adults.\r\n"
+    - "Hmhmhm! It\u2019s fine Dane. Kids are easier to talk to than adults.\r\n"
   - name: Dane
     sentences:
     - Okay, if you say so.
@@ -20278,13 +20274,13 @@ MonoBehaviour:
     - Are you not having friends or family come over?
   - name: Ian
     sentences:
-    - "...I did invite one friend but I don\u2019t think he will coming over."
+    - "I did invite one friend but I don\u2019t think he will coming over."
   - name: Dane
     sentences:
     - Really? Why not?
   - name: Ian
     sentences:
-    - "...are you sure you want to listen to my problems? You don\u2019t have too."
+    - "...Are you sure you want to listen to my problems? You don\u2019t have too."
   - name: Dane
     sentences:
     - "You\u2019re the first person to ask me that. Everyone else just opens up. But
@@ -20301,8 +20297,8 @@ MonoBehaviour:
     - "I see. Well if you say so Dane. Basically, my best friend stopped talking to
       me and I don\u2019t know why."
     - "He\u2019s been very distant, so I can tell he is avoiding me. I asked him about
-      it but he told me nothing was wrong. It really sucks because we been friends
-      for years."
+      it but he told me nothing was wrong."
+    - It really sucks because we been friends for years.
   - name: Dane
     sentences:
     - "Maybe... he feels like he can\u2019t tell you?"
@@ -20318,7 +20314,7 @@ MonoBehaviour:
       I just really miss him. Is that selfish?"
   - name: Dane
     sentences:
-    - Yeah but I think he will appreciate knowing you miss him.
+    - Not at all, and I think he will appreciate knowing you miss him.
   - name: Ian
     sentences:
     - "You think so? He\u2019s suppose to be here in a few minutes. So hopefully he
@@ -22882,7 +22878,7 @@ MonoBehaviour:
     sentences:
     - "Oh.. I\u2019m Sorry Sylvia! I didn\u2019t mean to change up the recipe, I just
       used my own because Jeb has been forgetting to make some orders."
-    - "Please don\u2019t tell Jeb! I don\u2019t  want to lose this job!"
+    - "Please don\u2019t tell Jeb! I don\u2019t want to lose this job!"
   - name: Sylvia
     sentences:
     - "Do you like to bake Dane?\r"
@@ -22907,9 +22903,9 @@ MonoBehaviour:
   - name: Sylvia
     sentences:
     - "Oh god no. We would have to change it to Dane\u2019s Delights! "
-    - "hmhmhm! I\u2019m only kidding. It will stay Jeb\u2019s Jollies, but Jeb is
-      getting old and he\u2019s going to need someone he can trust to help him with
-      baking."
+    - "Hmhmhm! I\u2019m only kidding. It will stay Jeb\u2019s Jollies."
+    - "But Jeb is getting old and he\u2019s going to need someone he can trust to
+      help with baking."
     - "With your skills, I think you are perfect candidate. Or I can tell him you
       been baking the cookies the whole time?\r"
   - name: Dane
@@ -25991,9 +25987,9 @@ MonoBehaviour:
     - Yes I do.
   - name: Sylvia
     sentences:
-    - Great. Could you go collect some mint, and tell Jeb to make some Mint Chocolate
-      Chips Cookies with my regular order for tomorrow night. Then deliver them back
-      to me, please.
+    - Great. Could you go collect some mint?
+    - And tell Jeb to make some Mint Chocolate Chips Cookies with my regular order
+      for tomorrow night, please.
   - name: Dane
     sentences:
     - Umm okay. Will do ma'am!

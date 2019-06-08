@@ -189,8 +189,9 @@ MonoBehaviour:
       to Sylvia."
   - name: Sully
     sentences:
-    - 'Ahh makes sense. She always order cookies during the time I work. '
-    - "She doesn\u2019t like to share. HAH-HAH. But I do want to warn you. "
+    - 'Ahh makes sense. She always orders cookies during the time I work. '
+    - "She doesn\u2019t like to share. HAH-HAH."
+    - 'But I do want to warn you. '
   - name: Dane
     sentences:
     - "Oh! Warn me about what?\r"
@@ -198,11 +199,12 @@ MonoBehaviour:
     sentences:
     - "My men in the Town Watch love Jeb\u2019s cookies. Jeb used to feed them all
       the time, and now they are a bunch of spoiled brats."
-    - So I had to ask Jeb to stop sharing his sweets, because they only came to work
-      to get fed. Then after getting fed, these nincompoops would slack off.
-    - "Now they heard there is a new guy delivering the cookies. I\u2019m sure they
-      will beg for you to share them. Don\u2019t let those rascals bully you, Dane..
-      \r\n"
+    - 'So I had to ask Jeb to stop sharing his sweets, because The Watch only came
+      to work to get fed. '
+    - Then after getting fed, these nincompoops would slack off.
+    - "Now that Jeb has a new delivery boy, I\u2019m sure they will beg for you to
+      share them.\n"
+    - "Don\u2019t let those rascals bully you, Dane!\n"
   convofaces:
   - {fileID: 21300000, guid: 64647b33bf6d5ba42bdb0efbd0e61bb3, type: 3}
   - {fileID: 21300000, guid: 95a33881fd05c7545a4d27c717557b48, type: 3}
