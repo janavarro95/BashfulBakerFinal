@@ -65,7 +65,7 @@ public class Day2Jeb : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (InputControls.APressed && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false)
+        if (InputControls.APressed && DiaBoxReference.GetComponent<DialogueManager>().IsDialogueUp == false && Game.Day2JebTalkedTo == false)
         {
             Game.Day2JebTalkedTo = true;
             Bubble.SetActive(false);
