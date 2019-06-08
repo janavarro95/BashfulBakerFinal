@@ -59,4 +59,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 38d5da3bb8777c2408d0f82b22b77667
+  - enabled: 1
+    path: Assets/Scenes/Barn.unity
+    guid: e2cfac71cc1a9014982244b2a3527b06
+  - enabled: 1
+    path: Assets/Scenes/Barn upper.unity
+    guid: 3e9771317558a3b44b23edcb3c460441
   m_configObjects: {}
