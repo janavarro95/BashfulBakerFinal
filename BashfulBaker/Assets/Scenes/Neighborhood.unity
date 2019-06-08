@@ -3175,7 +3175,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228787289}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -10696,7 +10696,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704047141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f69f0a0d68cd6ca46a644c8e59e79244, type: 3}
   m_Name: 
@@ -10711,7 +10711,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704047141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -25971,7 +25971,7 @@ MonoBehaviour:
   - name: Dane
     sentences:
     - "Oh No! It\u2019s okay!"
-    - "(I shouldn\u2019t had told her that) "
+    - "(I shouldn\u2019t have told her that) "
   - name: Sylvia
     sentences:
     - " I\u2019m sorry, I didn\u2019t mean to offend you. The Town Watch are good
@@ -25999,7 +25999,7 @@ MonoBehaviour:
     - Umm okay. Will do ma'am!
   - name: Sylvia
     sentences:
-    - Thank you! You see you tomorrow!
+    - Thank you! See you tomorrow!
   faces:
   - {fileID: 21300000, guid: 8eddcce733cfaea4fa5dc7dbc4697ffb, type: 3}
   - {fileID: 21300000, guid: 9bdef261aa78eef44bc42ee1271f11f9, type: 3}
