@@ -9,15 +9,19 @@ public class Breathe : MonoBehaviour
     public float LT;
     public float progress;
     public float progressToWin = 5;
-    public GameObject pbar, top, bot;
+    public GameObject pbar, dane, top, bot;
 	public ParticleSystem sweat, playerSchweat;
     public float proficiencyBase = 0.005f;
+
+	public AudioSource fast, slow;
     // Start is called before the first frame update
     void Start()
     {
         progress = .5f;
         //pbar.transform.localScale = new Vector3(progress, pbar.transform.localScale.y, 1);
 		playerSchweat = Game.Player.gameObject.GetComponentInChildren<ParticleSystem>();
+		fast = dane.GetComponents<AudioSource>()[0];
+		slow = dane.GetComponents<AudioSource>()[1];
     }
 
     // Update is called once per frame
