@@ -62,6 +62,10 @@ public class StartMinigame : MonoBehaviour
 
 				baked = (float)Game.PhaseTimer.currentTime < endTime ? 1 : 2;
 				ps.Play();
+
+				clock.GetComponent<SpriteRenderer>().enabled = true;
+                clock.GetComponent<Animator>().SetBool("done", false);
+				timerSFX.Play();
 			}
         }
     }

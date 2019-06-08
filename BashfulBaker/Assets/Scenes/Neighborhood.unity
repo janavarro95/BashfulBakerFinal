@@ -2213,7 +2213,7 @@ GameObject:
   - component: {fileID: 162829793}
   - component: {fileID: 162829792}
   - component: {fileID: 162829791}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: truck (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3223,12 +3223,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228787289}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.29, y: -30.96, z: -0.35}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.61503065, y: -0.36312994, z: -0.00001}
+  m_LocalScale: {x: 0.194495, y: 0.194495, z: 0}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_Father: {fileID: 1743113140}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &228787294
 MonoBehaviour:
@@ -3237,7 +3237,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228787289}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f69f0a0d68cd6ca46a644c8e59e79244, type: 3}
   m_Name: 
@@ -4917,7 +4917,7 @@ PrefabInstance:
     - target: {fileID: 2971227320814329238, guid: 17ab5b148b177ee4dac507cbc6add71e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2971227320814329238, guid: 17ab5b148b177ee4dac507cbc6add71e,
         type: 3}
@@ -5705,6 +5705,64 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 450354713}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &450354715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 294467328544146675, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 450354713}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &450354716
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450354715}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.61582893, y: -0.06607629}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 0.66}
+    newSize: {x: 2.34, y: 1.45}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6600672, y: 0.35604993}
+  m_EdgeRadius: 0
+--- !u!61 &450354717
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450354715}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.6462808, y: -0.06607629}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 0.66}
+    newSize: {x: 2.34, y: 1.45}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.70743835, y: 0.35604993}
+  m_EdgeRadius: 0
 --- !u!1001 &459478272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6480,7 +6538,7 @@ PrefabInstance:
     - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 2863531487700616787, guid: 6557e2d544d9b8c419fda8741d3cd8c1,
         type: 3}
@@ -9474,7 +9532,7 @@ MonoBehaviour:
     - '...Can I ask you a question Dane?'
   - name: Dane
     sentences:
-    - " \u2026umm sure. What is it?"
+    - " \u2026Umm sure. What is it?"
   - name: Brian
     sentences:
     - "How do you deal with being friend-zoned?\r"
@@ -9483,8 +9541,8 @@ MonoBehaviour:
     - HUH?!?!?!
   - name: Brian
     sentences:
-    - I assumed everyone has been friendzoned at some point of their life. You probably
-      a player huh? I can totally see it.
+    - I assumed everyone has been friendzoned at some point of their life.
+    - You probably a player huh? I can totally see it.
   - name: Dane
     sentences:
     - WHAT!?!??! (what is happening here?)
@@ -9497,7 +9555,7 @@ MonoBehaviour:
   - name: Dane
     sentences:
     - (This guy seems a bit clueless on how to talk with people.)
-    - '*Sigh* ...are you friendzoned?'
+    - '*Sigh* ...Are you friendzoned?'
   - name: Brian
     sentences:
     - "Yeah. We been friends since we were kids. But recently I been looking at them
@@ -9512,11 +9570,10 @@ MonoBehaviour:
     - " No\u2026 I just know."
   - name: Dane
     sentences:
-    - '... how?'
+    - '... How?'
   - name: Brian
     sentences:
-    - "... You can just tell. So I\u2019m guessing you haven\u2019t been friend-zoned
-      before?"
+    - "I can just tell. So I\u2019m guessing you haven\u2019t been friend-zoned before?"
   - name: Dane
     sentences:
     - "Umm\u2026 not really..."
@@ -10484,7 +10541,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675705976}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f69f0a0d68cd6ca46a644c8e59e79244, type: 3}
   m_Name: 
@@ -10547,12 +10604,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675705976}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.61, y: -6.43, z: -0.35}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.07334773, y: -0.5012056, z: -0.0001}
+  m_LocalScale: {x: 0.194495, y: 0.194495, z: 1.16697}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_Father: {fileID: 450354714}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &681067888 stripped
 Transform:
@@ -10760,11 +10817,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704047141}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.35195, y: -33.48376, z: -0.9316406}
-  m_LocalScale: {x: 0.4495, y: 0.44949996, z: 0}
+  m_LocalPosition: {x: 0.6108462, y: -0.37817892, z: -0.00001}
+  m_LocalScale: {x: 0.17485102, y: 0.17485097, z: 0}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_Father: {fileID: 905668768}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &707856513
 PrefabInstance:
@@ -10962,7 +11019,7 @@ MonoBehaviour:
   - name: Dane
     sentences:
     - "Umm... my name is Dane. I\u2019m here to deliver you cookies from Jeb\u2019s
-      Jollies?."
+      Jollies"
   - name: Amari
     sentences:
     - "I didn\u2019t order any cookies...."
@@ -11031,10 +11088,9 @@ MonoBehaviour:
   - name: Dane
     sentences:
     - (What can I say?)
-    - "...Hey Amari, I can\u2019t say I been through the same thing you have. But
-      I know what it\u2019s like to go into a panic mode."
-    - 'When I try to talk to the Town Watch, I get nervous and hide in bushes so I
-      can sneak around them. '
+    - "...Hey Amari, I can\u2019t say I've been through the same thing you have. But
+      I know what it\u2019s like to go into panic mode."
+    - When I try to talk to the Town Watch, I get nervous and hide in bushes.
   - name: Amari
     sentences:
     - Really?
@@ -11056,9 +11112,7 @@ MonoBehaviour:
     - Pinky promise.
   - name: Dane
     sentences:
-    - '( She looks happier!)
-
-'
+    - (She looks happier!)
     - Ah! But what sweets do you like?
   - name: Amari
     sentences:
@@ -11423,7 +11477,7 @@ PrefabInstance:
     - target: {fileID: 317176439042141025, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: -0.00001
       objectReference: {fileID: 0}
     - target: {fileID: 317176439042141025, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}
@@ -15179,6 +15233,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 317176439042141025, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 2427829449729848087, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -15506,10 +15565,10 @@ MonoBehaviour:
     - What do you mean?
   - name: Sylvia
     sentences:
-    - "Those Mint cookies I made Jeb baked are not for me.\r\n"
+    - "Those mint cookies I made Jeb bake are not for me.\r\n"
   - name: Dane
     sentences:
-    - huh?
+    - Huh...?
   - name: Sylvia
     sentences:
     - I want you to deliver them to AMARI. She is a little girl that is home alone
@@ -15522,7 +15581,7 @@ MonoBehaviour:
     - "Umm I guess\u2026 but I\u2019m not good with kids."
   - name: Sylvia
     sentences:
-    - "Hmhm! it\u2019s fine Dane. Kids are easier to talk to than adults.\r\n"
+    - "Hmhmhm! It\u2019s fine Dane. Kids are easier to talk to than adults.\r\n"
   - name: Dane
     sentences:
     - Okay, if you say so.
@@ -15640,12 +15699,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921528864}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.418, y: -22.802, z: -2}
-  m_LocalScale: {x: 0.457, y: 0.457, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.44088125, y: -0.2697506, z: -1.1}
+  m_LocalScale: {x: 0.17776844, y: 0.17776844, z: 0}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_Father: {fileID: 1353404789}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &932239905 stripped
 Transform:
@@ -20278,13 +20337,13 @@ MonoBehaviour:
     - Are you not having friends or family come over?
   - name: Ian
     sentences:
-    - "...I did invite one friend but I don\u2019t think he will coming over."
+    - "I did invite one friend but I don\u2019t think he will coming over."
   - name: Dane
     sentences:
     - Really? Why not?
   - name: Ian
     sentences:
-    - "...are you sure you want to listen to my problems? You don\u2019t have too."
+    - "...Are you sure you want to listen to my problems? You don\u2019t have too."
   - name: Dane
     sentences:
     - "You\u2019re the first person to ask me that. Everyone else just opens up. But
@@ -20301,8 +20360,8 @@ MonoBehaviour:
     - "I see. Well if you say so Dane. Basically, my best friend stopped talking to
       me and I don\u2019t know why."
     - "He\u2019s been very distant, so I can tell he is avoiding me. I asked him about
-      it but he told me nothing was wrong. It really sucks because we been friends
-      for years."
+      it but he told me nothing was wrong."
+    - It really sucks because we been friends for years.
   - name: Dane
     sentences:
     - "Maybe... he feels like he can\u2019t tell you?"
@@ -20318,7 +20377,7 @@ MonoBehaviour:
       I just really miss him. Is that selfish?"
   - name: Dane
     sentences:
-    - Yeah but I think he will appreciate knowing you miss him.
+    - Not at all, and I think he will appreciate knowing you miss him.
   - name: Ian
     sentences:
     - "You think so? He\u2019s suppose to be here in a few minutes. So hopefully he
@@ -22882,7 +22941,7 @@ MonoBehaviour:
     sentences:
     - "Oh.. I\u2019m Sorry Sylvia! I didn\u2019t mean to change up the recipe, I just
       used my own because Jeb has been forgetting to make some orders."
-    - "Please don\u2019t tell Jeb! I don\u2019t  want to lose this job!"
+    - "Please don\u2019t tell Jeb! I don\u2019t want to lose this job!"
   - name: Sylvia
     sentences:
     - "Do you like to bake Dane?\r"
@@ -22907,9 +22966,9 @@ MonoBehaviour:
   - name: Sylvia
     sentences:
     - "Oh god no. We would have to change it to Dane\u2019s Delights! "
-    - "hmhmhm! I\u2019m only kidding. It will stay Jeb\u2019s Jollies, but Jeb is
-      getting old and he\u2019s going to need someone he can trust to help him with
-      baking."
+    - "Hmhmhm! I\u2019m only kidding. It will stay Jeb\u2019s Jollies."
+    - "But Jeb is getting old and he\u2019s going to need someone he can trust to
+      help with baking."
     - "With your skills, I think you are perfect candidate. Or I can tell him you
       been baking the cookies the whole time?\r"
   - name: Dane
@@ -23842,7 +23901,7 @@ GameObject:
   - component: {fileID: 1614093983}
   - component: {fileID: 1614093982}
   - component: {fileID: 1614093984}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: truck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25307,6 +25366,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4689565675054395429, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.1566801
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689565675054395429, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.758832
+      objectReference: {fileID: 0}
+    - target: {fileID: 317176439042141025, guid: 31f5e85a5c655a648a5a94e82b99f3ad,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f5e85a5c655a648a5a94e82b99f3ad, type: 3}
 --- !u!4 &1743113140 stripped
@@ -25991,9 +26065,9 @@ MonoBehaviour:
     - Yes I do.
   - name: Sylvia
     sentences:
-    - Great. Could you go collect some mint, and tell Jeb to make some Mint Chocolate
-      Chips Cookies with my regular order for tomorrow night. Then deliver them back
-      to me, please.
+    - Great. Could you go collect some mint?
+    - And tell Jeb to make some Mint Chocolate Chips Cookies with my regular order
+      for tomorrow night, please.
   - name: Dane
     sentences:
     - Umm okay. Will do ma'am!
@@ -26974,7 +27048,7 @@ GameObject:
   - component: {fileID: 1859427599}
   - component: {fileID: 1859427598}
   - component: {fileID: 1859427596}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: truck (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

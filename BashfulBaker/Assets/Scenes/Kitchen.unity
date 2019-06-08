@@ -3203,13 +3203,13 @@ MonoBehaviour:
       they will make you feel welcome. "
     - Plus today has been a pretty quiet day for the Bakery. I think we only have
       one last delivery to do.
-    - A regular of mine, Sylvia ordered half a dozen Chocolate Chip Cookies. She heard
-      I hired a new delivery boy and she is very excited to meet you!
+    - A regular of mine, Sylvia ordered some Chocolate Chip Cookies. She heard I hired
+      a new delivery boy and she is very excited to meet you!
     - I already made the cookies and they are ready to go in the kitchen!
     - I would like you to deliver them to her radiant house on the southside of town.
   - name: Jeb
     sentences:
-    - "The house has a BLUE ROOF that puts you in a relaxing mood.\r\n"
+    - "The house has a BLUE ROOF.\r\n"
   headshots:
   - {fileID: 21300000, guid: 3b1df7a80e2216c4e8acd20418f10321, type: 3}
   - {fileID: 21300000, guid: e1e201c59dcb78549a57bdba891dd401, type: 3}
@@ -3231,7 +3231,7 @@ MonoBehaviour:
     name: Jeb
     sentences:
     - 'Oh yes! I almost forgot. Please be careful during the night. '
-    - The town is very safe and quiet because our outstanding Town Watch.  However,
+    - The town is very safe and quiet because of our outstanding Town Watch.  However,
       their work makes them very hungry.
     - "Have a good night Dane!\r"
   jeb_animator: {fileID: 1083138370}
