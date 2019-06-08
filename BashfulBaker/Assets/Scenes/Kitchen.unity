@@ -544,7 +544,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 34
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &171637850
 MonoBehaviour:
@@ -636,7 +636,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &178497706
 MonoBehaviour:
@@ -807,6 +807,7 @@ MonoBehaviour:
     sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
+  pickupSFX: {fileID: 0}
   makePlayerInvisible: 1
   station: 3
 --- !u!212 &319584524
@@ -1352,6 +1353,7 @@ MonoBehaviour:
     sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
+  pickupSFX: {fileID: 0}
   makePlayerInvisible: 1
   station: 1
 --- !u!212 &479467072
@@ -1974,7 +1976,7 @@ Transform:
   m_LocalScale: {x: 0.32727, y: 0.32727, z: 1.0909}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &744168675
 GameObject:
@@ -2182,7 +2184,7 @@ Transform:
   m_LocalScale: {x: 0.32727, y: 0.32727, z: 1.0909}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &765330499
 GameObject:
@@ -2301,7 +2303,7 @@ Transform:
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &773525484
 GameObject:
@@ -2669,7 +2671,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 36
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &852602971
 MonoBehaviour:
@@ -2696,7 +2698,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.082249746}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2707,7 +2709,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.44}
+  m_Size: {x: 0.2, y: 0.2755005}
   m_EdgeRadius: 0
 --- !u!1 &889083550
 GameObject:
@@ -2804,7 +2806,7 @@ Transform:
   m_Children:
   - {fileID: 347192421}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &999766861 stripped
 GameObject:
@@ -2947,6 +2949,7 @@ MonoBehaviour:
     sentences: []
   timerSFX: {fileID: 0}
   chimeSFX: {fileID: 0}
+  pickupSFX: {fileID: 0}
   makePlayerInvisible: 1
   station: 0
 --- !u!1 &1048187753
@@ -3008,7 +3011,7 @@ Transform:
   m_Children:
   - {fileID: 109214834}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1048187756
 Animator:
@@ -4519,7 +4522,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1449866183
 GameObject:
@@ -4900,7 +4903,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.008069038, y: -0.08231225}
+  m_Offset: {x: -0.008069038, y: -0.113993846}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4911,7 +4914,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6753855, y: 0.45688695}
+  m_Size: {x: 0.6753855, y: 0.5202501}
   m_EdgeRadius: 0
 --- !u!4 &1618950250
 Transform:
@@ -4920,12 +4923,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618950247}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.02, y: -3.95, z: 1.91}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.02, y: -3.9499998, z: 1.9099998}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1618950251
 SpriteRenderer:
@@ -5794,7 +5797,7 @@ Transform:
   m_LocalScale: {x: -0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 35
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2022516582
 MonoBehaviour:
