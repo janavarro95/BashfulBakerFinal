@@ -161,6 +161,12 @@ namespace Assets.Scripts.Menus
                 text.text = "x0";
             }
 
+            Game.Player.PlayerMovement.alert.enabled = false;
+            var schweaty = Game.Player.gameObject.GetComponentInChildren<ParticleSystem>().emission;
+            schweaty.rateOverTime = 0;
+            Game.Player.PlayerMovement.defaultSpeed = 1.25f;
+            Game.Player.PlayerMovement.CanPlayerMove = true;
+
             if (SceneManager.sceneCount <= 2)
             {
                 SceneManager.LoadScene("Neighborhood", LoadSceneMode.Additive);

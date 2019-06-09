@@ -117,6 +117,7 @@ namespace Assets.Scripts.GameInput
                             spinningSource.clip = finishChime;
                             spinningSource.pitch = 1;
                             cookies[6].SetActive(true);
+                            Invoke("exitspinnning", 1.5f);
                         }
                         sumR = 0;
                         sumL = 0;

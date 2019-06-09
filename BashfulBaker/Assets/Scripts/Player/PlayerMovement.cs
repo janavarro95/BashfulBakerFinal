@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour {
     public SpriteRenderer heldObjectRenderer;
 
     private int guardsSeeingMe;
+    public bool hasBeenCaughtBefore = false;
     private DialogueManager dialogueManager;
     public SpriteRenderer alert;
     public GameObject soundPrefab;

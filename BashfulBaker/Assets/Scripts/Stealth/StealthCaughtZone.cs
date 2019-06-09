@@ -133,7 +133,7 @@ public class StealthCaughtZone : MonoBehaviour
                         {
                             dialogue = new Dialogue("Guard", StringUtilities.FormatStringList(new List<string>()
                             {
-                                "*Sniff sniff* Ohh that {0} looks delicious!"
+                                (!Game.Player.PlayerMovement.hasBeenCaughtBefore  ? "Hey now you listen here boy..." : "*Sniff sniff* Ohh that {0} looks delicious!")
                             }, item.Name).ToArray());
 
                             BeginDialogue(dialogue, item);
@@ -143,7 +143,7 @@ public class StealthCaughtZone : MonoBehaviour
                         {
                             dialogue = new Dialogue("Guard", new List<string>()
                             {
-                                "What are you doing carrying around all these ingredients?"
+                                (!Game.Player.PlayerMovement.hasBeenCaughtBefore  ? "Hey now you listen here boy..." : "What are you doing carrying around all these ingredients?")
                             }.ToArray());
 
                             BeginDialogue(dialogue, null);
@@ -157,7 +157,7 @@ public class StealthCaughtZone : MonoBehaviour
                         {
                             dialogue = new Dialogue("Guard", new List<string>()
                             {
-                                "Hey young man, what are you doing out this late?"
+                                (!Game.Player.PlayerMovement.hasBeenCaughtBefore  ? "Hey now you listen here boy..." : "Hey young man, what are you doing out this late?")
                             }.ToArray());
 
                             BeginDialogue(dialogue, null);
@@ -255,7 +255,7 @@ public class StealthCaughtZone : MonoBehaviour
             else if (dm.sentenceFinished)
             {
                 if (rambleReady)
-                    StartCoroutine(WaitToEndDialogue(2f));
+                    StartCoroutine(WaitToEndDialogue(3f));
             }
         }
         else EndDialogue();

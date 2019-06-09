@@ -123,6 +123,8 @@ namespace Assets.Scripts.Menus
                         GameInformation.Game.Player.setSpriteVisibility(Enums.Visibility.Visible);
                         GameInformation.Game.Player.position = new Vector3(-3.2f, -9.5f, 0);
                         GameInformation.Game.HUD.showHUD = false;
+
+
                         this.exitMenu();
                         SceneManager.LoadScene(component.Key);
                         break;
@@ -145,6 +147,11 @@ namespace Assets.Scripts.Menus
         private bool specialPreDaySetUp(string componentName)
         {
             Game.Player.gameObject.SetActive(true);
+
+            Game.Player.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            Game.Player.PlayerMovement.defaultSpeed = 1.25f;
+            Game.Player.PlayerMovement.CanPlayerMove = true;
+
             if (componentName == "Kitchen")
             {
                 if (GameInformation.Game.DaysUnlocked[1] == false) return false;

@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GuardRambles:
-  - You know Jeb sure is a wise fella...
-  - Have you ever had the chance to try the cookies for yourself?
-  - I can only imagine what it might be like in that kitchen...
+  - You look super nervous!
+  - Take a deep breath (LEFT TRIGGER)!
+  - But not too fast (LEFT TRIGGER)!
   - Honesly Mint Chip Cookies are the best.
   - Rumor has it that Jeb's recipes are as old as baking itself!
   - Wait... have we met before?
@@ -66,4 +66,9 @@ MonoBehaviour:
   - Way back when, we would always snag some raisins when no one was looking... we
     dove into the bushes when they were!
   - Jeb can be kinda forgetful, but you know what? He's smarter than all of us!
+  - You know Jeb sure is a wise fella...
+  - Have you ever had the chance to try the cookies for yourself?
+  - I can only imagine what it might be like in that kitchen...
   specificRamble: 0
+  numTutorialDialogs: 3
+  numTutorialDialogsPassed: 0
