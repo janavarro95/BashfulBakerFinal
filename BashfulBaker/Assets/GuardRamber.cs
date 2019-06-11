@@ -30,6 +30,7 @@ public class GuardRamber : MonoBehaviour
                 GuardRambles.RemoveAt(0);
                 numTutorialDialogsPassed++;
             }
+            Game.Player.PlayerMovement.hasBeenCaughtBefore = true;
         }
         else
         {

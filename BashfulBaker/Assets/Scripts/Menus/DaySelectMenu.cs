@@ -147,10 +147,8 @@ namespace Assets.Scripts.Menus
         private bool specialPreDaySetUp(string componentName)
         {
             Game.Player.gameObject.SetActive(true);
-
-            Game.Player.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
-            Game.Player.PlayerMovement.defaultSpeed = 1.25f;
-            Game.Player.PlayerMovement.CanPlayerMove = true;
+            
+            Game.Player.PlayerMovement.ResetPlayer();
 
             if (componentName == "Kitchen")
             {

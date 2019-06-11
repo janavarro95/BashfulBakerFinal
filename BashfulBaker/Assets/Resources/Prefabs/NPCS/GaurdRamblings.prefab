@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GuardRambles:
-  - You look super nervous!
-  - Take a deep breath (LEFT TRIGGER)!
-  - But not too fast (LEFT TRIGGER)!
+  - You look super nervous! (LEFT TRIGGER)
+  - Take a deep breath (LEFT TRIGGER, SLOWLY)!
+  - Do it with me now! Inhale! Exhale! (Follow the Bar)!
   - Honesly Mint Chip Cookies are the best.
   - Rumor has it that Jeb's recipes are as old as baking itself!
   - Wait... have we met before?

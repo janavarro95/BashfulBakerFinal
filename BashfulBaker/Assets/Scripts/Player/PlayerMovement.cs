@@ -592,4 +592,14 @@ public class PlayerMovement : MonoBehaviour {
             this.animator.runtimeAnimatorController = bakeryAnimator;
         }
     }
+
+    public void ResetPlayer()
+    {
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
+        defaultSpeed = 1.25f;
+        CanPlayerMove = true;
+
+        var schweaty = GetComponentInChildren<ParticleSystem>().emission;
+        schweaty.rateOverTime = 0;
+    }
 }
